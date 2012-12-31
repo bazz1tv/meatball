@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\Program Files\boost\boost_1_51&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\MeatBall\include&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\src\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(LIB_DIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\MeatBall\include&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\src\include&quot;;&quot;$(LIB_DIR)\MSVC\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -76,7 +76,7 @@
 				OutputFile=".\..\..\Bin/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;C:\Program Files\boost\boost_1_51\lib&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\Bin&quot;"
+				AdditionalLibraryDirectories="&quot;$(LIB_DIR)\sdl\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\Bin&quot;;&quot;$(LIB_DIR)\freetype\lib\x86&quot;"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="Debug/MeatBall.pdb"
 				SubSystem="1"

@@ -49,6 +49,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Common Files\MSVC\sdl\include&quot;;&quot;C:\Program Files\Common Files\MSVC\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SDL_EP_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -75,6 +76,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
+				AdditionalLibraryDirectories="&quot;$(LIB_DIR)\freetype\lib\x86&quot;;&quot;$(LIB_DIR)\sdl\lib\x86&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
