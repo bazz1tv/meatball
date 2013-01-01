@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\..\src\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\..\Engine\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -141,7 +141,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\..\src\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\..\Engine\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				StringPooling="true"
 				RuntimeLibrary="2"
