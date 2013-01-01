@@ -18,7 +18,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory=".\..\..\Bin"
-			IntermediateDirectory=".\Debug"
+			IntermediateDirectory="$(OutDir)\Debug"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(LIB_DIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\MeatBall\include&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\src\include&quot;;&quot;$(LIB_DIR)\MSVC\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\..\src\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -69,14 +69,15 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="pwd;&#x0D;&#x0A;xcopy /i /y &quot;$(OutDir)\Dll\Debug\*.*&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="freetype_D.lib sge.lib sdl.lib "
-				OutputFile=".\..\..\Bin/MeatBall.exe"
+				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(LIB_DIR)\sdl\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\Bin&quot;;&quot;$(LIB_DIR)\freetype\lib\x86&quot;"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl_net\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_ttf\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_mixer\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sge\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_image\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl\libd\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin;&quot;$(MEATBALL_LIBDIR)\freetype\libd\x86&quot;"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="Debug/MeatBall.pdb"
 				SubSystem="1"
@@ -112,7 +113,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\..\..\Bin"
-			IntermediateDirectory=".\Release"
+			IntermediateDirectory="$(OutDir)\Release"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
@@ -140,7 +141,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;C:\Program Files\boost\boost_1_51&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\src\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\..\src\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -163,15 +164,17 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="xcopy /i /y &quot;$(OutDir)\Dll\Release\*.*&quot; &quot;$(OutDir)\&quot;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="freetype_D.lib sge.lib sdl_ep.lib sdl.lib sdl_ttf.lib sdl_image.lib sdl_mixer.lib  sdl_net.lib"
-				OutputFile=".\..\..\Bin/MeatBall.exe"
-				LinkIncremental="1"
+				AdditionalDependencies="freetype.lib sge.lib sdl_ep.lib sdl.lib sdl_ttf.lib sdl_image.lib sdl_mixer.lib  sdl_net.lib"
+				OutputFile="$(OutDir)/MeatBall.exe"
+				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;C:\Program Files\boost\boost_1_51\lib&quot;;&quot;C:\Documents and Settings\Administrator\Desktop\meatball\Bin&quot;"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl_net\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_ttf\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_mixer\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sge\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_image\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin;&quot;$(MEATBALL_LIBDIR)\freetype\lib\x86&quot;"
 				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="false"
 				ProgramDatabaseFile="Release/MeatBall.pdb"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
@@ -183,6 +186,7 @@
 			/>
 			<Tool
 				Name="VCManifestTool"
+				UseFAT32Workaround="true"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -200,6 +204,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>

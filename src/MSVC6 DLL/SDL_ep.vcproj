@@ -17,7 +17,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\../../Bin"
+			OutputDirectory=".\../../Bin/Dll/Debug"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
@@ -49,7 +49,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(LIB_DIR)\sdl\include&quot;;&quot;$(LIB_DIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SDL_EP_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -76,7 +76,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalLibraryDirectories="&quot;$(LIB_DIR)\freetype\lib\x86&quot;;&quot;$(LIB_DIR)\sdl\lib\x86&quot;"
+				AdditionalLibraryDirectories="&quot;$(LIB_DIR)\freetype\libd\x86&quot;;&quot;$(LIB_DIR)\sdl\libd\x86&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -98,9 +98,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\../../Bin"
+			OutputDirectory=".\../../Bin/Dll/Release"
 			IntermediateDirectory=".\Release"
-			ConfigurationType="2"
+			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -131,9 +131,10 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SDL_EP_EXPORTS"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				PrecompiledHeaderFile=".\Release/SDL_ep.pch"
 				AssemblerListingLocation=".\Release/"
@@ -155,21 +156,11 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				OutputFile=".\../../Bin/SDL_ep.dll"
-				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				ProgramDatabaseFile="SDL_epR.pdb"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				ImportLibrary=".\../../Bin/SDL_ep.lib"
-				TargetMachine="1"
+				Name="VCLibrarianTool"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\freetype\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl\lib\x86&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -181,9 +172,6 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
