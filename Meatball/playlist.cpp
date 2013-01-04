@@ -15,7 +15,9 @@ void ls_music()
 		int i=0;
 		for ( fs::directory_iterator dir_itr( full_path ); dir_itr != end_iter; ++dir_itr )
 		{
+			//printf(" %d \n",i);
 			 strcpy(musicfiles[i++],dir_itr->path().filename().string().c_str());
+			//printf(" %d \n",i);
 		}
 
 		numsongs=i;

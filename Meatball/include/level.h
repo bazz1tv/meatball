@@ -16,6 +16,9 @@ public:
 	unsigned int BasicSpriteCount;
 	// Background Color
 	Uint8 BG_red,BG_green,BG_blue;
+	// Background Image
+	// not implemented
+
 	// The Music
 	string Musicfile;
 

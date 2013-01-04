@@ -385,7 +385,7 @@ bool cConsole :: helpCMD( string &str )
 	//cout<<(int)*pos;
 	//str.erase( pos );
 	
-	sprintf_s( buffer, sizeof(buffer), "Revealing information on CMD %s:", str.c_str() );
+	sprintf( buffer, "Revealing information on CMD %s:", str.c_str() );
 
 	int j = 0;
 
@@ -486,7 +486,7 @@ bool allSoundsVol(string &str)
 		return false;
 	}
 	char result[300];
-	sprintf_s(result, sizeof(result),"Successful. Avg/Old volume = %d", avg);
+	sprintf(result,"Successful. Avg/Old volume = %d", avg);
 	console_print(result);
 	return true;
 }
@@ -525,7 +525,7 @@ bool soundVol( string &str)
 	{
 		char Result[200]; // string which will contain the number
 
-		sprintf_s(Result, sizeof(Result),"%s_vol : %d => %s", sound.c_str(), oldvol,vol.c_str() ); // %d makes the result be a decimal integer 
+		sprintf(Result,"%s_vol : %d => %s", sound.c_str(), oldvol,vol.c_str() ); // %d makes the result be a decimal integer 
 
 		console_print(Result);
 	}
@@ -544,7 +544,7 @@ bool musicVol( string &str)
 	}
 	else
 	{
-		sprintf_s(result, sizeof(result),"Music_vol : %d => %s", oldvol, str.c_str());
+		sprintf(result,"Music_vol : %d => %s", oldvol, str.c_str());
 		console_print(result);
 	}
 	return true;
@@ -708,7 +708,7 @@ bool ls(string &str)
 			{
 				if ( fs::is_directory( dir_itr->status() ) )
 				{
-					sprintf_s(result, sizeof(result),"%s [directory]", s.c_str());
+					sprintf(result,"%s [directory]", s.c_str());
 					console_print(result);
 				}
 				else if ( fs::is_regular_file( dir_itr->status() ) )
@@ -718,7 +718,7 @@ bool ls(string &str)
 				}
 				else
 				{
-					sprintf_s(result, sizeof(result),"%s [other]", s.c_str());
+					sprintf(result,"%s [other]", s.c_str());
 					console_print(result);
 				}
 				curline++;

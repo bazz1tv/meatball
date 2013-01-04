@@ -53,6 +53,9 @@ cConsole *pConsole;
 // The Current mode
 Uint8 mode, oldmode;
 
+// The screen settings 
+const SDL_VideoInfo* screeninfo;
+
 // Initializes the basic
 void StartGame( void )
 {
@@ -210,7 +213,7 @@ void FramerateDraw( SDL_Surface *target, double posx /* = 5.0 */, double posy /*
 	}
 
 	char fps_string[100]; 
-	sprintf_s( fps_string, sizeof(fps_string),"FPS : %d", (int)pFramerate->fps );
+	sprintf( fps_string, "FPS : %d", (int)pFramerate->fps );
 	
 	SDL_Surface *image = pFont->CreateText( fps_string, bold_16 );
 	
@@ -248,3 +251,4 @@ int SDL_ToggleFS(SDL_Surface *surface)
     if ((surface = SDL_SetVideoMode(SDL_WIN_SETTINGS, flags|SDL_FULLSCREEN)) == NULL) return 0; 
     return 1; 
 } 
+

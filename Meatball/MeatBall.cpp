@@ -55,7 +55,10 @@ int main( void )
 	pPreferences->Load();
 	pPreferences->Apply();
 
-	Screen = InitScreen( pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pGameSettings->Fullscreen );
+	/* new code */
+	screeninfo = SDL_GetVideoInfo();
+
+	Screen = InitScreen( pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pGameSettings->Fullscreen, SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE );
 
 	keys = SDL_GetKeyState( NULL );
 	SetWindowCaption( "MeatBall - Vegetable Destruction" );
@@ -157,6 +160,46 @@ void game_ehandler()
 	{
 		switch ( event.type )
 		{
+		case SDL_VIDEORESIZE:
+			{
+				//double monitorAspectRatio = screeninfo->current_w / screeninfo->current_h;//screenHeight;
+				//double imageAspectRatio = 800.0 / 600.0;
+				//
+				/*if(monitorAspectRatio > imageAspectRatio) {
+					 // Here monitor is wider than the image, so the height of the target rectangle should be the screen height, but not stretching all the way to the left/right
+					top = 0;
+					height = screenHeight;
+					width = height * imageAspectRatio;
+					left = screenWidth/2 - width/2;
+				}
+				else {
+				// The opposite, left/width is the whole screen, but you don't stretch all the way up/down
+					...
+				}*/
+				 //Resize the screen
+				Screen = SDL_SetVideoMode( event.resize.w, event.resize.h, pGameSettings->Screen_Bpp, SDL_CUSTOM_FLAGS );
+				//If there's an error
+				if( Screen == NULL )
+				{
+					printf ("OOPS");
+					//windowOK = false;
+					return;
+				}
+				break;
+			}
+		case SDL_VIDEOEXPOSE:
+			{
+				//printf ("OOPS");
+				//Update the screen
+				if( SDL_Flip( Screen ) == -1 )
+				{
+					//If there's an error
+					//windowOK = false;
+					printf ("OOPS");
+					return;
+				}
+				break;
+			}
 		case SDL_QUIT:
 			{
 				done = 2;

@@ -6,7 +6,7 @@ void Main_Menu( void )
 {
 
 	//printf ("%f\n", pFramerate->speedfactor);
-	pAudio->PlayMusik( MUSIC_DIR "main_menu.mod");
+	pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3");
 
 	cBasicSprite *Button_Start,*Button_Exit;
 	cBasicSprite *Menu_Background;
