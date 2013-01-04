@@ -6,7 +6,23 @@
 #include <time.h>
 #include <fstream>
 
+// Include the Engine
 #include <SDL_ep.h>
+
+// If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
+// note: relies on __VA_ARGS__ stackoverflow
+#ifdef _WIN32
+#define sprintf(buffer, stringbuffer, ...) (sprintf_s(buffer, sizeof(buffer), stringbuffer, __VA_ARGS__)) 
+// add for strcpy_s
+#define strcpy(dest, src) (strcpy_s(dest, sizeof(dest), src))
+// I can ascertain from experience that even if 'dest' argument is something like arg[i++], 
+// the i will not get incremented twice from this #define :)
+#define strcat(dest,src) (strcat_s(dest, sizeof(dest), src))
+
+#endif
+//--------------------------------
+
+#define SDL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
 
 // This following line takes out the command line window from your program :) 
 #ifndef _DEBUG
@@ -87,8 +103,11 @@ extern Uint32 colorkey;
 void StartGame( void );
 void QuitGame( void );
 // The Main menu
-void Main_Menu( void );
+//void Main_Menu( void );
+// Declared in MainMenu Module
 // 
+
+// Toggle fullScreen
 int SDL_ToggleFS(SDL_Surface *surface);
 
 
@@ -124,6 +143,9 @@ extern cPlayer *pPlayer;			// The Player
 extern cLevel *pLevel;				// The Level
 extern cLevelEditor *pLevelEditor;	// The Leveleditor
 extern cConsole *pConsole;			// The Console
+
+// screen settings
+extern const SDL_VideoInfo* screeninfo;
 
 // The Current mode
 extern Uint8 mode, oldmode;

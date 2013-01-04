@@ -180,19 +180,19 @@ void cLevel :: Save( void )
 	unsigned int i;
 	char row[300];
 
-	sprintf_s( row, sizeof(row), "### Level Saved with MeatBall FX V.0 ###\n\n" );
+	sprintf( row,  "### Level Saved with MeatBall FX V.0 ###\n\n" );
 	ofs.write( row, strlen( row ) );
 
-	//sprintf_s( row,sizeof(row),  "### Level Saved on the %s\n", Get_Curr_Time() );
+	//sprintf( row,  "### Level Saved on the %s\n", Get_Curr_Time() );
 	//ofs.write( row, strlen( row ) );
 
-	sprintf_s( row, sizeof(row),  "Player %d %d\n", (int) pPlayer->Startposx, (int)Screen->h - (int)pPlayer->Startposy );
+	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, (int)Screen->h - (int)pPlayer->Startposy );
 	ofs.write( row, strlen( row ) );
 
-	sprintf_s( row, sizeof(row),  "Music %s\n\n", pLevelData->Musicfile.c_str() );
+	sprintf( row,  "Music %s\n\n", pLevelData->Musicfile.c_str() );
 	ofs.write( row, strlen( row ) );
 
-	sprintf_s( row, sizeof(row), "### Map Objects ###\n" );
+	sprintf( row, "### Map Objects ###\n" );
 	ofs.write( row, strlen( row ) );
 	
 	// Map Objects
@@ -211,15 +211,15 @@ void cLevel :: Save( void )
 			
 			if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE ) 
 			{
-				sprintf_s(row,sizeof(row),  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
 			}
 			else if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_PASSIVE ) 
 			{
-				sprintf_s(row,sizeof(row),  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
 			}
 			else if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) 
 			{
-				sprintf_s(row,sizeof(row),  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
 			}
 			else
 			{
@@ -231,7 +231,7 @@ void cLevel :: Save( void )
 		}
 	}
 
-	sprintf_s( row, sizeof(row), "### Enemies ###\n" );
+	sprintf( row, "### Enemies ###\n" );
 	ofs.write( row, strlen( row ) );
 	
 	// Enemies
@@ -246,7 +246,7 @@ void cLevel :: Save( void )
 
 			if( Enemies[i]->Enemy_type == ENEMY_AF373 )
 			{
-				sprintf_s( row, sizeof(row), "Enemy %d %d %d\n", (int)Enemies[i]->Startposx, (int)Enemies[i]->Startposy, Enemies[i]->Enemy_type );
+				sprintf( row,  "Enemy %d %d %d\n", (int)Enemies[i]->Startposx, (int)Enemies[i]->Startposy, Enemies[i]->Enemy_type );
 				ofs.write( row, strlen( row ) );
 			}
 			else

@@ -119,31 +119,31 @@ void cPreferences :: Save( void )
 
 	char row[250];
 
-	sprintf_s( row, sizeof(row), "### Preferences file V.%s for MeatBall V.0 #### \n\n", PREF_VERSION );
+	sprintf( row,  "### Preferences file V.%s for MeatBall V.0 #### \n\n", PREF_VERSION );
 	ofs.write( row, strlen( row ) );
 
-	sprintf_s( row, sizeof(row), "Music %d\n", pSettings->Music );
+	sprintf( row, "Music %d\n", pSettings->Music );
 	ofs.write(row, strlen(row));
 
-	sprintf_s( row, sizeof(row), "Sounds %d\n", pSettings->Sounds );
+	sprintf( row, "Sounds %d\n", pSettings->Sounds );
 	ofs.write( row, strlen(row));
 
-	sprintf_s( row, sizeof(row), "Fullscreen %d\n", pSettings->Fullscreen );
+	sprintf( row, "Fullscreen %d\n", pSettings->Fullscreen );
 	ofs.write( row, strlen(row));
 
-	sprintf_s( row, sizeof(row), "Screen_H %d\n", pSettings->Screen_H );
+	sprintf( row,"Screen_H %d\n", pSettings->Screen_H );
 	ofs.write( row, strlen(row));
 
-	sprintf_s( row, sizeof(row), "Screen_W %d\n", pSettings->Screen_W );
+	sprintf( row,  "Screen_W %d\n", pSettings->Screen_W );
 	ofs.write(row, strlen( row ) );
 
-	sprintf_s( row, sizeof(row), "Screen_Bpp %d\n", pSettings->Screen_Bpp );
+	sprintf( row, "Screen_Bpp %d\n", pSettings->Screen_Bpp );
 	ofs.write( row, strlen( row ) );
 
-	sprintf_s( row, sizeof(row), "svol %d\n", pSettings->svol );
+	sprintf( row, "svol %d\n", pSettings->svol );
 	ofs.write( row, strlen( row ) );
 
-	sprintf_s( row, sizeof(row), "mvol %d\n", pSettings->mvol );
+	sprintf( row, "mvol %d\n", pSettings->mvol );
 	ofs.write( row, strlen( row ) );
 
 	ofs.close();
