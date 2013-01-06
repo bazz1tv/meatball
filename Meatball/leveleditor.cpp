@@ -36,10 +36,10 @@ void cLevelEditor :: Update( void )
 	}
 	else if( Mouse_command == MOUSE_COMMAND_MOVING )
 	{
-		Object->SetPos( pMouse->posx + Mouse_w + pCamera->x, pMouse->posy + Mouse_h + pCamera->y );
+		Object->SetPos( floor(pMouse->posx + Mouse_w + pCamera->x), floor(pMouse->posy + Mouse_h + pCamera->y) );
 		
-		Object->Startposx = pMouse->posx + Mouse_w + pCamera->x;
-		Object->Startposy = pMouse->posy + Mouse_h + pCamera->y;
+		Object->Startposx = floor(pMouse->posx + Mouse_w + pCamera->x);
+		Object->Startposy = floor(pMouse->posy + Mouse_h + pCamera->y);
 	}
 
 }
@@ -69,12 +69,12 @@ void cLevelEditor :: Draw( SDL_Surface *target )
 	if( CopyObject && !FullRectIntersect( &HoveredObject, &CopyObject->rect ) && Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
 	{
 		// The CopyObject Shadow
-		sge_RectAlpha( Screen ,(int)( CopyObject->posx - pCamera->x + 1 ), (int)( CopyObject->posy - pCamera->y + 1 ), (int)( CopyObject->posx - pCamera->x + 1 + CopyObject->width ), 
-						(int)( CopyObject->posy - pCamera->y + 1 + CopyObject->height ), 0, 0, 0, 64 );
+		//sge_RectAlpha( Screen ,(int)( CopyObject->posx - pCamera->x + 1 ), (int)( CopyObject->posy - pCamera->y + 1 ), (int)( CopyObject->posx - pCamera->x + 1 + CopyObject->width ), 
+		//				(int)( CopyObject->posy - pCamera->y + 1 + CopyObject->height ), 0, 0, 0, 64 );
 
 		// Draws an non Filled Rect with the CopyObject rect size
-		sge_RectAlpha( Screen ,(int)( CopyObject->posx - pCamera->x ), (int)( CopyObject->posy - pCamera->y ), (int)( CopyObject->posx - pCamera->x + CopyObject->width ), 
-						(int)( CopyObject->posy - pCamera->y + CopyObject->height ), 120, 255, 120, 192  );	
+		//sge_RectAlpha( Screen ,(int)( CopyObject->posx - pCamera->x ), (int)( CopyObject->posy - pCamera->y ), (int)( CopyObject->posx - pCamera->x + CopyObject->width ), 
+		//				(int)( CopyObject->posy - pCamera->y + CopyObject->height ), 120, 255, 120, 192  );	
 	}
 }
 
@@ -298,7 +298,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 	return NULL;
 }
 
-void leveleditor_ehandler()
+void leveleditor_eventhandler()
 {
 	while ( SDL_PollEvent( &event ) )
 	{
@@ -319,35 +319,44 @@ void leveleditor_ehandler()
 			}
 		case SDL_KEYDOWN:
 			{
+				// ESCAPE to ESCAPE mouse command or LEVEL MODE
 				if( event.key.keysym.sym == SDLK_ESCAPE )
 				{
 					// universal!
-					mode = MODE_GAME;
+					if (pLevelEditor->Mouse_command == MOUSE_COMMAND_NOTHING)
+						mode = MODE_GAME;
+					else
+						pLevelEditor->Mouse_command = MOUSE_COMMAND_NOTHING;
 				}
+				// ~ to enter CONSOLE
 				else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
 				{
 					oldmode = mode;
 					mode = MODE_CONSOLE;
 						
 				}
+				// F8 to Exit LEVLE MODE
 				else if( event.key.keysym.sym == SDLK_F8 )
 				{
 					
 					mode = MODE_GAME;
 
-					//pCamera->SetPos( pPlayer->posx - pCamera->x - Screen->w, 0 );
+					pCamera->SetPos( pPlayer->posx - pCamera->x - Screen->w, 0 );
 					
 				}
+				// LCTRL S to save
 				else if( event.key.keysym.sym == SDLK_s && ( event.key.keysym.mod & KMOD_LCTRL ) ) 
 				{
 					//level edit mode
 					pLevel->Save();
 					
 				}
+				// LCTRL+C to copy
 				else if( event.key.keysym.sym == SDLK_c && ( event.key.keysym.mod & KMOD_LCTRL ) ) 
 				{
 					pLevelEditor->SetCopyObject();
 				}
+				//LCTRL+V to paste
 				else if( event.key.keysym.sym == SDLK_v && ( event.key.keysym.mod & KMOD_LCTRL ) ) 
 				{
 					pLevelEditor->PasteObject();
@@ -357,28 +366,32 @@ void leveleditor_ehandler()
 				{
 					pLevelEditor->SpecialPasteObject();
 				}
-				else if( ( event.key.keysym.sym == SDLK_KP6 || event.key.keysym.sym == SDLK_KP8 || 
-					event.key.keysym.sym == SDLK_KP4 || event.key.keysym.sym == SDLK_KP2 ) ) 
+				else if (event.key.keysym.sym == SDLK_f && (event.key.keysym.mod & KMOD_LCTRL ) )
+				{
+					pLevelEditor->SetFastCopyObject();
+				}
+				else if( ( event.key.keysym.sym == SDLK_w || event.key.keysym.sym == SDLK_a || 
+					event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_d ) ) 
 				{
 					// level editor mode
 					if( pLevelEditor->Mouse_command == MOUSE_COMMAND_FASTCOPY && pLevelEditor->CopyObject)
 					{
-						if( event.key.keysym.sym == SDLK_KP6 ) 
+						if( event.key.keysym.sym == SDLK_d) 
 						{
 							pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x + pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
 							pCamera->Move( pLevelEditor->CopyObject->width, 0 );
 						}
-						else if( event.key.keysym.sym == SDLK_KP8 )
+						else if( event.key.keysym.sym == SDLK_w )
 						{
 							pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x, pLevelEditor->CopyObject->posy - pCamera->y - pLevelEditor->CopyObject->height );
 							pCamera->Move( 0, - pLevelEditor->CopyObject->height );
 						}
-						else if( event.key.keysym.sym == SDLK_KP4 )
+						else if( event.key.keysym.sym == SDLK_a )
 						{
 							pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x - pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
 							pCamera->Move( - pLevelEditor->CopyObject->width, 0 );
 						}
-						else if( event.key.keysym.sym == SDLK_KP2 )
+						else if( event.key.keysym.sym == SDLK_s )
 						{
 							pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx- pCamera->x , pLevelEditor->CopyObject->posy - pCamera->y + pLevelEditor->CopyObject->height );
 							pCamera->Move( 0, pLevelEditor->CopyObject->height );
@@ -387,19 +400,19 @@ void leveleditor_ehandler()
 					else
 					{
 						// level editor mode
-						if( event.key.keysym.sym == SDLK_KP6) 
+						if( event.key.keysym.sym == SDLK_d) 
 						{
 							pCamera->Move( 1, 0 );
 						}
-						else if( event.key.keysym.sym == SDLK_KP8 )
+						else if( event.key.keysym.sym == SDLK_w )
 						{
 							pCamera->Move( 0, - 1 );
 						}
-						else if( event.key.keysym.sym == SDLK_KP4 )
+						else if( event.key.keysym.sym == SDLK_a )
 						{
 							pCamera->Move( - 1, 0 );
 						}
-						else if( event.key.keysym.sym == SDLK_KP2 )
+						else if( event.key.keysym.sym == SDLK_s )
 						{
 							pCamera->Move( 0, 1 );
 						}						

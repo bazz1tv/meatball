@@ -4,7 +4,7 @@
 
 #include "include\Globals.h"
 
-void leveleditor_ehandler(void);
+void leveleditor_eventhandler(void);
 
 // The Current Mouse Command
 #define MOUSE_COMMAND_NOTHING 0

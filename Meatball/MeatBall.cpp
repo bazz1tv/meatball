@@ -81,7 +81,7 @@ int main( void )
 
 	eventhandlers[MODE_MENU] = &menu_ehandler;
 	eventhandlers[MODE_GAME] = &game_ehandler;
-	eventhandlers[MODE_LEVELEDITOR] = &leveleditor_ehandler;
+	eventhandlers[MODE_LEVELEDITOR] = &leveleditor_eventhandler;
 	eventhandlers[MODE_CONSOLE] = &console_ehandler;
 	
 	mode = MODE_MENU;
@@ -387,19 +387,50 @@ void MeatBall_Input( void )
 		}
 		
 		
-		if ( keys[SDLK_d] )
+		if ( keys[SDLK_e] )
 		{
 			pLevelEditor->DeleteObject();
 		}
-		else if (keys[SDLK_RALT] && keys[SDLK_v])
+		else if (keys[SDLK_RALT])
 		{
-			if (specialpastecounter == 0)
-				pLevelEditor->SpecialPasteObject();
-			
-			specialpastecounter++;
+			if( keys[SDLK_d]) 
+			{
+				if (specialpastecounter++ == 0)
+				{
+					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x + pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
+					pCamera->Move( pLevelEditor->CopyObject->width, 0 );
+				}
+			}
+			else if( keys[SDLK_w] )
+			{
+				if (specialpastecounter++ == 0)
+				{
+					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x, pLevelEditor->CopyObject->posy - pCamera->y - pLevelEditor->CopyObject->height );
+					pCamera->Move( 0, - pLevelEditor->CopyObject->height );
+				}
+			}
+			else if( keys[SDLK_a] )
+			{
+				if (specialpastecounter++ == 0)
+				{
+					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x - pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
+					pCamera->Move( - pLevelEditor->CopyObject->width, 0 );
+				}
+			}
+			else if( keys[SDLK_s] )
+			{
+				if (specialpastecounter++ == 0)
+				{
+					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx- pCamera->x , pLevelEditor->CopyObject->posy - pCamera->y + pLevelEditor->CopyObject->height );
+					pCamera->Move( 0, pLevelEditor->CopyObject->height );
+				}
+			}
 
-			if (specialpastecounter == 20)
-				specialpastecounter = 0;
+			if (specialpastecounter == 40)
+					specialpastecounter = 0;
+
+
+			
 		}
 	}
 }
