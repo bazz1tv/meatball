@@ -53,7 +53,7 @@ void cPlayer :: init( void )
 	}
 
 	// Pistol
-	pWeapon = new cWeapon_Machinegun (SPRITE_TYPE_PLAYER, 1, -1); //(cWeapon_Pistol( SPRITE_TYPE_PLAYER, 5, -1 );
+	pWeapon = /*new cWeapon_Machinegun (SPRITE_TYPE_PLAYER, 1, -1); */new cWeapon_Pistol( SPRITE_TYPE_PLAYER, 5, -1 );
 }
 
 void cPlayer :: Update( void )
@@ -204,7 +204,7 @@ void cPlayer :: Update( void )
 	if (state == STATE_JUMPING && !keys[SDLK_RALT] && vely < 0)
 	{
 		//jumpvel = 1;
-		vely +=0.02;
+		vely +=0.10;
 	}
 	// Gravity
 	AddVelocity( 0, ( 0.30 + (vely*0.03) ) * pFramerate->speedfactor, 0, 6 );
@@ -226,9 +226,11 @@ void cPlayer :: Update( void )
 
 	if( posy < 0 ) // Up
 	{
-		SetPos( posx, 0 );
+		// just commented this out after putting some tiles at negative locations...
+		// seems to be working fine 1/6/12
+		/*SetPos( posx, 0 );
 		SetVelocity( velx, 0 );
-		state = STATE_FALLING;
+		state = STATE_FALLING;*/
 	}
 	else if( (double)posy + height > (double)Screen->h + pCamera->y ) // Bottom
 	{
@@ -268,7 +270,7 @@ void cPlayer :: Reset( void )
 	direction = RIGHT;
 	onGround = 0;
 
-	ChangeActiveWeapon( WEAPON_MACHINEGUN );
+	ChangeActiveWeapon( WEAPON_PISTOL );
 }
 
 void cPlayer :: Jump( int power /* = 5  */)
