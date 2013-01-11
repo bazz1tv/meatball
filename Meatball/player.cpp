@@ -1,6 +1,9 @@
 
 #include "include\Globals.h"
 
+// The player won't fall any faster than this (pixels iirc)
+#define MAX_FALL_VELOCITY 8
+
 cPlayer :: cPlayer( double nposx, double nposy ) : cMVelSprite( NULL, nposx, nposy )
 {
 	direction = RIGHT;	// RIGHT
@@ -216,7 +219,7 @@ void cPlayer :: Update( void )
 		vely +=0.10;
 	}
 	// Gravity
-	AddVelocity( 0, ( 0.30 + (vely*0.03) ) * pFramerate->speedfactor, 0, 6 );
+	AddVelocity( 0, ( 0.30 + (vely*0.03) ) * pFramerate->speedfactor, 0, MAX_FALL_VELOCITY );
 
 	if( jump_timer ) 
 	{
