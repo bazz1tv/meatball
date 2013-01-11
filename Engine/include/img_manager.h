@@ -1,5 +1,5 @@
 
-/* 
+/** 
 
 	img_manager.h  -  Image Handler/Manager
 
@@ -34,12 +34,12 @@ public:
 
 	DLLINTERFACE string GetIdentifier( SDL_Surface *nItem );
 
-	/*	Returns the Current Size
+	/**	Returns the Current Size
 	 *	/Count of the Items
 	 */
 	DLLINTERFACE unsigned int GetSize( void );
 
-	/*	Adds an Image
+	/**	Adds an Image
 	 *	Should always have an Identifier
 	 */
 	DLLINTERFACE void Add( SDL_Surface *nItem, string nIdentifier = "Unknown" );

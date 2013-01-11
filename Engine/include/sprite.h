@@ -1,4 +1,4 @@
-/* 
+/** 
 
 	sprite.h  -  Sprite Class
 
@@ -19,16 +19,15 @@
 #include "framerate.h"
 #include "misc.h"
 
+/// Sprite Types
 #define SPRITE_BASIC 1
-#define SPRITE_VELOCITY 2
+#define SPRITE_VELOCITY 2 
 #define SPRITE_ANGLE 3
 #define SPRITE_ACCELEREATION 4
-
 #define SPRITE_MOUSECURSOR 100
 
-/* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
 
-/*	Sets the Sprite Speedfacto
+/**	Sets the Sprite Speedfactor
  *	this affects the movement
  */
 DLLINTERFACE void SetSpriteSpeedfactor( double *sf );
@@ -61,44 +60,44 @@ public:
 	
 	DLLINTERFACE virtual void Update( void );
 
-	/*	The final stretched/zoomed image to draw
+	/**	The final stretched/zoomed image to draw
 	 *	if visible == 0 the image won't be drawn
 	 */	
 	SDL_Surface *image;
 
-	/*	Alpha 0 (completely not visible) - 255 (completely visible)
+	/**	Alpha 0 (completely not visible) - 255 (completely visible)
 	 *	Read Only
 	 */ 
 	Uint8 alpha;
 	
-	double posx, posy; // Position
-	double width, height; // Size for stretching/zooming
+	double posx, posy; // Position.
+	double width, height; // Size for stretching/zooming.
 
-	bool visible; // if 1 the image will not be drawn
-	bool spawned; // Got this sprite get spawned ingame
+	bool visible; // if 1 the image will not be drawn.
+	bool spawned; // Got this sprite get spawned ingame.
 
-	unsigned int ID; // todo unique ID
+	unsigned int ID; // todo unique ID.
 	
-	/*	The first image which was set
+	/**	The first image which was set
 	 *	Read only
 	 */
 	SDL_Surface *startimage;
-	/*	The image which is currently set
+	/**	The image which is currently set
 	*	Read only
 	*/
 	SDL_Surface *srcimage;
 
-	/*	The rects for all images
+	/**	The rects for all images
 	 *	Read only
 	 */
 	SDL_Rect rect, srcrect, startrect;
 
-	/*	If this is 1 the image needs to be redrawn to maintain the width and height
+	/**	If this is 1 the image needs to be redrawn to maintain the width and height
 	 *	Read only
 	 */
 	bool drawimg;
 
-	/*	What sprite type is this
+	/**	What sprite type is this
 	 *	1 = Basic, 2 = Velocity, 3 = Angle, 4 = Acceleration
 	 */
 	unsigned int Spritetype;
@@ -119,7 +118,7 @@ public:
 	
 	DLLINTERFACE void Update( bool nMove = 1 );
 
-	double velx, vely; // Velocity
+	double velx, vely; // Velocity.
 };
 
 class cAngleSprite : public cBasicSprite
@@ -140,20 +139,20 @@ public:
 
 	DLLINTERFACE void Update( bool nMove = 1 );
 
-	double angle,speed; // Angle and Speed
+	double angle,speed; // Angle and Speed.
 
-	/*	The Direction calculated by SetDirection for 360° image moving
+	/**	The Direction calculated by SetDirection for 360° image moving
 	 *	Read Only
 	 */
 	double dirx,diry;
 
-	/*	If true the image will be rotated to the angle
+	/**	If true the image will be rotated to the angle
 	 *	Read only
 	 */
 	bool anglerotate;
 };
 
-/* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
+/** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
 
 class cAccelerationSprite : public cAngleSprite
 {
@@ -173,8 +172,8 @@ public:
 	
 	DLLINTERFACE void Update( bool nMove = 1 );
 
-	double acc; // Acceleration
-	double deacc; // De Acceleration
+	double acc; // Acceleration.
+	double deacc; // De Acceleration.
 
 private:
 
@@ -184,7 +183,7 @@ private:
 
 
 
-/* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
+/** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
 
 class cMouseCursor : public cBasicSprite
 {
@@ -192,10 +191,10 @@ public:
 	DLLINTERFACE cMouseCursor( double x, double y, SDL_Surface *new_image );
 	DLLINTERFACE virtual ~cMouseCursor( void );
 
-	/*	Point Collisioncheck
+	/**	Point Collisioncheck
 	 */
 	DLLINTERFACE bool CollisonCheck ( double x, double y );
-	/*	Checks if the MouseCursor is in the rect
+	/**	Checks if the MouseCursor is in the rect
 	 */
 	DLLINTERFACE bool CollisonCheck ( SDL_Rect *Crect );
 

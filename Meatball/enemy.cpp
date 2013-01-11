@@ -38,7 +38,7 @@ void cEnemy :: Draw( SDL_Surface *target )
 	// virtual 
 }
 
-void cEnemy :: Jump( int power /* = 5  */ )
+void cEnemy :: Jump( int power /** = 5  */ )
 {
 	// virtual 
 }

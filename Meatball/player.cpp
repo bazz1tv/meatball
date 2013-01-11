@@ -106,16 +106,21 @@ void cPlayer :: Update( void )
 
 		if( state == STATE_WALKING || state == STATE_STAYING ) 
 		{
-			AddVelocity( -0.9 + (velx*0.03)*pFramerate->speedfactor, 0, -5 ,0 );
+			AddVelocity( -0.9*pFramerate->speedfactor + (velx*0.03)*pFramerate->speedfactor, 0, -5 ,0 );
 		}
 		else
 		{
-			AddVelocity( -0.3 + (velx*0.01)*pFramerate->speedfactor, 0, -5 ,0 );
+			AddVelocity( -0.3*pFramerate->speedfactor + (velx*0.01)*pFramerate->speedfactor, 0, -5 ,0 );
 		}
 
 		if( vely > 0 ) 
 		{
-			AddVelocity( -0.5*pFramerate->speedfactor, 0 );				
+			AddVelocity( -0.5*pFramerate->speedfactor /*+ (velx*pFramerate->speedfactor)*/, 0 );				
+		}
+		if( vely < 0 ) 
+		{
+			
+			AddVelocity( -0.5*pFramerate->speedfactor, 0 );	
 		}
 	}
 	else if( direction == RIGHT && (keys[SDLK_RIGHT] || keys[SDLK_d]) && mode != MODE_CONSOLE ) 
@@ -135,11 +140,11 @@ void cPlayer :: Update( void )
 		
 		if( state == STATE_WALKING || state == STATE_STAYING ) 
 		{
-			AddVelocity( 0.9 + (velx*0.03)*pFramerate->speedfactor, 0, 5 ,0 );
+			AddVelocity( 0.9*pFramerate->speedfactor + (velx*0.03)*pFramerate->speedfactor, 0, 5 ,0 );
 		}
 		else
 		{
-			AddVelocity( 0.3 + (velx*0.01)*pFramerate->speedfactor, 0, 5 ,0 );
+			AddVelocity( 0.3*pFramerate->speedfactor + (velx*0.01)*pFramerate->speedfactor, 0, 5 ,0 );
 		}
 
 
@@ -148,6 +153,10 @@ void cPlayer :: Update( void )
 		{
 			
 			AddVelocity( 0.5*pFramerate->speedfactor, 0 );	
+		}
+		if( vely > 0 ) 
+		{
+			AddVelocity( 0.5*pFramerate->speedfactor /*+ (velx*pFramerate->speedfactor)*/, 0 );				
 		}
 	}
 	else // slow down

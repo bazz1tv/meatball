@@ -6,7 +6,7 @@ void NetMessageHandler( string message )
 	
 }
 
-///////////////////////////////# cClient #///////////////////////////////////////////
+////////////////////////# cClient #////////////////////////////////
 
 cClient :: cClient( TCPsocket initSock )
 {
@@ -49,7 +49,7 @@ Uint16 cClient :: GetPort( void )
 	return ip->port;
 }
 
-///////////////////////////////# cTCPNet #///////////////////////////////////////////
+////////////////////////# cTCPNet #////////////////////////////////
 
 cTCPNet :: cTCPNet( unsigned int nport /* = 9877  */ )
 {
@@ -70,7 +70,7 @@ cTCPNet :: ~cTCPNet( void )
 	Shutdown();
 }
 
-/*	Starts an Server
+/**	Starts an Server
  *	returns 0 if already connected or an error
  */
 int cTCPNet :: Server_Start( void ) // 2.3
@@ -112,7 +112,7 @@ int cTCPNet :: Server_Start( void ) // 2.3
 	return 1;
 }
 
-/*	Checks for an connecting request from an remote client
+/**	Checks for an connecting request from an remote client
  *	used internally
  */
 int cTCPNet :: Server_ConnectionCheck( void ) // 2.1
@@ -155,7 +155,7 @@ int cTCPNet :: Server_ConnectionCheck( void ) // 2.1
 	return 1;
 }
 
-/*	Connects to an server
+/**	Connects to an server
  *	returns 0 if there were no success and 1 on success
  */
 int cTCPNet :: Client_Connect( string &address ) // 2.2
@@ -208,7 +208,7 @@ int cTCPNet :: Client_Connect( string &address ) // 2.2
 	return 1;
 }
 
-/*	Reads the Message
+/**	Reads the Message
  *	Returns 0 if an error occured or not connected to anyone
  */
 int cTCPNet :: Read_Message( TCPsocket sock, string &message ) // 2.8
@@ -323,7 +323,7 @@ int cTCPNet :: Read_Message( TCPsocket sock, string &message ) // 2.8
 	return 1; // Succesfull
 }
 
-/*	Sends the Message to all Connections you have
+/**	Sends the Message to all Connections you have
  *	uses Send_message if you're an Client
  *	else Server_SenGlobalMessage if you're an Server
  */
@@ -339,7 +339,7 @@ void cTCPNet :: Send_Message_Auto( const string message ) // 1.0
 	}
 }
 
-/*	Sends an Message to ervery Client
+/**	Sends an Message to ervery Client
  *	
  */
 void cTCPNet :: Server_SendGlobalMessage( const string message ) // 1.1
@@ -363,7 +363,7 @@ void cTCPNet :: Server_SendGlobalMessage( const string message ) // 1.1
 	}
 }
 
-/*	Sends an Message
+/**	Sends an Message
  *	Returns 0 if an error occured or not connected to anyone
  */
 int cTCPNet :: Send_Message( TCPsocket sock, const string message ) // 2.6
@@ -432,7 +432,7 @@ int cTCPNet :: Send_Message( TCPsocket sock, const string message ) // 2.6
 	return 1; // Succesfull
 }
 
-/*	Closes every Connection
+/**	Closes every Connection
  *	returns 0 if there were no connections or opened sockets
  */
 int cTCPNet :: Shutdown( void ) // 2.3
@@ -483,7 +483,7 @@ int cTCPNet :: Shutdown( void ) // 2.3
 	return 1;
 }
 
-/*	Checks if an message arrived
+/**	Checks if an message arrived
  *	returns the number of messages
  */
 int cTCPNet :: Check_Sockets( void ) // 1.5
@@ -506,7 +506,7 @@ int cTCPNet :: Check_Sockets( void ) // 1.5
 }
 
 
-/*	Allocates an Socketset for buffer message checking
+/**	Allocates an Socketset for buffer message checking
  *	used internally
  */
 int cTCPNet :: Alloc_Socketset( void ) // 2.6
@@ -567,7 +567,7 @@ void cTCPNet :: Free_Socketset( void ) // 1.1
 	}
 }
 
-/*	Returns the Server IP in an integer without points
+/**	Returns the Server IP in an integer without points
  *	returns 0 if not succesfully Connected ir not an client
  */
 Uint32 cTCPNet :: Client_GetIP( void ) // 2.1
@@ -580,7 +580,7 @@ Uint32 cTCPNet :: Client_GetIP( void ) // 2.1
 	return 0;
 }
 
-/*	Returns the currently used port
+/**	Returns the currently used port
  *	returns 0 if not succesfully hosted or not an connected client
  */
 Uint16 cTCPNet :: GetPort( void ) // 2.5
@@ -588,7 +588,7 @@ Uint16 cTCPNet :: GetPort( void ) // 2.5
 	return port;
 }
 
-/*	Sets the used port for Hosting and Connecting
+/**	Sets the used port for Hosting and Connecting
  *	Should only be used if not Connected (Idle)
  */
 void cTCPNet :: SetPort( Uint16 nport ) // 2.5
@@ -603,7 +603,7 @@ void cTCPNet :: SetPort( Uint16 nport ) // 2.5
 	}
 }
 
-/*	Disables new Connections
+/**	Disables new Connections
  *	Connected Server Only
  */
 void cTCPNet :: Server_NoNewConnections( void ) // 1.1
@@ -617,7 +617,7 @@ void cTCPNet :: Server_NoNewConnections( void ) // 1.1
 	csocket = NULL;
 }
 
-/*	Disconnects an specific Client
+/**	Disconnects an specific Client
  *	Connected Server Only
  */
 void cTCPNet :: Server_DisconnectClient( TCPsocket sock ) // 2.1
@@ -655,7 +655,7 @@ void cTCPNet :: Server_DisconnectClient( TCPsocket sock ) // 2.1
 
 	return;
 }
-/*	Checks for messages and closes the connection if the remote user disconnected
+/**	Checks for messages and closes the connection if the remote user disconnected
  *	The messages are handled by the handlemessage(string message) function
  */
 void cTCPNet :: Update( void ) // 1.8

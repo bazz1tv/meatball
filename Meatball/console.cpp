@@ -396,9 +396,6 @@ bool cConsole :: helpCMD( string &str )
 			console_print(buffer);
 			console_print(CMDList[j].helpstr);
 			console_print(CMDList[j].syntax);
-			//strcpy[0] = CMDList[j].syntax;
-			//strcpy[1] = CMDList[j].helpstr;
-			//strcpy[2] = buffer;
 			
 			return true;
 		}
@@ -571,19 +568,6 @@ bool play( string &str )
 
 bool ShowFPS( string &str )
 {
-	/*if ( atoi( str.c_str() ) == 1 )
-	{
-		fps_display = true;
-	}
-	else if ( atoi( str.c_str() ) == 0 ) 
-	{
-		fps_display = false;
-	}
-	else
-	{
-		pConsole->strcpy[0] = "Invalid Parameter: Only enter 1 or 0..";
-		return false;
-	}*/
 
 	fps_display = !fps_display;
 	
@@ -594,12 +578,10 @@ bool help( string &str )
 {
 	int j = 0;
 	int curline = 0;
-	//SDL_Event local_event;
-	///bool blah = false;
 
 	if ( str.empty() )
 	{		
-		/* there are now more than 10 commands... too much for a screen full...
+		/** there are now more than 10 commands... too much for a screen full...
 			let's print 10 commands at a time then */
 		
 		while ( !pConsole->CMDList[j].command.empty() )
@@ -611,16 +593,13 @@ bool help( string &str )
 				
 				wait_for_input();
 				
-				//curline=0;
+				
 				pConsole->constr.clear();
 			}
 			 
-			//moveup();
 
 			console_print((char*)pConsole->CMDList[j++].command.c_str());
 			curline++;
-			
-			//j++;
 		}
 
 		
@@ -699,7 +678,6 @@ bool ls(string &str)
 				
 				wait_for_input();
 				
-				//curline=0;
 				pConsole->constr.clear();
 			}
 
@@ -726,7 +704,6 @@ bool ls(string &str)
 			}
 			  catch ( const std::exception & ex )
 			  {
-				//++err_count;
 				std::cout << dir_itr->path().filename() << " " << ex.what() << std::endl;
 			  }
 		}

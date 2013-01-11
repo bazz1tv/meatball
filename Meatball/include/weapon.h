@@ -4,57 +4,57 @@
 
 #include "include\Globals.h"
 
-// Weapon types
+/// Weapon types
 #define WEAPON_UNKNOWN 0
 #define WEAPON_PISTOL 1
 #define WEAPON_MACHINEGUN 2
 #define WEAPON_LASER_X1 3
 
-// The Basic Weapon class
+/// The Basic Weapon class
 class cWeapon : public cBasicSprite
 {
 public:
 	cWeapon( unsigned int nOrigin, unsigned int nPower, int nLifetime );
 	~cWeapon( void );
 
-	// Fires an Bullet
+	/// Fires an Bullet
 	virtual void Fire( void );
 
-	// Updates the Weapon
+	/// Updates the Weapon
 	virtual void Update( void );
 
-	// Checks if the timer has run out
+	/// Checks if the timer has run out
 	virtual bool can_Fire( void );
 
-	/* The Supported directions
+	/** The Supported directions
 	 * 0 = left
 	 * 1 = right
 	 */
 	int direction;
 
-	// The Weapon Type
+	/// The Weapon Type
 	unsigned int Weapon_type;
 
-	// Should be Player,Enemy or Static (todo)
+	/// Should be Player,Enemy or Static (todo)
 	unsigned int Origin;
 
-	// The damage the one who gets hit takes
+	/// The damage the one who gets hit takes
 	unsigned int Power;
 
-	// The Lifetime ( -1 = infinite )
+	/// The Lifetime ( -1 = infinite )
 	int Lifetime;
 
-	/* Time before you can shoot once again
+	/** Time before you can shoot once again
 	 * If you change the Weapon it's resetted
 	 */
 	double timer;
 
-	// The Weapon Fire Sound
+	/// The Weapon Fire Sound
 	Mix_Chunk *sound_Fire;
 };
 
 
-//########## The Pistol #########
+///########## The Pistol #########
 
 class cWeapon_Pistol : public cWeapon
 {
@@ -65,7 +65,7 @@ public:
 	void Fire( void );
 };
 
-//########## The Machinegun #########
+///########## The Machinegun #########
 
 class cWeapon_Machinegun : public cWeapon
 {
@@ -76,7 +76,7 @@ public:
 	void Fire( void );
 };
 
-//########## Laser X-1 #########
+///########## Laser X-1 #########
 
 class cWeapon_Laser_X1 : public cWeapon
 {

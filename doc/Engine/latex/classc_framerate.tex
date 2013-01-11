@@ -1,0 +1,175 @@
+\hypertarget{classc_framerate}{\section{c\-Framerate Class Reference}
+\label{classc_framerate}\index{c\-Framerate@{c\-Framerate}}
+}
+
+
+{\ttfamily \#include $<$framerate.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classc_framerate_a7a6d7e410f142274342e1f12d745374f}{c\-Framerate} (double tfps)
+\item 
+\hyperlink{classc_framerate_a3047e81257b614ed764dd927765bbecc}{$\sim$c\-Framerate} (void)
+\item 
+void \hyperlink{classc_framerate_a20400baeef461694fed8d4d18da336d9}{Init} (double tfps)
+\item 
+void \hyperlink{classc_framerate_a526a4eb7f2f5f5894aebc47654be6573}{Set\-Speed\-Factor} (void)
+\item 
+void \hyperlink{classc_framerate_a989508dcaae1a97113f844df00219dd4}{Reset} (void)
+\item 
+void \hyperlink{classc_framerate_a97e001004c25e02c03f2f74d0dc11ad0}{Set\-Max\-Speed\-Factor} (double maxsf)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classc_framerate_af5658ae10ecbaecab7b26251bfc5603b}{targetfps}
+\item 
+double \hyperlink{classc_framerate_aeb71e09b4f0594be70662e3d49e6f642}{fps}
+\item 
+Uint32 \hyperlink{classc_framerate_a39fc2911484b7c47e7e1525fd5e560ba}{currentticks}
+\item 
+Uint32 \hyperlink{classc_framerate_ab1633b38d250740c08899cde6c85de20}{framedelay}
+\item 
+double \hyperlink{classc_framerate_a5852e9eaeadefcd0da9d0e5c9ec63980}{speedfactor}
+\item 
+double \hyperlink{classc_framerate_ad1bca95d162390adcab7352edf2b839c}{maxspeedfactor}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{framerate_8h}{framerate.\-h} -\/ framerate independent Framerate class ;)
+
+The Speedfactor is the heart of this class. When it is set by Set\-Speed\-Factor, it becomes a number with that you multiply all your motions. For instance, if the targetfps is 100, and the actual fps is 85, the speedfactor will be set to 100/85, or about 1.\-2. You then multiply all your motion is the game, at its lowest level, by this number.
+
+(C) 2012 Bazz
+
+under L\-G\-P\-L License
+
+V 2.\-0 
+
+Definition at line 20 of file framerate.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classc_framerate_a7a6d7e410f142274342e1f12d745374f}{\index{c\-Framerate@{c\-Framerate}!c\-Framerate@{c\-Framerate}}
+\index{c\-Framerate@{c\-Framerate}!cFramerate@{c\-Framerate}}
+\subsubsection[{c\-Framerate}]{\setlength{\rightskip}{0pt plus 5cm}c\-Framerate\-::c\-Framerate (
+\begin{DoxyParamCaption}
+\item[{double}]{tfps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classc_framerate_a7a6d7e410f142274342e1f12d745374f}
+
+
+Definition at line 23 of file framerate.\-h.
+
+\hypertarget{classc_framerate_a3047e81257b614ed764dd927765bbecc}{\index{c\-Framerate@{c\-Framerate}!$\sim$c\-Framerate@{$\sim$c\-Framerate}}
+\index{$\sim$c\-Framerate@{$\sim$c\-Framerate}!cFramerate@{c\-Framerate}}
+\subsubsection[{$\sim$c\-Framerate}]{\setlength{\rightskip}{0pt plus 5cm}c\-Framerate\-::$\sim$c\-Framerate (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classc_framerate_a3047e81257b614ed764dd927765bbecc}
+nothing 
+
+Definition at line 30 of file framerate.\-h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classc_framerate_a20400baeef461694fed8d4d18da336d9}{\index{c\-Framerate@{c\-Framerate}!Init@{Init}}
+\index{Init@{Init}!cFramerate@{c\-Framerate}}
+\subsubsection[{Init}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Framerate\-::\-Init (
+\begin{DoxyParamCaption}
+\item[{double}]{tfps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classc_framerate_a20400baeef461694fed8d4d18da336d9}
+
+
+Definition at line 35 of file framerate.\-h.
+
+\hypertarget{classc_framerate_a989508dcaae1a97113f844df00219dd4}{\index{c\-Framerate@{c\-Framerate}!Reset@{Reset}}
+\index{Reset@{Reset}!cFramerate@{c\-Framerate}}
+\subsubsection[{Reset}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Framerate\-::\-Reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classc_framerate_a989508dcaae1a97113f844df00219dd4}
+
+
+Definition at line 61 of file framerate.\-h.
+
+\hypertarget{classc_framerate_a97e001004c25e02c03f2f74d0dc11ad0}{\index{c\-Framerate@{c\-Framerate}!Set\-Max\-Speed\-Factor@{Set\-Max\-Speed\-Factor}}
+\index{Set\-Max\-Speed\-Factor@{Set\-Max\-Speed\-Factor}!cFramerate@{c\-Framerate}}
+\subsubsection[{Set\-Max\-Speed\-Factor}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Framerate\-::\-Set\-Max\-Speed\-Factor (
+\begin{DoxyParamCaption}
+\item[{double}]{maxsf}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classc_framerate_a97e001004c25e02c03f2f74d0dc11ad0}
+
+
+Definition at line 67 of file framerate.\-h.
+
+\hypertarget{classc_framerate_a526a4eb7f2f5f5894aebc47654be6573}{\index{c\-Framerate@{c\-Framerate}!Set\-Speed\-Factor@{Set\-Speed\-Factor}}
+\index{Set\-Speed\-Factor@{Set\-Speed\-Factor}!cFramerate@{c\-Framerate}}
+\subsubsection[{Set\-Speed\-Factor}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Framerate\-::\-Set\-Speed\-Factor (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classc_framerate_a526a4eb7f2f5f5894aebc47654be6573}
+
+
+Definition at line 42 of file framerate.\-h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classc_framerate_a39fc2911484b7c47e7e1525fd5e560ba}{\index{c\-Framerate@{c\-Framerate}!currentticks@{currentticks}}
+\index{currentticks@{currentticks}!cFramerate@{c\-Framerate}}
+\subsubsection[{currentticks}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 c\-Framerate\-::currentticks}}\label{classc_framerate_a39fc2911484b7c47e7e1525fd5e560ba}
+
+
+Definition at line 75 of file framerate.\-h.
+
+\hypertarget{classc_framerate_aeb71e09b4f0594be70662e3d49e6f642}{\index{c\-Framerate@{c\-Framerate}!fps@{fps}}
+\index{fps@{fps}!cFramerate@{c\-Framerate}}
+\subsubsection[{fps}]{\setlength{\rightskip}{0pt plus 5cm}double c\-Framerate\-::fps}}\label{classc_framerate_aeb71e09b4f0594be70662e3d49e6f642}
+
+
+Definition at line 73 of file framerate.\-h.
+
+\hypertarget{classc_framerate_ab1633b38d250740c08899cde6c85de20}{\index{c\-Framerate@{c\-Framerate}!framedelay@{framedelay}}
+\index{framedelay@{framedelay}!cFramerate@{c\-Framerate}}
+\subsubsection[{framedelay}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 c\-Framerate\-::framedelay}}\label{classc_framerate_ab1633b38d250740c08899cde6c85de20}
+
+
+Definition at line 76 of file framerate.\-h.
+
+\hypertarget{classc_framerate_ad1bca95d162390adcab7352edf2b839c}{\index{c\-Framerate@{c\-Framerate}!maxspeedfactor@{maxspeedfactor}}
+\index{maxspeedfactor@{maxspeedfactor}!cFramerate@{c\-Framerate}}
+\subsubsection[{maxspeedfactor}]{\setlength{\rightskip}{0pt plus 5cm}double c\-Framerate\-::maxspeedfactor}}\label{classc_framerate_ad1bca95d162390adcab7352edf2b839c}
+
+
+Definition at line 79 of file framerate.\-h.
+
+\hypertarget{classc_framerate_a5852e9eaeadefcd0da9d0e5c9ec63980}{\index{c\-Framerate@{c\-Framerate}!speedfactor@{speedfactor}}
+\index{speedfactor@{speedfactor}!cFramerate@{c\-Framerate}}
+\subsubsection[{speedfactor}]{\setlength{\rightskip}{0pt plus 5cm}double c\-Framerate\-::speedfactor}}\label{classc_framerate_a5852e9eaeadefcd0da9d0e5c9ec63980}
+
+
+Definition at line 78 of file framerate.\-h.
+
+\hypertarget{classc_framerate_af5658ae10ecbaecab7b26251bfc5603b}{\index{c\-Framerate@{c\-Framerate}!targetfps@{targetfps}}
+\index{targetfps@{targetfps}!cFramerate@{c\-Framerate}}
+\subsubsection[{targetfps}]{\setlength{\rightskip}{0pt plus 5cm}double c\-Framerate\-::targetfps}}\label{classc_framerate_af5658ae10ecbaecab7b26251bfc5603b}
+
+
+Definition at line 72 of file framerate.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Engine/include/\hyperlink{framerate_8h}{framerate.\-h}\item 
+Engine/\hyperlink{framerate_8cpp}{framerate.\-cpp}\end{DoxyCompactItemize}

@@ -6,7 +6,7 @@
 
 typedef struct
 {
-	/* The first direct Collision direction
+	/** The first direct Collision direction
 	 * -1 : No Collision
 	 * 0  : Left
 	 * 1  : Right
@@ -15,15 +15,15 @@ typedef struct
 	 */
 	int collide;
 
-	/* Collisiontypes
+	/** Collisiontypes
 	 * see SPRITE_TYPE defines
 	 */
 	int iCollisionType;
 
-	// The Number of the Collidiong Sprite
+	/// The Number of the Collidiong Sprite
 	int iCollisionNumber;
 
-	/* The direction of all Collisions
+	/** The direction of all Collisions
 	 * -1 = No Collision detected
 	 * 1 = Collision Up/Down/Left/Right
 	 * 2 = Collision in Left/Right
@@ -33,16 +33,16 @@ typedef struct
 
 } Collisiondata;
 
-// Returns the Collision data if an Collision happened
+/// Returns the Collision data if an Collision happened
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
 
 void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
-/*	Checks if the given position is valid
+/**	Checks if the given position is valid
  *	if the Position is not valid it returns the direction
  */
 void PositionCheck( int x, int y, int width, int height, Collisiondata *Collision, unsigned int type );
 
-// Returns the collision direction
+/// Returns the collision direction
 int GetCollide( SDL_Rect *r1, SDL_Rect *r2 );
 
 #endif

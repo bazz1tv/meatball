@@ -1,7 +1,7 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
-// Bullet types
+/// Bullet types
 #define BULLET_UNKNOWN			0
 #define BULLET_PISTOL			1
 #define BULLET_MACHINEGUN		2
@@ -13,27 +13,27 @@ public:
 	cBullet( double nposx , double nposy );
 	~cBullet( void );
 
-	/* Initializes the Bullet with the given parameters
+	/** Initializes the Bullet with the given parameters
 	 * Reinitializes all values
 	 */
 	void init( int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel = 0.0 );
 
-	// Updates the Bullet
+	/// Updates the Bullet
 	void Update( void );
 	
-	// Draws the Bullet
+	/// Draws the Bullet
 	void Draw( SDL_Surface *target );
 
-	// The Bullet Type
+	/// The Bullet Type
 	unsigned int Bullet_type;
 
-	// The Origin can be Player,Enemy  or Static ( Todo )
+	/// The Origin can be Player,Enemy  or Static ( Todo )
 	unsigned int Origin;
 
-	// The Direction
+	/// The Direction
 	int direction;
 	
-	// The Bullet Explosion Sound
+	/// The Bullet Explosion Sound
 	Mix_Chunk *sound_Explosion;
 
 };
@@ -41,23 +41,23 @@ public:
 extern unsigned int BulletCount;
 extern cBullet **Bullets;
 
-/* Preloads all Bullet images
+/** Preloads all Bullet images
  * get the pointer with the image manager and the image path
  */
 void PreloadBulletimages( void );
 
-/* Adds an Bullet which gets controlled by the game
+/** Adds an Bullet which gets controlled by the game
  * just use Bullet type
  */
 void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nAddVel = 0.0 );
 
-// Updates all Bullets
+/// Updates all Bullets
 void UpdateBullets( void );
 
-// Draws all Bullets
+/// Draws all Bullets
 void DrawBullets( void );
 
-// Deletes all Bullets ( Cleans the Array )
+/// Deletes all Bullets ( Cleans the Array )
 void DeleteAllBullets( void );
 
 #endif

@@ -3,47 +3,12 @@
 #include "include\MeatBall.h"
 #include "playlist.h"
 
-/*#ifdef _WIN32
-#include <windows.h>
-#endif*/
-
-
-
-
 
 typedef void (*EventHandlers)(void);
 EventHandlers eventhandlers[NUM_GAMEMODES];
 
 int main( void )
 {
-
-	// The following Code Changes the current Directory to  BIN_DIR
-/*#ifdef _WIN32
-	char currentDir[255];
-	GetCurrentDirectory(255, currentDir);
-	printf("%s",currentDir);
-	if( !SetCurrentDirectory(BIN_DIR) )
-   {
-      printf("SetCurrentDirectory failed ");
-      return -1;
-   }
-#endif*/
-/*#ifndef _DEBUG
-
-#ifdef _WIN32
-	char Console_Title[] = TEXT( "Meatball Console" );
-	
-	SetConsoleTitle( Console_Title );
-
-	HWND Console_HWND =  FindWindow( NULL, Console_Title );
-
-	ShowWindow( Console_HWND, SW_HIDE );
-	
-	DestroyWindow( Console_HWND );
-#endif
-
-#endif
-	*/
 	
 	InitEP();
 	
@@ -95,8 +60,6 @@ int main( void )
 
 /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
 
-//int done;
-
 int MeatBall( void )
 {
 	Playlist::ls_music();
@@ -134,24 +97,16 @@ int MeatBall( void )
 	
 }
 
+/** Calls a LUT array of function pointers to different handlers depending on Game mode */
 void MeatBall_Events( void )
 {
-	//SDL_Event event;
-	/*
-	TODO
-	Have an array LUT for Event Handlers, where GAME_MODE (mode) is the array entry index
-	Essentially it's an array of function pointers. That way, in this handler, no logic checks will
-	be necessary. just a call to LUT with mode.
-
-	function pointers tutorial..
-	*/
 
 	(*eventhandlers[mode])();
 }
 
 void menu_ehandler()
 {
-	
+	// need a blank handler for modes with no events
 }
 
 void game_ehandler()
@@ -329,7 +284,7 @@ void game_ehandler()
 
 void console_ehandler(void)
 {
-	pConsole->EventHandler(); /// Nanananan foo foo ;P
+	pConsole->EventHandler(); // Nanananan foo foo ;P
 }
 
 static int specialpastecounter=0;
