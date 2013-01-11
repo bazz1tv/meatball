@@ -1,0 +1,333 @@
+\hypertarget{classc_player}{\section{c\-Player Class Reference}
+\label{classc_player}\index{c\-Player@{c\-Player}}
+}
+
+
+The Meat\-Ball Player class.  
+
+
+
+
+{\ttfamily \#include $<$player.\-h$>$}
+
+Inheritance diagram for c\-Player\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classc_player}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classc_player_a2f5ad612d7d76643fdb1fbb858b75f83}{c\-Player} (double nposx=0, double nposy=0)
+\item 
+\hyperlink{classc_player_abb95c5d2e16e305c1a08bdb3cea2010e}{$\sim$c\-Player} (void)
+\item 
+void \hyperlink{classc_player_ac2d3fad59338a19b9c46af34f99d62ed}{init} (void)
+\begin{DoxyCompactList}\small\item\em Loads the Player images. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_a28a14211f3f36ed0ef550fc973ab1858}{Update} (void)
+\begin{DoxyCompactList}\small\item\em Updates the Player. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_ae0249c95a88a50dcd2605df2940ed707}{Draw} (S\-D\-L\-\_\-\-Surface $\ast$target)
+\begin{DoxyCompactList}\small\item\em Draws the Player. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_a614d07b3557166554b6b800f480ff030}{Reset} (void)
+\begin{DoxyCompactList}\small\item\em Resets. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_a739e0557508704c44f6c6f6a69ef914b}{Jump} (int power=5)
+\begin{DoxyCompactList}\small\item\em Jump with the given Power. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_a7eb61f626845f9e24b5791de6f8359d0}{Change\-Active\-Weapon} (unsigned int Weapon\-\_\-type)
+\begin{DoxyCompactList}\small\item\em Chnage the Active Weapon. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_a5570d4174984f060a5d6bc54483cf49b}{Fire} (void)
+\begin{DoxyCompactList}\small\item\em Fires the specified Bullet. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_a6382e80921f8bc28a3d29a61a28b763b}{Get\-\_\-\-Hit} (unsigned int damage)
+\begin{DoxyCompactList}\small\item\em The Player gets hit by an Bullet or something else. \end{DoxyCompactList}\item 
+void \hyperlink{classc_player_a03d8200d3deac5b5ba78ca3898e31945}{Die} (void)
+\begin{DoxyCompactList}\small\item\em The Player dies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+S\-D\-L\-\_\-\-Surface $\ast$ \hyperlink{classc_player_a67c4d2933cc64e70d5733f2fae7140d9}{images} \mbox{[}5\mbox{]}
+\item 
+\hyperlink{classc_weapon}{c\-Weapon} $\ast$ \hyperlink{classc_player_a9a423c004d02e40cd589be2bcdcb5fc3}{p\-Weapon}
+\begin{DoxyCompactList}\small\item\em The Player Weapon. \end{DoxyCompactList}\item 
+int \hyperlink{classc_player_abba8ad20d8e5b5d712b32bb45d6f1f5a}{direction}
+\item 
+int \hyperlink{classc_player_a03db459aeafd05f9c9b8e90550336b42}{on\-Ground}
+\item 
+int \hyperlink{classc_player_a770b16e87c30e5ae205af92038fac0f9}{state}
+\item 
+double \hyperlink{classc_player_ae58956b3a1628bc541ef8d1b017a8ef4}{jump\-\_\-timer}
+\item 
+int \hyperlink{classc_player_a7dfbe4472d1fd2eeb1949a13981885a7}{jump\-\_\-timer\-\_\-power}
+\item 
+double \hyperlink{classc_player_a21af56625d269858e77fc61bc042cceb}{jumpvel}
+\item 
+unsigned int \hyperlink{classc_player_a45a1365e8ef93b1636fb6c2d714635a7}{act\-Weapon}
+\item 
+unsigned int \hyperlink{classc_player_a54d7325c55feb234dfe3550cf70da559}{Health}
+\item 
+unsigned int \hyperlink{classc_player_ac2cb468d98391a6b9fbaa6db2e103a2d}{updown\-\_\-pressed}
+\begin{DoxyCompactList}\small\item\em Up or Down -\/$>$ Left or Right. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Meat\-Ball Player class. 
+
+Definition at line 14 of file player.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classc_player_a2f5ad612d7d76643fdb1fbb858b75f83}{\index{c\-Player@{c\-Player}!c\-Player@{c\-Player}}
+\index{c\-Player@{c\-Player}!cPlayer@{c\-Player}}
+\subsubsection[{c\-Player}]{\setlength{\rightskip}{0pt plus 5cm}c\-Player\-::c\-Player (
+\begin{DoxyParamCaption}
+\item[{double}]{nposx = {\ttfamily 0}, }
+\item[{double}]{nposy = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a2f5ad612d7d76643fdb1fbb858b75f83}
+
+
+Definition at line 4 of file player.\-cpp.
+
+\hypertarget{classc_player_abb95c5d2e16e305c1a08bdb3cea2010e}{\index{c\-Player@{c\-Player}!$\sim$c\-Player@{$\sim$c\-Player}}
+\index{$\sim$c\-Player@{$\sim$c\-Player}!cPlayer@{c\-Player}}
+\subsubsection[{$\sim$c\-Player}]{\setlength{\rightskip}{0pt plus 5cm}c\-Player\-::$\sim$c\-Player (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_player_abb95c5d2e16e305c1a08bdb3cea2010e}
+
+
+Definition at line 26 of file player.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classc_player_a7eb61f626845f9e24b5791de6f8359d0}{\index{c\-Player@{c\-Player}!Change\-Active\-Weapon@{Change\-Active\-Weapon}}
+\index{Change\-Active\-Weapon@{Change\-Active\-Weapon}!cPlayer@{c\-Player}}
+\subsubsection[{Change\-Active\-Weapon}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Change\-Active\-Weapon (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{Weapon\-\_\-type}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a7eb61f626845f9e24b5791de6f8359d0}
+
+
+Chnage the Active Weapon. 
+
+
+
+Definition at line 325 of file player.\-cpp.
+
+\hypertarget{classc_player_a03d8200d3deac5b5ba78ca3898e31945}{\index{c\-Player@{c\-Player}!Die@{Die}}
+\index{Die@{Die}!cPlayer@{c\-Player}}
+\subsubsection[{Die}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Die (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a03d8200d3deac5b5ba78ca3898e31945}
+
+
+The Player dies. 
+
+
+
+Definition at line 411 of file player.\-cpp.
+
+\hypertarget{classc_player_ae0249c95a88a50dcd2605df2940ed707}{\index{c\-Player@{c\-Player}!Draw@{Draw}}
+\index{Draw@{Draw}!cPlayer@{c\-Player}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Draw (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Surface $\ast$}]{target}
+\end{DoxyParamCaption}
+)}}\label{classc_player_ae0249c95a88a50dcd2605df2940ed707}
+
+
+Draws the Player. 
+
+
+
+Definition at line 253 of file player.\-cpp.
+
+\hypertarget{classc_player_a5570d4174984f060a5d6bc54483cf49b}{\index{c\-Player@{c\-Player}!Fire@{Fire}}
+\index{Fire@{Fire}!cPlayer@{c\-Player}}
+\subsubsection[{Fire}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Fire (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a5570d4174984f060a5d6bc54483cf49b}
+
+
+Fires the specified Bullet. 
+
+
+
+Definition at line 355 of file player.\-cpp.
+
+\hypertarget{classc_player_a6382e80921f8bc28a3d29a61a28b763b}{\index{c\-Player@{c\-Player}!Get\-\_\-\-Hit@{Get\-\_\-\-Hit}}
+\index{Get\-\_\-\-Hit@{Get\-\_\-\-Hit}!cPlayer@{c\-Player}}
+\subsubsection[{Get\-\_\-\-Hit}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Get\-\_\-\-Hit (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{damage}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a6382e80921f8bc28a3d29a61a28b763b}
+
+
+The Player gets hit by an Bullet or something else. 
+
+
+
+Definition at line 398 of file player.\-cpp.
+
+\hypertarget{classc_player_ac2d3fad59338a19b9c46af34f99d62ed}{\index{c\-Player@{c\-Player}!init@{init}}
+\index{init@{init}!cPlayer@{c\-Player}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_player_ac2d3fad59338a19b9c46af34f99d62ed}
+
+
+Loads the Player images. 
+
+
+
+Definition at line 37 of file player.\-cpp.
+
+\hypertarget{classc_player_a739e0557508704c44f6c6f6a69ef914b}{\index{c\-Player@{c\-Player}!Jump@{Jump}}
+\index{Jump@{Jump}!cPlayer@{c\-Player}}
+\subsubsection[{Jump}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Jump (
+\begin{DoxyParamCaption}
+\item[{int}]{power = {\ttfamily 5}}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a739e0557508704c44f6c6f6a69ef914b}
+
+
+Jump with the given Power. 
+
+
+
+Definition at line 285 of file player.\-cpp.
+
+\hypertarget{classc_player_a614d07b3557166554b6b800f480ff030}{\index{c\-Player@{c\-Player}!Reset@{Reset}}
+\index{Reset@{Reset}!cPlayer@{c\-Player}}
+\subsubsection[{Reset}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a614d07b3557166554b6b800f480ff030}
+
+
+Resets. 
+
+
+
+Definition at line 269 of file player.\-cpp.
+
+\hypertarget{classc_player_a28a14211f3f36ed0ef550fc973ab1858}{\index{c\-Player@{c\-Player}!Update@{Update}}
+\index{Update@{Update}!cPlayer@{c\-Player}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Player\-::\-Update (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_player_a28a14211f3f36ed0ef550fc973ab1858}
+
+
+Updates the Player. 
+
+
+
+Definition at line 59 of file player.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classc_player_a45a1365e8ef93b1636fb6c2d714635a7}{\index{c\-Player@{c\-Player}!act\-Weapon@{act\-Weapon}}
+\index{act\-Weapon@{act\-Weapon}!cPlayer@{c\-Player}}
+\subsubsection[{act\-Weapon}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int c\-Player\-::act\-Weapon}}\label{classc_player_a45a1365e8ef93b1636fb6c2d714635a7}
+The Weapon which the Player has in his hands ( Active Weapon ) see Weapon definitions 
+
+Definition at line 98 of file player.\-h.
+
+\hypertarget{classc_player_abba8ad20d8e5b5d712b32bb45d6f1f5a}{\index{c\-Player@{c\-Player}!direction@{direction}}
+\index{direction@{direction}!cPlayer@{c\-Player}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Player\-::direction}}\label{classc_player_abba8ad20d8e5b5d712b32bb45d6f1f5a}
+0 = facing left 1 = facing right 2 = facing up 3 = facing down we need to add angle shots too.. we'll add when player possesses these abilities 
+
+Definition at line 66 of file player.\-h.
+
+\hypertarget{classc_player_a54d7325c55feb234dfe3550cf70da559}{\index{c\-Player@{c\-Player}!Health@{Health}}
+\index{Health@{Health}!cPlayer@{c\-Player}}
+\subsubsection[{Health}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int c\-Player\-::\-Health}}\label{classc_player_a54d7325c55feb234dfe3550cf70da559}
+The Health if == 0 the player dies and the level restarts ;O 
+
+Definition at line 103 of file player.\-h.
+
+\hypertarget{classc_player_a67c4d2933cc64e70d5733f2fae7140d9}{\index{c\-Player@{c\-Player}!images@{images}}
+\index{images@{images}!cPlayer@{c\-Player}}
+\subsubsection[{images}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Surface$\ast$ c\-Player\-::images\mbox{[}5\mbox{]}}}\label{classc_player_a67c4d2933cc64e70d5733f2fae7140d9}
+The images 0 = Standing Left 1 = Standing Right 2 = Standing Looking up 3 = Ducking 
+
+Definition at line 53 of file player.\-h.
+
+\hypertarget{classc_player_ae58956b3a1628bc541ef8d1b017a8ef4}{\index{c\-Player@{c\-Player}!jump\-\_\-timer@{jump\-\_\-timer}}
+\index{jump\-\_\-timer@{jump\-\_\-timer}!cPlayer@{c\-Player}}
+\subsubsection[{jump\-\_\-timer}]{\setlength{\rightskip}{0pt plus 5cm}double c\-Player\-::jump\-\_\-timer}}\label{classc_player_ae58956b3a1628bc541ef8d1b017a8ef4}
+If you press the Jump Button before you touch the ground you have this time to touch the ground and then jump 
+
+Definition at line 86 of file player.\-h.
+
+\hypertarget{classc_player_a7dfbe4472d1fd2eeb1949a13981885a7}{\index{c\-Player@{c\-Player}!jump\-\_\-timer\-\_\-power@{jump\-\_\-timer\-\_\-power}}
+\index{jump\-\_\-timer\-\_\-power@{jump\-\_\-timer\-\_\-power}!cPlayer@{c\-Player}}
+\subsubsection[{jump\-\_\-timer\-\_\-power}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Player\-::jump\-\_\-timer\-\_\-power}}\label{classc_player_a7dfbe4472d1fd2eeb1949a13981885a7}
+Power of the Jump Timer given when pressed the Jump Button 
+
+Definition at line 91 of file player.\-h.
+
+\hypertarget{classc_player_a21af56625d269858e77fc61bc042cceb}{\index{c\-Player@{c\-Player}!jumpvel@{jumpvel}}
+\index{jumpvel@{jumpvel}!cPlayer@{c\-Player}}
+\subsubsection[{jumpvel}]{\setlength{\rightskip}{0pt plus 5cm}double c\-Player\-::jumpvel}}\label{classc_player_a21af56625d269858e77fc61bc042cceb}
+
+
+Definition at line 93 of file player.\-h.
+
+\hypertarget{classc_player_a03db459aeafd05f9c9b8e90550336b42}{\index{c\-Player@{c\-Player}!on\-Ground@{on\-Ground}}
+\index{on\-Ground@{on\-Ground}!cPlayer@{c\-Player}}
+\subsubsection[{on\-Ground}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Player\-::on\-Ground}}\label{classc_player_a03db459aeafd05f9c9b8e90550336b42}
+0 \-: falling 1 \-: onground massive 2 \-: onground halfmassive 
+
+Definition at line 72 of file player.\-h.
+
+\hypertarget{classc_player_a9a423c004d02e40cd589be2bcdcb5fc3}{\index{c\-Player@{c\-Player}!p\-Weapon@{p\-Weapon}}
+\index{p\-Weapon@{p\-Weapon}!cPlayer@{c\-Player}}
+\subsubsection[{p\-Weapon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Weapon}$\ast$ c\-Player\-::p\-Weapon}}\label{classc_player_a9a423c004d02e40cd589be2bcdcb5fc3}
+
+
+The Player Weapon. 
+
+
+
+Definition at line 56 of file player.\-h.
+
+\hypertarget{classc_player_a770b16e87c30e5ae205af92038fac0f9}{\index{c\-Player@{c\-Player}!state@{state}}
+\index{state@{state}!cPlayer@{c\-Player}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Player\-::state}}\label{classc_player_a770b16e87c30e5ae205af92038fac0f9}
+0 = Staying ( not doing anything \-:) 1 = Moving,Walking 2 = Jumping 3 = Falling 4 = Flying 
+
+Definition at line 80 of file player.\-h.
+
+\hypertarget{classc_player_ac2cb468d98391a6b9fbaa6db2e103a2d}{\index{c\-Player@{c\-Player}!updown\-\_\-pressed@{updown\-\_\-pressed}}
+\index{updown\-\_\-pressed@{updown\-\_\-pressed}!cPlayer@{c\-Player}}
+\subsubsection[{updown\-\_\-pressed}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int c\-Player\-::updown\-\_\-pressed}}\label{classc_player_ac2cb468d98391a6b9fbaa6db2e103a2d}
+
+
+Up or Down -\/$>$ Left or Right. 
+
+
+
+Definition at line 105 of file player.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/\hyperlink{player_8h}{player.\-h}\item 
+C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\hyperlink{player_8cpp}{player.\-cpp}\end{DoxyCompactItemize}

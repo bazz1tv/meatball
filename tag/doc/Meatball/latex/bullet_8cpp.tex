@@ -1,0 +1,121 @@
+\hypertarget{bullet_8cpp}{\section{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/bullet.cpp File Reference}
+\label{bullet_8cpp}\index{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/bullet.\-cpp@{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/bullet.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}include\textbackslash{}\-Globals.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{bullet_8cpp_af0967c184c98c75dae56311e5bc3b6a1}{Preload\-Bulletimages} (void)
+\item 
+void \hyperlink{bullet_8cpp_a06edf7f5f11deb2369ceac1787ede5ff}{Add\-Bullet} (double nposx, double nposy, int ndirection, unsigned int n\-Bullet\-\_\-type, unsigned int n\-Origin, double nextravel)
+\item 
+void \hyperlink{bullet_8cpp_aef41c9344f33dc8d04962193e18ce0a3}{Update\-Bullets} (void)
+\begin{DoxyCompactList}\small\item\em Updates all Bullets. \end{DoxyCompactList}\item 
+void \hyperlink{bullet_8cpp_a67a3350d58db98c88ffc9e10dcb833a2}{Draw\-Bullets} (void)
+\begin{DoxyCompactList}\small\item\em Draws all Bullets. \end{DoxyCompactList}\item 
+void \hyperlink{bullet_8cpp_ad49f863c1fd08dfaa59fb8c9c51e8c43}{Delete\-All\-Bullets} (void)
+\begin{DoxyCompactList}\small\item\em Deletes all Bullets ( Cleans the Array ) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{bullet_8cpp_a893aab82cb99e9272fd54930a73a43d3}{Bullet\-Count} = 0
+\item 
+\hyperlink{classc_bullet}{c\-Bullet} $\ast$$\ast$ \hyperlink{bullet_8cpp_a761880633d3f80aeac6d32d08d8810c1}{Bullets} = N\-U\-L\-L
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{bullet_8cpp_a06edf7f5f11deb2369ceac1787ede5ff}{\index{bullet.\-cpp@{bullet.\-cpp}!Add\-Bullet@{Add\-Bullet}}
+\index{Add\-Bullet@{Add\-Bullet}!bullet.cpp@{bullet.\-cpp}}
+\subsubsection[{Add\-Bullet}]{\setlength{\rightskip}{0pt plus 5cm}void Add\-Bullet (
+\begin{DoxyParamCaption}
+\item[{double}]{nposx, }
+\item[{double}]{nposy, }
+\item[{int}]{ndirection, }
+\item[{unsigned int}]{n\-Bullet\-\_\-type, }
+\item[{unsigned int}]{n\-Origin, }
+\item[{double}]{n\-Add\-Vel = {\ttfamily 0.0}}
+\end{DoxyParamCaption}
+)}}\label{bullet_8cpp_a06edf7f5f11deb2369ceac1787ede5ff}
+Adds an Bullet which gets controlled by the game just use Bullet type 
+\begin{DoxyParams}{Parameters}
+{\em nextravel} & = 0.\-0 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 205 of file bullet.\-cpp.
+
+\hypertarget{bullet_8cpp_ad49f863c1fd08dfaa59fb8c9c51e8c43}{\index{bullet.\-cpp@{bullet.\-cpp}!Delete\-All\-Bullets@{Delete\-All\-Bullets}}
+\index{Delete\-All\-Bullets@{Delete\-All\-Bullets}!bullet.cpp@{bullet.\-cpp}}
+\subsubsection[{Delete\-All\-Bullets}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-All\-Bullets (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{bullet_8cpp_ad49f863c1fd08dfaa59fb8c9c51e8c43}
+
+
+Deletes all Bullets ( Cleans the Array ) 
+
+
+
+Definition at line 247 of file bullet.\-cpp.
+
+\hypertarget{bullet_8cpp_a67a3350d58db98c88ffc9e10dcb833a2}{\index{bullet.\-cpp@{bullet.\-cpp}!Draw\-Bullets@{Draw\-Bullets}}
+\index{Draw\-Bullets@{Draw\-Bullets}!bullet.cpp@{bullet.\-cpp}}
+\subsubsection[{Draw\-Bullets}]{\setlength{\rightskip}{0pt plus 5cm}void Draw\-Bullets (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{bullet_8cpp_a67a3350d58db98c88ffc9e10dcb833a2}
+
+
+Draws all Bullets. 
+
+
+
+Definition at line 239 of file bullet.\-cpp.
+
+\hypertarget{bullet_8cpp_af0967c184c98c75dae56311e5bc3b6a1}{\index{bullet.\-cpp@{bullet.\-cpp}!Preload\-Bulletimages@{Preload\-Bulletimages}}
+\index{Preload\-Bulletimages@{Preload\-Bulletimages}!bullet.cpp@{bullet.\-cpp}}
+\subsubsection[{Preload\-Bulletimages}]{\setlength{\rightskip}{0pt plus 5cm}void Preload\-Bulletimages (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{bullet_8cpp_af0967c184c98c75dae56311e5bc3b6a1}
+Preloads all Bullet images get the pointer with the image manager and the image path 
+
+Definition at line 190 of file bullet.\-cpp.
+
+\hypertarget{bullet_8cpp_aef41c9344f33dc8d04962193e18ce0a3}{\index{bullet.\-cpp@{bullet.\-cpp}!Update\-Bullets@{Update\-Bullets}}
+\index{Update\-Bullets@{Update\-Bullets}!bullet.cpp@{bullet.\-cpp}}
+\subsubsection[{Update\-Bullets}]{\setlength{\rightskip}{0pt plus 5cm}void Update\-Bullets (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{bullet_8cpp_aef41c9344f33dc8d04962193e18ce0a3}
+
+
+Updates all Bullets. 
+
+
+
+Definition at line 227 of file bullet.\-cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{bullet_8cpp_a893aab82cb99e9272fd54930a73a43d3}{\index{bullet.\-cpp@{bullet.\-cpp}!Bullet\-Count@{Bullet\-Count}}
+\index{Bullet\-Count@{Bullet\-Count}!bullet.cpp@{bullet.\-cpp}}
+\subsubsection[{Bullet\-Count}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Bullet\-Count = 0}}\label{bullet_8cpp_a893aab82cb99e9272fd54930a73a43d3}
+
+
+Definition at line 3 of file bullet.\-cpp.
+
+\hypertarget{bullet_8cpp_a761880633d3f80aeac6d32d08d8810c1}{\index{bullet.\-cpp@{bullet.\-cpp}!Bullets@{Bullets}}
+\index{Bullets@{Bullets}!bullet.cpp@{bullet.\-cpp}}
+\subsubsection[{Bullets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Bullet}$\ast$$\ast$ Bullets = N\-U\-L\-L}}\label{bullet_8cpp_a761880633d3f80aeac6d32d08d8810c1}
+
+
+Definition at line 4 of file bullet.\-cpp.
+

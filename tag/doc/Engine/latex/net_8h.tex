@@ -1,0 +1,98 @@
+\hypertarget{net_8h}{\section{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Engine/include/net.h File Reference}
+\label{net_8h}\index{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Engine/include/net.\-h@{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Engine/include/net.\-h}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$list$>$}\\*
+{\ttfamily \#include $<$S\-D\-L.\-h$>$}\\*
+{\ttfamily \#include $<$S\-D\-L\-\_\-net.\-h$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classc_client}{c\-Client}
+\begin{DoxyCompactList}\small\item\em The T\-C\-P Client class V.\-3.\-4. \end{DoxyCompactList}\item 
+class \hyperlink{classc_t_c_p_net}{c\-T\-C\-P\-Net}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{net_8h_aafff27c7165f059a969fe60fee51f683}{S\-T\-A\-T\-E\-\_\-\-I\-D\-L\-E}~0
+\begin{DoxyCompactList}\small\item\em The Network states. \end{DoxyCompactList}\item 
+\#define \hyperlink{net_8h_a8010612ea173bf35b13b463c04e12133}{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-E\-M\-P\-T\-Y}~1
+\item 
+\#define \hyperlink{net_8h_a6dffb889add451527897d880bb73ab4b}{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}~2
+\item 
+\#define \hyperlink{net_8h_aa02a3d1d5014e536c5cc6ec880e62ffb}{S\-T\-A\-T\-E\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}~3
+\item 
+\#define \hyperlink{net_8h_ad4d796b98c583d49e83adabd74a63bf6}{M\-A\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~100000
+\begin{DoxyCompactList}\small\item\em The Maximum Buffer size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{net_8h_af63262a089b6c06791475aea4ebcb356}{Net\-Message\-Handler} (string message)
+\begin{DoxyCompactList}\small\item\em The function for incoming messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{net_8h_ad4d796b98c583d49e83adabd74a63bf6}{\index{net.\-h@{net.\-h}!M\-A\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{M\-A\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{M\-A\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{M\-A\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!net.h@{net.\-h}}
+\subsubsection[{M\-A\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~100000}}\label{net_8h_ad4d796b98c583d49e83adabd74a63bf6}
+
+
+The Maximum Buffer size. 
+
+
+
+Definition at line 34 of file net.\-h.
+
+\hypertarget{net_8h_aa02a3d1d5014e536c5cc6ec880e62ffb}{\index{net.\-h@{net.\-h}!S\-T\-A\-T\-E\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{S\-T\-A\-T\-E\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}}
+\index{S\-T\-A\-T\-E\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{S\-T\-A\-T\-E\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}!net.h@{net.\-h}}
+\subsubsection[{S\-T\-A\-T\-E\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-T\-A\-T\-E\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D~3}}\label{net_8h_aa02a3d1d5014e536c5cc6ec880e62ffb}
+
+
+Definition at line 31 of file net.\-h.
+
+\hypertarget{net_8h_a6dffb889add451527897d880bb73ab4b}{\index{net.\-h@{net.\-h}!S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}}
+\index{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D@{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}!net.h@{net.\-h}}
+\subsubsection[{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D~2}}\label{net_8h_a6dffb889add451527897d880bb73ab4b}
+
+
+Definition at line 30 of file net.\-h.
+
+\hypertarget{net_8h_a8010612ea173bf35b13b463c04e12133}{\index{net.\-h@{net.\-h}!S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-E\-M\-P\-T\-Y@{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-E\-M\-P\-T\-Y}}
+\index{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-E\-M\-P\-T\-Y@{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-E\-M\-P\-T\-Y}!net.h@{net.\-h}}
+\subsubsection[{S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-E\-M\-P\-T\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-T\-A\-T\-E\-\_\-\-H\-O\-S\-T\-I\-N\-G\-\_\-\-E\-M\-P\-T\-Y~1}}\label{net_8h_a8010612ea173bf35b13b463c04e12133}
+
+
+Definition at line 29 of file net.\-h.
+
+\hypertarget{net_8h_aafff27c7165f059a969fe60fee51f683}{\index{net.\-h@{net.\-h}!S\-T\-A\-T\-E\-\_\-\-I\-D\-L\-E@{S\-T\-A\-T\-E\-\_\-\-I\-D\-L\-E}}
+\index{S\-T\-A\-T\-E\-\_\-\-I\-D\-L\-E@{S\-T\-A\-T\-E\-\_\-\-I\-D\-L\-E}!net.h@{net.\-h}}
+\subsubsection[{S\-T\-A\-T\-E\-\_\-\-I\-D\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-T\-A\-T\-E\-\_\-\-I\-D\-L\-E~0}}\label{net_8h_aafff27c7165f059a969fe60fee51f683}
+
+
+The Network states. 
+
+
+
+Definition at line 28 of file net.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{net_8h_af63262a089b6c06791475aea4ebcb356}{\index{net.\-h@{net.\-h}!Net\-Message\-Handler@{Net\-Message\-Handler}}
+\index{Net\-Message\-Handler@{Net\-Message\-Handler}!net.h@{net.\-h}}
+\subsubsection[{Net\-Message\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void Net\-Message\-Handler (
+\begin{DoxyParamCaption}
+\item[{string}]{message}
+\end{DoxyParamCaption}
+)}}\label{net_8h_af63262a089b6c06791475aea4ebcb356}
+
+
+The function for incoming messages. 
+
+
+
+Definition at line 4 of file net.\-cpp.
+

@@ -1,0 +1,242 @@
+\hypertarget{enemy_8h}{\section{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/enemy.h File Reference}
+\label{enemy_8h}\index{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/enemy.\-h@{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/enemy.\-h}}
+}
+{\ttfamily \#include \char`\"{}include\textbackslash{}\-Globals.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classc_enemy}{c\-Enemy}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{enemy_8h_a840b24f41540c9646546f5b5c52143b3}{E\-N\-E\-M\-Y\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D}~0
+\begin{DoxyCompactList}\small\item\em Enemy Types. \end{DoxyCompactList}\item 
+\#define \hyperlink{enemy_8h_ae4c3be4f81ac0e7cfa6781aa2e89e693}{E\-N\-E\-M\-Y\-\_\-\-A\-F373}~1
+\item 
+\#define \hyperlink{enemy_8h_ac1e195c5543406e8d2e0e377e4dc8bfc}{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-U\-N\-K\-N\-O\-W\-N}~0
+\begin{DoxyCompactList}\small\item\em Enemy States. \end{DoxyCompactList}\item 
+\#define \hyperlink{enemy_8h_a688a10579bf0f1b48b221b27b3420687}{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-W\-A\-I\-T\-I\-N\-G}~1
+\item 
+\#define \hyperlink{enemy_8h_aeb335c16945d772c2f095a61d3074edd}{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-S\-E\-A\-R\-C\-H\-I\-N\-G}~2
+\item 
+\#define \hyperlink{enemy_8h_a3627b53d564753386318f9053c5587e5}{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G}~3
+\item 
+\#define \hyperlink{enemy_8h_a59ae1cc456f9508e74e641a6af66a290}{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-T\-A\-R\-G\-E\-T\-T\-I\-N\-G}~4
+\item 
+\#define \hyperlink{enemy_8h_a493218dc87ec5e14a00eb44ade5aa9f3}{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-I\-R\-I\-N\-G}~5
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{enemy_8h_aed48716babc431a6d9216c142df5d71b}{Add\-Enemy} (double nposx, double nposy, unsigned int etype)
+\begin{DoxyCompactList}\small\item\em Adds an Enemy with the given type. \end{DoxyCompactList}\item 
+void \hyperlink{enemy_8h_a21dd784b11de99a5946acb55bd1a8b12}{Update\-Enemies} (void)
+\begin{DoxyCompactList}\small\item\em Updates all Enemies. \end{DoxyCompactList}\item 
+int \hyperlink{enemy_8h_a4aea8b4c1726da681ac20abb12b939fc}{Get\-Colliding\-Enemy\-Num} (S\-D\-L\-\_\-\-Rect $\ast$Crect)
+\begin{DoxyCompactList}\small\item\em Gets the first Collision if the rect overlaps. \end{DoxyCompactList}\item 
+\hyperlink{classc_enemy}{c\-Enemy} $\ast$ \hyperlink{enemy_8h_a63eba85ef2fbfe2a60d9936121c1c2db}{Get\-Colliding\-Enemy} (S\-D\-L\-\_\-\-Rect $\ast$Crect)
+\item 
+void \hyperlink{enemy_8h_a613792e028022154e2ea8edd0afdb1d3}{Draw\-Enemies} (void)
+\begin{DoxyCompactList}\small\item\em Draws all Enemies. \end{DoxyCompactList}\item 
+void \hyperlink{enemy_8h_a51239ad060a93dda96f718509538a457}{Delet\-Enemy} (unsigned int number)
+\begin{DoxyCompactList}\small\item\em Seletes an given Enemy. \end{DoxyCompactList}\item 
+void \hyperlink{enemy_8h_ade7b770307420fa96585cff068b6e365}{Delete\-All\-Enemies} (void)
+\begin{DoxyCompactList}\small\item\em Deletes every Enemy and frees the array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{enemy_8h_a823e8c13e2060d8b71c9028083d23374}{Enemy\-Count}
+\item 
+\hyperlink{classc_enemy}{c\-Enemy} $\ast$$\ast$ \hyperlink{enemy_8h_ab10a6ac648c9bf0e3d7f1dcb9f1066f1}{Enemies}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{enemy_8h_ae4c3be4f81ac0e7cfa6781aa2e89e693}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-A\-F373@{E\-N\-E\-M\-Y\-\_\-\-A\-F373}}
+\index{E\-N\-E\-M\-Y\-\_\-\-A\-F373@{E\-N\-E\-M\-Y\-\_\-\-A\-F373}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-A\-F373}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-A\-F373~1}}\label{enemy_8h_ae4c3be4f81ac0e7cfa6781aa2e89e693}
+
+
+Definition at line 9 of file enemy.\-h.
+
+\hypertarget{enemy_8h_a493218dc87ec5e14a00eb44ade5aa9f3}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-I\-R\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-I\-R\-I\-N\-G}}
+\index{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-I\-R\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-I\-R\-I\-N\-G}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-I\-R\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-I\-R\-I\-N\-G~5}}\label{enemy_8h_a493218dc87ec5e14a00eb44ade5aa9f3}
+
+
+Definition at line 17 of file enemy.\-h.
+
+\hypertarget{enemy_8h_a3627b53d564753386318f9053c5587e5}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G}}
+\index{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G~3}}\label{enemy_8h_a3627b53d564753386318f9053c5587e5}
+
+
+Definition at line 15 of file enemy.\-h.
+
+\hypertarget{enemy_8h_aeb335c16945d772c2f095a61d3074edd}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-S\-E\-A\-R\-C\-H\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-S\-E\-A\-R\-C\-H\-I\-N\-G}}
+\index{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-S\-E\-A\-R\-C\-H\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-S\-E\-A\-R\-C\-H\-I\-N\-G}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-S\-E\-A\-R\-C\-H\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-S\-E\-A\-R\-C\-H\-I\-N\-G~2}}\label{enemy_8h_aeb335c16945d772c2f095a61d3074edd}
+
+
+Definition at line 14 of file enemy.\-h.
+
+\hypertarget{enemy_8h_a59ae1cc456f9508e74e641a6af66a290}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-T\-A\-R\-G\-E\-T\-T\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-T\-A\-R\-G\-E\-T\-T\-I\-N\-G}}
+\index{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-T\-A\-R\-G\-E\-T\-T\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-T\-A\-R\-G\-E\-T\-T\-I\-N\-G}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-T\-A\-R\-G\-E\-T\-T\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-T\-A\-R\-G\-E\-T\-T\-I\-N\-G~4}}\label{enemy_8h_a59ae1cc456f9508e74e641a6af66a290}
+
+
+Definition at line 16 of file enemy.\-h.
+
+\hypertarget{enemy_8h_ac1e195c5543406e8d2e0e377e4dc8bfc}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-U\-N\-K\-N\-O\-W\-N@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-U\-N\-K\-N\-O\-W\-N}}
+\index{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-U\-N\-K\-N\-O\-W\-N@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-U\-N\-K\-N\-O\-W\-N}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-U\-N\-K\-N\-O\-W\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-U\-N\-K\-N\-O\-W\-N~0}}\label{enemy_8h_ac1e195c5543406e8d2e0e377e4dc8bfc}
+
+
+Enemy States. 
+
+
+
+Definition at line 12 of file enemy.\-h.
+
+\hypertarget{enemy_8h_a688a10579bf0f1b48b221b27b3420687}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-W\-A\-I\-T\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-W\-A\-I\-T\-I\-N\-G}}
+\index{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-W\-A\-I\-T\-I\-N\-G@{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-W\-A\-I\-T\-I\-N\-G}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-W\-A\-I\-T\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-A\-I\-\_\-\-S\-T\-A\-T\-E\-\_\-\-W\-A\-I\-T\-I\-N\-G~1}}\label{enemy_8h_a688a10579bf0f1b48b221b27b3420687}
+
+
+Definition at line 13 of file enemy.\-h.
+
+\hypertarget{enemy_8h_a840b24f41540c9646546f5b5c52143b3}{\index{enemy.\-h@{enemy.\-h}!E\-N\-E\-M\-Y\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D@{E\-N\-E\-M\-Y\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D}}
+\index{E\-N\-E\-M\-Y\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D@{E\-N\-E\-M\-Y\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D}!enemy.h@{enemy.\-h}}
+\subsubsection[{E\-N\-E\-M\-Y\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-N\-E\-M\-Y\-\_\-\-U\-N\-D\-E\-F\-I\-N\-E\-D~0}}\label{enemy_8h_a840b24f41540c9646546f5b5c52143b3}
+
+
+Enemy Types. 
+
+
+
+Definition at line 8 of file enemy.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{enemy_8h_aed48716babc431a6d9216c142df5d71b}{\index{enemy.\-h@{enemy.\-h}!Add\-Enemy@{Add\-Enemy}}
+\index{Add\-Enemy@{Add\-Enemy}!enemy.h@{enemy.\-h}}
+\subsubsection[{Add\-Enemy}]{\setlength{\rightskip}{0pt plus 5cm}void Add\-Enemy (
+\begin{DoxyParamCaption}
+\item[{double}]{nposx, }
+\item[{double}]{nposy, }
+\item[{unsigned int}]{etype}
+\end{DoxyParamCaption}
+)}}\label{enemy_8h_aed48716babc431a6d9216c142df5d71b}
+
+
+Adds an Enemy with the given type. 
+
+
+
+Definition at line 51 of file enemy.\-cpp.
+
+\hypertarget{enemy_8h_ade7b770307420fa96585cff068b6e365}{\index{enemy.\-h@{enemy.\-h}!Delete\-All\-Enemies@{Delete\-All\-Enemies}}
+\index{Delete\-All\-Enemies@{Delete\-All\-Enemies}!enemy.h@{enemy.\-h}}
+\subsubsection[{Delete\-All\-Enemies}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-All\-Enemies (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{enemy_8h_ade7b770307420fa96585cff068b6e365}
+
+
+Deletes every Enemy and frees the array. 
+
+
+
+Definition at line 164 of file enemy.\-cpp.
+
+\hypertarget{enemy_8h_a51239ad060a93dda96f718509538a457}{\index{enemy.\-h@{enemy.\-h}!Delet\-Enemy@{Delet\-Enemy}}
+\index{Delet\-Enemy@{Delet\-Enemy}!enemy.h@{enemy.\-h}}
+\subsubsection[{Delet\-Enemy}]{\setlength{\rightskip}{0pt plus 5cm}void Delet\-Enemy (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{number}
+\end{DoxyParamCaption}
+)}}\label{enemy_8h_a51239ad060a93dda96f718509538a457}
+
+
+Seletes an given Enemy. 
+
+
+
+Definition at line 155 of file enemy.\-cpp.
+
+\hypertarget{enemy_8h_a613792e028022154e2ea8edd0afdb1d3}{\index{enemy.\-h@{enemy.\-h}!Draw\-Enemies@{Draw\-Enemies}}
+\index{Draw\-Enemies@{Draw\-Enemies}!enemy.h@{enemy.\-h}}
+\subsubsection[{Draw\-Enemies}]{\setlength{\rightskip}{0pt plus 5cm}void Draw\-Enemies (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{enemy_8h_a613792e028022154e2ea8edd0afdb1d3}
+
+
+Draws all Enemies. 
+
+
+
+Definition at line 142 of file enemy.\-cpp.
+
+\hypertarget{enemy_8h_a63eba85ef2fbfe2a60d9936121c1c2db}{\index{enemy.\-h@{enemy.\-h}!Get\-Colliding\-Enemy@{Get\-Colliding\-Enemy}}
+\index{Get\-Colliding\-Enemy@{Get\-Colliding\-Enemy}!enemy.h@{enemy.\-h}}
+\subsubsection[{Get\-Colliding\-Enemy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Enemy}$\ast$ Get\-Colliding\-Enemy (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{Crect}
+\end{DoxyParamCaption}
+)}}\label{enemy_8h_a63eba85ef2fbfe2a60d9936121c1c2db}
+
+
+Definition at line 121 of file enemy.\-cpp.
+
+\hypertarget{enemy_8h_a4aea8b4c1726da681ac20abb12b939fc}{\index{enemy.\-h@{enemy.\-h}!Get\-Colliding\-Enemy\-Num@{Get\-Colliding\-Enemy\-Num}}
+\index{Get\-Colliding\-Enemy\-Num@{Get\-Colliding\-Enemy\-Num}!enemy.h@{enemy.\-h}}
+\subsubsection[{Get\-Colliding\-Enemy\-Num}]{\setlength{\rightskip}{0pt plus 5cm}int Get\-Colliding\-Enemy\-Num (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{Crect}
+\end{DoxyParamCaption}
+)}}\label{enemy_8h_a4aea8b4c1726da681ac20abb12b939fc}
+
+
+Gets the first Collision if the rect overlaps. 
+
+
+
+Definition at line 100 of file enemy.\-cpp.
+
+\hypertarget{enemy_8h_a21dd784b11de99a5946acb55bd1a8b12}{\index{enemy.\-h@{enemy.\-h}!Update\-Enemies@{Update\-Enemies}}
+\index{Update\-Enemies@{Update\-Enemies}!enemy.h@{enemy.\-h}}
+\subsubsection[{Update\-Enemies}]{\setlength{\rightskip}{0pt plus 5cm}void Update\-Enemies (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{enemy_8h_a21dd784b11de99a5946acb55bd1a8b12}
+
+
+Updates all Enemies. 
+
+
+
+Definition at line 83 of file enemy.\-cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{enemy_8h_ab10a6ac648c9bf0e3d7f1dcb9f1066f1}{\index{enemy.\-h@{enemy.\-h}!Enemies@{Enemies}}
+\index{Enemies@{Enemies}!enemy.h@{enemy.\-h}}
+\subsubsection[{Enemies}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Enemy}$\ast$$\ast$ Enemies}}\label{enemy_8h_ab10a6ac648c9bf0e3d7f1dcb9f1066f1}
+
+
+Definition at line 6 of file enemy.\-cpp.
+
+\hypertarget{enemy_8h_a823e8c13e2060d8b71c9028083d23374}{\index{enemy.\-h@{enemy.\-h}!Enemy\-Count@{Enemy\-Count}}
+\index{Enemy\-Count@{Enemy\-Count}!enemy.h@{enemy.\-h}}
+\subsubsection[{Enemy\-Count}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Enemy\-Count}}\label{enemy_8h_a823e8c13e2060d8b71c9028083d23374}
+
+
+Definition at line 5 of file enemy.\-cpp.
+

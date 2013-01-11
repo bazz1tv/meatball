@@ -1,0 +1,371 @@
+\hypertarget{classc_t_c_p_net}{\section{c\-T\-C\-P\-Net Class Reference}
+\label{classc_t_c_p_net}\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}}
+}
+
+
+{\ttfamily \#include $<$net.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} \hyperlink{classc_t_c_p_net_ae3b6e8bb7a7ed2e6514c5015b63f2a90}{c\-T\-C\-P\-Net} (unsigned int nport=9877)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} \hyperlink{classc_t_c_p_net_ad4216ece1502ab44f4079af281d5d1fe}{$\sim$c\-T\-C\-P\-Net} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_a15634492b7d8b33524891a528d43e151}{Server\-\_\-\-Start} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_aa3b73992250c4715f5e3f4db742a8fd0}{Server\-\_\-\-Connection\-Check} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_a3d31cd8ace9080710e13e6a73d6989ac}{Client\-\_\-\-Connect} (string \&address)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_a2bad3284360fbba4e9bd25520c8ebe20}{Read\-\_\-\-Message} (T\-C\-Psocket sock, string \&message)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_t_c_p_net_a2d6f0e395adc0b659ba66f6ebad1b4ee}{Send\-\_\-\-Message\-\_\-\-Auto} (const string message)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_t_c_p_net_a8dd08049de84a7f33fcf6b1241a7ec96}{Server\-\_\-\-Send\-Global\-Message} (const string message)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_a6a7a00f0ac2b3c780d7acd2216574ef9}{Send\-\_\-\-Message} (T\-C\-Psocket sock, const string message)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_a227063acbfe3f006c8519786e7a41fab}{Shutdown} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_af8b79d5d7d696ee8d77d76e896e9d619}{Check\-\_\-\-Sockets} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_t_c_p_net_a66e58d6a4c7a67d6e501384e73b99a42}{Alloc\-\_\-\-Socketset} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_t_c_p_net_a8940d4bdd34ad6d2110e6d098de699fc}{Free\-\_\-\-Socketset} (void)
+\begin{DoxyCompactList}\small\item\em Frees the Socketset. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} Uint32 \hyperlink{classc_t_c_p_net_a402c0621d960563560468e103f93ddd9}{Client\-\_\-\-Get\-I\-P} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} Uint16 \hyperlink{classc_t_c_p_net_a2622c8280cbf687dc5ebca391540038b}{Get\-Port} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_t_c_p_net_acf77c196ccbd24d28e4d954c56e1a607}{Set\-Port} (Uint16 nport)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_t_c_p_net_a05f97c01839e4dd0b896c090fea7d8f1}{Server\-\_\-\-No\-New\-Connections} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_t_c_p_net_a2afbf5d90c709a6f1192e27779862249}{Server\-\_\-\-Disconnect\-Client} (T\-C\-Psocket sock)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_t_c_p_net_acca79819b5441b3515cd8443de0b15f8}{Update} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} char $\ast$ \hyperlink{classc_t_c_p_net_aae423bb92891dc62a6ebd443cbfa9755}{c\-\_\-str\-N\-C} (const string \&the\-String)
+\begin{DoxyCompactList}\small\item\em 1.\-8 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{classc_client}{c\-Client} $>$ \hyperlink{classc_t_c_p_net_ac0889feea9550dc2ef0461be16b408f0}{clients}
+\item 
+I\-Paddress \hyperlink{classc_t_c_p_net_a103f0ae57ea6253901756aa7ba2c1275}{ip}
+\begin{DoxyCompactList}\small\item\em undefined -\/ is it only temporary ?!? \end{DoxyCompactList}\item 
+T\-C\-Psocket \hyperlink{classc_t_c_p_net_a67aece277603c2e1a53eb09d74618a9b}{csocket}
+\begin{DoxyCompactList}\small\item\em Your Connection Socket. \end{DoxyCompactList}\item 
+Uint16 \hyperlink{classc_t_c_p_net_aad0ef85255e170e890b7591169da57b0}{port}
+\begin{DoxyCompactList}\small\item\em The Standard port used. \end{DoxyCompactList}\item 
+int \hyperlink{classc_t_c_p_net_a07e6aa8d2af28f80aeefcce1b7c416c3}{state}
+\item 
+S\-D\-L\-Net\-\_\-\-Socket\-Set \hyperlink{classc_t_c_p_net_aa4a4f4b31756814afe9358f006594a81}{socketset}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The T\-C\-P S\-D\-L\-\_\-\-Net Class 
+
+Definition at line 62 of file net.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classc_t_c_p_net_ae3b6e8bb7a7ed2e6514c5015b63f2a90}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}}
+\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{c\-T\-C\-P\-Net}]{\setlength{\rightskip}{0pt plus 5cm}c\-T\-C\-P\-Net\-::c\-T\-C\-P\-Net (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{nport = {\ttfamily 9877}}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_ae3b6e8bb7a7ed2e6514c5015b63f2a90}
+
+
+Definition at line 54 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_ad4216ece1502ab44f4079af281d5d1fe}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!$\sim$c\-T\-C\-P\-Net@{$\sim$c\-T\-C\-P\-Net}}
+\index{$\sim$c\-T\-C\-P\-Net@{$\sim$c\-T\-C\-P\-Net}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{$\sim$c\-T\-C\-P\-Net}]{\setlength{\rightskip}{0pt plus 5cm}c\-T\-C\-P\-Net\-::$\sim$c\-T\-C\-P\-Net (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_ad4216ece1502ab44f4079af281d5d1fe}
+
+
+Definition at line 68 of file net.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classc_t_c_p_net_a66e58d6a4c7a67d6e501384e73b99a42}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Alloc\-\_\-\-Socketset@{Alloc\-\_\-\-Socketset}}
+\index{Alloc\-\_\-\-Socketset@{Alloc\-\_\-\-Socketset}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Alloc\-\_\-\-Socketset}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Alloc\-\_\-\-Socketset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a66e58d6a4c7a67d6e501384e73b99a42}
+Allocates an Socketset for buffer message checking used internally 
+
+Definition at line 512 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_aae423bb92891dc62a6ebd443cbfa9755}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!c\-\_\-str\-N\-C@{c\-\_\-str\-N\-C}}
+\index{c\-\_\-str\-N\-C@{c\-\_\-str\-N\-C}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{c\-\_\-str\-N\-C}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ c\-T\-C\-P\-Net\-::c\-\_\-str\-N\-C (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{the\-String}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_aae423bb92891dc62a6ebd443cbfa9755}
+
+
+1.\-8 
+
+Adds the terminating N\-U\-L\-L in an char $\ast$ 
+
+Definition at line 728 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_af8b79d5d7d696ee8d77d76e896e9d619}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Check\-\_\-\-Sockets@{Check\-\_\-\-Sockets}}
+\index{Check\-\_\-\-Sockets@{Check\-\_\-\-Sockets}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Check\-\_\-\-Sockets}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Check\-\_\-\-Sockets (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_af8b79d5d7d696ee8d77d76e896e9d619}
+Checks if an message arrived returns the number of messages 
+
+Definition at line 489 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a3d31cd8ace9080710e13e6a73d6989ac}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Client\-\_\-\-Connect@{Client\-\_\-\-Connect}}
+\index{Client\-\_\-\-Connect@{Client\-\_\-\-Connect}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Client\-\_\-\-Connect}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Client\-\_\-\-Connect (
+\begin{DoxyParamCaption}
+\item[{string \&}]{address}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a3d31cd8ace9080710e13e6a73d6989ac}
+Connects to an server returns 0 if there were no success and 1 on success 
+
+Definition at line 161 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a402c0621d960563560468e103f93ddd9}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Client\-\_\-\-Get\-I\-P@{Client\-\_\-\-Get\-I\-P}}
+\index{Client\-\_\-\-Get\-I\-P@{Client\-\_\-\-Get\-I\-P}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Client\-\_\-\-Get\-I\-P}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 c\-T\-C\-P\-Net\-::\-Client\-\_\-\-Get\-I\-P (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a402c0621d960563560468e103f93ddd9}
+Returns the Server I\-P in an integer without points returns 0 if not succesfully Connected ir not an client 
+
+Definition at line 573 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a8940d4bdd34ad6d2110e6d098de699fc}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Free\-\_\-\-Socketset@{Free\-\_\-\-Socketset}}
+\index{Free\-\_\-\-Socketset@{Free\-\_\-\-Socketset}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Free\-\_\-\-Socketset}]{\setlength{\rightskip}{0pt plus 5cm}void c\-T\-C\-P\-Net\-::\-Free\-\_\-\-Socketset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a8940d4bdd34ad6d2110e6d098de699fc}
+
+
+Frees the Socketset. 
+
+
+
+Definition at line 561 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a2622c8280cbf687dc5ebca391540038b}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Get\-Port@{Get\-Port}}
+\index{Get\-Port@{Get\-Port}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Get\-Port}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 c\-T\-C\-P\-Net\-::\-Get\-Port (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a2622c8280cbf687dc5ebca391540038b}
+Returns the currently used port returns 0 if not succesfully hosted or not an connected client 
+
+Definition at line 586 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a2bad3284360fbba4e9bd25520c8ebe20}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Read\-\_\-\-Message@{Read\-\_\-\-Message}}
+\index{Read\-\_\-\-Message@{Read\-\_\-\-Message}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Read\-\_\-\-Message}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Read\-\_\-\-Message (
+\begin{DoxyParamCaption}
+\item[{T\-C\-Psocket}]{sock, }
+\item[{string \&}]{message}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a2bad3284360fbba4e9bd25520c8ebe20}
+Reads the Message Returns 0 if an error occured or not connected to anyone 
+
+Definition at line 214 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a6a7a00f0ac2b3c780d7acd2216574ef9}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Send\-\_\-\-Message@{Send\-\_\-\-Message}}
+\index{Send\-\_\-\-Message@{Send\-\_\-\-Message}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Send\-\_\-\-Message}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Send\-\_\-\-Message (
+\begin{DoxyParamCaption}
+\item[{T\-C\-Psocket}]{sock, }
+\item[{const string}]{message}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a6a7a00f0ac2b3c780d7acd2216574ef9}
+Sends an Message Returns 0 if an error occured or not connected to anyone 
+
+Definition at line 369 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a2d6f0e395adc0b659ba66f6ebad1b4ee}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Send\-\_\-\-Message\-\_\-\-Auto@{Send\-\_\-\-Message\-\_\-\-Auto}}
+\index{Send\-\_\-\-Message\-\_\-\-Auto@{Send\-\_\-\-Message\-\_\-\-Auto}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Send\-\_\-\-Message\-\_\-\-Auto}]{\setlength{\rightskip}{0pt plus 5cm}void c\-T\-C\-P\-Net\-::\-Send\-\_\-\-Message\-\_\-\-Auto (
+\begin{DoxyParamCaption}
+\item[{const string}]{message}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a2d6f0e395adc0b659ba66f6ebad1b4ee}
+Sends the Message to all Connections you have uses Send\-\_\-message if you're an Client else Server\-\_\-\-Sen\-Global\-Message if you're an Server 
+
+Definition at line 330 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_aa3b73992250c4715f5e3f4db742a8fd0}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Server\-\_\-\-Connection\-Check@{Server\-\_\-\-Connection\-Check}}
+\index{Server\-\_\-\-Connection\-Check@{Server\-\_\-\-Connection\-Check}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Server\-\_\-\-Connection\-Check}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Server\-\_\-\-Connection\-Check (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_aa3b73992250c4715f5e3f4db742a8fd0}
+Checks for an connecting request from an remote client used internally 
+
+Definition at line 118 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a2afbf5d90c709a6f1192e27779862249}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Server\-\_\-\-Disconnect\-Client@{Server\-\_\-\-Disconnect\-Client}}
+\index{Server\-\_\-\-Disconnect\-Client@{Server\-\_\-\-Disconnect\-Client}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Server\-\_\-\-Disconnect\-Client}]{\setlength{\rightskip}{0pt plus 5cm}void c\-T\-C\-P\-Net\-::\-Server\-\_\-\-Disconnect\-Client (
+\begin{DoxyParamCaption}
+\item[{T\-C\-Psocket}]{sock}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a2afbf5d90c709a6f1192e27779862249}
+Disconnects an specific Client Connected Server Only 
+
+Definition at line 623 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a05f97c01839e4dd0b896c090fea7d8f1}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Server\-\_\-\-No\-New\-Connections@{Server\-\_\-\-No\-New\-Connections}}
+\index{Server\-\_\-\-No\-New\-Connections@{Server\-\_\-\-No\-New\-Connections}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Server\-\_\-\-No\-New\-Connections}]{\setlength{\rightskip}{0pt plus 5cm}void c\-T\-C\-P\-Net\-::\-Server\-\_\-\-No\-New\-Connections (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a05f97c01839e4dd0b896c090fea7d8f1}
+Disables new Connections Connected Server Only 
+
+Definition at line 609 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a8dd08049de84a7f33fcf6b1241a7ec96}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Server\-\_\-\-Send\-Global\-Message@{Server\-\_\-\-Send\-Global\-Message}}
+\index{Server\-\_\-\-Send\-Global\-Message@{Server\-\_\-\-Send\-Global\-Message}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Server\-\_\-\-Send\-Global\-Message}]{\setlength{\rightskip}{0pt plus 5cm}void c\-T\-C\-P\-Net\-::\-Server\-\_\-\-Send\-Global\-Message (
+\begin{DoxyParamCaption}
+\item[{const string}]{message}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a8dd08049de84a7f33fcf6b1241a7ec96}
+Sends an Message to ervery Client 
+
+Definition at line 345 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a15634492b7d8b33524891a528d43e151}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Server\-\_\-\-Start@{Server\-\_\-\-Start}}
+\index{Server\-\_\-\-Start@{Server\-\_\-\-Start}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Server\-\_\-\-Start}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Server\-\_\-\-Start (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a15634492b7d8b33524891a528d43e151}
+Starts an Server returns 0 if already connected or an error 
+
+Definition at line 76 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_acf77c196ccbd24d28e4d954c56e1a607}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Set\-Port@{Set\-Port}}
+\index{Set\-Port@{Set\-Port}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Set\-Port}]{\setlength{\rightskip}{0pt plus 5cm}void c\-T\-C\-P\-Net\-::\-Set\-Port (
+\begin{DoxyParamCaption}
+\item[{Uint16}]{nport}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_acf77c196ccbd24d28e4d954c56e1a607}
+Sets the used port for Hosting and Connecting Should only be used if not Connected (Idle) 
+
+Definition at line 594 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_a227063acbfe3f006c8519786e7a41fab}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Shutdown}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::\-Shutdown (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_a227063acbfe3f006c8519786e7a41fab}
+Closes every Connection returns 0 if there were no connections or opened sockets 
+
+Definition at line 438 of file net.\-cpp.
+
+\hypertarget{classc_t_c_p_net_acca79819b5441b3515cd8443de0b15f8}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!Update@{Update}}
+\index{Update@{Update}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void c\-T\-C\-P\-Net\-::\-Update (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_t_c_p_net_acca79819b5441b3515cd8443de0b15f8}
+Checks for messages and closes the connection if the remote user disconnected The messages are handled by the handlemessage(string message) function 
+
+Definition at line 661 of file net.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classc_t_c_p_net_ac0889feea9550dc2ef0461be16b408f0}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!clients@{clients}}
+\index{clients@{clients}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{clients}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf c\-Client}$>$ c\-T\-C\-P\-Net\-::clients}}\label{classc_t_c_p_net_ac0889feea9550dc2ef0461be16b408f0}
+The Clients if the current state is Server theres no maximum else if client the first Client is the Remote Server you're Connected to 
+
+Definition at line 160 of file net.\-h.
+
+\hypertarget{classc_t_c_p_net_a67aece277603c2e1a53eb09d74618a9b}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!csocket@{csocket}}
+\index{csocket@{csocket}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{csocket}]{\setlength{\rightskip}{0pt plus 5cm}T\-C\-Psocket c\-T\-C\-P\-Net\-::csocket}}\label{classc_t_c_p_net_a67aece277603c2e1a53eb09d74618a9b}
+
+
+Your Connection Socket. 
+
+
+
+Definition at line 165 of file net.\-h.
+
+\hypertarget{classc_t_c_p_net_a103f0ae57ea6253901756aa7ba2c1275}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!ip@{ip}}
+\index{ip@{ip}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{ip}]{\setlength{\rightskip}{0pt plus 5cm}I\-Paddress c\-T\-C\-P\-Net\-::ip}}\label{classc_t_c_p_net_a103f0ae57ea6253901756aa7ba2c1275}
+
+
+undefined -\/ is it only temporary ?!? 
+
+
+
+Definition at line 163 of file net.\-h.
+
+\hypertarget{classc_t_c_p_net_aad0ef85255e170e890b7591169da57b0}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!port@{port}}
+\index{port@{port}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{port}]{\setlength{\rightskip}{0pt plus 5cm}Uint16 c\-T\-C\-P\-Net\-::port}}\label{classc_t_c_p_net_aad0ef85255e170e890b7591169da57b0}
+
+
+The Standard port used. 
+
+
+
+Definition at line 167 of file net.\-h.
+
+\hypertarget{classc_t_c_p_net_aa4a4f4b31756814afe9358f006594a81}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!socketset@{socketset}}
+\index{socketset@{socketset}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{socketset}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-Net\-\_\-\-Socket\-Set c\-T\-C\-P\-Net\-::socketset}}\label{classc_t_c_p_net_aa4a4f4b31756814afe9358f006594a81}
+
+
+Definition at line 177 of file net.\-h.
+
+\hypertarget{classc_t_c_p_net_a07e6aa8d2af28f80aeefcce1b7c416c3}{\index{c\-T\-C\-P\-Net@{c\-T\-C\-P\-Net}!state@{state}}
+\index{state@{state}!cTCPNet@{c\-T\-C\-P\-Net}}
+\subsubsection[{state}]{\setlength{\rightskip}{0pt plus 5cm}int c\-T\-C\-P\-Net\-::state}}\label{classc_t_c_p_net_a07e6aa8d2af28f80aeefcce1b7c416c3}
+The Current Network state \-: 0 = Idle 1 = Hosting Not Connected to anyone 2 = Hosting Connected 3 = Client Connected 
+
+Definition at line 175 of file net.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Engine/include/\hyperlink{net_8h}{net.\-h}\item 
+C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Engine/\hyperlink{net_8cpp}{net.\-cpp}\end{DoxyCompactItemize}

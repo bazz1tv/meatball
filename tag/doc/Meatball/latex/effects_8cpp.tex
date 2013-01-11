@@ -1,0 +1,118 @@
+\hypertarget{effects_8cpp}{\section{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/effects.cpp File Reference}
+\label{effects_8cpp}\index{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/effects.\-cpp@{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/effects.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}include\textbackslash{}\-Globals.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{effects_8cpp_a326a6d2bafcf0e93d01f40244ca7012a}{Add\-Particle\-Emitter} (double x, double y, double n\-Speed, Uint8 nred, Uint8 ngreen, Uint8 nblue, double nfadeoutspeed, unsigned int power, double n\-Randomness, double fixed\-Direction)
+\item 
+void \hyperlink{effects_8cpp_a2d0aefe8c17bdfa8b07ad984ae3e2e70}{Update\-Particle\-Emitter} (void)
+\begin{DoxyCompactList}\small\item\em Updates all Particle Emitter. \end{DoxyCompactList}\item 
+void \hyperlink{effects_8cpp_a656a83a5525899d73c91262ef884479b}{Draw\-Particle\-Emitter} (void)
+\begin{DoxyCompactList}\small\item\em Draws all Particle Emitter. \end{DoxyCompactList}\item 
+void \hyperlink{effects_8cpp_aa0ce31d79258acc43ec735af3ac6b6e6}{Delete\-All\-Particle\-Emitter} (void)
+\begin{DoxyCompactList}\small\item\em Delete's every Particle Emitter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classc_m_particle_emitter}{c\-M\-Particle\-Emitter} $\ast$$\ast$ \hyperlink{effects_8cpp_a137d1156293fa5ff0448c076129e94ec}{Particle\-Emitter} = N\-U\-L\-L
+\begin{DoxyCompactList}\small\item\em The dynamic Particle Emittter Array. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{effects_8cpp_af3255aecbef7b3edb54e6bfe092441f9}{Particle\-Emitter\-Count} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{effects_8cpp_a326a6d2bafcf0e93d01f40244ca7012a}{\index{effects.\-cpp@{effects.\-cpp}!Add\-Particle\-Emitter@{Add\-Particle\-Emitter}}
+\index{Add\-Particle\-Emitter@{Add\-Particle\-Emitter}!effects.cpp@{effects.\-cpp}}
+\subsubsection[{Add\-Particle\-Emitter}]{\setlength{\rightskip}{0pt plus 5cm}void Add\-Particle\-Emitter (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y, }
+\item[{double}]{n\-Speed, }
+\item[{Uint8}]{nred, }
+\item[{Uint8}]{ngreen, }
+\item[{Uint8}]{nblue, }
+\item[{double}]{nfadeoutspeed, }
+\item[{unsigned int}]{power, }
+\item[{double}]{n\-Randomness, }
+\item[{double}]{fixed\-Direction = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{effects_8cpp_a326a6d2bafcf0e93d01f40244ca7012a}
+Adds an Particle Emitter Power \-: Amount of Particles Randomness \-: Amount of Random Movement 
+
+ if Fixed Direction is set all spawned Particles will have those direction when spawned 
+\begin{DoxyParams}{Parameters}
+{\em fixed\-Direction} & = -\/1 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 274 of file effects.\-cpp.
+
+\hypertarget{effects_8cpp_aa0ce31d79258acc43ec735af3ac6b6e6}{\index{effects.\-cpp@{effects.\-cpp}!Delete\-All\-Particle\-Emitter@{Delete\-All\-Particle\-Emitter}}
+\index{Delete\-All\-Particle\-Emitter@{Delete\-All\-Particle\-Emitter}!effects.cpp@{effects.\-cpp}}
+\subsubsection[{Delete\-All\-Particle\-Emitter}]{\setlength{\rightskip}{0pt plus 5cm}void Delete\-All\-Particle\-Emitter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{effects_8cpp_aa0ce31d79258acc43ec735af3ac6b6e6}
+
+
+Delete's every Particle Emitter. 
+
+
+
+Definition at line 347 of file effects.\-cpp.
+
+\hypertarget{effects_8cpp_a656a83a5525899d73c91262ef884479b}{\index{effects.\-cpp@{effects.\-cpp}!Draw\-Particle\-Emitter@{Draw\-Particle\-Emitter}}
+\index{Draw\-Particle\-Emitter@{Draw\-Particle\-Emitter}!effects.cpp@{effects.\-cpp}}
+\subsubsection[{Draw\-Particle\-Emitter}]{\setlength{\rightskip}{0pt plus 5cm}void Draw\-Particle\-Emitter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{effects_8cpp_a656a83a5525899d73c91262ef884479b}
+
+
+Draws all Particle Emitter. 
+
+
+
+Definition at line 334 of file effects.\-cpp.
+
+\hypertarget{effects_8cpp_a2d0aefe8c17bdfa8b07ad984ae3e2e70}{\index{effects.\-cpp@{effects.\-cpp}!Update\-Particle\-Emitter@{Update\-Particle\-Emitter}}
+\index{Update\-Particle\-Emitter@{Update\-Particle\-Emitter}!effects.cpp@{effects.\-cpp}}
+\subsubsection[{Update\-Particle\-Emitter}]{\setlength{\rightskip}{0pt plus 5cm}void Update\-Particle\-Emitter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{effects_8cpp_a2d0aefe8c17bdfa8b07ad984ae3e2e70}
+
+
+Updates all Particle Emitter. 
+
+
+
+Definition at line 321 of file effects.\-cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{effects_8cpp_a137d1156293fa5ff0448c076129e94ec}{\index{effects.\-cpp@{effects.\-cpp}!Particle\-Emitter@{Particle\-Emitter}}
+\index{Particle\-Emitter@{Particle\-Emitter}!effects.cpp@{effects.\-cpp}}
+\subsubsection[{Particle\-Emitter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-M\-Particle\-Emitter}$\ast$$\ast$ Particle\-Emitter = N\-U\-L\-L}}\label{effects_8cpp_a137d1156293fa5ff0448c076129e94ec}
+
+
+The dynamic Particle Emittter Array. 
+
+
+
+Definition at line 4 of file effects.\-cpp.
+
+\hypertarget{effects_8cpp_af3255aecbef7b3edb54e6bfe092441f9}{\index{effects.\-cpp@{effects.\-cpp}!Particle\-Emitter\-Count@{Particle\-Emitter\-Count}}
+\index{Particle\-Emitter\-Count@{Particle\-Emitter\-Count}!effects.cpp@{effects.\-cpp}}
+\subsubsection[{Particle\-Emitter\-Count}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Particle\-Emitter\-Count = 0}}\label{effects_8cpp_af3255aecbef7b3edb54e6bfe092441f9}
+
+
+Definition at line 5 of file effects.\-cpp.
+

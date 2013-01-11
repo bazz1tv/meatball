@@ -1,0 +1,443 @@
+\hypertarget{_globals_8cpp}{\section{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\-Globals.cpp File Reference}
+\label{_globals_8cpp}\index{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\-Globals.\-cpp@{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\-Globals.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}include\textbackslash{}\-Globals.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include\textbackslash{}\-Meat\-Ball.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}include\textbackslash{}\-Main\-Menu.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_globals_8cpp_ab25ba442d999718a21b85e3ca9e7bf73}{S\-D\-L\-\_\-\-W\-I\-N\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S}~\hyperlink{_globals_8h_a518f88e1977212a556fdff9a2f2277e9}{p\-Game\-Settings}-\/$>$Screen\-\_\-\-W, \hyperlink{_globals_8h_a518f88e1977212a556fdff9a2f2277e9}{p\-Game\-Settings}-\/$>$Screen\-\_\-\-H, \hyperlink{_globals_8h_a518f88e1977212a556fdff9a2f2277e9}{p\-Game\-Settings}-\/$>$Screen\-\_\-\-Bpp
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_globals_8cpp_ae419198eb7bcb4f54ab9aa17ea20e61d}{Start\-Game} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the basic. \end{DoxyCompactList}\item 
+void \hyperlink{_globals_8cpp_a9763df2657592dfcfbac6291cd89e203}{Quit\-Game} (void)
+\begin{DoxyCompactList}\small\item\em Quits the game. \end{DoxyCompactList}\item 
+bool \hyperlink{_globals_8cpp_ac2380630ac63a93fa3f5ccf928761013}{File\-Valid} (string filename)
+\begin{DoxyCompactList}\small\item\em Checks if the file exists. \end{DoxyCompactList}\item 
+bool \hyperlink{_globals_8cpp_a4eba2c0c858d5dd01c55ad435478e732}{is\-\_\-valid\-\_\-number} (char $\ast$c)
+\begin{DoxyCompactList}\small\item\em Checks if it's an Number. \end{DoxyCompactList}\item 
+void \hyperlink{_globals_8cpp_a17826862999eca51f2bf755ba53b44c4}{Framerate\-Draw} (S\-D\-L\-\_\-\-Surface $\ast$target, double posx, double posy)
+\begin{DoxyCompactList}\small\item\em Draws the Framerate. \end{DoxyCompactList}\item 
+int \hyperlink{_globals_8cpp_afb2abe466ebf12f176d8ebad731a878a}{Is\-Full\-Screen} (S\-D\-L\-\_\-\-Surface $\ast$surface)
+\item 
+int \hyperlink{_globals_8cpp_a0992a9c0bdfe743a99e02a3f0bd6d9b8}{S\-D\-L\-\_\-\-Toggle\-F\-S} (S\-D\-L\-\_\-\-Surface $\ast$surface)
+\begin{DoxyCompactList}\small\item\em The Main menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+c\-Framerate $\ast$ \hyperlink{_globals_8cpp_a608d0bdbe375e95b405ea72888f456a6}{p\-Framerate}
+\begin{DoxyCompactList}\small\item\em S\-D\-L\-\_\-ep classes. \end{DoxyCompactList}\item 
+c\-Image\-Manager $\ast$ \hyperlink{_globals_8cpp_a1e2ad77ae474512a63ac15b5ead6c438}{I\-Man}
+\item 
+c\-Sound\-Manager $\ast$ \hyperlink{_globals_8cpp_adf7bd341f2c69beac10e8ca9409bcccf}{S\-Man}
+\item 
+c\-Font $\ast$ \hyperlink{_globals_8cpp_a5ad67cf37aeab1002a21cc7474fa2b71}{p\-Font}
+\item 
+c\-Audio $\ast$ \hyperlink{_globals_8cpp_a35bc4fe04d30061e13c48ae1047ee921}{p\-Audio}
+\item 
+c\-T\-C\-P\-Net $\ast$ \hyperlink{_globals_8cpp_a85df1f12242247bb15ae9e556853db83}{p\-T\-C\-P}
+\item 
+int \hyperlink{_globals_8cpp_a5992b274cfdcacdbc1fa8347fd01ebde}{done}
+\begin{DoxyCompactList}\small\item\em if true the game exits \end{DoxyCompactList}\item 
+bool \hyperlink{_globals_8cpp_a1656129c4a4fd8809254194f08f0ac70}{paused}
+\begin{DoxyCompactList}\small\item\em if true the game if paused \end{DoxyCompactList}\item 
+T\-T\-F\-\_\-\-Font $\ast$ \hyperlink{_globals_8cpp_a2a72e9c5ef51abb0ff9fb956379f5b28}{Menu\-\_\-\-Font}
+\begin{DoxyCompactList}\small\item\em Fonts. \end{DoxyCompactList}\item 
+T\-T\-F\-\_\-\-Font $\ast$ \hyperlink{_globals_8cpp_aa4244a2ceac8e0161d6a73f276e727a6}{bold\-\_\-16}
+\item 
+S\-D\-L\-\_\-\-Surface $\ast$ \hyperlink{_globals_8cpp_a2abfbc02b16a974533fbded549676d5a}{Screen}
+\begin{DoxyCompactList}\small\item\em the Screen \end{DoxyCompactList}\item 
+Uint8 $\ast$ \hyperlink{_globals_8cpp_a4de8573bd7d63b4559b95263e0b45640}{keys}
+\begin{DoxyCompactList}\small\item\em Keyboard Keystate. \end{DoxyCompactList}\item 
+S\-D\-L\-\_\-\-Event \hyperlink{_globals_8cpp_a6b57f01d3c576db5368dd0efc2f435a4}{event}
+\begin{DoxyCompactList}\small\item\em Input Events. \end{DoxyCompactList}\item 
+bool \hyperlink{_globals_8cpp_a4f683c65b91cda05bdd3abb06a6ee6bb}{fps\-\_\-display} = false
+\begin{DoxyCompactList}\small\item\em if true the fps display is active \end{DoxyCompactList}\item 
+Uint32 \hyperlink{_globals_8cpp_a7507c2e67c175511f43136daa8858f50}{colorkey} = 0
+\begin{DoxyCompactList}\small\item\em Magneta (default) Colorkey. \end{DoxyCompactList}\item 
+\hyperlink{classc_preferences}{c\-Preferences} $\ast$ \hyperlink{_globals_8cpp_a89ae4e9ceeda5f1c4ccb68a046829ff1}{p\-Preferences}
+\begin{DoxyCompactList}\small\item\em Meat\-Ball. \end{DoxyCompactList}\item 
+\hyperlink{classc_settings}{c\-Settings} $\ast$ \hyperlink{_globals_8cpp_a518f88e1977212a556fdff9a2f2277e9}{p\-Game\-Settings}
+\item 
+c\-Mouse\-Cursor $\ast$ \hyperlink{_globals_8cpp_a248ee854fe02946e1f7a3a877eadf667}{p\-Mouse}
+\item 
+\hyperlink{classc_camera}{c\-Camera} $\ast$ \hyperlink{_globals_8cpp_a0dc279210655b0a29195dd1301bb270a}{p\-Camera}
+\item 
+\hyperlink{classc_player}{c\-Player} $\ast$ \hyperlink{_globals_8cpp_a349af70e51a15c82ae278a90e7c92617}{p\-Player}
+\item 
+\hyperlink{classc_level}{c\-Level} $\ast$ \hyperlink{_globals_8cpp_a04c8e55cdfefd67f11e73d9144bcd4cc}{p\-Level}
+\item 
+\hyperlink{classc_level_editor}{c\-Level\-Editor} $\ast$ \hyperlink{_globals_8cpp_a10c4ca8506b446d04eb3e601146f65b3}{p\-Level\-Editor}
+\item 
+\hyperlink{classc_console}{c\-Console} $\ast$ \hyperlink{_globals_8cpp_a5108e20aaa6e9c5292a61be3590b287e}{p\-Console}
+\begin{DoxyCompactList}\small\item\em The Console. \end{DoxyCompactList}\item 
+Uint8 \hyperlink{_globals_8cpp_afb7c8c2e22649478f20454fe4abd5533}{mode}
+\begin{DoxyCompactList}\small\item\em The Current mode. \end{DoxyCompactList}\item 
+Uint8 \hyperlink{_globals_8cpp_acdb614f3e1035c4e5955b0307ce8f5c2}{oldmode}
+\item 
+const S\-D\-L\-\_\-\-Video\-Info $\ast$ \hyperlink{_globals_8cpp_a328de9a5fe9f1dfc9e4bb73f6a2f7850}{screeninfo}
+\begin{DoxyCompactList}\small\item\em The screen settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_globals_8cpp_ab25ba442d999718a21b85e3ca9e7bf73}{\index{Globals.\-cpp@{Globals.\-cpp}!S\-D\-L\-\_\-\-W\-I\-N\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S@{S\-D\-L\-\_\-\-W\-I\-N\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S}}
+\index{S\-D\-L\-\_\-\-W\-I\-N\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S@{S\-D\-L\-\_\-\-W\-I\-N\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{S\-D\-L\-\_\-\-W\-I\-N\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-L\-\_\-\-W\-I\-N\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S~{\bf p\-Game\-Settings}-\/$>$Screen\-\_\-\-W, {\bf p\-Game\-Settings}-\/$>$Screen\-\_\-\-H, {\bf p\-Game\-Settings}-\/$>$Screen\-\_\-\-Bpp}}\label{_globals_8cpp_ab25ba442d999718a21b85e3ca9e7bf73}
+
+
+Definition at line 232 of file Globals.\-cpp.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{_globals_8cpp_ac2380630ac63a93fa3f5ccf928761013}{\index{Globals.\-cpp@{Globals.\-cpp}!File\-Valid@{File\-Valid}}
+\index{File\-Valid@{File\-Valid}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{File\-Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool File\-Valid (
+\begin{DoxyParamCaption}
+\item[{string}]{filename}
+\end{DoxyParamCaption}
+)}}\label{_globals_8cpp_ac2380630ac63a93fa3f5ccf928761013}
+
+
+Checks if the file exists. 
+
+
+
+Definition at line 173 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a17826862999eca51f2bf755ba53b44c4}{\index{Globals.\-cpp@{Globals.\-cpp}!Framerate\-Draw@{Framerate\-Draw}}
+\index{Framerate\-Draw@{Framerate\-Draw}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{Framerate\-Draw}]{\setlength{\rightskip}{0pt plus 5cm}void Framerate\-Draw (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Surface $\ast$}]{target, }
+\item[{double}]{posx, }
+\item[{double}]{posy}
+\end{DoxyParamCaption}
+)}}\label{_globals_8cpp_a17826862999eca51f2bf755ba53b44c4}
+
+
+Draws the Framerate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posx} & = 5.\-0 \\
+\hline
+{\em posy} & = 5.\-0 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 208 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a4eba2c0c858d5dd01c55ad435478e732}{\index{Globals.\-cpp@{Globals.\-cpp}!is\-\_\-valid\-\_\-number@{is\-\_\-valid\-\_\-number}}
+\index{is\-\_\-valid\-\_\-number@{is\-\_\-valid\-\_\-number}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{is\-\_\-valid\-\_\-number}]{\setlength{\rightskip}{0pt plus 5cm}bool is\-\_\-valid\-\_\-number (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{c}
+\end{DoxyParamCaption}
+)}}\label{_globals_8cpp_a4eba2c0c858d5dd01c55ad435478e732}
+
+
+Checks if it's an Number. 
+
+
+
+Definition at line 187 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_afb2abe466ebf12f176d8ebad731a878a}{\index{Globals.\-cpp@{Globals.\-cpp}!Is\-Full\-Screen@{Is\-Full\-Screen}}
+\index{Is\-Full\-Screen@{Is\-Full\-Screen}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{Is\-Full\-Screen}]{\setlength{\rightskip}{0pt plus 5cm}int Is\-Full\-Screen (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Surface $\ast$}]{surface}
+\end{DoxyParamCaption}
+)}}\label{_globals_8cpp_afb2abe466ebf12f176d8ebad731a878a}
+
+
+Definition at line 233 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a9763df2657592dfcfbac6291cd89e203}{\index{Globals.\-cpp@{Globals.\-cpp}!Quit\-Game@{Quit\-Game}}
+\index{Quit\-Game@{Quit\-Game}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{Quit\-Game}]{\setlength{\rightskip}{0pt plus 5cm}void Quit\-Game (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{_globals_8cpp_a9763df2657592dfcfbac6291cd89e203}
+
+
+Quits the game. 
+
+
+
+Definition at line 88 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a0992a9c0bdfe743a99e02a3f0bd6d9b8}{\index{Globals.\-cpp@{Globals.\-cpp}!S\-D\-L\-\_\-\-Toggle\-F\-S@{S\-D\-L\-\_\-\-Toggle\-F\-S}}
+\index{S\-D\-L\-\_\-\-Toggle\-F\-S@{S\-D\-L\-\_\-\-Toggle\-F\-S}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{S\-D\-L\-\_\-\-Toggle\-F\-S}]{\setlength{\rightskip}{0pt plus 5cm}int S\-D\-L\-\_\-\-Toggle\-F\-S (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Surface $\ast$}]{surface}
+\end{DoxyParamCaption}
+)}}\label{_globals_8cpp_a0992a9c0bdfe743a99e02a3f0bd6d9b8}
+
+
+The Main menu. 
+
+Toggle full\-Screen 
+
+Definition at line 239 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_ae419198eb7bcb4f54ab9aa17ea20e61d}{\index{Globals.\-cpp@{Globals.\-cpp}!Start\-Game@{Start\-Game}}
+\index{Start\-Game@{Start\-Game}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{Start\-Game}]{\setlength{\rightskip}{0pt plus 5cm}void Start\-Game (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{_globals_8cpp_ae419198eb7bcb4f54ab9aa17ea20e61d}
+
+
+Initializes the basic. 
+
+Game Global Functions. 
+
+Definition at line 60 of file Globals.\-cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{_globals_8cpp_aa4244a2ceac8e0161d6a73f276e727a6}{\index{Globals.\-cpp@{Globals.\-cpp}!bold\-\_\-16@{bold\-\_\-16}}
+\index{bold\-\_\-16@{bold\-\_\-16}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{bold\-\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}T\-T\-F\-\_\-\-Font$\ast$ bold\-\_\-16}}\label{_globals_8cpp_aa4244a2ceac8e0161d6a73f276e727a6}
+
+
+Definition at line 24 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a7507c2e67c175511f43136daa8858f50}{\index{Globals.\-cpp@{Globals.\-cpp}!colorkey@{colorkey}}
+\index{colorkey@{colorkey}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{colorkey}]{\setlength{\rightskip}{0pt plus 5cm}Uint32 colorkey = 0}}\label{_globals_8cpp_a7507c2e67c175511f43136daa8858f50}
+
+
+Magneta (default) Colorkey. 
+
+
+
+Definition at line 39 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a5992b274cfdcacdbc1fa8347fd01ebde}{\index{Globals.\-cpp@{Globals.\-cpp}!done@{done}}
+\index{done@{done}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{done}]{\setlength{\rightskip}{0pt plus 5cm}int done}}\label{_globals_8cpp_a5992b274cfdcacdbc1fa8347fd01ebde}
+
+
+if true the game exits 
+
+finished with game or not? 
+
+Definition at line 17 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a6b57f01d3c576db5368dd0efc2f435a4}{\index{Globals.\-cpp@{Globals.\-cpp}!event@{event}}
+\index{event@{event}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{event}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Event event}}\label{_globals_8cpp_a6b57f01d3c576db5368dd0efc2f435a4}
+
+
+Input Events. 
+
+events 
+
+Definition at line 33 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a4f683c65b91cda05bdd3abb06a6ee6bb}{\index{Globals.\-cpp@{Globals.\-cpp}!fps\-\_\-display@{fps\-\_\-display}}
+\index{fps\-\_\-display@{fps\-\_\-display}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{fps\-\_\-display}]{\setlength{\rightskip}{0pt plus 5cm}bool fps\-\_\-display = false}}\label{_globals_8cpp_a4f683c65b91cda05bdd3abb06a6ee6bb}
+
+
+if true the fps display is active 
+
+fps display boolean 
+
+Definition at line 36 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a1e2ad77ae474512a63ac15b5ead6c438}{\index{Globals.\-cpp@{Globals.\-cpp}!I\-Man@{I\-Man}}
+\index{I\-Man@{I\-Man}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{I\-Man}]{\setlength{\rightskip}{0pt plus 5cm}c\-Image\-Manager$\ast$ I\-Man}}\label{_globals_8cpp_a1e2ad77ae474512a63ac15b5ead6c438}
+
+
+Definition at line 10 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a4de8573bd7d63b4559b95263e0b45640}{\index{Globals.\-cpp@{Globals.\-cpp}!keys@{keys}}
+\index{keys@{keys}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{keys}]{\setlength{\rightskip}{0pt plus 5cm}Uint8$\ast$ keys}}\label{_globals_8cpp_a4de8573bd7d63b4559b95263e0b45640}
+
+
+Keyboard Keystate. 
+
+
+
+Definition at line 30 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a2a72e9c5ef51abb0ff9fb956379f5b28}{\index{Globals.\-cpp@{Globals.\-cpp}!Menu\-\_\-\-Font@{Menu\-\_\-\-Font}}
+\index{Menu\-\_\-\-Font@{Menu\-\_\-\-Font}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{Menu\-\_\-\-Font}]{\setlength{\rightskip}{0pt plus 5cm}T\-T\-F\-\_\-\-Font$\ast$ Menu\-\_\-\-Font}}\label{_globals_8cpp_a2a72e9c5ef51abb0ff9fb956379f5b28}
+
+
+Fonts. 
+
+
+
+Definition at line 23 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_afb7c8c2e22649478f20454fe4abd5533}{\index{Globals.\-cpp@{Globals.\-cpp}!mode@{mode}}
+\index{mode@{mode}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{mode}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 mode}}\label{_globals_8cpp_afb7c8c2e22649478f20454fe4abd5533}
+
+
+The Current mode. 
+
+
+
+Definition at line 54 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_acdb614f3e1035c4e5955b0307ce8f5c2}{\index{Globals.\-cpp@{Globals.\-cpp}!oldmode@{oldmode}}
+\index{oldmode@{oldmode}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{oldmode}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 oldmode}}\label{_globals_8cpp_acdb614f3e1035c4e5955b0307ce8f5c2}
+
+
+Definition at line 54 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a35bc4fe04d30061e13c48ae1047ee921}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Audio@{p\-Audio}}
+\index{p\-Audio@{p\-Audio}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Audio}]{\setlength{\rightskip}{0pt plus 5cm}c\-Audio$\ast$ p\-Audio}}\label{_globals_8cpp_a35bc4fe04d30061e13c48ae1047ee921}
+
+
+Definition at line 13 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a1656129c4a4fd8809254194f08f0ac70}{\index{Globals.\-cpp@{Globals.\-cpp}!paused@{paused}}
+\index{paused@{paused}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{paused}]{\setlength{\rightskip}{0pt plus 5cm}bool paused}}\label{_globals_8cpp_a1656129c4a4fd8809254194f08f0ac70}
+
+
+if true the game if paused 
+
+game paused? 
+
+Definition at line 20 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a0dc279210655b0a29195dd1301bb270a}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Camera@{p\-Camera}}
+\index{p\-Camera@{p\-Camera}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Camera}$\ast$ p\-Camera}}\label{_globals_8cpp_a0dc279210655b0a29195dd1301bb270a}
+
+
+Definition at line 45 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a5108e20aaa6e9c5292a61be3590b287e}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Console@{p\-Console}}
+\index{p\-Console@{p\-Console}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Console}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Console}$\ast$ p\-Console}}\label{_globals_8cpp_a5108e20aaa6e9c5292a61be3590b287e}
+
+
+The Console. 
+
+
+
+Definition at line 51 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a5ad67cf37aeab1002a21cc7474fa2b71}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Font@{p\-Font}}
+\index{p\-Font@{p\-Font}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Font}]{\setlength{\rightskip}{0pt plus 5cm}c\-Font$\ast$ p\-Font}}\label{_globals_8cpp_a5ad67cf37aeab1002a21cc7474fa2b71}
+
+
+Definition at line 12 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a608d0bdbe375e95b405ea72888f456a6}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Framerate@{p\-Framerate}}
+\index{p\-Framerate@{p\-Framerate}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Framerate}]{\setlength{\rightskip}{0pt plus 5cm}c\-Framerate$\ast$ p\-Framerate}}\label{_globals_8cpp_a608d0bdbe375e95b405ea72888f456a6}
+
+
+S\-D\-L\-\_\-ep classes. 
+
+
+
+Definition at line 9 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a518f88e1977212a556fdff9a2f2277e9}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Game\-Settings@{p\-Game\-Settings}}
+\index{p\-Game\-Settings@{p\-Game\-Settings}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Game\-Settings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Settings}$\ast$ p\-Game\-Settings}}\label{_globals_8cpp_a518f88e1977212a556fdff9a2f2277e9}
+
+
+Definition at line 43 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a04c8e55cdfefd67f11e73d9144bcd4cc}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Level@{p\-Level}}
+\index{p\-Level@{p\-Level}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Level}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Level}$\ast$ p\-Level}}\label{_globals_8cpp_a04c8e55cdfefd67f11e73d9144bcd4cc}
+
+
+Definition at line 47 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a10c4ca8506b446d04eb3e601146f65b3}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Level\-Editor@{p\-Level\-Editor}}
+\index{p\-Level\-Editor@{p\-Level\-Editor}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Level\-Editor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Level\-Editor}$\ast$ p\-Level\-Editor}}\label{_globals_8cpp_a10c4ca8506b446d04eb3e601146f65b3}
+
+
+Definition at line 48 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a248ee854fe02946e1f7a3a877eadf667}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Mouse@{p\-Mouse}}
+\index{p\-Mouse@{p\-Mouse}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Mouse}]{\setlength{\rightskip}{0pt plus 5cm}c\-Mouse\-Cursor$\ast$ p\-Mouse}}\label{_globals_8cpp_a248ee854fe02946e1f7a3a877eadf667}
+
+
+Definition at line 44 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a349af70e51a15c82ae278a90e7c92617}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Player@{p\-Player}}
+\index{p\-Player@{p\-Player}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Player}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Player}$\ast$ p\-Player}}\label{_globals_8cpp_a349af70e51a15c82ae278a90e7c92617}
+
+
+Definition at line 46 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a89ae4e9ceeda5f1c4ccb68a046829ff1}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-Preferences@{p\-Preferences}}
+\index{p\-Preferences@{p\-Preferences}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-Preferences}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-Preferences}$\ast$ p\-Preferences}}\label{_globals_8cpp_a89ae4e9ceeda5f1c4ccb68a046829ff1}
+
+
+Meat\-Ball. 
+
+includes 
+
+Definition at line 42 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a85df1f12242247bb15ae9e556853db83}{\index{Globals.\-cpp@{Globals.\-cpp}!p\-T\-C\-P@{p\-T\-C\-P}}
+\index{p\-T\-C\-P@{p\-T\-C\-P}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{p\-T\-C\-P}]{\setlength{\rightskip}{0pt plus 5cm}c\-T\-C\-P\-Net$\ast$ p\-T\-C\-P}}\label{_globals_8cpp_a85df1f12242247bb15ae9e556853db83}
+
+
+Definition at line 14 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a2abfbc02b16a974533fbded549676d5a}{\index{Globals.\-cpp@{Globals.\-cpp}!Screen@{Screen}}
+\index{Screen@{Screen}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{Screen}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Surface$\ast$ Screen}}\label{_globals_8cpp_a2abfbc02b16a974533fbded549676d5a}
+
+
+the Screen 
+
+
+
+Definition at line 27 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_a328de9a5fe9f1dfc9e4bb73f6a2f7850}{\index{Globals.\-cpp@{Globals.\-cpp}!screeninfo@{screeninfo}}
+\index{screeninfo@{screeninfo}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{screeninfo}]{\setlength{\rightskip}{0pt plus 5cm}const S\-D\-L\-\_\-\-Video\-Info$\ast$ screeninfo}}\label{_globals_8cpp_a328de9a5fe9f1dfc9e4bb73f6a2f7850}
+
+
+The screen settings. 
+
+screen settings 
+
+Definition at line 57 of file Globals.\-cpp.
+
+\hypertarget{_globals_8cpp_adf7bd341f2c69beac10e8ca9409bcccf}{\index{Globals.\-cpp@{Globals.\-cpp}!S\-Man@{S\-Man}}
+\index{S\-Man@{S\-Man}!Globals.cpp@{Globals.\-cpp}}
+\subsubsection[{S\-Man}]{\setlength{\rightskip}{0pt plus 5cm}c\-Sound\-Manager$\ast$ S\-Man}}\label{_globals_8cpp_adf7bd341f2c69beac10e8ca9409bcccf}
+
+
+Definition at line 11 of file Globals.\-cpp.
+

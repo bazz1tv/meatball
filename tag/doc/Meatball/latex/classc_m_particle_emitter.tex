@@ -1,0 +1,251 @@
+\hypertarget{classc_m_particle_emitter}{\section{c\-M\-Particle\-Emitter Class Reference}
+\label{classc_m_particle_emitter}\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}}
+}
+
+
+The Particle Emitter class.  
+
+
+
+
+{\ttfamily \#include $<$effects.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classc_m_particle_emitter_aa2375ca62035b79b5f0cd56b89e0fc6c}{c\-M\-Particle\-Emitter} (double x, double y)
+\item 
+\hyperlink{classc_m_particle_emitter_a93161bf387bddadae17ce5aedbbdd593}{$\sim$c\-M\-Particle\-Emitter} (void)
+\item 
+void \hyperlink{classc_m_particle_emitter_ac766da0ffb80ce34aecf980341b65ee4}{Init\-Particles} (unsigned int num\-Particles)
+\item 
+void \hyperlink{classc_m_particle_emitter_a532c3cedb373d1a74a9811f271892ab7}{Update} (void)
+\item 
+void \hyperlink{classc_m_particle_emitter_a99346f13866abcba6bc2907957d5c56e}{Draw} (S\-D\-L\-\_\-\-Surface $\ast$target)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classc_m_particle_emitter_a5d72b6783d396a4dedc82c5fa251f39c}{posx}
+\begin{DoxyCompactList}\small\item\em The Position. \end{DoxyCompactList}\item 
+double \hyperlink{classc_m_particle_emitter_aff5224c1f6f6cf5f1ac0cd46227c3eb2}{posy}
+\item 
+Uint8 \hyperlink{classc_m_particle_emitter_a8ef694bdcf4547deaba04299d20b7957}{red}
+\begin{DoxyCompactList}\small\item\em The Color and Alpha. \end{DoxyCompactList}\item 
+Uint8 \hyperlink{classc_m_particle_emitter_a08e621b7f89ba82db3c60d938d07df51}{green}
+\item 
+Uint8 \hyperlink{classc_m_particle_emitter_a7ee88308d39c49ce7cbcce4e7db47cdd}{blue}
+\item 
+Uint8 \hyperlink{classc_m_particle_emitter_a115d74c850d19ea4a05e40fb9ca6c585}{alpha}
+\item 
+double \hyperlink{classc_m_particle_emitter_ada8241a679db62be8ed1f8ec4637d484}{fadeoutspeed}
+\begin{DoxyCompactList}\small\item\em The fade-\/out speed. \end{DoxyCompactList}\item 
+double \hyperlink{classc_m_particle_emitter_a661137b30d54525c491df9fed851069a}{angle}
+\begin{DoxyCompactList}\small\item\em The Direction. \end{DoxyCompactList}\item 
+double \hyperlink{classc_m_particle_emitter_acfe8c4c88b2699b3717772c2809e4960}{speed}
+\item 
+double \hyperlink{classc_m_particle_emitter_af574c02b147d312f4b0dea4c6a7ff4f5}{Randomness}
+\begin{DoxyCompactList}\small\item\em The Direction Randomness. \end{DoxyCompactList}\item 
+bool \hyperlink{classc_m_particle_emitter_a0fd2c32626022c434dc27000fb507526}{visible}
+\begin{DoxyCompactList}\small\item\em If all Particles faded out. \end{DoxyCompactList}\item 
+\hyperlink{classc_m_particle}{c\-M\-Particle} $\ast$$\ast$ \hyperlink{classc_m_particle_emitter_a3bf5a6c00f48acdfa11f5080fe07e665}{Particles}
+\begin{DoxyCompactList}\small\item\em The Particles. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classc_m_particle_emitter_adf8d9bb4c82e713c5b3f90765340da5e}{Particle\-Count}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Particle Emitter class. 
+
+Definition at line 35 of file effects.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classc_m_particle_emitter_aa2375ca62035b79b5f0cd56b89e0fc6c}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}}
+\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{c\-M\-Particle\-Emitter}]{\setlength{\rightskip}{0pt plus 5cm}c\-M\-Particle\-Emitter\-::c\-M\-Particle\-Emitter (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y}
+\end{DoxyParamCaption}
+)}}\label{classc_m_particle_emitter_aa2375ca62035b79b5f0cd56b89e0fc6c}
+\subparagraph*{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\# M\-Particle Emitter}
+
+Definition at line 165 of file effects.\-cpp.
+
+\hypertarget{classc_m_particle_emitter_a93161bf387bddadae17ce5aedbbdd593}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!$\sim$c\-M\-Particle\-Emitter@{$\sim$c\-M\-Particle\-Emitter}}
+\index{$\sim$c\-M\-Particle\-Emitter@{$\sim$c\-M\-Particle\-Emitter}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{$\sim$c\-M\-Particle\-Emitter}]{\setlength{\rightskip}{0pt plus 5cm}c\-M\-Particle\-Emitter\-::$\sim$c\-M\-Particle\-Emitter (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_m_particle_emitter_a93161bf387bddadae17ce5aedbbdd593}
+
+
+Definition at line 185 of file effects.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classc_m_particle_emitter_a99346f13866abcba6bc2907957d5c56e}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!Draw@{Draw}}
+\index{Draw@{Draw}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{Draw}]{\setlength{\rightskip}{0pt plus 5cm}void c\-M\-Particle\-Emitter\-::\-Draw (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Surface $\ast$}]{target}
+\end{DoxyParamCaption}
+)}}\label{classc_m_particle_emitter_a99346f13866abcba6bc2907957d5c56e}
+
+
+Definition at line 261 of file effects.\-cpp.
+
+\hypertarget{classc_m_particle_emitter_ac766da0ffb80ce34aecf980341b65ee4}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!Init\-Particles@{Init\-Particles}}
+\index{Init\-Particles@{Init\-Particles}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{Init\-Particles}]{\setlength{\rightskip}{0pt plus 5cm}void c\-M\-Particle\-Emitter\-::\-Init\-Particles (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{num\-Particles}
+\end{DoxyParamCaption}
+)}}\label{classc_m_particle_emitter_ac766da0ffb80ce34aecf980341b65ee4}
+
+
+Definition at line 194 of file effects.\-cpp.
+
+\hypertarget{classc_m_particle_emitter_a532c3cedb373d1a74a9811f271892ab7}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!Update@{Update}}
+\index{Update@{Update}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void c\-M\-Particle\-Emitter\-::\-Update (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_m_particle_emitter_a532c3cedb373d1a74a9811f271892ab7}
+
+
+Definition at line 231 of file effects.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classc_m_particle_emitter_a115d74c850d19ea4a05e40fb9ca6c585}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!alpha@{alpha}}
+\index{alpha@{alpha}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{alpha}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 c\-M\-Particle\-Emitter\-::alpha}}\label{classc_m_particle_emitter_a115d74c850d19ea4a05e40fb9ca6c585}
+
+
+Definition at line 51 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_a661137b30d54525c491df9fed851069a}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!angle@{angle}}
+\index{angle@{angle}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{angle}]{\setlength{\rightskip}{0pt plus 5cm}double c\-M\-Particle\-Emitter\-::angle}}\label{classc_m_particle_emitter_a661137b30d54525c491df9fed851069a}
+
+
+The Direction. 
+
+
+
+Definition at line 57 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_a7ee88308d39c49ce7cbcce4e7db47cdd}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!blue@{blue}}
+\index{blue@{blue}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{blue}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 c\-M\-Particle\-Emitter\-::blue}}\label{classc_m_particle_emitter_a7ee88308d39c49ce7cbcce4e7db47cdd}
+
+
+Definition at line 51 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_ada8241a679db62be8ed1f8ec4637d484}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!fadeoutspeed@{fadeoutspeed}}
+\index{fadeoutspeed@{fadeoutspeed}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{fadeoutspeed}]{\setlength{\rightskip}{0pt plus 5cm}double c\-M\-Particle\-Emitter\-::fadeoutspeed}}\label{classc_m_particle_emitter_ada8241a679db62be8ed1f8ec4637d484}
+
+
+The fade-\/out speed. 
+
+
+
+Definition at line 54 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_a08e621b7f89ba82db3c60d938d07df51}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!green@{green}}
+\index{green@{green}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{green}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 c\-M\-Particle\-Emitter\-::green}}\label{classc_m_particle_emitter_a08e621b7f89ba82db3c60d938d07df51}
+
+
+Definition at line 51 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_adf8d9bb4c82e713c5b3f90765340da5e}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!Particle\-Count@{Particle\-Count}}
+\index{Particle\-Count@{Particle\-Count}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{Particle\-Count}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int c\-M\-Particle\-Emitter\-::\-Particle\-Count}}\label{classc_m_particle_emitter_adf8d9bb4c82e713c5b3f90765340da5e}
+
+
+Definition at line 67 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_a3bf5a6c00f48acdfa11f5080fe07e665}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!Particles@{Particles}}
+\index{Particles@{Particles}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{Particles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf c\-M\-Particle}$\ast$$\ast$ c\-M\-Particle\-Emitter\-::\-Particles}}\label{classc_m_particle_emitter_a3bf5a6c00f48acdfa11f5080fe07e665}
+
+
+The Particles. 
+
+
+
+Definition at line 66 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_a5d72b6783d396a4dedc82c5fa251f39c}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!posx@{posx}}
+\index{posx@{posx}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{posx}]{\setlength{\rightskip}{0pt plus 5cm}double c\-M\-Particle\-Emitter\-::posx}}\label{classc_m_particle_emitter_a5d72b6783d396a4dedc82c5fa251f39c}
+
+
+The Position. 
+
+
+
+Definition at line 48 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_aff5224c1f6f6cf5f1ac0cd46227c3eb2}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!posy@{posy}}
+\index{posy@{posy}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{posy}]{\setlength{\rightskip}{0pt plus 5cm}double c\-M\-Particle\-Emitter\-::posy}}\label{classc_m_particle_emitter_aff5224c1f6f6cf5f1ac0cd46227c3eb2}
+
+
+Definition at line 48 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_af574c02b147d312f4b0dea4c6a7ff4f5}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!Randomness@{Randomness}}
+\index{Randomness@{Randomness}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{Randomness}]{\setlength{\rightskip}{0pt plus 5cm}double c\-M\-Particle\-Emitter\-::\-Randomness}}\label{classc_m_particle_emitter_af574c02b147d312f4b0dea4c6a7ff4f5}
+
+
+The Direction Randomness. 
+
+
+
+Definition at line 60 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_a8ef694bdcf4547deaba04299d20b7957}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!red@{red}}
+\index{red@{red}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{red}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 c\-M\-Particle\-Emitter\-::red}}\label{classc_m_particle_emitter_a8ef694bdcf4547deaba04299d20b7957}
+
+
+The Color and Alpha. 
+
+
+
+Definition at line 51 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_acfe8c4c88b2699b3717772c2809e4960}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!speed@{speed}}
+\index{speed@{speed}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{speed}]{\setlength{\rightskip}{0pt plus 5cm}double c\-M\-Particle\-Emitter\-::speed}}\label{classc_m_particle_emitter_acfe8c4c88b2699b3717772c2809e4960}
+
+
+Definition at line 57 of file effects.\-h.
+
+\hypertarget{classc_m_particle_emitter_a0fd2c32626022c434dc27000fb507526}{\index{c\-M\-Particle\-Emitter@{c\-M\-Particle\-Emitter}!visible@{visible}}
+\index{visible@{visible}!cMParticleEmitter@{c\-M\-Particle\-Emitter}}
+\subsubsection[{visible}]{\setlength{\rightskip}{0pt plus 5cm}bool c\-M\-Particle\-Emitter\-::visible}}\label{classc_m_particle_emitter_a0fd2c32626022c434dc27000fb507526}
+
+
+If all Particles faded out. 
+
+
+
+Definition at line 63 of file effects.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/\hyperlink{effects_8h}{effects.\-h}\item 
+C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\hyperlink{effects_8cpp}{effects.\-cpp}\end{DoxyCompactItemize}
