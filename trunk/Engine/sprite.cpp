@@ -75,7 +75,7 @@ void cBasicSprite :: SetImage( SDL_Surface *new_image, bool OverrideSize /* = 1 
 		this->srcrect.w = 0;
 		this->srcrect.h = 0;
 		
-		//SetAlpha( 255 ); // 
+		//SetAlpha( 255 ); 
 		return;
 	}
 	else

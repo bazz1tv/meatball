@@ -1,0 +1,65 @@
+\hypertarget{image_8cpp}{\section{Engine/image.cpp File Reference}
+\label{image_8cpp}\index{Engine/image.\-cpp@{Engine/image.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}include/\-S\-D\-L\-\_\-ep.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+S\-D\-L\-\_\-\-Surface $\ast$ \hyperlink{image_8cpp_a815394006743ef414443fa4453401295}{Load\-Image} (const char $\ast$sz\-Filename, Uint32 Colorkey, Uint8 Alpha)
+\item 
+S\-D\-L\-\_\-\-Surface $\ast$ \hyperlink{image_8cpp_a0429bc1182dfb95df5dacacea33817dc}{Create\-Surface} (unsigned int width, unsigned int height, Uint8 bpp, Uint32 flags)
+\begin{DoxyCompactList}\small\item\em V 1.\-1.\-1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{image_8cpp_a0429bc1182dfb95df5dacacea33817dc}{\index{image.\-cpp@{image.\-cpp}!Create\-Surface@{Create\-Surface}}
+\index{Create\-Surface@{Create\-Surface}!image.cpp@{image.\-cpp}}
+\subsubsection[{Create\-Surface}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Surface$\ast$ Create\-Surface (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{width, }
+\item[{unsigned int}]{height, }
+\item[{Uint8}]{bpp = {\ttfamily 32}, }
+\item[{Uint32}]{flags = {\ttfamily SDL\-\_\-SWSURFACE$|$SDL\-\_\-SRCCOLORKEY$|$SDL\-\_\-RLEACCEL$|$SDL\-\_\-SRCALPHA}}
+\end{DoxyParamCaption}
+)}}\label{image_8cpp_a0429bc1182dfb95df5dacacea33817dc}
+
+
+V 1.\-1.\-1. 
+
+Create\-Surface -\/ Creates an empty image and sets it to the best format
+
+width,height \-: The Dimensions
+
+bpp \-: the best way is to set here screen-\/$>$format-\/$>$bitsperpixel
+
+flags \-: for setting specified flags
+
+Note \-: You should call it after the main screen was initialized 
+
+Definition at line 39 of file image.\-cpp.
+
+\hypertarget{image_8cpp_a815394006743ef414443fa4453401295}{\index{image.\-cpp@{image.\-cpp}!Load\-Image@{Load\-Image}}
+\index{Load\-Image@{Load\-Image}!image.cpp@{image.\-cpp}}
+\subsubsection[{Load\-Image}]{\setlength{\rightskip}{0pt plus 5cm}S\-D\-L\-\_\-\-Surface$\ast$ Load\-Image (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{sz\-Filename, }
+\item[{Uint32}]{Colorkey = {\ttfamily 0}, }
+\item[{Uint8}]{Alpha = {\ttfamily 255}}
+\end{DoxyParamCaption}
+)}}\label{image_8cpp_a815394006743ef414443fa4453401295}
+\hyperlink{image_8h}{image.\-h} -\/ Image
+
+V 1.\-1.\-1
+
+L\-G\-P\-L (c) F. Richter$\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$ $\ast$$\ast$$\ast$
+
+Load\-Image -\/ Loads an image and sets it to the best format !
+
+Colorkey \-: Every Pixel that matches identical with the specified Color will be transparent .
+
+Alpha \-: The transparency of the whole image .
+
+Note \-: You should call it after the main screen was initialized 
+
+Definition at line 5 of file image.\-cpp.
+

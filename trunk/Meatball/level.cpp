@@ -101,7 +101,6 @@ void cLevelData :: DeleteSprite( unsigned int number )
 cLevel :: cLevel( void )
 {
 	levelfile = "none";
-//	ls_music();
 	pLevelData = NULL;
 }
 
@@ -145,7 +144,6 @@ void cLevel :: Load( string filename )
 	delete contents;
 	
 	pFramerate->Reset();
-	//pAudio->PlayMusik((char *)filename.c_str());
 }
 
 void cLevel :: Unload( void )

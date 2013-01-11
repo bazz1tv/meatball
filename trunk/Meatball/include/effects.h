@@ -4,7 +4,7 @@
 
 #include "include\Globals.h"
 
-// The Particle class
+/// The Particle class
 class cMParticle : public cMAngleSprite
 {
 public:
@@ -17,21 +17,21 @@ public:
 
 	void HandleCollision( int direction );
 
-	// The Color and Alpha
+	/// The Color and Alpha
 	double red,green,blue,alpha;
 
-	// The fade-out speed
+	/// The fade-out speed
 	double fadeoutspeed;
 
-	// The Direction Randomness
+	/// The Direction Randomness
 	double Randomness;
 
-	// Does the Particle collides and has gravity
+	/// Does the Particle collides and has gravity
 	bool active;
 
 };
 
-// The Particle Emitter class
+/// The Particle Emitter class
 class cMParticleEmitter
 {
 public:
@@ -44,35 +44,35 @@ public:
 
 	void Draw( SDL_Surface *target );
 
-	// The Position
+	/// The Position
 	double posx,posy;
 	
-	// The Color and Alpha
+	/// The Color and Alpha
 	Uint8 red,green,blue,alpha;
 
-	// The fade-out speed
+	/// The fade-out speed
 	double fadeoutspeed;
 	
-	// The Direction
+	/// The Direction
 	double angle,speed;
 
-	// The Direction Randomness
+	/// The Direction Randomness
 	double Randomness;
 	
-	// If all Particles faded out
+	/// If all Particles faded out
 	bool visible;
 	
-	// The Particles
+	/// The Particles
 	cMParticle **Particles;
 	unsigned int ParticleCount;
 
 };
 
-// The dynamic Particle Emittter Array
+/// The dynamic Particle Emittter Array
 extern cMParticleEmitter **ParticleEmitter;
 extern unsigned int ParticleEmitterCount;
 
-/* Adds an Particle Emitter
+/** Adds an Particle Emitter
  * Power : Amount of Particles
  * Randomness : Amount of Random Movement
  *			-----	-----
@@ -82,13 +82,13 @@ extern unsigned int ParticleEmitterCount;
 void AddParticleEmitter( double x, double y, double nSpeed, Uint8 nred, Uint8 ngreen, Uint8 nblue,
 						double nfadeoutspeed, unsigned int power, double nRandomness, double fixedDirection = -1 );
 
-// Updates all Particle Emitter
+/// Updates all Particle Emitter
 void UpdateParticleEmitter( void );
 
-// Draws all Particle Emitter
+/// Draws all Particle Emitter
 void DrawParticleEmitter( void );
 
-// Delete's every Particle Emitter
+/// Delete's every Particle Emitter
 void DeleteAllParticleEmitter( void );
 
 #endif

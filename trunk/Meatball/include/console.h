@@ -1,7 +1,7 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
-// For FileSystem access
+/// For FileSystem access
 #include "boost/filesystem/operations.hpp"
 #include "boost/filesystem/path.hpp"
 #include "boost/progress.hpp"
@@ -11,7 +11,7 @@
 
 #include "boost.h"
 
-// Console Commands
+/// Console Commands
 bool clearcon( string &str ); // 1
 bool loadmap( string &str );
 bool SetMx( string &str );
@@ -29,7 +29,7 @@ bool ls(string &str); //14
 bool collision(string &str);// 15
 
 
-// +1 for the empty handler
+/// +1 for the empty handler
 #define NUM_CMDS 16
 #define NUM_LINES 11
 

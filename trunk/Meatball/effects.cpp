@@ -4,7 +4,7 @@
 cMParticleEmitter **ParticleEmitter = NULL;
 unsigned int ParticleEmitterCount = 0;
 
-cMParticle :: cMParticle( double x, double y, double nangle /* = 0 */, double nspeed /* = 0  */ ) :
+cMParticle :: cMParticle( double x, double y, double nangle /** = 0 */, double nspeed /** = 0  */ ) :
 cMAngleSprite( NULL, x, y, nangle, nspeed )
 {
 	rect.w = 1;
@@ -39,7 +39,7 @@ void cMParticle :: Update( void )
 		return;
 	}
 
-	/* Angle Directions :
+	/** Angle Directions :
 	 * 0 = Right
 	 * 90 = Down
 	 * 180 = Left
@@ -160,7 +160,7 @@ void cMParticle :: HandleCollision( int direction )
 		AddDirection( 180 + angle );
 	}
 }
-/*################################ MParticle Emitter #########################################*/
+/**################################ MParticle Emitter #########################################*/
 
 cMParticleEmitter :: cMParticleEmitter( double x, double y )
 {
@@ -272,7 +272,7 @@ void cMParticleEmitter :: Draw( SDL_Surface *target )
 }
 
 void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngreen,Uint8 nblue,
-						double nfadeoutspeed, unsigned int power, double nRandomness, double fixedDirection /* = -1  */)
+						double nfadeoutspeed, unsigned int power, double nRandomness, double fixedDirection /** = -1  */)
 {
 	for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
 	{

@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['sdl_5fcustom_5fflags',['SDL_CUSTOM_FLAGS',['../_globals_8h.html#a74c068c45991ab6a1f36f651d724729e',1,'Globals.h']]],
+  ['sdl_5fwin_5fsettings',['SDL_WIN_SETTINGS',['../_globals_8cpp.html#ab25ba442d999718a21b85e3ca9e7bf73',1,'Globals.cpp']]],
+  ['sounds_5fdir',['SOUNDS_DIR',['../_globals_8h.html#ad17df1f44c75c72b05d23fc6bbdf1f0a',1,'Globals.h']]],
+  ['sprite_5ftype_5fbullet',['SPRITE_TYPE_BULLET',['../sprite_8h.html#ae69d6820be5571f57a7ee09ba4958aa4',1,'sprite.h']]],
+  ['sprite_5ftype_5fenemy',['SPRITE_TYPE_ENEMY',['../sprite_8h.html#a2368c61b5a9c7135e3ce921a7f9c13c2',1,'sprite.h']]],
+  ['sprite_5ftype_5fhalfmassive',['SPRITE_TYPE_HALFMASSIVE',['../sprite_8h.html#ac5a429106646566338069ced9bbfa081',1,'sprite.h']]],
+  ['sprite_5ftype_5fmassive',['SPRITE_TYPE_MASSIVE',['../sprite_8h.html#a0fe65a53ef7b9ef63c1db95f53d97925',1,'sprite.h']]],
+  ['sprite_5ftype_5fno_5ftype',['SPRITE_TYPE_NO_TYPE',['../sprite_8h.html#a15bedb167f43a79941d443ab83655aa7',1,'sprite.h']]],
+  ['sprite_5ftype_5fparticle',['SPRITE_TYPE_PARTICLE',['../sprite_8h.html#a9749ac66895f060c23e21629d7e611ff',1,'sprite.h']]],
+  ['sprite_5ftype_5fpassive',['SPRITE_TYPE_PASSIVE',['../sprite_8h.html#a254a9a1f39825506ca2f853d377200c8',1,'sprite.h']]],
+  ['sprite_5ftype_5fplayer',['SPRITE_TYPE_PLAYER',['../sprite_8h.html#a099f41ad76a9f7ea658f19265aeedc0c',1,'sprite.h']]],
+  ['state_5ffalling',['STATE_FALLING',['../player_8h.html#a78a65863dc96254cfd8cd67a145569ea',1,'player.h']]],
+  ['state_5fflying',['STATE_FLYING',['../player_8h.html#aec4485f9024cd9ed7804c7c29e5a4a75',1,'player.h']]],
+  ['state_5fjumping',['STATE_JUMPING',['../player_8h.html#a19af76ec4dcc583561fd2eb71b110e2c',1,'player.h']]],
+  ['state_5fstaying',['STATE_STAYING',['../player_8h.html#a04863951ff9b3dbe4a1d2a6eaf42f008',1,'player.h']]],
+  ['state_5fwalking',['STATE_WALKING',['../player_8h.html#ae78735fe092e111133adc673ae7b1c9c',1,'player.h']]]
+];

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// SDL_ep classes
+/// SDL_ep classes
 cFramerate *pFramerate;
 cImageManager *IMan;
 cSoundManager *SMan;
@@ -13,32 +13,32 @@ cFont *pFont;
 cAudio *pAudio;
 cTCPNet *pTCP;
 
-// if true the game exits
+/// if true the game exits
 int done;
 
-// if true the game if paused
+/// if true the game if paused
 bool paused;
 
-// Fonts
+/// Fonts
 TTF_Font *Menu_Font;
 TTF_Font *bold_16;
 
-// the Screen
+/// the Screen
 SDL_Surface *Screen;
 
-// Keyboard Keystate
+/// Keyboard Keystate
 Uint8 *keys;
 
-// Input Events
+/// Input Events
 SDL_Event event;
 
-// if true the fps display is active
+/// if true the fps display is active
 bool fps_display = false;
 
-// Magneta (default) Colorkey
+/// Magneta (default) Colorkey
 Uint32 colorkey = 0;
 
-// MeatBall
+/// MeatBall
 cPreferences *pPreferences;
 cSettings *pGameSettings;
 cMouseCursor *pMouse;
@@ -47,16 +47,16 @@ cPlayer *pPlayer;
 cLevel *pLevel;
 cLevelEditor *pLevelEditor;
 
-// The Console
+/// The Console
 cConsole *pConsole;
 
-// The Current mode
+/// The Current mode
 Uint8 mode, oldmode;
 
-// The screen settings 
+/// The screen settings 
 const SDL_VideoInfo* screeninfo;
 
-// Initializes the basic
+/// Initializes the basic
 void StartGame( void )
 {
 	Menu_Font = pFont->CreateFont( FONT_DIR "Bluehigd.ttf", 27, TTF_STYLE_BOLD );
@@ -84,7 +84,7 @@ void StartGame( void )
 	Main_Menu();
 }
 
-// Quits the game
+/// Quits the game
 void QuitGame( void )
 {
 	if( pPreferences )
@@ -205,7 +205,7 @@ bool is_valid_number( char *c )
 	return 1;
 }
 
-void FramerateDraw( SDL_Surface *target, double posx /* = 5.0 */, double posy /* = 5.0  */)
+void FramerateDraw( SDL_Surface *target, double posx /** = 5.0 */, double posy /** = 5.0  */)
 {
 	if ( !fps_display )
 	{

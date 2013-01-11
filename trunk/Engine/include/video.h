@@ -1,5 +1,5 @@
 
-/* 
+/** 
 
 	video.h  -  Video Initialization and other
 
@@ -22,7 +22,7 @@ DLLINTERFACE void SetWindowCaption( const char *Caption, const char *iconpath = 
 
 DLLINTERFACE void SetWindowIcon( SDL_Surface *Icon, Uint8 *Imask = NULL );
 
-// Quits SDL
+/// Quits SDL
 DLLINTERFACE void QuitSDL( void );
 
 #endif

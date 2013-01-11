@@ -21,6 +21,7 @@ void cCamera :: Update( void )
 	if( mode == MODE_GAME ) 
 	{
 		
+		// The actual algorithm here is a mystery to me. It was made by FLuxy 
 		if( (pPlayer->posx - Screen->w) > (x - 300) ) // Right
 		{
 			x += ((pPlayer->posx - x + 300 - Screen->w)/10)*pFramerate->speedfactor; // nice and smooth ;)
@@ -34,11 +35,11 @@ void cCamera :: Update( void )
 		// Note: Play with (y-200) and (y+200) to adjust when scrolling activates
 		if( (pPlayer->posy - Screen->h) > (y - 200) ) // DOWN
 		{
-			y += ((pPlayer->posy - y + 300 - Screen->h)/10)*pFramerate->speedfactor; // nice and smooth ;)
+			y += ((pPlayer->posy - y + 200 - Screen->h)/10)*pFramerate->speedfactor; // nice and smooth ;)
 		}
-		else if( pPlayer->posy < (y + 200) ) // UP
+		else if( pPlayer->posy < (y + 140) ) // UP
 		{
-			y += ((pPlayer->posy - y - 300)/10)*pFramerate->speedfactor;	// nice and smooth ;)
+			y += ((pPlayer->posy - y - 140)/10)*pFramerate->speedfactor;	// nice and smooth ;)
 		}
 
 		Limits_Check();

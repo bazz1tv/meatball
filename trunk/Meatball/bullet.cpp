@@ -23,7 +23,7 @@ cBullet :: ~cBullet( void )
 	// Nothing
 }
 
-void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel /* = 0.0  */ )
+void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel /** = 0.0  */ )
 {
 	if( !nBullet_type ) 
 	{
@@ -202,7 +202,7 @@ void PreloadBulletimages( void )
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/Laser_X1/right.png", colorkey ), PIXMAPS_DIR "game/weapons/Laser_X1/right.png" );
 }
 
-void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel /* = 0.0  */ )
+void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel /** = 0.0  */ )
 {
 	for( unsigned int i = 0; i < BulletCount; i++ )
 	{

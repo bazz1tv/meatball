@@ -53,7 +53,7 @@ void cAudio :: InitAudio( void )
 			cout << "Initializing Audio System ,Buffer = " << iBuffer << "  Frequency = " << iHz <<'\n' << flush;
 		}
 
-		/* Initialising prefered Audio System specs with Mixer Standard format (Stereo)
+		/** Initialising prefered Audio System specs with Mixer Standard format (Stereo)
 		*
 		*	format		: Output sample format.
 		*	channels	: Number of sound channels in output.
@@ -275,7 +275,7 @@ int cAudio :: SetSoundVolume (Mix_Chunk *chunk, Uint8 iVolume)
 }
 
 
-/* Doesn't really Work :| */
+/** Doesn't really Work :| */
 int cAudio :: SetAllSoundsVolume( Uint8 iVolume )
 {
 	if( iVolume > 128 || iVolume < 0 )

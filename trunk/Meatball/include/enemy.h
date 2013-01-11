@@ -4,11 +4,11 @@
 
 #include "include\Globals.h"
 
-// Enemy Types
+/// Enemy Types
 #define ENEMY_UNDEFINED 0
 #define ENEMY_AF373 1
 
-// Enemy States
+/// Enemy States
 #define ENEMY_AI_STATE_UNKNOWN		0
 #define ENEMY_AI_STATE_WAITING		1
 #define ENEMY_AI_STATE_SEARCHING	2
@@ -31,7 +31,7 @@ public:
 
 	virtual void Die( void );
 	
-	/*
+	/**
 	 * 0 = facing left
 	 * 1 = facing right
 	 * 2 = facing up
@@ -39,19 +39,19 @@ public:
 	 */
 	int direction;
 
-	// The Enemy Type
+	/// The Enemy Type
 	unsigned int Enemy_type;
 	
-	// The Enemy State
+	/// The Enemy State
 	unsigned int Enemy_state;
 
-	// The Health	
+	/// The Health	
 	unsigned int health;
 
-	// Maximum Speed
+	/// Maximum Speed
 	double max_speed;
 
-	// The Acceleration
+	/// The Acceleration
 	double Acceleration;
 
 };
@@ -59,23 +59,23 @@ public:
 extern unsigned int EnemyCount;
 extern cEnemy **Enemies;
 
-// Adds an Enemy with the given type
+/// Adds an Enemy with the given type
 void AddEnemy( double nposx, double nposy, unsigned int etype );
 
-// Updates all Enemies
+/// Updates all Enemies
 void UpdateEnemies( void );
 
-// Gets the first Collision if the rect overlaps
+/// Gets the first Collision if the rect overlaps
 int GetCollidingEnemyNum( SDL_Rect *Crect );
 cEnemy *GetCollidingEnemy( SDL_Rect *Crect );
 
-// Draws all Enemies
+/// Draws all Enemies
 void DrawEnemies( void );
 
-// Seletes an given Enemy
+/// Seletes an given Enemy
 void DeletEnemy( unsigned int number );
 
-// Deletes every Enemy and frees the array
+/// Deletes every Enemy and frees the array
 void DeleteAllEnemies( void );
 
 #endif

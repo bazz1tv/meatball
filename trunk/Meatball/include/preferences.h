@@ -4,12 +4,12 @@
 
 #include "include\Globals.h"
 
-// Current Settings Revision
+/// Current Settings Revision
 #define PREF_VERSION "0.5"
 
-// User Settings File
+/// User Settings File
 #define USER_PREF_NAME "Preferences.ini"
-// Default Settings File
+/// Default Settings File
 #define DEF_PREF_NAME "default.ini"
 
 class cSettings
@@ -36,33 +36,33 @@ public:
 	// SDLKey Key_look_up,Key_duck,Key_walk_left,Key_walk_right,Key_shoot_primary,Key_shoot_secondary;
 };
 
-// The Preferences
+/// The Preferences
 class cPreferences
 {
 public:
 	cPreferences( void );
 	~cPreferences( void );
 	
-	/* Loads the user Settings
+	/** Loads the user Settings
 	 * if no user Settings file exists loads the
 	 * default settings
 	 */
 	void Load( void );
-	// Loads an given Preferences file
+	/// Loads an given Preferences file
 	void Load( string filename );
 
-	// Saves the Current Settings to the User Settungs File
+	/// Saves the Current Settings to the User Settungs File
 	void Save( void );
 
-	// Loads the default settings
+	/// Loads the default settings
 	void Default( void );
 
-	// Sets the in-game settings to the Current Settings
+	/// Sets the in-game settings to the Current Settings
 	void Update( void );
-	// Sets the Current Settings to the in-game settings
+	/// Sets the Current Settings to the in-game settings
 	void Apply( void );
 	
-	// The Settings
+	/// The Settings
 	cSettings *pSettings;
 
 private:

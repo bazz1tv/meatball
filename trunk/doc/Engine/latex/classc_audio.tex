@@ -1,0 +1,480 @@
+\hypertarget{classc_audio}{\section{c\-Audio Class Reference}
+\label{classc_audio}\index{c\-Audio@{c\-Audio}}
+}
+
+
+{\ttfamily \#include $<$audio.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} \hyperlink{classc_audio_ae55545da86ba39c8542872d7f7c47cf3}{c\-Audio} (bool play\-Music=1, bool play\-Sounds=1, Uint8 Music\-Vol=80, Uint8 Sound\-Vol=110)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} \hyperlink{classc_audio_ace24f99e655a32bf8e8b7ce535a5e12a}{$\sim$c\-Audio} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a061b99482e902ad4120ac4026851b0ba}{Init\-Audio} (void)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_ac8510e608478447a6b5351edbada1bbe}{Reserve\-Channels} (int num)
+\begin{DoxyCompactList}\small\item\em Reserves Channels for default mixing. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_ad3d70862dd8600834166a66408b00831}{Allocate\-Channels} (int num)
+\begin{DoxyCompactList}\small\item\em Channels for Mixing. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} Mix\-\_\-\-Chunk $\ast$ \hyperlink{classc_audio_a6b544ca3a10032eed651d8d4326d5bfa}{Load\-Sound} (char $\ast$filename, int s\-Volume=-\/2)
+\begin{DoxyCompactList}\small\item\em Do not use ! \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_ab3e08ac92b20e0e1c35036db55d90a2d}{Play\-Sound} (Mix\-\_\-\-Chunk $\ast$sound, int channel=-\/1, int s\-Volume=-\/1)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a6e9bd7fb6b05c5c4a33d332dbe03fc03}{Play\-Musik} (char $\ast$filename, int loops=-\/1, bool force=1)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a9cba1b84f7641a42a317c6fee4738f41}{Stop\-Music} (void)
+\begin{DoxyCompactList}\small\item\em Stops playing Music. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_ab0692d495cbdb6a65ae107b1cf6d3cbe}{Fade\-Out\-Music} (unsigned int ms)
+\begin{DoxyCompactList}\small\item\em Fades the music out for the given miliseconds. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a5a71b17343528fedef94f91458c01cd1}{Pause\-Music} (void)
+\begin{DoxyCompactList}\small\item\em Pauses playing Music. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a1c5146cfa9de1b88f3b588bb2e19fe96}{Resume\-Music} (void)
+\begin{DoxyCompactList}\small\item\em Resumes Paused Music. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a01eaf6e54900c525d4921651068df2d9}{Halt\-Sounds} (int channel=-\/1)
+\begin{DoxyCompactList}\small\item\em Halt playback on specified channels or all if -\/1 set. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_ab157d4e24666412e49160f5944087c60}{Pause\-Sounds} (int channel=-\/1)
+\begin{DoxyCompactList}\small\item\em Stops specified Sounds/\-Channels or all if -\/1 set. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a298639f5e46882eb24b5ce08ec6bb1a3}{Resume\-Sounds} (int channel=-\/1)
+\begin{DoxyCompactList}\small\item\em Resume Playing specified sounds if got stopped or all if -\/1 set. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a4440606285982326c456b23118b7d245}{Delete\-Sounds} (void)
+\begin{DoxyCompactList}\small\item\em Deletes The Temporary Sound Buffer . \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a4662912a2d84b8047662f97f1f92d5f0}{Fade\-Out\-Sounds} (int milliseconds=2000, int channel=-\/1)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_audio_a5561e9289154d175e181bc6e2a3d9384}{Set\-Sound\-Volume} (Mix\-\_\-\-Chunk $\ast$chunk, Uint8 i\-Volume)
+\begin{DoxyCompactList}\small\item\em Set a specific sound's volume with it's chunk ptr. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_audio_a7ad354ffe2a9aaa331a98920178a9721}{Set\-All\-Sounds\-Volume} (Uint8 i\-Volume)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{classc_audio_a0461c953d79bba40f59c7a6b5a5566f8}{Set\-Music\-Volume} (Uint8 i\-Volume)
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void \hyperlink{classc_audio_a964b3d86635b460a4f25cf64997b0014}{Update} (void)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Mix\-\_\-\-Music $\ast$ \hyperlink{classc_audio_a1079677c50a60ef5e6a3c09cd2af8d91}{Music}
+\item 
+int \hyperlink{classc_audio_a33a95a4128134a55b2a68d25d60ae314}{i\-Hz}
+\item 
+int \hyperlink{classc_audio_a9bd6aa3fef6284334ee9b726c0cf1a1b}{i\-Buffer}
+\item 
+int \hyperlink{classc_audio_a3f946cdea09fd857bee05b8a7326a8d7}{i\-Channels}
+\item 
+int \hyperlink{classc_audio_a9ec9fc3a055a17a90e5611570058487f}{Sounds\-\_\-\-Played}
+\item 
+int \hyperlink{classc_audio_a9f20d77fb103d6e1f87819ad406a5f0d}{Music\-\_\-\-Played}
+\item 
+Uint8 \hyperlink{classc_audio_a3ac7aee05ebb4a7cdcfb5668226f6349}{Sound\-\_\-\-Volume}
+\item 
+Uint8 \hyperlink{classc_audio_aa7d2c11847671823d34a694ad797bb75}{Music\-\_\-\-Volume}
+\item 
+bool \hyperlink{classc_audio_a5ad87dd6c804f68dd430f778f90cf38e}{b\-Sounds}
+\item 
+bool \hyperlink{classc_audio_abe75bf46e35f528400dcb2e5113ae0b8}{b\-Music}
+\item 
+bool \hyperlink{classc_audio_ab36788ba00195b8c4917e2e304d85b0d}{b\-Debug}
+\item 
+bool \hyperlink{classc_audio_acb49d8cf5904830d9307bc426fe4cb3d}{b\-Initialised}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{audio_8h}{Audio.\-h} -\/ Audio Engine Header
+
+Version 2.\-4
+
+L\-G\-P\-L (c) F. Richter 
+
+Definition at line 17 of file audio.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classc_audio_ae55545da86ba39c8542872d7f7c47cf3}{\index{c\-Audio@{c\-Audio}!c\-Audio@{c\-Audio}}
+\index{c\-Audio@{c\-Audio}!cAudio@{c\-Audio}}
+\subsubsection[{c\-Audio}]{\setlength{\rightskip}{0pt plus 5cm}c\-Audio\-::c\-Audio (
+\begin{DoxyParamCaption}
+\item[{bool}]{play\-Music = {\ttfamily 1}, }
+\item[{bool}]{play\-Sounds = {\ttfamily 1}, }
+\item[{Uint8}]{Music\-Vol = {\ttfamily 80}, }
+\item[{Uint8}]{Sound\-Vol = {\ttfamily 110}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_ae55545da86ba39c8542872d7f7c47cf3}
+
+
+Definition at line 7 of file audio.\-cpp.
+
+\hypertarget{classc_audio_ace24f99e655a32bf8e8b7ce535a5e12a}{\index{c\-Audio@{c\-Audio}!$\sim$c\-Audio@{$\sim$c\-Audio}}
+\index{$\sim$c\-Audio@{$\sim$c\-Audio}!cAudio@{c\-Audio}}
+\subsubsection[{$\sim$c\-Audio}]{\setlength{\rightskip}{0pt plus 5cm}c\-Audio\-::$\sim$c\-Audio (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_ace24f99e655a32bf8e8b7ce535a5e12a}
+
+
+Definition at line 30 of file audio.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classc_audio_ad3d70862dd8600834166a66408b00831}{\index{c\-Audio@{c\-Audio}!Allocate\-Channels@{Allocate\-Channels}}
+\index{Allocate\-Channels@{Allocate\-Channels}!cAudio@{c\-Audio}}
+\subsubsection[{Allocate\-Channels}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Allocate\-Channels (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_ad3d70862dd8600834166a66408b00831}
+
+
+Channels for Mixing. 
+
+
+
+Definition at line 93 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a4440606285982326c456b23118b7d245}{\index{c\-Audio@{c\-Audio}!Delete\-Sounds@{Delete\-Sounds}}
+\index{Delete\-Sounds@{Delete\-Sounds}!cAudio@{c\-Audio}}
+\subsubsection[{Delete\-Sounds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} void c\-Audio\-::\-Delete\-Sounds (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a4440606285982326c456b23118b7d245}
+
+
+Deletes The Temporary Sound Buffer . 
+
+\hypertarget{classc_audio_ab0692d495cbdb6a65ae107b1cf6d3cbe}{\index{c\-Audio@{c\-Audio}!Fade\-Out\-Music@{Fade\-Out\-Music}}
+\index{Fade\-Out\-Music@{Fade\-Out\-Music}!cAudio@{c\-Audio}}
+\subsubsection[{Fade\-Out\-Music}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Fade\-Out\-Music (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ms}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_ab0692d495cbdb6a65ae107b1cf6d3cbe}
+
+
+Fades the music out for the given miliseconds. 
+
+
+
+Definition at line 222 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a4662912a2d84b8047662f97f1f92d5f0}{\index{c\-Audio@{c\-Audio}!Fade\-Out\-Sounds@{Fade\-Out\-Sounds}}
+\index{Fade\-Out\-Sounds@{Fade\-Out\-Sounds}!cAudio@{c\-Audio}}
+\subsubsection[{Fade\-Out\-Sounds}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Fade\-Out\-Sounds (
+\begin{DoxyParamCaption}
+\item[{int}]{milliseconds = {\ttfamily 2000}, }
+\item[{int}]{channel = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a4662912a2d84b8047662f97f1f92d5f0}
+Fades Sounds out if channel is -\/1 fades all sounds out 
+
+Definition at line 261 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a01eaf6e54900c525d4921651068df2d9}{\index{c\-Audio@{c\-Audio}!Halt\-Sounds@{Halt\-Sounds}}
+\index{Halt\-Sounds@{Halt\-Sounds}!cAudio@{c\-Audio}}
+\subsubsection[{Halt\-Sounds}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Halt\-Sounds (
+\begin{DoxyParamCaption}
+\item[{int}]{channel = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a01eaf6e54900c525d4921651068df2d9}
+
+
+Halt playback on specified channels or all if -\/1 set. 
+
+
+
+Definition at line 244 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a061b99482e902ad4120ac4026851b0ba}{\index{c\-Audio@{c\-Audio}!Init\-Audio@{Init\-Audio}}
+\index{Init\-Audio@{Init\-Audio}!cAudio@{c\-Audio}}
+\subsubsection[{Init\-Audio}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Init\-Audio (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a061b99482e902ad4120ac4026851b0ba}
+Initializes the Audio with the specified settings Initialising prefered Audio System specs with Mixer Standard format (Stereo)
+
+format \-: Output sample format. channels \-: Number of sound channels in output. Set to 2 for stereo, 1 for mono. This chunksize \-: Bytes used per output sample.
+
+Definition at line 47 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a6b544ca3a10032eed651d8d4326d5bfa}{\index{c\-Audio@{c\-Audio}!Load\-Sound@{Load\-Sound}}
+\index{Load\-Sound@{Load\-Sound}!cAudio@{c\-Audio}}
+\subsubsection[{Load\-Sound}]{\setlength{\rightskip}{0pt plus 5cm}Mix\-\_\-\-Chunk $\ast$ c\-Audio\-::\-Load\-Sound (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename, }
+\item[{int}]{s\-Volume = {\ttfamily -\/2}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a6b544ca3a10032eed651d8d4326d5bfa}
+
+
+Do not use ! 
+
+Loads an sound if volume is -\/1 the default sound volume will be used if volume is -\/2 no volume will be set 
+
+Definition at line 105 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a5a71b17343528fedef94f91458c01cd1}{\index{c\-Audio@{c\-Audio}!Pause\-Music@{Pause\-Music}}
+\index{Pause\-Music@{Pause\-Music}!cAudio@{c\-Audio}}
+\subsubsection[{Pause\-Music}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Pause\-Music (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a5a71b17343528fedef94f91458c01cd1}
+
+
+Pauses playing Music. 
+
+
+
+Definition at line 231 of file audio.\-cpp.
+
+\hypertarget{classc_audio_ab157d4e24666412e49160f5944087c60}{\index{c\-Audio@{c\-Audio}!Pause\-Sounds@{Pause\-Sounds}}
+\index{Pause\-Sounds@{Pause\-Sounds}!cAudio@{c\-Audio}}
+\subsubsection[{Pause\-Sounds}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Pause\-Sounds (
+\begin{DoxyParamCaption}
+\item[{int}]{channel = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_ab157d4e24666412e49160f5944087c60}
+
+
+Stops specified Sounds/\-Channels or all if -\/1 set. 
+
+
+
+Definition at line 249 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a6e9bd7fb6b05c5c4a33d332dbe03fc03}{\index{c\-Audio@{c\-Audio}!Play\-Musik@{Play\-Musik}}
+\index{Play\-Musik@{Play\-Musik}!cAudio@{c\-Audio}}
+\subsubsection[{Play\-Musik}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Play\-Musik (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename, }
+\item[{int}]{loops = {\ttfamily -\/1}, }
+\item[{bool}]{force = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a6e9bd7fb6b05c5c4a33d332dbe03fc03}
+if no forcing the file will be played after the current Music file if loops is -\/1 music will be looped infinity Can play W\-A\-V\-E, M\-O\-D, M\-I\-D\-I, O\-G\-G (with ogg vorbis), mp3 ( with smpeg) 
+
+Definition at line 189 of file audio.\-cpp.
+
+\hypertarget{classc_audio_ab3e08ac92b20e0e1c35036db55d90a2d}{\index{c\-Audio@{c\-Audio}!Play\-Sound@{Play\-Sound}}
+\index{Play\-Sound@{Play\-Sound}!cAudio@{c\-Audio}}
+\subsubsection[{Play\-Sound}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Play\-Sound (
+\begin{DoxyParamCaption}
+\item[{Mix\-\_\-\-Chunk $\ast$}]{sound, }
+\item[{int}]{channel = {\ttfamily -\/1}, }
+\item[{int}]{s\-Volume = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_ab3e08ac92b20e0e1c35036db55d90a2d}
+Plays an Sound chunk if channel is -\/1 the sound will be played on the next free channel if volume is -\/1 the default volume will be used if volume is -\/2 no volume will be set 
+
+Definition at line 144 of file audio.\-cpp.
+
+\hypertarget{classc_audio_ac8510e608478447a6b5351edbada1bbe}{\index{c\-Audio@{c\-Audio}!Reserve\-Channels@{Reserve\-Channels}}
+\index{Reserve\-Channels@{Reserve\-Channels}!cAudio@{c\-Audio}}
+\subsubsection[{Reserve\-Channels}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Reserve\-Channels (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_ac8510e608478447a6b5351edbada1bbe}
+
+
+Reserves Channels for default mixing. 
+
+
+
+Definition at line 83 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a1c5146cfa9de1b88f3b588bb2e19fe96}{\index{c\-Audio@{c\-Audio}!Resume\-Music@{Resume\-Music}}
+\index{Resume\-Music@{Resume\-Music}!cAudio@{c\-Audio}}
+\subsubsection[{Resume\-Music}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Resume\-Music (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a1c5146cfa9de1b88f3b588bb2e19fe96}
+
+
+Resumes Paused Music. 
+
+
+
+Definition at line 239 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a298639f5e46882eb24b5ce08ec6bb1a3}{\index{c\-Audio@{c\-Audio}!Resume\-Sounds@{Resume\-Sounds}}
+\index{Resume\-Sounds@{Resume\-Sounds}!cAudio@{c\-Audio}}
+\subsubsection[{Resume\-Sounds}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Resume\-Sounds (
+\begin{DoxyParamCaption}
+\item[{int}]{channel = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a298639f5e46882eb24b5ce08ec6bb1a3}
+
+
+Resume Playing specified sounds if got stopped or all if -\/1 set. 
+
+
+
+Definition at line 255 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a7ad354ffe2a9aaa331a98920178a9721}{\index{c\-Audio@{c\-Audio}!Set\-All\-Sounds\-Volume@{Set\-All\-Sounds\-Volume}}
+\index{Set\-All\-Sounds\-Volume@{Set\-All\-Sounds\-Volume}!cAudio@{c\-Audio}}
+\subsubsection[{Set\-All\-Sounds\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::\-Set\-All\-Sounds\-Volume (
+\begin{DoxyParamCaption}
+\item[{Uint8}]{i\-Volume}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a7ad354ffe2a9aaa331a98920178a9721}
+\begin{DoxyVerb}Sets All the Sounds default Volume
+\end{DoxyVerb}
+ Returns avg\-\_\-volume
+
+Doesn't really Work \-:$|$ 
+
+Definition at line 279 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a0461c953d79bba40f59c7a6b5a5566f8}{\index{c\-Audio@{c\-Audio}!Set\-Music\-Volume@{Set\-Music\-Volume}}
+\index{Set\-Music\-Volume@{Set\-Music\-Volume}!cAudio@{c\-Audio}}
+\subsubsection[{Set\-Music\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::\-Set\-Music\-Volume (
+\begin{DoxyParamCaption}
+\item[{Uint8}]{i\-Volume}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a0461c953d79bba40f59c7a6b5a5566f8}
+Sets the Music default Volume 
+
+Definition at line 291 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a5561e9289154d175e181bc6e2a3d9384}{\index{c\-Audio@{c\-Audio}!Set\-Sound\-Volume@{Set\-Sound\-Volume}}
+\index{Set\-Sound\-Volume@{Set\-Sound\-Volume}!cAudio@{c\-Audio}}
+\subsubsection[{Set\-Sound\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::\-Set\-Sound\-Volume (
+\begin{DoxyParamCaption}
+\item[{Mix\-\_\-\-Chunk $\ast$}]{chunk, }
+\item[{Uint8}]{i\-Volume}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a5561e9289154d175e181bc6e2a3d9384}
+
+
+Set a specific sound's volume with it's chunk ptr. 
+
+
+
+Definition at line 267 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a9cba1b84f7641a42a317c6fee4738f41}{\index{c\-Audio@{c\-Audio}!Stop\-Music@{Stop\-Music}}
+\index{Stop\-Music@{Stop\-Music}!cAudio@{c\-Audio}}
+\subsubsection[{Stop\-Music}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Stop\-Music (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a9cba1b84f7641a42a317c6fee4738f41}
+
+
+Stops playing Music. 
+
+
+
+Definition at line 214 of file audio.\-cpp.
+
+\hypertarget{classc_audio_a964b3d86635b460a4f25cf64997b0014}{\index{c\-Audio@{c\-Audio}!Update@{Update}}
+\index{Update@{Update}!cAudio@{c\-Audio}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void c\-Audio\-::\-Update (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classc_audio_a964b3d86635b460a4f25cf64997b0014}
+Checks if no music is played 
+
+Definition at line 305 of file audio.\-cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classc_audio_ab36788ba00195b8c4917e2e304d85b0d}{\index{c\-Audio@{c\-Audio}!b\-Debug@{b\-Debug}}
+\index{b\-Debug@{b\-Debug}!cAudio@{c\-Audio}}
+\subsubsection[{b\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}bool c\-Audio\-::b\-Debug}}\label{classc_audio_ab36788ba00195b8c4917e2e304d85b0d}
+
+
+Definition at line 114 of file audio.\-h.
+
+\hypertarget{classc_audio_acb49d8cf5904830d9307bc426fe4cb3d}{\index{c\-Audio@{c\-Audio}!b\-Initialised@{b\-Initialised}}
+\index{b\-Initialised@{b\-Initialised}!cAudio@{c\-Audio}}
+\subsubsection[{b\-Initialised}]{\setlength{\rightskip}{0pt plus 5cm}bool c\-Audio\-::b\-Initialised}}\label{classc_audio_acb49d8cf5904830d9307bc426fe4cb3d}
+
+
+Definition at line 115 of file audio.\-h.
+
+\hypertarget{classc_audio_abe75bf46e35f528400dcb2e5113ae0b8}{\index{c\-Audio@{c\-Audio}!b\-Music@{b\-Music}}
+\index{b\-Music@{b\-Music}!cAudio@{c\-Audio}}
+\subsubsection[{b\-Music}]{\setlength{\rightskip}{0pt plus 5cm}bool c\-Audio\-::b\-Music}}\label{classc_audio_abe75bf46e35f528400dcb2e5113ae0b8}
+
+
+Definition at line 114 of file audio.\-h.
+
+\hypertarget{classc_audio_a5ad87dd6c804f68dd430f778f90cf38e}{\index{c\-Audio@{c\-Audio}!b\-Sounds@{b\-Sounds}}
+\index{b\-Sounds@{b\-Sounds}!cAudio@{c\-Audio}}
+\subsubsection[{b\-Sounds}]{\setlength{\rightskip}{0pt plus 5cm}bool c\-Audio\-::b\-Sounds}}\label{classc_audio_a5ad87dd6c804f68dd430f778f90cf38e}
+
+
+Definition at line 114 of file audio.\-h.
+
+\hypertarget{classc_audio_a9bd6aa3fef6284334ee9b726c0cf1a1b}{\index{c\-Audio@{c\-Audio}!i\-Buffer@{i\-Buffer}}
+\index{i\-Buffer@{i\-Buffer}!cAudio@{c\-Audio}}
+\subsubsection[{i\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::i\-Buffer}}\label{classc_audio_a9bd6aa3fef6284334ee9b726c0cf1a1b}
+
+
+Definition at line 109 of file audio.\-h.
+
+\hypertarget{classc_audio_a3f946cdea09fd857bee05b8a7326a8d7}{\index{c\-Audio@{c\-Audio}!i\-Channels@{i\-Channels}}
+\index{i\-Channels@{i\-Channels}!cAudio@{c\-Audio}}
+\subsubsection[{i\-Channels}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::i\-Channels}}\label{classc_audio_a3f946cdea09fd857bee05b8a7326a8d7}
+
+
+Definition at line 109 of file audio.\-h.
+
+\hypertarget{classc_audio_a33a95a4128134a55b2a68d25d60ae314}{\index{c\-Audio@{c\-Audio}!i\-Hz@{i\-Hz}}
+\index{i\-Hz@{i\-Hz}!cAudio@{c\-Audio}}
+\subsubsection[{i\-Hz}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::i\-Hz}}\label{classc_audio_a33a95a4128134a55b2a68d25d60ae314}
+
+
+Definition at line 109 of file audio.\-h.
+
+\hypertarget{classc_audio_a1079677c50a60ef5e6a3c09cd2af8d91}{\index{c\-Audio@{c\-Audio}!Music@{Music}}
+\index{Music@{Music}!cAudio@{c\-Audio}}
+\subsubsection[{Music}]{\setlength{\rightskip}{0pt plus 5cm}Mix\-\_\-\-Music$\ast$ c\-Audio\-::\-Music}}\label{classc_audio_a1079677c50a60ef5e6a3c09cd2af8d91}
+
+
+Definition at line 107 of file audio.\-h.
+
+\hypertarget{classc_audio_a9f20d77fb103d6e1f87819ad406a5f0d}{\index{c\-Audio@{c\-Audio}!Music\-\_\-\-Played@{Music\-\_\-\-Played}}
+\index{Music\-\_\-\-Played@{Music\-\_\-\-Played}!cAudio@{c\-Audio}}
+\subsubsection[{Music\-\_\-\-Played}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::\-Music\-\_\-\-Played}}\label{classc_audio_a9f20d77fb103d6e1f87819ad406a5f0d}
+
+
+Definition at line 110 of file audio.\-h.
+
+\hypertarget{classc_audio_aa7d2c11847671823d34a694ad797bb75}{\index{c\-Audio@{c\-Audio}!Music\-\_\-\-Volume@{Music\-\_\-\-Volume}}
+\index{Music\-\_\-\-Volume@{Music\-\_\-\-Volume}!cAudio@{c\-Audio}}
+\subsubsection[{Music\-\_\-\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 c\-Audio\-::\-Music\-\_\-\-Volume}}\label{classc_audio_aa7d2c11847671823d34a694ad797bb75}
+
+
+Definition at line 112 of file audio.\-h.
+
+\hypertarget{classc_audio_a3ac7aee05ebb4a7cdcfb5668226f6349}{\index{c\-Audio@{c\-Audio}!Sound\-\_\-\-Volume@{Sound\-\_\-\-Volume}}
+\index{Sound\-\_\-\-Volume@{Sound\-\_\-\-Volume}!cAudio@{c\-Audio}}
+\subsubsection[{Sound\-\_\-\-Volume}]{\setlength{\rightskip}{0pt plus 5cm}Uint8 c\-Audio\-::\-Sound\-\_\-\-Volume}}\label{classc_audio_a3ac7aee05ebb4a7cdcfb5668226f6349}
+
+
+Definition at line 112 of file audio.\-h.
+
+\hypertarget{classc_audio_a9ec9fc3a055a17a90e5611570058487f}{\index{c\-Audio@{c\-Audio}!Sounds\-\_\-\-Played@{Sounds\-\_\-\-Played}}
+\index{Sounds\-\_\-\-Played@{Sounds\-\_\-\-Played}!cAudio@{c\-Audio}}
+\subsubsection[{Sounds\-\_\-\-Played}]{\setlength{\rightskip}{0pt plus 5cm}int c\-Audio\-::\-Sounds\-\_\-\-Played}}\label{classc_audio_a9ec9fc3a055a17a90e5611570058487f}
+
+
+Definition at line 110 of file audio.\-h.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Engine/include/\hyperlink{audio_8h}{audio.\-h}\item 
+Engine/\hyperlink{audio_8cpp}{audio.\-cpp}\end{DoxyCompactItemize}

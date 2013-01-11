@@ -1,5 +1,5 @@
 
-/* 
+/** 
 
 	SDL_ep - Engine primitives for SDL
 
@@ -32,7 +32,7 @@
 #pragma comment( lib, "SDL_net.lib" )
 #pragma comment( lib, "Sge.lib" )
 
-/*  WIN32 DLL interface */
+/**  WIN32 DLL interface */
 
 #ifdef _WIN32
 #define DLLINTERFACE __declspec(dllexport)
@@ -56,12 +56,12 @@
 #define SDL_ENGINEPRIMITIVES_MINOR	9
 #define SDL_ENGINEPRIMITIVES_MICRO	8
 
-// Inits SDL_ep
+/// Inits SDL_ep
 int DLLINTERFACE InitEP( void );
 
-#endif				/* _SDL_ep_h */
+#endif				/** _SDL_ep_h */
 
-/*
+/**
 	Todo :
 
 	Audio :

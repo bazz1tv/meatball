@@ -2,6 +2,7 @@
 #ifndef __SPRITE_H__
 #define __SPRITE_H__
 
+/// Sprite Types
 #define SPRITE_TYPE_NO_TYPE		0
 #define SPRITE_TYPE_PLAYER		1
 #define SPRITE_TYPE_MASSIVE		2
@@ -23,7 +24,7 @@ public:
 
 	SDL_Rect GetRect( bool with_camerapos = 0 );
 
-	/* The Type
+	/** The Type
 	 * 0 = No Type
 	 * 1 = Player
 	 * 2 = Sprite Massive
@@ -36,7 +37,7 @@ public:
 	 */
 	int type;
 	
-	// Start Position
+	/// Start Position
 	double Startposy, Startposx;
 
 	Collisiondata *Collision;
@@ -54,7 +55,7 @@ public:
 
 	SDL_Rect GetRect( bool with_camerapos = 0 );
 
-	/* The Type
+	/** The Type
 	 * 0 = No Type
 	 * 1 = Player
 	 * 2 = Sprite Massive
@@ -67,7 +68,7 @@ public:
 	 */
 	int type;
 	
-	// Start Position
+	/// Start Position
 	double Startposy, Startposx;
 
 	Collisiondata *Collision;

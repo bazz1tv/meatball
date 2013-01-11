@@ -1,4 +1,4 @@
-/* 
+/** 
 	framerate.h  -  framerate independent Framerate class ;)
 	
 	The Speedfactor is the heart of this class. When it is set by SetSpeedFactor, 
@@ -29,7 +29,7 @@ public:
 	
 	~cFramerate ( void )
 	{
-		// nothing
+		/// nothing
 	}
 	
 	void Init( double tfps )
@@ -79,7 +79,7 @@ public:
 	double maxspeedfactor;
 };
 
-/* 
+/** 
 	Fixed framerate method
 	
 	V.1.0

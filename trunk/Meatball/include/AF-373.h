@@ -24,31 +24,32 @@ public:
 	int AI_PlayerSearch( int sdirection );
 	void AI_Idle( void );
 
-	SDL_Surface *images[2];
-	/*	The images
+	/**	The images
 	 *	0 = Left
 	 *	1 = Right
 	 */
+	SDL_Surface *images[2];
+	
 
 	cWeapon *pWeapon;
 
-	/* 0 : falling
+	/** 0 : falling
 	 * 1 : onground massive
 	 * 2 : onground halfmassive
 	 */
 	int onGround;
 
-	/* The Direction the AI wants to move
+	/** The Direction the AI wants to move
 	 * uses the defined directions
 	 */
 	int AI_direction;
 	
-	/* The time the Ai should move
+	/** The time the Ai should move
 	 * if <= 0 AI_direction is set to idle ( -1 )
 	 */
 	double AI_movingtime;
 
-	/* 0 = Staying ( not doing anything )
+	/** 0 = Staying ( not doing anything )
 	 * 1 = Moving,Walking
 	 * 2 = Jumping
 	 * 3 = Falling

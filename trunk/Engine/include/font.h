@@ -1,4 +1,4 @@
-/* 
+/** 
 
 	font.h  -  Font Class
 
@@ -26,7 +26,7 @@ public:
 	DLLINTERFACE cFont( void );
 	DLLINTERFACE ~cFont( void );
 
-	/*	Creates the text in an Surface 
+	/**	Creates the text in an Surface 
 	 *	types : 
 	 *	1 = Blended
 	 *	2 = Shaded
@@ -40,13 +40,13 @@ public:
 		return CreateText( text, font, type, coldefText, coldefBackground );
 	}
 
-	/*	Creates an Font from an .ttf file
+	/**	Creates an Font from an .ttf file
 	 *	default pointsize is 16
 	 *	default style is TTF_STYLE_NORMAL
 	 */
 	DLLINTERFACE TTF_Font *CreateFont( const char *Font_File, unsigned int ptsize = 16, unsigned int style = TTF_STYLE_NORMAL );
 
-	/*	Sets the Style of an Font
+	/**	Sets the Style of an Font
 	 *	styles :
 	 *	TTF_STYLE_NORMAL
 	 *	TTF_STYLE_BOLD

@@ -1,5 +1,5 @@
 
-/* 
+/** 
 
 	snd_manager.h  -  Sound Handler/Manager
 
@@ -34,12 +34,12 @@ public:
 
 	DLLINTERFACE string GetIdentifier( Mix_Chunk *nItem );
 
-	/*	Returns the Current Size
+	/**	Returns the Current Size
 	 *	/Count of the Items
 	 */
 	DLLINTERFACE unsigned int GetSize( void );
 
-	/*	Adds an Sound
+	/**	Adds an Sound
 	 *	Should always have an Identifier
 	 */
 	DLLINTERFACE void Add( Mix_Chunk *nItem, string nIdentifier = "Unknown" );

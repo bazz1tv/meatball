@@ -344,31 +344,32 @@ void leveleditor_eventhandler()
 					pCamera->SetPos( pPlayer->posx - pCamera->x - Screen->w, 0 );
 					
 				}
-				// LCTRL S to save
-				else if( event.key.keysym.sym == SDLK_s && ( event.key.keysym.mod & KMOD_LCTRL ) ) 
+				// IF LCTRL IS HELD
+				else if (event.key.keysym.mod & KMOD_LCTRL)
 				{
-					//level edit mode
-					pLevel->Save();
-					
+					// LCTRL S to save
+					if( event.key.keysym.sym == SDLK_s ) 
+					{
+						pLevel->Save();	
+					}
+					// LCTRL+C to copy
+					else if( event.key.keysym.sym == SDLK_c  ) 
+					{
+						pLevelEditor->SetCopyObject();
+					}
+					//LCTRL+V to paste
+					else if( event.key.keysym.sym == SDLK_v  ) 
+					{
+						pLevelEditor->PasteObject();
+					}
 				}
-				// LCTRL+C to copy
-				else if( event.key.keysym.sym == SDLK_c && ( event.key.keysym.mod & KMOD_LCTRL ) ) 
+				// F Key for Fast Copy
+				else if (event.key.keysym.sym == SDLK_f)
 				{
-					pLevelEditor->SetCopyObject();
-				}
-				//LCTRL+V to paste
-				else if( event.key.keysym.sym == SDLK_v && ( event.key.keysym.mod & KMOD_LCTRL ) ) 
-				{
-					pLevelEditor->PasteObject();
-				}
-				/* New Code Special Paste 12/30/12 */
-				else if( event.key.keysym.sym == SDLK_v && ( event.key.keysym.mod & KMOD_RCTRL ) ) 
-				{
-					pLevelEditor->SpecialPasteObject();
-				}
-				else if (event.key.keysym.sym == SDLK_f && (event.key.keysym.mod & KMOD_LCTRL ) )
-				{
-					pLevelEditor->SetFastCopyObject();
+					if (pLevelEditor->Mouse_command == MOUSE_COMMAND_FASTCOPY)
+						pLevelEditor->Mouse_command = MOUSE_COMMAND_NOTHING;
+					else
+						pLevelEditor->SetFastCopyObject();
 				}
 				else if( ( event.key.keysym.sym == SDLK_w || event.key.keysym.sym == SDLK_a || 
 					event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_d ) ) 
