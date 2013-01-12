@@ -1,0 +1,193 @@
+\hypertarget{misc_8h}{\section{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\-Engine/include/misc.h File Reference}
+\label{misc_8h}\index{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\-Engine/include/misc.\-h@{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/\-Engine/include/misc.\-h}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} float \hyperlink{misc_8h_a0be98eebd3a462ca4848592d68073919}{Random} (float min, float max)
+\begin{DoxyCompactList}\small\item\em Random float between min and max. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{misc_8h_a693c49061ea2d0530c6c32594f452cd2}{Random} (int min, int max)
+\begin{DoxyCompactList}\small\item\em Random integer between min and max. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int \hyperlink{misc_8h_ab1b939f194d98fc0c21cd2f67541df96}{Random} (int max)
+\begin{DoxyCompactList}\small\item\em Random integer between 0 and max. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} float \hyperlink{misc_8h_adfa873e4df28e42315e6e0b624655b8d}{Random} (float max)
+\begin{DoxyCompactList}\small\item\em Random float between 0 and max. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} double \hyperlink{misc_8h_ac7131b55f637002f5145bc028e9d6f57}{Random} (double max)
+\begin{DoxyCompactList}\small\item\em Random double between 0 and max. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} double \hyperlink{misc_8h_ad05bcc69135f42dee82b4fa708f69f89}{Random} (double min, double max)
+\begin{DoxyCompactList}\small\item\em Random double between min and max. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} S\-D\-L\-\_\-\-Rect \hyperlink{misc_8h_aee31d5f222e67b535b20d7fd10080d4b}{Set\-Rect} (int x, int y, unsigned int w, unsigned int h)
+\begin{DoxyCompactList}\small\item\em Returns an S\-D\-L\-\_\-rect. \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} S\-D\-L\-\_\-\-Color \hyperlink{misc_8h_a65ae4a33cf99a3d6a533a465500c8eeb}{Set\-Color} (Uint8 Red, Uint8 Green, Uint8 Blue)
+\begin{DoxyCompactList}\small\item\em return an S\-D\-L\-\_\-\-Color \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} bool \hyperlink{misc_8h_aa8db3ce0648c56e93c5d0991d7e27662}{Rect\-Intersect} (S\-D\-L\-\_\-\-Rect $\ast$r1, S\-D\-L\-\_\-\-Rect $\ast$r2)
+\begin{DoxyCompactList}\small\item\em returns 1 if 1 or more points intersect \end{DoxyCompactList}\item 
+\hyperlink{_s_d_l__ep_8h_a38dd54df4631b4daf553096353d7b20b}{D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} bool \hyperlink{misc_8h_ae0d0e10441af2dca46e2e09e09ce7b34}{Full\-Rect\-Intersect} (S\-D\-L\-\_\-\-Rect $\ast$r1, S\-D\-L\-\_\-\-Rect $\ast$r2)
+\begin{DoxyCompactList}\small\item\em returns 1 if the complete rect1 intersects with rect2 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{misc_8h_ae0d0e10441af2dca46e2e09e09ce7b34}{\index{misc.\-h@{misc.\-h}!Full\-Rect\-Intersect@{Full\-Rect\-Intersect}}
+\index{Full\-Rect\-Intersect@{Full\-Rect\-Intersect}!misc.h@{misc.\-h}}
+\subsubsection[{Full\-Rect\-Intersect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} bool Full\-Rect\-Intersect (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{r1, }
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{r2}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_ae0d0e10441af2dca46e2e09e09ce7b34}
+
+
+returns 1 if the complete rect1 intersects with rect2 
+
+
+
+Definition at line 79 of file misc.\-cpp.
+
+\hypertarget{misc_8h_a0be98eebd3a462ca4848592d68073919}{\index{misc.\-h@{misc.\-h}!Random@{Random}}
+\index{Random@{Random}!misc.h@{misc.\-h}}
+\subsubsection[{Random}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} float Random (
+\begin{DoxyParamCaption}
+\item[{float}]{min, }
+\item[{float}]{max}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_a0be98eebd3a462ca4848592d68073919}
+
+
+Random float between min and max. 
+
+\hyperlink{misc_8h}{misc.\-h} -\/ Misc things
+
+V 1.\-2
+
+L\-G\-P\-L (c) F. Richter 
+
+Definition at line 5 of file misc.\-cpp.
+
+\hypertarget{misc_8h_a693c49061ea2d0530c6c32594f452cd2}{\index{misc.\-h@{misc.\-h}!Random@{Random}}
+\index{Random@{Random}!misc.h@{misc.\-h}}
+\subsubsection[{Random}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int Random (
+\begin{DoxyParamCaption}
+\item[{int}]{min, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_a693c49061ea2d0530c6c32594f452cd2}
+
+
+Random integer between min and max. 
+
+
+
+Definition at line 10 of file misc.\-cpp.
+
+\hypertarget{misc_8h_ab1b939f194d98fc0c21cd2f67541df96}{\index{misc.\-h@{misc.\-h}!Random@{Random}}
+\index{Random@{Random}!misc.h@{misc.\-h}}
+\subsubsection[{Random}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} int Random (
+\begin{DoxyParamCaption}
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_ab1b939f194d98fc0c21cd2f67541df96}
+
+
+Random integer between 0 and max. 
+
+
+
+Definition at line 15 of file misc.\-cpp.
+
+\hypertarget{misc_8h_adfa873e4df28e42315e6e0b624655b8d}{\index{misc.\-h@{misc.\-h}!Random@{Random}}
+\index{Random@{Random}!misc.h@{misc.\-h}}
+\subsubsection[{Random}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} float Random (
+\begin{DoxyParamCaption}
+\item[{float}]{max}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_adfa873e4df28e42315e6e0b624655b8d}
+
+
+Random float between 0 and max. 
+
+
+
+Definition at line 20 of file misc.\-cpp.
+
+\hypertarget{misc_8h_ac7131b55f637002f5145bc028e9d6f57}{\index{misc.\-h@{misc.\-h}!Random@{Random}}
+\index{Random@{Random}!misc.h@{misc.\-h}}
+\subsubsection[{Random}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} double Random (
+\begin{DoxyParamCaption}
+\item[{double}]{max}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_ac7131b55f637002f5145bc028e9d6f57}
+
+
+Random double between 0 and max. 
+
+
+
+Definition at line 25 of file misc.\-cpp.
+
+\hypertarget{misc_8h_ad05bcc69135f42dee82b4fa708f69f89}{\index{misc.\-h@{misc.\-h}!Random@{Random}}
+\index{Random@{Random}!misc.h@{misc.\-h}}
+\subsubsection[{Random}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} double Random (
+\begin{DoxyParamCaption}
+\item[{double}]{min, }
+\item[{double}]{max}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_ad05bcc69135f42dee82b4fa708f69f89}
+
+
+Random double between min and max. 
+
+
+
+Definition at line 30 of file misc.\-cpp.
+
+\hypertarget{misc_8h_aa8db3ce0648c56e93c5d0991d7e27662}{\index{misc.\-h@{misc.\-h}!Rect\-Intersect@{Rect\-Intersect}}
+\index{Rect\-Intersect@{Rect\-Intersect}!misc.h@{misc.\-h}}
+\subsubsection[{Rect\-Intersect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} bool Rect\-Intersect (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{r1, }
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{r2}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_aa8db3ce0648c56e93c5d0991d7e27662}
+
+
+returns 1 if 1 or more points intersect 
+
+
+
+Definition at line 57 of file misc.\-cpp.
+
+\hypertarget{misc_8h_a65ae4a33cf99a3d6a533a465500c8eeb}{\index{misc.\-h@{misc.\-h}!Set\-Color@{Set\-Color}}
+\index{Set\-Color@{Set\-Color}!misc.h@{misc.\-h}}
+\subsubsection[{Set\-Color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} S\-D\-L\-\_\-\-Color Set\-Color (
+\begin{DoxyParamCaption}
+\item[{Uint8}]{Red, }
+\item[{Uint8}]{Green, }
+\item[{Uint8}]{Blue}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_a65ae4a33cf99a3d6a533a465500c8eeb}
+
+
+return an S\-D\-L\-\_\-\-Color 
+
+
+
+Definition at line 47 of file misc.\-cpp.
+
+\hypertarget{misc_8h_aee31d5f222e67b535b20d7fd10080d4b}{\index{misc.\-h@{misc.\-h}!Set\-Rect@{Set\-Rect}}
+\index{Set\-Rect@{Set\-Rect}!misc.h@{misc.\-h}}
+\subsubsection[{Set\-Rect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf D\-L\-L\-I\-N\-T\-E\-R\-F\-A\-C\-E} S\-D\-L\-\_\-\-Rect Set\-Rect (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{unsigned int}]{w, }
+\item[{unsigned int}]{h}
+\end{DoxyParamCaption}
+)}}\label{misc_8h_aee31d5f222e67b535b20d7fd10080d4b}
+
+
+Returns an S\-D\-L\-\_\-rect. 
+
+
+
+Definition at line 35 of file misc.\-cpp.
+
