@@ -19,6 +19,12 @@
 #ifndef __EP_FRAMERATE_H__
 #define __EP_FRAMERATE_H__
 
+framerate independent Framerate class ;)
+
+/** The Speedfactor is the heart of this class. When it is set by SetSpeedFactor, 
+it becomes a number with that you multiply all your motions. For instance, 
+if the targetfps is 100, and the actual fps is 85, the speedfactor will be set to 100/85, 
+or about 1.2. You then multiply all your motion is the game, at its lowest level, by this number. */
 class cFramerate
 {
 public:
@@ -31,7 +37,7 @@ public:
 	
 	~cFramerate ( void )
 	{
-		/// nothing
+		
 	}
 	
 	void Init( double tfps )

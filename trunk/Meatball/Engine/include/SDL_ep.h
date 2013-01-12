@@ -57,7 +57,7 @@
 #define SDL_ENGINEPRIMITIVES_MINOR	9
 #define SDL_ENGINEPRIMITIVES_MICRO	8
 
-/// Inits SDL_ep
+/// Inits SDL_ep. It seeds the random number generator and sets the SpriteSpeed Factor to 1
 int DLLINTERFACE InitEP( void );
 
 #endif				/** _SDL_ep_h */

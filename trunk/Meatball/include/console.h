@@ -3,43 +3,43 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
-/// For FileSystem access
-#include "boost/filesystem/operations.hpp"
-#include "boost/filesystem/path.hpp"
-#include "boost/progress.hpp"
-
 #include "include\Globals.h"
 #include "include\Game.h"
 
 #include "boost.h"
 
-/// Console Commands
-bool clearcon( string &str ); // 1
-bool loadmap( string &str );
-bool SetMx( string &str );
-bool SetMy( string &str );
-bool SetMxy( string &str );
-bool play( string &str );
-bool QuitAll( string &str);
-bool ShowFPS( string & str);
-bool help( string &str );
-bool soundVol(string &str);
-bool allSoundsVol(string &str);
-bool musicVol(string &str); // 12
-bool cd(string &str);//13
-bool ls(string &str); //14
-//bool collision(string &str);// 15
+/// @defgroup Console_Commands Console Commands
+/// These functions are for the console commands
+/// @note The function names may differ from the actual command names you type in the console
+/// <br>Use the following code snippet to decipher the function names from their command names\
+/// <br><br><b>Format</b>: cConsole::CMDList, "Command Name", function name, "help string", "syntax"
+/// @snippet console.cpp Console Commands
+// @{
+bool clearcon( string &str ); ///< Clears the console
+bool loadmap( string &str );	///< Load a new Level from @link LEVEL_DIR @endlink
+bool SetMx( string &str );		///< Set Meatball's X Coordinate
+bool SetMy( string &str );		///< Set Meatball's Y Coordinate
+bool SetMxy( string &str );		///< Set Meatball (X,Y) coordinate
+bool play( string &str );		///< Play a song from the @link MUSIC_DIR @endlink
+bool QuitAll( string &str);		///<
+bool ShowFPS( string & str);	///< Toggle FPS framerate to be displayed
+bool help( string &str );		///< bring up help on all commands or specific command
+bool soundVol(string &str);		///< change the volume of a sound (0-128)
+bool allSoundsVol(string &str);	///< Change the volume of All sounds (0-128)
+bool musicVol(string &str);		///< Change the music volume (0-128)
+bool cd(string &str);			///< change the current directory
+bool ls(string &str);			///< list the directory
+// @}
 
-
-/// The # of Registered console commands. Then +1 for the empty handler
-/// Because the last command but be a NULL Command. This is so we can loop thru command
-/// linked list until we get to the last command of NULL
-#define NUM_CMDS 16
+/// Number of Output Lines to the Console
 #define NUM_LINES 11
 
+/// Move all output up one line
 void moveup();
+/// Queries the user to hit enter key.. kinda like a cheap [less] cmd
 void wait_for_input();
-void console_print(char *str);
+/// Self Explanatory
+void console_print(const char *str);
 
 
 
@@ -48,10 +48,14 @@ struct cCMD
 	bool ( *handler )( string &str );	// Function pointer
 
 	string command;						// string to identify command
-	char *helpstr;
-	char *syntax;
+	string helpstr;
+	string syntax;
 	cCMD *next;
 };
+
+/** Linked List push function. */
+/// This pushes a new cCMD onto the linked list of CMDList
+void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax);
 
 class cConsole
 {
@@ -75,7 +79,7 @@ public:
 
 	bool helpCMD( string &str );
 
-	cCMD CMDList[NUM_CMDS];	// The commands
+	cCMD *CMDList;	// The commands
 
 	string strcpy[NUM_LINES];	// history strings (past entered commands which are displayed)
 

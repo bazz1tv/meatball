@@ -50,8 +50,8 @@
 
 
 
-/// @addtogroup Engine
-/// Classes Meatball uses from the SDL_ep Engine Library.
+/// @addtogroup Engine_Meatball
+/// These are classes Meatball uses from the SDL_ep Engine Library.
 /// SDL_ep is the Home-grown engine that Meatball is built on. IT's still
 /// in development. Since it kind of develops alongside of meatball. It stands for Engine Primitives
 // @{
