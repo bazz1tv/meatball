@@ -46,6 +46,10 @@ public:
 };
 
 extern unsigned int BulletCount;
+
+/// holds all of the bullets getting put to the screen.
+/// The array is dynamically allocated as bullets are spawned, and
+/// it maintains its largest allocated size.
 extern cBullet **Bullets;
 
 /** Preloads all Bullet images

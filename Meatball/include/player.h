@@ -1,23 +1,24 @@
-
+/// @addtogroup Player
+// @{
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
 #include "include\Globals.h"
 
+/// @defgroup PlayerStates Player States
+// @{
 #define STATE_STAYING 0
 #define STATE_WALKING 1
 #define STATE_JUMPING 2
 #define STATE_FALLING 3
-#define STATE_FLYING  4
+#define STATE_FLYING  4	///< Not implemented
+// @}
 
-/// Keep track of the player's stats.
 
+/// Keep track of the player.
 /** Draw, update the player. Change his active weapon. Jump(), Fire() bullets,
-
 	Die, track directions and whether he's on the ground, health,
-
 */
-
 class cPlayer : public cMVelSprite
 {
 public:
@@ -115,3 +116,4 @@ public:
 void UpdatePlayer( void );
 
 #endif
+// @}

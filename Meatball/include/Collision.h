@@ -6,28 +6,28 @@
 
 typedef struct
 {
-	/** The first direct Collision direction
-	 * -1 : No Collision
-	 * 0  : Left
-	 * 1  : Right
-	 * 2  : Up
-	 * 3  : Down
+	/** The first direct Collision direction\n
+	 * -1 : No Collision	\n
+	 * 0  : Left			\n
+	 * 1  : Right			\n
+	 * 2  : Up				\n
+	 * 3  : Down			\n
 	 */
 	int collide;
 
-	/** Collisiontypes
-	 * see SPRITE_TYPE defines
+	/** Collisiontypes. Based on Sprite Types
+	 * @see SpriteTypes
 	 */
 	int iCollisionType;
 
-	/// The Number of the Collidiong Sprite
+	/// The Number of the Colliding Sprite
 	int iCollisionNumber;
 
-	/** The direction of all Collisions
-	 * -1 = No Collision detected
-	 * 1 = Collision Up/Down/Left/Right
-	 * 2 = Collision in Left/Right
-	 * 3 = Collision Up/Down
+	/** The direction of all Collisions\n
+	 * -1 = No Collision detected		<br>
+	 * 1 = Collision Up/Down/Left/Right	<br>
+	 * 2 = Collision in Left/Right		<br>
+	 * 3 = Collision Up/Down			<br>
 	 */	
 	int direction;
 

@@ -6,25 +6,25 @@
 #include <time.h>
 #include <fstream>
 
-/// Include the Engine
+// Include the Engine
 #include <SDL_ep.h>
 
-/// If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
-/// note: relies on __VA_ARGS__ stackoverflow
+// If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
+// note: relies on __VA_ARGS__ stackoverflow
 #ifdef _WIN32
 #define sprintf(buffer, stringbuffer, ...) (sprintf_s(buffer, sizeof(buffer), stringbuffer, __VA_ARGS__)) 
-/// add for strcpy_s
+// add for strcpy_s
 #define strcpy(dest, src) (strcpy_s(dest, sizeof(dest), src))
-/// I can ascertain from experience that even if 'dest' argument is something like arg[i++], 
-/// the i will not get incremented twice from this #define :)
+// I can ascertain from experience that even if 'dest' argument is something like arg[i++], 
+// the i will not get incremented twice from this #define :)
 #define strcat(dest,src) (strcat_s(dest, sizeof(dest), src))
 
 #endif
-///--------------------------------
+//--------------------------------
 
 #define SDL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
 
-/// This following line takes out the command line window from your program :) 
+// This following line takes out the command line window from your program :) 
 #ifndef _DEBUG
 	#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #endif
@@ -36,28 +36,28 @@
 #pragma comment( lib, "Sge.lib" )
 #pragma comment( lib, "SDL_ep.lib" )
 
-/// STL Debugging
+// STL Debugging
 #ifndef _DEBUG
 #undef _STLP_DEBUG
 #else
 #define _STLP_DEBUG 1
 #endif
 
-/// The Directorys
+// The Directorys
 #define PIXMAPS_DIR "data/pixmaps/"
 #define MUSIC_DIR "data/music/"
 #define SOUNDS_DIR "data/sound/"
 #define FONT_DIR "data/font/"
 #define LEVEL_DIR "data/levels/"
 
-/// Player Directions
+// Player Directions
 #define LEFT	0
 #define RIGHT	1
 #define UP		2
 #define DOWN	3
 #define NONE	4
 
-/// Modes
+// Modes
 #define MODE_MENU 0
 #define MODE_GAME 1
 #define MODE_LEVELEDITOR 2
@@ -65,7 +65,7 @@
 #define MODE_DEBUG 4		// Not implemented
 #define NUM_GAMEMODES	4
 
-/// SDL_ep classes
+// SDL_ep classes
 extern cFramerate *pFramerate;
 extern cImageManager *IMan;
 extern cSoundManager *SMan;
@@ -79,7 +79,7 @@ extern int done;
 /// game paused?
 extern bool paused;
 
-/// Fonts
+// Fonts
 extern TTF_Font *Menu_Font;
 extern TTF_Font *bold_16;
 
@@ -98,13 +98,13 @@ extern bool fps_display;
 /// Magneta (default) Colorkey
 extern Uint32 colorkey;
 
-/// Game Global Functions
+// Game Global Functions
 void StartGame( void );
 void QuitGame( void );
-/// The Main menu
+//The Main menu
 //void Main_Menu( void );
 // Declared in MainMenu Module
-/// 
+// 
 
 /// Toggle fullScreen
 int SDL_ToggleFS(SDL_Surface *surface);
@@ -117,7 +117,7 @@ bool is_valid_number( char *c );
 /// Draws the Framerate
 void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 
-/// includes
+// includes
 #include "include\Preferences.h"
 #include "include\Camera.h"
 #include "include\Collision.h"
@@ -130,10 +130,10 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "include\bullet.h"
 #include "include\leveleditor.h"
 #include "include\console.h"
-///Enemies
+//Enemies
 #include "include\AF-373.h"
 
-/// MeatBall
+// MeatBall
 extern cPreferences *pPreferences;	// The Preferences
 extern cSettings *pGameSettings;	// The Game Settings
 extern cMouseCursor *pMouse;		// The Mouse

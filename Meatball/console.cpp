@@ -634,7 +634,7 @@ void wait_for_input()
 	while (1)
 	{
 		pConsole->UpdateConsole();
-		MeatBall_Draw();
+		Game_Draw();
 		SDL_PollEvent( &local_event );
 
 		if ( local_event.type == SDL_KEYDOWN )
