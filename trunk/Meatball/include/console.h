@@ -28,10 +28,12 @@ bool allSoundsVol(string &str);
 bool musicVol(string &str); // 12
 bool cd(string &str);//13
 bool ls(string &str); //14
-bool collision(string &str);// 15
+//bool collision(string &str);// 15
 
 
-/// +1 for the empty handler
+/// The # of Registered console commands. Then +1 for the empty handler
+/// Because the last command but be a NULL Command. This is so we can loop thru command
+/// linked list until we get to the last command of NULL
 #define NUM_CMDS 16
 #define NUM_LINES 11
 
@@ -48,6 +50,7 @@ struct cCMD
 	string command;						// string to identify command
 	char *helpstr;
 	char *syntax;
+	cCMD *next;
 };
 
 class cConsole
