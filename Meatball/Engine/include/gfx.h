@@ -1,5 +1,8 @@
+/// @addtogroup Engine_Gfx
+// @{
+
 /* 
-	gfx.h  -  Graphic functions
+	@file gfx.h  Graphic functions
 	
 	(c) F. Richter
 	
@@ -16,3 +19,4 @@
 
 /// Todo ! :)
 #endif
+// @}

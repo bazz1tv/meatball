@@ -1,6 +1,7 @@
-
+/// @addtogroup Engine_Audio
+// @{
 /** 
-	Audio.h  -  Audio Engine Header
+	@file audio.h  Audio Engine Header
 
 	Version 2.4
 
@@ -117,3 +118,4 @@ public:
 
 
 #endif
+// @}

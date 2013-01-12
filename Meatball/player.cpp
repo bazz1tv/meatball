@@ -1,5 +1,5 @@
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 // The player won't fall any faster than this (pixels iirc)
 #define MAX_FALL_VELOCITY 8

@@ -1,6 +1,8 @@
+/// @addtogroup Engine_Sprite
+// @{
 /** 
 
-	sprite.h  -  Sprite Class
+	@file sprite.h Sprite Class
 
 	V 2.3.2
 
@@ -19,13 +21,15 @@
 #include "framerate.h"
 #include "misc.h"
 
-/// Sprite Types
+/// @addtogroup SPRITE_TYPES
+// @{
+// Sprite Types
 #define SPRITE_BASIC 1
 #define SPRITE_VELOCITY 2 
 #define SPRITE_ANGLE 3
 #define SPRITE_ACCELEREATION 4
 #define SPRITE_MOUSECURSOR 100
-
+// @}
 
 /**	Sets the Sprite Speedfactor
  *	this affects the movement
@@ -71,7 +75,7 @@ public:
 	Uint8 alpha;
 	
 	double posx, posy; // Position.
-	double width, height; // Size for stretching/zooming.
+	double width, height; ///< Size for stretching/zooming.
 
 	bool visible; // if 1 the image will not be drawn.
 	bool spawned; // Got this sprite get spawned ingame.
@@ -152,7 +156,7 @@ public:
 	bool anglerotate;
 };
 
-/** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
+//-----------------------------------------------------------------
 
 class cAccelerationSprite : public cAngleSprite
 {
@@ -183,7 +187,7 @@ private:
 
 
 
-/** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
+//--------------------------------------------------------------------/
 
 class cMouseCursor : public cBasicSprite
 {
@@ -202,6 +206,8 @@ public:
 };
 
 #endif
+
+// @}
 
 
 /* Velocity Acceleration Sprite .......

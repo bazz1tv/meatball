@@ -15,8 +15,8 @@ typedef struct
 	 */
 	int collide;
 
-	/** Collisiontypes. Based on Sprite Types
-	 * @see SpriteTypes
+	/** Collisiontypes. Based on SPRITE_TYPES
+	 * @see SPRITE_TYPES
 	 */
 	int iCollisionType;
 

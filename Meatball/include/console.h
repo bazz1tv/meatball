@@ -1,3 +1,5 @@
+/// @addtogroup Console
+// @{
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
@@ -54,8 +56,12 @@ public:
 
 	cConsole( void );
 	~cConsole( void );
-
+	
+	/** Handles console input.
+	It's as simple as that */
+	/// @ingroup Console_Input
 	void EventHandler( void );
+
 	bool CMDHandler( string cInput );
 	void UpdateConsole( void );
 	
@@ -88,3 +94,4 @@ public:
 
 
 #endif
+// @}

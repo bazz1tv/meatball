@@ -104,11 +104,14 @@ void Game_Events( void )
 	(*eventhandlers[mode])();
 }
 
+/// Main menu has its own Event handler, so this one is blank.
 void menu_ehandler()
 {
 	// need a blank handler for modes with no events
 }
 
+/// @addtogroup Game_Input
+// @{
 void game_ehandler()
 {
 	while ( SDL_PollEvent( &event ) )
@@ -279,15 +282,26 @@ void game_ehandler()
 		}
 	}
 }
+// @}
 
+/** Calls the cConsole::EventHandler().
 
+Since the Console has its own internal Event handler. We call it.
+console_ehandler() is the result of a function pointer LUT, therefore
+a direct call to EventHandler() cannot be made. This has to do with cConsole::EventHandler()
+being a class member, and the other function pointers point to non-class member functions.
 
+To remedy this, we simply call a generic function that will call the member function. That is this function :)
+*/
+/// @ingroup Console_Input
 void console_ehandler(void)
 {
 	pConsole->EventHandler(); // Nanananan foo foo ;P
 }
 
 static int specialpastecounter=0;
+
+/// @ingroup Game_Input
 void Game_Input( void )
 {
 	if( mode == MODE_GAME ) 

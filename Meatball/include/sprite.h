@@ -5,9 +5,10 @@
 #ifndef __SPRITE_H__
 #define __SPRITE_H__
 
-/// @addtogroup SpriteTypes
+#include "SDL_ep.h"
+/// @addtogroup SPRITE_TYPES
 // @{
-// Sprite Types
+// SPRITE_TYPES
 #define SPRITE_TYPE_NO_TYPE		0
 #define SPRITE_TYPE_PLAYER		1
 #define SPRITE_TYPE_MASSIVE		2

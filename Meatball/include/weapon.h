@@ -6,7 +6,7 @@
 
 #include "include\Globals.h"
 
-/// @defgroup WeaponTypes Weapon Types 
+/// @defgroup WEAPON_TYPES WEAPON_TYPES 
 //@{
 // Weapon types
 #define WEAPON_UNKNOWN 0
