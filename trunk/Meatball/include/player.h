@@ -44,11 +44,11 @@ public:
 	/// The Player dies
 	void Die( void );
 
-	/**	The images
-	 *	0 = Standing Left
-	 *	1 = Standing Right
-	 *  2 = Standing Looking up
-	 *	3 = Ducking
+	/**	The images \n
+	 *	0 = Standing Left \n
+	 *	1 = Standing Right \n
+	 *  2 = Standing Looking up \n
+	 *	3 = Ducking \n
 	 */
 	SDL_Surface *images[5];
 
@@ -56,26 +56,26 @@ public:
 	cWeapon *pWeapon;
 
 	/**
-	 * 0 = facing left
-	 * 1 = facing right
-	 * 2 = facing up
-	 * 3 = facing down
-	 *  we need to add angle shots too.. 
-	 *  we'll add when player possesses these abilities
+	 * 0 = facing left\n
+	 * 1 = facing right\n
+	 * 2 = facing up\n
+	 * 3 = facing down\n
+	 *  we need to add angle shots too..\n 
+	 *  we'll add when player possesses these abilities\n\n
 	 */	
 	int direction;
 
-	/** 0 : falling
-	 * 1 : onground massive
-	 * 2 : onground halfmassive
+	/** 0 : falling\n
+	 * 1 : onground massive\n
+	 * 2 : onground halfmassive\n
 	 */
 	int onGround;
 
-	/** 0 = Staying ( not doing anything :)
-	 * 1 = Moving,Walking
-	 * 2 = Jumping
-	 * 3 = Falling
-	 * 4 = Flying
+	/** 0 = Staying ( not doing anything :)\n
+	 * 1 = Moving,Walking\n
+	 * 2 = Jumping\n
+	 * 3 = Falling\n
+	 * 4 = Flying\n
 	 */	
 	int state;
 
@@ -92,12 +92,12 @@ public:
 
 	double jumpvel;
 
-	/** The Weapon which the Player has in his hands ( Active Weapon )
+	/** The Weapon which the Player has in his hands ( Active Weapon )\n
 	 * see Weapon definitions
 	 */ 
 	unsigned int actWeapon;
 
-	/** The Health
+	/** The Health\n
 	 * if == 0 the player dies and the level restarts ;O
 	 */
 	unsigned int Health;

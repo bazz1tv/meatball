@@ -1,0 +1,89 @@
+\hypertarget{_collision_8h}{\section{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/\-Collision.h File Reference}
+\label{_collision_8h}\index{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/\-Collision.\-h@{C\-:/\-Documents and Settings/\-Administrator/\-My Documents/meatball/\-Meatball/include/\-Collision.\-h}}
+}
+{\ttfamily \#include \char`\"{}Globals.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_collisiondata}{Collisiondata}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{_collision_8h_a9b31fb28e326660cc99493d8dfcaeddf}{Collide\-Move} (\hyperlink{classc_basic_sprite}{c\-Basic\-Sprite} $\ast$Sprite, double velx, double vely, \hyperlink{struct_collisiondata}{Collisiondata} $\ast$Collision, unsigned int type)
+\begin{DoxyCompactList}\small\item\em Returns the Collision data if an Collision happened. \end{DoxyCompactList}\item 
+void \hyperlink{_collision_8h_aa23fb39e4288c47a643a3a68a2be8661}{Collide\-Move\-\_\-\-Meatball} (\hyperlink{classc_basic_sprite}{c\-Basic\-Sprite} $\ast$Sprite, double velx, double vely, \hyperlink{struct_collisiondata}{Collisiondata} $\ast$Collision, unsigned int type)
+\item 
+void \hyperlink{_collision_8h_a269c12dda4ca1e0abb17da6e04f45419}{Position\-Check} (int x, int y, int width, int height, \hyperlink{struct_collisiondata}{Collisiondata} $\ast$Collision, unsigned int type)
+\item 
+int \hyperlink{_collision_8h_a332c2344cba3fda8e66c629a2d9c82f5}{Get\-Collide} (S\-D\-L\-\_\-\-Rect $\ast$r1, S\-D\-L\-\_\-\-Rect $\ast$r2)
+\begin{DoxyCompactList}\small\item\em Returns the collision direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{_collision_8h_a9b31fb28e326660cc99493d8dfcaeddf}{\index{Collision.\-h@{Collision.\-h}!Collide\-Move@{Collide\-Move}}
+\index{Collide\-Move@{Collide\-Move}!Collision.h@{Collision.\-h}}
+\subsubsection[{Collide\-Move}]{\setlength{\rightskip}{0pt plus 5cm}void Collide\-Move (
+\begin{DoxyParamCaption}
+\item[{{\bf c\-Basic\-Sprite} $\ast$}]{Sprite, }
+\item[{double}]{velx, }
+\item[{double}]{vely, }
+\item[{{\bf Collisiondata} $\ast$}]{Collision, }
+\item[{unsigned int}]{type}
+\end{DoxyParamCaption}
+)}}\label{_collision_8h_a9b31fb28e326660cc99493d8dfcaeddf}
+
+
+Returns the Collision data if an Collision happened. 
+
+
+
+Definition at line 5 of file Collision.\-cpp.
+
+\hypertarget{_collision_8h_aa23fb39e4288c47a643a3a68a2be8661}{\index{Collision.\-h@{Collision.\-h}!Collide\-Move\-\_\-\-Meatball@{Collide\-Move\-\_\-\-Meatball}}
+\index{Collide\-Move\-\_\-\-Meatball@{Collide\-Move\-\_\-\-Meatball}!Collision.h@{Collision.\-h}}
+\subsubsection[{Collide\-Move\-\_\-\-Meatball}]{\setlength{\rightskip}{0pt plus 5cm}void Collide\-Move\-\_\-\-Meatball (
+\begin{DoxyParamCaption}
+\item[{{\bf c\-Basic\-Sprite} $\ast$}]{Sprite, }
+\item[{double}]{velx, }
+\item[{double}]{vely, }
+\item[{{\bf Collisiondata} $\ast$}]{Collision, }
+\item[{unsigned int}]{type}
+\end{DoxyParamCaption}
+)}}\label{_collision_8h_aa23fb39e4288c47a643a3a68a2be8661}
+
+
+Definition at line 103 of file Collision.\-cpp.
+
+\hypertarget{_collision_8h_a332c2344cba3fda8e66c629a2d9c82f5}{\index{Collision.\-h@{Collision.\-h}!Get\-Collide@{Get\-Collide}}
+\index{Get\-Collide@{Get\-Collide}!Collision.h@{Collision.\-h}}
+\subsubsection[{Get\-Collide}]{\setlength{\rightskip}{0pt plus 5cm}int Get\-Collide (
+\begin{DoxyParamCaption}
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{r1, }
+\item[{S\-D\-L\-\_\-\-Rect $\ast$}]{r2}
+\end{DoxyParamCaption}
+)}}\label{_collision_8h_a332c2344cba3fda8e66c629a2d9c82f5}
+
+
+Returns the collision direction. 
+
+
+
+Definition at line 348 of file Collision.\-cpp.
+
+\hypertarget{_collision_8h_a269c12dda4ca1e0abb17da6e04f45419}{\index{Collision.\-h@{Collision.\-h}!Position\-Check@{Position\-Check}}
+\index{Position\-Check@{Position\-Check}!Collision.h@{Collision.\-h}}
+\subsubsection[{Position\-Check}]{\setlength{\rightskip}{0pt plus 5cm}void Position\-Check (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{int}]{y, }
+\item[{int}]{width, }
+\item[{int}]{height, }
+\item[{{\bf Collisiondata} $\ast$}]{Collision, }
+\item[{unsigned int}]{type}
+\end{DoxyParamCaption}
+)}}\label{_collision_8h_a269c12dda4ca1e0abb17da6e04f45419}
+Checks if the given position is valid if the Position is not valid it returns the direction 
+
+Definition at line 266 of file Collision.\-cpp.
+
