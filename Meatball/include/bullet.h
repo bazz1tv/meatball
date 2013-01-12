@@ -5,8 +5,6 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
-extern SDL_Surface *Screen;
-
 /// @defgroup BULLET_TYPES
 // @{
 // Bullet types

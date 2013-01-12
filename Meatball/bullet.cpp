@@ -1,7 +1,5 @@
-//#include "include\Globals.h"
-#include "SDL_ep.h"
-#include "effects.h"
-#include "bullet.h"
+#include "include\Globals.h"
+
 
 
 unsigned int BulletCount = 0;
