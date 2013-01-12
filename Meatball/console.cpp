@@ -3,6 +3,20 @@
 #include <string.h>
 
 using namespace std;
+#ifdef _WIN32
+#define strdup _strdup
+#endif
+
+void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax)
+{
+	cCMD* newCmd = new cCMD;
+	newCmd->handler = handler;
+	newCmd->syntax = syntax;
+	newCmd->helpstr = helpstr;
+	newCmd->command = command;
+	newCmd->next = head; 
+	head = newCmd;
+}
 
 cConsole :: cConsole( void )
 {	
@@ -26,83 +40,26 @@ cConsole :: cConsole( void )
 
 	// Init Font ////
 	Console_font = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 14, TTF_STYLE_BOLD );
-	////////////////
+	//
 
-	CMDList[0].command = "clear";
-	CMDList[0].handler = clearcon;
-	CMDList[0].helpstr = "Clears all strings in console";
-	CMDList[0].syntax  = "clear";
+	CMDList = NULL;
 
-	CMDList[1].command = "loadmap";
-	CMDList[1].handler = loadmap;
-	CMDList[1].helpstr = "Loads a map file into the game";
-	CMDList[1].syntax  = "loadmap [mapfile]";
-
-	CMDList[2].command = "mx";
-	CMDList[2].handler = SetMx;
-	CMDList[2].helpstr = "Sets Meatball's X coordinate";
-	CMDList[2].syntax  = "Mx [x]";
-
-	CMDList[3].command = "my";
-	CMDList[3].handler = SetMy;
-	CMDList[3].helpstr = "Sets Meatball's Y coordinate";
-	CMDList[3].syntax  = "my [y]";
-
-	CMDList[4].command = "mxy";
-	CMDList[4].handler = SetMxy;
-	CMDList[4].helpstr = "Sets Meatball's X & Y coordinate";
-	CMDList[4].syntax  = "Mxy [x y]";
-
-	CMDList[5].command = "play";
-	CMDList[5].handler = play;
-	CMDList[5].helpstr = "Plays a music file";
-	CMDList[5].syntax  = "play [musicfile]";
-
-	CMDList[6].command = "quit";
-	CMDList[6].handler = QuitAll;
-	CMDList[6].helpstr = "Quits the game";
-	CMDList[6].syntax  = "quit";
-
-	CMDList[7].command = "showfps";
-	CMDList[7].handler = ShowFPS;
-	CMDList[7].helpstr = "Displays or hides FPS";
-	CMDList[7].syntax  = "showFPS";
-
-	CMDList[8].command = "help";
-	CMDList[8].handler = help;
-	CMDList[8].helpstr = NULL;
-	CMDList[8].syntax  = NULL;
-
-	CMDList[9].command = "svol";
-	CMDList[9].handler = soundVol;
-	CMDList[9].helpstr = "Set Sounds Volumes";
-	CMDList[9].syntax = "svol [string_id] [0-128]";
-
-	CMDList[10].command = "mvol";
-	CMDList[10].handler = musicVol;
-	CMDList[10].helpstr = "Set Music Volumes";
-	CMDList[10].syntax = "mvol [0-128]";
-
-	CMDList[11].command = "allsvol";
-	CMDList[11].handler = allSoundsVol;
-	CMDList[11].helpstr = "Set ALL Sounds Channel Volumes";
-	CMDList[11].syntax = "allsvol [0-128]";
-
-	CMDList[12].command = "cd";
-	CMDList[12].handler = cd;
-	CMDList[12].helpstr = "change directory";
-	CMDList[12].syntax = "cd [dir]";
-
-	CMDList[13].command = "ls";
-	CMDList[13].handler = ls;
-	CMDList[13].helpstr = "List Directoy Contents";
-	CMDList[13].syntax = "ls [dir]";
-
-
-	CMDList[NUM_CMDS-1].command.clear();
-	CMDList[NUM_CMDS-1].handler = NULL;
-	CMDList[NUM_CMDS-1].helpstr = NULL;
-	CMDList[NUM_CMDS-1].syntax  = NULL;
+	/// [Console Commands]
+	Push(CMDList,	"clear",	clearcon,		"Clears all strings in console",	"clear"						);
+	Push(CMDList,	"loadmap",	loadmap,		"Loads a map file into the game",	"loadmap [mapfile]"			);
+	Push(CMDList,	"mx",		SetMx,			"Sets Meatball's X coordinate",		"Mx [x]"					);
+	Push(CMDList,	"my",		SetMy,			"Sets Meatball's Y coordinate",		"my [y]"					);
+	Push(CMDList,	"mxy",		SetMxy,			"Sets Meatball's X & Y coordinate",	"Mxy [x y]"					);
+	Push(CMDList,	"play",		play,			"Plays a music file",				"play [musicfile]"			);
+	Push(CMDList,	"quit",		QuitAll,		"Quits the game","quit"											);
+	Push(CMDList,	"showfps",	ShowFPS,		"Displays or hides FPS",			"showFPS"					);
+	Push(CMDList,	"help",		help,			"",									""							);
+	Push(CMDList,	"svol",		soundVol,		"Set Sounds Volumes",				"svol [string_id] [0-128]"	);
+	Push(CMDList,	"mvol",		musicVol,		"Set Music Volumes",				"mvol [0-128]"				);
+	Push(CMDList,	"allsvol",	allSoundsVol,	"Set ALL Sounds Channel Volumes",	"allsvol [0-128]"			);
+	Push(CMDList,	"cd",		cd,				"change directory",					"cd [dir]"					);
+	Push(CMDList,	"ls",		ls,				"List Directoy Contents",			"ls [dir]"					);
+	/// [Console Commands]
 
 	conx = 10.0;
 	cony = BG->height - 17;
@@ -121,6 +78,14 @@ cConsole :: ~cConsole( void )
 	if( Console_font ) 
 	{
 		TTF_CloseFont( Console_font );
+	}
+
+	cCMD *ptr = CMDList;
+	while (ptr != NULL)
+	{
+		cCMD *ptr2 = ptr->next;
+		delete ptr;
+		ptr = ptr2;
 	}
 
 }
@@ -333,15 +298,15 @@ bool cConsole :: CMDHandler( string cInput )
 
 	cCMD *ptr = CMDList;
 
-	while ( !ptr->command.empty() && ptr->handler )
+	while ( ptr != NULL )
 	{
-		if ( base == ptr->command )
+		if ( base == ptr->command || base.substr(1) == ptr->command )
 		{
 			ptr->handler( parm );
 			return true;
 		}
 
-		ptr++;
+		ptr = ptr->next;
 	}
 
 	return false;
@@ -387,20 +352,20 @@ bool cConsole :: helpCMD( string &str )
 	
 	sprintf( buffer, "Revealing information on CMD %s:", str.c_str() );
 
-	int j = 0;
-
-	while ( !CMDList[j].command.empty() )
+	//int j = 0;
+	cCMD *ptr = CMDList;
+	while ( ptr != NULL )
 	{
-		if ( CMDList[j].command == str)
+		if ( ptr->command == str)
 		{
 			console_print(buffer);
-			console_print(CMDList[j].helpstr);
-			console_print(CMDList[j].syntax);
+			console_print(ptr->helpstr.c_str());
+			console_print(ptr->syntax.c_str());
 			
 			return true;
 		}
 
-		j++;
+		ptr = ptr->next;
 	}
 
 	return false;
@@ -583,8 +548,8 @@ bool help( string &str )
 	{		
 		/** there are now more than 10 commands... too much for a screen full...
 			let's print 10 commands at a time then */
-		
-		while ( !pConsole->CMDList[j].command.empty() )
+		cCMD *ptr = pConsole->CMDList;
+		while ( ptr != NULL )
 		{
 			if (curline >= (NUM_LINES))
 			{
@@ -598,7 +563,8 @@ bool help( string &str )
 			}
 			 
 
-			console_print((char*)pConsole->CMDList[j++].command.c_str());
+			console_print((char*)ptr->command.c_str());
+			ptr = ptr->next;
 			curline++;
 		}
 
@@ -645,7 +611,7 @@ void wait_for_input()
 	}
 }
 
-void console_print(char *str)
+void console_print(const char *str)
 {
 	moveup();
 	pConsole->strcpy[0] = str;

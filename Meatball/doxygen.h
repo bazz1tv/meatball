@@ -3,6 +3,7 @@
 
 ///@defgroup Engine Engine
 // @{
+	/// @defgroup Engine_Meatball		Meatball
 	/// @defgroup Engine_Video			Video
 	/// @defgroup Engine_Sprite			Sprite
 	/// @defgroup Engine_Audio			Audio
