@@ -1,8 +1,13 @@
+/// @addtogroup Sprites
+// @{
+
 
 #ifndef __SPRITE_H__
 #define __SPRITE_H__
 
-/// Sprite Types
+/// @addtogroup SpriteTypes
+// @{
+// Sprite Types
 #define SPRITE_TYPE_NO_TYPE		0
 #define SPRITE_TYPE_PLAYER		1
 #define SPRITE_TYPE_MASSIVE		2
@@ -11,6 +16,7 @@
 #define SPRITE_TYPE_BULLET		5
 #define SPRITE_TYPE_PARTICLE	6
 #define SPRITE_TYPE_ENEMY		7
+// @}
 
 class cMVelSprite : public cVelocitySprite
 {
@@ -25,14 +31,14 @@ public:
 	SDL_Rect GetRect( bool with_camerapos = 0 );
 
 	/** The Type
-	 * 0 = No Type
-	 * 1 = Player
-	 * 2 = Sprite Massive
-	 * 3 = Sprite Passive
-	 * 4 = Sprite Halfmassive
-	 * 5 = Sprite Bullet
-	 * 6 = ?
-	 * 7 = ?
+	 * 0 = No Type			<br>
+	 * 1 = Player			<br>
+	 * 2 = Sprite Massive	<br>
+	 * 3 = Sprite Passive	<br>
+	 * 4 = Sprite Halfmassive	<br>
+	 * 5 = Sprite Bullet		<br>
+	 * 6 = ?				<br>
+	 * 7 = ?				<br>
 	 *
 	 */
 	int type;
@@ -55,15 +61,15 @@ public:
 
 	SDL_Rect GetRect( bool with_camerapos = 0 );
 
-	/** The Type
-	 * 0 = No Type
-	 * 1 = Player
-	 * 2 = Sprite Massive
-	 * 3 = Sprite Passive
-	 * 4 = Sprite Halfmassive
-	 * 5 = Sprite Bullet
-	 * 6 = ?
-	 * 7 = ?
+	/** The Type				<br>
+	 * 0 = No Type				<br>
+	 * 1 = Player				\n
+	 * 2 = Sprite Massive		\n
+	 * 3 = Sprite Passive		\n
+	 * 4 = Sprite Halfmassive	\n
+	 * 5 = Sprite Bullet		\n
+	 * 6 = ?					\n
+	 * 7 = ?					\n
 	 *
 	 */
 	int type;
@@ -75,3 +81,4 @@ public:
 };
 
 #endif
+// @}

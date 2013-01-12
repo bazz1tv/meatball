@@ -1,6 +1,6 @@
 
 #include "include\Globals.h"
-#include "include\MeatBall.h"
+#include "include\Game.h"
 #include "playlist.h"
 
 
@@ -79,11 +79,11 @@ int MeatBall( void )
 	{
 		if ( !paused )
 		{
-			MeatBall_Events();
-			MeatBall_Input();
-			MeatBall_Update();
+			Game_Events();
+			Game_Input();
+			Game_Update();
 		}
-			MeatBall_Draw();
+			Game_Draw();
 	}
 
 	if( done != 2 )
@@ -98,7 +98,7 @@ int MeatBall( void )
 }
 
 /** Calls a LUT array of function pointers to different handlers depending on Game mode */
-void MeatBall_Events( void )
+void Game_Events( void )
 {
 
 	(*eventhandlers[mode])();
@@ -288,7 +288,7 @@ void console_ehandler(void)
 }
 
 static int specialpastecounter=0;
-void MeatBall_Input( void )
+void Game_Input( void )
 {
 	if( mode == MODE_GAME ) 
 	{
@@ -390,7 +390,7 @@ void MeatBall_Input( void )
 	}
 }
 
-void MeatBall_Update( void )
+void Game_Update( void )
 {	
 	pFramerate->SetSpeedFactor(); // Update
 	
@@ -417,7 +417,7 @@ void MeatBall_Update( void )
 	}
 }
 
-void MeatBall_Draw( void )
+void Game_Draw( void )
 {
 	SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 60, 0, 0 ) );
 

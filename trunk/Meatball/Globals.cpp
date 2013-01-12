@@ -1,6 +1,6 @@
 
 #include "include\Globals.h"
-#include "include\MeatBall.h"
+#include "include\Game.h"
 #include "include\MainMenu.h"
 
 using namespace std;

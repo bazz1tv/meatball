@@ -7,7 +7,7 @@
 #include "boost/progress.hpp"
 
 #include "include\Globals.h"
-#include "include\MeatBall.h"
+#include "include\Game.h"
 
 #include "boost.h"
 
