@@ -1,11 +1,18 @@
+/** @addtogroup Guns
+ @{
+ */
+
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
-/// Bullet types
+/// @defgroup BulletTypes Bullet Types 
+// @{
+// Bullet types
 #define BULLET_UNKNOWN			0
 #define BULLET_PISTOL			1
 #define BULLET_MACHINEGUN		2
 #define BULLET_LASER_X1			3
+// @}
 
 class cBullet : public cMVelSprite
 {
@@ -61,3 +68,5 @@ void DrawBullets( void );
 void DeleteAllBullets( void );
 
 #endif
+
+// @}

@@ -1,4 +1,6 @@
-
+/** @addtogroup LevelEditor
+ @{
+ */
 #ifndef __LEVELEDITOR_H__
 #define __LEVELEDITOR_H__
 
@@ -6,12 +8,15 @@
 
 void leveleditor_eventhandler(void);
 
-/// The Current Mouse Command
+/// @defgroup Mouse_Cmd Mouse Commands
+// @{
+// The Current Mouse Command
 #define MOUSE_COMMAND_NOTHING 0
 #define MOUSE_COMMAND_MOVING 1
 #define MOUSE_COMMAND_FASTCOPY 2
+// @}
 
-/// The Leveleditor as an ingame implementation
+/// The Leveleditor as an ingame implementation.
 class cLevelEditor
 {
 public:
@@ -74,3 +79,5 @@ public:
 };
 
 #endif
+
+// @}

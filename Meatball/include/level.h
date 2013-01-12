@@ -1,4 +1,7 @@
-
+/** @addtogroup Level
+ 
+*/
+/*@{*/
 #ifndef __LEVEL_H__
 #define __LEVEL_H__
 
@@ -69,5 +72,5 @@ private:
 	/// Parses the Command and also reports any Error
 	int ParseLine( char ** parts, unsigned int count, unsigned int line );
 };
-
+/*@}*/
 #endif

@@ -1,14 +1,19 @@
-
+/** @addtogroup Guns
+ @{
+ */
 #ifndef __WEAPON_H__
 #define __WEAPON_H__
 
 #include "include\Globals.h"
 
-/// Weapon types
+/// @defgroup WeaponTypes Weapon Types 
+//@{
+// Weapon types
 #define WEAPON_UNKNOWN 0
 #define WEAPON_PISTOL 1
 #define WEAPON_MACHINEGUN 2
 #define WEAPON_LASER_X1 3
+// @}
 
 /// The Basic Weapon class
 class cWeapon : public cBasicSprite
@@ -54,7 +59,7 @@ public:
 };
 
 
-///########## The Pistol #########
+//########## The Pistol #########
 
 class cWeapon_Pistol : public cWeapon
 {
@@ -65,7 +70,7 @@ public:
 	void Fire( void );
 };
 
-///########## The Machinegun #########
+//########## The Machinegun #########
 
 class cWeapon_Machinegun : public cWeapon
 {
@@ -76,7 +81,7 @@ public:
 	void Fire( void );
 };
 
-///########## Laser X-1 #########
+//########## Laser X-1 #########
 
 class cWeapon_Laser_X1 : public cWeapon
 {
@@ -88,3 +93,5 @@ public:
 };
 
 #endif
+
+// @}
