@@ -1,7 +1,8 @@
-
+/// @addtogroup Engine_Video
+// @{
 /** 
 
-	video.h  -  Video Initialization and other
+	@file video.h  Video Initialization and other
 
 	V 1.1
 
@@ -26,3 +27,4 @@ DLLINTERFACE void SetWindowIcon( SDL_Surface *Icon, Uint8 *Imask = NULL );
 DLLINTERFACE void QuitSDL( void );
 
 #endif
+// @}

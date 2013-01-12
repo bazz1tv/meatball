@@ -68,7 +68,7 @@ void cWeapon_Pistol :: Fire( void )
 	// Add an Pistol Bullet
 	AddBullet( posx, posy, direction, BULLET_PISTOL, Origin );
 
-	timer = 8;
+	timer = 10;
 }
 
 // ##################### The Machinegun ###########################

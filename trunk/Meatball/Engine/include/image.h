@@ -1,6 +1,8 @@
+/// @addtogroup Engine_Image
+// @{
 /** 
 
-	image.h  -  Image
+	@file image.h  Image
 
 	V 1.1.1
 
@@ -50,3 +52,4 @@ DLLINTERFACE SDL_Surface *CreateSurface( unsigned int width, unsigned int height
 						   Uint32 flags = SDL_SWSURFACE | SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA );	/// V 1.2.0
 
 #endif
+// @}

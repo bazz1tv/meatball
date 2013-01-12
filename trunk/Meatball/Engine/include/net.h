@@ -1,6 +1,8 @@
+/// @addtogroup Engine_Net
+// @{
 /** 
 
-	net.h  -  Network class for Server and Multiple Client Connections
+	@file net.h  Network class for Server and Multiple Client Connections
 
 	V 2.1 Beta 150
 
@@ -179,3 +181,4 @@ public:
 };
 
 #endif
+// @}

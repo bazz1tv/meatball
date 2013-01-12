@@ -5,7 +5,7 @@
 
 #include "include\Globals.h"
 
-/// @defgroup PlayerStates Player States
+/// @defgroup PLAYER_STATES
 // @{
 #define STATE_STAYING 0
 #define STATE_WALKING 1

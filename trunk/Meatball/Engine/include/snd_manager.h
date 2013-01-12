@@ -1,7 +1,8 @@
-
+/// @addtogroup Engine_Snd_Manager
+// @{
 /** 
 
-	snd_manager.h  -  Sound Handler/Manager
+	@file snd_manager.h  Sound Handler/Manager
 
 	V 1.1
 
@@ -75,3 +76,4 @@ private:
 };
 
 #endif
+// @}

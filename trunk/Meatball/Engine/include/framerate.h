@@ -1,5 +1,7 @@
+/// @addtogroup Engine_Framerate
+// @{
 /** 
-	framerate.h  -  framerate independent Framerate class ;)
+	@file framerate.h  framerate independent Framerate class ;)
 	
 	The Speedfactor is the heart of this class. When it is set by SetSpeedFactor, 
 	it becomes a number with that you multiply all your motions. For instance, if the targetfps is 100,
@@ -97,3 +99,4 @@ inline void CorrectFrameTime( unsigned int fps = 32 )
 }
 
 #endif
+// @}

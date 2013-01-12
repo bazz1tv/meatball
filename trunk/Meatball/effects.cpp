@@ -1,5 +1,8 @@
 
-#include "include\Globals.h"
+//#include "include\Globals.h"
+#include "effects.h"
+#include "SDL_ep.h"
+
 
 cMParticleEmitter **ParticleEmitter = NULL;
 unsigned int ParticleEmitterCount = 0;

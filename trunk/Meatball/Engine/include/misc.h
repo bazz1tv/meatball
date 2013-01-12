@@ -1,7 +1,8 @@
-
+/// @addtogroup Engine_Misc
+// @{
 /** 
 
-	misc.h  -  Misc things
+	@file misc.h  Misc things
 
 	V 1.2
 
@@ -44,3 +45,5 @@ DLLINTERFACE bool RectIntersect( SDL_Rect *r1, SDL_Rect *r2 );
 DLLINTERFACE bool FullRectIntersect( SDL_Rect *r1, SDL_Rect *r2 );
 
 #endif
+
+// @}

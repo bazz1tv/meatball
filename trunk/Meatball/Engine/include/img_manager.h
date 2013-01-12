@@ -1,7 +1,8 @@
-
+/// @addtogroup Engine_Image_Manager
+// @{
 /** 
 
-	img_manager.h  -  Image Handler/Manager
+	@file img_manager.h  Image Handler/Manager
 
 	V 1.1
 
@@ -75,3 +76,4 @@ private:
 };
 
 #endif
+// @}

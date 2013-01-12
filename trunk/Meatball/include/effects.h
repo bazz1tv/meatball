@@ -2,7 +2,10 @@
 #ifndef __EFFECTS_H__
 #define __EFFECTS_H__
 
-#include "include\Globals.h"
+//#include "include\Globals.h"
+#include "SDL_ep.h"
+#include "sprite.h"
+extern SDL_Surface *Screen;
 
 /// The Particle class
 class cMParticle : public cMAngleSprite

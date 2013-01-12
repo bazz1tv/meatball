@@ -580,6 +580,10 @@
 			Name="Globals"
 			>
 			<File
+				RelativePath="..\include\defines.h"
+				>
+			</File>
+			<File
 				RelativePath="..\Globals.cpp"
 				>
 				<FileConfiguration
@@ -605,7 +609,7 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Meatball"
+			Name="Game"
 			>
 			<File
 				RelativePath="..\Game.cpp"

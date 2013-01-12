@@ -1,4 +1,5 @@
-
+/// @addtogroup Engine
+// @{
 /** 
 	@file SDL_ep.h
 	SDL_ep - Engine primitives for SDL
@@ -62,7 +63,7 @@ int DLLINTERFACE InitEP( void );
 #endif				/** _SDL_ep_h */
 
 /**
-	Todo :
+	@Todo :
 
 	Audio :
 	{
@@ -86,3 +87,4 @@ int DLLINTERFACE InitEP( void );
 
 	Sort of Effect functions which creates images with SGE !
 */
+// @}

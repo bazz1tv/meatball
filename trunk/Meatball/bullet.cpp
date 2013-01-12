@@ -1,4 +1,8 @@
-#include "include\Globals.h"
+//#include "include\Globals.h"
+#include "SDL_ep.h"
+#include "effects.h"
+#include "bullet.h"
+
 
 unsigned int BulletCount = 0;
 cBullet **Bullets = NULL;

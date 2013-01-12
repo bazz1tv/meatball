@@ -1,6 +1,8 @@
+/// @addtogroup Engine_Font
+// @{
 /** 
 
-	font.h  -  Font Class
+	@file font.h  Font Class
 
 	V 1.3
 
@@ -59,3 +61,4 @@ public:
 };
 
 #endif
+// @}

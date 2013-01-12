@@ -1,8 +1,9 @@
 #include "playlist.h"
+#include "SDL_ep.h"
 
-
-#include "Globals.h"
-
+//#include "Globals.h"
+#define MUSIC_DIR "data/music/"
+extern cAudio *pAudio;
 
 namespace Playlist
 {

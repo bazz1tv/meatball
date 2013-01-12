@@ -5,7 +5,7 @@
 
 using namespace std;
 
-/// SDL_ep classes
+// SDL_ep classes
 cFramerate *pFramerate;
 cImageManager *IMan;
 cSoundManager *SMan;
@@ -19,7 +19,7 @@ int done;
 /// if true the game if paused
 bool paused;
 
-/// Fonts
+// Fonts
 TTF_Font *Menu_Font;
 TTF_Font *bold_16;
 

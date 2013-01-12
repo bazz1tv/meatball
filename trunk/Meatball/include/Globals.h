@@ -8,6 +8,7 @@
 
 // Include the Engine
 #include <SDL_ep.h>
+#include "defines.h"
 
 // If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
 // note: relies on __VA_ARGS__ stackoverflow
@@ -43,35 +44,24 @@
 #define _STLP_DEBUG 1
 #endif
 
-// The Directorys
-#define PIXMAPS_DIR "data/pixmaps/"
-#define MUSIC_DIR "data/music/"
-#define SOUNDS_DIR "data/sound/"
-#define FONT_DIR "data/font/"
-#define LEVEL_DIR "data/levels/"
 
-// Player Directions
-#define LEFT	0
-#define RIGHT	1
-#define UP		2
-#define DOWN	3
-#define NONE	4
 
-// Modes
-#define MODE_MENU 0
-#define MODE_GAME 1
-#define MODE_LEVELEDITOR 2
-#define MODE_CONSOLE 3
-#define MODE_DEBUG 4		// Not implemented
-#define NUM_GAMEMODES	4
 
-// SDL_ep classes
+
+
+
+/// @addtogroup Engine
+/// Classes Meatball uses from the SDL_ep Engine Library.
+/// SDL_ep is the Home-grown engine that Meatball is built on. IT's still
+/// in development. Since it kind of develops alongside of meatball. It stands for Engine Primitives
+// @{
 extern cFramerate *pFramerate;
 extern cImageManager *IMan;
 extern cSoundManager *SMan;
 extern cFont *pFont;
 extern cAudio *pAudio;
 extern cTCPNet *pTCP;
+// @}
 
 /// finished with game or not?
 extern int done;
@@ -101,10 +91,6 @@ extern Uint32 colorkey;
 // Game Global Functions
 void StartGame( void );
 void QuitGame( void );
-//The Main menu
-//void Main_Menu( void );
-// Declared in MainMenu Module
-// 
 
 /// Toggle fullScreen
 int SDL_ToggleFS(SDL_Surface *surface);

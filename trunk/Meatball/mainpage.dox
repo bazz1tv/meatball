@@ -2,14 +2,14 @@
 @mainpage Summary
 
 Welcome to the Meatball Documentation! This is designed to help you get acquainted with the underlying code to Meatball.
+<p>
 
-Depending on your learning style, try one of the following:
+All of the classes and Functions have graphs illustrating inheritance and program flow. 
 
-1) See the code-flow of Meatball
-@see main()
-@see StartGame()
-@see Main_Menu()
-@see MeatBall()
-2) Check out the API in-your-face
+I have organized relevant pieces of information into groups under the "Modules" Tab.
+
+if you have any questions email mbazzinotti@gmail.com . I can use your input to help better form the documentation and help you learn.
+
+-Bazz
 
 */
