@@ -10,7 +10,14 @@
 #define STATE_FALLING 3
 #define STATE_FLYING  4
 
-/// The MeatBall Player class
+/// Keep track of the player's stats.
+
+/** Draw, update the player. Change his active weapon. Jump(), Fire() bullets,
+
+	Die, track directions and whether he's on the ground, health,
+
+*/
+
 class cPlayer : public cMVelSprite
 {
 public:
@@ -32,7 +39,7 @@ public:
 	/// Jump with the given Power
 	void Jump( int power = 5 );
 
-	/// Chnage the Active Weapon
+	/// Change the Active Weapon
 	void ChangeActiveWeapon( unsigned int Weapon_type );
 
 	/// Fires the specified Bullet

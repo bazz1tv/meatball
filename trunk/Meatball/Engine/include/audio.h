@@ -34,7 +34,7 @@ public:
 	DLLINTERFACE void ReserveChannels( int num );
 
 	/// Channels for Mixing.
-	DLLINTERFACE void AllocateChannels( int num ); /// Do not use !
+	DLLINTERFACE void AllocateChannels( int num ); ///< Do not use !
 	
 	/** Loads an sound
 	 *	if volume is -1 the default sound volume will be used
