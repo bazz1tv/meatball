@@ -73,7 +73,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="freetype_D.lib sge.lib sdl.lib "
+				AdditionalDependencies="freetype_D.lib sdl.lib "
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"

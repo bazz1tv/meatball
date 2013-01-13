@@ -44,6 +44,25 @@ void cLevelEditor :: Update( void )
 
 }
 
+void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
+{
+	SDL_Rect rect = {x,y,w,h};
+	SDL_FillRect(surface, &rect, color);
+}
+
+void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
+{
+	Uint8 alpha = color>>24;
+
+	SDL_Surface *sfc = SDL_CreateRGBSurface(SDL_SWSURFACE | SDL_ANYFORMAT, w, h, surface->format->BitsPerPixel, 0, 0, 0, 0);
+	SDL_FillRect(sfc, NULL, color);
+	SDL_SetAlpha(sfc, SDL_SRCALPHA, alpha);
+
+	SDL_Rect rect = {x,y,w,h};
+	SDL_BlitSurface(sfc,NULL,surface,&rect);
+	SDL_FreeSurface(sfc);
+}
+
 void cLevelEditor :: Draw( SDL_Surface *target )
 {
 	Uint32 Color;
@@ -59,12 +78,24 @@ void cLevelEditor :: Draw( SDL_Surface *target )
 	
 
 	// The HoveredObject Shadow
-	sge_RectAlpha( Screen ,HoveredObject.x + 1, HoveredObject.y + 1, HoveredObject.x + 1 + HoveredObject.w, 
-					HoveredObject.y + 1 + HoveredObject.h, 0, 0, 0, 128 );
+	// top line
+	FillRect(Screen, HoveredObject.x+1, HoveredObject.y+1, HoveredObject.w, 1, 0);
+	// Left Line
+	FillRect(Screen, HoveredObject.x+1, HoveredObject.y+1, 1, HoveredObject.h, 0);
+	// Bottom Line
+	FillRect(Screen, HoveredObject.x+1, HoveredObject.y+1+HoveredObject.h, HoveredObject.w, 1, 0);
+	// Right Line
+	FillRect(Screen, HoveredObject.x+1+HoveredObject.w, HoveredObject.y+1, 1, HoveredObject.h, 0);
 
-	// Draws an non Filled Rect with the HoveredObject rect size
-	sge_Rect( Screen ,HoveredObject.x, HoveredObject.y, HoveredObject.x + HoveredObject.w, 
-					HoveredObject.y + HoveredObject.h, Color );
+	// The HoveredObject Outline (white or blue depending on Fastcopy or just a selection)
+	// top line
+	FillRect(Screen, HoveredObject.x, HoveredObject.y, HoveredObject.w, 1, Color);
+	// Left Line
+	FillRect(Screen, HoveredObject.x, HoveredObject.y, 1, HoveredObject.h, Color);
+	// Bottom Line
+	FillRect(Screen, HoveredObject.x, HoveredObject.y+HoveredObject.h, HoveredObject.w, 1, Color);
+	// Right Line
+	FillRect(Screen, HoveredObject.x+HoveredObject.w, HoveredObject.y, 1, HoveredObject.h, Color);
 
 	if( CopyObject && !FullRectIntersect( &HoveredObject, &CopyObject->rect ) && Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
 	{

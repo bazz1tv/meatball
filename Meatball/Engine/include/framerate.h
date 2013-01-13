@@ -19,7 +19,7 @@
 #ifndef __EP_FRAMERATE_H__
 #define __EP_FRAMERATE_H__
 
-framerate independent Framerate class ;)
+///framerate independent Framerate class ;)
 
 /** The Speedfactor is the heart of this class. When it is set by SetSpeedFactor, 
 it becomes a number with that you multiply all your motions. For instance, 
