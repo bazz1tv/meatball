@@ -2,6 +2,7 @@
 // The purpose of this is to have one centralized location for group organization
 
 ///@defgroup Engine Engine
+/// The Engine Meatball runs on. Includes an Image manager and Sound Manager
 // @{
 	/// @defgroup Engine_Meatball		Meatball
 	/// @defgroup Engine_Video			Video
@@ -18,19 +19,36 @@
 // @}
 
 /// @defgroup Game
+/// Grouped functions related to the Game's Core
 // @{
-	///@defgroup GAME_MODES
-	/// @defgroup Game_Input Input
+	/// Modes of Gameplay
+	/// @defgroup GAME_MODE Game Modes
 // @}
 
-/**
- * @defgroup Level Levels
- *	Above are the classes the define Levels and their data. 
- *	@todo	How to Load level
- *	
- */
+/// @defgroup Input
+/// @ingroup Game
+// @{
+		
+		/// @defgroup Event_Handlers Event Handlers
+		///< Tracks events such as window resize, mouse down, static key presses
+		
+		/// @defgroup HeldKeys_Handlers HeldKey Handlers
+		///< Goes to a @link GAME_MODE @endlink specific handler to handle keys being held down.
+	
+// @}
+
+/// @defgroup Guns
+///< Weapons and Bullets information
+
+
+/// @defgroup Level Levels
+/// Levels and their data. 
+/// @todo	How to Load level
+
+
 
 /// @defgroup LevelEditor Level Editor
+/// How to Edit Levels, Todo etc.
 // @{
 	/// @defgroup LE_Input Input
 // @}
@@ -38,6 +56,7 @@
 
 /**
 @defgroup Player Working with the Player
+@brief Anything special relating to Player himself. The Star --MEATBALL--
 */
 // @{
 	/// @defgroup Camera
@@ -50,6 +69,7 @@
 // @}
 
 /// @defgroup Console
+/// In-game Console can track/manipulate variables and game phenomena
 // @{
 	/// @defgroup Console_Input Input
 // @}

@@ -229,13 +229,15 @@ void FramerateDraw( SDL_Surface *target, double posx /** = 5.0 */, double posy /
 	SDL_FreeSurface( image );
 }
 
-#define SDL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
+/// Queries the Screen if it's set to Full of Not
+/// @return 0 if windowed, 1 if fullscreen
 int IsFullScreen(SDL_Surface *surface) 
 { 
     if (surface->flags & SDL_FULLSCREEN) return 1; // return true if surface is fullscreen 
     return 0; // Return false if surface is windowed 
 } 
 
+/// Toggles On/Off FullScreen
 int SDL_ToggleFS(SDL_Surface *surface) 
 { 
     Uint32 flags = surface->flags; // Get the video surface flags 

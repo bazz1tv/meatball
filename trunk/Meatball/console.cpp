@@ -18,6 +18,8 @@ void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr
 	head = newCmd;
 }
 
+/// Gets the current working path, Loads the Background image to the Image Manager,
+/// Creates the console font, Push() all cCMDs to cConsole::CMDList, 
 cConsole :: cConsole( void )
 {	
 	full_path = ( fs::initial_path<fs::path>() );
@@ -39,7 +41,7 @@ cConsole :: cConsole( void )
 	/////////////////
 
 	// Init Font ////
-	Console_font = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 14, TTF_STYLE_BOLD );
+	Console_font = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 13, TTF_STYLE_BOLD );
 	//
 
 	CMDList = NULL;
@@ -62,12 +64,13 @@ cConsole :: cConsole( void )
 	/// [Console Commands]
 
 	conx = 10.0;
-	cony = BG->height - 17;
+	cony = BG->height - 14;
 
 	DrawCur = false;
 	ttDrawCur = SDL_GetTicks() + 500;
 }
 
+/// Delete the Background, close the font, Delete all commands from CMDList
 cConsole :: ~cConsole( void )
 {
 	if( BG ) 
@@ -90,6 +93,9 @@ cConsole :: ~cConsole( void )
 
 }
 
+/// The input Handler
+/// There is support for up/down input history,
+/// When you hit enter, sends the input to CMDHandler()
 void cConsole :: EventHandler( void )
 {
 	SDL_EnableUNICODE( 1 );
@@ -170,6 +176,7 @@ void cConsole :: EventHandler( void )
 	SDL_EnableUNICODE( 0 );
 }
 
+/// Updates background, Updates logic to draw the cursor or not (blinking underscore)
 void cConsole :: UpdateConsole( void )
 {
 	BG->Update();
@@ -181,19 +188,24 @@ void cConsole :: UpdateConsole( void )
 	}
 }
 
+/// Draws the BG, the input display and history displays, the blinking cursor
 void cConsole :: DisplayConsole( SDL_Surface *target )
 {
 	int i;
 	// display console BG
 	BG->Draw( target );
 	
-	static double y = 23.0;
+	#define topHistoryLine_Y 23.0;		// The top vertical coordinate for first line of input history
+	double history_y = topHistoryLine_Y;
+										// all lines are then seperated by HIST_VERTICAL_SEPERATION_PIXELS
+	#define CONSOLE_HIST_VERTICAL_SEPERATION_PIXELS 15.0
 	SDL_Rect conput_rect, strcpy_rect[11], cur_rect;
 	
 	SDL_Surface *conput = NULL;	// input display
-	SDL_Surface *sc[11];	// history displays
-	SDL_Surface *Cur = NULL;
+	SDL_Surface *sc[11];		// history displays
+	SDL_Surface *Cur = NULL;	// Cursor Display
 	
+	// Init all history displays to NULL
 	for( i = 0; i < 11; i++ )
 	{
 		sc[i] = NULL;
@@ -210,11 +222,13 @@ void cConsole :: DisplayConsole( SDL_Surface *target )
 	}
 
 	// Text Creation
-	if( !constr.empty() )
+	if( !constr.empty() )	// if we have input in our String...
 	{
+		// Use pfont to create Text to the conput SDL_Surface
 		conput = pFont->CreateText( constr.c_str(), Console_font );
 	}
 
+	// Fill the history Surfaces with any Text we have
 	for( i=0; i < 11; i++ )
 	{
 		if ( !strcpy[i].empty() )
@@ -224,31 +238,26 @@ void cConsole :: DisplayConsole( SDL_Surface *target )
 	}
 
 	// Rect specification
-
 	int curx = 0;
 	
+	// If we have input displayed
 	if( conput ) 
 	{
-		curx += conput->w;
+		curx += conput->w;	// Set cursor X coordinate to the end of that Surface
+		conput_rect = SetRect( (int)conx, (int)cony, conput->w, conput->h );
 	}
 	
 	cur_rect = SetRect( (int)(conx + curx), (int)cony-2, Cur->w, Cur->h );
-
-	if( conput )
-	{
-		conput_rect = SetRect( (int)conx, (int)cony, conput->w, conput->h );
-	}
 
 	for( i=0; i < 11; i++ )
 	{
 		if ( sc[i] )
 		{
-			strcpy_rect[i] = SetRect( (int)conx, (int)(cony - y), sc[i]->w, sc[i]->h );
-			y += 15.0;
+			strcpy_rect[i] = SetRect( (int)conx, (int)(cony - history_y), sc[i]->w, sc[i]->h );
+			history_y += CONSOLE_HIST_VERTICAL_SEPERATION_PIXELS;
 		}
 	}
 
-	y = 23.0;
 
 	// the actual drawing
 	SDL_BlitSurface( Cur, NULL, target, &cur_rect );
@@ -266,6 +275,8 @@ void cConsole :: DisplayConsole( SDL_Surface *target )
 		}
 	}
 	
+
+	// Free all used Surfaces
 	if ( Cur )
 	{
 		SDL_FreeSurface( Cur );
@@ -285,6 +296,11 @@ void cConsole :: DisplayConsole( SDL_Surface *target )
 	}
 }
 
+/// The Command Handler parses the input line for it's base (command) and it's parameters
+/// It then checks with all registered commands for a match
+/// If there's a match it will call the registered command's handler function with the parameters as a string argument
+
+/// @returns false on no match or base empty. true on a match
 bool cConsole :: CMDHandler( string cInput )
 {
 	string base = ParseBase( cInput );
@@ -312,6 +328,8 @@ bool cConsole :: CMDHandler( string cInput )
 	return false;
 }
 
+/// Strips the input line for only the base (first word)
+/// Strips by finding the first space character
 string cConsole :: ParseBase( string str )
 {
 	size_t found = str.find_first_of( ' ' );
@@ -326,6 +344,8 @@ string cConsole :: ParseBase( string str )
 	return str;
 }
 
+/// Finds the parameter by skipping the first word and first space character in the string
+/// The rest goes into the Parameter string, which is returned
 string cConsole :: ParseParm( string str )
 {
 	string empty("");

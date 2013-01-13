@@ -8,7 +8,7 @@ cCamera :: cCamera( void )
 
 	// default limits
 	Lleft = 0;
-	Lright = 10000;
+	Lright = 100000000;
 }
 
 cCamera :: ~cCamera( void )
@@ -80,7 +80,7 @@ void cCamera ::Limits_Check( void )
 		x = (double)Lleft;
 	}
 
-	if( y > 0 ) 
+	if( y > 0 ) // Will not let the camera go DOWN past 0.
 	{
 		y = 0;
 	}

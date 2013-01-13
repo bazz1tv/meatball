@@ -119,10 +119,10 @@ void cMParticle :: Update( void )
 	}
 }
 
-void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
+/*void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
 {
     int bpp = surface->format->BytesPerPixel;
-    /* Here p is the address to the pixel we want to set */
+
     Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
 
 	//if (y * surface->pitch +
@@ -168,7 +168,7 @@ void _PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint32 color, Uint
 		Uint32 R,G,B,A=0;
 	
 		switch (surface->format->BytesPerPixel) {
-			case 1: { /* Assuming 8-bpp */
+			case 1: { // Assuming 8-bpp 
 				if( alpha == 255 ){
 					*((Uint8 *)surface->pixels + y*surface->pitch + x) = color;
 				}else{
@@ -190,7 +190,7 @@ void _PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint32 color, Uint
 			}
 			break;
 
-			case 2: { /* Probably 15-bpp or 16-bpp */		
+			case 2: { // Probably 15-bpp or 16-bpp 		
 				if( alpha == 255 ){
 					*((Uint16 *)surface->pixels + y*surface->pitch/2 + x) = color;
 				}else{
@@ -208,7 +208,7 @@ void _PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint32 color, Uint
 			}
 			break;
 
-			case 3: { /* Slow 24-bpp mode, usually not used */
+			case 3: { // Slow 24-bpp mode, usually not used 
 				Uint8 *pix = (Uint8 *)surface->pixels + y * surface->pitch + x*3;
 				Uint8 rshift8=surface->format->Rshift/8;
 				Uint8 gshift8=surface->format->Gshift/8;
@@ -250,7 +250,7 @@ void _PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint32 color, Uint
 			}
 			break;
 
-			case 4: { /* Probably 32-bpp */
+			case 4: { // Probably 32-bpp 
 				if( alpha == 255 ){
 					*((Uint32 *)surface->pixels + y*surface->pitch/4 + x) = color;
 				}else{
@@ -281,7 +281,7 @@ void sge_PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint32 color, U
 
 	_PutPixelAlpha(surface,x,y,color,alpha);
 	
-	/* unlock the display */
+	// unlock the display 
 	if (SDL_MUSTLOCK(surface)) {
 		SDL_UnlockSurface(surface);
 	}
@@ -300,20 +300,13 @@ void sge_PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint8 R, Uint8 
 {
   sge_PutPixelAlpha(surface,x,y, SDL_MapRGB(surface->format, R, G, B), alpha);
 }
-
+*/
 void cMParticle :: Draw( SDL_Surface *target )
 {
 	if( !visible ) 
 	{
 		return;
 	}
-
-	/*if (SDL_LockSurface(target) == 0)
-	{
-		putpixel(target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), SDL_MapRGBA(target->format, (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha ));
-		SDL_UnlockSurface(target);
-	}*/
-
 	
 	
 	sge_PutPixelAlpha( target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );

@@ -15,13 +15,13 @@
 /// <br><br><b>Format</b>: cConsole::CMDList, "Command Name", function name, "help string", "syntax"
 /// @snippet console.cpp Console Commands
 // @{
-bool clearcon( string &str ); ///< Clears the console
+bool clearcon( string &str );	///< Clears the console
 bool loadmap( string &str );	///< Load a new Level from @link LEVEL_DIR @endlink
 bool SetMx( string &str );		///< Set Meatball's X Coordinate
 bool SetMy( string &str );		///< Set Meatball's Y Coordinate
 bool SetMxy( string &str );		///< Set Meatball (X,Y) coordinate
 bool play( string &str );		///< Play a song from the @link MUSIC_DIR @endlink
-bool QuitAll( string &str);		///<
+bool QuitAll( string &str);		///< Quit the Game
 bool ShowFPS( string & str);	///< Toggle FPS framerate to be displayed
 bool help( string &str );		///< bring up help on all commands or specific command
 bool soundVol(string &str);		///< change the volume of a sound (0-128)
@@ -42,19 +42,19 @@ void wait_for_input();
 void console_print(const char *str);
 
 
-
+/// This structure is for each Command to the Console
 struct cCMD
 {
-	bool ( *handler )( string &str );	// Function pointer
+	bool ( *handler )( string &str );	///< Function pointer to Command's function
 
-	string command;						// string to identify command
-	string helpstr;
-	string syntax;
-	cCMD *next;
+	string command;						///< The string to identify the command
+	string helpstr;						///< This string is shown when you do "help [command]"
+	string syntax;						///< The syntax to the command. Shown when you ask for help
+	cCMD *next;							///< next command in the linked list
 };
 
 /** Linked List push function. */
-/// This pushes a new cCMD onto the linked list of CMDList
+/// This pushes a new cCMD onto the linked list: @see cConsole::CMDList
 void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax);
 
 class cConsole
