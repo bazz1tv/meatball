@@ -27,11 +27,15 @@ public:
 	/// Camera Limits
 	int Lleft, Lright;
 
-	///
-	///bool camera_moved;
+	//
+	//bool camera_moved;
 
 private:
-	void Limits_Check( void );
+	void Limits_Check( void );	///< Checks the Left/Right/Up/Down boundaries
+								///< Currently No Up boundary is set
+								///< Currently The down boundary is 0.
+	///< @note You could make the camera more powerful by specifying up/down boundary variables
+								///< @see Lleft Lright
 };
 
 #endif

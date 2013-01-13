@@ -33,7 +33,7 @@ typedef struct
 
 } Collisiondata;
 
-/// Returns the Collision data if an Collision happened
+/// Returns the Collision data if a Collision happened
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
 
 void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
