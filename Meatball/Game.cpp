@@ -3,52 +3,63 @@
 #include "include\Game.h"
 #include "playlist.h"
 
-
-typedef void (*EventHandlers)(void);
-EventHandlers eventhandlers[NUM_GAMEMODES];
+// [EHandling Code]
+typedef void (*Event_Handlers)(void);
+typedef void (*Heldkey_Handlers)(void);
+Event_Handlers eventhandlers[NUM_GAMEMODES];
+Heldkey_Handlers HeldKeys_Handlers[NUM_GAMEMODES];
+// [EHandling Code]
 
 int main( void )
 {
-	
+	SetWindowCaption( "MeatBall - Vegetable Destruction" );
 	InitEP();
 	
 	InitSDL( SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE );
 	
-	pPreferences = new cPreferences();
-	pGameSettings = new cSettings();
+	pPreferences	= new cPreferences();
+	pGameSettings	= new cSettings();
 
 	pPreferences->Load();
 	pPreferences->Apply();
 
 	/* new code */
-	screeninfo = SDL_GetVideoInfo();
+	screeninfo	= SDL_GetVideoInfo();
 
-	Screen = InitScreen( pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pGameSettings->Fullscreen, SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE );
+	Screen		= InitScreen( pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pGameSettings->Fullscreen, SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE );
 
-	keys = SDL_GetKeyState( NULL );
-	SetWindowCaption( "MeatBall - Vegetable Destruction" );
+	keys		= SDL_GetKeyState( NULL );
+
+	
 
 	pFramerate = new cFramerate( 60 );
 	SetSpriteSpeedfactor( &pFramerate->speedfactor );
 
-	IMan = new cImageManager();
-	SMan = new cSoundManager();
+	IMan	= new cImageManager();
+	SMan	= new cSoundManager();
 	
-	pFont = new cFont();
+	pFont	= new cFont();
 	
 	pAudio = new cAudio();
-	pAudio->bMusic = pGameSettings->Music;
-	pAudio->bSounds = pGameSettings->Sounds;
+	pAudio->bMusic		 = pGameSettings->Music;
+	pAudio->bSounds		 = pGameSettings->Sounds;
 	pAudio->Sound_Volume = pGameSettings->svol;
 	pAudio->Music_Volume = pGameSettings->mvol;
 	pAudio->InitAudio();
 	
+	// Assign the Event Handlers by GAME_MODE
+	// [EHandler Code]
+	eventhandlers[MODE_MENU]		= &menu_ehandler;
+	eventhandlers[MODE_GAME]		= &game_ehandler;
+	eventhandlers[MODE_LEVELEDITOR] = &leveleditor_ehandler;
+	eventhandlers[MODE_CONSOLE]		= &console_ehandler;
+	// [EHandler Code]
 
-	eventhandlers[MODE_MENU] = &menu_ehandler;
-	eventhandlers[MODE_GAME] = &game_ehandler;
-	eventhandlers[MODE_LEVELEDITOR] = &leveleditor_eventhandler;
-	eventhandlers[MODE_CONSOLE] = &console_ehandler;
-	
+	HeldKeys_Handlers[MODE_MENU]			= &menu_heldkeys_handler;
+	HeldKeys_Handlers[MODE_GAME]			= &game_heldkeys_handler;
+	HeldKeys_Handlers[MODE_CONSOLE]		= &console_heldkeys_handler;
+	HeldKeys_Handlers[MODE_LEVELEDITOR]	= &leveleditor_heldkeys_handler;
+
 	mode = MODE_MENU;
 
 	StartGame();
@@ -58,7 +69,7 @@ int main( void )
 	return 0;
 }
 
-/* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
+/*  */
 
 int MeatBall( void )
 {
@@ -79,8 +90,8 @@ int MeatBall( void )
 	{
 		if ( !paused )
 		{
-			Game_Events();
-			Game_Input();
+			Call_Specific_Events_Handler();
+			Call_Specific_HeldKeys_Handler();
 			Game_Update();
 		}
 			Game_Draw();
@@ -98,10 +109,16 @@ int MeatBall( void )
 }
 
 /** Calls a LUT array of function pointers to different handlers depending on Game mode */
-void Game_Events( void )
+void Call_Specific_Events_Handler( void )
 {
 
 	(*eventhandlers[mode])();
+}
+
+/// Calls a LUT array of function pointers to different Handlers depending on GAME_MODE */
+void Call_Specific_HeldKeys_Handler( void )
+{
+	(*HeldKeys_Handlers[mode])();
 }
 
 /// Main menu has its own Event handler, so this one is blank.
@@ -110,8 +127,6 @@ void menu_ehandler()
 	// need a blank handler for modes with no events
 }
 
-/// @addtogroup Game_Input
-// @{
 void game_ehandler()
 {
 	while ( SDL_PollEvent( &event ) )
@@ -120,20 +135,7 @@ void game_ehandler()
 		{
 		case SDL_VIDEORESIZE:
 			{
-				//double monitorAspectRatio = screeninfo->current_w / screeninfo->current_h;//screenHeight;
-				//double imageAspectRatio = 800.0 / 600.0;
-				//
-				/*if(monitorAspectRatio > imageAspectRatio) {
-					 // Here monitor is wider than the image, so the height of the target rectangle should be the screen height, but not stretching all the way to the left/right
-					top = 0;
-					height = screenHeight;
-					width = height * imageAspectRatio;
-					left = screenWidth/2 - width/2;
-				}
-				else {
-				// The opposite, left/width is the whole screen, but you don't stretch all the way up/down
-					...
-				}*/
+				
 				 //Resize the screen
 				Screen = SDL_SetVideoMode( event.resize.w, event.resize.h, pGameSettings->Screen_Bpp, SDL_CUSTOM_FLAGS );
 				//If there's an error
@@ -282,7 +284,6 @@ void game_ehandler()
 		}
 	}
 }
-// @}
 
 /** Calls the cConsole::EventHandler().
 
@@ -299,110 +300,77 @@ void console_ehandler(void)
 	pConsole->EventHandler(); // Nanananan foo foo ;P
 }
 
-static int specialpastecounter=0;
-
-/// @ingroup Game_Input
-void Game_Input( void )
+void menu_heldkeys_handler()
 {
-	if( mode == MODE_GAME ) 
+}
+void game_heldkeys_handler()
+{
+	if( keys[SDLK_RIGHT] || keys[SDLK_d] ) 
 	{
-		if( keys[SDLK_RIGHT] || keys[SDLK_d] ) 
-		{
-			pPlayer->direction = RIGHT;
-		}
-		else if( keys[SDLK_LEFT] || keys[SDLK_a] ) 
-		{
-			pPlayer->direction = LEFT;
-		}
-
-		if( keys[SDLK_UP] || keys[SDLK_w] ) 
-		{
-			pPlayer->updown_pressed = UP;
-		}
-		else if( keys[SDLK_DOWN] || keys[SDLK_s] ) 
-		{
-			pPlayer->updown_pressed = DOWN;
-		}
-		else
-		{
-			pPlayer->updown_pressed = NONE;
-		}
-		
-		if( keys[SDLK_RCTRL] )
-		{
-			if( mode == MODE_GAME ) 
-			{
-				pPlayer->Fire( );
-			}
-		}
+		pPlayer->direction = RIGHT;
 	}
-	else if( mode == MODE_LEVELEDITOR ) 
+	else if( keys[SDLK_LEFT] || keys[SDLK_a] ) 
 	{
-		if( keys[SDLK_RIGHT] ) 
-		{
-			pCamera->Move( 10 * pFramerate->speedfactor, 0 );
-		}
-		else if( keys[SDLK_LEFT] ) 
-		{
-			pCamera->Move( -10 * pFramerate->speedfactor, 0 );
-		}
-		else if( keys[SDLK_UP] ) 
-		{
-			pCamera->Move( 0, -10 * pFramerate->speedfactor );
-		}
-		else if( keys[SDLK_DOWN] ) 
-		{
-			pCamera->Move( 0, 10 * pFramerate->speedfactor );
-		}
-		
-		
-		if ( keys[SDLK_e] )
-		{
-			pLevelEditor->DeleteObject();
-		}
-		else if (keys[SDLK_RALT])
-		{
-			if( keys[SDLK_d]) 
-			{
-				if (specialpastecounter++ == 0)
-				{
-					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x + pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
-					pCamera->Move( pLevelEditor->CopyObject->width, 0 );
-				}
-			}
-			else if( keys[SDLK_w] )
-			{
-				if (specialpastecounter++ == 0)
-				{
-					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x, pLevelEditor->CopyObject->posy - pCamera->y - pLevelEditor->CopyObject->height );
-					pCamera->Move( 0, - pLevelEditor->CopyObject->height );
-				}
-			}
-			else if( keys[SDLK_a] )
-			{
-				if (specialpastecounter++ == 0)
-				{
-					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x - pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
-					pCamera->Move( - pLevelEditor->CopyObject->width, 0 );
-				}
-			}
-			else if( keys[SDLK_s] )
-			{
-				if (specialpastecounter++ == 0)
-				{
-					pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx- pCamera->x , pLevelEditor->CopyObject->posy - pCamera->y + pLevelEditor->CopyObject->height );
-					pCamera->Move( 0, pLevelEditor->CopyObject->height );
-				}
-			}
+		pPlayer->direction = LEFT;
+	}
 
-			if (specialpastecounter == 40)
-					specialpastecounter = 0;
-
-
-			
+	if( keys[SDLK_UP] || keys[SDLK_w] ) 
+	{
+		pPlayer->updown_pressed = UP;
+	}
+	else if( keys[SDLK_DOWN] || keys[SDLK_s] ) 
+	{
+		pPlayer->updown_pressed = DOWN;
+	}
+	else
+	{
+		pPlayer->updown_pressed = NONE;
+	}
+	
+	if( keys[SDLK_RCTRL] )
+	{
+		if( mode == MODE_GAME ) 
+		{
+			pPlayer->Fire( );
 		}
 	}
 }
+void console_heldkeys_handler()
+{
+}
+void leveleditor_heldkeys_handler()
+{
+	if( keys[SDLK_RIGHT] ) 
+	{
+		pCamera->Move( 10 * pFramerate->speedfactor, 0 );
+	}
+	else if( keys[SDLK_LEFT] ) 
+	{
+		pCamera->Move( -10 * pFramerate->speedfactor, 0 );
+	}
+	else if( keys[SDLK_UP] ) 
+	{
+		pCamera->Move( 0, -10 * pFramerate->speedfactor );
+	}
+	else if( keys[SDLK_DOWN] ) 
+	{
+		pCamera->Move( 0, 10 * pFramerate->speedfactor );
+	}
+	
+	
+	if ( keys[SDLK_e] )
+	{
+		pLevelEditor->DeleteObject();
+	}
+	else if (keys[SDLK_RALT])
+	{
+		
+
+
+		
+	}
+}
+
 
 void Game_Update( void )
 {	

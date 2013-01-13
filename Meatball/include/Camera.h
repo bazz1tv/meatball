@@ -17,7 +17,7 @@ public:
 	/// Moves the Camera
 	void Move( double ax, double ay );
 	
-	void SetLimits( int nleft,int nright );
+	void SetLimits( int nleft,int nright ); ///< Not Implemented (yet)
 
 	/// Update the Camera
 	void Update( void );

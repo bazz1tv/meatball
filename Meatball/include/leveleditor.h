@@ -6,7 +6,10 @@
 
 #include "include\Globals.h"
 
-void leveleditor_eventhandler(void);
+/// @ingroup Event_Handlers
+void leveleditor_ehandler(void);
+
+
 
 /// @defgroup Mouse_Cmd Mouse Commands
 // @{

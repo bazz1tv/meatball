@@ -330,7 +330,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 }
 
 /** @ingroup LE_Input */
-void leveleditor_eventhandler()
+void leveleditor_ehandler()
 {
 	while ( SDL_PollEvent( &event ) )
 	{

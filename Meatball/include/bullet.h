@@ -11,7 +11,7 @@
 #define BULLET_UNKNOWN			0
 #define BULLET_PISTOL			1
 #define BULLET_MACHINEGUN		2
-#define BULLET_LASER_X1			3
+#define BULLET_LASER_X1			3	///< The laser X1 is pretty stupid imho and should be terminated
 // @}
 
 class cBullet : public cMVelSprite
