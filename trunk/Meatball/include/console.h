@@ -57,6 +57,7 @@ struct cCMD
 /// This pushes a new cCMD onto the linked list: @see cConsole::CMDList
 void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax);
 
+/// For Live In-game editing to the Game World and Variables
 class cConsole
 {
 public:
