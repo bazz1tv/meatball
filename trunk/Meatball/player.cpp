@@ -1,8 +1,12 @@
 
 #include "Globals.h"
 
-// The player won't fall any faster than this (pixels iirc)
-#define MAX_FALL_VELOCITY 8
+#include "defines.h"
+/* #define MAX_FALL_VELOCITY 8
+#define JUMP_KEYS_HELD		(keys[SDLK_LALT] || keys[SDLK_RALT] || keys[SDLK_SEMICOLON] || keys[SDLK_PERIOD] || keys[SDLK_m])
+#define MOVELEFT_KEYS_HELD	(keys[SDLK_LEFT] || keys[SDLK_a])
+#define MOVERIGHT_KEYS_HELD (keys[SDLK_RIGHT] || keys[SDLK_d]) */
+
 
 cPlayer :: cPlayer( double nposx, double nposy ) : cMVelSprite( NULL, nposx, nposy )
 {
@@ -96,7 +100,8 @@ void cPlayer :: Update( void )
 	}
 	
 	// Movement
-	if( direction == LEFT && (keys[SDLK_LEFT] || keys[SDLK_a]) && mode != MODE_CONSOLE )
+
+	if( direction == LEFT && MOVELEFT_KEYS_HELD && mode != MODE_CONSOLE )
 	{
 		if( onGround ) 
 		{
@@ -126,7 +131,7 @@ void cPlayer :: Update( void )
 			AddVelocity( -0.5*pFramerate->speedfactor, 0 );	
 		}
 	}
-	else if( direction == RIGHT && (keys[SDLK_RIGHT] || keys[SDLK_d]) && mode != MODE_CONSOLE ) 
+	else if( direction == RIGHT && MOVERIGHT_KEYS_HELD && mode != MODE_CONSOLE ) 
 	{
 		if( onGround ) 
 		{
@@ -213,7 +218,7 @@ void cPlayer :: Update( void )
 	}
 
 
-	if (state == STATE_JUMPING && !keys[SDLK_RALT] && vely < 0)
+	if (state == STATE_JUMPING && !JUMP_KEYS_HELD && vely < 0)
 	{
 		//jumpvel = 1;
 		vely +=0.10;
@@ -284,12 +289,15 @@ void cPlayer :: Reset( void )
 
 	ChangeActiveWeapon( WEAPON_PISTOL );
 }
+//
+
+
 
 void cPlayer :: Jump( int power /* = 5  */)
 {
 	if( jump_timer > 0  ) 
 	{
-		if( !keys[SDLK_LALT] && !keys[SDLK_RALT] ) 
+		if( !JUMP_KEYS_HELD ) 
 		{
 			jump_timer = 0;
 			jump_timer_power = 0;

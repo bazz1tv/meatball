@@ -3,6 +3,13 @@
 
 #define SDL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
 
+/* The PLAYER */
+/// The player won't fall any faster than this (pixels iirc)
+#define MAX_FALL_VELOCITY 8
+#define JUMP_KEYS_HELD		(keys[SDLK_LALT]  || keys[SDLK_RALT] || keys[SDLK_SEMICOLON] || keys[SDLK_PERIOD] || keys[SDLK_m])
+#define MOVELEFT_KEYS_HELD	(keys[SDLK_LEFT]  || keys[SDLK_a])
+#define MOVERIGHT_KEYS_HELD (keys[SDLK_RIGHT] || keys[SDLK_d])
+
 // The Directorys
 #define PIXMAPS_DIR "data/pixmaps/"
 #define MUSIC_DIR "data/music/"
