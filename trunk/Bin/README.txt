@@ -5,9 +5,13 @@ Meatball |
 Some Ascii art for meatball right here would be really coooooll
 
 
-Install |
---------
-Run INSTALL.bat -> This will install the Runtime libraries you need if you do not already have MSVC++ 2008
+Issues Running Meatball |
+-------------------------
+If you get any strange errors running Meatball. Please report them to mbazzinotti@gmail.com
+Optionally, you can try to resolve the issue by going to the "Optional" Folder and double clicking INSTALL.bat
+Run INSTALL.bat -> This will install the Runtime libraries you need if you do not already have MSVC++ 2008.
+I have done my best to ensure you don't need to install these libraries. But this is still in the test phase. So try
+installing them yourself and see if that helps. If not, I STRONGLY encourage you to email me : mbazzinotti@gmail.com
 
 
 Controls

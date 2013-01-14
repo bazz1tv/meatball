@@ -220,7 +220,7 @@ void Main_Menu( void )
 
 			done = MeatBall(); // The Game
 
-			pAudio->PlayMusik( MUSIC_DIR "main_menu.mod" );
+			pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3" );
 		}
 	}
 
