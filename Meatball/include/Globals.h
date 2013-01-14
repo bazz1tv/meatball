@@ -23,7 +23,7 @@
 #endif
 //--------------------------------
 
-#define SDL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
+
 
 // This following line takes out the command line window from your program :) 
 #ifndef _DEBUG

@@ -33,7 +33,7 @@ int main( void )
 	/* new code */
 	screeninfo	= SDL_GetVideoInfo();
 
-	Screen		= InitScreen( pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pGameSettings->Fullscreen, SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE );
+	Screen		= InitScreen( pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pGameSettings->Fullscreen, MEATBALL_CUSTOM_FLAGS );
 
 	keys		= SDL_GetKeyState( NULL );
 
@@ -148,7 +148,7 @@ void game_ehandler()
 			{
 				
 				 //Resize the screen
-				Screen = SDL_SetVideoMode( event.resize.w, event.resize.h, pGameSettings->Screen_Bpp, SDL_CUSTOM_FLAGS );
+				Screen = SDL_SetVideoMode( event.resize.w, event.resize.h, pGameSettings->Screen_Bpp, MEATBALL_CUSTOM_FLAGS );
 				//If there's an error
 				if( Screen == NULL )
 				{

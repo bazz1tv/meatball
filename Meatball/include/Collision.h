@@ -4,6 +4,12 @@
 
 #include "Globals.h"
 
+#define COLLISION_NONE	-1
+#define COLLISION_UDLR	1
+#define COLLISION_LR	2
+#define COLLISION_UD	3
+
+
 typedef struct
 {
 	/** The first direct Collision direction\n
