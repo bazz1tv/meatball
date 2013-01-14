@@ -3,6 +3,8 @@
 #include "include\Game.h"
 #include "playlist.h"
 
+#define JUMP_KEYS_TRIGGERED (event.key.keysym.sym == (SDLK_LALT) || event.key.keysym.sym == (SDLK_RALT) ||event.key.keysym.sym == SDLK_SEMICOLON || event.key.keysym.sym == SDLK_PERIOD || event.key.keysym.sym == SDLK_m)
+
 // [EHandling Code]
 typedef void (*Event_Handlers)(void);
 typedef void (*Heldkey_Handlers)(void);
@@ -12,11 +14,16 @@ Heldkey_Handlers HeldKeys_Handlers[NUM_GAMEMODES];
 
 int main( void )
 {
-	SetWindowCaption( "MeatBall - Vegetable Destruction" );
+	
 	InitEP();
-	
 	InitSDL( SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE );
-	
+	SetWindowCaption( "MeatBall - Vegetable Destruction" );
+	SDL_Surface* icon = SDL_LoadBMP("data/favicon.bmp");
+	Uint32 colorkey = SDL_MapRGB(icon->format, 128, 128, 128);
+	SDL_SetColorKey(icon, SDL_SRCCOLORKEY, colorkey);
+	SDL_WM_SetIcon(icon, NULL);
+
+
 	pPreferences	= new cPreferences();
 	pGameSettings	= new cSettings();
 
@@ -65,6 +72,9 @@ int main( void )
 	StartGame();
 
 	QuitGame();
+
+	SDL_FreeSurface(icon);
+	icon = NULL;
 
 	return 0;
 }
@@ -175,48 +185,31 @@ void game_ehandler()
 				}
 				else if( event.key.keysym.sym == SDLK_LCTRL || event.key.keysym.sym == SDLK_SPACE || event.key.keysym.sym == SDLK_l || event.key.keysym.sym == SDLK_COMMA )
 				{
-					//game mode code
-					
 					pPlayer->Fire( );
-					
 				}
-				else if( event.key.keysym.sym == (SDLK_LALT) || event.key.keysym.sym == (SDLK_RALT) ||event.key.keysym.sym == SDLK_SEMICOLON || event.key.keysym.sym == SDLK_PERIOD || event.key.keysym.sym == SDLK_m) 
+				else if( JUMP_KEYS_TRIGGERED )
 				{
-					//game mode code
-					
 					pPlayer->Jump();
-					
 				}
 				else if( event.key.keysym.sym == SDLK_1 )
 				{
-					//game mode code
-					
-					pPlayer->ChangeActiveWeapon( WEAPON_PISTOL );
-					
+					pPlayer->ChangeActiveWeapon( WEAPON_PISTOL );	
 				}
 				else if( event.key.keysym.sym == SDLK_2 ) 
 				{
-					//game mode code
-					
-					pPlayer->ChangeActiveWeapon( WEAPON_MACHINEGUN );
-					
+					pPlayer->ChangeActiveWeapon( WEAPON_MACHINEGUN );	
 				}
 				else if( event.key.keysym.sym == SDLK_3 ) 
 				{
-					//game mode code
-					
 					pPlayer->ChangeActiveWeapon( WEAPON_LASER_X1 );
-					
 				}
 				else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
 				{
 					oldmode = mode;
-					mode = MODE_CONSOLE;
-						
+					mode = MODE_CONSOLE;	
 				}
 				else if( event.key.keysym.sym == SDLK_F8 )
 				{
-					// game mode code
 					mode = MODE_LEVELEDITOR;
 				}
 
@@ -229,12 +222,10 @@ void game_ehandler()
 				
 				else if( event.key.keysym.sym == SDLK_F1 ) // Particle Test
 				{
-					//game mode
 					AddParticleEmitter( pPlayer->posx + ( pPlayer->width/2 ), pPlayer->posy + ( pPlayer->height/2 ) - 10, 9, 255, 250, 200, 0.01, 500, 5 );
 				}
 				else if( event.key.keysym.sym == SDLK_F2 ) // Enemy Test
 				{
-					//game mode
 					AddEnemy( 200, 0 + (double)( Screen->h/2 ), ENEMY_AF373 );
 				}
 				break;
@@ -243,20 +234,14 @@ void game_ehandler()
 			{
 				if( event.button.button == 1 ) // Left Mouse Button
 				{
-					//level editor mode
-						//pLevelEditor->SetMoveObject();
 					pPlayer->Fire();
 				}
 				else if( event.button.button == 2 ) // Middle Mouse Button
 				{
-					//level editor mode
-					//pLevelEditor->SetFastCopyObject();
 					
 				}
 				else if( event.button.button == 3 ) // Right Mouse Button
 				{
-					//level editor mode
-					//pLevelEditor->DeleteObject();
 					pPlayer->Jump();
 				}
 				break;					
@@ -265,14 +250,11 @@ void game_ehandler()
 			{
 				if( event.button.button == 1 ) // Left Mouse Button
 				{
-					//level editor mode
-					//pLevelEditor->Release_Command();
+					
 				}
 				else if( event.button.button == 2 ) // Middle Mouse Button
 				{
-					//level editor mode
-						//pLevelEditor->Release_Command();
-					//level editor mode
+					
 				}
 				else if( event.button.button == 3 ) // Right Mouse Button
 				{
