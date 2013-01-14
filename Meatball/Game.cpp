@@ -80,10 +80,11 @@ int MeatBall( void )
 	pPlayer->init();
 	pPlayer->Reset();
 
+	Mix_HookMusicFinished(Playlist::musicover); //  Call with NULL to remove the callback.
 	pLevel->Load( "test.lvl" );
 	string filename = MUSIC_DIR + pLevel->pLevelData->Musicfile;
 	pAudio->PlayMusik((char*)filename.c_str(), 1);
-	Mix_HookMusicFinished(Playlist::musicover); //  Call with NULL to remove the callback.
+	
 
 	
 	while( !done )

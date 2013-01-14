@@ -134,7 +134,7 @@
 				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SDL_EP_EXPORTS"
 				StringPooling="true"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				PrecompiledHeaderFile=".\Release/SDL_ep.pch"
 				AssemblerListingLocation=".\Release/"
@@ -157,7 +157,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\freetype\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl\lib\x86&quot;"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\freetype\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl\mt\lib\x86&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
