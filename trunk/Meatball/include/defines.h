@@ -1,7 +1,9 @@
 #ifndef __DEFINES_H__
 #define __DEFINES_H__
 
-#define SDL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
+#define MEATBALL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
+#define MEATBALL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
+
 
 /* The PLAYER */
 /// The player won't fall any faster than this (pixels iirc)
@@ -18,7 +20,7 @@
 #define LEVEL_DIR "data/levels/"
 
 // Player Directions
-/// @addtogroup PLAYER_DIRECTIONS
+/// @ingroup PLAYER_DIRECTIONS COLLISION_DIRECTIONS
 // @{
 #define LEFT	0
 #define RIGHT	1

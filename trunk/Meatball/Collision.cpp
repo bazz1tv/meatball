@@ -9,6 +9,8 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 	Collision->collide = -1;
 	Collision->direction = -1;
 
+	// Jan 15 2013.. Took out Velx from sprite->Width calculation here....................vvvvv
+	// initital tests show it's fine.
 	PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(velx + Sprite->width), (int)Sprite->height, Collision, type );
 	
 	if( Collision->collide == -1 )
@@ -27,40 +29,49 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 
 		if( vely != 0 )
 		{
-			movey = 1;
+			movey = 1;	// TRUE
 		}
 
 		if( velx != 0 )
 		{
-			movex = 1;
+			movex = 1;	// TRUE
 		}
 
-		while( movey || movex ) 
+		while( movey || movex ) // While there is movement 
 		{
 			if( movex )
 			{
 				PositionCheck( (int)( Sprite->posx + ( (fvelx > 0) ? (1) : (-1) ) ), (int)Sprite->posy, (int)Sprite->width, (int)Sprite->height, Collision, type  );
 				
-				if( Collision->collide == -1 )
+				if( Collision->collide == -1 )	// if no collisions
 				{
-					Sprite->posx += ((fvelx > 0) ? (1) : (-1));
+					Sprite->posx += ((fvelx > 0) ? (1) : (-1)); // Add the one
 
+					// But if the actual velocity is < 1, add that lesser value instead of 1
 					if((Sprite->posx > posx_old + fvelx && fvelx > 0) || (Sprite->posx < posx_old + fvelx && fvelx < 0) )
 					{
 						Sprite->posx = posx_old + fvelx;
-
-						movex = 0;
 					}
+					movex = 0;
 				}
-				else
+				else	// there was a collision
 				{
-					if( Collision->direction == -1 ) 
+
+					/** The direction of all Collisions\n
+	 * -1 = No Collision detected		<br>
+	 * 1 = Collision Up/Down/Left/Right	<br>
+	 * 2 = Collision in Left/Right		<br>
+	 * 3 = Collision Up/Down			<br>
+	 */
+
+
+					if( Collision->direction == COLLISION_NONE ) 
 					{
-						Collision->direction = 2;	// Collision Left/Right
+						Collision->direction = COLLISION_LR;	// Collision Left/Right
 					}
-					else if( Collision->direction == 3 ) 
+					else if( Collision->direction == COLLISION_UD ) 
 					{
-						Collision->direction = 1;	// Collision Up/Down/Left/Right
+						Collision->direction = COLLISION_UDLR;	// Collision Up/Down/Left/Right
 					}
 
 					movex = 0;
@@ -78,19 +89,18 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 					if((Sprite->posy > posy_old + fvely && fvely > 0) || (Sprite->posy < posy_old + fvely && fvely < 0)) 
 					{
 						Sprite->posy = posy_old + fvely;
-						
-						movey = 0;
 					}
+					movey = 0;
 				}
 				else
 				{
-					if( Collision->direction == -1 ) 
+					if( Collision->direction == COLLISION_NONE ) 
 					{
-						Collision->direction = 3;	// Collision Up/Down
+						Collision->direction = COLLISION_UD;	// Collision Up/Down
 					}
-					else if( Collision->direction == 2 ) 
+					else if( Collision->direction == COLLISION_LR ) 
 					{
-						Collision->direction = 1;	// Collision Up/Down/Left/Right
+						Collision->direction = COLLISION_UDLR;	// Collision Up/Down/Left/Right
 					}
 
 					movey = 0;
@@ -115,8 +125,8 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 
 	if (Collision->collide == 5)
 	{
-		printf("\nstrange unexplained Collision on Regular generic check.. Setting to Down Collision to get the movements checked\n");
-		Collision->collide = 3;
+		//printf("\nstrange unexplained Collision on Regular generic check.. Setting to Down Collision to get the movements checked\n");
+		Collision->collide = DOWN;
 	}
 	if( Collision->collide == -1 )
 	{
@@ -290,6 +300,7 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 
 	if( type == SPRITE_TYPE_PLAYER || type == SPRITE_TYPE_PARTICLE || type == SPRITE_TYPE_ENEMY || type == SPRITE_TYPE_BULLET ) 
 	{
+		// This seems to check all level sprites.. This should be optimized to only check for collision with on screen sprites
 		// Check for an Collision with an LevelObject
 		for( i = 0;i < pLevel->pLevelData->BasicSpriteCount;i++ )
 		{

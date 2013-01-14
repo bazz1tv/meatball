@@ -245,12 +245,12 @@ int SDL_ToggleFS(SDL_Surface *surface)
     if (IsFullScreen(surface)) 
     { 
         // Swith to WINDOWED mode 
-        if ((surface = SDL_SetVideoMode(SDL_WIN_SETTINGS, flags -= SDL_FULLSCREEN)) == NULL) return 0; 
+        if ((surface = SDL_SetVideoMode(MEATBALL_WIN_SETTINGS, flags -= SDL_FULLSCREEN)) == NULL) return 0; 
         return 1; 
     } 
     
     // Swith to FULLSCREEN mode 
-    if ((surface = SDL_SetVideoMode(SDL_WIN_SETTINGS, flags|SDL_FULLSCREEN)) == NULL) return 0; 
+    if ((surface = SDL_SetVideoMode(MEATBALL_WIN_SETTINGS, flags|SDL_FULLSCREEN)) == NULL) return 0; 
     return 1; 
 } 
 
