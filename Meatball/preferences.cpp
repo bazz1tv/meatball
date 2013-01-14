@@ -5,16 +5,23 @@ using namespace std;
 
 cSettings :: cSettings( void )
 {
-	Screen_Bpp = 32;
-	Screen_W = 800;
-	Screen_H = 600;
+	Screen_Bpp			= 32;
+	Screen_W			= 800;
+	Screen_H			= 600;
 
-	Fullscreen = 0;
+	Fullscreen			= 0;
 
-	Music = 1;
-	Sounds = 1;
-	svol = 40;
-	mvol=128;
+	Music				= 1;
+	Sounds				= 1;
+	svol				= 40;
+	mvol				= 128;
+
+	Key_walk_left		= SDLK_a;
+	Key_walk_right		= SDLK_d;
+	Key_shoot_primary	= SDLK_RCTRL;
+	Key_jump			= SDLK_RALT;
+
+
 }
 
 cSettings :: ~cSettings( void )
@@ -48,6 +55,12 @@ void cSettings :: Update( cSettings *Settings )
 	Screen_H = Settings->Screen_H;
 	Screen_W = Settings->Screen_W;
 	svol = Settings->svol;
+
+	Key_walk_left = Settings->Key_walk_left;
+	Key_walk_right = Settings->Key_walk_right;
+	Key_shoot_primary = Settings->Key_shoot_primary;
+	Key_jump = Settings->Key_jump;
+	//Key_shoot_secondary = Settings->Key_shoot_secondary;
 }
 
 cPreferences :: cPreferences( void )
@@ -145,6 +158,20 @@ void cPreferences :: Save( void )
 
 	sprintf( row, "mvol %d\n", pSettings->mvol );
 	ofs.write( row, strlen( row ) );
+
+	sprintf( row, "WalkLeft %d\n", pSettings->Key_walk_left );
+	ofs.write( row, strlen( row ) );
+
+	sprintf( row, "WalkRight %d\n", pSettings->Key_walk_right );
+	ofs.write( row, strlen( row ) );
+
+	sprintf( row, "Jump %d\n", pSettings->Key_jump );
+	ofs.write( row, strlen( row ) );
+
+	sprintf( row, "FirePrimary %d\n", pSettings->Key_shoot_primary );
+	ofs.write( row, strlen( row ) );
+
+	//Key_walk_left,Key_walk_right,Key_shoot_primary,Key_shoot_secondary;
 
 	ofs.close();
 }
@@ -292,7 +319,7 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 	}
 	else if ( strcmp( parts[0], "svol") == 0 )
 	{
-		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > 32 )
+		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > 128 )
 		{
 			return 0; // error
 		}
@@ -303,13 +330,65 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 	}
 	else if ( strcmp( parts[0], "mvol") == 0 )
 	{
-		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > 32 )
+		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > 128 )
 		{
 			return 0; // error
 		}
 		else
 		{
 			pSettings->mvol = atoi( parts[1] );
+		}
+	}
+	// You will notice the following are for the Player's KEYboard preferences
+	// According to SDL_keysym.h the bounds of the keys enum SDL_Keys is from 0 -> SDLK_LAST
+	// So in this way, we perform bounds checking
+	else if ( strcmp( parts[0], "WalkLeft") == 0 )
+	{
+		// See above description
+		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		{
+			return 0; // error
+		}
+		else
+		{
+			pSettings->Key_walk_left = atoi( parts[1] );
+		}
+	}
+	else if ( strcmp( parts[0], "WalkRight") == 0 )
+	{
+		// See above description
+		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		{
+			return 0; // error
+		}
+		else
+		{
+			pSettings->Key_walk_right = atoi( parts[1] );
+		}
+	}
+	else if ( strcmp( parts[0], "Jump") == 0 )
+	{
+		// See above description
+		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		{
+			return 0; // error
+		}
+		else
+		{
+			pSettings->Key_jump = atoi( parts[1] );
+		}
+	}
+	else if ( strcmp( parts[0], "FirePrimary") == 0 )
+	{
+		// Bounds checking for Keys
+		// See above description
+		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		{
+			return 0; // error
+		}
+		else
+		{
+			pSettings->Key_shoot_primary = atoi( parts[1] );
 		}
 	}
 	else

@@ -3,7 +3,6 @@
 #include "include\Game.h"
 #include "playlist.h"
 
-#define JUMP_KEYS_TRIGGERED (event.key.keysym.sym == (SDLK_LALT) || event.key.keysym.sym == (SDLK_RALT) ||event.key.keysym.sym == SDLK_SEMICOLON || event.key.keysym.sym == SDLK_PERIOD || event.key.keysym.sym == SDLK_m)
 
 // [EHandling Code]
 typedef void (*Event_Handlers)(void);
@@ -183,7 +182,7 @@ void game_ehandler()
 					// universal!
 					done = 1;
 				}
-				else if( event.key.keysym.sym == SDLK_LCTRL || event.key.keysym.sym == SDLK_SPACE || event.key.keysym.sym == SDLK_l || event.key.keysym.sym == SDLK_COMMA )
+				else if( FIRE_KEY_TRIGGERED )
 				{
 					pPlayer->Fire( );
 				}
@@ -288,11 +287,11 @@ void menu_heldkeys_handler()
 }
 void game_heldkeys_handler()
 {
-	if( keys[SDLK_RIGHT] || keys[SDLK_d] ) 
+	if( MOVERIGHT_KEYS_HELD ) 
 	{
 		pPlayer->direction = RIGHT;
 	}
-	else if( keys[SDLK_LEFT] || keys[SDLK_a] ) 
+	else if( MOVELEFT_KEYS_HELD ) 
 	{
 		pPlayer->direction = LEFT;
 	}
@@ -310,7 +309,7 @@ void game_heldkeys_handler()
 		pPlayer->updown_pressed = NONE;
 	}
 	
-	if( keys[SDLK_RCTRL] )
+	if( FIRE_KEY_HELD )
 	{
 		if( mode == MODE_GAME ) 
 		{
