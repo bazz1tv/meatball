@@ -711,6 +711,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Slider"
+				>
+				<File
+					RelativePath="..\Slider.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\include\Slider.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Misc"

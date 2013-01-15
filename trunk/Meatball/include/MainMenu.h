@@ -3,7 +3,6 @@
 
 //#include "Game.h"
 #include "Globals.h"
-#include "OptionsMenu.h"
 
 // submode definitions
 #define MAIN	1
@@ -23,7 +22,7 @@ public:
 	
 	OptionsMenu optionsmenu;
 	TTF_Font *myfont;
-	TextObject Options_Text;
+	GraphicsObject Options_Text;
 
 	static int submode;
 	bool Light_reverse;

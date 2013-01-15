@@ -9,6 +9,11 @@
 
 #include "Globals.h"
 
+void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color);
+void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color);
+
+
+
 /// Toggle fullScreen
 int SDL_ToggleFS(SDL_Surface *surface);
 
@@ -16,4 +21,12 @@ int SDL_ToggleFS(SDL_Surface *surface);
 bool MouseCollidesWith(SDL_Rect *Crect);
 
 void UniversalEventHandler(SDL_Event*);
+
+
+struct GraphicsObject
+{
+	SDL_Surface *surface;
+	SDL_Rect rect;
+};
+
 #endif

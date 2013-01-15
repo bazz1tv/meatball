@@ -13,10 +13,11 @@
 	#include <vld.h>
 #endif
 
+
 #include <SDL_ep.h>
-#include "defines.h"
-#include "Game.h"
-#include "OptionsMenu.h"
+
+
+struct GraphicsObject;
 
 
 // If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
@@ -110,6 +111,9 @@ bool is_valid_number( char *c );
 void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 
 // includes
+#include "defines.h"
+#include "Game.h"
+#include "Misc.h"
 #include "include\Preferences.h"
 #include "include\Camera.h"
 #include "include\Collision.h"
@@ -122,9 +126,14 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "include\bullet.h"
 #include "include\leveleditor.h"
 #include "include\console.h"
+#include "Slider.h"
+#include "OptionsMenu.h"
 
-// new jan 14
-#include "Misc.h"
+#include "MainMenu.h"
+
+
+
+
 
 //Enemies
 #include "include\AF-373.h"

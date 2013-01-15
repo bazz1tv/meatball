@@ -47,24 +47,7 @@ void cLevelEditor :: Update( void )
 
 }
 
-void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
-{
-	SDL_Rect rect = {x,y,w,h};
-	SDL_FillRect(surface, &rect, color);
-}
 
-void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
-{
-	Uint8 alpha = color>>24;
-
-	SDL_Surface *sfc = SDL_CreateRGBSurface(SDL_SWSURFACE | SDL_ANYFORMAT, w, h, surface->format->BitsPerPixel, 0, 0, 0, 0);
-	SDL_FillRect(sfc, NULL, color);
-	SDL_SetAlpha(sfc, SDL_SRCALPHA, alpha);
-
-	SDL_Rect rect = {x,y,w,h};
-	SDL_BlitSurface(sfc,NULL,surface,&rect);
-	SDL_FreeSurface(sfc);
-}
 void cLevelEditor :: Draw()
 {
 	Draw(Screen);
