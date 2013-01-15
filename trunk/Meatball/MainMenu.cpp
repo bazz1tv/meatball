@@ -2,13 +2,21 @@
 #include "include\Game.h"
 //#include "include\Globals.h"
 
-extern Game game;
+//extern Game game;
+
+int MainMenu::submode = MAIN;
 
 MainMenu::MainMenu()
 {
 	Light_reverse = false;
 	done = 0;
+	submode = MAIN;
 
+	//optionsmenu = OptionsMenu();
+
+	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
+	Options_Text.surface = pFont->CreateText("Options", myfont);
+	Options_Text.rect = SetRect(100,100,Options_Text.surface->w, Options_Text.surface->h);
 	//pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3");
 
 	// Preload the Button Sound
@@ -39,6 +47,14 @@ MainMenu::~MainMenu()
 	delete Light1;
 	
 	delete Menu_Background;
+
+	SDL_FreeSurface(Options_Text.surface);
+
+	if( myfont ) 
+	{
+		TTF_CloseFont( myfont );
+	}
+
 }
 
 void MainMenu::UpdateHardware()
@@ -65,6 +81,7 @@ void MainMenu::UpdateGraphics()
 
 	Button_Start->Draw( Screen );
 	Button_Exit->Draw( Screen );
+	SDL_BlitSurface(Options_Text.surface, NULL, Screen, &Options_Text.rect);
 		
 	pMouse->Draw( Screen );
 }
@@ -120,6 +137,14 @@ void MainMenu::Collisions()
 		}
 }
 
+void MainMenu::Update()
+{
+	UpdateHardware();
+	UpdateGraphics();
+	Collisions();
+	UpdateLogic();
+}
+
 void MainMenu::UpdateLogic()
 {
 	if( Light_reverse == true ) 
@@ -173,30 +198,35 @@ void MainMenu::UpdateLogic()
 		}
 }
 
-int MainMenu::DoYouThang()
+
+
+void MainMenu::Do()
 {
-	pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3" );
+	//pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3" );
 
-	while (mode == MODE_MAINMENU)
+	
+	if (submode == MAIN)
 	{
-		UpdateHardware();
-		Poll();
-		UpdateGraphics();
+		Update();
+		EventHandler();
 		PostDraw();
-		Collisions();
-		UpdateLogic();
 	}
-
+	else if (submode == OPTIONS)
+	{
+		optionsmenu.Update();
+		optionsmenu.EventHandler();
+		optionsmenu.Draw();
+	}
+	
+	// if the mode got switched (we pressed start game or quit)
 	if( mode == MODE_GAME ) // Start
 	{
 		pAudio->PlaySound( SMan->GetPointer( SOUNDS_DIR "Button_1.ogg" ) );
 		pAudio->FadeOutMusic( 2000 );
 	
 		FadeOutBG();
-		game.Init();
+		Game::Init();
 	}
-
-	return done;
 }
 
 void MainMenu::FadeOutBG()
@@ -227,10 +257,11 @@ void MainMenu::PostDraw()
 	SDL_Flip( Screen );
 }
 
-void MainMenu::Poll()
+void MainMenu::EventHandler()
 {		
 		while ( SDL_PollEvent( &event ) )
 		{
+			UniversalEventHandler(&event);
 			switch ( event.type )
 			{
 				case SDL_QUIT:
@@ -251,7 +282,6 @@ void MainMenu::Poll()
 					else if( event.key.keysym.sym == SDLK_RETURN )
 					{
 						mode = MODE_GAME;
-						
 					}
 					break;
 				}
@@ -267,6 +297,10 @@ void MainMenu::Poll()
 						else if( MouseCollidesWith( &Button_Start->rect ) ) 
 						{
 							mode = MODE_GAME; // Start
+						}
+						else if( MouseCollidesWith( &Options_Text.rect ) )
+						{
+							submode = OPTIONS;
 						}
 						/// [Mouse Collision Check]
 					}

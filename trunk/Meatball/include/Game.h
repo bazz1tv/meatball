@@ -4,7 +4,6 @@
 #define __GAME_H__
 
 #include "include\Globals.h"
-#include "MainMenu.h"
 
 /** @brief A base class from which the main Steam Rollers can derive from.
 	@detail MiniEngine has genericized processes for general gameplay. Like tracking events,
@@ -39,7 +38,7 @@ public:
 class Game : public MiniEngine
 {
 public:
-	void Init();
+	static void Init();
 	void Update();
 	void EventHandler();
 	void HeldKey_Handler();

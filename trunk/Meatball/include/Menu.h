@@ -3,7 +3,7 @@
 struct MenuItem
 {
   std::string label;
-  float x,y;
+  double x,y;
   SDL_Rect rect;
   //DWORD dwID;
 };
@@ -24,12 +24,12 @@ class CMenuItem
   //Selection ID of menu item
   //Returned when this menu item has been selected
  
-  bool m_bHasFocus;
+  bool HasFocus;
    
   public:
     //...
     //...
-    bool Create(float x,float y,std::string lpszText,bool bHasFocus=false);
+    bool Create(double x,double y,std::string lpszText,bool bHasFocus=false);
  
     void SetText(std::string lpszText);
     //...

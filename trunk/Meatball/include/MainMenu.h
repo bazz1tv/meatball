@@ -1,10 +1,15 @@
 #ifndef __MAINMENU_H__
 #define __MAINMENU_H__
 
-#include "include\Globals.h"
-#include "Game.h"
+//#include "Game.h"
+#include "Globals.h"
+#include "OptionsMenu.h"
 
-class MainMenu
+// submode definitions
+#define MAIN	1
+#define OPTIONS 0
+
+class MainMenu : public MiniEngine
 {
 public:
 	MainMenu();
@@ -15,21 +20,24 @@ public:
 	cBasicSprite *Menu_Background;
 	
 	cBasicSprite *Light1;
-	SDL_Event event;
+	
+	OptionsMenu optionsmenu;
+	TTF_Font *myfont;
+	TextObject Options_Text;
 
-	int done;
+	static int submode;
 	bool Light_reverse;
 
 	void FadeOutBG();
 	void PostDraw();
-	void Loop();
+	//void Loop();
 	void Update();
 	void Collisions();
 	void UpdateGraphics();
 	void UpdateHardware();
 	void UpdateLogic();
-	int	DoYouThang();
-	void Poll();
+	void Do();
+	void EventHandler();
 };
 
 

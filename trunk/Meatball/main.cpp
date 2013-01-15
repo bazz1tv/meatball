@@ -1,8 +1,6 @@
 #include "Globals.h"
 #include "include\Game.h"
-
-Game game;
-
+#include "MainMenu.h"
 
 int DoGame();
 void initEngine();
@@ -21,6 +19,7 @@ int main( void )
 /// Runs the actual Game
 int DoGame()
 {
+	Game game;
 	MainMenu mainmenu;
 
 	mode = MODE_MAINMENU;
@@ -28,7 +27,7 @@ int DoGame()
 	while( 1 )
 	{
 		if (mode == MODE_MAINMENU)
-			mainmenu.DoYouThang();
+			mainmenu.Do();
 
 		else if (mode == MODE_GAME)
 			game.Do();
