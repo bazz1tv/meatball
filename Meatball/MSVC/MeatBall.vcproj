@@ -713,18 +713,6 @@
 			</Filter>
 		</Filter>
 		<Filter
-			Name="StateHandler"
-			>
-			<File
-				RelativePath="..\StateHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\include\StateHandler.h"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="Misc"
 			>
 			<File

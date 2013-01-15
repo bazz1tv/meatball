@@ -16,6 +16,8 @@
 #include <SDL_ep.h>
 #include "defines.h"
 #include "Game.h"
+#include "OptionsMenu.h"
+
 
 // If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
 // note: relies on __VA_ARGS__ stackoverflow

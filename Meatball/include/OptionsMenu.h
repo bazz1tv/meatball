@@ -2,7 +2,7 @@
 #define __OPTIONSMENU_H__
 
 #include "Globals.h"
-/*
+
 /// @ingroup Options_Screen_Statuses
 // @{
 #define STATUS_BROWSING 0
@@ -16,27 +16,36 @@ struct TextObject
 	SDL_Rect rect;
 };
 
-class OptionsMenu
+class OptionsMenu : public MiniEngine
 {
+public:
 	Uint8 status;
 	// StateHandler InputEngine
 	
 	OptionsMenu();
 	~OptionsMenu();
-	BlinkCursor();
-	LiveInput();
-	Slide(Slider *slider);
-	Keyboard_Joypad_Oneshot();
 
-	cBasicSprite *ptr; // This is how you store sprites in the class
-	SDL_Surface *cursor;
-	SDL_Event event;
-	TTF_Font *font;
+	void Do();
+	void Update();
+	void Draw();
+	void EventHandler();
+	//BlinkCursor();
+	void LiveInput();
+	//Slide(Slider *slider);
+	//Keyboard_Joypad_Oneshot();
 
-	TextObject Exit, Music_Volume, Sound_Volume;
+	//cBasicSprite *Musicvol, *Soundvol; // This is how you store sprites in the class
+	//SDL_Surface *cursor;
+	//SDL_Event event;
+	TTF_Font *optionsfont;
+
+	TextObject Exit, MusicVol, SoundVol;
+	
+	// inherited from Console (not literally)
 	double ttDrawCur;
 	bool DrawCur;
+	string livestring;
 };
-*/
+
 
 #endif

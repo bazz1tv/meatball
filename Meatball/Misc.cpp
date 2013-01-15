@@ -42,6 +42,7 @@ void UniversalEventHandler(SDL_Event *event)
 			{
 					SDL_ToggleFS(Screen);
 			}
+
 		}
 
 	}
