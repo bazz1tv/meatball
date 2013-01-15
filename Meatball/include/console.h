@@ -58,7 +58,7 @@ struct cCMD
 void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax);
 
 /// For Live In-game editing to the Game World and Variables
-class cConsole
+class cConsole : public MiniEngine
 {
 public:
 
@@ -71,25 +71,26 @@ public:
 	void EventHandler( void );
 
 	bool CMDHandler( string cInput );
-	void UpdateConsole( void );
+	void Update( void );
 	
-	void DisplayConsole( SDL_Surface *target );
+	void Draw( SDL_Surface *target );
+	void Draw();
 
 	string ParseBase( string str );
 	string ParseParm( string str );
 
 	bool helpCMD( string &str );
 
-	cCMD *CMDList;	// The commands
+	cCMD *CMDList;				// The commands
 
 	string strcpy[NUM_LINES];	// history strings (past entered commands which are displayed)
 
-	string constr;		// main string where input is entered into.
+	string constr;				// main string where input is entered into.
 	int histcounter;
 	fs::path full_path;
 
 
-	double conx, cony;	// x coord and y coord for str's, x coord for cursor
+	double conx, cony;			// x coord and y coord for str's, x coord for cursor
 
 	bool DrawCur;
 	double ttDrawCur;

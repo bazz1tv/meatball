@@ -1,14 +1,21 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
 
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include <fstream>
 
 // Include the Engine
+#ifdef _DEBUG
+	#include <vld.h>
+#endif
+
 #include <SDL_ep.h>
 #include "defines.h"
+#include "Game.h"
 
 // If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
 // note: relies on __VA_ARGS__ stackoverflow
@@ -46,7 +53,7 @@
 
 
 
-
+extern SDL_Surface* icon;
 
 
 
@@ -89,11 +96,8 @@ extern bool fps_display;
 extern Uint32 colorkey;
 
 // Game Global Functions
-void StartGame( void );
+void InitObjects( void );
 void QuitGame( void );
-
-/// Toggle fullScreen
-int SDL_ToggleFS(SDL_Surface *surface);
 
 
 /// Checks if the file exists
@@ -116,6 +120,10 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "include\bullet.h"
 #include "include\leveleditor.h"
 #include "include\console.h"
+
+// new jan 14
+#include "Misc.h"
+
 //Enemies
 #include "include\AF-373.h"
 

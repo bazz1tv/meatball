@@ -18,6 +18,10 @@
 #ifndef _SDL_EnginePrimitives_h
 #define _SDL_EnginePrimitives_h
 
+#ifdef _DEBUG
+#include <vld.h>
+#endif
+
 #include <SDL.h>
 
 #ifdef _WIN32

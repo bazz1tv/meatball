@@ -65,13 +65,13 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 	 */
 
 
-					if( Collision->direction == COLLISION_NONE ) 
+					if( Collision->direction == ALL_COLLISIONS_NONE ) 
 					{
-						Collision->direction = COLLISION_LR;	// Collision Left/Right
+						Collision->direction = ALL_COLLISIONS_LR;	// Collision Left/Right
 					}
-					else if( Collision->direction == COLLISION_UD ) 
+					else if( Collision->direction == ALL_COLLISIONS_UD ) 
 					{
-						Collision->direction = COLLISION_UDLR;	// Collision Up/Down/Left/Right
+						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
 					}
 
 					movex = 0;
@@ -94,13 +94,13 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 				}
 				else
 				{
-					if( Collision->direction == COLLISION_NONE ) 
+					if( Collision->direction == ALL_COLLISIONS_NONE ) 
 					{
-						Collision->direction = COLLISION_UD;	// Collision Up/Down
+						Collision->direction = ALL_COLLISIONS_UD;	// Collision Up/Down
 					}
-					else if( Collision->direction == COLLISION_LR ) 
+					else if( Collision->direction == ALL_COLLISIONS_LR ) 
 					{
-						Collision->direction = COLLISION_UDLR;	// Collision Up/Down/Left/Right
+						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
 					}
 
 					movey = 0;

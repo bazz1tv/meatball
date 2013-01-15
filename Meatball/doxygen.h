@@ -3,7 +3,7 @@
 
 ///@defgroup Engine Engine
 /// The Engine Meatball runs on. Includes an Image manager and Sound Manager
-// @{
+/// @{
 	/// @defgroup Engine_Meatball		Meatball
 	/// @defgroup Engine_Video			Video
 	/// @defgroup Engine_Sprite			Sprite
@@ -20,14 +20,14 @@
 
 /// @defgroup Game
 /// Grouped functions related to the Game's Core
-// @{
+/// @{
 	/// Modes of Gameplay
 	/// @defgroup GAME_MODE Game Modes
 // @}
 
 /// @defgroup Input
 /// @ingroup Game
-// @{
+/// @{
 		
 		/// @defgroup Event_Handlers Event Handlers
 		///< Tracks events such as window resize, mouse down, static key presses
@@ -49,27 +49,46 @@
 
 /// @defgroup LevelEditor Level Editor
 /// How to Edit Levels, Todo etc.
-// @{
+/// @{
 	/// @defgroup LE_Input Input
 // @}
-/// @defgroup Guns
 
-/**
-@defgroup Player Working with the Player
-@brief Anything special relating to Player himself. The Star --MEATBALL--
-*/
-// @{
+
+
+/// @defgroup Player Working with the Player
+/// @brief Anything special relating to Player himself. The Star --MEATBALL--
+/// @{
 	/// @defgroup Camera
 	/// @defgroup PLAYER_DIRECTIONS
 // @}
 
-///@defgroup Sprites
-// @{
+/// @defgroup Guns
+/// @{
+// @}
+
+/// @defgroup Sprites
+/// @{
 	/// @defgroup SPRITE_TYPES SPRITE_TYPES
+	/// @defgroup AddSprites_group How to Add a Sprite
 // @}
 
 /// @defgroup Console
 /// In-game Console can track/manipulate variables and game phenomena
-// @{
+/// @{
 	/// @defgroup Console_Input Input
+// @}
+
+/// @defgroup Collision
+/// blablablalbla
+/// @{
+		/// for Collisiondata::collide
+		/// Same as @link PLAYER_DIRECTIONS @endlink exept for -1 (no collision)
+		/// @see PLAYER_DIRECTIONS
+		/// @defgroup INDIVIDUAL_COLLISION_DIRECTIONS
+			
+		/// for Collisiondata::direction
+		/// @defgroup ALL_COLLISIONS_DIRECTIONS
+
+		/// @defgroup Collision_Check_Mouse Check Collisions with the Mouse
+			
 // @}

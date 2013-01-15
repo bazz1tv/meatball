@@ -699,9 +699,53 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Options Menu"
+				>
+				<File
+					RelativePath="..\OptionsMenu.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\include\OptionsMenu.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="StateHandler"
+			>
+			<File
+				RelativePath="..\StateHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\StateHandler.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Misc"
+			>
+			<File
+				RelativePath="..\Misc.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\Misc.h"
+				>
+			</File>
 		</Filter>
 		<File
+			RelativePath="..\include\boost.h"
+			>
+		</File>
+		<File
 			RelativePath="..\doxygen.h"
+			>
+		</File>
+		<File
+			RelativePath="..\main.cpp"
 			>
 		</File>
 	</Files>

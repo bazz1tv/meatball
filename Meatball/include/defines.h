@@ -3,7 +3,7 @@
 
 #define MEATBALL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
 #define MEATBALL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
-
+#define MEATBALL_FULLSCREEN_SETTINGS 800, 600, 32 //pPreferences->Screen_W, pPreferences->Screen_H, pPreferences->Screen_Bpp
 
 /* The PLAYER */
 /// The player won't fall any faster than this (pixels iirc)
@@ -23,8 +23,8 @@
 #define LEVEL_DIR "data/levels/"
 
 // Player Directions
-/// @ingroup PLAYER_DIRECTIONS COLLISION_DIRECTIONS
-// @{
+/// @ingroup PLAYER_DIRECTIONS
+/// @{
 #define LEFT	0
 #define RIGHT	1
 #define UP		2
@@ -36,12 +36,15 @@
 /// @addtogroup GAME_MODE
 /// This is a list of the current different types of Game Modes available
 // @{
-#define MODE_MENU 0
-#define MODE_GAME 1
-#define MODE_LEVELEDITOR 2
-#define MODE_CONSOLE 3
-#define MODE_DEBUG 4		///< Not implemented
-#define NUM_GAMEMODES	4
+#define MODE_MAINMENU		0
+#define MODE_GAME			1
+#define MODE_LEVELEDITOR	2
+#define MODE_CONSOLE		3
+#define MODE_OPTIONS		4
+#define MODE_QUIT			5
+#define MODE_DEBUG			6		///< Not implemented
+
+#define NUM_GAMEMODES		7
 // @}
 
 #endif

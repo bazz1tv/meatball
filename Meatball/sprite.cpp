@@ -66,7 +66,7 @@ cMAngleSprite :: cMAngleSprite( SDL_Surface *new_image, double x, double y, doub
 
 	type = SPRITE_TYPE_NO_TYPE;
 
-	Collision = new Collisiondata();
+	Collision = new Collisiondata;
 }
 
 

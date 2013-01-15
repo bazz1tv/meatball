@@ -370,7 +370,18 @@ cMParticleEmitter :: ~cMParticleEmitter( void )
 {
 	if( Particles ) 
 	{
-		delete Particles;
+		for( unsigned int i = 0; i < ParticleCount; i++ )
+		{
+			if( !Particles[i] ) 
+			{
+				continue;
+			}
+
+			delete Particles[i];
+			Particles[i] = NULL;
+		}
+
+		delete []Particles;
 		Particles = NULL;
 	}
 }
@@ -379,7 +390,18 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 {
 	if( Particles )
 	{
-		delete Particles;
+		for( unsigned int i = 0; i < ParticleCount; i++ )
+		{
+			if( !Particles[i] ) 
+			{
+				continue;
+			}
+
+			delete Particles[i];
+			Particles[i] = NULL;
+		}
+
+		delete []Particles;
 		Particles = NULL;
 	}
 
