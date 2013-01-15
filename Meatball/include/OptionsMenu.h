@@ -1,7 +1,11 @@
 #ifndef __OPTIONSMENU_H__
 #define __OPTIONSMENU_H__
 
+
+
 #include "Globals.h"
+
+class Slider;
 
 /// @ingroup Options_Screen_Statuses
 // @{
@@ -10,11 +14,6 @@
 #define STATUS_EDITING	2
 // @}
 
-struct TextObject
-{
-	SDL_Surface *surface;
-	SDL_Rect rect;
-};
 
 class OptionsMenu : public MiniEngine
 {
@@ -39,8 +38,10 @@ public:
 	//SDL_Event event;
 	TTF_Font *optionsfont;
 
-	TextObject Exit, MusicVol, SoundVol;
+	GraphicsObject Exit, MusicVol, SoundVol;
 	
+	
+	Slider *MainVol_Slider, *SoundVol_Slider;
 	// inherited from Console (not literally)
 	double ttDrawCur;
 	bool DrawCur;

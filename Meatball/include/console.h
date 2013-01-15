@@ -4,7 +4,6 @@
 #define __CONSOLE_H__
 
 #include "include\Globals.h"
-#include "include\Game.h"
 
 #include "boost.h"
 

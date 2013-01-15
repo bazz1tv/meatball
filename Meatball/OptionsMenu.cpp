@@ -1,11 +1,11 @@
-#include "OptionsMenu.h"
-#include "MainMenu.h"
+
 #include "Globals.h"
 
 //extern MainMenu *mainmenu;
 
 OptionsMenu::OptionsMenu()
 {
+	
 	// Init Font ////
 	optionsfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 
@@ -22,6 +22,10 @@ OptionsMenu::OptionsMenu()
 	y+=80;
 	Exit.rect = SetRect( x, y, Exit.surface->w, Exit.surface->h );
 	//y+=80;
+
+	MainVol_Slider = new Slider(x+MusicVol.surface->w+20, MusicVol.rect.y, 256, 0, 128);
+
+	SoundVol_Slider = new Slider(x+SoundVol.surface->w+20, SoundVol.rect.y, 256, 0, 128);
 }
 
 OptionsMenu::~OptionsMenu()
@@ -30,6 +34,9 @@ OptionsMenu::~OptionsMenu()
 	SDL_FreeSurface(MusicVol.surface);
 	SDL_FreeSurface(SoundVol.surface);
 	SDL_FreeSurface(Exit.surface);
+
+	delete SoundVol_Slider;
+	delete MainVol_Slider;
 
 	if( optionsfont ) 
 	{
@@ -82,6 +89,9 @@ void OptionsMenu::Draw()
 	SDL_BlitSurface( MusicVol.surface, NULL, Screen, &MusicVol.rect );
 	SDL_BlitSurface( Exit.surface, NULL, Screen, &Exit.rect );
 	SDL_BlitSurface( SoundVol.surface, NULL, Screen, &SoundVol.rect );
+
+	MainVol_Slider->Draw();
+	SoundVol_Slider->Draw();
 
 	pMouse->Draw( Screen );
 
