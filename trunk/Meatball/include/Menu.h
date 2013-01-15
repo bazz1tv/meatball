@@ -1,11 +1,10 @@
 #include "Globals.h"
 
-struct MenuItemStruc
+struct MenuItem
 {
   std::string label;
   float x,y;
-  float left,top,right,bottom;
-  float width,height;
+  SDL_Rect rect;
   //DWORD dwID;
 };
  
@@ -14,7 +13,7 @@ class CMenu;
  
 class CMenuItem
 {
-  MenuItemStruc m_MenuItemProps;
+  MenuItem m_MenuItemProps;
  
   //Possible pointers to previous and next menus
   //Enables menu items to lead to pop-ups and/or can
@@ -25,12 +24,12 @@ class CMenuItem
   //Selection ID of menu item
   //Returned when this menu item has been selected
  
-  bool m_bHasFrame;  //If frame is visible this is true
+  bool m_bHasFocus;
    
   public:
     //...
     //...
-    bool Create(float x,float y,std::string lpszText,bool bHasFrame=false);
+    bool Create(float x,float y,std::string lpszText,bool bHasFocus=false);
  
     void SetText(std::string lpszText);
     //...
@@ -46,7 +45,7 @@ class CMenu
    /*...
    ...*/
    bool AddItem(CMenuItem *pItem);
-   bool AddItem(MenuItemStruc item);
+   bool AddItem(MenuItem item);
    /*...
    ...*/
 };

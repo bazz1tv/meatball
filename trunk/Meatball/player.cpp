@@ -73,7 +73,7 @@ void cPlayer :: Update( void )
 
 	PositionCheck( (int)posx+14, (int)posy + 1, 6, (int)height, Collision, type );
 
-	if( Collision->collide == DOWN && Collision->direction == COLLISION_UD ) 
+	if( Collision->collide == DOWN && Collision->direction == ALL_COLLISIONS_UD ) 
 	{
 		if( Collision->iCollisionType == SPRITE_TYPE_MASSIVE || Collision->iCollisionType == SPRITE_TYPE_ENEMY ) 
 		{

@@ -186,6 +186,14 @@ void cAudio :: PlaySound( Mix_Chunk *sound, int channel /* = -1 */, int sVolume 
 	}
 }
 
+void cAudio:: LoadMusic(char *filename)
+{
+	if ( bMusic && bInitialised )
+	{
+		Music = Mix_LoadMUS( filename );
+	}
+}
+
 void cAudio :: PlayMusik( char *filename, int loops /* = -1 */, bool force /* = 1  */ )
 {
 	if ( bMusic && bInitialised )
@@ -300,6 +308,11 @@ int cAudio :: SetMusicVolume( Uint8 iVolume )
 	return Mix_VolumeMusic( iVolume );
 
 	
+}
+
+bool cAudio :: MusicPlaying()
+{
+	return Mix_PlayingMusic() ? true : false;
 }
 
 void cAudio :: Update( void )

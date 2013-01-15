@@ -55,6 +55,8 @@ public:
 	*	Can play WAVE, MOD, MIDI, OGG (with ogg vorbis), mp3 ( with smpeg)
 	*/
 	DLLINTERFACE void PlayMusik( char *filename, int loops = -1, bool force = 1 );
+
+	DLLINTERFACE void LoadMusic( char *filename );
 	
 	/// Stops playing Music.
 	DLLINTERFACE void StopMusic( void );
@@ -104,6 +106,8 @@ public:
 	 *
 	 */
 	DLLINTERFACE void Update( void );
+
+	DLLINTERFACE bool MusicPlaying();
 	
 	Mix_Music *Music;
 	

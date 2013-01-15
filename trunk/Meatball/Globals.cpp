@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+
 // SDL_ep classes
 cFramerate *pFramerate;
 cImageManager *IMan;
@@ -12,6 +14,9 @@ cSoundManager *SMan;
 cFont *pFont;
 cAudio *pAudio;
 cTCPNet *pTCP;
+
+// Main window Icon
+SDL_Surface *icon;
 
 /// if true the game exits
 int done;
@@ -57,7 +62,10 @@ Uint8 mode, oldmode;
 const SDL_VideoInfo* screeninfo;
 
 /// Initializes the basic
-void StartGame( void )
+/// Init some Fonts, set default colorkey, Add mouse to IMan
+/// Init the mouse,camera,player,level,leveleditor, and Console
+/// Preload bulletImages
+void InitObjects( void )
 {
 	Menu_Font = pFont->CreateFont( FONT_DIR "Bluehigd.ttf", 27, TTF_STYLE_BOLD );
 	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
@@ -79,9 +87,6 @@ void StartGame( void )
 	SDL_ShowCursor( 0 );
 	
 	PreloadBulletimages();
-
-	// Main Menu
-	Main_Menu();
 }
 
 /// Quits the game
@@ -166,6 +171,10 @@ void QuitGame( void )
 		delete pFont;
 	}
 
+	SDL_FreeSurface(icon);
+	SDL_FreeSurface(Screen);
+	icon = NULL;
+
 	QuitSDL();
 }
 
@@ -229,28 +238,4 @@ void FramerateDraw( SDL_Surface *target, double posx /** = 5.0 */, double posy /
 	SDL_FreeSurface( image );
 }
 
-/// Queries the Screen if it's set to Full of Not
-/// @return 0 if windowed, 1 if fullscreen
-int IsFullScreen(SDL_Surface *surface) 
-{ 
-    if (surface->flags & SDL_FULLSCREEN) return 1; // return true if surface is fullscreen 
-    return 0; // Return false if surface is windowed 
-} 
-
-/// Toggles On/Off FullScreen
-int SDL_ToggleFS(SDL_Surface *surface) 
-{ 
-    Uint32 flags = surface->flags; // Get the video surface flags 
-    
-    if (IsFullScreen(surface)) 
-    { 
-        // Swith to WINDOWED mode 
-        if ((surface = SDL_SetVideoMode(MEATBALL_WIN_SETTINGS, flags -= SDL_FULLSCREEN)) == NULL) return 0; 
-        return 1; 
-    } 
-    
-    // Swith to FULLSCREEN mode 
-    if ((surface = SDL_SetVideoMode(MEATBALL_WIN_SETTINGS, flags|SDL_FULLSCREEN)) == NULL) return 0; 
-    return 1; 
-} 
 

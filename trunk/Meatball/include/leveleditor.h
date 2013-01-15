@@ -20,12 +20,27 @@ void leveleditor_ehandler(void);
 // @}
 
 /// The Leveleditor as an ingame implementation.
-class cLevelEditor
+class cLevelEditor : public MiniEngine
 {
 public:
 	cLevelEditor( void );
 	~cLevelEditor( void );
 
+	void HeldKey_Handler();
+	void EventHandler();
+
+	/*void Do() 
+	{
+		if ( !paused )
+	
+		EventHandler();
+		HeldKey_Handler();
+		Update();
+	
+		Draw(Screen); 
+	}*/
+
+	void Draw();
 	/// Updates  all the Leveleditor stuff
 	void Update( void );
 

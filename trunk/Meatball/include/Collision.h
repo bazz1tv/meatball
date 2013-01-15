@@ -4,11 +4,13 @@
 
 #include "Globals.h"
 
-#define COLLISION_NONE	-1
-#define COLLISION_UDLR	1
-#define COLLISION_LR	2
-#define COLLISION_UD	3
-
+/// @ingroup ALL_COLLISIONS_DIRECTIONS
+// @{
+#define ALL_COLLISIONS_NONE	-1
+#define ALL_COLLISIONS_UDLR	1
+#define ALL_COLLISIONS_LR	2
+#define ALL_COLLISIONS_UD	3
+// @}
 
 typedef struct
 {

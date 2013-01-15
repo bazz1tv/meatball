@@ -23,6 +23,7 @@ cLevelEditor :: ~cLevelEditor( void )
 
 void cLevelEditor :: Update( void )
 {
+	PreUpdate();
 	HoveredObject = SetRect( 0, 0, 0, 0 );
 
 	if( Mouse_command == MOUSE_COMMAND_NOTHING || Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
@@ -41,6 +42,8 @@ void cLevelEditor :: Update( void )
 		Object->Startposx = floor(pMouse->posx + Mouse_w + pCamera->x);
 		Object->Startposy = floor(pMouse->posy + Mouse_h + pCamera->y);
 	}
+
+	PostUpdate();
 
 }
 
@@ -62,10 +65,21 @@ void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 colo
 	SDL_BlitSurface(sfc,NULL,surface,&rect);
 	SDL_FreeSurface(sfc);
 }
-
+void cLevelEditor :: Draw()
+{
+	Draw(Screen);
+}
 void cLevelEditor :: Draw( SDL_Surface *target )
 {
 	Uint32 Color;
+
+	PreDraw();
+
+	pPlayer->Draw( Screen );
+	
+	DrawEnemies();
+	pMouse->Draw( Screen );
+
 
 	if( Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
 	{
@@ -107,6 +121,8 @@ void cLevelEditor :: Draw( SDL_Surface *target )
 		//sge_RectAlpha( Screen ,(int)( CopyObject->posx - pCamera->x ), (int)( CopyObject->posy - pCamera->y ), (int)( CopyObject->posx - pCamera->x + CopyObject->width ), 
 		//				(int)( CopyObject->posy - pCamera->y + CopyObject->height ), 120, 255, 120, 192  );	
 	}
+
+	PostDraw();
 }
 
 
@@ -330,7 +346,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 }
 
 /** @ingroup LE_Input */
-void leveleditor_ehandler()
+void cLevelEditor::EventHandler()
 {
 	while ( SDL_PollEvent( &event ) )
 	{
@@ -341,6 +357,8 @@ void leveleditor_ehandler()
 		{
 			pLevelEditor->DeleteObject();
 		}
+		
+		UniversalEventHandler(&event);
 
 		switch ( event.type )
 		{
@@ -492,7 +510,42 @@ void leveleditor_ehandler()
 				break;	
 			}
 		default:
+			
 			break;
 		}
+	}
+}
+
+void  cLevelEditor::HeldKey_Handler()
+{
+	printf("Held KEying!!!");
+	if( keys[SDLK_RIGHT] ) 
+	{
+		pCamera->Move( 10 * pFramerate->speedfactor, 0 );
+	}
+	else if( keys[SDLK_LEFT] ) 
+	{
+		pCamera->Move( -10 * pFramerate->speedfactor, 0 );
+	}
+	else if( keys[SDLK_UP] ) 
+	{
+		pCamera->Move( 0, -10 * pFramerate->speedfactor );
+	}
+	else if( keys[SDLK_DOWN] ) 
+	{
+		pCamera->Move( 0, 10 * pFramerate->speedfactor );
+	}
+	
+	
+	if ( keys[SDLK_e] )
+	{
+		pLevelEditor->DeleteObject();
+	}
+	else if (keys[SDLK_RALT])
+	{
+		
+
+
+		
 	}
 }

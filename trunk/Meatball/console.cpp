@@ -22,7 +22,9 @@ void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr
 /// Creates the console font, Push() all cCMDs to cConsole::CMDList, 
 cConsole :: cConsole( void )
 {	
-	full_path = ( fs::initial_path<fs::path>() );
+
+
+	full_path = ( fs::initial_path() );
 	histcounter = -1;
 	//cout<<full_path.parent_path();
 	// Init Background //////////
@@ -54,7 +56,7 @@ cConsole :: cConsole( void )
 	Push(CMDList,	"mxy",		SetMxy,			"Sets Meatball's X & Y coordinate",	"Mxy [x y]"					);
 	Push(CMDList,	"play",		play,			"Plays a music file",				"play [musicfile]"			);
 	Push(CMDList,	"quit",		QuitAll,		"Quits the game","quit"											);
-	Push(CMDList,	"showfps",	ShowFPS,		"Displays or hides FPS",			"showFPS"					);
+	Push(CMDList,	"fps",		ShowFPS,		"Displays or hides FPS",			"fps"					);
 	Push(CMDList,	"help",		help,			"",									""							);
 	Push(CMDList,	"svol",		soundVol,		"Set Sounds Volumes",				"svol [string_id] [0-128]"	);
 	Push(CMDList,	"mvol",		musicVol,		"Set Music Volumes",				"mvol [0-128]"				);
@@ -73,6 +75,7 @@ cConsole :: cConsole( void )
 /// Delete the Background, close the font, Delete all commands from CMDList
 cConsole :: ~cConsole( void )
 {
+	//free(full_path);
 	if( BG ) 
 	{
 		delete BG;
@@ -91,6 +94,8 @@ cConsole :: ~cConsole( void )
 		ptr = ptr2;
 	}
 
+	//full_path;
+
 }
 
 /// The input Handler
@@ -102,6 +107,7 @@ void cConsole :: EventHandler( void )
 	
 	while ( SDL_PollEvent( &event ) )
 	{
+		UniversalEventHandler(&event);
 		switch ( event.type )
 		{
 		case SDL_QUIT:
@@ -169,7 +175,10 @@ void cConsole :: EventHandler( void )
 				break;
 			}
 		default:
-			break;
+			{
+				
+				break;
+			}
 		}
 	}
 
@@ -177,8 +186,10 @@ void cConsole :: EventHandler( void )
 }
 
 /// Updates background, Updates logic to draw the cursor or not (blinking underscore)
-void cConsole :: UpdateConsole( void )
+void cConsole :: Update( void )
 {
+	PreUpdate();
+
 	BG->Update();
 
 	if ( SDL_GetTicks() > ttDrawCur )
@@ -186,11 +197,22 @@ void cConsole :: UpdateConsole( void )
 		ttDrawCur = SDL_GetTicks() + 500;
 		DrawCur = !DrawCur;
 	}
+
+	PostUpdate();
 }
 
 /// Draws the BG, the input display and history displays, the blinking cursor
-void cConsole :: DisplayConsole( SDL_Surface *target )
+void cConsole :: Draw( SDL_Surface *target )
 {
+	PreDraw();
+
+	DrawBullets();
+	DrawParticleEmitter();
+
+	pPlayer->Draw( Screen );
+	
+	DrawEnemies();
+
 	int i;
 	// display console BG
 	BG->Draw( target );
@@ -294,6 +316,8 @@ void cConsole :: DisplayConsole( SDL_Surface *target )
 			SDL_FreeSurface( sc[i] );
 		}
 	}
+
+	PostDraw();
 }
 
 /// The Command Handler parses the input line for it's base (command) and it's parameters
@@ -380,7 +404,9 @@ bool cConsole :: helpCMD( string &str )
 		{
 			console_print(buffer);
 			console_print(ptr->helpstr.c_str());
-			console_print(ptr->syntax.c_str());
+
+			string usage = "usage: " + ptr->syntax;
+			console_print(usage.c_str());
 			
 			return true;
 		}
@@ -619,8 +645,8 @@ void wait_for_input()
 	SDL_Event local_event;
 	while (1)
 	{
-		pConsole->UpdateConsole();
-		Game_Draw();
+		pConsole->Update();
+		pConsole->Draw(Screen);
 		SDL_PollEvent( &local_event );
 
 		if ( local_event.type == SDL_KEYDOWN )
@@ -629,6 +655,11 @@ void wait_for_input()
 		}
 	
 	}
+}
+
+void cConsole::Draw()
+{
+	Draw(Screen);
 }
 
 void console_print(const char *str)
