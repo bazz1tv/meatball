@@ -53,6 +53,7 @@ cCamera *pCamera;
 cPlayer *pPlayer;
 cLevel *pLevel;
 cLevelEditor *pLevelEditor;
+TextObjectEngine *TOE;
 
 /// The Console
 cConsole *pConsole;
@@ -168,6 +169,12 @@ void QuitGame( void )
 	{
 		TTF_CloseFont( bold_16 );
 	}
+	
+	if (TOE)
+	{
+		delete TOE;
+	}
+
 	if( pFont )
 	{
 		delete pFont;

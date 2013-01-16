@@ -15,8 +15,9 @@ MainMenu::MainMenu()
 	//optionsmenu = OptionsMenu();
 
 	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
-	Options_Text.surface = pFont->CreateText("Options", myfont);
-	Options_Text.rect = SetRect(100,100,Options_Text.surface->w, Options_Text.surface->h);
+	Options_Text = TOE->givemeaTextObject();
+	Options_Text->writeText("Options", myfont);
+	Options_Text->rect = SetRect(100,100,Options_Text->surface->w, Options_Text->surface->h);
 	//pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3");
 
 	// Preload the Button Sound
@@ -48,7 +49,7 @@ MainMenu::~MainMenu()
 	
 	delete Menu_Background;
 
-	SDL_FreeSurface(Options_Text.surface);
+	//SDL_FreeSurface(Options_Text.surface);
 
 	if( myfont ) 
 	{
@@ -81,7 +82,7 @@ void MainMenu::UpdateGraphics()
 
 	Button_Start->Draw( Screen );
 	Button_Exit->Draw( Screen );
-	SDL_BlitSurface(Options_Text.surface, NULL, Screen, &Options_Text.rect);
+	SDL_BlitSurface(Options_Text->surface, NULL, Screen, &Options_Text->rect);
 		
 	pMouse->Draw( Screen );
 }
@@ -298,7 +299,7 @@ void MainMenu::EventHandler()
 						{
 							mode = MODE_GAME; // Start
 						}
-						else if( MouseCollidesWith( &Options_Text.rect ) )
+						else if( MouseCollidesWith( &Options_Text->rect ) )
 						{
 							submode = OPTIONS;
 						}

@@ -9,31 +9,36 @@ OptionsMenu::OptionsMenu()
 	// Init Font ////
 	optionsfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 
-	Exit.surface = pFont->CreateText("Exit", optionsfont);
-	MusicVol.surface = pFont->CreateText("Music Volume", optionsfont);
-	SoundVol.surface = pFont->CreateText("Sound Volume", optionsfont);
+	//tExit = TOE->
+	MusicVol = TOE->givemeaTextObject();
+	SoundVol = TOE->givemeaTextObject();
+	Exit	 = TOE->givemeaTextObject();
+
+	MusicVol->writeText("Music Volume", optionsfont);
+	SoundVol->writeText("Sound Volume", optionsfont);
+	Exit->writeText("Exit", optionsfont);
 
 	int x=20;
 	int y=20;
 
-	MusicVol.rect = SetRect( x, y, MusicVol.surface->w, MusicVol.surface->h );
+	MusicVol->rect = SetRect( x, y, MusicVol->surface->w, MusicVol->surface->h );
 	y+=40;
-	SoundVol.rect = SetRect( x, y, SoundVol.surface->w, SoundVol.surface->h );
+	SoundVol->rect = SetRect( x, y, SoundVol->surface->w, SoundVol->surface->h );
 	y+=80;
-	Exit.rect = SetRect( x, y, Exit.surface->w, Exit.surface->h );
+	Exit->rect = SetRect( x, y, Exit->surface->w, Exit->surface->h );
 	//y+=80;
 
-	MainVol_Slider = new Slider(x+MusicVol.surface->w+20, MusicVol.rect.y, 256, 0, 128);
+	MainVol_Slider = new Slider(x+MusicVol->surface->w+20, MusicVol->rect.y, 256, 0, 128);
 
-	SoundVol_Slider = new Slider(x+SoundVol.surface->w+20, SoundVol.rect.y, 256, 0, 128);
+	SoundVol_Slider = new Slider(x+SoundVol->surface->w+20, SoundVol->rect.y, 256, 0, 128);
 }
 
 OptionsMenu::~OptionsMenu()
 {
 	
-	SDL_FreeSurface(MusicVol.surface);
+	/*SDL_FreeSurface(MusicVolsurface);
 	SDL_FreeSurface(SoundVol.surface);
-	SDL_FreeSurface(Exit.surface);
+	SDL_FreeSurface(Exit.surface);*/
 
 	delete SoundVol_Slider;
 	delete MainVol_Slider;
@@ -86,9 +91,9 @@ void OptionsMenu::Draw()
 	//SDL_BlitSurface(Options_Text.surface, NULL, Screen, &Options_Text.rect);	
 	
 
-	SDL_BlitSurface( MusicVol.surface, NULL, Screen, &MusicVol.rect );
-	SDL_BlitSurface( Exit.surface, NULL, Screen, &Exit.rect );
-	SDL_BlitSurface( SoundVol.surface, NULL, Screen, &SoundVol.rect );
+	SDL_BlitSurface( MusicVol->surface, NULL, Screen, &MusicVol->rect );
+	SDL_BlitSurface( Exit->surface, NULL, Screen, &Exit->rect );
+	SDL_BlitSurface( SoundVol->surface, NULL, Screen, &SoundVol->rect );
 
 	MainVol_Slider->Draw();
 	SoundVol_Slider->Draw();
@@ -188,7 +193,7 @@ void OptionsMenu::EventHandler()
 					if( event.button.button == 1 )
 					{
 						/// [Mouse Collision Check]
-						if( MouseCollidesWith( &Exit.rect ) ) 
+						if( MouseCollidesWith( &Exit->rect ) ) 
 						{
 							MainMenu::submode = MAIN; // Exit
 						}
