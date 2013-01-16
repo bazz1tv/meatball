@@ -170,10 +170,6 @@ void QuitGame( void )
 		TTF_CloseFont( bold_16 );
 	}
 	
-	if (TOE)
-	{
-		delete TOE;
-	}
 
 	if( pFont )
 	{
