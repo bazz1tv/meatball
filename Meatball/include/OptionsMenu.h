@@ -9,8 +9,9 @@ class Slider;
 /// @ingroup Options_Screen_Statuses
 // @{
 #define STATUS_BROWSING 0
-#define STATUS_SLIDING	1
-#define STATUS_EDITING	2
+#define STATUS_SLIDING_SVOL	1
+#define STATUS_SLIDING_MVOL 2
+#define STATUS_EDITING	3
 // @}
 
 
@@ -41,7 +42,7 @@ public:
 	TextObject *tExit, *tMusicVol, *tSoundVol;
 	
 	
-	Slider *MainVol_Slider, *SoundVol_Slider;
+	Slider *sMusicVol, *sSoundVol;
 	// inherited from Console (not literally)
 	double ttDrawCur;
 	bool DrawCur;

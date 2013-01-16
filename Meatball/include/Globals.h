@@ -130,7 +130,7 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "ObjectManager.h"
 #include "GraphicsObject.h"
 #include "TextObject.h"
-#include "TextObjectEngine.h"
+//#include "TextObjectEngine.h"
 #include "ButtonObject.h"
 
 #include "Slider.h"
