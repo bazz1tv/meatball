@@ -2,9 +2,8 @@
 #define __OPTIONSMENU_H__
 
 
-
+class TextObject;
 #include "Globals.h"
-
 class Slider;
 
 /// @ingroup Options_Screen_Statuses
@@ -28,6 +27,7 @@ public:
 	void Update();
 	void Draw();
 	void EventHandler();
+	void Collisions();
 	//BlinkCursor();
 	void LiveInput();
 	//Slide(Slider *slider);
@@ -38,7 +38,7 @@ public:
 	//SDL_Event event;
 	TTF_Font *optionsfont;
 
-	TextObject *Exit, *MusicVol, *SoundVol;
+	TextObject *tExit, *tMusicVol, *tSoundVol;
 	
 	
 	Slider *MainVol_Slider, *SoundVol_Slider;

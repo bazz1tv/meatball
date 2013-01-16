@@ -28,13 +28,15 @@ public:
 	DLLINTERFACE cFont( void );
 	DLLINTERFACE ~cFont( void );
 
+	//DLLINTERFACE void RenderText(TextObject *o);
+
 	/**	Creates the text in an Surface 
 	 *	types : 
 	 *	1 = Blended
 	 *	2 = Shaded
 	 *	3 = Solid
 	 */
-	DLLINTERFACE SDL_Surface *CreateText( const char *text, TTF_Font *font, unsigned int type,
+	static DLLINTERFACE SDL_Surface *CreateText( const char *text, TTF_Font *font, unsigned int type,
 		SDL_Color Text_Color, SDL_Color Background_Color );
 
 	DLLINTERFACE SDL_Surface *CreateText( const char *text, TTF_Font *font, unsigned int type = FONT_TYPE_BLENDED )
