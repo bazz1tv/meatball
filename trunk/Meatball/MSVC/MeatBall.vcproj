@@ -736,6 +736,42 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="GraphicsObjects"
+			>
+			<File
+				RelativePath="..\ButtonObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\ButtonObject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\GraphicsObject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\ObjectManager.h"
+				>
+			</File>
+			<File
+				RelativePath="..\TextObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\TextObject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\TextObjectEngine.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\TextObjectEngine.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\include\boost.h"
 			>

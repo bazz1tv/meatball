@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-struct GraphicsObject;
+//struct GraphicsObject;
 
 class Slider 
 {

@@ -16,8 +16,8 @@
 
 #include <SDL_ep.h>
 
-
-struct GraphicsObject;
+// Class declarations
+class TextObject;
 
 
 // If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
@@ -54,8 +54,8 @@ struct GraphicsObject;
 #define _STLP_DEBUG 1
 #endif
 
-
-
+class TextObjectEngine;
+extern TextObjectEngine *TOE;		// The TextObjectEngine
 extern SDL_Surface* icon;
 
 
@@ -126,9 +126,15 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "include\bullet.h"
 #include "include\leveleditor.h"
 #include "include\console.h"
+
+#include "ObjectManager.h"
+#include "GraphicsObject.h"
+#include "TextObject.h"
+#include "TextObjectEngine.h"
+#include "ButtonObject.h"
+
 #include "Slider.h"
 #include "OptionsMenu.h"
-
 #include "MainMenu.h"
 
 
@@ -147,6 +153,7 @@ extern cPlayer *pPlayer;			// The Player
 extern cLevel *pLevel;				// The Level
 extern cLevelEditor *pLevelEditor;	// The Leveleditor
 extern cConsole *pConsole;			// The Console
+
 
 /// screen settings
 extern const SDL_VideoInfo* screeninfo;

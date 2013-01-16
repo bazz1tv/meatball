@@ -75,6 +75,7 @@ void initEngine()
 	SMan	= new cSoundManager();
 	
 	pFont	= new cFont();
+	TOE		= new TextObjectEngine(pFont);
 	
 	pAudio = new cAudio();
 	pAudio->bMusic		 = pGameSettings->Music;

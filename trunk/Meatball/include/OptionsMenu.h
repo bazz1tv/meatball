@@ -38,7 +38,7 @@ public:
 	//SDL_Event event;
 	TTF_Font *optionsfont;
 
-	GraphicsObject Exit, MusicVol, SoundVol;
+	TextObject *Exit, *MusicVol, *SoundVol;
 	
 	
 	Slider *MainVol_Slider, *SoundVol_Slider;

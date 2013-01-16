@@ -20,13 +20,9 @@ int SDL_ToggleFS(SDL_Surface *surface);
 /// More english version of 
 bool MouseCollidesWith(SDL_Rect *Crect);
 
+/// The Universal Event Handler handles some events that should be handled in ANY event handler,
+/// like Window Resize events for instance
 void UniversalEventHandler(SDL_Event*);
-
-
-struct GraphicsObject
-{
-	SDL_Surface *surface;
-	SDL_Rect rect;
-};
+//
 
 #endif

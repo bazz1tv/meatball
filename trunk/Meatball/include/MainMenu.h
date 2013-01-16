@@ -1,8 +1,8 @@
 #ifndef __MAINMENU_H__
 #define __MAINMENU_H__
 
-//#include "Game.h"
 #include "Globals.h"
+
 
 // submode definitions
 #define MAIN	1
@@ -22,7 +22,7 @@ public:
 	
 	OptionsMenu optionsmenu;
 	TTF_Font *myfont;
-	GraphicsObject Options_Text;
+	TextObject *Options_Text;
 
 	static int submode;
 	bool Light_reverse;
