@@ -1,6 +1,7 @@
 #ifndef __MAINMENU_H__
 #define __MAINMENU_H__
 
+
 #include "Globals.h"
 
 
@@ -22,7 +23,7 @@ public:
 	
 	OptionsMenu optionsmenu;
 	TTF_Font *myfont;
-	TextObject *Options_Text;
+	TextObject *tOptions;
 
 	static int submode;
 	bool Light_reverse;

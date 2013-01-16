@@ -20,6 +20,11 @@ cFont :: ~cFont( void )
 	}
 }
 
+/*void cFont::RenderText(TextObject *o)
+{
+	CreateText(o->text.c_str(), o->font);
+}*/
+
 SDL_Surface *cFont :: CreateText( const char *text, TTF_Font *font, unsigned int type,
 		SDL_Color Text_Color, SDL_Color Background_Color)
 {
