@@ -28,7 +28,8 @@ void UniversalEventHandler(SDL_Event *event)
 		{
 			
 			//Resize the screen
-			Screen = SDL_SetVideoMode( event->resize.w, event->resize.h, pGameSettings->Screen_Bpp, MEATBALL_CUSTOM_FLAGS );
+			if (!pGameSettings->Fullscreen)
+				Screen = SDL_SetVideoMode( event->resize.w, event->resize.h, pGameSettings->Screen_Bpp, MEATBALL_CUSTOM_FLAGS );
 			//If there's an error
 			if( Screen == NULL )
 			{

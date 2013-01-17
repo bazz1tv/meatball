@@ -1,6 +1,8 @@
 #include "include\Globals.h"
 
-
+#define PISTOL_VELOCITY	10
+#define MACHINEGUN_VELOCITY	15
+#define LASER_VELOCITY 15
 
 unsigned int BulletCount = 0;
 cBullet **Bullets = NULL;
@@ -41,19 +43,20 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 
 	if( Bullet_type == BULLET_PISTOL ) // The Pistol Bullet
 	{
-		nVelocity = 11.5;
+		nVelocity = PISTOL_VELOCITY;
+
 		
 		SetImage( IMan->GetPointer( PIXMAPS_DIR "game/weapons/pistol/default.png" ) );
 	}
 	else if( Bullet_type == BULLET_MACHINEGUN )  // The Machinegun Bullet
 	{
-		nVelocity = 15;
+		nVelocity = MACHINEGUN_VELOCITY;
 		
 		SetImage( IMan->GetPointer( PIXMAPS_DIR "game/weapons/machinegun/default.png" ) );
 	}
 	else if( Bullet_type == BULLET_LASER_X1 )  // The Laser X-1
 	{
-		nVelocity = 17;
+		nVelocity = LASER_VELOCITY;
 		
 		if( direction == LEFT ) 
 		{

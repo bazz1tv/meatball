@@ -97,6 +97,7 @@ void OptionsMenu::Update()
 	{
 		sSoundVol->Slide((int)floor(pMouse->posx));
 		int svol = sSoundVol->doCalculation();
+		pPreferences->pSettings->svol = svol;
 		pAudio->SetAllSoundsVolume(svol);
 		playSoundEffect();
 		// that function will play a sound effect only if one isn't playing already
@@ -107,6 +108,7 @@ void OptionsMenu::Update()
 	{
 		sMusicVol->Slide((int)floor(pMouse->posx));
 		int mvol = sMusicVol->doCalculation();
+		pPreferences->pSettings->mvol = mvol;
 		pAudio->SetMusicVolume(mvol);
 		// If music is not playing, this section here should throw on a tune
 		if (pAudio->MusicPlaying() != true)

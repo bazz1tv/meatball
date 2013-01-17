@@ -2,10 +2,8 @@
 #include "Globals.h"
 
 #include "defines.h"
-/* #define MAX_FALL_VELOCITY 8
-#define JUMP_KEYS_HELD		(keys[SDLK_LALT] || keys[SDLK_RALT] || keys[SDLK_SEMICOLON] || keys[SDLK_PERIOD] || keys[SDLK_m])
-#define MOVELEFT_KEYS_HELD	(keys[SDLK_LEFT] || keys[SDLK_a])
-#define MOVERIGHT_KEYS_HELD (keys[SDLK_RIGHT] || keys[SDLK_d]) */
+
+#define WALK_VELOCITY 0.9
 
 
 cPlayer :: cPlayer( double nposx, double nposy ) : cMVelSprite( NULL, nposx, nposy )
@@ -45,7 +43,7 @@ void cPlayer :: init( void )
 {
 	// Right Standing
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/meatball/right_3.png", colorkey ), "Meatball_right_1" );
-	// Left Satnding
+	// Left Standing
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/meatball/left_3.png", colorkey ), "Meatball_left_1" );
 
 	// Get the Pointer
@@ -60,7 +58,7 @@ void cPlayer :: init( void )
 	}
 
 	// Pistol
-	pWeapon = /*new cWeapon_Machinegun (SPRITE_TYPE_PLAYER, 1, -1); */new cWeapon_Pistol( SPRITE_TYPE_PLAYER, 5, -1 );
+	pWeapon = new cWeapon_Pistol( SPRITE_TYPE_PLAYER, 5, -1 );
 }
 
 void cPlayer :: Update( void )
@@ -112,23 +110,24 @@ void cPlayer :: Update( void )
 			state = STATE_FALLING;
 		}
 
+
 		if( state == STATE_WALKING || state == STATE_STAYING ) 
 		{
-			AddVelocity( -0.9*pFramerate->speedfactor + (velx*0.03)*pFramerate->speedfactor, 0, -5 ,0 );
+			AddVelocity( -WALK_VELOCITY*pFramerate->speedfactor + (velx*0.03)*pFramerate->speedfactor, 0, -5 ,0 );
 		}
 		else
 		{
-			AddVelocity( -0.3*pFramerate->speedfactor + (velx*0.01)*pFramerate->speedfactor, 0, -5 ,0 );
+			AddVelocity( (-WALK_VELOCITY+0.6)*pFramerate->speedfactor + (velx*0.01)*pFramerate->speedfactor, 0, -5 ,0 );
 		}
 
 		if( vely > 0 ) 
 		{
-			AddVelocity( -0.5*pFramerate->speedfactor /*+ (velx*pFramerate->speedfactor)*/, 0 );				
+			AddVelocity( (-WALK_VELOCITY+0.4)*pFramerate->speedfactor /*+ (velx*pFramerate->speedfactor)*/, 0 );				
 		}
 		if( vely < 0 ) 
 		{
 			
-			AddVelocity( -0.5*pFramerate->speedfactor, 0 );	
+			AddVelocity( (-WALK_VELOCITY+0.4)*pFramerate->speedfactor, 0 );	
 		}
 	}
 	else if( direction == RIGHT && MOVERIGHT_KEYS_HELD && mode != MODE_CONSOLE ) 
@@ -148,11 +147,11 @@ void cPlayer :: Update( void )
 		
 		if( state == STATE_WALKING || state == STATE_STAYING ) 
 		{
-			AddVelocity( 0.9*pFramerate->speedfactor + (velx*0.03)*pFramerate->speedfactor, 0, 5 ,0 );
+			AddVelocity( WALK_VELOCITY*pFramerate->speedfactor + (velx*0.03)*pFramerate->speedfactor, 0, 5 ,0 );
 		}
 		else
 		{
-			AddVelocity( 0.3*pFramerate->speedfactor + (velx*0.01)*pFramerate->speedfactor, 0, 5 ,0 );
+			AddVelocity( (WALK_VELOCITY-0.6)*pFramerate->speedfactor + (velx*0.01)*pFramerate->speedfactor, 0, 5 ,0 );
 		}
 
 
@@ -160,18 +159,18 @@ void cPlayer :: Update( void )
 		if( vely < 0 ) 
 		{
 			
-			AddVelocity( 0.5*pFramerate->speedfactor, 0 );	
+			AddVelocity( (WALK_VELOCITY-0.4)*pFramerate->speedfactor, 0 );	
 		}
 		if( vely > 0 ) 
 		{
-			AddVelocity( 0.5*pFramerate->speedfactor /*+ (velx*pFramerate->speedfactor)*/, 0 );				
+			AddVelocity( (WALK_VELOCITY-0.4)*pFramerate->speedfactor /*+ (velx*pFramerate->speedfactor)*/, 0 );				
 		}
 	}
 	else // slow down
 	{
 		if( velx > 0 )
 		{
-			AddVelocity( -0.6*pFramerate->speedfactor, 0 );
+			AddVelocity( (-WALK_VELOCITY+0.3)*pFramerate->speedfactor, 0 );
 
 			if ( velx < 0 )
 			{
@@ -180,7 +179,7 @@ void cPlayer :: Update( void )
 		}
 		else if( velx < 0 )
 		{
-			AddVelocity( 0.6*pFramerate->speedfactor, 0 );
+			AddVelocity( (WALK_VELOCITY-0.3)*pFramerate->speedfactor, 0 );
 
 			if ( velx > 0 )
 			{

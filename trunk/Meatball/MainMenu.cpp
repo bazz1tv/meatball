@@ -15,29 +15,35 @@ MainMenu::MainMenu()
 	//optionsmenu = OptionsMenu();
 
 	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
-	tOptions = new TextObject(100,100, "Options", myfont);
-	tOptions->Render();
+	
 	//tOptions->rect = SetRect(100,100,tOptions->surface->w, tOptions->surface->h);
-	//pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3");
+	pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3");
+	//SMan->Add( pAudio->LoadSound( MUSIC_DIR "menumusic.wav"), MUSIC_DIR "menumusic.wav");
+	//pAudio->PlaySound(SMan->GetPointer(MUSIC_DIR "menumusic.wav"));
 
 	// Preload the Button Sound
 	SMan->Add( pAudio->LoadSound( SOUNDS_DIR "Button_1.ogg" ), SOUNDS_DIR "Button_1.ogg" );
 
 	/// [Adding a Sprite]
 	// Add the image to the Image Manager
-	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Background.png", colorkey ), "Menu_Background" );
+	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Background3.png", colorkey ), "Menu_Background" );
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Start.png", colorkey, 140 ), "Start_Button" );
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Exit.png", colorkey, 140 ), "Exit_Button" );
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Light1.png", colorkey, 0 ), "Light_1" );
 	// Register the sprite
 	Menu_Background = new cBasicSprite( IMan->GetPointer( "Menu_Background" ), 0, 0 );
 	Button_Start = new cBasicSprite( IMan->GetPointer( "Start_Button" ), Screen->w - Screen->w/3, 250 );
-	Button_Exit = new cBasicSprite( IMan->GetPointer( "Exit_Button" ), Screen->w - Screen->w/3, 250 + (int)Button_Start->height + 50);
-	Light1 = new cBasicSprite( IMan->GetPointer( "Light_1" ), Screen->w/7, Screen->h/2 );
+	Button_Exit = new cBasicSprite( IMan->GetPointer( "Exit_Button" ), Screen->w - Screen->w/3, 250 + (int)Button_Start->height + 125);
+	Light1 = new cBasicSprite( IMan->GetPointer( "Light_1" ), Screen->w/7-20, Screen->h/2 );
 	/// [Adding a Sprite]
 
 	// Resize The Background image
 	Menu_Background->SetSize( (double)Screen->w, (double)Screen->h );
+
+	tOptions = new TextObject(Screen->w - Screen->w/3, 250 + (int)Button_Start->height + 50, "Options", myfont);
+	SDL_Color optionsColor = SetColor(0,0,0);
+	tOptions->SetFGColor(optionsColor);
+	tOptions->Render();
 }
 
 MainMenu::~MainMenu()
@@ -71,7 +77,7 @@ void MainMenu::UpdateGraphics()
 	pFramerate->SetSpeedFactor( );
 
 	Menu_Background->Update();
-	Light1->Update();
+	//Light1->Update();
 
 	Button_Start->Update();
 	Button_Exit->Update();
@@ -80,7 +86,7 @@ void MainMenu::UpdateGraphics()
 		
 	Menu_Background->Draw( Screen ); // Background
 
-	Light1->Draw( Screen );
+	//Light1->Draw( Screen );
 
 	Button_Start->Draw( Screen );
 	Button_Exit->Draw( Screen );
@@ -223,8 +229,9 @@ void MainMenu::Do()
 	if( mode == MODE_GAME ) // Start
 	{
 		pAudio->PlaySound( SMan->GetPointer( SOUNDS_DIR "Button_1.ogg" ) );
+#ifndef DEMO
 		pAudio->FadeOutMusic( 2000 );
-	
+#endif
 		FadeOutBG();
 		Game::Init();
 	}
@@ -276,10 +283,6 @@ void MainMenu::EventHandler()
 					{
 						mode = MODE_QUIT;
 					}
-					else if( event.key.keysym.sym == SDLK_RETURN && ( event.key.keysym.mod & KMOD_ALT ) ) 
-					{
-						SDL_ToggleFS(Screen);
-					} 
 					else if( event.key.keysym.sym == SDLK_RETURN )
 					{
 						mode = MODE_GAME;

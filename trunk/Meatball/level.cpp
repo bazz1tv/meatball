@@ -262,7 +262,10 @@ void cLevel :: Update( void )
 	if( !Mix_PlayingMusic() )
 	{
 		string filename = MUSIC_DIR + pLevelData->Musicfile;
+#define DEMO
+#ifndef DEMO
 		pAudio->PlayMusik( (char *)filename.c_str(),0,1 );
+#endif
 		
 	}
 }

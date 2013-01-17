@@ -55,6 +55,7 @@ void cSettings :: Update( cSettings *Settings )
 	Screen_H = Settings->Screen_H;
 	Screen_W = Settings->Screen_W;
 	svol = Settings->svol;
+	mvol = Settings->mvol;
 
 	Key_walk_left = Settings->Key_walk_left;
 	Key_walk_right = Settings->Key_walk_right;

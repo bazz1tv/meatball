@@ -40,7 +40,7 @@ void MiniEngine::PostUpdate()
 
 void MiniEngine::PreDraw()
 {
-	SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 60, 0, 0 ) );
+	SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 0, 0, 0 ) );
 
 	pLevel->Draw();
 }
@@ -81,9 +81,11 @@ void Game::Init()
 
 	
 	pLevel->Load( "test.lvl" );
+#ifndef DEMO
 	string filename = MUSIC_DIR + pLevel->pLevelData->Musicfile;
 	pAudio->PlayMusik((char*)filename.c_str(), 1);
 	while (!pAudio->MusicPlaying()) {Mix_PlayMusic(pAudio->Music, 1);}
+#endif
 	
 }
 void Game::Update()

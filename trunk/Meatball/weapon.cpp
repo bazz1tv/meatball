@@ -94,7 +94,7 @@ void cWeapon_Machinegun :: Fire( void )
 	// Add an Machinegun Bullet
 	AddBullet( posx, posy, direction, BULLET_MACHINEGUN, Origin );
 
-	timer = 3;
+	timer = 5;
 }
 
 // ##################### The Laser X-1 ###########################
