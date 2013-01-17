@@ -351,7 +351,7 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 		}
 		else
 		{
-			pSettings->Key_walk_left = atoi( parts[1] );
+			pSettings->Key_walk_left = (SDLKey)atoi( parts[1] );
 		}
 	}
 	else if ( strcmp( parts[0], "WalkRight") == 0 )
@@ -363,7 +363,7 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 		}
 		else
 		{
-			pSettings->Key_walk_right = atoi( parts[1] );
+			pSettings->Key_walk_right = (SDLKey)atoi( parts[1] );
 		}
 	}
 	else if ( strcmp( parts[0], "Jump") == 0 )
@@ -375,7 +375,7 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 		}
 		else
 		{
-			pSettings->Key_jump = atoi( parts[1] );
+			pSettings->Key_jump = (SDLKey)atoi( parts[1] );
 		}
 	}
 	else if ( strcmp( parts[0], "FirePrimary") == 0 )
@@ -388,7 +388,7 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 		}
 		else
 		{
-			pSettings->Key_shoot_primary = atoi( parts[1] );
+			pSettings->Key_shoot_primary = (SDLKey)atoi( parts[1] );
 		}
 	}
 	else

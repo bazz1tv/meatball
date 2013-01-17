@@ -7,7 +7,7 @@ void Slider::Draw()
 	// void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color);
 	
 	FillRect(Screen, panel_x, panel_y, width, 10, SDL_MapRGB(Screen->format, 50,50,50));
-	FillRect(Screen, adjuster_x,adjuster_y, 5, 15, SDL_MapRGB(Screen->format,0,255,0));
+	FillRect(Screen, adjuster_x,adjuster_y, 8, 15, SDL_MapRGB(Screen->format,0,255,0));
 }
 
 void Slider::SetAdjusterPos(int x)
@@ -54,13 +54,13 @@ Slider::Slider(int x, int y, int width, int range_min, int range_max)
 
 	this->width = width;
 
-	adjuster_x = x+(width/2); // Set the adjuster in the middle of the panel
+	adjuster_x = x+(width/2);	// Set the adjuster in the middle of the panel
 	adjuster_y = y-2;			// guess
 
 	target_range = float(range_max - range_min);
 	slider_range = float(width);
 
-	adjuster_rect = SetRect(adjuster_x,adjuster_y, 5, 15);
+	adjuster_rect = SetRect(adjuster_x,adjuster_y, 8, 15);
 
 	// calculate ratio
 	DoRatio();

@@ -1,15 +1,15 @@
 #include "TextObject.h"
 
-void TextObject::setBGColor(SDL_Color color)
+void TextObject::SetBGColor(SDL_Color color)
 {
 	bgColor = color;
 }
-void TextObject::setFGColor(SDL_Color color)
+void TextObject::SetFGColor(SDL_Color color)
 {
 	fgColor = color;
 }
 
-void TextObject::setColors(SDL_Color fg, SDL_Color bg)
+void TextObject::SetColors(SDL_Color fg, SDL_Color bg)
 {
 	fgColor = fg;
 	bgColor = bg;

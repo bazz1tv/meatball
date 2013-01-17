@@ -48,7 +48,7 @@ public:
 	 *	if volume is -2 no volume will be set
 	 */
 	
-	DLLINTERFACE void PlaySound( Mix_Chunk *sound, int channel = -1, int sVolume = -1 );
+	DLLINTERFACE int PlaySound( Mix_Chunk *sound, int channel = -1, int sVolume = -1 );
 	
 	/**	if no forcing the file will be played after the current Music file 
 	*	if loops is -1 music will be looped infinity
