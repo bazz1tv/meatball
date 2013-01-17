@@ -3,7 +3,7 @@
 
 #define MEATBALL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
 #define MEATBALL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
-#define MEATBALL_FULLSCREEN_SETTINGS 800, 600, 32 //pPreferences->Screen_W, pPreferences->Screen_H, pPreferences->Screen_Bpp
+#define MEATBALL_FULLSCREEN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
 
 /* The PLAYER */
 /// The player won't fall any faster than this (pixels iirc)

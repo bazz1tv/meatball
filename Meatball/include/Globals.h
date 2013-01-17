@@ -1,7 +1,7 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
 
-
+#define DEMO
 
 #include <stdlib.h>
 #include <stdio.h>
