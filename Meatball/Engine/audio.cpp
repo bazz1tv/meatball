@@ -141,30 +141,30 @@ Mix_Chunk *cAudio :: LoadSound( char *filename, int sVolume /* = -2  */ )
 	return Sound;
 }
 
-void cAudio :: PlaySound( Mix_Chunk *sound, int channel /* = -1 */, int sVolume /* = -1  */ )
+int cAudio :: PlaySound( Mix_Chunk *sound, int channel /* = -1 */, int sVolume /* = -1  */ )
 {
 	if( !sound ) 
 	{
 		printf( "PlaySound Error : sound is not allocated\n" );
-		return;
+		return -1;
 	}
 
 	if( channel > 128 )
 	{
 		printf( "PlaySound Error : channel is out of range : %d\n", channel );
-		return;
+		return -1;
 	}
 	
 	if ( !bSounds || !bInitialised )
 	{
-		return;
+		return -1;
 	}
 	int channel_used = Mix_PlayChannel( channel, sound, 0 );
 
 	if( channel_used == -1 && bDebug )
 	{
 		printf( "PlaySound Error : could not play sound \n" );
-   		return;
+   		return -1;
 	}
 	else
 	{
@@ -184,6 +184,8 @@ void cAudio :: PlaySound( Mix_Chunk *sound, int channel /* = -1 */, int sVolume 
 			Mix_Volume( channel_used, Sound_Volume );
 		}
 	}
+
+	return channel_used;
 }
 
 void cAudio:: LoadMusic(char *filename)

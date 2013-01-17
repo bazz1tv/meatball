@@ -5,7 +5,7 @@
 #include "include\Globals.h"
 
 /// Current Settings Revision
-#define PREF_VERSION "0.5"
+#define PREF_VERSION "0.6"
 
 /// User Settings File
 #define USER_PREF_NAME "Preferences.ini"
@@ -33,8 +33,8 @@ public:
 	Uint8 Screen_Bpp;
 
 	// Todo
-	int Key_look_up,Key_duck,Key_walk_left,Key_walk_right,Key_shoot_primary,Key_shoot_secondary;
-	int Key_jump;
+	SDLKey Key_walk_left,Key_walk_right,Key_shoot_primary;
+	SDLKey Key_jump;
 };
 
 /// The Preferences

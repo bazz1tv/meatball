@@ -21,9 +21,9 @@ public:
 
 
 	void initDefaultColors();
-	void setBGColor(SDL_Color color);
-	void setFGColor(SDL_Color color);
-	void setColors(SDL_Color fg, SDL_Color bg);
+	void SetBGColor(SDL_Color color);
+	void SetFGColor(SDL_Color color);
+	void SetColors(SDL_Color fg, SDL_Color bg);
 
 
 

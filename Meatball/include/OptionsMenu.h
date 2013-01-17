@@ -8,23 +8,68 @@ class Slider;
 
 /// @ingroup Options_Screen_Statuses
 // @{
-#define STATUS_BROWSING 0
-#define STATUS_SLIDING_SVOL	1
-#define STATUS_SLIDING_MVOL 2
-#define STATUS_EDITING	3
+#define BROWSING 0
+#define SLIDING_SVOL	1
+#define SLIDING_MVOL 2
+#define EDITING	3
 // @}
+
+// Controls status
+enum Screens {
+	OPTIONS_SCREEN,
+	CONTROLS_SCREEN,
+};
+
+
+
+class OptionsMenu;
+
+class ControlsMenu : public MiniEngine
+{
+	public:
+	enum { KEY_LEFT, KEY_RIGHT, KEY_FIRE, KEY_JUMP, };
+	Uint8 status;
+	
+	ControlsMenu();
+	~ControlsMenu();
+
+	//void Do();
+	void Update();
+	void Draw();
+	void EventHandler();
+	void Collisions();
+	
+	void GetInput(Uint8);		// NEED TO WRITE THIS
+
+	TTF_Font *font;
+
+	// actual Text
+	TextObject *tExit, *tMoveLeft, *tMoveRight, *tFirePrimary, *tJump;
+	TextObject *tWaitForInput;
+
+	// TO-DO implement these
+	TextObject *tFullscreen, *tScreenWidth, *tScreenHeight, *tScreenBpp;
+	// Text representing the current Controls preferences
+	TextObject *tMoveLeft_CurKey, *tMoveRight_CurKey, *tFirePrimary_CurKey, *tJump_CurKey;
+};
+
 
 
 class OptionsMenu : public MiniEngine
 {
 public:
+	
 	Uint8 status;
-	// StateHandler InputEngine
+	static Screens curscreen;
+	
+
+	ControlsMenu controls_menu;
 	
 	OptionsMenu();
 	~OptionsMenu();
 
 	void Do();
+	void PreUpdate();
 	void Update();
 	void Draw();
 	void EventHandler();
@@ -40,13 +85,14 @@ public:
 	TTF_Font *optionsfont;
 
 	TextObject *tExit, *tMusicVol, *tSoundVol;
-	
+	TextObject *tControls;
 	
 	Slider *sMusicVol, *sSoundVol;
 	// inherited from Console (not literally)
 	double ttDrawCur;
 	bool DrawCur;
 	string livestring;
+	unsigned int CurrentScreen;
 };
 
 
