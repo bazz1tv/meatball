@@ -3,7 +3,7 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /// @defgroup PLAYER_STATES
 // @{

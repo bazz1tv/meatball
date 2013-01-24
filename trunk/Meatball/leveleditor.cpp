@@ -1,6 +1,6 @@
 
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 
 
@@ -304,7 +304,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 	int CollisionNum = -1;
 
 	// Player
-	if( RectIntersect( &pPlayer->GetRect( 1 ), &cRect ) ) 
+	if( RectIntersect( &(const SDL_Rect&)pPlayer->GetRect( 1 ), &cRect ) ) 
 	{
 		return (cMVelSprite*)pPlayer;
 	}

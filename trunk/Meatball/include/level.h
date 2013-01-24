@@ -5,7 +5,7 @@
 #ifndef __LEVEL_H__
 #define __LEVEL_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 class cLevelData
 {

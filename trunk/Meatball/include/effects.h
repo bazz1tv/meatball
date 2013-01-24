@@ -2,7 +2,7 @@
 #ifndef __EFFECTS_H__
 #define __EFFECTS_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /// The Particle class
 class cMParticle : public cMAngleSprite

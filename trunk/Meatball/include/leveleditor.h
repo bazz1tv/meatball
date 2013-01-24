@@ -4,7 +4,7 @@
 #ifndef __LEVELEDITOR_H__
 #define __LEVELEDITOR_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /// @ingroup Event_Handlers
 void leveleditor_ehandler(void);

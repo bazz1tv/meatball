@@ -1,5 +1,5 @@
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 
 unsigned int EnemyCount = 0;
@@ -108,7 +108,7 @@ int GetCollidingEnemyNum( SDL_Rect *Crect )
 				continue;
 			}
 
-			if( RectIntersect( &Enemies[i]->GetRect( 1 ), Crect ) ) 
+			if( RectIntersect( &(const SDL_Rect&)Enemies[i]->GetRect( 1 ), Crect ) )
 			{
 				return i;
 			}
@@ -129,7 +129,7 @@ cEnemy *GetCollidingEnemy( SDL_Rect *Crect )
 				continue;
 			}
 
-			if( RectIntersect( &Enemies[i]->GetRect( 1 ), Crect ) ) 
+			if( RectIntersect( &(const SDL_Rect&)Enemies[i]->GetRect( 1 ), Crect ) ) 
 			{
 				return Enemies[i];
 			}

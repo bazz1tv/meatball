@@ -2,7 +2,7 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /// Enemy Types
 #define ENEMY_UNDEFINED 0

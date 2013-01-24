@@ -1,6 +1,6 @@
 
 
-#include "include/SDL_ep.h"
+#include "SDL_ep.h"
 
 SDL_Surface *LoadImage( const char *szFilename, Uint32 Colorkey /* = 0 */, Uint8 Alpha /* = 255  */ )
 {

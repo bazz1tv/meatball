@@ -3,7 +3,7 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /** @brief A base class from which the main Steam Rollers can derive from.
 	@detail MiniEngine has genericized processes for general gameplay. Like tracking events,

@@ -1,5 +1,5 @@
 
-#include "include/SDL_ep.h"
+#include "SDL_ep.h"
 
 cSoundManager :: cSoundManager( void )
 {
@@ -12,7 +12,7 @@ cSoundManager :: ~cSoundManager( void )
 }
 
 
-Mix_Chunk *cSoundManager :: GetPointer( string nIdentifier )
+Mix_Chunk *cSoundManager :: GetPointer( std::string nIdentifier )
 {
 	for(unsigned int i = 0; i < SoundItems.size(); i++)
 	{

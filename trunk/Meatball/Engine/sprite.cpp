@@ -1,6 +1,6 @@
 
 
-#include "include/SDL_ep.h"
+#include "SDL_ep.h"
 
 
 double *Spritespeedfactor = NULL; // The Sprite Speed factor

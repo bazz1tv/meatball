@@ -3,7 +3,7 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /// The Camera class
 class cCamera

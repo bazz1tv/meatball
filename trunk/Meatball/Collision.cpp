@@ -1,5 +1,5 @@
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type )

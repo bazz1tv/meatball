@@ -1,5 +1,10 @@
 #include "playlist.h"
-#include "SDL_ep.h"
+
+#ifdef _WIN32
+#include <SDL_ep.h>
+#else
+#include <MeatBallEngine/SDL_ep.h>
+#endif
 
 #define MUSIC_DIR "data/music/"
 extern cAudio *pAudio;

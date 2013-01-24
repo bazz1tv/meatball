@@ -1,7 +1,7 @@
 
-#include "include\Globals.h"
-#include "include\Game.h"
-#include "include\MainMenu.h"
+#include "Globals.h"
+#include "Game.h"
+#include "MainMenu.h"
 
 using namespace std;
 
@@ -212,8 +212,10 @@ bool is_valid_number( char *c )
 				c++;
 			} 
 			else
+            {
 				return 0;
-		if (*c < '0' || *c > '9')
+            }
+		if ((*c < '0' || *c > '9') && *c != '\r')
 			return 0;
 	}
 	return 1;
