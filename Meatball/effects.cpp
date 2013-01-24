@@ -1,5 +1,5 @@
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 
 cMParticleEmitter **ParticleEmitter = NULL;

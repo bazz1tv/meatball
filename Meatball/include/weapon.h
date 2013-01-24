@@ -4,7 +4,7 @@
 #ifndef __WEAPON_H__
 #define __WEAPON_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /// @defgroup WEAPON_TYPES WEAPON_TYPES 
 //@{

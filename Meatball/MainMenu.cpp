@@ -1,6 +1,6 @@
-#include "include\MainMenu.h"
-#include "include\Game.h"
-//#include "include\Globals.h"
+#include "MainMenu.h"
+#include "Game.h"
+//#include "Globals.h"
 
 //extern Game game;
 

@@ -1,5 +1,5 @@
 
-#include "include/SDL_ep.h"
+#include "SDL_ep.h"
 
 cImageManager :: cImageManager( void )
 {
@@ -12,7 +12,7 @@ cImageManager :: ~cImageManager( void )
 }
 
 
-SDL_Surface *cImageManager :: GetPointer( string nIdentifier )
+SDL_Surface *cImageManager :: GetPointer( std::string nIdentifier )
 {
 	for(unsigned int i = 0; i < ImageItems.size(); i++)
 	{

@@ -3,7 +3,7 @@
 #ifndef __ENEMY_AF373_H__
 #define __ENEMY_AF373_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 class cAF373 : public cEnemy
 {

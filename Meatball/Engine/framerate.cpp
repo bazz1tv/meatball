@@ -1,13 +1,19 @@
 
 
-#include "include/SDL_ep.h"
+#include "SDL_ep.h"
+
+
 // http://nebuladevice.sourceforge.net/doc/doxydoc/nebulacore/html/ntime__main_8cc-source.html
 // http://nebuladevice.sourceforge.net/doc2/doxydoc/nebula2/html/ntime__main_8cc-source.html
 #if defined(__LINUX__) || defined(__MACOSX__)
+
+#include <sys/time.h>
+#define N_MICROSEC_INT    (1000000)
 #define tv2micro(x) ((double)x.tv_sec * (double)N_MICROSEC_INT + (double)x.tv_usec);
+
 #endif
 
-cFramerate :: cFramerate( double tfps /* = 60  */ )
+cFramerate::cFramerate( double tfps /* = 60  */ )
 {
 	speedfactor = 1;
 	fps = 0;
@@ -68,9 +74,9 @@ void cFramerate :: SetSpeedFactor( void )
 	framedelay = currentticks;
 }
 
-string cFramerate :: Getfps( void )
+std::string cFramerate :: Getfps( void )
 {
-	string s = "FPS : " + (unsigned int)fps;
+    std::string s = "FPS : " + (unsigned int)fps;
 	return s;
 }
 

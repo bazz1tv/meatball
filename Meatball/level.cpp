@@ -1,5 +1,5 @@
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 
 using namespace std;
@@ -55,8 +55,8 @@ int cLevelData :: GetCollidingSpriteNum( SDL_Rect *Crect )
 			{
 				continue;
 			}
-
-			if( RectIntersect( &BasicSprites[i]->GetRect( 1 ), Crect ) ) 
+            
+			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( 1 ), Crect ) ) 
 			{
 				return i;
 			}
@@ -77,7 +77,7 @@ cBasicSprite *cLevelData :: GetCollidingSprite( SDL_Rect *Crect )
 				continue;
 			}
 
-			if( RectIntersect( &BasicSprites[i]->GetRect( 1 ), Crect ) ) 
+			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( 1 ), Crect ) ) 
 			{
 				return BasicSprites[i];
 			}
@@ -317,7 +317,13 @@ void cLevel :: Parse( char* command, int line )
 		memcpy( parts[i], str, len );
 		parts[i][len] = 0;
 		str += len + strspn( str + len, " " );
-		i++; 
+        
+        if (parts[i][len-1] == '\r')
+            parts[i][len-1] = 0;
+        
+		i++;
+        
+        
 	}
 	
 	// Level Message handler

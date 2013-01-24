@@ -1,5 +1,5 @@
 
-#include "include/SDL_ep.h"
+#include "SDL_ep.h"
 
 
 float Random( float min, float max )
@@ -54,7 +54,7 @@ SDL_Color SetColor( Uint8 Red, Uint8 Green, Uint8 Blue )
 	return SColor;
 }
 
-bool RectIntersect( SDL_Rect *r1, SDL_Rect *r2 )
+bool RectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 )
 {
 	if( r1->x + r1->w <= r2->x )
 	{
@@ -76,7 +76,7 @@ bool RectIntersect( SDL_Rect *r1, SDL_Rect *r2 )
 	return true;
 }
 
-bool FullRectIntersect( SDL_Rect *r1, SDL_Rect *r2 )
+bool FullRectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 )
 {
 	if( r1->x < r2->x )
 	{

@@ -1,5 +1,5 @@
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 using namespace std;
 

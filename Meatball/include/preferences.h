@@ -2,7 +2,7 @@
 #ifndef __PREFERENCES_H__
 #define __PREFERENCES_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 /// Current Settings Revision
 #define PREF_VERSION "0.6"

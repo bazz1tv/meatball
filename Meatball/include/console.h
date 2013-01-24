@@ -3,7 +3,7 @@
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
 
-#include "include\Globals.h"
+#include "Globals.h"
 
 #include "boost.h"
 

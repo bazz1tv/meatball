@@ -13,9 +13,11 @@
 	#include <vld.h>
 #endif
 
-
+#ifdef _WIN32
 #include <SDL_ep.h>
-
+#else
+#include <MeatBallEngine/SDL_ep.h>
+#endif
 // Class declarations
 class TextObject;
 
@@ -35,10 +37,14 @@ class TextObject;
 
 
 
-// This following line takes out the command line window from your program :) 
+// This following line takes out the command line window from your program :)
+#ifdef _WIN32
 #ifndef _DEBUG
 	#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #endif
+#endif
+
+#ifdef _WIN32
 #pragma comment( lib, "SDL.lib" )
 #pragma comment( lib, "SDL_mixer.lib" )
 #pragma comment( lib, "SDL_image.lib" )
@@ -46,6 +52,7 @@ class TextObject;
 #pragma comment( lib, "SDL_net.lib" )
 #pragma comment( lib, "Sge.lib" )
 #pragma comment( lib, "SDL_ep.lib" )
+#endif
 
 // STL Debugging
 #ifndef _DEBUG
@@ -114,18 +121,18 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "defines.h"
 #include "Game.h"
 #include "Misc.h"
-#include "include\Preferences.h"
-#include "include\Camera.h"
-#include "include\Collision.h"
-#include "include\sprite.h"
-#include "include\effects.h"
-#include "include\level.h"
-#include "include\weapon.h"
-#include "include\player.h"
-#include "include\enemy.h"
-#include "include\bullet.h"
-#include "include\leveleditor.h"
-#include "include\console.h"
+#include "Preferences.h"
+#include "Camera.h"
+#include "Collision.h"
+#include "sprite.h"
+#include "effects.h"
+#include "level.h"
+#include "weapon.h"
+#include "player.h"
+#include "enemy.h"
+#include "bullet.h"
+#include "leveleditor.h"
+#include "console.h"
 
 #include "ObjectManager.h"
 #include "GraphicsObject.h"
@@ -142,7 +149,7 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 
 
 //Enemies
-#include "include\AF-373.h"
+#include "AF-373.h"
 
 // MeatBall
 extern cPreferences *pPreferences;	// The Preferences

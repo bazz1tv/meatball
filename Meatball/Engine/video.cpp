@@ -1,5 +1,5 @@
 
-#include "include/SDL_ep.h"
+#include "SDL_ep.h"
 
 int InitSDL( Uint32 flags /* = SDL_INIT_EVERYTHING  */ )
 {

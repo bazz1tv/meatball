@@ -1,5 +1,5 @@
-//#include "include\console.h"
-#include "include\Globals.h"
+//#include "console.h"
+#include "Globals.h"
 #include <string.h>
 
 using namespace std;
