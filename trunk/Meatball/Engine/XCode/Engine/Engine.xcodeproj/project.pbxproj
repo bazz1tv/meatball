@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E92C927A16B1AC4E003DE10B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92C927816B1AC4E003DE10B /* InfoPlist.strings */; };
-		E92C928A16B1AC4F003DE10B /* MeatBallEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C926E16B1AC4E003DE10B /* MeatBallEngine.framework */; };
-		E92C929016B1AC4F003DE10B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92C928E16B1AC4F003DE10B /* InfoPlist.strings */; };
-		E92C929316B1AC4F003DE10B /* MeatballEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E92C929216B1AC4F003DE10B /* MeatballEngineTests.m */; };
 		E92C929A16B1AC8F003DE10B /* audio.h in Headers */ = {isa = PBXBuildFile; fileRef = E92C925116B1A7ED003DE10B /* audio.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E92C929B16B1AC8F003DE10B /* font.h in Headers */ = {isa = PBXBuildFile; fileRef = E92C925216B1A7ED003DE10B /* font.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E92C929C16B1AC8F003DE10B /* framerate.h in Headers */ = {isa = PBXBuildFile; fileRef = E92C925316B1A7ED003DE10B /* framerate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,16 +40,6 @@
 		E92C930D16B1B51D003DE10B /* SGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C921816B1A5E5003DE10B /* SGE.framework */; };
 		E980305116B2CC82006ECF16 /* MeatBallEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E92C926E16B1AC4E003DE10B /* MeatBallEngine.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E92C928816B1AC4F003DE10B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E92C920016B1A5A3003DE10B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E92C926D16B1AC4E003DE10B;
-			remoteInfo = MeatballEngine;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E980305016B2CC6A006ECF16 /* CopyFiles */ = {
@@ -104,12 +91,6 @@
 		E92C927416B1AC4E003DE10B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E92C927716B1AC4E003DE10B /* MeatballEngine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MeatballEngine-Info.plist"; sourceTree = "<group>"; };
 		E92C927916B1AC4E003DE10B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E92C927B16B1AC4E003DE10B /* MeatballEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MeatballEngine-Prefix.pch"; sourceTree = "<group>"; };
-		E92C928416B1AC4F003DE10B /* MeatballEngineTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeatballEngineTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E92C928D16B1AC4F003DE10B /* MeatballEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MeatballEngineTests-Info.plist"; sourceTree = "<group>"; };
-		E92C928F16B1AC4F003DE10B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E92C929116B1AC4F003DE10B /* MeatballEngineTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeatballEngineTests.h; sourceTree = "<group>"; };
-		E92C929216B1AC4F003DE10B /* MeatballEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeatballEngineTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,14 +107,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E92C928016B1AC4E003DE10B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E92C928A16B1AC4F003DE10B /* MeatBallEngine.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -142,7 +115,6 @@
 			children = (
 				E92C925016B1A7ED003DE10B /* include */,
 				E92C927516B1AC4E003DE10B /* MeatballEngine */,
-				E92C928B16B1AC4F003DE10B /* MeatballEngineTests */,
 				E92C921216B1A5C9003DE10B /* Frameworks */,
 				E92C921116B1A5C5003DE10B /* Source */,
 				E92C920A16B1A5A3003DE10B /* Products */,
@@ -153,7 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				E92C926E16B1AC4E003DE10B /* MeatBallEngine.framework */,
-				E92C928416B1AC4F003DE10B /* MeatballEngineTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,26 +205,6 @@
 			children = (
 				E92C927716B1AC4E003DE10B /* MeatballEngine-Info.plist */,
 				E92C927816B1AC4E003DE10B /* InfoPlist.strings */,
-				E92C927B16B1AC4E003DE10B /* MeatballEngine-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E92C928B16B1AC4F003DE10B /* MeatballEngineTests */ = {
-			isa = PBXGroup;
-			children = (
-				E92C929116B1AC4F003DE10B /* MeatballEngineTests.h */,
-				E92C929216B1AC4F003DE10B /* MeatballEngineTests.m */,
-				E92C928C16B1AC4F003DE10B /* Supporting Files */,
-			);
-			path = MeatballEngineTests;
-			sourceTree = "<group>";
-		};
-		E92C928C16B1AC4F003DE10B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E92C928D16B1AC4F003DE10B /* MeatballEngineTests-Info.plist */,
-				E92C928E16B1AC4F003DE10B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -302,25 +253,6 @@
 			productReference = E92C926E16B1AC4E003DE10B /* MeatBallEngine.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E92C928316B1AC4E003DE10B /* MeatballEngineTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E92C929716B1AC4F003DE10B /* Build configuration list for PBXNativeTarget "MeatballEngineTests" */;
-			buildPhases = (
-				E92C927F16B1AC4E003DE10B /* Sources */,
-				E92C928016B1AC4E003DE10B /* Frameworks */,
-				E92C928116B1AC4E003DE10B /* Resources */,
-				E92C928216B1AC4E003DE10B /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E92C928916B1AC4F003DE10B /* PBXTargetDependency */,
-			);
-			name = MeatballEngineTests;
-			productName = MeatballEngineTests;
-			productReference = E92C928416B1AC4F003DE10B /* MeatballEngineTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -343,7 +275,6 @@
 			projectRoot = "";
 			targets = (
 				E92C926D16B1AC4E003DE10B /* MeatBallEngine */,
-				E92C928316B1AC4E003DE10B /* MeatballEngineTests */,
 			);
 		};
 /* End PBXProject section */
@@ -357,31 +288,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E92C928116B1AC4E003DE10B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E92C929016B1AC4F003DE10B /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		E92C928216B1AC4E003DE10B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E92C926916B1AC4E003DE10B /* Sources */ = {
@@ -403,37 +310,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E92C927F16B1AC4E003DE10B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E92C929316B1AC4F003DE10B /* MeatballEngineTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E92C928916B1AC4F003DE10B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E92C926D16B1AC4E003DE10B /* MeatBallEngine */;
-			targetProxy = E92C928816B1AC4F003DE10B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E92C927816B1AC4E003DE10B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E92C927916B1AC4E003DE10B /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E92C928E16B1AC4F003DE10B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E92C928F16B1AC4F003DE10B /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -532,32 +415,6 @@
 			};
 			name = Release;
 		};
-		E92C929816B1AC4F003DE10B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MeatballEngine/MeatballEngine-Prefix.pch";
-				INFOPLIST_FILE = "MeatballEngineTests/MeatballEngineTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		E92C929916B1AC4F003DE10B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MeatballEngine/MeatballEngine-Prefix.pch";
-				INFOPLIST_FILE = "MeatballEngineTests/MeatballEngineTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -575,15 +432,6 @@
 			buildConfigurations = (
 				E92C929516B1AC4F003DE10B /* Debug */,
 				E92C929616B1AC4F003DE10B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E92C929716B1AC4F003DE10B /* Build configuration list for PBXNativeTarget "MeatballEngineTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E92C929816B1AC4F003DE10B /* Debug */,
-				E92C929916B1AC4F003DE10B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
