@@ -206,17 +206,20 @@ bool is_valid_number( char *c )
 	for(;*c;c++)
 	{
 		if (*c == '.')
+		{
 			if (!floatnumber)
 			{
 				floatnumber = 1;
 				c++;
 			} 
-			else
-            {
-				return 0;
-            }
+			else { return 0; }
+		}
+		
 		if ((*c < '0' || *c > '9') && *c != '\r')
+		{
 			return 0;
+	
+		}
 	}
 	return 1;
 }

@@ -578,7 +578,6 @@ bool ShowFPS( string &str )
 
 bool help( string &str )
 {
-	int j = 0;
 	int curline = 0;
 
 	if ( str.empty() )

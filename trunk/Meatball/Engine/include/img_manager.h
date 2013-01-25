@@ -33,7 +33,7 @@ public:
 	DLLINTERFACE cImageManager( void );
 	DLLINTERFACE ~cImageManager( void );
 
-	DLLINTERFACE SDL_Surface *GetPointer( std::string nIdentifier );
+	DLLINTERFACE SDL_Surface *GetPointer( const std::string nIdentifier );
 	DLLINTERFACE SDL_Surface *GetPointer( unsigned int nId );
 
 	DLLINTERFACE SDL_Surface *Copy( string nIdentifier );
@@ -48,14 +48,14 @@ public:
 	/**	Adds an Image
 	 *	Should always have an Identifier
 	 */
-	DLLINTERFACE void Add( SDL_Surface *nItem, string nIdentifier = "Unknown" );
+	DLLINTERFACE void Add( SDL_Surface *nItem, const string nIdentifier = "Unknown" );
 
 	DLLINTERFACE SDL_Surface *operator [] ( unsigned int nId )
 	{
 		return GetPointer( nId );
 	}
 
-	DLLINTERFACE SDL_Surface *operator [] ( string nIdentifier )
+	DLLINTERFACE SDL_Surface *operator [] ( const string nIdentifier )
 	{
 		return GetPointer( nIdentifier );
 	}

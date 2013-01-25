@@ -33,7 +33,7 @@ public:
 	DLLINTERFACE cSoundManager( void );
 	DLLINTERFACE ~cSoundManager( void );
 
-	DLLINTERFACE Mix_Chunk *GetPointer( std::string nIdentifier );
+	DLLINTERFACE Mix_Chunk *GetPointer( const std::string nIdentifier );
 	DLLINTERFACE Mix_Chunk *GetPointer( unsigned int nId );
 
 	DLLINTERFACE Mix_Chunk *Copy( string nIdentifier );
@@ -48,14 +48,14 @@ public:
 	/**	Adds an Sound
 	 *	Should always have an Identifier
 	 */
-	DLLINTERFACE void Add( Mix_Chunk *nItem, string nIdentifier = "Unknown" );
+	DLLINTERFACE void Add( Mix_Chunk *nItem, const string nIdentifier = "Unknown" );
 
 	DLLINTERFACE Mix_Chunk *operator [] ( unsigned int nId )
 	{
 		return GetPointer( nId );
 	}
 
-	DLLINTERFACE Mix_Chunk *operator [] ( string nIdentifier )
+	DLLINTERFACE Mix_Chunk *operator [] ( const string nIdentifier )
 	{
 		return GetPointer( nIdentifier );
 	}
