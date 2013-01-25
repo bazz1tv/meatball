@@ -25,11 +25,13 @@ SDL_Surface *LoadImage( const char *szFilename, Uint32 Colorkey /* = 0 */, Uint8
 		printf("Error loading file : %s\n",szFilename);
 		return NULL;
 	}
+    
+    image = SDL_DisplayFormat( temp );
 	
-	SDL_SetColorKey( temp, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, Colorkey );
-	SDL_SetAlpha( temp, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, Alpha );
+	SDL_SetColorKey( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, Colorkey );
+	SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, Alpha );
 
-	image = SDL_DisplayFormat( temp );
+	
 
 	SDL_FreeSurface( temp );
 
