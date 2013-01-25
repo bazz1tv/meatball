@@ -96,7 +96,7 @@ static NSString *getApplicationName(void)
         CFRelease(url2);
     }*/
     
-chdir("/Users/bazz/Projects/newmeatball/meatball-code/Bin");
+chdir("/Users/bazz/Projects/MeatBall/trunk/Bin");
 }
 
 #if SDL_USE_NIB_FILE
