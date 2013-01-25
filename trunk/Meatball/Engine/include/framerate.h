@@ -19,17 +19,6 @@
 #ifndef __EP_FRAMERATE_H__
 #define __EP_FRAMERATE_H__
 
-#include <iostream>
-
-#if defined(__LINUX__) || defined(__MACOSX__)
-
-#include <sys/time.h>
-#define N_MICROSEC_INT    (1000000)
-#define N_MICROSEC_FLOAT   (1000000.0)
-#define tv2micro(x) (x.tv_sec * N_MICROSEC_INT + x.tv_usec);
-
-#endif
-
 ///framerate independent Framerate class ;)
 
 /** The Speedfactor is the heart of this class. When it is set by SetSpeedFactor, 
@@ -39,27 +28,60 @@ or about 1.2. You then multiply all your motion is the game, at its lowest level
 class cFramerate
 {
 public:
-	cFramerate( double tfps );
+	cFramerate( double tfps )
+	{
+		speedfactor = 1;
+		fps = 0;
+		Init ( tfps );
+	}
 	
-	~cFramerate ( void );
+	~cFramerate ( void )
+	{
+		
+	}
 	
-	void Init( double tfps );
+	void Init( double tfps )
+	{
+		targetfps = tfps;
+		maxspeedfactor = tfps/5;
+		framedelay = SDL_GetTicks();
+	}
 
-	void SetSpeedFactor( void );
+	void SetSpeedFactor( void )
+	{
+		currentticks = SDL_GetTicks();
+		speedfactor = (double)( currentticks - framedelay )/( (double)1000/targetfps );
 
-	void Reset( void );
-    
-	void SetMaxSpeedFactor( double maxsf );
-    std::string Getfps( void );
+		fps = targetfps/speedfactor;
+		
+		if (speedfactor <= 0)
+		{
+			speedfactor = 1;
+		}
+		else if(speedfactor > maxspeedfactor) 
+		{
+			speedfactor = maxspeedfactor;
+		}
+		
+		framedelay = currentticks;
+	}
+
+	void Reset( void )
+	{
+		framedelay = SDL_GetTicks();
+		speedfactor = 0;
+	}
+	
+	void SetMaxSpeedFactor( double maxsf )
+	{
+		maxspeedfactor = maxsf;
+	}
 
 	double         targetfps;
 	double         fps;
-    long long int  start_time,time_diff,stop_time;
 
 	Uint32 currentticks;
 	Uint32 framedelay;
-    
-    timeval before,after;
 
 	double speedfactor;
 	double maxspeedfactor;
@@ -70,7 +92,17 @@ public:
 	
 	V.1.0
 */
-inline void CorrectFrameTime( unsigned int fps = 60 ); ///maybe change to 60
+inline void CorrectFrameTime( unsigned int fps = 32 )
+{
+	static Uint32 stime = 0;
+	
+	while( SDL_GetTicks () - stime < 1000 / fps )
+	{
+		SDL_Delay(1);
+	}
+
+	stime = SDL_GetTicks ();
+}
 
 #endif
 // @}

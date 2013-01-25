@@ -81,6 +81,7 @@
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="Debug/MeatBall.pdb"
 				SubSystem="1"
+				EntryPointSymbol="SDL_main"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
