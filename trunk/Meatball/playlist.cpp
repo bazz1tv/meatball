@@ -13,8 +13,8 @@ namespace Playlist
 {
 void ls_music()
 {
-	full_path = ( fs::initial_path<fs::path>() );
-	full_path = fs::system_complete(fs::path(full_path.string() +"\\data\\music"));
+	full_path = fs::current_path();
+	full_path = fs::system_complete(fs::path(full_path.string() +"/data/music"));
 	
 	fs::directory_iterator end_iter;
 		int i=0;
