@@ -49,7 +49,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;;&quot;C:\Documents and Settings\Administrator\My Documents\meatball\Meatball\Engine\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SDL_EP_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -131,7 +131,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;;&quot;C:\Documents and Settings\Administrator\My Documents\meatball\Meatball\Engine\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SDL_EP_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="0"

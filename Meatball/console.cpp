@@ -22,20 +22,13 @@ void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr
 /// Creates the console font, Push() all cCMDs to cConsole::CMDList, 
 cConsole :: cConsole( void )
 {	
-
-
-	full_path = ( fs::initial_path() );
+	//full_path = fs::current_path();
 	histcounter = -1;
 	//cout<<full_path.parent_path();
 	// Init Background //////////
-	if ( pGameSettings->Fullscreen )
-	{
-		IMan->Add( LoadImage( PIXMAPS_DIR "game/background/conBG.png", colorkey, 140 ), "Console_BG" );
-	}
-	else // with alpha
-	{
-		IMan->Add( LoadImage( PIXMAPS_DIR "game/background/conBG.png", colorkey, 140 ), "Console_BG" );
-	}
+	
+	
+	IMan->Add( LoadImage( PIXMAPS_DIR "game/background/conBG.png", colorkey, 140 ), "Console_BG" );
 
 	BG = new cBasicSprite( IMan->GetPointer( "Console_BG" ), 0, 0 );
 
