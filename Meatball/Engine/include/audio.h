@@ -46,7 +46,7 @@ public:
 	 *	if volume is -1 the default sound volume will be used
 	 *	if volume is -2 no volume will be set
 	 */
-	DLLINTERFACE Mix_Chunk *LoadSound( char *filename, int sVolume = -2 );
+	DLLINTERFACE Mix_Chunk *LoadSound( const char *filename, int sVolume = -2 );
 	/**	Plays an Sound chunk
 	 *	if channel is -1 the sound will be played on the next free channel
 	 *	if volume is -1 the default volume will be used
@@ -59,9 +59,9 @@ public:
 	*	if loops is -1 music will be looped infinity
 	*	Can play WAVE, MOD, MIDI, OGG (with ogg vorbis), mp3 ( with smpeg)
 	*/
-	DLLINTERFACE void PlayMusik( char *filename, int loops = -1, bool force = 1 );
+	DLLINTERFACE void PlayMusik( const char *filename, int loops = -1, bool force = 1 );
 
-	DLLINTERFACE void LoadMusic( char *filename );
+	DLLINTERFACE void LoadMusic( const char *filename );
 	
 	/// Stops playing Music.
 	DLLINTERFACE void StopMusic( void );

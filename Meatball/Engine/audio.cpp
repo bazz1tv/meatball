@@ -102,7 +102,7 @@ void cAudio :: AllocateChannels( int num )
 	//iChannels = gnum;
 }
 
-Mix_Chunk *cAudio :: LoadSound( char *filename, int sVolume /* = -2  */ )
+Mix_Chunk *cAudio :: LoadSound( const char *filename, int sVolume /* = -2  */ )
 {
 	if( !filename ) 
 	{
@@ -188,7 +188,7 @@ int cAudio :: PlaySound( Mix_Chunk *sound, int channel /* = -1 */, int sVolume /
 	return channel_used;
 }
 
-void cAudio:: LoadMusic(char *filename)
+void cAudio:: LoadMusic(const char *filename)
 {
 	if ( bMusic && bInitialised )
 	{
@@ -196,7 +196,7 @@ void cAudio:: LoadMusic(char *filename)
 	}
 }
 
-void cAudio :: PlayMusik( char *filename, int loops /* = -1 */, bool force /* = 1  */ )
+void cAudio :: PlayMusik( const char *filename, int loops /* = -1 */, bool force /* = 1  */ )
 {
 	if ( bMusic && bInitialised )
 	{

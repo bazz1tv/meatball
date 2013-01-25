@@ -316,9 +316,9 @@ void cMParticle :: HandleCollision( int direction )
 {
 	if( direction == DOWN ) 
 	{
-		AddSpeed( -(speed*0.65)* pFramerate->speedfactor ); // big slow down
+		AddSpeed( -(speed*0.65) ); // big slow down
 
-		AddDirection( (180 - ( angle - 90 )) * pFramerate->speedfactor );
+		AddDirection( (180 - ( angle - 90 ))  );
 
 		if( speed < 0.1 ) // if too slow
 		{
@@ -327,21 +327,21 @@ void cMParticle :: HandleCollision( int direction )
 	}
 	else if( direction == UP ) 
 	{
-		AddSpeed( -(speed*0.2)* pFramerate->speedfactor ); // little slow down
+		AddSpeed( -(speed*0.2) ); // little slow down
 		
-		AddDirection( (180 - ( angle - 270 ))* pFramerate->speedfactor  );
+		AddDirection( (180 - ( angle - 270 ))  );
 	}
 	else if( direction == LEFT ) 
 	{
-		AddSpeed( -(speed*0.3)* pFramerate->speedfactor ); // slow down
+		AddSpeed( -(speed*0.3)); // slow down
 		
-		AddDirection( (180 + ( angle - 180 )) * pFramerate->speedfactor);
+		AddDirection( (180 + ( angle - 180 )) );
 	}
 	else if( direction == RIGHT ) 
 	{
-		AddSpeed( -(speed*0.3)* pFramerate->speedfactor ); // slow down
+		AddSpeed( -(speed*0.3)); // slow down
 
-		AddDirection( (180 + angle)* pFramerate->speedfactor );
+		AddDirection( (180 + angle) );
 	}
 }
 /**################################ MParticle Emitter #########################################*/

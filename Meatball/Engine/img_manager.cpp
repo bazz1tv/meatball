@@ -12,7 +12,7 @@ cImageManager :: ~cImageManager( void )
 }
 
 
-SDL_Surface *cImageManager :: GetPointer( std::string nIdentifier )
+SDL_Surface *cImageManager :: GetPointer( const std::string nIdentifier )
 {
 	for(unsigned int i = 0; i < ImageItems.size(); i++)
 	{
@@ -41,7 +41,7 @@ SDL_Surface *cImageManager :: GetPointer( unsigned int nId )
 	return NULL;
 }
 
-SDL_Surface *cImageManager :: Copy( string nIdentifier )
+SDL_Surface *cImageManager :: Copy( const string nIdentifier )
 {
 	for(unsigned int i = 0; i < ImageItems.size(); i++)
 	{
@@ -79,7 +79,7 @@ unsigned int cImageManager :: GetSize( void )
 }
 
 
-void cImageManager :: Add( SDL_Surface *nItem, string nIdentifier /* = "Unknown"  */ )
+void cImageManager :: Add( SDL_Surface *nItem, const string nIdentifier /* = "Unknown"  */ )
 {
 	// If the identifier already exists
 	if( GetPointer( nIdentifier ) ) 

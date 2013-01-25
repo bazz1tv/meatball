@@ -12,7 +12,7 @@ cSoundManager :: ~cSoundManager( void )
 }
 
 
-Mix_Chunk *cSoundManager :: GetPointer( std::string nIdentifier )
+Mix_Chunk *cSoundManager :: GetPointer( const std::string nIdentifier )
 {
 	for(unsigned int i = 0; i < SoundItems.size(); i++)
 	{
@@ -61,7 +61,7 @@ unsigned int cSoundManager :: GetSize( void )
 }
 
 
-void cSoundManager :: Add( Mix_Chunk *nItem, string nIdentifier /* = "Unknown"  */ )
+void cSoundManager :: Add( Mix_Chunk *nItem, const string nIdentifier /* = "Unknown"  */ )
 {
 	Count++;
 

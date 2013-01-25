@@ -81,17 +81,23 @@ int IsFullScreen(SDL_Surface *surface)
 /// Toggles On/Off FullScreen
 int SDL_ToggleFS(SDL_Surface *surface) 
 { 
-    Uint32 flags = surface->flags; // Get the video surface flags 
+    //Uint32 flags = surface->flags; // Get the video surface flags
     
     if (IsFullScreen(surface)) 
     { 
         // Swith to WINDOWED mode 
-        if ((surface = SDL_SetVideoMode(MEATBALL_WIN_SETTINGS, (flags | SDL_RESIZABLE) & ~SDL_FULLSCREEN)) == NULL) return 0; 
+        if ((surface = SDL_SetVideoMode(MEATBALL_WIN_SETTINGS, (MEATBALL_CUSTOM_FLAGS | SDL_RESIZABLE) & ~SDL_FULLSCREEN)) == NULL) return 0; 
         return 1; 
     } 
     
-    // Swith to FULLSCREEN mode 
-    if ((surface = SDL_SetVideoMode(MEATBALL_FULLSCREEN_SETTINGS, (flags|SDL_FULLSCREEN))) == NULL) return 0; 
+    // Swith to FULLSCREEN mode
+	//SDL_LockSurface(surface);
+    if ((surface = SDL_SetVideoMode(MEATBALL_FULLSCREEN_SETTINGS, (MEATBALL_CUSTOM_FLAGS|SDL_FULLSCREEN))) == NULL)
+	{
+		//SDL_UnlockSurface(surface);
+		return 0;
+	}
+	//SDL_UnlockSurface(surface);
     return 1; 
 } 
 

@@ -22,7 +22,6 @@
 		E92C92A516B1AC8F003DE10B /* video.h in Headers */ = {isa = PBXBuildFile; fileRef = E92C925C16B1A7ED003DE10B /* video.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E92C92FC16B1B4ED003DE10B /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C921F16B1A5FF003DE10B /* audio.cpp */; };
 		E92C92FD16B1B4ED003DE10B /* font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922016B1A5FF003DE10B /* font.cpp */; };
-		E92C92FE16B1B4ED003DE10B /* framerate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922116B1A5FF003DE10B /* framerate.cpp */; };
 		E92C92FF16B1B4ED003DE10B /* gfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922216B1A5FF003DE10B /* gfx.cpp */; };
 		E92C930016B1B4ED003DE10B /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922316B1A5FF003DE10B /* image.cpp */; };
 		E92C930116B1B4ED003DE10B /* img_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922416B1A5FF003DE10B /* img_manager.cpp */; };
@@ -63,7 +62,6 @@
 		E92C921816B1A5E5003DE10B /* SGE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGE.framework; path = ../../../../../../../../../Library/Frameworks/SGE.framework; sourceTree = "<group>"; };
 		E92C921F16B1A5FF003DE10B /* audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = audio.cpp; path = ../../audio.cpp; sourceTree = "<group>"; };
 		E92C922016B1A5FF003DE10B /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = font.cpp; path = ../../font.cpp; sourceTree = "<group>"; };
-		E92C922116B1A5FF003DE10B /* framerate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = framerate.cpp; path = ../../framerate.cpp; sourceTree = "<group>"; };
 		E92C922216B1A5FF003DE10B /* gfx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gfx.cpp; path = ../../gfx.cpp; sourceTree = "<group>"; };
 		E92C922316B1A5FF003DE10B /* image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = image.cpp; path = ../../image.cpp; sourceTree = "<group>"; };
 		E92C922416B1A5FF003DE10B /* img_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = img_manager.cpp; path = ../../img_manager.cpp; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 			children = (
 				E92C921F16B1A5FF003DE10B /* audio.cpp */,
 				E92C922016B1A5FF003DE10B /* font.cpp */,
-				E92C922116B1A5FF003DE10B /* framerate.cpp */,
 				E92C922216B1A5FF003DE10B /* gfx.cpp */,
 				E92C922316B1A5FF003DE10B /* image.cpp */,
 				E92C922416B1A5FF003DE10B /* img_manager.cpp */,
@@ -297,7 +294,6 @@
 			files = (
 				E92C92FC16B1B4ED003DE10B /* audio.cpp in Sources */,
 				E92C92FD16B1B4ED003DE10B /* font.cpp in Sources */,
-				E92C92FE16B1B4ED003DE10B /* framerate.cpp in Sources */,
 				E92C92FF16B1B4ED003DE10B /* gfx.cpp in Sources */,
 				E92C930016B1B4ED003DE10B /* image.cpp in Sources */,
 				E92C930116B1B4ED003DE10B /* img_manager.cpp in Sources */,
@@ -388,7 +384,7 @@
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MeatballEngine/MeatballEngine-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = ../..;
 				INFOPLIST_FILE = "MeatballEngine/MeatballEngine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -407,7 +403,7 @@
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MeatballEngine/MeatballEngine-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = ../..;
 				INFOPLIST_FILE = "MeatballEngine/MeatballEngine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
