@@ -5,13 +5,7 @@
 
 // http://nebuladevice.sourceforge.net/doc/doxydoc/nebulacore/html/ntime__main_8cc-source.html
 // http://nebuladevice.sourceforge.net/doc2/doxydoc/nebula2/html/ntime__main_8cc-source.html
-#if defined(__LINUX__) || defined(__MACOSX__)
 
-#include <sys/time.h>
-#define N_MICROSEC_INT    (1000000)
-#define tv2micro(x) ((double)x.tv_sec * (double)N_MICROSEC_INT + (double)x.tv_usec);
-
-#endif
 
 cFramerate::cFramerate( double tfps /* = 60  */ )
 {
@@ -36,8 +30,8 @@ void cFramerate :: Init( double tfps )
 #elif defined(__LINUX__) || defined(__MACOSX__)	
 	struct timeval tv;
 	gettimeofday( &tv, NULL );
-	last_time = tv2micro( tv );
-	time_diff = 0.0;
+	start_time = tv2micro( tv );
+	time_diff = start_time;
 #endif	
 }
 
@@ -53,10 +47,10 @@ void cFramerate :: SetSpeedFactor( void )
 #elif defined(__LINUX__) || defined(__MACOSX__)
 	struct timeval tv;
 	gettimeofday( &tv, NULL );
-	time_diff = time_stop;
-	time_stop = tv2micro(tv);
-	time_diff = time_stop - time_diff;
-	speedfactor = time_diff;
+	stop_time = tv2micro(tv);
+	time_diff = stop_time - time_diff;
+	speedfactor = time_diff/(N_MICROSEC_FLOAT/targetfps);
+    time_diff = stop_time;
 #endif
 	
 
@@ -72,6 +66,8 @@ void cFramerate :: SetSpeedFactor( void )
 	}
 
 	framedelay = currentticks;
+    
+    SetSpriteSpeedfactor( &speedfactor );
 }
 
 std::string cFramerate :: Getfps( void )
@@ -88,8 +84,8 @@ void cFramerate :: Reset( void )
 #elif defined(__LINUX__) || defined(__MACOSX__)
 	struct timeval tv;
 	gettimeofday( &tv, NULL );
-	time_stop = tv2micro( tv );
-	time_diff = 0.0;
+	start_time = tv2micro( tv );
+	time_diff = start_time;
 #endif
 	speedfactor = 0;
 }

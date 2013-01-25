@@ -21,6 +21,15 @@
 
 #include <iostream>
 
+#if defined(__LINUX__) || defined(__MACOSX__)
+
+#include <sys/time.h>
+#define N_MICROSEC_INT    (1000000)
+#define N_MICROSEC_FLOAT   (1000000.0)
+#define tv2micro(x) (x.tv_sec * N_MICROSEC_INT + x.tv_usec);
+
+#endif
+
 ///framerate independent Framerate class ;)
 
 /** The Speedfactor is the heart of this class. When it is set by SetSpeedFactor, 
@@ -45,10 +54,12 @@ public:
 
 	double         targetfps;
 	double         fps;
-    double          last_time,time_diff,time_stop;
+    long long int  start_time,time_diff,stop_time;
 
 	Uint32 currentticks;
 	Uint32 framedelay;
+    
+    timeval before,after;
 
 	double speedfactor;
 	double maxspeedfactor;

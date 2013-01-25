@@ -119,7 +119,7 @@ void cMParticle :: Update( void )
 	}
 }
 
-/*void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
+void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
 {
     int bpp = surface->format->BytesPerPixel;
 
@@ -154,6 +154,7 @@ void cMParticle :: Update( void )
         break;
     }
 }
+
 #define sge_clip_xmin(pnt) pnt->clip_rect.x
 #define sge_clip_xmax(pnt) pnt->clip_rect.x + pnt->clip_rect.w-1
 #define sge_clip_ymin(pnt) pnt->clip_rect.y
@@ -300,15 +301,14 @@ void sge_PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint8 R, Uint8 
 {
   sge_PutPixelAlpha(surface,x,y, SDL_MapRGB(surface->format, R, G, B), alpha);
 }
-*/
+
 void cMParticle :: Draw( SDL_Surface *target )
 {
 	if( !visible ) 
 	{
 		return;
 	}
-	
-	
+	//putpixel(target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), SDL_MapRGBA(target->format,(Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha));
 	sge_PutPixelAlpha( target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
 }
 
@@ -316,9 +316,9 @@ void cMParticle :: HandleCollision( int direction )
 {
 	if( direction == DOWN ) 
 	{
-		AddSpeed( -(speed*0.65) ); // big slow down
+		AddSpeed( -(speed*0.65)* pFramerate->speedfactor ); // big slow down
 
-		AddDirection( 180 - ( angle - 90 ) );
+		AddDirection( (180 - ( angle - 90 )) * pFramerate->speedfactor );
 
 		if( speed < 0.1 ) // if too slow
 		{
@@ -327,21 +327,21 @@ void cMParticle :: HandleCollision( int direction )
 	}
 	else if( direction == UP ) 
 	{
-		AddSpeed( -(speed*0.2) ); // little slow down
+		AddSpeed( -(speed*0.2)* pFramerate->speedfactor ); // little slow down
 		
-		AddDirection( 180 - ( angle - 270 )  );
+		AddDirection( (180 - ( angle - 270 ))* pFramerate->speedfactor  );
 	}
 	else if( direction == LEFT ) 
 	{
-		AddSpeed( -(speed*0.3) ); // slow down
+		AddSpeed( -(speed*0.3)* pFramerate->speedfactor ); // slow down
 		
-		AddDirection( 180 + ( angle - 180 ) );
+		AddDirection( (180 + ( angle - 180 )) * pFramerate->speedfactor);
 	}
 	else if( direction == RIGHT ) 
 	{
-		AddSpeed( -(speed*0.3) ); // slow down
+		AddSpeed( -(speed*0.3)* pFramerate->speedfactor ); // slow down
 
-		AddDirection( 180 + angle );
+		AddDirection( (180 + angle)* pFramerate->speedfactor );
 	}
 }
 /**################################ MParticle Emitter #########################################*/

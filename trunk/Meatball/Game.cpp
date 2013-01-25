@@ -55,10 +55,12 @@ void MiniEngine::Draw( void )
 	
 	PreDraw();
 
+    pPlayer->Draw( Screen );
+    
 	DrawBullets();
 	DrawParticleEmitter();
 
-	pPlayer->Draw( Screen );
+	
 	
 	DrawEnemies();
 	

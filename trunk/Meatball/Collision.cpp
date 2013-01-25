@@ -11,8 +11,16 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 
 	// Jan 15 2013.. Took out Velx from sprite->Width calculation here....................vvvvv
 	// initital tests show it's fine.
-	PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(velx + Sprite->width), (int)Sprite->height, Collision, type );
-	
+    
+    if (type == SPRITE_TYPE_BULLET)
+    {
+        PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(Sprite->width), (int)Sprite->height, Collision, type );
+    }
+    else
+    {
+        PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(velx + Sprite->width), (int)Sprite->height, Collision, type );
+	}
+    
 	if( Collision->collide == -1 )
 	{
 		Sprite->posx += velx;
@@ -41,7 +49,10 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 		{
 			if( movex )
 			{
-				PositionCheck( (int)( Sprite->posx + ( (fvelx > 0) ? (1) : (-1) ) ), (int)Sprite->posy, (int)Sprite->width, (int)Sprite->height, Collision, type  );
+                if (type != SPRITE_TYPE_BULLET)
+                {
+                    PositionCheck( (int)( Sprite->posx + ( (fvelx > 0) ? (1) : (-1) ) ), (int)Sprite->posy, (int)Sprite->width, (int)Sprite->height, Collision, type  );
+                }
 				
 				if( Collision->collide == -1 )	// if no collisions
 				{
@@ -109,6 +120,8 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 		}
 	}
 }
+
+
 
 void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type )
 {
