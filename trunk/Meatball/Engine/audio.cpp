@@ -200,7 +200,7 @@ void cAudio :: PlayMusik( const char *filename, int loops /* = -1 */, bool force
 {
 	if ( bMusic && bInitialised )
 	{
-		if ( !Mix_PlayingMusic() || force == 1 ) 
+		if ( !Mix_PlayingMusic() || force == 1 )
 		{
 			if( Music )
 			{

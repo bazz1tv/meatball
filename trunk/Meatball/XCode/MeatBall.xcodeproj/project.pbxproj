@@ -52,6 +52,7 @@
 		9C93E39813942B5A0096FAB3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9C93E39913942B5A0096FAB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9C93E39A13942B5A0096FAB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E901FD7F16B364E200DB896C /* OS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OS.h; sourceTree = "<group>"; };
 		E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "AF-373.cpp"; path = "../AF-373.cpp"; sourceTree = "<group>"; };
 		E9CFA3D016B1D54D00B3919F /* bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bullet.cpp; path = ../bullet.cpp; sourceTree = "<group>"; };
 		E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonObject.cpp; path = ../ButtonObject.cpp; sourceTree = "<group>"; };
@@ -145,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				E9CFA45716B1D90700B3919F /* MacSDLFiles */,
-				E9CFA40116B1D56300B3919F /* include */,
 				E9CFA3CE16B1D52800B3919F /* Source */,
+				E9CFA40116B1D56300B3919F /* include */,
 				9C93E39413942B5A0096FAB3 /* Frameworks */,
 				9C93E39213942B5A0096FAB3 /* Products */,
 			);
@@ -232,6 +233,7 @@
 				E9CFA40B16B1D56300B3919F /* enemy.h */,
 				E9CFA40C16B1D56300B3919F /* Game.h */,
 				E9CFA40D16B1D56300B3919F /* Globals.h */,
+				E901FD7F16B364E200DB896C /* OS.h */,
 				E9CFA40E16B1D56300B3919F /* GraphicsObject.h */,
 				E9CFA40F16B1D56300B3919F /* level.h */,
 				E9CFA41016B1D56300B3919F /* leveleditor.h */,
@@ -399,7 +401,7 @@
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -468,7 +470,7 @@
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -502,7 +504,7 @@
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -73,7 +73,8 @@ void MiniEngine::Draw( void )
 
 void Game::Init()
 {
-	//Playlist::ls_music();
+	Playlist::ls_music();
+	
 	// Messing with Global Variables here XD 
 	done = 0;
 	mode = MODE_GAME;

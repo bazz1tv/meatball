@@ -9,7 +9,7 @@
 namespace Playlist
 {
 	static std::string musicfiles[100];
-	static int numsongs;
+	extern int numsongs;
 	static fs::path full_path;
 
 	void ls_music(); ///< This gets all music files from the music directory.

@@ -2,6 +2,15 @@
 
 #include "Globals.h"
 
+// This is the amount of time to SLEEP when doing HELD_KEY events (so we don't work at the speed of light)
+#define LEVELEDIT_SLEEPWAIT 100000
+
+// Definitions for easy portability
+#define SAVE_KEY SDLK_s
+#define COPY_KEY SDLK_c
+#define PASTE_KEY SDLK_v
+#define FASTCOPY_KEY SDLK_f
+
 
 
 cLevelEditor :: cLevelEditor( void )
@@ -153,49 +162,7 @@ void cLevelEditor :: SetMoveObject( void )
 	SetMoveObject( GetCollidingObject( pMouse->posx, pMouse->posy )  );
 }
 
-void cLevelEditor :: SpecialPasteObject()
-{
-	if (!lastCopiedObject)
-	{
-		PasteObject();
-	}
-	else
-	{
-		SpecialPasteObject(lastCopiedObject->posx+lastCopiedObject->width, lastCopiedObject->posy);
-	}
-}
 
-void cLevelEditor :: SpecialPasteObject( double x, double y )
-{
-	if( !CopyObject ) 
-	{
-		return;
-	}
-
-
-	// Add the New Object
-	if( CopyObject->type == SPRITE_TYPE_MASSIVE || CopyObject->type == SPRITE_TYPE_PASSIVE || CopyObject->type == SPRITE_TYPE_HALFMASSIVE) 
-	{
-		// Create the new Sprite
-		cMVelSprite *new_Object = new cMVelSprite( CopyObject->srcimage, x, y );
-
-		new_Object->type = CopyObject->type;
-
-		pLevel->pLevelData->AddSprite( new_Object );
-
-		if( Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
-		{
-			SetFastCopyObject( new_Object );
-		}
-		lastCopiedObject = new_Object;
-	}
-	else if( CopyObject->type == SPRITE_TYPE_ENEMY )
-	{
-		cEnemy *pEnemy = (cEnemy *)CopyObject;
-
-		AddEnemy(x + pCamera->x, y + pCamera->y, pEnemy->Enemy_type );
-	}
-}
 
 void cLevelEditor :: PasteObject( void )
 {
@@ -381,23 +348,25 @@ void cLevelEditor::EventHandler()
 				else if (event.key.keysym.mod & KMOD_LCTRL)
 				{
 					// LCTRL S to save
-					if( event.key.keysym.sym == SDLK_s ) 
+					if( event.key.keysym.sym == SAVE_KEY )
 					{
 						pLevel->Save();	
 					}
 					// LCTRL+C to copy
-					else if( event.key.keysym.sym == SDLK_c  ) 
+
+					else if( event.key.keysym.sym == COPY_KEY  )
 					{
 						pLevelEditor->SetCopyObject();
 					}
 					//LCTRL+V to paste
-					else if( event.key.keysym.sym == SDLK_v  ) 
+					else if( event.key.keysym.sym == PASTE_KEY  )
 					{
 						pLevelEditor->PasteObject();
 					}
 				}
+
 				// F Key for Fast Copy
-				else if (event.key.keysym.sym == SDLK_f)
+				else if (event.key.keysym.sym == FASTCOPY_KEY)
 				{
 					if (pLevelEditor->Mouse_command == MOUSE_COMMAND_FASTCOPY)
 						pLevelEditor->Mouse_command = MOUSE_COMMAND_NOTHING;
@@ -499,36 +468,70 @@ void cLevelEditor::EventHandler()
 	}
 }
 
-void  cLevelEditor::HeldKey_Handler()
+void cLevelEditor::HeldKey_fastcopy()
 {
-	printf("Held KEying!!!");
-	if( keys[SDLK_RIGHT] ) 
+	// Lets break this down to HeldKey_fastcopy();
+	if( pLevelEditor->Mouse_command == MOUSE_COMMAND_FASTCOPY && pLevelEditor->CopyObject)
+	{
+		if( keys[SDLK_RCTRL] || keys[SDLK_LCTRL] )
+		{
+			if( keys[SDLK_d])
+			{
+				usleep(LEVELEDIT_SLEEPWAIT);
+				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x + pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
+				pCamera->Move( pLevelEditor->CopyObject->width, 0 );
+			}
+			else if( keys[SDLK_w] )
+			{
+				usleep(LEVELEDIT_SLEEPWAIT);
+				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x, pLevelEditor->CopyObject->posy - pCamera->y - pLevelEditor->CopyObject->height );
+				pCamera->Move( 0, - pLevelEditor->CopyObject->height );
+			}
+			else if( keys[SDLK_a] )
+			{
+				usleep(LEVELEDIT_SLEEPWAIT);
+				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x - pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
+				pCamera->Move( - pLevelEditor->CopyObject->width, 0 );
+			}
+			else if( keys[SDLK_s] )
+			{
+				usleep(LEVELEDIT_SLEEPWAIT);
+				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx- pCamera->x , pLevelEditor->CopyObject->posy - pCamera->y + pLevelEditor->CopyObject->height );
+				pCamera->Move( 0, pLevelEditor->CopyObject->height );
+			}
+		}
+	}
+}
+
+void cLevelEditor::HeldKey_movecamera()
+{
+	if( keys[SDLK_RIGHT] )
 	{
 		pCamera->Move( 10 * pFramerate->speedfactor, 0 );
 	}
-	else if( keys[SDLK_LEFT] ) 
+	else if( keys[SDLK_LEFT] )
 	{
 		pCamera->Move( -10 * pFramerate->speedfactor, 0 );
 	}
-	else if( keys[SDLK_UP] ) 
+	else if( keys[SDLK_UP] )
 	{
 		pCamera->Move( 0, -10 * pFramerate->speedfactor );
 	}
-	else if( keys[SDLK_DOWN] ) 
+	else if( keys[SDLK_DOWN] )
 	{
 		pCamera->Move( 0, 10 * pFramerate->speedfactor );
 	}
+}
+
+void  cLevelEditor::HeldKey_Handler()
+{
+	HeldKey_fastcopy();
+	HeldKey_movecamera();
+	
 	
 	
 	if ( keys[SDLK_e] )
 	{
 		pLevelEditor->DeleteObject();
-	}
-	else if (keys[SDLK_RALT])
-	{
-		
-
-
-		
 	}
 }

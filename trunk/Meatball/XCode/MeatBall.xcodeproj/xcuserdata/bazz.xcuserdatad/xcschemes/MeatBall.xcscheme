@@ -40,7 +40,7 @@
       </MacroExpansion>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
@@ -59,6 +59,12 @@
       </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
+      <ModuleMatchers>
+         <ModuleMatcher
+            criteria = "1"
+            stringToMatch = "">
+         </ModuleMatcher>
+      </ModuleMatchers>
    </LaunchAction>
    <ProfileAction
       shouldUseLaunchSchemeArgsEnv = "YES"

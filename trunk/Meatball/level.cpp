@@ -312,7 +312,7 @@ void cLevel :: Parse( char* command, int line )
 	
 	while(*str)
 	{
-		int len = strcspn( str," " );
+		size_t len = strcspn( str," " );
 		parts[i] = (char*)malloc( len + 1 );
 		memcpy( parts[i], str, len );
 		parts[i][len] = 0;

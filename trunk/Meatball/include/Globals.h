@@ -1,68 +1,24 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
 
-#define DEMO
+// You can define DEMO mode to do specific things for when demoing to your friends :) 
+//#define DEMO
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 #include <fstream>
 
-// Include the Engine
-#ifdef _DEBUG
-	#include <vld.h>
-#endif
+#include "OS.h"
+// Global Big Definitions (important)
+#include "defines.h"
 
-#ifdef _WIN32
-#include <SDL_ep.h>
-#else
-#include <MeatBallEngine/SDL_ep.h>
-#endif
+
 // Class declarations
 class TextObject;
-
-
-// If we're not WINDOWS, let's change all the sprintf_s calls to regular sprintf
-// note: relies on __VA_ARGS__ stackoverflow
-#ifdef _WIN32
-#define sprintf(buffer, stringbuffer, ...) (sprintf_s(buffer, sizeof(buffer), stringbuffer, __VA_ARGS__)) 
-// add for strcpy_s
-#define strcpy(dest, src) (strcpy_s(dest, sizeof(dest), src))
-// I can ascertain from experience that even if 'dest' argument is something like arg[i++], 
-// the i will not get incremented twice from this #define :)
-#define strcat(dest,src) (strcat_s(dest, sizeof(dest), src))
-
-#endif
-//--------------------------------
-
-
-
-// This following line takes out the command line window from your program :)
-#ifdef _WIN32
-#ifndef _DEBUG
-	#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
-#endif
-#endif
-
-#ifdef _WIN32
-#pragma comment( lib, "SDL.lib" )
-#pragma comment( lib, "SDL_mixer.lib" )
-#pragma comment( lib, "SDL_image.lib" )
-#pragma comment( lib, "SDL_ttf.lib" )
-#pragma comment( lib, "SDL_net.lib" )
-#pragma comment( lib, "Sge.lib" )
-#pragma comment( lib, "SDL_ep.lib" )
-#endif
-
-// STL Debugging
-#ifndef _DEBUG
-#undef _STLP_DEBUG
-#else
-#define _STLP_DEBUG 1
-#endif
-
 class TextObjectEngine;
-extern TextObjectEngine *TOE;		// The TextObjectEngine
+
+// Icon
 extern SDL_Surface* icon;
 
 
@@ -118,7 +74,7 @@ bool is_valid_number( char *c );
 void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 
 // includes
-#include "defines.h"
+
 #include "Game.h"
 #include "Misc.h"
 #include "Preferences.h"
@@ -137,7 +93,6 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "ObjectManager.h"
 #include "GraphicsObject.h"
 #include "TextObject.h"
-//#include "TextObjectEngine.h"
 #include "ButtonObject.h"
 
 #include "Slider.h"
