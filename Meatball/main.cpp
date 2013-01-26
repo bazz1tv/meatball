@@ -24,6 +24,8 @@ int DoGame()
 {
 	Game game;
 	MainMenu mainmenu;
+	
+	Game::Init();
 
 	mode = MODE_MAINMENU;
 
@@ -54,12 +56,12 @@ void initEngine()
 	InitEP();
 	InitSDL( SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE );
 	SetWindowCaption( "MeatBall - Vegetable Destruction" );
-//#ifdef _WIN32
+
 	icon = SDL_LoadBMP("data/favicon.bmp");
 	Uint32 colorkey = SDL_MapRGB(icon->format, 128, 128, 128);
 	SDL_SetColorKey(icon, SDL_SRCCOLORKEY, colorkey);
 	SDL_WM_SetIcon(icon, NULL);
-//#endif
+
 
 
 	pPreferences	= new cPreferences();

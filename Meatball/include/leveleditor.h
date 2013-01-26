@@ -27,18 +27,11 @@ public:
 	~cLevelEditor( void );
 
 	void HeldKey_Handler();
+	void HeldKey_fastcopy();
+	void HeldKey_movecamera();
+	
 	void EventHandler();
 
-	/*void Do() 
-	{
-		if ( !paused )
-	
-		EventHandler();
-		HeldKey_Handler();
-		Update();
-	
-		Draw(Screen); 
-	}*/
 
 	void Draw();
 	/// Updates  all the Leveleditor stuff
@@ -55,8 +48,8 @@ public:
 	void SetMoveObject( cMVelSprite *nObject );
 	void SetMoveObject( void );
 
-	void SpecialPasteObject(void);
-	void SpecialPasteObject( double x, double y );
+	//void SpecialPasteObject(void);
+	//void SpecialPasteObject( double x, double y );
 	/// Paste's an Object if SetCopyObject was set
 	void PasteObject( void );
 	/// Paste's an Object on the given position if SetCopyObject was set

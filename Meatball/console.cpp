@@ -3,9 +3,7 @@
 #include <string.h>
 
 using namespace std;
-#ifdef _WIN32
-#define strdup _strdup
-#endif
+
 
 void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax)
 {

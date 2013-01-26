@@ -2,7 +2,7 @@
 
 #ifdef _WIN32
 #include <SDL_ep.h>
-#else
+#elif __APPLE__
 #include <MeatBallEngine/SDL_ep.h>
 #endif
 
@@ -11,10 +11,11 @@ extern cAudio *pAudio;
 
 namespace Playlist
 {
+	
+int numsongs;
 void ls_music()
 {
-	full_path = fs::current_path();
-	full_path = fs::system_complete(fs::path(full_path.string() +"/data/music"));
+	full_path = fs::system_complete(fs::path(fs::current_path().string() +"/data/music"));
 	
 	fs::directory_iterator end_iter;
 		int i=0;
@@ -24,12 +25,6 @@ void ls_music()
 		}
 
 		numsongs=i;	// the # of songs we found
-
-		// Optionally print their filenames to the console
-		/*for (i=0; i < numsongs; i++)
-		{
-			printf("%s\n",musicfiles[i].c_str());
-		}*/
 }
 
 void musicover()

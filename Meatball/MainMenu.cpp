@@ -228,12 +228,13 @@ void MainMenu::Do()
 	// if the mode got switched (we pressed start game or quit)
 	if( mode == MODE_GAME ) // Start
 	{
+#ifndef _DEBUG
 		pAudio->PlaySound( SMan->GetPointer( SOUNDS_DIR "Button_1.ogg" ) );
 #ifndef DEMO
 		pAudio->FadeOutMusic( 2000 );
 #endif
 		FadeOutBG();
-		Game::Init();
+#endif
 	}
 }
 
