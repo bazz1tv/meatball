@@ -13,12 +13,12 @@
 #ifndef __EP_GFX_H__
 #define __EP_GFX_H__
 
-#ifdef _WIN32
+/*#ifdef _WIN32
 #include <sge.h>
 #else
 #include <SGE/SGE.h>
 #endif
-
+*/
 
 /// Todo ! :)
 #endif
