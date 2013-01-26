@@ -257,9 +257,9 @@ void cBasicSprite :: Update( void )
 		else if( width > 0 && height > 0 ) 
 		{
 			//image = zoomSurface( srcimage, width/(double)srcimage->w, height/(double)srcimage->h, 0 );
-			//image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
-			image = sge_transform_surface( srcimage, srcimage->format->colorkey, 0, 
-				(float)(width/(double)srcimage->w), (float)(height/(double)srcimage->h), srcimage->flags ); // untested
+			image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
+			//image = sge_transform_surface( srcimage, srcimage->format->colorkey, 0,
+			//	(float)(width/(double)srcimage->w), (float)(height/(double)srcimage->h), srcimage->flags ); // untested
 			
 			rect.w = (int)width;
 			rect.h = (int)height;
@@ -469,9 +469,9 @@ void cAngleSprite :: Update( bool nMove )
 			//SDL_Surface *temp = zoomSurface( srcimage, width/(double)srcimage->w, height/(double)srcimage->h, 0 );
 			//image = rotozoomSurface( temp, angle,srcimage->format->colorkey );
 			// The comment below simply direct copies the surface
-			//image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
-			image = sge_transform_surface( srcimage, srcimage->format->colorkey, (float)angle, (float)(width/(double)srcimage->w), 
-				(float)(height/(double)srcimage->h), srcimage->flags ); // untested
+			image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
+			//image = sge_transform_surface( srcimage, srcimage->format->colorkey, (float)angle, (float)(width/(double)srcimage->w),
+				//(float)(height/(double)srcimage->h), srcimage->flags ); // untested
 
 			//SDL_FreeSurface( temp );
 			
@@ -480,9 +480,9 @@ void cAngleSprite :: Update( bool nMove )
 		}
 		else
 		{
-			//image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
-			image = sge_transform_surface( srcimage, srcimage->format->colorkey, (float)angle, 1, 
-				1, srcimage->flags ); // untested
+			image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
+			//image = sge_transform_surface( srcimage, srcimage->format->colorkey, (float)angle, 1,
+				//1, srcimage->flags ); // untested
 		}
 
 

@@ -31,13 +31,13 @@
 		E92C930516B1B4ED003DE10B /* snd_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922816B1A5FF003DE10B /* snd_manager.cpp */; };
 		E92C930616B1B4ED003DE10B /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922916B1A5FF003DE10B /* sprite.cpp */; };
 		E92C930716B1B4ED003DE10B /* video.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E92C922A16B1A5FF003DE10B /* video.cpp */; };
-		E92C930816B1B51D003DE10B /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C921316B1A5E5003DE10B /* SDL_image.framework */; };
-		E92C930916B1B51D003DE10B /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C921416B1A5E5003DE10B /* SDL_mixer.framework */; };
-		E92C930A16B1B51D003DE10B /* SDL_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C921516B1A5E5003DE10B /* SDL_net.framework */; };
-		E92C930B16B1B51D003DE10B /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C921616B1A5E5003DE10B /* SDL_ttf.framework */; };
-		E92C930C16B1B51D003DE10B /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C921716B1A5E5003DE10B /* SDL.framework */; };
-		E92C930D16B1B51D003DE10B /* SGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92C921816B1A5E5003DE10B /* SGE.framework */; };
 		E980305116B2CC82006ECF16 /* MeatBallEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E92C926E16B1AC4E003DE10B /* MeatBallEngine.framework */; };
+		E9C09BA416B3C14100FBDE20 /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C09B9E16B3C14100FBDE20 /* SDL_image.framework */; };
+		E9C09BA516B3C14100FBDE20 /* SDL_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C09B9F16B3C14100FBDE20 /* SDL_mixer.framework */; };
+		E9C09BA616B3C14100FBDE20 /* SDL_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C09BA016B3C14100FBDE20 /* SDL_net.framework */; };
+		E9C09BA716B3C14100FBDE20 /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C09BA116B3C14100FBDE20 /* SDL_ttf.framework */; };
+		E9C09BA816B3C14100FBDE20 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C09BA216B3C14100FBDE20 /* SDL.framework */; };
+		E9C09BA916B3C14100FBDE20 /* SGE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C09BA316B3C14100FBDE20 /* SGE.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,12 +54,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E92C921316B1A5E5003DE10B /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = ../../../../../../../../../Library/Frameworks/SDL_image.framework; sourceTree = "<group>"; };
-		E92C921416B1A5E5003DE10B /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = ../../../../../../../../../Library/Frameworks/SDL_mixer.framework; sourceTree = "<group>"; };
-		E92C921516B1A5E5003DE10B /* SDL_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_net.framework; path = ../../../../../../../../../Library/Frameworks/SDL_net.framework; sourceTree = "<group>"; };
-		E92C921616B1A5E5003DE10B /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = ../../../../../../../../../Library/Frameworks/SDL_ttf.framework; sourceTree = "<group>"; };
-		E92C921716B1A5E5003DE10B /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../../../../../../../../Library/Frameworks/SDL.framework; sourceTree = "<group>"; };
-		E92C921816B1A5E5003DE10B /* SGE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGE.framework; path = ../../../../../../../../../Library/Frameworks/SGE.framework; sourceTree = "<group>"; };
 		E92C921F16B1A5FF003DE10B /* audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = audio.cpp; path = ../../audio.cpp; sourceTree = "<group>"; };
 		E92C922016B1A5FF003DE10B /* font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = font.cpp; path = ../../font.cpp; sourceTree = "<group>"; };
 		E92C922216B1A5FF003DE10B /* gfx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gfx.cpp; path = ../../gfx.cpp; sourceTree = "<group>"; };
@@ -89,6 +83,12 @@
 		E92C927416B1AC4E003DE10B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E92C927716B1AC4E003DE10B /* MeatballEngine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MeatballEngine-Info.plist"; sourceTree = "<group>"; };
 		E92C927916B1AC4E003DE10B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E9C09B9E16B3C14100FBDE20 /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = ../../../../../../../../../Library/Frameworks/SDL_image.framework; sourceTree = "<group>"; };
+		E9C09B9F16B3C14100FBDE20 /* SDL_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_mixer.framework; path = ../../../../../../../../../Library/Frameworks/SDL_mixer.framework; sourceTree = "<group>"; };
+		E9C09BA016B3C14100FBDE20 /* SDL_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_net.framework; path = ../../../../../../../../../Library/Frameworks/SDL_net.framework; sourceTree = "<group>"; };
+		E9C09BA116B3C14100FBDE20 /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = ../../../../../../../../../Library/Frameworks/SDL_ttf.framework; sourceTree = "<group>"; };
+		E9C09BA216B3C14100FBDE20 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../../../../../../../../Library/Frameworks/SDL.framework; sourceTree = "<group>"; };
+		E9C09BA316B3C14100FBDE20 /* SGE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGE.framework; path = ../../../../../../../../../Library/Frameworks/SGE.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +96,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E92C930816B1B51D003DE10B /* SDL_image.framework in Frameworks */,
-				E92C930916B1B51D003DE10B /* SDL_mixer.framework in Frameworks */,
-				E92C930A16B1B51D003DE10B /* SDL_net.framework in Frameworks */,
-				E92C930B16B1B51D003DE10B /* SDL_ttf.framework in Frameworks */,
-				E92C930C16B1B51D003DE10B /* SDL.framework in Frameworks */,
-				E92C930D16B1B51D003DE10B /* SGE.framework in Frameworks */,
+				E9C09BA416B3C14100FBDE20 /* SDL_image.framework in Frameworks */,
+				E9C09BA516B3C14100FBDE20 /* SDL_mixer.framework in Frameworks */,
+				E9C09BA616B3C14100FBDE20 /* SDL_net.framework in Frameworks */,
+				E9C09BA716B3C14100FBDE20 /* SDL_ttf.framework in Frameworks */,
+				E9C09BA816B3C14100FBDE20 /* SDL.framework in Frameworks */,
+				E9C09BA916B3C14100FBDE20 /* SGE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,12 +148,12 @@
 		E92C921216B1A5C9003DE10B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E92C921316B1A5E5003DE10B /* SDL_image.framework */,
-				E92C921416B1A5E5003DE10B /* SDL_mixer.framework */,
-				E92C921516B1A5E5003DE10B /* SDL_net.framework */,
-				E92C921616B1A5E5003DE10B /* SDL_ttf.framework */,
-				E92C921716B1A5E5003DE10B /* SDL.framework */,
-				E92C921816B1A5E5003DE10B /* SGE.framework */,
+				E9C09B9E16B3C14100FBDE20 /* SDL_image.framework */,
+				E9C09B9F16B3C14100FBDE20 /* SDL_mixer.framework */,
+				E9C09BA016B3C14100FBDE20 /* SDL_net.framework */,
+				E9C09BA116B3C14100FBDE20 /* SDL_ttf.framework */,
+				E9C09BA216B3C14100FBDE20 /* SDL.framework */,
+				E9C09BA316B3C14100FBDE20 /* SGE.framework */,
 				E92C927116B1AC4E003DE10B /* Other Frameworks */,
 			);
 			name = Frameworks;
