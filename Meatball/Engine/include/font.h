@@ -22,7 +22,7 @@
 #ifdef _WIN32
 #include <SDL_ttf.h>
 #else
-#include <SDL_ttf/SDL_ttf.h>
+#include <SDL2_ttf/SDL_ttf.h>
 #endif
 
 class cFont

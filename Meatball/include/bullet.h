@@ -29,7 +29,7 @@ public:
 	void Update( void );
 	
 	/// Draws the Bullet
-	void Draw( SDL_Surface *target );
+	void Draw( SDL_Renderer *renderer );
 
 	/// The Bullet Type
 	unsigned int Bullet_type;

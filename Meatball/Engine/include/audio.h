@@ -15,7 +15,7 @@
 #ifdef _WIN32
 #include <SDL_mixer.h>
 #else
-#include <SDL_mixer/SDL_mixer.h>
+#include <SDL2_mixer/SDL_mixer.h>
 #endif
 
 #include <iostream>

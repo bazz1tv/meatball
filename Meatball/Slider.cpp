@@ -6,8 +6,8 @@ void Slider::Draw()
 	// void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color);
 	// void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color);
 	
-	FillRect(Screen, panel_x, panel_y, width, 10, SDL_MapRGB(Screen->format, 50,50,50));
-	FillRect(Screen, adjuster_x,adjuster_y, 8, 15, SDL_MapRGB(Screen->format,0,255,0));
+	FillRectAlpha(Renderer, panel_x, panel_y, width, 10,50,50,50,255); // 50,50,50));
+	FillRectAlpha(Renderer, adjuster_x,adjuster_y, 8, 15, 0, 255, 0, 255); // SDL_MapRGB(Screen->format,0,255,0));
 }
 
 void Slider::SetAdjusterPos(int x)

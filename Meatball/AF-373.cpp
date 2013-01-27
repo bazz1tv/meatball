@@ -46,7 +46,7 @@ void cAF373 :: init( void )
 	images[LEFT] = IMan->GetPointer( "AF373_left" );
 	images[RIGHT] = IMan->GetPointer( "AF373_right" );
 
-	SetImage( images[direction] );
+	SetImage( Renderer,images[direction] );
 
 	if( pWeapon )
 	{
@@ -58,7 +58,7 @@ void cAF373 :: init( void )
 
 void cAF373 :: Update( void )
 {
-	SetImage( images[direction] );
+	SetImage( Renderer,images[direction] );
 	
 	cEnemy :: Update();
 
@@ -223,9 +223,9 @@ void cAF373 :: Update( void )
 	{
 		SetPos( 0, posy );
 	}
-	else if( (double)posx + width > (double)Screen->w + pCamera->x ) 
+	else if( (double)posx + width > (double)window_width + pCamera->x ) 
 	{
-		posx = (double)Screen->w - width;
+		posx = (double)window_width - width;
 	}
 
 	if( posy < 0 ) // Up
@@ -234,9 +234,9 @@ void cAF373 :: Update( void )
 		SetVelocity( velx, 0 );
 		state = STATE_FALLING;
 	}
-	else if( (double)posy + height > (double)Screen->h + pCamera->y ) // Bottom
+	else if( (double)posy + height > (double)window_height + pCamera->y ) // Bottom
 	{
-		SetPos( posx, (double)Screen->h - height );
+		SetPos( posx, (double)window_height - height );
 		
 		state = STATE_STAYING;
 	}

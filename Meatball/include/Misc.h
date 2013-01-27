@@ -9,13 +9,15 @@
 
 #include "Globals.h"
 
-void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color);
-void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color);
+void FillRectAlpha(SDL_Renderer *renderer, int x, int y, int w, int h, Uint8 r,Uint8 g,Uint8 b,Uint8 a);
+void FillRectAlpha(SDL_Renderer *renderer, int x, int y, int w, int h, Uint32 rgba);
+void FillRect(SDL_Renderer *renderer, int x, int y, int w, int h, Uint8 r,Uint8 g,Uint8 b);
+
 
 
 
 /// Toggle fullScreen
-int SDL_ToggleFS(SDL_Surface *surface);
+int SDL_ToggleFS(SDL_Window*);
 
 /// More english version of 
 bool MouseCollidesWith(SDL_Rect *Crect);

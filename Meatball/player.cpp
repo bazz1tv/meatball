@@ -65,9 +65,9 @@ void cPlayer :: Update( void )
 {
 	pWeapon->Update();
 	
-	SetImage( images[direction] );
+	SetImage( Renderer, images[direction] );
 	
-	cBasicSprite::Update();
+	cBasicSprite::Update(Renderer);
 
 	PositionCheck( (int)posx+14, (int)posy + 1, 6, (int)height, Collision, type );
 
@@ -235,9 +235,9 @@ void cPlayer :: Update( void )
 	{
 		SetPos( 0, posy );
 	}
-	else if( (double)posx + width > (double)Screen->w + pCamera->x ) 
+	else if( (double)posx + width > (double)window_width + pCamera->x ) 
 	{
-		posx = (double)Screen->w - width;
+		posx = (double)window_width - width;
 	}
 
 	if( posy < 0 ) // Up
@@ -248,18 +248,18 @@ void cPlayer :: Update( void )
 		SetVelocity( velx, 0 );
 		state = STATE_FALLING;*/
 	}
-	else if( (double)posy + height > (double)Screen->h + pCamera->y ) // Bottom
+	else if( (double)posy + height > (double)window_height + pCamera->y ) // Bottom
 	{
-		SetPos( posx, (double)Screen->h - height );
+		SetPos( posx, (double)window_height - height );
 		
 		state = STATE_STAYING;
 		jumpvel = 0;
 	}
 }
 
-void cPlayer :: Draw( SDL_Surface *target ) // Never use the internal Draw function
+void cPlayer :: Draw( SDL_Renderer *renderer ) // Never use the internal Draw function
 {
-	if ( !visible || !target || !image )
+	if ( !visible || !renderer || !image )
 	{
 		return;
 	}
@@ -267,7 +267,8 @@ void cPlayer :: Draw( SDL_Surface *target ) // Never use the internal Draw funct
 	rect.x = (int)(posx - pCamera->x);
 	rect.y = (int)(posy - pCamera->y);
 
-	SDL_BlitSurface( image, NULL, target, &rect );
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
+	//SDL_BlitSurface( image, NULL, target, &rect );
 
 	rect.x = (int)posx;
 	rect.y = (int)posy;

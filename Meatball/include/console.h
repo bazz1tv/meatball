@@ -72,7 +72,7 @@ public:
 	bool CMDHandler( string cInput );
 	void Update( void );
 	
-	void Draw( SDL_Surface *target );
+	void Draw( SDL_Renderer *renderer );
 	void Draw();
 
 	string ParseBase( string str );

@@ -1,6 +1,8 @@
 #ifndef __DEFINES_H__
 #define __DEFINES_H__
 
+#define APP_TITLE "MeatBall - Vegetable Destruction"
+
 #define DEMO
 
 #define MEATBALL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
@@ -10,12 +12,12 @@
 /* The PLAYER */
 /// The player won't fall any faster than this (pixels iirc)
 #define MAX_FALL_VELOCITY 8
-#define JUMP_KEYS_HELD		(keys[pGameSettings->Key_jump]) // || keys[SDLK_RALT] || keys[SDLK_SEMICOLON] || keys[SDLK_PERIOD] || keys[SDLK_m])
-#define MOVELEFT_KEYS_HELD	(keys[pGameSettings->Key_walk_left]) //  || keys[SDLK_a])
-#define MOVERIGHT_KEYS_HELD (keys[pGameSettings->Key_walk_right]) //|| keys[SDLK_d])
+#define JUMP_KEYS_HELD		(keys[SDL_GetScancodeFromKey(pGameSettings->Key_jump)]) // || keys[SDLK_RALT] || keys[SDLK_SEMICOLON] || keys[SDLK_PERIOD] || keys[SDLK_m])
+#define MOVELEFT_KEYS_HELD	(keys[SDL_GetScancodeFromKey(pGameSettings->Key_walk_left)]) //  || keys[SDLK_a])
+#define MOVERIGHT_KEYS_HELD (keys[SDL_GetScancodeFromKey(pGameSettings->Key_walk_right)]) //|| keys[SDLK_d])
 #define JUMP_KEYS_TRIGGERED (event.key.keysym.sym == (pGameSettings->Key_jump)) // || event.key.keysym.sym == (SDLK_RALT) ||event.key.keysym.sym == SDLK_SEMICOLON || event.key.keysym.sym == SDLK_PERIOD || event.key.keysym.sym == SDLK_m)
 #define FIRE_KEY_TRIGGERED	(event.key.keysym.sym == (pGameSettings->Key_shoot_primary))
-#define FIRE_KEY_HELD	(keys[pGameSettings->Key_shoot_primary])
+#define FIRE_KEY_HELD	(keys[SDL_GetScancodeFromKey(pGameSettings->Key_shoot_primary)])
 
 // The Directorys
 #define PIXMAPS_DIR "data/pixmaps/"

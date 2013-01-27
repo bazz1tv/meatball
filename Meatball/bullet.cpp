@@ -46,13 +46,13 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 		nVelocity = PISTOL_VELOCITY;
 
 		
-		SetImage( IMan->GetPointer( PIXMAPS_DIR "game/weapons/pistol/default.png" ) );
+		SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/pistol/default.png" ) );
 	}
 	else if( Bullet_type == BULLET_MACHINEGUN )  // The Machinegun Bullet
 	{
 		nVelocity = MACHINEGUN_VELOCITY;
 		
-		SetImage( IMan->GetPointer( PIXMAPS_DIR "game/weapons/machinegun/default.png" ) );
+		SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/machinegun/default.png" ) );
 	}
 	else if( Bullet_type == BULLET_LASER_X1 )  // The Laser X-1
 	{
@@ -60,11 +60,11 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 		
 		if( direction == LEFT ) 
 		{
-			SetImage( IMan->GetPointer( PIXMAPS_DIR "game/weapons/Laser_X1/left.png" ) );
+			SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/Laser_X1/left.png" ) );
 		}
 		else if( direction == RIGHT ) 
 		{
-			SetImage( IMan->GetPointer( PIXMAPS_DIR "game/weapons/Laser_X1/right.png" ) );
+			SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/Laser_X1/right.png" ) );
 		}
 		else
 		{
@@ -157,7 +157,7 @@ void cBullet :: Update( void )
 	}	
 
 	// Position Correction
-	if( posx - width > (double)Screen->w + pCamera->x ) 
+	if( posx - width > (double)window_width + pCamera->x ) 
 	{
 		visible = false;
 	}
@@ -170,15 +170,15 @@ void cBullet :: Update( void )
 	{
 		visible = false;
 	}
-	else if( posy - height > (double)Screen->h + pCamera->y ) 
+	else if( posy - height > (double)window_height + pCamera->y ) 
 	{
 		visible = false;
 	}
 }
 
-void cBullet :: Draw( SDL_Surface *target )
+void cBullet :: Draw( SDL_Renderer *renderer )
 {
-	if ( !visible || !target || !image )
+	if ( !visible || !renderer || !image )
 	{
 		return;
 	}
@@ -186,8 +186,9 @@ void cBullet :: Draw( SDL_Surface *target )
 	rect.x = (int)(posx - pCamera->x);
 	rect.y = (int)(posy - pCamera->y);
 
-	SDL_BlitSurface( image, NULL, target, &rect );
-
+	//SDL_BlitSurface( image, NULL, target, &rect );
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
+	
 	rect.x = (int)posx;
 	rect.y = (int)posy;
 }
@@ -245,7 +246,7 @@ void DrawBullets( void )
 {
 	for( unsigned int i = 0; i < BulletCount; i++ )
 	{
-		Bullets[i]->Draw( Screen );
+		Bullets[i]->Draw( Renderer );
 	}
 }
 

@@ -33,7 +33,7 @@ void cEnemy :: Update( void )
 	cMVelSprite :: Update();
 }
 
-void cEnemy :: Draw( SDL_Surface *target )
+void cEnemy :: Draw( SDL_Renderer *renderer )
 {
 	// virtual 
 }
@@ -148,7 +148,7 @@ void DrawEnemies( void )
 			continue;
 		}
 		
-		Enemies[i]->Draw( Screen );
+		Enemies[i]->Draw( Renderer );
 	}
 }
 

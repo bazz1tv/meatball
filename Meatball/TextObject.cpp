@@ -20,47 +20,72 @@ void TextObject::initDefaultColors()
 	bgColor = SetColor( 0, 0, 100 );	// Default Background Color : Dark Blue
 	fgColor = SetColor( 255, 255, 255 );	// Default Text Color : White
 }
-
+void TextObject::preRender()
+{
+	if (surface)
+	{
+		SDL_FreeSurface(surface);
+		surface = NULL;
+	}
+	if (texture)
+	{
+		SDL_DestroyTexture(texture);
+		texture = NULL;
+	}
+}
 /// Makes the surface and updates the Rect
 void TextObject::Render()
 {
+	preRender();
 	surface = cFont::CreateText(text.c_str(), font,FONT_TYPE_BLENDED,fgColor,bgColor);
+	texture = SDL_CreateTextureFromSurface(Renderer, surface);
 	UpdateRect();
 }
 
 void TextObject::Render_blended()
 {
+	preRender();
 	surface = cFont::CreateText(text.c_str(), font,FONT_TYPE_BLENDED,fgColor,bgColor);
+	texture = SDL_CreateTextureFromSurface(Renderer, surface);
 	UpdateRect();
 }
 
 void TextObject::Render_shaded()
 {
+	preRender();
 	surface = cFont::CreateText(text.c_str(), font,FONT_TYPE_SHADED,fgColor,bgColor);
+	texture = SDL_CreateTextureFromSurface(Renderer, surface);
 	UpdateRect();
 }
 
 void TextObject::Render_solid()
 {
+	preRender();
 	surface = cFont::CreateText(text.c_str(), font,FONT_TYPE_SOLID,fgColor,bgColor);
+	texture = SDL_CreateTextureFromSurface(Renderer, surface);
 	UpdateRect();
 }
 
 
 void TextObject::Render(TTF_Font *font)
 {
+	preRender();
+	
 	surface = cFont::CreateText(text.c_str(), font,FONT_TYPE_BLENDED,fgColor,bgColor);
+	
+	texture = SDL_CreateTextureFromSurface(Renderer, surface);
 	UpdateRect();
 }
 
-void TextObject::Draw(SDL_Surface *dest)
+void TextObject::Draw(SDL_Renderer *renderer)
 {
-	SDL_BlitSurface(surface, NULL, dest, &rect );
+	//SDL_BlitSurface(surface, NULL, dest, &rect );
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
 
 void TextObject::Draw()
 {
-	Draw(Screen); 
+	Draw(Renderer);
 }
 
 /// Update the surface with the object's internal text and font
@@ -69,6 +94,7 @@ TextObject::TextObject()
 	font = NULL;
 	text = "";
 	surface = NULL;
+	texture = NULL;
 	initDefaultColors();
 }
 
@@ -85,6 +111,10 @@ void TextObject::RenderDifferentFont(TTF_Font *different_font)
 	Render(different_font);
 }
 
+TextObject::~TextObject()
+{
+	// nothing
+}
 
 /// Update's the surface and internal font and text members
 TextObject::TextObject(string text, TTF_Font *font)

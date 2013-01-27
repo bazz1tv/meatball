@@ -40,10 +40,10 @@ class cBasicSprite
 {
 public:
 
-	DLLINTERFACE cBasicSprite( SDL_Surface *new_image, double x, double y );
+	DLLINTERFACE cBasicSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y );
 	DLLINTERFACE ~cBasicSprite( void );
 
-	DLLINTERFACE void SetImage( SDL_Surface *new_image, bool OverrideSize = 1 );
+	DLLINTERFACE void SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, bool OverrideSize = 1 );
 	DLLINTERFACE void SetSize( double nwidth, double nheight );
 	
 	DLLINTERFACE void AddSize( double naddwidth, double naddheight );
@@ -60,9 +60,13 @@ public:
 
 	DLLINTERFACE void Move( double move_x, double move_y );
 
-	DLLINTERFACE void Draw( SDL_Surface *target );
+	DLLINTERFACE void Draw( SDL_Renderer *renderer );
 	
-	DLLINTERFACE virtual void Update( void );
+	//DLLINTERFACE virtual void Update( void );
+	DLLINTERFACE virtual void Update( SDL_Renderer *renderer );
+	
+	// Tagged for SDL2 Additions
+	SDL_Texture *texture;
 
 	/**	The final stretched/zoomed image to draw
 	 *	if visible == 0 the image won't be drawn
@@ -110,7 +114,7 @@ public:
 class cVelocitySprite : public cBasicSprite
 {
 public:
-	DLLINTERFACE cVelocitySprite( SDL_Surface *new_image, double x, double y, double nvelx = 0, double nvely = 0 );
+	DLLINTERFACE cVelocitySprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y, double nvelx = 0, double nvely = 0 );
 
 	DLLINTERFACE ~cVelocitySprite( void );
 	
@@ -120,7 +124,7 @@ public:
 
 	DLLINTERFACE void AddVelocity( double addvelx, double addvely, double maxvelx = 0, double maxvely = 0 );
 	
-	DLLINTERFACE void Update( bool nMove = 1 );
+	DLLINTERFACE void Update( SDL_Renderer *renderer, bool nMove = 1 );
 
 	double velx, vely; // Velocity.
 };
@@ -128,7 +132,7 @@ public:
 class cAngleSprite : public cBasicSprite
 {
 public:
-	DLLINTERFACE cAngleSprite( SDL_Surface *new_image, double x, double y, double nangle = 0, double nspeed = 0, 
+	DLLINTERFACE cAngleSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y, double nangle = 0, double nspeed = 0,
 		bool nanglerotate = 1 );
 
 	DLLINTERFACE ~cAngleSprite( void );
@@ -141,7 +145,7 @@ public:
 
 	DLLINTERFACE void AddSpeed( double nspeed );
 
-	DLLINTERFACE void Update( bool nMove = 1 );
+	DLLINTERFACE void Update( SDL_Renderer*, bool nMove = 1 );
 
 	double angle,speed; // Angle and Speed.
 
@@ -161,7 +165,7 @@ public:
 class cAccelerationSprite : public cAngleSprite
 {
 public:
-	DLLINTERFACE cAccelerationSprite( SDL_Surface *new_image, double x, double y, double nangle = 0 , double nspeed = 0,
+	DLLINTERFACE cAccelerationSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y, double nangle = 0 , double nspeed = 0,
 		double nacc = 0, double ndeacc = 0 );
 
 	DLLINTERFACE ~cAccelerationSprite( void );
@@ -174,7 +178,7 @@ public:
 
 	DLLINTERFACE void AddDeAcceleration( double ndeacc );
 	
-	DLLINTERFACE void Update( bool nMove = 1 );
+	DLLINTERFACE void Update( SDL_Renderer*, bool nMove = 1 );
 
 	double acc; // Acceleration.
 	double deacc; // De Acceleration.
@@ -192,7 +196,7 @@ private:
 class cMouseCursor : public cBasicSprite
 {
 public:
-	DLLINTERFACE cMouseCursor( double x, double y, SDL_Surface *new_image );
+	DLLINTERFACE cMouseCursor( SDL_Renderer *renderer, double x, double y, SDL_Surface *new_image );
 	DLLINTERFACE virtual ~cMouseCursor( void );
 
 	/**	Point Collisioncheck
@@ -202,7 +206,7 @@ public:
 	 */
 	DLLINTERFACE bool CollisonCheck ( SDL_Rect *Crect );
 
-	DLLINTERFACE void Update( void );
+	DLLINTERFACE void Update( SDL_Renderer *renderer);
 };
 
 #endif

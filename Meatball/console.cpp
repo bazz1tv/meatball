@@ -2,6 +2,8 @@
 #include "Globals.h"
 #include <string.h>
 
+#define HISTORY_LINES 11
+
 using namespace std;
 
 
@@ -26,9 +28,9 @@ cConsole :: cConsole( void )
 	// Init Background //////////
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/background/conBG.png", colorkey, 140 ), "Console_BG" );
 
-	BG = new cBasicSprite( IMan->GetPointer( "Console_BG" ), 0, 0 );
+	BG = new cBasicSprite( Renderer, IMan->GetPointer( "Console_BG" ), 0, 0 );
 
-	BG->SetSize( (double)Screen->w, (double)Screen->h / 3.1);
+	BG->SetSize( (double)window_width, window_height / 3.1);
 	/////////////////
 
 	// Init Font ////
@@ -92,7 +94,7 @@ cConsole :: ~cConsole( void )
 /// When you hit enter, sends the input to CMDHandler()
 void cConsole :: EventHandler( void )
 {
-	SDL_EnableUNICODE( 1 );
+	SDL_StartTextInput();
 	
 	while ( SDL_PollEvent( &event ) )
 	{
@@ -153,14 +155,13 @@ void cConsole :: EventHandler( void )
 					else constr = strcpy[--histcounter];
 					
 				}
-				else
-				{
-					if( event.key.keysym.unicode )
-					{
-						constr += (char)event.key.keysym.unicode;
-					}
-				}
 				
+				
+				break;
+			}
+			case SDL_TEXTINPUT:
+			{
+				constr += event.text.text; // += (char)event.key.keysym.unicode;
 				break;
 			}
 		default:
@@ -171,7 +172,7 @@ void cConsole :: EventHandler( void )
 		}
 	}
 
-	SDL_EnableUNICODE( 0 );
+	SDL_StopTextInput();
 }
 
 /// Updates background, Updates logic to draw the cursor or not (blinking underscore)
@@ -179,7 +180,7 @@ void cConsole :: Update( void )
 {
 	PreUpdate();
 
-	BG->Update();
+	BG->Update(Renderer);
 
 	if ( SDL_GetTicks() > ttDrawCur )
 	{
@@ -191,20 +192,20 @@ void cConsole :: Update( void )
 }
 
 /// Draws the BG, the input display and history displays, the blinking cursor
-void cConsole :: Draw( SDL_Surface *target )
+void cConsole :: Draw( SDL_Renderer *renderer )
 {
 	PreDraw();
 
 	DrawBullets();
 	DrawParticleEmitter();
 
-	pPlayer->Draw( Screen );
+	pPlayer->Draw( Renderer );
 	
 	DrawEnemies();
 
 	int i;
 	// display console BG
-	BG->Draw( target );
+	BG->Draw( Renderer );
 	
 	#define topHistoryLine_Y 23.0;		// The top vertical coordinate for first line of input history
 	double history_y = topHistoryLine_Y;
@@ -213,11 +214,14 @@ void cConsole :: Draw( SDL_Surface *target )
 	SDL_Rect conput_rect, strcpy_rect[11], cur_rect;
 	
 	SDL_Surface *conput = NULL;	// input display
-	SDL_Surface *sc[11];		// history displays
+	SDL_Texture *conput_tex = NULL;
+	SDL_Surface *sc[HISTORY_LINES];		// history displays
+	SDL_Texture *sc_tex[HISTORY_LINES];		// history displays
 	SDL_Surface *Cur = NULL;	// Cursor Display
+	SDL_Texture *Cur_tex = NULL;
 	
 	// Init all history displays to NULL
-	for( i = 0; i < 11; i++ )
+	for( i = 0; i < HISTORY_LINES; i++ )
 	{
 		sc[i] = NULL;
 	}
@@ -271,18 +275,24 @@ void cConsole :: Draw( SDL_Surface *target )
 
 
 	// the actual drawing
-	SDL_BlitSurface( Cur, NULL, target, &cur_rect );
-
+	//SDL_BlitSurface( Cur, NULL, target, &cur_rect );
+	Cur_tex = SDL_CreateTextureFromSurface(renderer, Cur);
+	SDL_RenderCopy(renderer, Cur_tex, NULL, &cur_rect);
+	
 	if ( conput )
 	{
-		SDL_BlitSurface( conput, NULL, target, &conput_rect );
+		//SDL_BlitSurface( conput, NULL, target, &conput_rect );
+		conput_tex = SDL_CreateTextureFromSurface(renderer, conput);
+		SDL_RenderCopy(renderer, conput_tex, NULL, &conput_rect);
 	}
 
 	for ( i=0; i < 11; i++ )
 	{
 		if ( sc[i] )
 		{
-			SDL_BlitSurface( sc[i], NULL, target, &strcpy_rect[i] );
+			//SDL_BlitSurface( sc[i], NULL, target, &strcpy_rect[i] );
+			sc_tex[i]  = SDL_CreateTextureFromSurface(renderer, sc[i]);
+			SDL_RenderCopy(renderer, sc_tex[i], NULL, &strcpy_rect[i]);
 		}
 	}
 	
@@ -291,11 +301,13 @@ void cConsole :: Draw( SDL_Surface *target )
 	if ( Cur )
 	{
 		SDL_FreeSurface( Cur );
+		SDL_DestroyTexture(Cur_tex);
 	}
 
 	if ( conput )
 	{
 		SDL_FreeSurface( conput );
+		SDL_DestroyTexture(conput_tex);
 	}
 
 	for ( i=0; i < 11; i++ )
@@ -303,6 +315,7 @@ void cConsole :: Draw( SDL_Surface *target )
 		if ( sc[i] )
 		{
 			SDL_FreeSurface( sc[i] );
+			SDL_DestroyTexture(sc_tex[i]);
 		}
 	}
 
@@ -634,7 +647,7 @@ void wait_for_input()
 	while (1)
 	{
 		pConsole->Update();
-		pConsole->Draw(Screen);
+		pConsole->Draw(Renderer);
 		SDL_PollEvent( &local_event );
 
 		if ( local_event.type == SDL_KEYDOWN )
@@ -647,7 +660,7 @@ void wait_for_input()
 
 void cConsole::Draw()
 {
-	Draw(Screen);
+	Draw(Renderer);
 }
 
 void console_print(const char *str)

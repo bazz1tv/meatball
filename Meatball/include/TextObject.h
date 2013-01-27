@@ -13,6 +13,8 @@ public:
 
 
 	TextObject();
+	~TextObject();
+	
 	TextObject(string text);
 	TextObject(string text, TTF_Font *font);
 	TextObject(int x, int y);
@@ -29,7 +31,7 @@ public:
 
 	void RenderDifferentFont(TTF_Font *font);
 
-
+	void preRender();
 	void Render();
 	void Render(TTF_Font *font);
 	void Render_shaded();
@@ -45,5 +47,5 @@ public:
 	void UpdateRect(int x, int y);
 
 	void Draw();
-	void Draw(SDL_Surface *);
+	void Draw(SDL_Renderer *);
 };

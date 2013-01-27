@@ -33,8 +33,9 @@ public:
 	Uint8 Screen_Bpp;
 
 	// Todo
-	SDLKey Key_walk_left,Key_walk_right,Key_shoot_primary;
-	SDLKey Key_jump;
+
+	SDL_Keycode Key_walk_left,Key_walk_right,Key_shoot_primary;
+	SDL_Keycode Key_jump;
 };
 
 /// The Preferences

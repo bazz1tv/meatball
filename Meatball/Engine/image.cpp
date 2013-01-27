@@ -26,20 +26,25 @@ SDL_Surface *LoadImage( const char *szFilename, Uint32 Colorkey /* = 0 */, Uint8
 		return NULL;
 	}
     
-    image = SDL_DisplayFormat( temp );
+    image = temp; //SDL_DisplayFormat( temp );
 	
-	SDL_SetColorKey( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, Colorkey );
-	SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, Alpha );
-
+	SDL_SetColorKey( image, SDL_TRUE, Colorkey );
+	//SDL_SetAlpha( image, SDL_TRUE, Alpha );
+	if (SDL_SetSurfaceAlphaMod(image, Alpha) < 0)
+	{
+		printf("SDL_SetSurfaceAlphaMode failed!");
+		return NULL;
+	}
 	
 
-	SDL_FreeSurface( temp );
+	//SDL_FreeSurface( temp );
 
 	return image;
 }
 
+// SDL2 flags are obsolete and should be set to 0
 SDL_Surface *CreateSurface( unsigned int width, unsigned int height, Uint8 bpp /* = 32 */, 
-			Uint32 flags /* = SDL_SWSURFACE | SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA  */)
+			Uint32 flags /* = 0 */)
 {
 	if( !width || !height ) 
 	{
@@ -65,9 +70,9 @@ SDL_Surface *CreateSurface( unsigned int width, unsigned int height, Uint8 bpp /
 
 	temp = SDL_CreateRGBSurface( flags, width, height, bpp, rmask, gmask, bmask, amask );
 
-	image = SDL_DisplayFormat( temp );
+	image = temp; // SDL_DisplayFormat( temp );
 
-	SDL_FreeSurface( temp );
+	//SDL_FreeSurface( temp );
 	
 	if( !image ) 
 	{
