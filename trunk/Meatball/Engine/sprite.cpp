@@ -548,6 +548,8 @@ void cAngleSprite :: Update( SDL_Renderer *renderer, bool nMove )
 		SDL_SetColorKey( image, SDL_TRUE, colkey );
 			
 		SDL_SetSurfaceAlphaMod(image, alpha);
+		
+		SDL_CreateTextureFromSurface(renderer, image);
 		//SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
 		
 		drawimg = 0;

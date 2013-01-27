@@ -4,6 +4,9 @@
 
 #include "Globals.h"
 
+extern SDL_Surface *pix;
+extern SDL_Texture *pix_tex;
+
 /// The Particle class
 class cMParticle : public cMAngleSprite
 {
