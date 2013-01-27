@@ -139,7 +139,7 @@ cEnemy *GetCollidingEnemy( SDL_Rect *Crect )
 	return NULL;
 }
 
-void DrawEnemies( void )
+void DrawEnemies( SDL_Renderer *renderer )
 {
 	for( unsigned int i = 0; i < EnemyCount; i++ )
 	{
@@ -148,7 +148,7 @@ void DrawEnemies( void )
 			continue;
 		}
 		
-		Enemies[i]->Draw( Renderer );
+		Enemies[i]->Draw( renderer );
 	}
 }
 

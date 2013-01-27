@@ -66,7 +66,7 @@ void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet
 void UpdateBullets( void );
 
 /// Draws all Bullets
-void DrawBullets( void );
+void DrawBullets( SDL_Renderer *renderer );
 
 /// Deletes all Bullets ( Cleans the Array )
 void DeleteAllBullets( void );

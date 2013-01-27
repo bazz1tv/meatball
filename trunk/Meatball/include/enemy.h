@@ -70,7 +70,7 @@ int GetCollidingEnemyNum( SDL_Rect *Crect );
 cEnemy *GetCollidingEnemy( SDL_Rect *Crect );
 
 /// Draws all Enemies
-void DrawEnemies( void );
+void DrawEnemies( SDL_Renderer *renderer );
 
 /// Seletes an given Enemy
 void DeletEnemy( unsigned int number );

@@ -22,6 +22,9 @@
 #define KMOD_LCTRL KMOD_LGUI
 #define KMOD_RCTRL KMOD_RGUI
 
+// SPECIAL APPLE NOTE - I had to turn off DOCK Show/Hide keyboard shortcut because it was interferring with Gameplay
+	// The shortcut is set to Apple-Option-D, these are the keys I selected to use for moving jumpinh shooting. So it was accidently triggering the shortcut
+
 
 //
 

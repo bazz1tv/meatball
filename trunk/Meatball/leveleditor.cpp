@@ -67,10 +67,10 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 
 	PreDraw();
 
-	pPlayer->Draw( Renderer );
+	pPlayer->Draw( renderer );
 	
-	DrawEnemies();
-	pMouse->Draw( Renderer );
+	DrawEnemies(renderer);
+	pMouse->Draw( renderer );
 
 
 	if( Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
