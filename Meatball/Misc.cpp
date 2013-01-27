@@ -25,7 +25,13 @@ void FillRectAlpha(SDL_Renderer *renderer, int x, int y, int w, int h, Uint32 rg
 	Uint8 a	= (rgba >> 24) &0xff;
 	FillRectAlpha(renderer, x, y, w, h, r, g, b, a);
 }
-/*void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
+
+void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
+{
+	SDL_Rect rect = {x,y,w,h};
+	SDL_FillRect(surface, &rect, color);
+}
+void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
 {
 	Uint8 alpha = color>>24;
 
@@ -37,7 +43,7 @@ void FillRectAlpha(SDL_Renderer *renderer, int x, int y, int w, int h, Uint32 rg
 	SDL_Rect rect = {x,y,w,h};
 	SDL_BlitSurface(sfc,NULL,surface,&rect);
 	SDL_FreeSurface(sfc);
-}*/
+}
 
 void UniversalEventHandler(SDL_Event *event)
 {

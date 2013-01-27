@@ -83,12 +83,12 @@ cMAngleSprite :: ~cMAngleSprite( void )
 
 void cMAngleSprite :: Update( void )
 {
-	cAngleSprite::Update( 0 );
+	cAngleSprite::Update(Renderer, 0 );
 }
 
-void cMAngleSprite :: Draw( SDL_Surface *target )
+void cMAngleSprite :: Draw( SDL_Renderer *renderer )
 {
-	if ( !visible || !image || width <= 0 || height <= 0 )
+	if ( !visible || !image || !renderer || width <= 0 || height <= 0 )
 	{
 		return;
 	}
@@ -96,7 +96,8 @@ void cMAngleSprite :: Draw( SDL_Surface *target )
 	rect.x = (int)(posx - pCamera->x);
 	rect.y = (int)(posy - pCamera->y);
 
-	SDL_BlitSurface( image, NULL, target, &rect );
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
+	//SDL_BlitSurface( image, NULL, target, &rect );
 
 	rect.x = (int)posx;
 	rect.y = (int)posy;

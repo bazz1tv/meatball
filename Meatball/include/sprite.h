@@ -62,7 +62,7 @@ public:
 
 	void Update( void );
 
-	void Draw( SDL_Surface *target );
+	void Draw( SDL_Renderer *renderer );
 
 	SDL_Rect GetRect( bool with_camerapos = 0 );
 

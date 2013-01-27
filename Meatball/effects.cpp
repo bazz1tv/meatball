@@ -1,6 +1,8 @@
-
+#include "effects.h"
 #include "Globals.h"
 
+SDL_Surface *pix;
+SDL_Texture *pix_tex;
 
 cMParticleEmitter **ParticleEmitter = NULL;
 unsigned int ParticleEmitterCount = 0;
@@ -308,11 +310,13 @@ void cMParticle :: Draw( SDL_Renderer *renderer )
 	{
 		return;
 	}
+	
+	
 	//putpixel(target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), SDL_MapRGBA(target->format,(Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha));
-	//sge_PutPixelAlpha( target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
+	sge_PutPixelAlpha( pix, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
 
 	// TO-DO
-
+	
 }
 
 void cMParticle :: HandleCollision( int direction )
@@ -351,6 +355,10 @@ void cMParticle :: HandleCollision( int direction )
 
 cMParticleEmitter :: cMParticleEmitter( double x, double y )
 {
+	pix = SDL_CreateRGBSurface(SDL_TRUE, window_width, window_height, 32, 0, 0, 0, 255);
+	SDL_SetColorKey(pix, SDL_TRUE, 0);
+	pix_tex = NULL;
+	
 	Particles = NULL;
 	ParticleCount = 0;
 
@@ -386,6 +394,17 @@ cMParticleEmitter :: ~cMParticleEmitter( void )
 
 		delete []Particles;
 		Particles = NULL;
+	}
+	
+	if (pix)
+	{
+		SDL_FreeSurface(pix);
+		pix = NULL;
+	}
+	if (pix_tex)
+	{
+		SDL_DestroyTexture(pix_tex);
+		pix_tex = NULL;
 	}
 }
 
@@ -474,10 +493,14 @@ void cMParticleEmitter :: Draw( SDL_Renderer *renderer )
 		return;
 	}
 	
+	
+	
 	for( unsigned int i = 0; i < ParticleCount; i++ )
 	{
 		Particles[i]->Draw( renderer );
 	}
+	
+	
 }
 
 void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngreen,Uint8 nblue,
@@ -542,6 +565,8 @@ void UpdateParticleEmitter( void )
 
 void DrawParticleEmitter( void )
 {
+	SDL_FillRect( pix, NULL,0);
+	
 	for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
 	{
 		if( !ParticleEmitter[i] ) 
@@ -551,6 +576,13 @@ void DrawParticleEmitter( void )
 
 		ParticleEmitter[i]->Draw( Renderer );
 	}
+	
+	if (pix_tex)
+	{
+		SDL_DestroyTexture(pix_tex);
+	}
+	pix_tex = SDL_CreateTextureFromSurface(Renderer, pix);
+	SDL_RenderCopy(Renderer, pix_tex, NULL, NULL);
 }
 
 void DeleteAllParticleEmitter( void )
