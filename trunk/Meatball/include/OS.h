@@ -17,10 +17,10 @@
 
 // Call the CTRL key in Windows the META key in Mac
 // This needs MORE WORK to be FOOL PROOF
-#define SDLK_RCTRL SDLK_RMETA
-#define SDLK_LCTRL SDLK_LMETA
-#define KMOD_LCTRL KMOD_LMETA
-#define KMOD_RCTRL KMOD_RMETA
+#define SDLK_RCTRL SDLK_RGUI
+#define SDLK_LCTRL SDLK_LGUI
+#define KMOD_LCTRL KMOD_LGUI
+#define KMOD_RCTRL KMOD_RGUI
 
 
 //

@@ -17,7 +17,7 @@
 #ifdef _WIN32
 #include <SDL_image.h>
 #else
-#include <SDL_image/SDL_image.h>
+#include <SDL2_image/SDL_image.h>
 #endif
 /** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
 
@@ -51,7 +51,7 @@ DLLINTERFACE SDL_Surface *LoadImage( const char *szFilename, Uint32 Colorkey = 0
 
 */
 DLLINTERFACE SDL_Surface *CreateSurface( unsigned int width, unsigned int height, Uint8 bpp = 32, 
-						   Uint32 flags = SDL_SWSURFACE | SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA );	/// V 1.2.0
+						   Uint32 flags = 0 );	/// V 1.2.0
 
 #endif
 // @}

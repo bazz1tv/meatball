@@ -59,58 +59,58 @@ void cLevelEditor :: Update( void )
 
 void cLevelEditor :: Draw()
 {
-	Draw(Screen);
+	Draw(Renderer);
 }
-void cLevelEditor :: Draw( SDL_Surface *target )
+void cLevelEditor :: Draw (SDL_Renderer *renderer)
 {
 	Uint32 Color;
 
 	PreDraw();
 
-	pPlayer->Draw( Screen );
+	pPlayer->Draw( Renderer );
 	
 	DrawEnemies();
-	pMouse->Draw( Screen );
+	pMouse->Draw( Renderer );
 
 
 	if( Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
 	{
-		Color = SDL_MapRGB( target->format, 255, 255, 255 ); // White
+		Color = 0xffffffff; // White
 	}
 	else
 	{
-		Color = SDL_MapRGB( target->format, 120, 120, 255 ); // Blue
+		Color = 0xff7878ff; // Blue
 	}
 	
 
 	// The HoveredObject Shadow
 	// top line
-	FillRect(Screen, HoveredObject.x+1, HoveredObject.y+1, HoveredObject.w, 1, 0);
+	FillRect(renderer, HoveredObject.x+1, HoveredObject.y+1, HoveredObject.w, 1, 0,0,0);
 	// Left Line
-	FillRect(Screen, HoveredObject.x+1, HoveredObject.y+1, 1, HoveredObject.h, 0);
+	FillRect(renderer, HoveredObject.x+1, HoveredObject.y+1, 1, HoveredObject.h, 0,0,0);
 	// Bottom Line
-	FillRect(Screen, HoveredObject.x+1, HoveredObject.y+1+HoveredObject.h, HoveredObject.w, 1, 0);
+	FillRect(renderer, HoveredObject.x+1, HoveredObject.y+1+HoveredObject.h, HoveredObject.w, 1, 0,0,0);
 	// Right Line
-	FillRect(Screen, HoveredObject.x+1+HoveredObject.w, HoveredObject.y+1, 1, HoveredObject.h, 0);
+	FillRect(renderer, HoveredObject.x+1+HoveredObject.w, HoveredObject.y+1, 1, HoveredObject.h, 0,0,0);
 
 	// The HoveredObject Outline (white or blue depending on Fastcopy or just a selection)
 	// top line
-	FillRect(Screen, HoveredObject.x, HoveredObject.y, HoveredObject.w, 1, Color);
+	FillRectAlpha(renderer, HoveredObject.x, HoveredObject.y, HoveredObject.w, 1, Color);
 	// Left Line
-	FillRect(Screen, HoveredObject.x, HoveredObject.y, 1, HoveredObject.h, Color);
+	FillRectAlpha(renderer, HoveredObject.x, HoveredObject.y, 1, HoveredObject.h, Color);
 	// Bottom Line
-	FillRect(Screen, HoveredObject.x, HoveredObject.y+HoveredObject.h, HoveredObject.w, 1, Color);
+	FillRectAlpha(renderer, HoveredObject.x, HoveredObject.y+HoveredObject.h, HoveredObject.w, 1, Color);
 	// Right Line
-	FillRect(Screen, HoveredObject.x+HoveredObject.w, HoveredObject.y, 1, HoveredObject.h, Color);
+	FillRectAlpha(renderer, HoveredObject.x+HoveredObject.w, HoveredObject.y, 1, HoveredObject.h, Color);
 
 	if( CopyObject && !FullRectIntersect( &HoveredObject, &CopyObject->rect ) && Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
 	{
 		// The CopyObject Shadow
-		//sge_RectAlpha( Screen ,(int)( CopyObject->posx - pCamera->x + 1 ), (int)( CopyObject->posy - pCamera->y + 1 ), (int)( CopyObject->posx - pCamera->x + 1 + CopyObject->width ), 
+		//sge_RectAlpha( renderer ,(int)( CopyObject->posx - pCamera->x + 1 ), (int)( CopyObject->posy - pCamera->y + 1 ), (int)( CopyObject->posx - pCamera->x + 1 + CopyObject->width ), 
 		//				(int)( CopyObject->posy - pCamera->y + 1 + CopyObject->height ), 0, 0, 0, 64 );
 
 		// Draws an non Filled Rect with the CopyObject rect size
-		//sge_RectAlpha( Screen ,(int)( CopyObject->posx - pCamera->x ), (int)( CopyObject->posy - pCamera->y ), (int)( CopyObject->posx - pCamera->x + CopyObject->width ), 
+		//sge_RectAlpha( renderer ,(int)( CopyObject->posx - pCamera->x ), (int)( CopyObject->posy - pCamera->y ), (int)( CopyObject->posx - pCamera->x + CopyObject->width ), 
 		//				(int)( CopyObject->posy - pCamera->y + CopyObject->height ), 120, 255, 120, 192  );	
 	}
 
@@ -341,11 +341,11 @@ void cLevelEditor::EventHandler()
 					
 					mode = MODE_GAME;
 
-					pCamera->SetPos( pPlayer->posx - pCamera->x - Screen->w, 0 );
+					pCamera->SetPos( pPlayer->posx - pCamera->x - window_width, 0 );
 					
 				}
 				// IF LCTRL IS HELD
-				else if (event.key.keysym.mod & KMOD_LCTRL)
+				else if ((SDL_GetModState() & KMOD_LCTRL))
 				{
 					// LCTRL S to save
 					if( event.key.keysym.sym == SAVE_KEY )
@@ -473,27 +473,27 @@ void cLevelEditor::HeldKey_fastcopy()
 	// Lets break this down to HeldKey_fastcopy();
 	if( pLevelEditor->Mouse_command == MOUSE_COMMAND_FASTCOPY && pLevelEditor->CopyObject)
 	{
-		if( keys[SDLK_RCTRL] || keys[SDLK_LCTRL] )
+		if( keys[SDL_SCANCODE_RCTRL] || keys[SDL_SCANCODE_LCTRL] )
 		{
-			if( keys[SDLK_d])
+			if( keys[SDL_SCANCODE_D])
 			{
 				usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x + pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
 				pCamera->Move( pLevelEditor->CopyObject->width, 0 );
 			}
-			else if( keys[SDLK_w] )
+			else if( keys[SDL_SCANCODE_W] )
 			{
 				usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x, pLevelEditor->CopyObject->posy - pCamera->y - pLevelEditor->CopyObject->height );
 				pCamera->Move( 0, - pLevelEditor->CopyObject->height );
 			}
-			else if( keys[SDLK_a] )
+			else if( keys[SDL_SCANCODE_A] )
 			{
 				usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x - pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
 				pCamera->Move( - pLevelEditor->CopyObject->width, 0 );
 			}
-			else if( keys[SDLK_s] )
+			else if( keys[SDL_SCANCODE_S] )
 			{
 				usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx- pCamera->x , pLevelEditor->CopyObject->posy - pCamera->y + pLevelEditor->CopyObject->height );
@@ -505,19 +505,19 @@ void cLevelEditor::HeldKey_fastcopy()
 
 void cLevelEditor::HeldKey_movecamera()
 {
-	if( keys[SDLK_RIGHT] )
+	if( keys[SDL_SCANCODE_RIGHT] )
 	{
 		pCamera->Move( 10 * pFramerate->speedfactor, 0 );
 	}
-	else if( keys[SDLK_LEFT] )
+	else if( keys[SDL_SCANCODE_LEFT] )
 	{
 		pCamera->Move( -10 * pFramerate->speedfactor, 0 );
 	}
-	else if( keys[SDLK_UP] )
+	else if( keys[SDL_SCANCODE_UP] )
 	{
 		pCamera->Move( 0, -10 * pFramerate->speedfactor );
 	}
-	else if( keys[SDLK_DOWN] )
+	else if( keys[SDL_SCANCODE_DOWN] )
 	{
 		pCamera->Move( 0, 10 * pFramerate->speedfactor );
 	}

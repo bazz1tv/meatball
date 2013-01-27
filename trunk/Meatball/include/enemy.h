@@ -25,7 +25,7 @@ public:
 	virtual void init( void );
 	
 	virtual void Update( void );
-	virtual void Draw( SDL_Surface *target );
+	virtual void Draw( SDL_Renderer *renderer );
 
 	virtual void Jump( int power = 5 );
 

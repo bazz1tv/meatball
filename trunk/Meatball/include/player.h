@@ -32,7 +32,7 @@ public:
 	void Update( void );
 
 	/// Draws the Player
-	void Draw( SDL_Surface *target );
+	void Draw( SDL_Renderer *renderer );
 
 	/// Resets
 	void Reset( void );

@@ -184,7 +184,7 @@ void cLevel :: Save( void )
 	//sprintf( row,  "### Level Saved on the %s\n", Get_Curr_Time() );
 	//ofs.write( row, strlen( row ) );
 
-	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, (int)Screen->h - (int)pPlayer->Startposy );
+	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, (int)window_height - (int)pPlayer->Startposy );
 	ofs.write( row, strlen( row ) );
 
 	sprintf( row,  "Music %s\n\n", pLevelData->Musicfile.c_str() );
@@ -209,15 +209,15 @@ void cLevel :: Save( void )
 			
 			if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE ) 
 			{
-				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData->BasicSprites[i]->posy );
 			}
 			else if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_PASSIVE ) 
 			{
-				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData->BasicSprites[i]->posy );
 			}
 			else if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) 
 			{
-				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)Screen->h - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData->BasicSprites[i]->posy );
 			}
 			else
 			{
@@ -280,7 +280,7 @@ void cLevel :: Draw( void )
 		}
 
 		pLevelData->BasicSprites[i]->Update();
-		pLevelData->BasicSprites[i]->Draw( Screen );
+		pLevelData->BasicSprites[i]->Draw( Renderer );
 	}
 }
 
@@ -375,19 +375,19 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 
 		if( strcmp( parts[4], "MASSIVE" ) == 0 )
 		{
-			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)Screen->h -(double)atoi( parts[3] ) );
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height -(double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_MASSIVE;
 			pLevelData->AddSprite( temp );
 		}
 		else if( strcmp( parts[4], "PASSIVE" ) == 0 )
 		{
-			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)Screen->h -(double)atoi( parts[3] ) );
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height -(double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_PASSIVE;
 			pLevelData->AddSprite( temp );
 		}
 		else if( strcmp( parts[4], "HALFMASSIVE" ) == 0 )
 		{
-			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)Screen->h - (double)atoi( parts[3] ) );
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height - (double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_HALFMASSIVE;
 			pLevelData->AddSprite( temp );
 		}
@@ -461,10 +461,10 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 			return 0; // error
 		}
 
-		pPlayer->SetPos( (double) atoi( parts[1] ), (double)Screen->h - (double) atoi( parts[2] ) );
+		pPlayer->SetPos( (double) atoi( parts[1] ), (double)window_height - (double) atoi( parts[2] ) );
 		
 		pPlayer->Startposx = (double) atoi( parts[1] );
-		pPlayer->Startposy = (double)Screen->h - (double) atoi( parts[2] );
+		pPlayer->Startposy = (double)window_height - (double) atoi( parts[2] );
 	}
 	else if( strcmp( parts[0], "Music") == 0 )
 	{

@@ -38,12 +38,12 @@ void cSettings :: Apply( void )
 		pAudio->Sound_Volume = svol;
 	}
 
-	if( Screen && ( ( Screen->flags & SDL_FULLSCREEN && !Fullscreen ) || ( !( Screen->flags & SDL_FULLSCREEN ) && 
-		Fullscreen ) || ( Screen->format->BytesPerPixel != Screen_Bpp ) || ( Screen->w != Screen_W ) || 
-		( Screen->h != Screen_H ) ) ) 
+	/*if( Screen && ( ( Screen->flags & SDL_FULLSCREEN && !Fullscreen ) || ( !( Screen->flags & SDL_FULLSCREEN ) &&
+		Fullscreen ) || ( Screen->format->BytesPerPixel != Screen_Bpp ) || ( window_width != Screen_W ) || 
+		( window_height != Screen_H ) ) ) 
 	{
 		// Todo : Reload the images and reset the Screen
-	}
+	}*/
 }
 
 void cSettings :: Update( cSettings *Settings )
@@ -346,51 +346,51 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 	else if ( strcmp( parts[0], "WalkLeft") == 0 )
 	{
 		// See above description
-		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		/*if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
 		{
 			return 0; // error
 		}
 		else
-		{
-			pSettings->Key_walk_left = (SDLKey)atoi( parts[1] );
-		}
+		{*/
+			pSettings->Key_walk_left = (SDL_Keycode)atoi( parts[1] );
+		//}
 	}
 	else if ( strcmp( parts[0], "WalkRight") == 0 )
 	{
 		// See above description
-		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		/*if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
 		{
 			return 0; // error
 		}
 		else
-		{
-			pSettings->Key_walk_right = (SDLKey)atoi( parts[1] );
-		}
+		{*/
+			pSettings->Key_walk_right = (SDL_Keycode)atoi( parts[1] );
+		//}
 	}
 	else if ( strcmp( parts[0], "Jump") == 0 )
 	{
 		// See above description
-		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		/*if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
 		{
 			return 0; // error
 		}
 		else
-		{
-			pSettings->Key_jump = (SDLKey)atoi( parts[1] );
-		}
+		{*/
+			pSettings->Key_jump = (SDL_Keycode)atoi( parts[1] );
+		//}
 	}
 	else if ( strcmp( parts[0], "FirePrimary") == 0 )
 	{
 		// Bounds checking for Keys
 		// See above description
-		if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
+		/*if( atoi( parts[1] ) < 0 || atoi( parts[1] ) > SDLK_LAST )
 		{
 			return 0; // error
 		}
 		else
-		{
-			pSettings->Key_shoot_primary = (SDLKey)atoi( parts[1] );
-		}
+		{*/
+			pSettings->Key_shoot_primary = (SDL_Keycode)atoi( parts[1] );
+		//}
 	}
 	else
 	{

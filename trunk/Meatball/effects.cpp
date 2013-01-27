@@ -302,14 +302,17 @@ void sge_PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint8 R, Uint8 
   sge_PutPixelAlpha(surface,x,y, SDL_MapRGB(surface->format, R, G, B), alpha);
 }
 
-void cMParticle :: Draw( SDL_Surface *target )
+void cMParticle :: Draw( SDL_Renderer *renderer )
 {
 	if( !visible ) 
 	{
 		return;
 	}
 	//putpixel(target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), SDL_MapRGBA(target->format,(Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha));
-	sge_PutPixelAlpha( target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
+	//sge_PutPixelAlpha( target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
+
+	// TO-DO
+
 }
 
 void cMParticle :: HandleCollision( int direction )
@@ -464,7 +467,7 @@ void cMParticleEmitter :: Update( void )
 	}
 }
 
-void cMParticleEmitter :: Draw( SDL_Surface *target )
+void cMParticleEmitter :: Draw( SDL_Renderer *renderer )
 {
 	if( !visible ) 
 	{
@@ -473,7 +476,7 @@ void cMParticleEmitter :: Draw( SDL_Surface *target )
 	
 	for( unsigned int i = 0; i < ParticleCount; i++ )
 	{
-		Particles[i]->Draw( target );
+		Particles[i]->Draw( renderer );
 	}
 }
 
@@ -546,7 +549,7 @@ void DrawParticleEmitter( void )
 			continue;
 		}
 
-		ParticleEmitter[i]->Draw( Screen );
+		ParticleEmitter[i]->Draw( Renderer );
 	}
 }
 

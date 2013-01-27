@@ -16,12 +16,17 @@
 
 DLLINTERFACE int InitSDL( Uint32 flags = SDL_INIT_EVERYTHING );
 
-DLLINTERFACE SDL_Surface *InitScreen( int width, int height, int bpp, bool Fullscreen = 0, 
-						Uint32 flags = SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF );
+DLLINTERFACE int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, int bpp, Uint32 wflags, Uint32 rflags, SDL_bool fullscreen = SDL_FALSE);
 
-DLLINTERFACE void SetWindowCaption( const char *Caption, const char *iconpath = NULL );
+DLLINTERFACE SDL_Window *GetWindow(const char *title, int width, int height, int bpp, Uint32 wflags, SDL_bool fullscreen = SDL_FALSE );
 
-DLLINTERFACE void SetWindowIcon( SDL_Surface *Icon, Uint8 *Imask = NULL );
+DLLINTERFACE SDL_Renderer *GetRenderer(SDL_Window *win, Uint32 rflags);
+
+
+DLLINTERFACE void SetWindowCaption( SDL_Window *win, const char *Caption );
+
+
+DLLINTERFACE void SetWindowIcon( SDL_Window *win, SDL_Surface *Icon );
 
 /// Quits SDL
 DLLINTERFACE void QuitSDL( void );

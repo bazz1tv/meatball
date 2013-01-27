@@ -28,7 +28,7 @@ OptionsMenu::OptionsMenu()
 	tMusicVol   = new TextObject(x,y,"Music Volume", optionsfont);
 	tSoundVol   = new TextObject(x,y+40,"Sound Volume", optionsfont);
 	tControls	= new TextObject(x,y+180, "Controls", optionsfont);
-	tExit		= new TextObject(x,Screen->h-40,"Exit", optionsfont);
+	tExit		= new TextObject(x,window_height-40,"Exit", optionsfont);
 
 
 	tMusicVol->SetFGColor(SetColor(255,0,0));
@@ -83,7 +83,7 @@ void OptionsMenu::Do()
 
 void OptionsMenu::PreUpdate()
 {
-	pMouse->Update();
+	pMouse->Update(Renderer);
 	pAudio->Update();
 	pFramerate->SetSpeedFactor( );
 }
@@ -120,8 +120,11 @@ void OptionsMenu::Update()
 
 void OptionsMenu::Draw()
 {
-	SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 00, 0, 0 ) );
-
+	//SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 00, 0, 0 ) );
+	
+	SDL_RenderClear(Renderer);
+	
+	
 	tMusicVol->Draw();
 	tExit->Draw();
 	tSoundVol->Draw();
@@ -131,7 +134,7 @@ void OptionsMenu::Draw()
 	sSoundVol->Draw();
 	
 
-	pMouse->Draw( Screen );
+	pMouse->Draw( Renderer );
 
 	PostDraw();
 }
@@ -139,7 +142,7 @@ void OptionsMenu::Draw()
 
 void OptionsMenu::LiveInput( void )
 {
-	SDL_EnableUNICODE( 1 );				// http://sdl.beuc.net/sdl.wiki/SDL_EnableUNICODE
+	//SDL_EnableUNICODE( 1 );				// http://sdl.beuc.net/sdl.wiki/SDL_EnableUNICODE
 	
 	while ( SDL_PollEvent( &event ) )
 	{
@@ -190,7 +193,7 @@ void OptionsMenu::LiveInput( void )
 		}
 	}
 	
-	SDL_EnableUNICODE( 0 );
+	//SDL_EnableUNICODE( 0 );
 }
 
 void OptionsMenu::EventHandler()
@@ -309,8 +312,8 @@ ControlsMenu::ControlsMenu()
 	tMoveRight		= new TextObject(x,y+40,		"Move Right: ",	font);
 	tFirePrimary	= new TextObject(x,y+180,		"Fire: ", font);
 	tJump			= new TextObject(x,y+220,		"Jump: ",			font);
-	tExit			= new TextObject(x,Screen->h-40,"Exit",			font);
-	tWaitForInput	= new TextObject(Screen->w/2,Screen->h/2,"Press a Key...", font);
+	tExit			= new TextObject(x,window_height-40,"Exit",			font);
+	tWaitForInput	= new TextObject(window_width/2,window_height/2,"Press a Key...", font);
 
 	//Render
 	tMoveLeft->Render();
@@ -345,8 +348,8 @@ ControlsMenu::ControlsMenu()
 	tFirePrimary_CurKey->Render();
 	tJump_CurKey->Render();
 	tWaitForInput->Render_shaded();
-	tWaitForInput->rect.x = (Screen->w/2 - tWaitForInput->surface->w/2);
-	tWaitForInput->rect.y = (Screen->h/2 - tWaitForInput->surface->h/2);
+	tWaitForInput->rect.x = (window_width/2 - tWaitForInput->surface->w/2);
+	tWaitForInput->rect.y = (window_height/2 - tWaitForInput->surface->h/2);
 
 	
 }
@@ -376,21 +379,39 @@ ControlsMenu::~ControlsMenu()
 
 void ControlsMenu::Update()
 {
-	tMoveLeft_CurKey->text		= SDL_GetKeyName(pPreferences->pSettings->Key_walk_left);
-	tMoveRight_CurKey->text		= SDL_GetKeyName(pPreferences->pSettings->Key_walk_right);
-	tFirePrimary_CurKey->text	= SDL_GetKeyName(pPreferences->pSettings->Key_shoot_primary);
-	tJump_CurKey->text			= SDL_GetKeyName(pPreferences->pSettings->Key_jump);
+	if (tMoveLeft_CurKey->text	!= SDL_GetKeyName(pPreferences->pSettings->Key_walk_left))
+	{
+		tMoveLeft_CurKey->text = SDL_GetKeyName(pPreferences->pSettings->Key_walk_left);
+		tMoveLeft_CurKey->Render();
+	}
+	if (tMoveRight_CurKey->text	!= SDL_GetKeyName(pPreferences->pSettings->Key_walk_right))
+	{
+		tMoveRight_CurKey->text	= SDL_GetKeyName(pPreferences->pSettings->Key_walk_right);
+		tMoveRight_CurKey->Render();
+	}
+	if (tFirePrimary_CurKey->text != SDL_GetKeyName(pPreferences->pSettings->Key_shoot_primary))
+	{
+		tFirePrimary_CurKey->text = SDL_GetKeyName(pPreferences->pSettings->Key_shoot_primary);
+		tFirePrimary_CurKey->Render();
+	}
+	
+	if (tJump_CurKey->text	!= SDL_GetKeyName(pPreferences->pSettings->Key_jump))
+	{
+		tJump_CurKey->text	= SDL_GetKeyName(pPreferences->pSettings->Key_jump);
+		tJump_CurKey->Render();
+	}
 
-	tMoveLeft_CurKey->Render();
-	tMoveRight_CurKey->Render();
-	tFirePrimary_CurKey->Render();
-	tJump_CurKey->Render();
+	
+	
+	
+	
 
 }
 
 void ControlsMenu::Draw()
 {
-	SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 00, 0, 0 ) );
+	//SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 00, 0, 0 ) );
+	SDL_RenderClear(Renderer);
 	
 	tMoveLeft->Draw();	
 	tMoveRight->Draw();	
@@ -403,7 +424,7 @@ void ControlsMenu::Draw()
 	tFirePrimary_CurKey->Draw();
 	tJump_CurKey->Draw();
 
-	pMouse->Draw( Screen );
+	pMouse->Draw( Renderer );
 
 	if (status == EDITING)
 	{
@@ -527,7 +548,7 @@ void ControlsMenu::GetInput(Uint8 type)
 			//printf("BEEP");
 			case SDL_KEYDOWN:
 			{
-				SDLKey key = event.key.keysym.sym;
+				SDL_Keycode key = event.key.keysym.sym;
 
 				if (type == KEY_LEFT)
 				{

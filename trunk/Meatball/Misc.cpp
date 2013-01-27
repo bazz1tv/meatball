@@ -1,57 +1,48 @@
 #include "Globals.h"
 
 
-void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
+void FillRectAlpha(SDL_Renderer *renderer, int x, int y, int w, int h, Uint8 r,Uint8 g,Uint8 b,Uint8 a)
 {
+	Uint8 oor,og,ob,oa;
 	SDL_Rect rect = {x,y,w,h};
-	SDL_FillRect(surface, &rect, color);
+	SDL_GetRenderDrawColor(renderer, &oor, &og, &ob, &oa);
+	SDL_SetRenderDrawColor(renderer, r, g, b, a);
+		SDL_RenderFillRect(renderer, &rect);
+	SDL_SetRenderDrawColor(renderer, oor, og, ob, oa);
+	//SDL_FillRect(surface, &rect, color);
 }
 
-void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
+void FillRect(SDL_Renderer *renderer, int x, int y, int w, int h, Uint8 r,Uint8 g,Uint8 b)
+{
+	FillRectAlpha(renderer, x, y, w, h, r, g, b, 255);
+}
+
+void FillRectAlpha(SDL_Renderer *renderer, int x, int y, int w, int h, Uint32 rgba)
+{
+	Uint8 r = (rgba>>16) & 0xff;
+	Uint8 g = (rgba>>8) & 0xff;
+	Uint8 b = (rgba) & 0xff;
+	Uint8 a	= (rgba >> 24) &0xff;
+	FillRectAlpha(renderer, x, y, w, h, r, g, b, a);
+}
+/*void FillRectAlpha(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
 {
 	Uint8 alpha = color>>24;
 
-	SDL_Surface *sfc = SDL_CreateRGBSurface(SDL_SWSURFACE | SDL_ANYFORMAT, w, h, surface->format->BitsPerPixel, 0, 0, 0, 0);
+	SDL_Surface *sfc = SDL_CreateRGBSurface(SDL_SWSURFACE, w, h, surface->format->BitsPerPixel, 0, 0, 0, 0);
 	SDL_FillRect(sfc, NULL, color);
-	SDL_SetAlpha(sfc, SDL_SRCALPHA, alpha);
+	SDL_SetSurfaceAlphaMod(sfc, alpha);
+	//SDL_SetAlpha(sfc, SDL_SRCALPHA, alpha);
 
 	SDL_Rect rect = {x,y,w,h};
 	SDL_BlitSurface(sfc,NULL,surface,&rect);
 	SDL_FreeSurface(sfc);
-}
+}*/
 
 void UniversalEventHandler(SDL_Event *event)
 {
 	switch(event->type)
 	{
-		case SDL_VIDEORESIZE:
-		{
-			
-			//Resize the screen
-			if (!pGameSettings->Fullscreen)
-				Screen = SDL_SetVideoMode( event->resize.w, event->resize.h, pGameSettings->Screen_Bpp, MEATBALL_CUSTOM_FLAGS );
-			//If there's an error
-			if( Screen == NULL )
-			{
-				printf ("OOPS");
-				//windowOK = false;
-				return;
-			}
-			break;
-		}
-		case SDL_VIDEOEXPOSE:
-		{
-			//printf ("OOPS");
-			//Update the screen
-			if( SDL_Flip( Screen ) == -1 )
-			{
-				//If there's an error
-				//windowOK = false;
-				printf ("OOPS");
-				return;
-			}
-			break;
-		}
 		case SDL_QUIT:
 		{
 			mode = MODE_QUIT;
@@ -59,11 +50,11 @@ void UniversalEventHandler(SDL_Event *event)
 		}
 		case SDL_KEYDOWN:
 		{
-			if( event->key.keysym.sym == SDLK_RETURN && ( event->key.keysym.mod & KMOD_ALT ) ) 
+			if( event->key.keysym.sym == SDLK_BACKSLASH && (SDL_GetModState() & KMOD_ALT) )
 			{
-					SDL_ToggleFS(Screen);
+					SDL_ToggleFS(Window);
 			}
-
+			break;
 		}
 
 	}
@@ -72,34 +63,42 @@ void UniversalEventHandler(SDL_Event *event)
 
 /// Queries the Screen if it's set to Full of Not
 /// @return 0 if windowed, 1 if fullscreen
-int IsFullScreen(SDL_Surface *surface) 
-{ 
-    if (surface->flags & SDL_FULLSCREEN) return 1; // return true if surface is fullscreen 
-    return 0; // Return false if surface is windowed 
+int IsFullScreen(SDL_Window *win)
+{
+	Uint32 flags = SDL_GetWindowFlags(win);
+	
+    if (flags & SDL_WINDOW_FULLSCREEN) return 1; // return true if surface is fullscreen
+    
+	return 0; // Return false if surface is windowed
 } 
 
 /// Toggles On/Off FullScreen
-int SDL_ToggleFS(SDL_Surface *surface) 
+int SDL_ToggleFS(SDL_Window *win)
 { 
     //Uint32 flags = surface->flags; // Get the video surface flags
     
-    if (IsFullScreen(surface)) 
+    if (IsFullScreen(win))
     { 
         // Swith to WINDOWED mode 
-        if ((surface = SDL_SetVideoMode(MEATBALL_WIN_SETTINGS, (MEATBALL_CUSTOM_FLAGS | SDL_RESIZABLE) & ~SDL_FULLSCREEN)) == NULL) return 0; 
+        if (SDL_SetWindowFullscreen(win, SDL_FALSE) < 0)
+		{
+			std::cout<<"Setting windowed failed : "<<SDL_GetError()<<std::endl;
+			return -1;
+		}
+		
         return 1; 
     } 
     
     // Swith to FULLSCREEN mode
 	//SDL_LockSurface(surface);
-    if ((surface = SDL_SetVideoMode(MEATBALL_FULLSCREEN_SETTINGS, (MEATBALL_CUSTOM_FLAGS|SDL_FULLSCREEN))) == NULL)
+    if (SDL_SetWindowFullscreen(win, SDL_TRUE) < 0)
 	{
-		//SDL_UnlockSurface(surface);
-		return 0;
+		std::cout<<"Setting fullscreen failed : "<<SDL_GetError()<<std::endl;
+		return -1;
 	}
-	//SDL_UnlockSurface(surface);
-    return 1; 
-} 
+	
+	return 1;
+}
 
 /// Check for Collision with the Mouse
 /// @returns true for collision

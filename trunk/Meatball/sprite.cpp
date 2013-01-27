@@ -2,7 +2,7 @@
 #include "Globals.h"
 
 cMVelSprite :: cMVelSprite( SDL_Surface *new_image, double x, double y, double nvelx /* = 0 */, double nvely /* = 0  */ )
-: cVelocitySprite( new_image, x, y, nvelx /* = 0 */, nvely /* = 0  */ )
+: cVelocitySprite( Renderer, new_image, x, y, nvelx /* = 0 */, nvely /* = 0  */ )
 {
 	Startposx = posx;
 	Startposy = posy;
@@ -23,10 +23,10 @@ cMVelSprite :: ~cMVelSprite( void )
 
 void cMVelSprite :: Update( void )
 {
-	cVelocitySprite::Update( 0 );
+	cVelocitySprite::Update(Renderer, 0 );
 }
 
-void cMVelSprite :: Draw( SDL_Surface *target )
+void cMVelSprite :: Draw( SDL_Renderer *renderer )
 {
 	if ( !visible || !image || width <= 0 || height <= 0 )
 	{
@@ -36,8 +36,9 @@ void cMVelSprite :: Draw( SDL_Surface *target )
 	rect.x = (int)(posx - pCamera->x);
 	rect.y = (int)(posy - pCamera->y);
 
-	SDL_BlitSurface( image, NULL, target, &rect );
-
+	//SDL_BlitSurface( image, NULL, target, &rect );
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
+	
 	rect.x = (int)posx;
 	rect.y = (int)posy;
 }
@@ -59,7 +60,7 @@ SDL_Rect cMVelSprite :: GetRect( bool with_camerapos /* = 0  */)
 
 
 cMAngleSprite :: cMAngleSprite( SDL_Surface *new_image, double x, double y, double nangle /* = 0  */, double nspeed /* = 0  */ )
-: cAngleSprite( new_image, x, y, nangle /* = 0 */, nspeed /* = 0  */ )
+: cAngleSprite( Renderer, new_image, x, y, nangle /* = 0 */, nspeed /* = 0  */ )
 {
 	Startposx = posx;
 	Startposy = posy;

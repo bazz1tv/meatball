@@ -18,14 +18,16 @@
 #ifndef _SDL_EnginePrimitives_h
 #define _SDL_EnginePrimitives_h
 
-#ifdef _DEBUG
-#include <vld.h>
-#endif
 
 #ifdef _WIN32
-#include <SDL.h>
-#else
-#include <SDL/SDL.h>
+	#ifdef _DEBUG
+		#include <vld.h>
+	#endif
+
+	#include <SDL.h>
+
+#elif __APPLE__
+	#include <SDL2/SDL.h>
 #endif
 
 #ifdef _WIN32
@@ -39,7 +41,7 @@
 #pragma comment( lib, "SDL_image.lib" )
 #pragma comment( lib, "SDL_ttf.lib" )
 #pragma comment( lib, "SDL_net.lib" )
-#pragma comment( lib, "Sge.lib" )
+//#pragma comment( lib, "Sge.lib" )
 #endif
 
 /**  WIN32 DLL interface */

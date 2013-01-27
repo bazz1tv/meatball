@@ -34,6 +34,7 @@ public:
 
 
 	void Draw();
+	void Draw (SDL_Renderer *renderer);
 	/// Updates  all the Leveleditor stuff
 	void Update( void );
 

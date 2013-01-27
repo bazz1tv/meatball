@@ -32,6 +32,11 @@ TTF_Font *bold_16;
 
 /// the Screen
 SDL_Surface *Screen;
+SDL_Window *Window;
+int window_width;
+int window_height;
+SDL_Renderer *Renderer;
+SDL_Texture *ScreenTexture;
 
 /// Keyboard Keystate
 Uint8 *keys;
@@ -62,7 +67,7 @@ cConsole *pConsole;
 Uint8 mode, oldmode;
 
 /// The screen settings 
-const SDL_VideoInfo* screeninfo;
+//const SDL_VideoInfo* screeninfo;
 
 /// Initializes the basic
 /// Init some Fonts, set default colorkey, Add mouse to IMan
@@ -74,12 +79,13 @@ void InitObjects( void )
 	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
 
 	// Set Magneta (default) Colorkey
-	colorkey = SDL_MapRGB( Screen->format, 255, 0, 255 );
-
+	//colorkey = SDL_MapRGB( Screen->format, 255, 0, 255 );
+	colorkey = 0xffff00ff; // GHETTO STYLE <- 
+	
 	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
 
 	// MeatBall
-	pMouse = new cMouseCursor( 0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
+	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
 	pCamera = new cCamera();
 	pPlayer = new cPlayer();
 	pLevel = new cLevel();
@@ -176,8 +182,12 @@ void QuitGame( void )
 		delete pFont;
 	}
 
-	SDL_FreeSurface(icon);
-	SDL_FreeSurface(Screen);
+	//SDL_FreeSurface(icon);
+	
+	SDL_DestroyWindow(Window);
+	SDL_DestroyRenderer(Renderer);
+
+	//SDL_FreeSurface(Screen);
 	icon = NULL;
 
 	QuitSDL();

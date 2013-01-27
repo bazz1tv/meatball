@@ -13,7 +13,7 @@ public:
 
 	void Update( void );
 
-	void Draw( SDL_Surface *target );
+	void Draw( SDL_Renderer *renderer );
 
 	void HandleCollision( int direction );
 
@@ -42,7 +42,7 @@ public:
 
 	void Update( void );
 
-	void Draw( SDL_Surface *target );
+	void Draw( SDL_Renderer *renderer );
 
 	/// The Position
 	double posx,posy;

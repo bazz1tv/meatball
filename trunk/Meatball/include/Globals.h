@@ -48,6 +48,12 @@ extern TTF_Font *bold_16;
 
 /// the Screen
 extern SDL_Surface *Screen;
+extern SDL_Window *Window;
+extern int window_width;
+extern int window_height;
+
+extern SDL_Renderer *Renderer;
+extern SDL_Texture *ScreenTexture;
 
 /// Keyboard Keystate
 extern Uint8 *keys;
@@ -118,7 +124,7 @@ extern cConsole *pConsole;			// The Console
 
 
 /// screen settings
-extern const SDL_VideoInfo* screeninfo;
+//extern const SDL_VideoInfo* screeninfo;
 
 /// The Current mode
 extern Uint8 mode, oldmode;

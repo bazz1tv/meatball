@@ -17,7 +17,7 @@ MainMenu::MainMenu()
 	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 	
 	//tOptions->rect = SetRect(100,100,tOptions->surface->w, tOptions->surface->h);
-	pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3");
+	pAudio->PlayMusik( MUSIC_DIR "Monday.it");
 	//SMan->Add( pAudio->LoadSound( MUSIC_DIR "menumusic.wav"), MUSIC_DIR "menumusic.wav");
 	//pAudio->PlaySound(SMan->GetPointer(MUSIC_DIR "menumusic.wav"));
 
@@ -31,19 +31,21 @@ MainMenu::MainMenu()
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Exit.png", colorkey, 140 ), "Exit_Button" );
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Light1.png", colorkey, 0 ), "Light_1" );
 	// Register the sprite
-	Menu_Background = new cBasicSprite( IMan->GetPointer( "Menu_Background" ), 0, 0 );
-	Button_Start = new cBasicSprite( IMan->GetPointer( "Start_Button" ), Screen->w - Screen->w/3, 250 );
-	Button_Exit = new cBasicSprite( IMan->GetPointer( "Exit_Button" ), Screen->w - Screen->w/3, 250 + (int)Button_Start->height + 125);
-	Light1 = new cBasicSprite( IMan->GetPointer( "Light_1" ), Screen->w/7-20, Screen->h/2 );
+	Menu_Background = new cBasicSprite( Renderer, IMan->GetPointer( "Menu_Background" ), 0, 0 );
+	Button_Start = new cBasicSprite( Renderer, IMan->GetPointer( "Start_Button" ), window_width - window_width/3, 250 );
+	Button_Exit = new cBasicSprite( Renderer, IMan->GetPointer( "Exit_Button" ), window_width - window_width/3, 250 + (int)Button_Start->height + 125);
+	Light1 = new cBasicSprite( Renderer, IMan->GetPointer( "Light_1" ), window_width/7-20, window_height/2 );
 	/// [Adding a Sprite]
 
 	// Resize The Background image
-	Menu_Background->SetSize( (double)Screen->w, (double)Screen->h );
+	Menu_Background->SetSize( (double)window_width, (double)window_height );
 
-	tOptions = new TextObject(Screen->w - Screen->w/3, 250 + (int)Button_Start->height + 50, "Options", myfont);
+	tOptions = new TextObject(window_width - window_width/3, 250 + (int)Button_Start->height + 50, "Options", myfont);
 	SDL_Color optionsColor = SetColor(0,0,0);
 	tOptions->SetFGColor(optionsColor);
 	tOptions->Render();
+	
+	SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
 }
 
 MainMenu::~MainMenu()
@@ -68,7 +70,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::UpdateHardware()
 {
-	pMouse->Update();
+	pMouse->Update(Renderer);
 	pAudio->Update();
 }
 
@@ -76,23 +78,27 @@ void MainMenu::UpdateGraphics()
 {
 	pFramerate->SetSpeedFactor( );
 
-	Menu_Background->Update();
+	Menu_Background->Update(Renderer);
 	//Light1->Update();
 
-	Button_Start->Update();
-	Button_Exit->Update();
+	Button_Start->Update(Renderer);
+	Button_Exit->Update(Renderer);
 
-	SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 60, 0, 0 ) );
-		
-	Menu_Background->Draw( Screen ); // Background
+	//SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 60, 0, 0 ) );
+	
+	SDL_RenderClear(Renderer);
+	
+	Menu_Background->Draw( Renderer ); // Background
 
 	//Light1->Draw( Screen );
 
-	Button_Start->Draw( Screen );
-	Button_Exit->Draw( Screen );
+	Button_Start->Draw( Renderer );
+	Button_Exit->Draw( Renderer );
 	tOptions->Draw();
 		
-	pMouse->Draw( Screen );
+	pMouse->Draw( Renderer );
+	
+	//SDL_RenderPresent(Renderer);
 }
 
 /// @todo The Alpha adjustments here could be turned into API calls.
@@ -112,7 +118,7 @@ void MainMenu::Collisions()
 		}
 		else if( Button_Exit->GetAlpha() > 140 && !MouseCollidesWith( &Button_Exit->rect ) )
 		{
-			int nAlpha = Button_Exit->GetAlpha() - (int)( 5.0 * pFramerate->speedfactor );
+			int nAlpha = Button_Exit->GetAlpha() - (int)( 10.0 * pFramerate->speedfactor );
 
 			if( nAlpha < 0 ) 
 			{
@@ -135,7 +141,7 @@ void MainMenu::Collisions()
 		}
 		else if( Button_Start->GetAlpha() > 140 && !MouseCollidesWith( &Button_Start->rect ) )
 		{
-			int nAlpha = Button_Start->GetAlpha() - (int)( 5.0 * pFramerate->speedfactor );
+			int nAlpha = Button_Start->GetAlpha() - (int)( 10.0 * pFramerate->speedfactor );
 
 			if( nAlpha < 0 ) 
 			{
@@ -253,7 +259,8 @@ void MainMenu::FadeOutBG()
 	for (i=0; i < 256; i+=2) 
 	{ 
 		UpdateGraphics();
-		SDL_SetAlpha(surface,SDL_RLEACCEL|SDL_SRCALPHA,(Uint8)i); 
+		//SDL_SetAlpha(surface,SDL_TRUE,(Uint8)i);
+		SDL_SetSurfaceAlphaMod(surface, (Uint8)i);
 		SDL_BlitSurface(surface,NULL,Screen,NULL); 
 		PostDraw();
 		//Sleep(10);
@@ -263,7 +270,9 @@ void MainMenu::FadeOutBG()
 
 void MainMenu::PostDraw()
 {
-	SDL_Flip( Screen );
+	//ScreenTexture = SDL_CreateTextureFromSurface(Renderer, Screen);
+	SDL_RenderPresent(Renderer);
+	//SDL_Flip( Screen );
 }
 
 void MainMenu::EventHandler()

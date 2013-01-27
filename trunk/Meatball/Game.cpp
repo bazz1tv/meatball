@@ -23,7 +23,7 @@ void MiniEngine::PreUpdate( void )
 	
 	pCamera->Update();
 	
-	pMouse->Update();
+	pMouse->Update(Renderer);
 }
 
 void MiniEngine::Update()
@@ -40,22 +40,27 @@ void MiniEngine::PostUpdate()
 
 void MiniEngine::PreDraw()
 {
-	SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 0, 0, 0 ) );
-
+	//SDL_FillRect( Screen, NULL, SDL_MapRGB( Screen->format, 0, 0, 0 ) );
+	SDL_RenderClear(Renderer);
+	
 	pLevel->Draw();
 }
 void MiniEngine::PostDraw()
 {
 	FramerateDraw( Screen );
 	
-	SDL_Flip( Screen );
+	//ScreenTexture = SDL_CreateTextureFromSurface(Renderer, Screen);
+	SDL_RenderPresent(Renderer);
+	
+	
+	//SDL_Flip( Screen );
 }
 void MiniEngine::Draw( void )
 {
 	
 	PreDraw();
 
-    pPlayer->Draw( Screen );
+    
     
 	DrawBullets();
 	DrawParticleEmitter();
@@ -63,6 +68,8 @@ void MiniEngine::Draw( void )
 	
 	
 	DrawEnemies();
+	
+	pPlayer->Draw( Renderer );
 	
 
 	PostDraw();
@@ -113,11 +120,11 @@ void Game::HeldKey_Handler()
 		pPlayer->direction = LEFT;
 	}
 
-	if( keys[SDLK_UP] || keys[SDLK_w] ) 
+	if( keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W] )
 	{
 		pPlayer->updown_pressed = UP;
 	}
-	else if( keys[SDLK_DOWN] || keys[SDLK_s] ) 
+	else if( keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_S] )
 	{
 		pPlayer->updown_pressed = DOWN;
 	}
@@ -186,7 +193,7 @@ void Game::EventHandler()
 				}
 				else if( event.key.keysym.sym == SDLK_F2 ) // Enemy Test
 				{
-					AddEnemy( 200, 0 + (double)( Screen->h/2 ), ENEMY_AF373 );
+					AddEnemy( 200, 0 + (double)( window_height/2 ), ENEMY_AF373 );
 				}
 				break;
 			}

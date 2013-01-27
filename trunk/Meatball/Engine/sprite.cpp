@@ -16,7 +16,7 @@ void SetSpriteSpeedfactor( double *sf )
 	Spritespeedfactor = sf;
 }
 
-cBasicSprite :: cBasicSprite( SDL_Surface *new_image, double x, double y )
+cBasicSprite :: cBasicSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y )
 {
 	rect = SetRect( 0, 0, 0, 0 );
 	srcrect = SetRect( 0, 0, 0, 0 );
@@ -28,12 +28,13 @@ cBasicSprite :: cBasicSprite( SDL_Surface *new_image, double x, double y )
 	startimage = NULL;
 	srcimage = NULL;
 	image = NULL;
+	texture = NULL;
 
 	alpha = 255;
 
 	visible = 1;
 
-	SetImage( new_image );
+	SetImage( renderer, new_image );
 
 	SetPos( x, y );
 	
@@ -55,15 +56,28 @@ cBasicSprite :: ~cBasicSprite( void )
 	{
 		SDL_FreeSurface( image );
 	}
+	
+	if (texture)
+	{
+		SDL_DestroyTexture(texture);
+	}
 
 	image = NULL;
 	srcimage = NULL;
 	startimage = NULL;
 }
 
-void cBasicSprite :: SetImage( SDL_Surface *new_image, bool OverrideSize /* = 1  */ )
+void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, bool OverrideSize /* = 1  */ )
 {
 	srcimage = new_image;
+	
+	if (texture)
+	{
+		SDL_DestroyTexture(texture);
+		texture = NULL;
+	}
+	
+	texture = SDL_CreateTextureFromSurface(renderer, new_image);
 
 	drawimg = 1;
 
@@ -75,19 +89,27 @@ void cBasicSprite :: SetImage( SDL_Surface *new_image, bool OverrideSize /* = 1 
 		this->srcrect.w = 0;
 		this->srcrect.h = 0;
 		
-		//SetAlpha( 255 ); 
+		//SetAlpha( 255 );
 		return;
 	}
 	else
 	{
+		
 		srcrect.w = new_image->w;
 		srcrect.h = new_image->h;
 
-		SetAlpha( srcimage->format->alpha );
-
-		if( srcimage->format->alpha < 255 )
+		Uint8 tAlpha;
+		if (SDL_GetSurfaceAlphaMod(srcimage, &tAlpha) < 0)
 		{
-			SDL_SetAlpha( srcimage, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, 255 );
+			printf("SDL_GetSurfaceAlphaMod failed!");
+			return;
+		}
+		
+		SetAlpha( tAlpha );
+
+		if( tAlpha < 255 )
+		{
+			SDL_SetSurfaceAlphaMod( srcimage, 255 );
 		}
 		
 	}
@@ -178,7 +200,7 @@ void cBasicSprite :: SetColorKey( Uint32 Colorkey )
 {
 	if( srcimage )
 	{
-		SDL_SetColorKey( srcimage, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, Colorkey );
+		SDL_SetColorKey( srcimage, SDL_TRUE, Colorkey );
 	}
 
 	drawimg = 1;
@@ -195,8 +217,13 @@ Uint32 cBasicSprite :: GetColorkey( void )
 	{
 		return 0;
 	}
-
-	return srcimage->format->colorkey;
+	Uint32 key;
+	if (SDL_GetColorKey(srcimage, &key) < 0)
+	{
+		printf ("SDL_GetColorKey failed: %s", SDL_GetError());
+		return NULL;
+	}
+	return key;
 }
 
 double cBasicSprite :: GetSizeWidth( void )
@@ -216,7 +243,7 @@ void cBasicSprite :: Move( double move_x, double move_y )
 	posy += move_y;
 }
 
-void cBasicSprite :: Draw( SDL_Surface *target )
+void cBasicSprite :: Draw( SDL_Renderer *renderer )
 {
 	if ( !visible || !image || width <= 0 || height <= 0)
 	{
@@ -226,10 +253,17 @@ void cBasicSprite :: Draw( SDL_Surface *target )
 	rect.x = (int) posx;
 	rect.y = (int) posy;
 
-	SDL_BlitSurface( image, NULL, target, &rect );
+	
+	//SDL_BlitSurface( image, NULL, target, &rect );
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
 
-void cBasicSprite :: Update( void )
+/*void cBasicSprite:: Update(void)
+{
+	// Empty for now (migrating to SDL2)
+}*/
+
+void cBasicSprite :: Update( SDL_Renderer *renderer )
 {
 	// Image drawing
 
@@ -240,19 +274,33 @@ void cBasicSprite :: Update( void )
 			SDL_FreeSurface( image );
 			image = NULL;
 		}
+		
+		if (texture)
+		{
+			SDL_DestroyTexture(texture);
+			texture = NULL;
+		}
+		
+		Uint32 colkey;
+		SDL_GetColorKey(srcimage, &colkey);
 
 		if( (int)width == srcimage->w && (int)height == srcimage->h )
 		{
 			image = CreateSurface( srcimage->w, srcimage->h, srcimage->format->BitsPerPixel );
 
-			SDL_FillRect( image, NULL, srcimage->format->colorkey );
+			
+			SDL_FillRect( image, NULL, colkey );
 			SDL_BlitSurface( srcimage, NULL, image, NULL );
 			
-			SDL_SetColorKey( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, srcimage->format->colorkey );
-			SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
+			SDL_SetColorKey( image, SDL_TRUE, colkey );
+			
+			SDL_SetSurfaceAlphaMod(image, alpha);
+			//SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
 			
 			rect.w = srcimage->w;
 			rect.h = srcimage->h;
+			
+			texture = SDL_CreateTextureFromSurface(renderer, image);
 		}
 		else if( width > 0 && height > 0 ) 
 		{
@@ -264,8 +312,9 @@ void cBasicSprite :: Update( void )
 			rect.w = (int)width;
 			rect.h = (int)height;
 			
-			SDL_SetColorKey( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, srcimage->format->colorkey );
-			SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
+			SDL_SetColorKey( image, SDL_TRUE, colkey );
+			SDL_SetSurfaceAlphaMod(image, alpha);
+			texture = SDL_CreateTextureFromSurface(renderer, image);
 		}
 		else
 		{
@@ -285,9 +334,9 @@ void cBasicSprite :: Update( void )
 }
 
 
-cVelocitySprite :: cVelocitySprite( SDL_Surface *new_image, double x, double y, 
+cVelocitySprite :: cVelocitySprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y,
 								   double nvelx /* = 0 */, double nvely /* = 0  */ )
-	: cBasicSprite( new_image, x, y )
+	: cBasicSprite( renderer, new_image, x, y )
 {
 
 	velx = nvelx;
@@ -361,11 +410,11 @@ void cVelocitySprite :: AddVelocity( double addvelx, double addvely,
 	}
 }
 
-void cVelocitySprite :: Update( bool nMove )
+void cVelocitySprite :: Update( SDL_Renderer *renderer, bool nMove )
 {
-	cBasicSprite::Update();
+	cBasicSprite::Update(renderer);
 
-	if( nMove ) 
+	if( nMove )
 	{
 		Move( velx * (*Spritespeedfactor) ,vely * (*Spritespeedfactor) );
 	}
@@ -373,9 +422,9 @@ void cVelocitySprite :: Update( bool nMove )
 }
 
 
-cAngleSprite :: cAngleSprite( SDL_Surface *new_image, double x, double y, double nangle /* = 0 */, 
+cAngleSprite :: cAngleSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y, double nangle /* = 0 */,
 			double nspeed /* = 0 */, bool nanglerotate /* = 1  */)
-	: cBasicSprite( new_image, x, y )
+	: cBasicSprite( renderer, new_image, x, y )
 {
 	angle = 0;
 	speed = 0;
@@ -452,9 +501,9 @@ void cAngleSprite :: AddSpeed( double nspeed )
 	SetDirection();
 }
 
-void cAngleSprite :: Update( bool nMove )
+void cAngleSprite :: Update( SDL_Renderer *renderer, bool nMove )
 {
-	cBasicSprite::Update();
+	cBasicSprite::Update(renderer);
 
 	if( anglerotate && drawimg && srcimage )
 	{
@@ -462,6 +511,11 @@ void cAngleSprite :: Update( bool nMove )
 		if( image ) 
 		{
 			SDL_FreeSurface( image );
+		}
+		
+		if (texture)
+		{
+			SDL_DestroyTexture(texture);
 		}
 
 		if( (int)width != srcimage->w && (int)height != srcimage->h )
@@ -488,10 +542,13 @@ void cAngleSprite :: Update( bool nMove )
 
 		rect.w = (int)width;
 		rect.h = (int)height;
-
-		SDL_SetColorKey( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, srcimage->format->colorkey );
+		Uint32 colkey;
+		SDL_GetColorKey(srcimage, &colkey);
+		
+		SDL_SetColorKey( image, SDL_TRUE, colkey );
 			
-		SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
+		SDL_SetSurfaceAlphaMod(image, alpha);
+		//SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
 		
 		drawimg = 0;
 	}
@@ -504,9 +561,9 @@ void cAngleSprite :: Update( bool nMove )
 }
 
 
-cAccelerationSprite :: cAccelerationSprite( SDL_Surface *new_image, double x, double y, double nangle /* = 0  */, 
+cAccelerationSprite :: cAccelerationSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y, double nangle /* = 0  */,
 					double nspeed /* = 0 */, double nacc /* = 0 */, double ndeacc /* = 0  */ )
-	: cAngleSprite( new_image, x, y, nangle, nspeed )
+	: cAngleSprite( renderer, new_image, x, y, nangle, nspeed )
 {
 	acc = nacc;
 
@@ -540,7 +597,7 @@ void cAccelerationSprite :: AddDeAcceleration( double ndeacc )
 	deacc += ndeacc;
 }
 
-void cAccelerationSprite :: Update( bool nMove )
+void cAccelerationSprite :: Update(SDL_Renderer *renderer, bool nMove )
 {
 	if(speed < 0 && acc != 0)
 	{
@@ -604,11 +661,11 @@ void cAccelerationSprite :: Update( bool nMove )
 		}
 	}
 
-	cAngleSprite::Update( nMove );
+	cAngleSprite::Update( renderer, nMove );
 }
 
 
-cMouseCursor :: cMouseCursor( double x, double y, SDL_Surface *new_image ) : cBasicSprite( new_image, x, y )
+cMouseCursor :: cMouseCursor( SDL_Renderer *renderer, double x, double y, SDL_Surface *new_image ) : cBasicSprite( renderer, new_image, x, y )
 {
 	Spritetype = SPRITE_MOUSECURSOR;
 }
@@ -641,9 +698,9 @@ bool cMouseCursor :: CollisonCheck( SDL_Rect *Crect )
 }
 
 
-void cMouseCursor :: Update( void )
+void cMouseCursor :: Update( SDL_Renderer *renderer )
 {
-	cBasicSprite::Update();
+	cBasicSprite::Update(renderer);
 	
 	int Mx, My;
 
