@@ -4,9 +4,6 @@
 
 #include "Globals.h"
 
-extern SDL_Surface *pix;
-extern SDL_Texture *pix_tex;
-
 /// The Particle class
 class cMParticle : public cMAngleSprite
 {
@@ -89,7 +86,7 @@ void AddParticleEmitter( double x, double y, double nSpeed, Uint8 nred, Uint8 ng
 void UpdateParticleEmitter( void );
 
 /// Draws all Particle Emitter
-void DrawParticleEmitter( void );
+void DrawParticleEmitter( SDL_Renderer *renderer );
 
 /// Delete's every Particle Emitter
 void DeleteAllParticleEmitter( void );

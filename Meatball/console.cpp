@@ -196,16 +196,16 @@ void cConsole :: Draw( SDL_Renderer *renderer )
 {
 	PreDraw();
 
-	DrawBullets();
-	DrawParticleEmitter();
+	DrawBullets(renderer);
+	DrawParticleEmitter(renderer);
 
-	pPlayer->Draw( Renderer );
+	pPlayer->Draw( renderer );
 	
-	DrawEnemies();
+	DrawEnemies(renderer);
 
 	int i;
 	// display console BG
-	BG->Draw( Renderer );
+	BG->Draw( renderer );
 	
 	#define topHistoryLine_Y 23.0;		// The top vertical coordinate for first line of input history
 	double history_y = topHistoryLine_Y;

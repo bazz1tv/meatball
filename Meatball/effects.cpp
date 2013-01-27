@@ -1,9 +1,6 @@
 #include "effects.h"
 #include "Globals.h"
 
-SDL_Surface *pix;
-SDL_Texture *pix_tex;
-
 cMParticleEmitter **ParticleEmitter = NULL;
 unsigned int ParticleEmitterCount = 0;
 
@@ -313,8 +310,17 @@ void cMParticle :: Draw( SDL_Renderer *renderer )
 	
 	
 	//putpixel(target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), SDL_MapRGBA(target->format,(Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha));
-	sge_PutPixelAlpha( pix, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
-
+	//sge_PutPixelAlpha( pix, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
+	
+	Uint8 oor,og,ob,oa;
+	//SDL_Rect rect = {x,y,w,h};
+	SDL_GetRenderDrawColor(renderer, &oor, &og, &ob, &oa);
+	SDL_SetRenderDrawColor(renderer, (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha);
+	//SDL_RenderFillRect(renderer, &rect);
+	
+	SDL_RenderDrawPoint(renderer, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ));
+	
+	SDL_SetRenderDrawColor(renderer, oor, og, ob, oa);
 	// TO-DO
 	
 }
@@ -354,11 +360,7 @@ void cMParticle :: HandleCollision( int direction )
 /**################################ MParticle Emitter #########################################*/
 
 cMParticleEmitter :: cMParticleEmitter( double x, double y )
-{
-	pix = SDL_CreateRGBSurface(SDL_TRUE, window_width, window_height, 32, 0, 0, 0, 255);
-	SDL_SetColorKey(pix, SDL_TRUE, 0);
-	pix_tex = NULL;
-	
+{	
 	Particles = NULL;
 	ParticleCount = 0;
 
@@ -394,17 +396,6 @@ cMParticleEmitter :: ~cMParticleEmitter( void )
 
 		delete []Particles;
 		Particles = NULL;
-	}
-	
-	if (pix)
-	{
-		SDL_FreeSurface(pix);
-		pix = NULL;
-	}
-	if (pix_tex)
-	{
-		SDL_DestroyTexture(pix_tex);
-		pix_tex = NULL;
 	}
 }
 
@@ -563,9 +554,9 @@ void UpdateParticleEmitter( void )
 	}
 }
 
-void DrawParticleEmitter( void )
+void DrawParticleEmitter( SDL_Renderer *renderer )
 {
-	SDL_FillRect( pix, NULL,0);
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	
 	for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
 	{
@@ -574,15 +565,10 @@ void DrawParticleEmitter( void )
 			continue;
 		}
 
-		ParticleEmitter[i]->Draw( Renderer );
+		ParticleEmitter[i]->Draw( renderer );
 	}
 	
-	if (pix_tex)
-	{
-		SDL_DestroyTexture(pix_tex);
-	}
-	pix_tex = SDL_CreateTextureFromSurface(Renderer, pix);
-	SDL_RenderCopy(Renderer, pix_tex, NULL, NULL);
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 }
 
 void DeleteAllParticleEmitter( void )

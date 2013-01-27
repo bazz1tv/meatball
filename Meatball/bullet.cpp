@@ -242,11 +242,11 @@ void UpdateBullets( void )
 	}
 }
 
-void DrawBullets( void )
+void DrawBullets( SDL_Renderer *renderer )
 {
 	for( unsigned int i = 0; i < BulletCount; i++ )
 	{
-		Bullets[i]->Draw( Renderer );
+		Bullets[i]->Draw( renderer );
 	}
 }
 

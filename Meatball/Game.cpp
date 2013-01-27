@@ -62,12 +62,12 @@ void MiniEngine::Draw( void )
 
     
     
-	DrawBullets();
-	DrawParticleEmitter();
+	DrawBullets(Renderer);
+	DrawParticleEmitter(Renderer);
 
 	
 	
-	DrawEnemies();
+	DrawEnemies(Renderer);
 	
 	pPlayer->Draw( Renderer );
 	
