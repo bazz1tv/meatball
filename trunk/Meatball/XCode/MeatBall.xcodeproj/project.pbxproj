@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C93E39513942B5A0096FAB3 /* Cocoa.framework */; };
+		9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C93E39513942B5A0096FAB3 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		E98CCB9816B46E6C0003938A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E98CCB9916B46E6C0003938A /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
 		E98CCB9A16B46E6C0003938A /* SDL2_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
@@ -38,7 +38,33 @@
 		E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E616B1D54D00B3919F /* TextObject.cpp */; };
 		E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E716B1D54D00B3919F /* weapon.cpp */; };
 		E9CFA43A16B1D63800B3919F /* MeatballEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CFA43316B1D63700B3919F /* MeatballEngine.framework */; };
+		E9D5E52916B5FDA600FAC31F /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
+		E9D5E52A16B5FDA600FAC31F /* SDL2_mixer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
+		E9D5E52B16B5FDA600FAC31F /* SDL2_net.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
+		E9D5E52C16B5FDA600FAC31F /* SDL2_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */; };
+		E9D5E52D16B5FDA600FAC31F /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9716B46E6C0003938A /* SDL2.framework */; };
+		E9D5E52E16B5FDA600FAC31F /* MeatballEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9CFA43316B1D63700B3919F /* MeatballEngine.framework */; };
+		E9D5E53316B6009600FAC31F /* MeatBallAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */; };
+		E9D5E53416B6009600FAC31F /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D5E53216B6009600FAC31F /* SDLMain.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E9D5E52816B5FD9B00FAC31F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E9D5E52916B5FDA600FAC31F /* SDL2_image.framework in CopyFiles */,
+				E9D5E52A16B5FDA600FAC31F /* SDL2_mixer.framework in CopyFiles */,
+				E9D5E52B16B5FDA600FAC31F /* SDL2_net.framework in CopyFiles */,
+				E9D5E52C16B5FDA600FAC31F /* SDL2_ttf.framework in CopyFiles */,
+				E9D5E52D16B5FDA600FAC31F /* SDL2.framework in CopyFiles */,
+				E9D5E52E16B5FDA600FAC31F /* MeatballEngine.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9C93E39113942B5A0096FAB3 /* MeatBall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeatBall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +130,10 @@
 		E9CFA41B16B1D56300B3919F /* TextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextObject.h; sourceTree = "<group>"; };
 		E9CFA41C16B1D56300B3919F /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weapon.h; sourceTree = "<group>"; };
 		E9CFA43316B1D63700B3919F /* MeatballEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeatballEngine.framework; path = ../../../../../../../Library/Frameworks/MeatballEngine.framework; sourceTree = "<group>"; };
+		E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatBallAppDelegate.h; path = MacSDLFiles/MeatBallAppDelegate.h; sourceTree = "<group>"; };
+		E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeatBallAppDelegate.m; path = MacSDLFiles/MeatBallAppDelegate.m; sourceTree = "<group>"; };
+		E9D5E53116B6009600FAC31F /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLMain.h; path = MacSDLFiles/SDLMain.h; sourceTree = "<group>"; };
+		E9D5E53216B6009600FAC31F /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDLMain.m; path = MacSDLFiles/SDLMain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +157,10 @@
 		9C93E38613942B590096FAB3 = {
 			isa = PBXGroup;
 			children = (
+				E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */,
+				E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */,
+				E9D5E53116B6009600FAC31F /* SDLMain.h */,
+				E9D5E53216B6009600FAC31F /* SDLMain.m */,
 				E9CFA3CE16B1D52800B3919F /* Source */,
 				E9CFA40116B1D56300B3919F /* include */,
 				9C93E39413942B5A0096FAB3 /* Frameworks */,
@@ -243,7 +277,7 @@
 			buildPhases = (
 				9C93E38D13942B5A0096FAB3 /* Sources */,
 				9C93E38E13942B5A0096FAB3 /* Frameworks */,
-				9C93E38F13942B5A0096FAB3 /* Resources */,
+				E9D5E52816B5FD9B00FAC31F /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -280,16 +314,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		9C93E38F13942B5A0096FAB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		9C93E38D13942B5A0096FAB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -319,6 +343,8 @@
 				E9CFA3FE16B1D54D00B3919F /* sprite.cpp in Sources */,
 				E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */,
 				E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */,
+				E9D5E53316B6009600FAC31F /* MeatBallAppDelegate.m in Sources */,
+				E9D5E53416B6009600FAC31F /* SDLMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

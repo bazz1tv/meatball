@@ -313,16 +313,16 @@ void cMParticle :: Draw( SDL_Renderer *renderer )
 	//sge_PutPixelAlpha( pix, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
 	
 	Uint8 oor,og,ob,oa;
-	//SDL_Rect rect = {x,y,w,h};
+	
+	// Preserve old color
 	SDL_GetRenderDrawColor(renderer, &oor, &og, &ob, &oa);
+	// Set new Color
 	SDL_SetRenderDrawColor(renderer, (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha);
-	//SDL_RenderFillRect(renderer, &rect);
 	
+	// Draw the point
 	SDL_RenderDrawPoint(renderer, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ));
-	
+	// Restore old color
 	SDL_SetRenderDrawColor(renderer, oor, og, ob, oa);
-	// TO-DO
-	
 }
 
 void cMParticle :: HandleCollision( int direction )
