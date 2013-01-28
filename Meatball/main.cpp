@@ -9,7 +9,7 @@ int DoGame();
 void initEngine();
 
 
-int main (int argc, char **argv)
+int SDL_main (int argc, char **argv)
 {
 	initEngine();
 	DoGame();
@@ -57,8 +57,6 @@ void initEngine()
 	InitSDL( SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE );
 	
 	// 
-	
-
 
 
 	pPreferences	= new cPreferences();
