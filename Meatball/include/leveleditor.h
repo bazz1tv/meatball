@@ -17,8 +17,9 @@ void leveleditor_ehandler(void);
 // The Current Mouse Command
 enum {	MOUSE_COMMAND_NOTHING,
 		MOUSE_COMMAND_SINGLE_TILE_MOVING,
-		MOUSE_COMMAND_MULTI_TILE_MOVING,
-		MOUSE_COMMAND_FASTCOPY
+		MOUSE_COMMAND_MOVING_MULTI_TILES,
+		MOUSE_COMMAND_FASTCOPY,
+		MOUSE_COMMAND_SELECT_MULTI_TILES
 };
 // @}
 
@@ -78,6 +79,8 @@ public:
 	void DeleteObject( void );
 	/// Delete's an Object on the given position
 	void DeleteObject( double x, double y );
+	
+	void prepareToMove_MultiSelect_Tiles();
 
 	/// Sets the to-be-FastCopied Object
 	void SetFastCopyObject( cMVelSprite *nObject );
@@ -85,6 +88,10 @@ public:
 
 	/// Releases every command
 	void Release_Command( void );
+	
+	/// Releases any multi selected object
+	/// @returns SDL_TRUE if there were objects to remove, SDL_FALSE if there wasnt
+	SDL_bool Release_MultiSelect_Objects();
 
 	/** Gets the Current Colliding Object
 	 * types : the Objects which should be checked
@@ -114,7 +121,11 @@ public:
 	// this is because if we only multi-select 1 tile. we might as well just move in 1 tile mode
 	SDL_bool multiple_objects_selected;
 
+	/// these very first ones are because I want to show the grid around selected tiles all the way until the point that the tiles actually start moving
+	double veryfirst_multi_mouseXOffset, veryfirst_multi_mouseYOffset;
+	
 	double multi_mouseXOffset, multi_mouseYOffset;
+	double multi_camXOffset, multi_camYOffset;
 	
 };
 

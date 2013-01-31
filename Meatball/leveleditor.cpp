@@ -54,22 +54,19 @@ void cLevelEditor :: Update( void )
 		Object->Startposx = floor(pMouse->posx + Mouse_w + pCamera->x);
 		Object->Startposy = floor(pMouse->posy + Mouse_h + pCamera->y);
 	}
-	else if (Mouse_command == MOUSE_COMMAND_MULTI_TILE_MOVING)
+	else if (Mouse_command == MOUSE_COMMAND_MOVING_MULTI_TILES )
 	{
 		for (int i=0; i < MultiObjects.numobjs; i++)
 		{
-			// move all other objects in relation to Object
-			//int x,y;
-			//x = (MultiObjects.objects[i]->posx -= pMouse->posx + pCamera->x);
-			//y = (MultiObjects.objects[i]->posy -= pMouse->posy + pCamera->y);
-			
-			MultiObjects.objects[i]->SetPos( floor((pMouse->posx-multi_mouseXOffset) + MultiObjects.objects[i]->posx), floor((pMouse->posy - multi_mouseYOffset) + MultiObjects.objects[i]->posy) );
+			MultiObjects.objects[i]->SetPos( floor((pMouse->posx-multi_mouseXOffset) + (pCamera->x-multi_camXOffset) + MultiObjects.objects[i]->posx), floor((pMouse->posy - multi_mouseYOffset) + (pCamera->y-multi_camYOffset) + MultiObjects.objects[i]->posy) );
 			
 			MultiObjects.objects[i]->Startposx = floor(MultiObjects.objects[i]->posx);
 			MultiObjects.objects[i]->Startposy = floor(MultiObjects.objects[i]->posy);
 		}
 		multi_mouseXOffset = pMouse->posx;
 		multi_mouseYOffset = pMouse->posy;
+		multi_camXOffset = pCamera->x;
+		multi_camYOffset = pCamera->y;
 	}
 
 	PostUpdate();
@@ -106,7 +103,7 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 	OutlineHoveredObject(renderer, Color);
 	
 	// Only the draw the multi-tile outlines if we are not moving them (for accuracy when moving)
-	if (Mouse_command != MOUSE_COMMAND_MULTI_TILE_MOVING)
+	if (Mouse_command != MOUSE_COMMAND_MOVING_MULTI_TILES || (veryfirst_multi_mouseXOffset == pMouse->posx && veryfirst_multi_mouseYOffset == pMouse->posy))
 	{
 		// Draw the Multi-outline (it will check automatically if we have multi tiles to draw)
 		DrawOutlineAroundMultiSelectedTiles(renderer, MULTI_COLOR);
@@ -380,6 +377,11 @@ void cLevelEditor::EventHandler()
 			pLevelEditor->DeleteObject();
 		}
 		
+		if (ms & SDL_BUTTON(SDL_BUTTON_LEFT) && Mouse_command == MOUSE_COMMAND_SELECT_MULTI_TILES)
+		{
+			pLevelEditor->SetMultiObjects();
+		}
+		
 		UniversalEventHandler(&event);
 
 		switch ( event.type )
@@ -394,11 +396,18 @@ void cLevelEditor::EventHandler()
 				// ESCAPE to ESCAPE mouse command or LEVEL MODE
 				if( event.key.keysym.sym == SDLK_ESCAPE )
 				{
-					// universal!
-					if (pLevelEditor->Mouse_command == MOUSE_COMMAND_NOTHING)
+					
+					if (pLevelEditor->Mouse_command == MOUSE_COMMAND_NOTHING && !multiple_objects_selected)
 						mode = MODE_GAME;
-					else
-						pLevelEditor->Mouse_command = MOUSE_COMMAND_NOTHING;
+					else if (multiple_objects_selected)
+					{
+						MultiObjects.RemoveAllObjects();
+						multiple_objects_selected = SDL_FALSE;
+					}
+					
+					
+					pLevelEditor->Mouse_command = MOUSE_COMMAND_NOTHING;
+					
 				}
 				// ~ to enter CONSOLE
 				else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
@@ -503,6 +512,15 @@ void cLevelEditor::EventHandler()
 					if (keys[SDL_SCANCODE_LCTRL] || keys[SDL_SCANCODE_RCTRL])
 					{
 						pLevelEditor->SetMultiObjects();
+						
+						if (multiple_objects_selected && GetCollidingObject(pMouse->posx, pMouse->posy))
+							prepareToMove_MultiSelect_Tiles();
+						else
+						{
+							Mouse_command = MOUSE_COMMAND_SELECT_MULTI_TILES;
+							multi_mouseXOffset = pMouse->posx;
+							multi_mouseYOffset = pMouse->posy;
+						}
 					}
 					else
 					{
@@ -515,19 +533,18 @@ void cLevelEditor::EventHandler()
 							//pLevelEditor->MultiMove();
 							
 							/* the current process is that */
-							Object = GetCollidingObject( pMouse->posx, pMouse->posy );
-							Mouse_command = MOUSE_COMMAND_MULTI_TILE_MOVING;
+							prepareToMove_MultiSelect_Tiles();
+						}
+						else if (!GetCollidingObject(pMouse->posx, pMouse->posy))
+						{
+							Mouse_command = MOUSE_COMMAND_SELECT_MULTI_TILES;
 							multi_mouseXOffset = pMouse->posx;
 							multi_mouseYOffset = pMouse->posy;
 						}
 						else
 						{
 							// Release any multi-shit
-							if (multiple_objects_selected)
-							{
-								MultiObjects.RemoveAllObjects();
-								multiple_objects_selected = SDL_FALSE;
-							}
+							Release_MultiSelect_Objects();
 							pLevelEditor->SetMoveObject();
 					
 						}
@@ -550,6 +567,8 @@ void cLevelEditor::EventHandler()
 			{
 				if( event.button.button == 1 ) // Left Mouse Button
 				{
+					if (pMouse->posx == multi_mouseXOffset && pMouse->posy == multi_mouseYOffset && Mouse_command != MOUSE_COMMAND_MOVING_MULTI_TILES)
+						Release_MultiSelect_Objects();
 					
 					pLevelEditor->Release_Command();
 				}
@@ -567,6 +586,28 @@ void cLevelEditor::EventHandler()
 			default: break;
 		}
 	}
+}
+
+void cLevelEditor::prepareToMove_MultiSelect_Tiles()
+{
+	Object = GetCollidingObject( pMouse->posx, pMouse->posy );
+	Mouse_command = MOUSE_COMMAND_MOVING_MULTI_TILES;
+	
+	multi_mouseXOffset = veryfirst_multi_mouseXOffset =  pMouse->posx;
+	multi_mouseYOffset = veryfirst_multi_mouseYOffset =  pMouse->posy;
+	multi_camXOffset = pCamera->x;
+	multi_camYOffset = pCamera->y;
+}
+
+SDL_bool cLevelEditor::Release_MultiSelect_Objects()
+{
+	if (multiple_objects_selected)
+	{
+		MultiObjects.RemoveAllObjects();
+		multiple_objects_selected = SDL_FALSE;
+		return SDL_TRUE;
+	}
+	return SDL_FALSE;
 }
 
 void cLevelEditor::HeldKey_fastcopy()
@@ -641,7 +682,7 @@ void  cLevelEditor::HeldKey_Handler()
 	
 	
 	// if at anytime 'e' is pressed. Delete the object the mouse is hovering over.
-	if ( keys[SDLK_e] )
+	if ( keys[SDL_SCANCODE_E] )
 	{
 		pLevelEditor->DeleteObject();
 	}
