@@ -17,10 +17,10 @@ void FillRect(SDL_Renderer *renderer, int x, int y, int w, int h, Uint8 r,Uint8 
 
 
 /// Toggle fullScreen
-int SDL_ToggleFS(SDL_Window*);
+SDL_bool SDL_ToggleFS(SDL_Window*);
 
 /// More english version of 
-bool MouseCollidesWith(SDL_Rect *Crect);
+SDL_bool MouseCollidesWith(SDL_Rect *Crect);
 
 /// The Universal Event Handler handles some events that should be handled in ANY event handler,
 /// like Window Resize events for instance

@@ -33,7 +33,7 @@ public:
 
 	void Draw( SDL_Renderer *renderer );
 
-	SDL_Rect GetRect( bool with_camerapos = 0 );
+	SDL_Rect GetRect( SDL_bool with_camerapos = SDL_FALSE );
 
 	/** The Type
 	 * 0 = No Type			<br>
@@ -64,7 +64,7 @@ public:
 
 	void Draw( SDL_Renderer *renderer );
 
-	SDL_Rect GetRect( bool with_camerapos = 0 );
+	SDL_Rect GetRect( SDL_bool with_camerapos = SDL_FALSE );
 
 	/** The Type				<br>
 	 * 0 = No Type				<br>

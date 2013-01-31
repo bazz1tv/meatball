@@ -69,17 +69,18 @@ void UniversalEventHandler(SDL_Event *event)
 
 /// Queries the Screen if it's set to Full of Not
 /// @return 0 if windowed, 1 if fullscreen
-int IsFullScreen(SDL_Window *win)
+SDL_bool IsFullScreen(SDL_Window *win)
 {
 	Uint32 flags = SDL_GetWindowFlags(win);
 	
-    if (flags & SDL_WINDOW_FULLSCREEN) return 1; // return true if surface is fullscreen
+    if (flags & SDL_WINDOW_FULLSCREEN) return SDL_TRUE; // return SDL_TRUE if surface is fullscreen
     
-	return 0; // Return false if surface is windowed
+	return SDL_FALSE; // Return SDL_FALSE if surface is windowed
 } 
 
 /// Toggles On/Off FullScreen
-int SDL_ToggleFS(SDL_Window *win)
+/// @returns SDL_FALSE on error, SDL_TRUE on Set fullscreen successful, SDL_FALSE on Set Windowed successful
+SDL_bool SDL_ToggleFS(SDL_Window *win)
 { 
     //Uint32 flags = surface->flags; // Get the video surface flags
     
@@ -89,10 +90,10 @@ int SDL_ToggleFS(SDL_Window *win)
         if (SDL_SetWindowFullscreen(win, SDL_FALSE) < 0)
 		{
 			std::cout<<"Setting windowed failed : "<<SDL_GetError()<<std::endl;
-			return -1;
+			return SDL_FALSE;
 		}
 		
-        return 1; 
+        return SDL_FALSE;
     } 
     
     // Swith to FULLSCREEN mode
@@ -100,15 +101,15 @@ int SDL_ToggleFS(SDL_Window *win)
     if (SDL_SetWindowFullscreen(win, SDL_TRUE) < 0)
 	{
 		std::cout<<"Setting fullscreen failed : "<<SDL_GetError()<<std::endl;
-		return -1;
+		return SDL_FALSE;
 	}
 	
-	return 1;
+	return SDL_TRUE;
 }
 
 /// Check for Collision with the Mouse
-/// @returns true for collision
-bool MouseCollidesWith(SDL_Rect *Crect)
+/// @returnsSDL_TRUE for collision
+SDL_bool MouseCollidesWith(SDL_Rect *Crect)
 {
 	return pMouse->CollisonCheck( Crect );
 }

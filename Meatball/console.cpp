@@ -1,13 +1,14 @@
 //#include "console.h"
 #include "Globals.h"
 #include <string.h>
+#include <sstream>
 
 #define HISTORY_LINES 11
 
 using namespace std;
 
 
-void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax)
+void Push(cCMD*& head, string command, SDL_bool (*handler)(string &), string helpstr, string syntax)
 {
 	cCMD* newCmd = new cCMD;
 	newCmd->handler = handler;
@@ -59,7 +60,7 @@ cConsole :: cConsole( void )
 	conx = 10.0;
 	cony = BG->height - 14;
 
-	DrawCur = false;
+	DrawCur =SDL_FALSE;
 	ttDrawCur = SDL_GetTicks() + 500;
 }
 
@@ -185,7 +186,13 @@ void cConsole :: Update( void )
 	if ( SDL_GetTicks() > ttDrawCur )
 	{
 		ttDrawCur = SDL_GetTicks() + 500;
-		DrawCur = !DrawCur;
+		if (DrawCur == SDL_FALSE)
+		{
+			DrawCur = SDL_TRUE;
+		}
+		else{
+			DrawCur = SDL_FALSE;
+		}
 	}
 
 	PostUpdate();
@@ -227,7 +234,7 @@ void cConsole :: Draw( SDL_Renderer *renderer )
 	}
 	
 	// The blinking Cursor
-	if( DrawCur )
+	if( DrawCur == SDL_TRUE)
 	{
 		Cur = pFont->CreateText( "_", Console_font );
 	}
@@ -326,8 +333,8 @@ void cConsole :: Draw( SDL_Renderer *renderer )
 /// It then checks with all registered commands for a match
 /// If there's a match it will call the registered command's handler function with the parameters as a string argument
 
-/// @returns false on no match or base empty. true on a match
-bool cConsole :: CMDHandler( string cInput )
+/// @returnsSDL_FALSE on no match or base empty.SDL_TRUE on a match
+SDL_bool cConsole :: CMDHandler( string cInput )
 {
 	string base = ParseBase( cInput );
 	string parm = ParseParm( cInput );
@@ -335,7 +342,7 @@ bool cConsole :: CMDHandler( string cInput )
 	if ( base.empty() )
 	{
 		cout<<"base empty\n";
-		return false;
+		return SDL_FALSE;
 	}
 
 	cCMD *ptr = CMDList;
@@ -345,13 +352,13 @@ bool cConsole :: CMDHandler( string cInput )
 		if ( base == ptr->command || base.substr(1) == ptr->command )
 		{
 			ptr->handler( parm );
-			return true;
+			return SDL_TRUE;
 		}
 
 		ptr = ptr->next;
 	}
 
-	return false;
+	return SDL_FALSE;
 }
 
 /// Strips the input line for only the base (first word)
@@ -387,7 +394,7 @@ string cConsole :: ParseParm( string str )
 	return str;
 }
 
-bool cConsole :: helpCMD( string &str )
+SDL_bool cConsole :: helpCMD( string &str )
 {
 	char buffer[1000];
 
@@ -410,13 +417,13 @@ bool cConsole :: helpCMD( string &str )
 			string usage = "usage: " + ptr->syntax;
 			console_print(usage.c_str());
 			
-			return true;
+			return SDL_TRUE;
 		}
 
 		ptr = ptr->next;
 	}
 
-	return false;
+	return SDL_FALSE;
 }
 
 
@@ -424,7 +431,7 @@ bool cConsole :: helpCMD( string &str )
 
 
 
-bool clearcon( string &str )
+SDL_bool clearcon( string &str )
 {
 	pConsole->constr.clear();
 
@@ -434,133 +441,198 @@ bool clearcon( string &str )
 	}
 
 	pConsole->histcounter = -1;
-	return true;
+	return SDL_TRUE;
 }
 
-bool loadmap( string &str )
+SDL_bool loadmap( string &str )
 {
 	pLevel->Load( str );
 
-	return true;
+	return SDL_TRUE;
 }
 
-bool SetMx( string &str )
+SDL_bool SetMx( string &str )
 {
-	pPlayer->posx = atoi( str.c_str() );
-
-	return true;
-}
-
-bool SetMy( string &str )
-{
-	pPlayer->posy = atoi( str.c_str() );
-
-	return true;
-}
-
-bool SetMxy( string &str )
-{
-	size_t found;
-	string x,y;
-	string::iterator xi, yi;
-
-	// parsing a int,int string combo
-	xi = str.begin();
-
-	found = str.find_first_of( ' ' );
-	if (found == string::npos)
+	if (str.empty())
 	{
-		return false;
+		stringstream var;
+		
+		var << pPlayer->posx;
+		console_print(var.str().c_str());
 	}
-	yi = str.begin() + found;
-
-// Very incompetent String parsing here. The prog will crash if you suck at typing
-
-	x.assign(xi,yi++);
-	y.assign(yi, str.end());
-
-	cout << x << " " << y;
-
-	pPlayer->SetPos( atoi( x.c_str() ), atoi( y.c_str() ) );
-
-	return true;
+	else{
+		pPlayer->posx = atoi( str.c_str() );
+	}
+	return SDL_TRUE;
 }
 
-bool allSoundsVol(string &str)
+SDL_bool SetMy( string &str )
+{
+	if (str.empty())
+	{
+		stringstream var;
+		
+		var << pPlayer->posy;
+		console_print(var.str().c_str());
+	}
+	else{
+		pPlayer->posy = atoi( str.c_str() );
+	}
+
+	return SDL_TRUE;
+}
+
+SDL_bool SetMxy( string &str )
+{
+	if (str.empty())
+	{
+		stringstream x,y;
+		
+		x << "X: "<<pPlayer->posx;
+		console_print(x.str().c_str());
+		//y.clear();
+		y <<"Y: "<<pPlayer->posy;
+		
+		console_print(y.str().c_str());
+		
+		return SDL_TRUE;
+	}
+	else{
+	
+		size_t found;
+		string x,y;
+		string::iterator xi, yi;
+
+		// parsing a int,int string combo
+		xi = str.begin();
+
+		found = str.find_first_of( ' ' );
+		if (found == string::npos)
+		{
+			return SDL_FALSE;
+		}
+		yi = str.begin() + found;
+
+	// Very incompetent String parsing here. The prog will crash if you suck at typing
+
+		x.assign(xi,yi++);
+		y.assign(yi, str.end());
+
+		cout << x << " " << y;
+
+		pPlayer->SetPos( atoi( x.c_str() ), atoi( y.c_str() ) );
+	
+
+		return SDL_TRUE;
+	}
+}
+
+SDL_bool allSoundsVol(string &str)
 {
 	int avg = pAudio->SetAllSoundsVolume(atoi(str.c_str()));
 
 	if (avg == -1)
 	{
 		console_print("Error. Volume invalid");
-		return false;
+		return SDL_FALSE;
 	}
 	char result[300];
 	sprintf(result,"Successful. Avg/Old volume = %d", avg);
 	console_print(result);
-	return true;
+	return SDL_TRUE;
 }
 
-bool soundVol( string &str)
+SDL_bool soundVol( string &str)
 {
-	size_t found;
-	string sound,vol;
-	string::iterator soundi, voli;
-
-	// parsing a int,int string combo
-	soundi = str.begin();
-
-	found = str.find_first_of( ' ' );
-	if (found == string::npos)
+	if (str.empty())
 	{
-		return false;
-	}
-	voli = str.begin() + found;
-
-// Very incompetent String parsing here. The prog will crash if you suck at typing
-
-	sound.assign(soundi,voli++);
-	vol.assign(voli, str.end());
-
-	cout << sound << " " << vol;
-
-	int oldvol = pAudio->SetSoundVolume(SMan->GetPointer(sound), atoi(vol.c_str()));
-
-	if (oldvol == -1)
-	{
-		console_print("Error Changing Sound Volume!");
-		return false;
-	}
-	else 
-	{
-		char Result[200]; // string which will contain the number
-
-		sprintf(Result,"%s_vol : %d => %s", sound.c_str(), oldvol,vol.c_str() ); // %d makes the result be a decimal integer 
-
-		console_print(Result);
-	}
-	//pAudio->SetSoundsVolume(atoi( str.c_str() ));
-	return true;
-}
-
-bool musicVol( string &str)
-{
-	int oldvol = pAudio->SetMusicVolume(atoi( str.c_str() ));
-	char result[100];
-
-	if (oldvol == -1)
-	{
-		console_print("Invalid Volume!");
+		stringstream var;
+		
+		var << pAudio->Sound_Volume;
+		console_print(var.str().c_str());
+		
+		return SDL_TRUE;
 	}
 	else
 	{
-		sprintf(result,"Music_vol : %d => %s", oldvol, str.c_str());
-		console_print(result);
+		size_t found;
+		string sound,vol;
+		string::iterator soundi, voli;
+
+		// parsing a int,int string combo
+		soundi = str.begin();
+		sound.assign(soundi,str.end());
+
+		found = str.find_first_of( ' ' );
+		if (found == string::npos)
+		{
+			stringstream soundvol;
+			
+			soundvol<<pAudio->GetSoundVolume(SMan->GetPointer(sound));
+			console_print(soundvol.str().c_str());
+			
+			return SDL_TRUE;
+		}
+		
+		
+		
+		voli = str.begin() + found;
+
+		// Very incompetent String parsing here. The prog will crash if you suck at typing
+
+		
+		vol.assign(voli, str.end());
+
+		cout << sound << " " << vol;
+
+		int oldvol = pAudio->SetSoundVolume(SMan->GetPointer(sound), atoi(vol.c_str()));
+
+		if (oldvol == -1)
+		{
+			console_print("Error Changing Sound Volume!");
+			return SDL_FALSE;
+		}
+		else 
+		{
+			char Result[200]; // string which will contain the number
+
+			sprintf(Result,"%s_vol : %d => %s", sound.c_str(), oldvol,vol.c_str() ); // %d makes the result be a decimal integer 
+
+			console_print(Result);
+		}
+		//pAudio->SetSoundsVolume(atoi( str.c_str() ));
+		return SDL_TRUE;
 	}
-	return true;
 }
 
-bool play( string &str )
+SDL_bool musicVol( string &str)
+{
+	if (str.empty())
+	{
+		stringstream var;
+		
+		var << pAudio->Music_Volume;
+		console_print(var.str().c_str());
+		return SDL_TRUE;
+	}
+	else{
+		int oldvol = pAudio->SetMusicVolume(atoi( str.c_str() ));
+		char result[100];
+
+		if (oldvol == -1)
+		{
+			console_print("Invalid Volume!");
+		}
+		else
+		{
+			sprintf(result,"Music_vol : %d => %s", oldvol, str.c_str());
+			console_print(result);
+		}
+		return SDL_TRUE;
+	}
+}
+
+SDL_bool play( string &str )
 {
 	pLevel->pLevelData->Musicfile = str;
 
@@ -569,25 +641,31 @@ bool play( string &str )
 	if ( !FileValid( file ) )
 	{
 		console_print("Error: Music File does not Exist! OR it's already being played ;)");
-		return false;
+		return SDL_FALSE;
 	}
 	else
 	{
-		pAudio->PlayMusik( (char *)str.c_str(), 1,1 );
+			pAudio->PlayMusik( file.c_str(), SDL_TRUE, SDL_TRUE );
 	}
 
-	return true;
+	return SDL_TRUE;
 }
 
-bool ShowFPS( string &str )
+SDL_bool ShowFPS( string &str )
 {
 
-	fps_display = !fps_display;
+	if (fps_display == SDL_FALSE)
+	{
+		fps_display = SDL_TRUE;
+	}
+	else{
+		fps_display = SDL_FALSE;
+	}
 	
-	return true;
+	return SDL_TRUE;
 }
 
-bool help( string &str )
+SDL_bool help( string &str )
 {
 	int curline = 0;
 
@@ -616,7 +694,7 @@ bool help( string &str )
 		}
 
 		
-		return true;
+		return SDL_TRUE;
 
 	}
 	else
@@ -634,11 +712,11 @@ void moveup()
 	}
 }
 
-bool QuitAll( string &str )
+SDL_bool QuitAll( string &str )
 {
 	done = 1;
 
-	return true;
+	return SDL_TRUE;
 }
 
 void wait_for_input()
@@ -670,16 +748,19 @@ void console_print(const char *str)
 }
 
 
-bool cd(string &str)
+SDL_bool cd(string &str)
 {
 	if (str.empty())
-		return false;
+	{
+		console_print(pConsole->full_path.string().c_str());
+		return SDL_TRUE;
+	}
 	pConsole->full_path = fs::system_complete(fs::path(pConsole->full_path.string() +"/"+str));
 	console_print((char*)pConsole->full_path.string().c_str());
-	return true;
+	return SDL_TRUE;
 }
 
-bool ls(string &str)
+SDL_bool ls(string &str)
 {
 	// 1st we won't factor the String parameter
 	int curline = 0;
@@ -728,5 +809,5 @@ bool ls(string &str)
 		
 	}
 
-	return true;
+	return SDL_TRUE;
 }

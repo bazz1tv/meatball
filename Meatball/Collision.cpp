@@ -32,22 +32,22 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 		double posy_old = Sprite->posy;
 		double fvelx = velx;
 		double fvely = vely;
-		bool movex = 0;
-		bool movey = 0;
+		SDL_bool movex = SDL_FALSE;
+		SDL_bool movey = SDL_FALSE;
 
 		if( vely != 0 )
 		{
-			movey = 1;	// TRUE
+			movey = SDL_TRUE;
 		}
 
 		if( velx != 0 )
 		{
-			movex = 1;	// TRUE
+			movex = SDL_TRUE;
 		}
 
-		while( movey || movex ) // While there is movement 
+		while( movey == SDL_TRUE || movex == SDL_TRUE ) // While there is movement
 		{
-			if( movex )
+			if( movex == SDL_TRUE )
 			{
                 if (type != SPRITE_TYPE_BULLET)
                 {
@@ -63,7 +63,7 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 					{
 						Sprite->posx = posx_old + fvelx;
 					}
-					movex = 0;
+					movex = SDL_FALSE;
 				}
 				else	// there was a collision
 				{
@@ -85,11 +85,11 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
 					}
 
-					movex = 0;
+					movex = SDL_FALSE;
 				}
 			}
 
-			if( movey )
+			if( movey == SDL_TRUE )
 			{
 				PositionCheck( (int)Sprite->posx, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), (int)Sprite->width, (int)Sprite->height, Collision, type );
 				
@@ -101,7 +101,7 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 					{
 						Sprite->posy = posy_old + fvely;
 					}
-					movey = 0;
+					movey = SDL_FALSE;
 				}
 				else
 				{
@@ -114,7 +114,7 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
 					}
 
-					movey = 0;
+					movey = SDL_FALSE;
 				}
 			}
 		}
@@ -152,22 +152,22 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 		double posy_old = Sprite->posy;
 		double fvelx = velx;
 		double fvely = vely;
-		bool movex = 0;
-		bool movey = 0;
+		SDL_bool movex = SDL_FALSE;
+		SDL_bool movey = SDL_FALSE;
 
 		if( vely != 0 )
 		{
-			movey = 1;
+			movey = SDL_TRUE;
 		}
 
 		if( velx != 0 )
 		{
-			movex = 1;
+			movex = SDL_TRUE;
 		}
 
-		while( movey || movex ) 
+		while( movey == SDL_TRUE || movex == SDL_TRUE )
 		{
-			if( movex )
+			if( movex == SDL_TRUE )
 			{
 				PositionCheck( (int)( Sprite->posx+12 + ( (fvelx > 0) ? (1) : (-1) ) ), (int)Sprite->posy, 10, (int)Sprite->height, Collision, type  );
 				
@@ -186,7 +186,7 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 					{
 						Sprite->posx = posx_old + fvelx;
 
-						movex = 0;
+						movex = SDL_FALSE;
 					}
 				}
 				//else
@@ -205,7 +205,7 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 						Collision->direction = 1;	// Collision Up/Down/Left/Right
 					}
 
-					movex = 0;
+					movex = SDL_FALSE;
 				}
 				//}
 
@@ -217,7 +217,7 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 					Collision->direction = 1;*/
 			}
 
-			if( movey )
+			if( movey == SDL_TRUE )
 			{
 				PositionCheck( (int)Sprite->posx+12, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), 10, (int)Sprite->height, Collision, type );
 				//printf("MoveY: %d-%d | ", lastCollision.collide, Collision->collide);
@@ -241,7 +241,7 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 					{
 						Sprite->posx = posx_old + fvelx;
 
-						movex = 0;
+						movex = SDL_FALSE;
 					}
 				}
 				if( Collision->collide == -1 )
@@ -253,7 +253,7 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 					{
 						Sprite->posy = posy_old + fvely;
 						
-						movey = 0;
+						movey = SDL_FALSE;
 					}
 				}
 				if (Collision->collide != -1)
@@ -269,7 +269,7 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 						Collision->direction = 1;	// Collision Up/Down/Left/Right
 					}
 
-					movey = 0;
+					movey = SDL_FALSE;
 				}
 
 				/*if (Collision->collide == 1 || Collision->collide == 0)

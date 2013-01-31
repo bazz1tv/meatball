@@ -38,8 +38,8 @@ extern OSErr	CPSSetFrontProcess( CPSProcessSerNum *psn);
 
 static int    gArgc;
 static char  **gArgv;
-static BOOL   gFinderLaunch;
-static BOOL   gCalledAppMainline = FALSE;
+static SDL_bool   gFinderLaunch;
+static SDL_bool   gCalledAppMainline =SDL_FALSE;
 
 static NSString *getApplicationName(void)
 {
@@ -82,9 +82,9 @@ static NSString *getApplicationName(void)
 @implementation SDLMain
 
 /* Set the working directory to the .app's parent directory */
-- (void) setupWorkingDirectory:(BOOL)shouldChdir
+- (void) setupWorkingDirectory:(SDL_bool)shouldChdir
 {
-    /*if (shouldChdir)
+    if (shouldChdir)
     {
         char parentdir[MAXPATHLEN];
         CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
@@ -94,9 +94,9 @@ static NSString *getApplicationName(void)
         }
         CFRelease(url);
         CFRelease(url2);
-    }*/
+    }
     
-chdir("/Users/bazz/Projects/MeatBall/trunk/Bin");
+//chdir("/Users/bazz/Projects/MeatBall/trunk/Bin");
 }
 
 #if SDL_USE_NIB_FILE
@@ -251,7 +251,7 @@ static void CustomApplicationMain (int argc, char **argv)
  *
  * This message is ignored once the app's mainline has been called.
  */
-- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+- (SDL_bool)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
     const char *temparg;
     size_t arglen;
@@ -259,29 +259,29 @@ static void CustomApplicationMain (int argc, char **argv)
     char **newargv;
 
     if (!gFinderLaunch)  /* MacOS is passing command line args. */
-        return FALSE;
+        return SDL_FALSE;
 
     if (gCalledAppMainline)  /* app has started, ignore this document. */
-        return FALSE;
+        return SDL_FALSE;
 
     temparg = [filename UTF8String];
     arglen = SDL_strlen(temparg) + 1;
     arg = (char *) SDL_malloc(arglen);
     if (arg == NULL)
-        return FALSE;
+        return SDL_FALSE;
 
     newargv = (char **) realloc(gArgv, sizeof (char *) * (gArgc + 2));
     if (newargv == NULL)
     {
         SDL_free(arg);
-        return FALSE;
+        return SDL_FALSE;
     }
     gArgv = newargv;
 
     SDL_strlcpy(arg, temparg, arglen);
     gArgv[gArgc++] = arg;
     gArgv[gArgc] = NULL;
-    return TRUE;
+    return SDL_TRUE;
 }
 
 
@@ -299,7 +299,7 @@ static void CustomApplicationMain (int argc, char **argv)
 #endif
 
     /* Hand off to main application code */
-    gCalledAppMainline = TRUE;
+    gCalledAppMainline =SDL_TRUE;
     status = SDL_main (gArgc, gArgv);
 
     /* We're done, thank you for playing */

@@ -90,7 +90,7 @@ public:
 	Slider *sMusicVol, *sSoundVol;
 	// inherited from Console (not literally)
 	double ttDrawCur;
-	bool DrawCur;
+	SDL_bool DrawCur;
 	string livestring;
 	unsigned int CurrentScreen;
 };

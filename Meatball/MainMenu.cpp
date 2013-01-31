@@ -8,7 +8,7 @@ int MainMenu::submode = MAIN;
 
 MainMenu::MainMenu()
 {
-	Light_reverse = false;
+	Light_reverse =SDL_FALSE;
 	done = 0;
 	submode = MAIN;
 
@@ -162,7 +162,7 @@ void MainMenu::Update()
 
 void MainMenu::UpdateLogic()
 {
-	if( Light_reverse == true ) 
+	if( Light_reverse ==SDL_TRUE ) 
 		{
 			double nAlpha = (double)Light1->GetAlpha();
 			if( nAlpha < 200 ) 
@@ -171,15 +171,15 @@ void MainMenu::UpdateLogic()
 				if( nAlpha > 255 ) 
 				{
 					nAlpha = 255;
-					Light_reverse = false;
+					Light_reverse =SDL_FALSE;
 				}
 				Light1->SetAlpha( (int)nAlpha  );
 
 			}
 			else
 			{
-				//printf ("setting to false: %f\n", pFramerate->speedfactor);
-				Light_reverse = false;
+				//printf ("setting toSDL_FALSE: %f\n", pFramerate->speedfactor);
+				Light_reverse =SDL_FALSE;
 			}
 		}
 		else
@@ -201,14 +201,14 @@ void MainMenu::UpdateLogic()
 				
 				if (nAlpha < 0) 
 				{
-					Light_reverse = true;
+					Light_reverse =SDL_TRUE;
 					nAlpha = 0;
 				}
 				Light1->SetAlpha( (int)nAlpha  );
 			}
 			else
 			{
-				Light_reverse = true;
+				Light_reverse =SDL_TRUE;
 			}
 		}
 }

@@ -27,7 +27,7 @@ public:
 	double Randomness;
 
 	/// Does the Particle collides and has gravity
-	bool active;
+	SDL_bool active;
 
 };
 
@@ -60,7 +60,7 @@ public:
 	double Randomness;
 	
 	/// If all Particles faded out
-	bool visible;
+	SDL_bool visible;
 	
 	/// The Particles
 	cMParticle **Particles;

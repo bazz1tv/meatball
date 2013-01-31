@@ -43,7 +43,7 @@ public:
 	DLLINTERFACE cBasicSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y );
 	DLLINTERFACE ~cBasicSprite( void );
 
-	DLLINTERFACE void SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, bool OverrideSize = 1 );
+	DLLINTERFACE void SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, SDL_bool OverrideSize = SDL_TRUE );
 	DLLINTERFACE void SetSize( double nwidth, double nheight );
 	
 	DLLINTERFACE void AddSize( double naddwidth, double naddheight );
@@ -81,8 +81,8 @@ public:
 	double posx, posy; // Position.
 	double width, height; ///< Size for stretching/zooming.
 
-	bool visible; // if 1 the image will not be drawn.
-	bool spawned; // Got this sprite get spawned ingame.
+	SDL_bool visible; // if 1 the image will not be drawn.
+	SDL_bool spawned; // Got this sprite get spawned ingame.
 
 	unsigned int ID; // todo unique ID.
 	
@@ -103,7 +103,7 @@ public:
 	/**	If this is 1 the image needs to be redrawn to maintain the width and height
 	 *	Read only
 	 */
-	bool drawimg;
+	SDL_bool drawimg;
 
 	/**	What sprite type is this
 	 *	1 = Basic, 2 = Velocity, 3 = Angle, 4 = Acceleration
@@ -124,7 +124,7 @@ public:
 
 	DLLINTERFACE void AddVelocity( double addvelx, double addvely, double maxvelx = 0, double maxvely = 0 );
 	
-	DLLINTERFACE void Update( SDL_Renderer *renderer, bool nMove = 1 );
+	DLLINTERFACE void Update( SDL_Renderer *renderer, SDL_bool nMove = SDL_TRUE );
 
 	double velx, vely; // Velocity.
 };
@@ -133,7 +133,7 @@ class cAngleSprite : public cBasicSprite
 {
 public:
 	DLLINTERFACE cAngleSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y, double nangle = 0, double nspeed = 0,
-		bool nanglerotate = 1 );
+		SDL_bool nanglerotate = SDL_TRUE );
 
 	DLLINTERFACE ~cAngleSprite( void );
 	
@@ -145,7 +145,7 @@ public:
 
 	DLLINTERFACE void AddSpeed( double nspeed );
 
-	DLLINTERFACE void Update( SDL_Renderer*, bool nMove = 1 );
+	DLLINTERFACE void Update( SDL_Renderer*, SDL_bool nMove = SDL_TRUE );
 
 	double angle,speed; // Angle and Speed.
 
@@ -154,10 +154,10 @@ public:
 	 */
 	double dirx,diry;
 
-	/**	If true the image will be rotated to the angle
+	/**	If SDL_TRUE the image will be rotated to the angle
 	 *	Read only
 	 */
-	bool anglerotate;
+	SDL_bool anglerotate;
 };
 
 //-----------------------------------------------------------------
@@ -178,7 +178,7 @@ public:
 
 	DLLINTERFACE void AddDeAcceleration( double ndeacc );
 	
-	DLLINTERFACE void Update( SDL_Renderer*, bool nMove = 1 );
+	DLLINTERFACE void Update( SDL_Renderer*, SDL_bool nMove = SDL_TRUE );
 
 	double acc; // Acceleration.
 	double deacc; // De Acceleration.
@@ -201,10 +201,10 @@ public:
 
 	/**	Point Collisioncheck
 	 */
-	DLLINTERFACE bool CollisonCheck ( double x, double y );
+	DLLINTERFACE SDL_bool CollisonCheck ( double x, double y );
 	/**	Checks if the MouseCursor is in the rect
 	 */
-	DLLINTERFACE bool CollisonCheck ( SDL_Rect *Crect );
+	DLLINTERFACE SDL_bool CollisonCheck ( SDL_Rect *Crect );
 
 	DLLINTERFACE void Update( SDL_Renderer *renderer);
 };

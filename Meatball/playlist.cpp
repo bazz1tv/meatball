@@ -34,7 +34,7 @@ void musicover()
 
 		
 	printf("Song ended. loading %s", musicfiles[index].c_str());
-	pAudio->PlayMusik((char*)file.c_str(), 1, 1);
+	pAudio->PlayMusik((char*)file.c_str(), SDL_TRUE, SDL_TRUE);
 }
 
 //End namespace

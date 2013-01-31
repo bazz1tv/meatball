@@ -23,7 +23,7 @@ cMVelSprite :: ~cMVelSprite( void )
 
 void cMVelSprite :: Update( void )
 {
-	cVelocitySprite::Update(Renderer, 0 );
+	cVelocitySprite::Update(Renderer, SDL_FALSE );
 }
 
 void cMVelSprite :: Draw( SDL_Renderer *renderer )
@@ -43,7 +43,8 @@ void cMVelSprite :: Draw( SDL_Renderer *renderer )
 	rect.y = (int)posy;
 }
 
-SDL_Rect cMVelSprite :: GetRect( bool with_camerapos /* = 0  */)
+/// Use SDL_TRUE to get the RECT with camera position coordinates calculated also.
+SDL_Rect cMVelSprite :: GetRect( SDL_bool with_camerapos /* = 0  */)
 {
 	if( !with_camerapos ) 
 	{
@@ -83,7 +84,7 @@ cMAngleSprite :: ~cMAngleSprite( void )
 
 void cMAngleSprite :: Update( void )
 {
-	cAngleSprite::Update(Renderer, 0 );
+	cAngleSprite::Update(Renderer, SDL_FALSE );
 }
 
 void cMAngleSprite :: Draw( SDL_Renderer *renderer )
@@ -103,7 +104,7 @@ void cMAngleSprite :: Draw( SDL_Renderer *renderer )
 	rect.y = (int)posy;
 }
 
-SDL_Rect cMAngleSprite :: GetRect( bool with_camerapos /* = 0  */)
+SDL_Rect cMAngleSprite :: GetRect( SDL_bool with_camerapos /* = 0  */)
 {
 	if( !with_camerapos ) 
 	{

@@ -56,7 +56,7 @@ int cLevelData :: GetCollidingSpriteNum( SDL_Rect *Crect )
 				continue;
 			}
             
-			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( 1 ), Crect ) ) 
+			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( SDL_TRUE ), Crect ) )
 			{
 				return i;
 			}
@@ -77,7 +77,7 @@ cBasicSprite *cLevelData :: GetCollidingSprite( SDL_Rect *Crect )
 				continue;
 			}
 
-			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( 1 ), Crect ) ) 
+			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( SDL_FALSE ), Crect ) )
 			{
 				return BasicSprites[i];
 			}

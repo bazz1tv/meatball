@@ -17,7 +17,7 @@ cBullet :: cBullet( double nposx, double nposy )
 	
 	Origin = 0; // Unknown
 
-	visible = false;
+	visible =SDL_FALSE;
 
 	sound_Explosion = NULL;
 }
@@ -31,7 +31,7 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 {
 	if( !nBullet_type ) 
 	{
-		visible = false;
+		visible =SDL_FALSE;
 		
 		return;
 	}
@@ -70,7 +70,7 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 		{
 			printf( "Warning : Unsupported Laser X-1 direction used : %d\n", direction );
 
-			visible = false;
+			visible =SDL_FALSE;
 			return;
 		}
 	}
@@ -78,7 +78,7 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 	{
 		printf( "Warning : Unknown Bullet type used : %d\n", Bullet_type );
 
-		visible = false;
+		visible =SDL_FALSE;
 		return;
 	}
 
@@ -104,7 +104,7 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 	{
 		printf( "Warning : Unknown Bullet direction used : %d\n", direction );
 
-		visible = false;
+		visible =SDL_FALSE;
 		return;
 	}
 	
@@ -112,12 +112,12 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 
 	posy -= height/2;
 
-	visible = true;
+	visible =SDL_TRUE;
 }
 
 void cBullet :: Update( void )
 {
-	if( !visible )
+	if( visible == SDL_FALSE )
 	{
 		return;
 	}
@@ -126,7 +126,7 @@ void cBullet :: Update( void )
 
 	if( !velx && !vely ) // not Moving
 	{
-		visible = false;
+		visible =SDL_FALSE;
 		return;
 	}
 
@@ -141,17 +141,17 @@ void cBullet :: Update( void )
 			if( Bullet_type == BULLET_PISTOL )
 			{
 				AddParticleEmitter( posx + ( width/2 ), posy + ( height/2 ), Random( ( velx + vely)/16, ( velx + vely)/8 ), 255, 250, 0, 10, 20, 20 ); // Yellow
-				visible = false;
+				visible =SDL_FALSE;
 			}
 			else if( Bullet_type == BULLET_MACHINEGUN ) 
 			{
 				AddParticleEmitter( posx + ( width/2 ), posy + ( height/2 ), Random( ( velx + vely)/16, ( velx + vely)/8 ), 255, 150, 0, 11, 10, 30 ); // Red-Yellow
-				visible = false;
+				visible =SDL_FALSE;
 			}
 			else if( Bullet_type == BULLET_LASER_X1 ) 
 			{
 				AddParticleEmitter( posx + ( width/2 ), posy + ( height/2 ), Random( ( velx + vely)/8, ( velx + vely)/4 ), 0, 250, 0, 5, 10, 5 ); // Green
-				visible = false;
+				visible =SDL_FALSE;
 			}
 		}
 	}	
@@ -159,20 +159,20 @@ void cBullet :: Update( void )
 	// Position Correction
 	if( posx - width > (double)window_width + pCamera->x ) 
 	{
-		visible = false;
+		visible =SDL_FALSE;
 	}
 	else if( posx < -width + pCamera->x )
 	{
-		visible = false;
+		visible =SDL_FALSE;
 	}
 
 	if( posy < -height + pCamera->y )
 	{
-		visible = false;
+		visible =SDL_FALSE;
 	}
 	else if( posy - height > (double)window_height + pCamera->y ) 
 	{
-		visible = false;
+		visible =SDL_FALSE;
 	}
 }
 
@@ -234,7 +234,7 @@ void UpdateBullets( void )
 {
 	for( unsigned int i = 0; i < BulletCount; i++ )
 	{
-		if( Bullets[i]->visible ) 
+		if( Bullets[i]->visible == SDL_TRUE )
 		{
 			CollideMove( (cBasicSprite*)Bullets[i], Bullets[i]->velx * pFramerate->speedfactor, Bullets[i]->vely * pFramerate->speedfactor, Bullets[i]->Collision, Bullets[i]->type );
 			Bullets[i]->Update();

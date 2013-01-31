@@ -1,5 +1,5 @@
 
-
+//#include "leveleditor.h"
 #include "Globals.h"
 
 // This is the amount of time to SLEEP when doing HELD_KEY events (so we don't work at the speed of light)
@@ -10,6 +10,8 @@
 #define COPY_KEY SDLK_c
 #define PASTE_KEY SDLK_v
 #define FASTCOPY_KEY SDLK_f
+
+#define MULTI_COLOR 0xff00ff00
 
 
 
@@ -41,15 +43,33 @@ void cLevelEditor :: Update( void )
 
 		if( Collision_Object ) 
 		{
-			HoveredObject = Collision_Object->GetRect( 1 );
+			HoveredObject = Collision_Object->GetRect( SDL_TRUE );
 		}
 	}
-	else if( Mouse_command == MOUSE_COMMAND_MOVING )
+	// Integrate Single_tile_MOVING and MULTI_TILE_MOVING
+	else if( Mouse_command == MOUSE_COMMAND_SINGLE_TILE_MOVING )
 	{
 		Object->SetPos( floor(pMouse->posx + Mouse_w + pCamera->x), floor(pMouse->posy + Mouse_h + pCamera->y) );
 		
 		Object->Startposx = floor(pMouse->posx + Mouse_w + pCamera->x);
 		Object->Startposy = floor(pMouse->posy + Mouse_h + pCamera->y);
+	}
+	else if (Mouse_command == MOUSE_COMMAND_MULTI_TILE_MOVING)
+	{
+		for (int i=0; i < MultiObjects.numobjs; i++)
+		{
+			// move all other objects in relation to Object
+			//int x,y;
+			//x = (MultiObjects.objects[i]->posx -= pMouse->posx + pCamera->x);
+			//y = (MultiObjects.objects[i]->posy -= pMouse->posy + pCamera->y);
+			
+			MultiObjects.objects[i]->SetPos( floor((pMouse->posx-multi_mouseXOffset) + MultiObjects.objects[i]->posx), floor((pMouse->posy - multi_mouseYOffset) + MultiObjects.objects[i]->posy) );
+			
+			MultiObjects.objects[i]->Startposx = floor(MultiObjects.objects[i]->posx);
+			MultiObjects.objects[i]->Startposy = floor(MultiObjects.objects[i]->posy);
+		}
+		multi_mouseXOffset = pMouse->posx;
+		multi_mouseYOffset = pMouse->posy;
 	}
 
 	PostUpdate();
@@ -77,46 +97,70 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 	{
 		Color = 0xffffffff; // White
 	}
-	else
+	else if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
 	{
 		Color = 0xff7878ff; // Blue
 	}
 	
-
-	// The HoveredObject Shadow
-	// top line
-	FillRect(renderer, HoveredObject.x+1, HoveredObject.y+1, HoveredObject.w, 1, 0,0,0);
-	// Left Line
-	FillRect(renderer, HoveredObject.x+1, HoveredObject.y+1, 1, HoveredObject.h, 0,0,0);
-	// Bottom Line
-	FillRect(renderer, HoveredObject.x+1, HoveredObject.y+1+HoveredObject.h, HoveredObject.w, 1, 0,0,0);
-	// Right Line
-	FillRect(renderer, HoveredObject.x+1+HoveredObject.w, HoveredObject.y+1, 1, HoveredObject.h, 0,0,0);
-
-	// The HoveredObject Outline (white or blue depending on Fastcopy or just a selection)
-	// top line
-	FillRectAlpha(renderer, HoveredObject.x, HoveredObject.y, HoveredObject.w, 1, Color);
-	// Left Line
-	FillRectAlpha(renderer, HoveredObject.x, HoveredObject.y, 1, HoveredObject.h, Color);
-	// Bottom Line
-	FillRectAlpha(renderer, HoveredObject.x, HoveredObject.y+HoveredObject.h, HoveredObject.w, 1, Color);
-	// Right Line
-	FillRectAlpha(renderer, HoveredObject.x+HoveredObject.w, HoveredObject.y, 1, HoveredObject.h, Color);
-
-	if( CopyObject && !FullRectIntersect( &HoveredObject, &CopyObject->rect ) && Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
+	// Draw the outline of the hovered Object
+	OutlineHoveredObject(renderer, Color);
+	
+	// Only the draw the multi-tile outlines if we are not moving them (for accuracy when moving)
+	if (Mouse_command != MOUSE_COMMAND_MULTI_TILE_MOVING)
 	{
-		// The CopyObject Shadow
-		//sge_RectAlpha( renderer ,(int)( CopyObject->posx - pCamera->x + 1 ), (int)( CopyObject->posy - pCamera->y + 1 ), (int)( CopyObject->posx - pCamera->x + 1 + CopyObject->width ), 
-		//				(int)( CopyObject->posy - pCamera->y + 1 + CopyObject->height ), 0, 0, 0, 64 );
-
-		// Draws an non Filled Rect with the CopyObject rect size
-		//sge_RectAlpha( renderer ,(int)( CopyObject->posx - pCamera->x ), (int)( CopyObject->posy - pCamera->y ), (int)( CopyObject->posx - pCamera->x + CopyObject->width ), 
-		//				(int)( CopyObject->posy - pCamera->y + CopyObject->height ), 120, 255, 120, 192  );	
+		// Draw the Multi-outline (it will check automatically if we have multi tiles to draw)
+		DrawOutlineAroundMultiSelectedTiles(renderer, MULTI_COLOR);
 	}
-
 	PostDraw();
 }
 
+void cLevelEditor :: DrawOutlineAroundMultiSelectedTiles(SDL_Renderer *renderer, Uint32 Color)
+{
+	//HoveredObject = SetRect( 0, 0, 0, 0 );
+	
+	// This is code to get a RECT from our sprite Tile
+	if (multiple_objects_selected)
+	{
+		for (int i=0; i < MultiObjects.numobjs; i++)
+		{
+			// Draw a rect around each individual object
+			
+			// get its rect
+			cMVelSprite *ptr = MultiObjects.objects[i];
+			SDL_Rect orect = ptr->GetRect(SDL_TRUE);
+			
+			OutlineObject(renderer, Color, &orect);
+		}
+	}
+}
+
+void cLevelEditor :: OutlineObject(SDL_Renderer *renderer, Uint32 Color, SDL_Rect *object_rect)
+{
+	// The object_rect Shadow
+	// top line
+	FillRect(renderer, object_rect->x+1, object_rect->y+1, object_rect->w, 1, 0,0,0);
+	// Left Line
+	FillRect(renderer, object_rect->x+1, object_rect->y+1, 1, object_rect->h, 0,0,0);
+	// Bottom Line
+	FillRect(renderer, object_rect->x+1, object_rect->y+1+object_rect->h, object_rect->w, 1, 0,0,0);
+	// Right Line
+	FillRect(renderer, object_rect->x+1+object_rect->w, object_rect->y+1, 1, object_rect->h, 0,0,0);
+	
+	// The object_rect Outline (white or blue depending on Fastcopy or just a selection)
+	// top line
+	FillRectAlpha(renderer, object_rect->x, object_rect->y, object_rect->w, 1, Color);
+	// Left Line
+	FillRectAlpha(renderer, object_rect->x, object_rect->y, 1, object_rect->h, Color);
+	// Bottom Line
+	FillRectAlpha(renderer, object_rect->x, object_rect->y+object_rect->h, object_rect->w, 1, Color);
+	// Right Line
+	FillRectAlpha(renderer, object_rect->x+object_rect->w, object_rect->y, 1, object_rect->h, Color);
+}
+
+void cLevelEditor:: OutlineHoveredObject( SDL_Renderer *renderer, Uint32 Color)
+{
+	OutlineObject(renderer, Color, &HoveredObject);
+}
 
 
 void cLevelEditor :: SetCopyObject( cMVelSprite *nObject )
@@ -141,6 +185,35 @@ void cLevelEditor :: SetCopyObject( void )
 	SetCopyObject( GetCollidingObject( pMouse->posx, pMouse->posy ) );
 }
 
+void cLevelEditor :: SetMultiObjects( void )
+{
+	// Only Map and Enemy Objects can be Copied (FOR NOW)
+	SetMultiObjects( GetCollidingObject( pMouse->posx, pMouse->posy )  );
+}
+
+void cLevelEditor :: SetMultiObjects( cMVelSprite *nObject)
+{
+	if( !nObject )
+	{
+		return;
+	}
+	
+	if (!MultiObjects.hasa(nObject))
+	{
+		MultiObjects.add(nObject);
+	}
+	
+	
+	multiple_objects_selected = SDL_TRUE;
+
+	
+}
+
+void cLevelEditor::MultiMove(void)
+{
+	
+}
+
 void cLevelEditor :: SetMoveObject( cMVelSprite *nObject )
 {
 	if( !nObject ) 
@@ -153,7 +226,7 @@ void cLevelEditor :: SetMoveObject( cMVelSprite *nObject )
 	
 	Object = nObject;
 
-	Mouse_command = MOUSE_COMMAND_MOVING;
+	Mouse_command = MOUSE_COMMAND_SINGLE_TILE_MOVING;
 }
 
 void cLevelEditor :: SetMoveObject( void )
@@ -175,7 +248,6 @@ void cLevelEditor :: PasteObject( double x, double y )
 	{
 		return;
 	}
-
 
 	// Add the New Object
 	if( CopyObject->type == SPRITE_TYPE_MASSIVE || CopyObject->type == SPRITE_TYPE_PASSIVE || CopyObject->type == SPRITE_TYPE_HALFMASSIVE) 
@@ -271,7 +343,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 	int CollisionNum = -1;
 
 	// Player
-	if( RectIntersect( &(const SDL_Rect&)pPlayer->GetRect( 1 ), &cRect ) ) 
+	if( RectIntersect( &(const SDL_Rect&)pPlayer->GetRect( SDL_TRUE ), &cRect ) )
 	{
 		return (cMVelSprite*)pPlayer;
 	}
@@ -312,12 +384,12 @@ void cLevelEditor::EventHandler()
 
 		switch ( event.type )
 		{
-		case SDL_QUIT:
+			case SDL_QUIT:
 			{
 				done = 2;
 				break;
 			}
-		case SDL_KEYDOWN:
+			case SDL_KEYDOWN:
 			{
 				// ESCAPE to ESCAPE mouse command or LEVEL MODE
 				if( event.key.keysym.sym == SDLK_ESCAPE )
@@ -345,7 +417,7 @@ void cLevelEditor::EventHandler()
 					
 				}
 				// IF LCTRL IS HELD
-				else if ((SDL_GetModState() & KMOD_LCTRL))
+				else if (event.key.keysym.mod & KMOD_LCTRL)
 				{
 					// LCTRL S to save
 					if( event.key.keysym.sym == SAVE_KEY )
@@ -423,12 +495,43 @@ void cLevelEditor::EventHandler()
 				}
 				break;
 			}
-		case SDL_MOUSEBUTTONDOWN:
+				
+			case SDL_MOUSEBUTTONDOWN:
 			{
 				if( event.button.button == 1 ) // Left Mouse Button
 				{
-					//level editor mode
-						pLevelEditor->SetMoveObject();
+					if (keys[SDL_SCANCODE_LCTRL] || keys[SDL_SCANCODE_RCTRL])
+					{
+						pLevelEditor->SetMultiObjects();
+					}
+					else
+					{
+						if (multiple_objects_selected == SDL_TRUE && (MultiObjects.hasa(GetCollidingObject( pMouse->posx, pMouse->posy )) == SDL_TRUE) )
+						{
+							// There is an explanation for the explicit checks for SDL_TRUE/SDL_FALSE
+							// I was not sure if these values could use the if (varname) since i was unsure of the values
+							// it seems safe because SDL_TRUE / SDL_FALSE is 1,0 but i do it explicit to be safer.
+							//if ()
+							//pLevelEditor->MultiMove();
+							
+							/* the current process is that */
+							Object = GetCollidingObject( pMouse->posx, pMouse->posy );
+							Mouse_command = MOUSE_COMMAND_MULTI_TILE_MOVING;
+							multi_mouseXOffset = pMouse->posx;
+							multi_mouseYOffset = pMouse->posy;
+						}
+						else
+						{
+							// Release any multi-shit
+							if (multiple_objects_selected)
+							{
+								MultiObjects.RemoveAllObjects();
+								multiple_objects_selected = SDL_FALSE;
+							}
+							pLevelEditor->SetMoveObject();
+					
+						}
+					}
 				}
 				else if( event.button.button == 2 ) // Middle Mouse Button
 				{
@@ -442,18 +545,17 @@ void cLevelEditor::EventHandler()
 				}
 				break;					
 			}
-		case SDL_MOUSEBUTTONUP:
+				
+			case SDL_MOUSEBUTTONUP:
 			{
 				if( event.button.button == 1 ) // Left Mouse Button
 				{
-					//level editor mode
+					
 					pLevelEditor->Release_Command();
 				}
 				else if( event.button.button == 2 ) // Middle Mouse Button
 				{
-					//level editor mode
 						pLevelEditor->Release_Command();
-					//level editor mode
 				}
 				else if( event.button.button == 3 ) // Right Mouse Button
 				{
@@ -461,9 +563,8 @@ void cLevelEditor::EventHandler()
 				}
 				break;	
 			}
-		default:
-			
-			break;
+				
+			default: break;
 		}
 	}
 }
@@ -503,6 +604,13 @@ void cLevelEditor::HeldKey_fastcopy()
 	}
 }
 
+
+void cLevelEditor::MultiCopy( void )
+{
+	// CALL THIS FUNCTION AFTER YOU'VE SELECTED TILES TO DO THE MULTI-COPY
+	// USE AN ARRAY OF TILES WITH THEIR POSITIONS ETC TO COPY
+}
+
 void cLevelEditor::HeldKey_movecamera()
 {
 	if( keys[SDL_SCANCODE_RIGHT] )
@@ -525,11 +633,14 @@ void cLevelEditor::HeldKey_movecamera()
 
 void  cLevelEditor::HeldKey_Handler()
 {
+	// Fast copy
 	HeldKey_fastcopy();
+	
+	/// Move camera functions
 	HeldKey_movecamera();
 	
 	
-	
+	// if at anytime 'e' is pressed. Delete the object the mouse is hovering over.
 	if ( keys[SDLK_e] )
 	{
 		pLevelEditor->DeleteObject();

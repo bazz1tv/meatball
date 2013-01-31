@@ -14,6 +14,8 @@
 #ifndef __EP_VIDEO_H__
 #define __EP_VIDEO_H__
 
+#include "SDL_ep.h"
+
 DLLINTERFACE int InitSDL( Uint32 flags = SDL_INIT_EVERYTHING );
 
 DLLINTERFACE int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, int bpp, Uint32 wflags, Uint32 rflags, SDL_bool fullscreen = SDL_FALSE);

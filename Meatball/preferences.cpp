@@ -9,10 +9,10 @@ cSettings :: cSettings( void )
 	Screen_W			= 800;
 	Screen_H			= 600;
 
-	Fullscreen			= 0;
+	Fullscreen			= SDL_FALSE;
 
-	Music				= 1;
-	Sounds				= 1;
+	Music				= SDL_TRUE;
+	Sounds				= SDL_TRUE;
 	svol				= 40;
 	mvol				= 128;
 
@@ -256,33 +256,33 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 	{
 		if( atoi( parts[1] ) == 0 )
 		{
-			pSettings->Music = 0;
+			pSettings->Music = SDL_FALSE;
 		}
 		else
 		{
-			pSettings->Music = 1;
+			pSettings->Music = SDL_TRUE;
 		}
 	}
 	else if ( strcmp( parts[0], "Sounds") == 0 )
 	{
 		if(atoi(parts[1]) == 0)
 		{
-			pSettings->Sounds = 0;
+			pSettings->Sounds = SDL_FALSE;
 		}
 		else
 		{
-			pSettings->Sounds = 1;
+			pSettings->Sounds = SDL_TRUE;
 		}
 	}
 	else if ( strcmp( parts[0], "Fullscreen") == 0 )
 	{
 		if(atoi(parts[1]) == 0)
 		{
-			pSettings->Fullscreen = 0;
+			pSettings->Fullscreen = SDL_FALSE;
 		}
 		else
 		{
-			pSettings->Fullscreen = 1;
+			pSettings->Fullscreen = SDL_TRUE;
 		}
 	}
 	else if ( strcmp( parts[0], "Screen_H") == 0 )

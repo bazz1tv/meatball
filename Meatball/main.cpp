@@ -147,7 +147,7 @@ void initEngine()
 	
 	keys = SDL_GetKeyboardState(NULL);
 	
-	//int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, int bpp, SDL_bool fullscreen, Uint32 wflags, Uint32 rflags)
+	//int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, int bpp, SDL_SDL_bool fullscreen, Uint32 wflags, Uint32 rflags)
 	
 	pFramerate = new cFramerate( 60 );
 	SetSpriteSpeedfactor( &pFramerate->speedfactor );

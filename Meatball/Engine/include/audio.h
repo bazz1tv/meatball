@@ -26,7 +26,7 @@ public:
 	/**	
 	 *	
 	 */
-	DLLINTERFACE cAudio( bool playMusic = 1, bool playSounds = 1, Uint8 MusicVol = 80, Uint8 SoundVol = 110 );
+	DLLINTERFACE cAudio( SDL_bool playMusic = SDL_TRUE, SDL_bool playSounds = SDL_TRUE, Uint8 MusicVol = 80, Uint8 SoundVol = 110 );
 	/**
 	 */
 	DLLINTERFACE ~cAudio( void );
@@ -59,7 +59,7 @@ public:
 	*	if loops is -1 music will be looped infinity
 	*	Can play WAVE, MOD, MIDI, OGG (with ogg vorbis), mp3 ( with smpeg)
 	*/
-	DLLINTERFACE void PlayMusik( const char *filename, int loops = -1, bool force = 1 );
+	DLLINTERFACE void PlayMusik( const char *filename, int loops = -1, SDL_bool force = SDL_TRUE );
 
 	DLLINTERFACE void LoadMusic( const char *filename );
 	
@@ -95,6 +95,8 @@ public:
 	/// Set a specific sound's volume with it's chunk ptr.
 	DLLINTERFACE int SetSoundVolume ( Mix_Chunk *chunk, Uint8 iVolume );
 	
+	DLLINTERFACE int GetSoundVolume(Mix_Chunk *chunk);
+	
 
 
 	/**	Sets All the Sounds default Volume
@@ -112,7 +114,7 @@ public:
 	 */
 	DLLINTERFACE void Update( void );
 
-	DLLINTERFACE bool MusicPlaying();
+	DLLINTERFACE SDL_bool MusicPlaying();
 	
 	Mix_Music *Music;
 	
@@ -121,8 +123,8 @@ public:
 
 	Uint8 Sound_Volume,Music_Volume;
 
-	bool bSounds,bMusic,bDebug;
-	bool bInitialised;
+	SDL_bool bSounds,bMusic,bDebug;
+	SDL_bool bInitialised;
 };
 
 
