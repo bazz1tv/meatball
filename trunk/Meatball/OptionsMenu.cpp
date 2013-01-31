@@ -1,7 +1,7 @@
 
 #include "Globals.h"
 
-bool mouse_alreadypressed = false;
+SDL_bool mouse_alreadypressed =SDL_FALSE;
 
 int channel=0;
 void playSoundEffect()
@@ -111,7 +111,7 @@ void OptionsMenu::Update()
 		pPreferences->pSettings->mvol = mvol;
 		pAudio->SetMusicVolume(mvol);
 		// If music is not playing, this section here should throw on a tune
-		if (pAudio->MusicPlaying() != true)
+		if (pAudio->MusicPlaying() !=SDL_TRUE)
 			pAudio->PlayMusik(MUSIC_DIR "badmofo.mod");
 	}
 	

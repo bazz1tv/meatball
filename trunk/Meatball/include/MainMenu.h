@@ -26,7 +26,7 @@ public:
 	TextObject *tOptions;
 
 	static int submode;
-	bool Light_reverse;
+	SDL_bool Light_reverse;
 
 	void FadeOutBG();
 	void PostDraw();

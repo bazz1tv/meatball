@@ -15,7 +15,7 @@ public:
 	
 	void Update( void );
 
-	void Draw( SDL_Surface *target );
+	void Draw( SDL_Renderer *renderer );
 
 	void Die( void );
 	

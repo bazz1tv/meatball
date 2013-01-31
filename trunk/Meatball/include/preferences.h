@@ -22,12 +22,12 @@ public:
 	
 	void Update( cSettings *Settings );
 	
-	bool Music;
-	bool Sounds;
+	SDL_bool Music;
+	SDL_bool Sounds;
 
 	Uint8 svol, mvol;
 
-	bool Fullscreen;
+	SDL_bool Fullscreen;
 	
 	Uint16 Screen_W,Screen_H;
 	Uint8 Screen_Bpp;

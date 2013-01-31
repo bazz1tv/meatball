@@ -143,7 +143,7 @@ void cAF373 :: Update( void )
 		}
 	}
 
-	if( !onGround ) 
+	if( onGround == SDL_FALSE )
 	{
 		AddVelocity( 0, ( 0.05 ) * pFramerate->speedfactor, 0, 6 );
 	}
@@ -256,9 +256,9 @@ void cAF373 :: Update( void )
 	}
 }
 
-void cAF373 :: Draw( SDL_Surface *target )
+void cAF373 :: Draw( SDL_Renderer *renderer )
 {
-	if( !visible || !target || !image )
+	if( visible == SDL_FALSE || !renderer || !image )
 	{
 		return;
 	}
@@ -266,7 +266,8 @@ void cAF373 :: Draw( SDL_Surface *target )
 	rect.x = (int)(posx - pCamera->x);
 	rect.y = (int)(posy - pCamera->y);
 
-	SDL_BlitSurface( image, NULL, target, &rect );
+	//SDL_BlitSurface( image, NULL, target, &rect );
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
 
 	rect.x = (int)posx;
 	rect.y = (int)posy;

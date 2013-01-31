@@ -39,10 +39,10 @@ DLLINTERFACE SDL_Rect SetRect( int x, int y, unsigned int w, unsigned int h );
 DLLINTERFACE SDL_Color SetColor( Uint8 Red, Uint8 Green, Uint8 Blue );
 
  /// returns 1 if 1 or more points intersect
-DLLINTERFACE bool RectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 );
+DLLINTERFACE SDL_bool RectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 );
 
 /// returns 1 if the complete rect1 intersects with rect2
-DLLINTERFACE bool FullRectIntersect(const SDL_Rect *r1, const SDL_Rect *r2 );
+DLLINTERFACE SDL_bool FullRectIntersect(const SDL_Rect *r1, const SDL_Rect *r2 );
 
 #endif
 

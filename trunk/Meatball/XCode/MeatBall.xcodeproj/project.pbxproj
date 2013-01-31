@@ -116,7 +116,7 @@
 		E9CFA40D16B1D56300B3919F /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		E9CFA40E16B1D56300B3919F /* GraphicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsObject.h; sourceTree = "<group>"; };
 		E9CFA40F16B1D56300B3919F /* level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = level.h; sourceTree = "<group>"; };
-		E9CFA41016B1D56300B3919F /* leveleditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leveleditor.h; sourceTree = "<group>"; };
+		E9CFA41016B1D56300B3919F /* leveleditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = leveleditor.h; path = ../include/leveleditor.h; sourceTree = "<group>"; };
 		E9CFA41116B1D56300B3919F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		E9CFA41216B1D56300B3919F /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		E9CFA41316B1D56300B3919F /* Misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Misc.h; sourceTree = "<group>"; };
@@ -201,6 +201,15 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		E9BC1FAA16B960B70020965C /* LevelEditor */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA41016B1D56300B3919F /* leveleditor.h */,
+				E9CFA3DA16B1D54D00B3919F /* leveleditor.cpp */,
+			);
+			name = LevelEditor;
+			sourceTree = "<group>";
+		};
 		E9CFA3CE16B1D52800B3919F /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,9 +224,9 @@
 				E9CFA3D716B1D54D00B3919F /* Game.cpp */,
 				E9CFA3D816B1D54D00B3919F /* Globals.cpp */,
 				E9CFA3D916B1D54D00B3919F /* level.cpp */,
-				E9CFA3DA16B1D54D00B3919F /* leveleditor.cpp */,
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
 				E9CFA3DC16B1D54D00B3919F /* MainMenu.cpp */,
+				E9BC1FAA16B960B70020965C /* LevelEditor */,
 				E9CFA3DE16B1D54D00B3919F /* Menu.cpp */,
 				E9CFA3DF16B1D54D00B3919F /* Misc.cpp */,
 				E9CFA3E016B1D54D00B3919F /* OptionsMenu.cpp */,
@@ -250,7 +259,6 @@
 				E901FD7F16B364E200DB896C /* OS.h */,
 				E9CFA40E16B1D56300B3919F /* GraphicsObject.h */,
 				E9CFA40F16B1D56300B3919F /* level.h */,
-				E9CFA41016B1D56300B3919F /* leveleditor.h */,
 				E9CFA41116B1D56300B3919F /* MainMenu.h */,
 				E9CFA41216B1D56300B3919F /* Menu.h */,
 				E9CFA41316B1D56300B3919F /* Misc.h */,
@@ -403,7 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -428,6 +436,7 @@
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -436,7 +445,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -462,6 +471,7 @@
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

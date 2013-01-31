@@ -22,7 +22,7 @@ cMAngleSprite( NULL, x, y, nangle, nspeed )
 	blue = 0;
 	alpha = 255;
 
-	active = true;
+	active =SDL_TRUE;
 
 	type = SPRITE_TYPE_PARTICLE;
 }
@@ -34,7 +34,7 @@ cMParticle :: ~cMParticle( void )
 
 void cMParticle :: Update( void )
 {
-	if( !visible ) 
+	if( visible == SDL_FALSE )
 	{
 		return;
 	}
@@ -48,7 +48,7 @@ void cMParticle :: Update( void )
 	
 	cMAngleSprite::Update();
 
-	if( active ) // If the Particle is moving
+	if( active == SDL_TRUE ) // If the Particle is moving
 	{
 		if( Collision->collide != -1) 
 		{
@@ -113,204 +113,19 @@ void cMParticle :: Update( void )
 	if( alpha < 10 ) 
 	{
 		alpha = 0;
-		visible = false;
-		active = false;
-	}
-}
-
-void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
-{
-    int bpp = surface->format->BytesPerPixel;
-
-    Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
-
-	//if (y * surface->pitch +
-
-	
-    switch(bpp) {
-    case 1:
-        *p = pixel;
-        break;
-
-    case 2:
-        *(Uint16 *)p = pixel;
-        break;
-
-    case 3:
-        if(SDL_BYTEORDER == SDL_BIG_ENDIAN) {
-            p[0] = (pixel >> 16) & 0xff;
-            p[1] = (pixel >> 8) & 0xff;
-            p[2] = pixel & 0xff;
-        } else {
-            p[0] = pixel & 0xff;
-            p[1] = (pixel >> 8) & 0xff;
-            p[2] = (pixel >> 16) & 0xff;
-        }
-        break;
-
-    case 4:
-        *(Uint32 *)p = pixel;
-        break;
-    }
-}
-
-#define sge_clip_xmin(pnt) pnt->clip_rect.x
-#define sge_clip_xmax(pnt) pnt->clip_rect.x + pnt->clip_rect.w-1
-#define sge_clip_ymin(pnt) pnt->clip_rect.y
-#define sge_clip_ymax(pnt) pnt->clip_rect.y + pnt->clip_rect.h-1
-//==================================================================================
-// Put pixel with alpha blending
-//==================================================================================
-void _PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint32 color, Uint8 alpha)
-{
-	if(x>=sge_clip_xmin(surface) && x<=sge_clip_xmax(surface) && y>=sge_clip_ymin(surface) && y<=sge_clip_ymax(surface)){
-		Uint32 Rmask = surface->format->Rmask, Gmask = surface->format->Gmask, Bmask = surface->format->Bmask, Amask = surface->format->Amask;
-		Uint32 R,G,B,A=0;
-	
-		switch (surface->format->BytesPerPixel) {
-			case 1: { // Assuming 8-bpp 
-				if( alpha == 255 ){
-					*((Uint8 *)surface->pixels + y*surface->pitch + x) = color;
-				}else{
-					Uint8 *pixel = (Uint8 *)surface->pixels + y*surface->pitch + x;
-					
-					Uint8 dR = surface->format->palette->colors[*pixel].r;
-					Uint8 dG = surface->format->palette->colors[*pixel].g;
-					Uint8 dB = surface->format->palette->colors[*pixel].b;
-					Uint8 sR = surface->format->palette->colors[color].r;
-					Uint8 sG = surface->format->palette->colors[color].g;
-					Uint8 sB = surface->format->palette->colors[color].b;
-					
-					dR = dR + ((sR-dR)*alpha >> 8);
-					dG = dG + ((sG-dG)*alpha >> 8);
-					dB = dB + ((sB-dB)*alpha >> 8);
-				
-					*pixel = SDL_MapRGB(surface->format, dR, dG, dB);
-				}
-			}
-			break;
-
-			case 2: { // Probably 15-bpp or 16-bpp 		
-				if( alpha == 255 ){
-					*((Uint16 *)surface->pixels + y*surface->pitch/2 + x) = color;
-				}else{
-					Uint16 *pixel = (Uint16 *)surface->pixels + y*surface->pitch/2 + x;
-					Uint32 dc = *pixel;
-				
-					R = ((dc & Rmask) + (( (color & Rmask) - (dc & Rmask) ) * alpha >> 8)) & Rmask;
-					G = ((dc & Gmask) + (( (color & Gmask) - (dc & Gmask) ) * alpha >> 8)) & Gmask;
-					B = ((dc & Bmask) + (( (color & Bmask) - (dc & Bmask) ) * alpha >> 8)) & Bmask;
-					if( Amask )
-						A = ((dc & Amask) + (( (color & Amask) - (dc & Amask) ) * alpha >> 8)) & Amask;
-
-					*pixel= R | G | B | A;
-				}
-			}
-			break;
-
-			case 3: { // Slow 24-bpp mode, usually not used 
-				Uint8 *pix = (Uint8 *)surface->pixels + y * surface->pitch + x*3;
-				Uint8 rshift8=surface->format->Rshift/8;
-				Uint8 gshift8=surface->format->Gshift/8;
-				Uint8 bshift8=surface->format->Bshift/8;
-				Uint8 ashift8=surface->format->Ashift/8;
-				
-				
-				if( alpha == 255 ){
-  					*(pix+rshift8) = color>>surface->format->Rshift;
-  					*(pix+gshift8) = color>>surface->format->Gshift;
-  					*(pix+bshift8) = color>>surface->format->Bshift;
-					*(pix+ashift8) = color>>surface->format->Ashift;
-				}else{
-					Uint8 dR, dG, dB, dA=0;
-					Uint8 sR, sG, sB, sA=0;
-					
-					pix = (Uint8 *)surface->pixels + y * surface->pitch + x*3;
-					
-					dR = *((pix)+rshift8); 
-            		dG = *((pix)+gshift8);
-            		dB = *((pix)+bshift8);
-					dA = *((pix)+ashift8);
-					
-					sR = (color>>surface->format->Rshift)&0xff;
-					sG = (color>>surface->format->Gshift)&0xff;
-					sB = (color>>surface->format->Bshift)&0xff;
-					sA = (color>>surface->format->Ashift)&0xff;
-					
-					dR = dR + ((sR-dR)*alpha >> 8);
-					dG = dG + ((sG-dG)*alpha >> 8);
-					dB = dB + ((sB-dB)*alpha >> 8);
-					dA = dA + ((sA-dA)*alpha >> 8);
-
-					*((pix)+rshift8) = dR; 
-            		*((pix)+gshift8) = dG;
-            		*((pix)+bshift8) = dB;
-					*((pix)+ashift8) = dA;
-				}
-			}
-			break;
-
-			case 4: { // Probably 32-bpp 
-				if( alpha == 255 ){
-					*((Uint32 *)surface->pixels + y*surface->pitch/4 + x) = color;
-				}else{
-					Uint32 *pixel = (Uint32 *)surface->pixels + y*surface->pitch/4 + x;
-					Uint32 dc = *pixel;
-			
-					R = ((dc & Rmask) + (( (color & Rmask) - (dc & Rmask) ) * alpha >> 8)) & Rmask;
-					G = ((dc & Gmask) + (( (color & Gmask) - (dc & Gmask) ) * alpha >> 8)) & Gmask;
-					B = ((dc & Bmask) + (( (color & Bmask) - (dc & Bmask) ) * alpha >> 8)) & Bmask;
-					if( Amask )
-						A = ((dc & Amask) + (( (color & Amask) - (dc & Amask) ) * alpha >> 8)) & Amask;
-					
-					*pixel = R | G | B | A;
-				}
-			}
-			break;
-		}
+		visible =SDL_FALSE;
+		active =SDL_FALSE;
 	}
 }
 
 
-
-void sge_PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint32 color, Uint8 alpha)
-{
-	if ( SDL_MUSTLOCK(surface) )
-		if ( SDL_LockSurface(surface) != 0 )
-			return;
-
-	_PutPixelAlpha(surface,x,y,color,alpha);
-	
-	// unlock the display 
-	if (SDL_MUSTLOCK(surface)) {
-		SDL_UnlockSurface(surface);
-	}
-	
-	//if(_sge_update!=1){return;}
-	//sge_UpdateRect(surface, x, y, 1, 1);
-}
-
-
-void _PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint8 R, Uint8 G, Uint8 B, Uint8 alpha)
-{
-  _PutPixelAlpha(surface,x,y, SDL_MapRGB(surface->format, R, G, B),alpha);
-}
-
-void sge_PutPixelAlpha(SDL_Surface *surface, Sint16 x, Sint16 y, Uint8 R, Uint8 G, Uint8 B, Uint8 alpha)
-{
-  sge_PutPixelAlpha(surface,x,y, SDL_MapRGB(surface->format, R, G, B), alpha);
-}
 
 void cMParticle :: Draw( SDL_Renderer *renderer )
 {
-	if( !visible ) 
+	if( visible == SDL_FALSE )
 	{
 		return;
 	}
-	
-	
-	//putpixel(target, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), SDL_MapRGBA(target->format,(Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha));
-	//sge_PutPixelAlpha( pix, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha );
 	
 	Uint8 oor,og,ob,oa;
 	
@@ -335,7 +150,7 @@ void cMParticle :: HandleCollision( int direction )
 
 		if( speed < 0.1 ) // if too slow
 		{
-			active = 0; // deactivate
+			active = SDL_FALSE; // deactivate
 		}
 	}
 	else if( direction == UP ) 
@@ -440,7 +255,7 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 		new_Particle->fadeoutspeed = this->fadeoutspeed;
 		new_Particle->Randomness = Randomness;
 
-		new_Particle->visible = 1;
+		new_Particle->visible = SDL_TRUE;
 
 		Particles = (cMParticle**) realloc( Particles, ++ParticleCount * sizeof(cMParticle*) );
 		Particles[ParticleCount - 1] = new_Particle;
@@ -449,7 +264,7 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 
 void cMParticleEmitter :: Update( void )
 {
-	if( !visible ) 
+	if( visible == SDL_FALSE )
 	{
 		return;
 	}
@@ -458,14 +273,14 @@ void cMParticleEmitter :: Update( void )
 
 	for( unsigned int i = 0; i < ParticleCount; i++ )
 	{
-		if( Particles[i]->active && Particles[i]->visible ) 
+		if( Particles[i]->active == SDL_TRUE && Particles[i]->visible == SDL_TRUE )
 		{
 			CollideMove( (cBasicSprite*)Particles[i], Particles[i]->dirx * pFramerate->speedfactor, Particles[i]->diry * pFramerate->speedfactor, Particles[i]->Collision, Particles[i]->type );
 		}
 		
 		Particles[i]->Update();
 
-		if( !Particles[i]->visible ) 
+		if( !Particles[i]->visible == SDL_TRUE )
 		{
 			PvisibleCount--;
 		}
@@ -473,7 +288,7 @@ void cMParticleEmitter :: Update( void )
 
 	if( PvisibleCount < 1 ) 
 	{
-		this->visible = false;
+		this->visible =SDL_FALSE;
 	}
 }
 
@@ -504,7 +319,7 @@ void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngre
 			continue;
 		}
 
-		if( !ParticleEmitter[i]->visible )
+		if( ParticleEmitter[i]->visible == SDL_FALSE )
 		{
 			ParticleEmitter[i]->posx = x;
 			ParticleEmitter[i]->posy = y;
@@ -516,7 +331,7 @@ void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngre
 			ParticleEmitter[i]->alpha = 255;
 			ParticleEmitter[i]->fadeoutspeed = nfadeoutspeed;
 			ParticleEmitter[i]->Randomness = nRandomness;	
-			ParticleEmitter[i]->visible = 1;
+			ParticleEmitter[i]->visible = SDL_TRUE;
 
 			ParticleEmitter[i]->InitParticles( power );
 			
@@ -533,7 +348,7 @@ void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngre
 	new_ParticleEmitter->blue = nblue;
 	new_ParticleEmitter->fadeoutspeed = nfadeoutspeed;
 	new_ParticleEmitter->Randomness = nRandomness;		
-	new_ParticleEmitter->visible = 1;	
+	new_ParticleEmitter->visible = SDL_TRUE;
 	
 	new_ParticleEmitter->InitParticles( power );
 

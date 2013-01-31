@@ -40,7 +40,7 @@ extern cTCPNet *pTCP;
 extern int done;
 
 /// game paused?
-extern bool paused;
+extern SDL_bool paused;
 
 // Fonts
 extern TTF_Font *Menu_Font;
@@ -61,8 +61,8 @@ extern Uint8 *keys;
 /// events
 extern SDL_Event event;
 
-/// fps display boolean
-extern bool fps_display;
+/// fps display SDL_boolean
+extern SDL_bool fps_display;
 
 /// Magneta (default) Colorkey
 extern Uint32 colorkey;
@@ -73,9 +73,9 @@ void QuitGame( void );
 
 
 /// Checks if the file exists
-bool FileValid( string filename );
+SDL_bool FileValid( string filename );
 /// Checks if it's an Number
-bool is_valid_number( char *c );
+SDL_bool is_valid_number( char *c );
 /// Draws the Framerate
 void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 

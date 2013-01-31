@@ -20,11 +20,11 @@ cTCPNet *pTCP;
 // Main window Icon
 SDL_Surface *icon;
 
-/// if true the game exits
+/// ifSDL_TRUE the game exits
 int done;
 
-/// if true the game if paused
-bool paused;
+/// ifSDL_TRUE the game if paused
+SDL_bool paused;
 
 // Fonts
 TTF_Font *Menu_Font;
@@ -44,8 +44,8 @@ Uint8 *keys;
 /// Input Events
 SDL_Event event;
 
-/// if true the fps display is active
-bool fps_display = false;
+/// ifSDL_TRUE the fps display is active
+SDL_bool fps_display =SDL_FALSE;
 
 /// Magneta (default) Colorkey
 Uint32 colorkey = 0;
@@ -194,7 +194,7 @@ void QuitGame( void )
 }
 
 
-bool FileValid( string filename )
+SDL_bool FileValid( string filename )
 {
 	ifstream ifs;
 	ifs.open( filename.c_str(), ios :: out );
@@ -202,15 +202,15 @@ bool FileValid( string filename )
 	if( ifs ) 
 	{
 		ifs.close();
-		return 1;
+		return SDL_TRUE;
 	}
 
-	return 0;
+	return SDL_FALSE;
 }
 
-bool is_valid_number( char *c )
+SDL_bool is_valid_number( char *c )
 {
-	bool floatnumber = 0;
+	SDL_bool floatnumber = SDL_FALSE;
 	if (*c == '-') 
 		c++;
 	for(;*c;c++)
@@ -219,19 +219,19 @@ bool is_valid_number( char *c )
 		{
 			if (!floatnumber)
 			{
-				floatnumber = 1;
+				floatnumber = SDL_TRUE;
 				c++;
 			} 
-			else { return 0; }
+			else { return SDL_FALSE; }
 		}
 		
 		if ((*c < '0' || *c > '9') && *c != '\r')
 		{
-			return 0;
+			return SDL_FALSE;
 	
 		}
 	}
-	return 1;
+	return SDL_TRUE;
 }
 
 void FramerateDraw( SDL_Surface *target, double posx /** = 5.0 */, double posy /** = 5.0  */)

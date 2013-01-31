@@ -4,7 +4,7 @@
 
 using namespace std;
 
-cAudio :: cAudio( bool playMusic /* = 1 */, bool playSounds /* = 1 */, 
+cAudio :: cAudio( SDL_bool playMusic /* = 1 */, SDL_bool playSounds /* = 1 */, 
 				 Uint8 MusicVol /* = 80 */, Uint8 SoundVol /* = 110  */)
 {
 	Music = NULL;
@@ -15,8 +15,8 @@ cAudio :: cAudio( bool playMusic /* = 1 */, bool playSounds /* = 1 */,
 	Music_Played = 0;
 	bSounds = playSounds;
 	bMusic = playMusic;
-	bDebug = 0;
-	bInitialised = 0;
+	bDebug = SDL_FALSE;
+	bInitialised = SDL_FALSE;
 
 	// Usually 22.050 , 44.100, 44.800
 	iHz = 44100;
@@ -31,14 +31,14 @@ cAudio :: ~cAudio( void )
 {
 	HaltSounds();
 
-	if( bMusic && Music)
+	if( bMusic == SDL_TRUE && Music)
 	{
 		StopMusic();
 		Mix_FreeMusic( Music );
 		Music = NULL;
 	}
 
-	if( bInitialised )
+	if( bInitialised == SDL_TRUE )
 	{
 		Mix_CloseAudio();
 	}
@@ -46,9 +46,9 @@ cAudio :: ~cAudio( void )
 
 void cAudio :: InitAudio( void )
 {
-	if (( bMusic || bSounds ) && !bInitialised )
+	if (( bMusic == SDL_TRUE || bSounds == SDL_TRUE ) && bInitialised == SDL_FALSE )
 	{
-		if( bDebug )
+		if( bDebug == SDL_TRUE )
 		{
 			cout << "Initializing Audio System ,Buffer = " << iBuffer << "  Frequency = " << iHz <<'\n' << flush;
 		}
@@ -66,14 +66,14 @@ void cAudio :: InitAudio( void )
 		}
 		else
 		{
-			bInitialised = 1;
+			bInitialised = SDL_TRUE;
 			SetMusicVolume( Music_Volume );
 			SetAllSoundsVolume( Sound_Volume );
 		}
 	}
 	else
 	{
-		if( bDebug )
+		if( bDebug == SDL_TRUE )
 		{
 			printf( "Audio System will not be Initialized" );
 		}	
@@ -110,7 +110,7 @@ Mix_Chunk *cAudio :: LoadSound( const char *filename, int sVolume /* = -2  */ )
 		return NULL;
 	}
 
-	if( !bSounds || !bInitialised )
+	if( bSounds == SDL_FALSE || bInitialised == SDL_FALSE )
 	{
 		return NULL;
 	}
@@ -155,7 +155,7 @@ int cAudio :: PlaySound( Mix_Chunk *sound, int channel /* = -1 */, int sVolume /
 		return -1;
 	}
 	
-	if ( !bSounds || !bInitialised )
+	if ( bSounds == SDL_FALSE || bInitialised == SDL_FALSE)
 	{
 		return -1;
 	}
@@ -190,17 +190,17 @@ int cAudio :: PlaySound( Mix_Chunk *sound, int channel /* = -1 */, int sVolume /
 
 void cAudio:: LoadMusic(const char *filename)
 {
-	if ( bMusic && bInitialised )
+	if ( bMusic == SDL_TRUE && bInitialised == SDL_TRUE )
 	{
 		Music = Mix_LoadMUS( filename );
 	}
 }
 
-void cAudio :: PlayMusik( const char *filename, int loops /* = -1 */, bool force /* = 1  */ )
+void cAudio :: PlayMusik( const char *filename, int loops /* = -1 */, SDL_bool force /* = 1  */ )
 {
-	if ( bMusic && bInitialised )
+	if ( bMusic == SDL_TRUE && bInitialised == SDL_TRUE )
 	{
-		if ( !Mix_PlayingMusic() || force == 1 )
+		if ( !Mix_PlayingMusic() || force == SDL_TRUE )
 		{
 			if( Music )
 			{
@@ -273,6 +273,18 @@ void cAudio :: FadeOutSounds( int milliseconds /* = 2000 */, int channel /* = -1
 	Mix_FadeOutChannel( channel, milliseconds );
 }
 
+int cAudio :: GetSoundVolume(Mix_Chunk *chunk)
+{
+	// dont fuck with a NULL chunk ;P 
+	if (chunk == NULL)
+	{
+		return -1;
+	}
+	
+	// Pass negative volume value to get current Volume and not change it
+	return Mix_VolumeChunk(chunk, -1);
+}
+
 
 int cAudio :: SetSoundVolume (Mix_Chunk *chunk, Uint8 iVolume)
 {
@@ -312,14 +324,14 @@ int cAudio :: SetMusicVolume( Uint8 iVolume )
 	
 }
 
-bool cAudio :: MusicPlaying()
+SDL_bool cAudio :: MusicPlaying()
 {
-	return Mix_PlayingMusic() ? true : false;
+	return Mix_PlayingMusic() ? SDL_TRUE : SDL_FALSE;
 }
 
 void cAudio :: Update( void )
 {
-	if ( bMusic )
+	if ( bMusic == SDL_TRUE )
 	{
 		if ( !Mix_PlayingMusic() ) 
 		{

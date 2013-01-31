@@ -14,20 +14,20 @@
 /// <br><br><b>Format</b>: cConsole::CMDList, "Command Name", function name, "help string", "syntax"
 /// @snippet console.cpp Console Commands
 // @{
-bool clearcon( string &str );	///< Clears the console
-bool loadmap( string &str );	///< Load a new Level from @link LEVEL_DIR @endlink
-bool SetMx( string &str );		///< Set Meatball's X Coordinate
-bool SetMy( string &str );		///< Set Meatball's Y Coordinate
-bool SetMxy( string &str );		///< Set Meatball (X,Y) coordinate
-bool play( string &str );		///< Play a song from the @link MUSIC_DIR @endlink
-bool QuitAll( string &str);		///< Quit the Game
-bool ShowFPS( string & str);	///< Toggle FPS framerate to be displayed
-bool help( string &str );		///< bring up help on all commands or specific command
-bool soundVol(string &str);		///< change the volume of a sound (0-128)
-bool allSoundsVol(string &str);	///< Change the volume of All sounds (0-128)
-bool musicVol(string &str);		///< Change the music volume (0-128)
-bool cd(string &str);			///< change the current directory
-bool ls(string &str);			///< list the directory
+SDL_bool clearcon( string &str );	///< Clears the console
+SDL_bool loadmap( string &str );	///< Load a new Level from @link LEVEL_DIR @endlink
+SDL_bool SetMx( string &str );		///< Set Meatball's X Coordinate
+SDL_bool SetMy( string &str );		///< Set Meatball's Y Coordinate
+SDL_bool SetMxy( string &str );		///< Set Meatball (X,Y) coordinate
+SDL_bool play( string &str );		///< Play a song from the @link MUSIC_DIR @endlink
+SDL_bool QuitAll( string &str);		///< Quit the Game
+SDL_bool ShowFPS( string & str);	///< Toggle FPS framerate to be displayed
+SDL_bool help( string &str );		///< bring up help on all commands or specific command
+SDL_bool soundVol(string &str);		///< change the volume of a sound (0-128)
+SDL_bool allSoundsVol(string &str);	///< Change the volume of All sounds (0-128)
+SDL_bool musicVol(string &str);		///< Change the music volume (0-128)
+SDL_bool cd(string &str);			///< change the current directory
+SDL_bool ls(string &str);			///< list the directory
 // @}
 
 /// Number of Output Lines to the Console
@@ -44,7 +44,7 @@ void console_print(const char *str);
 /// This structure is for each Command to the Console
 struct cCMD
 {
-	bool ( *handler )( string &str );	///< Function pointer to Command's function
+	SDL_bool ( *handler )( string &str );	///< Function pointer to Command's function
 
 	string command;						///< The string to identify the command
 	string helpstr;						///< This string is shown when you do "help [command]"
@@ -54,7 +54,7 @@ struct cCMD
 
 /** Linked List push function. */
 /// This pushes a new cCMD onto the linked list: @see cConsole::CMDList
-void Push(cCMD*& head, string command, bool (*handler)(string &), string helpstr, string syntax);
+void Push(cCMD*& head, string command, SDL_bool (*handler)(string &), string helpstr, string syntax);
 
 /// For Live In-game editing to the Game World and Variables
 class cConsole : public MiniEngine
@@ -69,7 +69,7 @@ public:
 	/// @ingroup Console_Input
 	void EventHandler( void );
 
-	bool CMDHandler( string cInput );
+	SDL_bool CMDHandler( string cInput );
 	void Update( void );
 	
 	void Draw( SDL_Renderer *renderer );
@@ -78,7 +78,7 @@ public:
 	string ParseBase( string str );
 	string ParseParm( string str );
 
-	bool helpCMD( string &str );
+	SDL_bool helpCMD( string &str );
 
 	cCMD *CMDList;				// The commands
 
@@ -91,7 +91,7 @@ public:
 
 	double conx, cony;			// x coord and y coord for str's, x coord for cursor
 
-	bool DrawCur;
+	SDL_bool DrawCur;
 	double ttDrawCur;
 
 	cBasicSprite *BG;

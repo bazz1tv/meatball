@@ -28,7 +28,7 @@ public:
 	int Lleft, Lright;
 
 	//
-	//bool camera_moved;
+	//SDL_bool camera_moved;
 
 private:
 	void Limits_Check( void );	///< Checks the Left/Right/Up/Down boundaries

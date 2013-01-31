@@ -29,7 +29,7 @@ public:
 	virtual void Update( void );
 
 	/// Checks if the timer has run out
-	virtual bool can_Fire( void );
+	virtual SDL_bool can_Fire( void );
 
 	/** The Supported directions
 	 * 0 = left

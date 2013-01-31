@@ -5,6 +5,7 @@
 #define __LEVELEDITOR_H__
 
 #include "Globals.h"
+#include "ObjectManager.h"
 
 /// @ingroup Event_Handlers
 void leveleditor_ehandler(void);
@@ -14,9 +15,11 @@ void leveleditor_ehandler(void);
 /// @defgroup Mouse_Cmd Mouse Commands
 // @{
 // The Current Mouse Command
-#define MOUSE_COMMAND_NOTHING 0
-#define MOUSE_COMMAND_MOVING 1
-#define MOUSE_COMMAND_FASTCOPY 2
+enum {	MOUSE_COMMAND_NOTHING,
+		MOUSE_COMMAND_SINGLE_TILE_MOVING,
+		MOUSE_COMMAND_MULTI_TILE_MOVING,
+		MOUSE_COMMAND_FASTCOPY
+};
 // @}
 
 /// The Leveleditor as an ingame implementation.
@@ -31,6 +34,7 @@ public:
 	void HeldKey_movecamera();
 	
 	void EventHandler();
+
 
 
 	void Draw();
@@ -48,6 +52,20 @@ public:
 	/// Sets an Object for Mouse Movement
 	void SetMoveObject( cMVelSprite *nObject );
 	void SetMoveObject( void );
+	
+	/// Add to MultiObjects array
+	void SetMultiObjects( cMVelSprite *nObject);
+	void SetMultiObjects( void );
+	// multi move
+	void MultiMove(void);
+	// the actual multi-copy process
+	void MultiCopy( void );
+	
+	/// Draw the outline of the hovered Object
+	void OutlineHoveredObject( SDL_Renderer *renderer, Uint32 Color);
+	void OutlineObject (SDL_Renderer *renderer, Uint32 Color, SDL_Rect *orect);
+	void DrawOutlineAroundMultiSelectedTiles(SDL_Renderer *renderer, Uint32 Color);
+	
 
 	//void SpecialPasteObject(void);
 	//void SpecialPasteObject( double x, double y );
@@ -76,6 +94,9 @@ public:
 	
 	/// The Object Size which should get Hovered
 	SDL_Rect HoveredObject;
+	
+	// Object MAnager for Multi-object
+	ObjectManager<cMVelSprite> MultiObjects;
 
 	/// The currently used object for moving
 	cMVelSprite *Object;
@@ -88,6 +109,13 @@ public:
 
 	/// The additional Mouse position when moving
 	int Mouse_w,Mouse_h;
+	
+	// this is true if we have multi-selected > 1 tile
+	// this is because if we only multi-select 1 tile. we might as well just move in 1 tile mode
+	SDL_bool multiple_objects_selected;
+
+	double multi_mouseXOffset, multi_mouseYOffset;
+	
 };
 
 #endif

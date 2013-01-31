@@ -54,46 +54,46 @@ SDL_Color SetColor( Uint8 Red, Uint8 Green, Uint8 Blue )
 	return SColor;
 }
 
-bool RectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 )
+SDL_bool RectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 )
 {
 	if( r1->x + r1->w <= r2->x )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 	if( r1->x >= r2->x + r2->w )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 	if( r1->y + r1->h <= r2->y )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 	if( r1->y >= r2->y + r2->h )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 
-	return true;
+	return SDL_TRUE;
 }
 
-bool FullRectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 )
+SDL_bool FullRectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 )
 {
 	if( r1->x < r2->x )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 	if( r1->x + r1->w > r2->x + r2->w )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 	if( r1->y < r2->y )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 	if( r1->y + r1->h > r2->y + r2->h )
 	{
-		return false;
+		return SDL_FALSE;
 	}
 
-	return true;
+	return SDL_TRUE;
 }

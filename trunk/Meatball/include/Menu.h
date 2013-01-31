@@ -24,12 +24,12 @@ class CMenuItem
   //Selection ID of menu item
   //Returned when this menu item has been selected
  
-  bool HasFocus;
+  SDL_bool HasFocus;
    
   public:
     //...
     //...
-    bool Create(double x,double y,std::string lpszText,bool bHasFocus=false);
+    SDL_bool Create(double x,double y,std::string lpszText,SDL_bool bHasFocus=SDL_FALSE);
  
     void SetText(std::string lpszText);
     //...
@@ -44,8 +44,8 @@ class CMenu
   public:
    /*...
    ...*/
-   bool AddItem(CMenuItem *pItem);
-   bool AddItem(MenuItem item);
+   SDL_bool AddItem(CMenuItem *pItem);
+   SDL_bool AddItem(MenuItem item);
    /*...
    ...*/
 };

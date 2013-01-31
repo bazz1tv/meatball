@@ -32,7 +32,7 @@ cBasicSprite :: cBasicSprite( SDL_Renderer *renderer, SDL_Surface *new_image, do
 
 	alpha = 255;
 
-	visible = 1;
+	visible = SDL_TRUE;
 
 	SetImage( renderer, new_image );
 
@@ -44,7 +44,7 @@ cBasicSprite :: cBasicSprite( SDL_Renderer *renderer, SDL_Surface *new_image, do
 	width = (double)srcrect.w;
 	height = (double)srcrect.h;
 	
-	spawned = 0;
+	spawned = SDL_FALSE;
 
 	Spritetype = SPRITE_BASIC;
 	ID = 0;
@@ -67,7 +67,7 @@ cBasicSprite :: ~cBasicSprite( void )
 	startimage = NULL;
 }
 
-void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, bool OverrideSize /* = 1  */ )
+void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, SDL_bool OverrideSize /* = 1  */ )
 {
 	srcimage = new_image;
 	
@@ -79,7 +79,7 @@ void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, b
 	
 	texture = SDL_CreateTextureFromSurface(renderer, new_image);
 
-	drawimg = 1;
+	drawimg = SDL_TRUE;
 
 	if( !new_image )
 	{
@@ -122,7 +122,7 @@ void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, b
 		startrect.h = new_image->h;
 	}
 
-	if( OverrideSize )
+	if( OverrideSize == SDL_TRUE)
 	{
 		width = (double)new_image->w;
 		height = (double)new_image->h;
@@ -143,11 +143,11 @@ void cBasicSprite :: SetSize( double nwidth, double nheight )
 
 	if( image && (image->w != width) && (image->h != height) )
 	{
-		drawimg = 1;
+		drawimg = SDL_TRUE;
 	}
 	else if( srcimage && (width > 0 && height > 0) ) 
 	{
-		drawimg = 1;
+		drawimg = SDL_TRUE;
 	}
 }
 
@@ -173,7 +173,7 @@ void cBasicSprite :: AddSize( double naddwidth, double naddheight )
 
 	if( srcimage ) 
 	{
-		drawimg = 1;
+		drawimg = SDL_TRUE;
 	}
 
 }
@@ -193,7 +193,7 @@ void cBasicSprite :: SetAlpha( Uint8 Alpha )
 {
 	this->alpha = Alpha;
 
-	drawimg = 1;
+	drawimg = SDL_TRUE;
 }
 
 void cBasicSprite :: SetColorKey( Uint32 Colorkey )
@@ -203,7 +203,7 @@ void cBasicSprite :: SetColorKey( Uint32 Colorkey )
 		SDL_SetColorKey( srcimage, SDL_TRUE, Colorkey );
 	}
 
-	drawimg = 1;
+	drawimg = SDL_TRUE;
 }
 
 Uint32 cBasicSprite :: GetAlpha( void )
@@ -245,7 +245,7 @@ void cBasicSprite :: Move( double move_x, double move_y )
 
 void cBasicSprite :: Draw( SDL_Renderer *renderer )
 {
-	if ( !visible || !image || width <= 0 || height <= 0)
+	if ( visible == SDL_FALSE || !image || width <= 0 || height <= 0)
 	{
 		return;
 	}
@@ -267,7 +267,7 @@ void cBasicSprite :: Update( SDL_Renderer *renderer )
 {
 	// Image drawing
 
-	if( drawimg && !( this->Spritetype == SPRITE_ANGLE || this->Spritetype == SPRITE_ACCELEREATION ) && srcimage )
+	if( drawimg == SDL_TRUE && !( this->Spritetype == SPRITE_ANGLE || this->Spritetype == SPRITE_ACCELEREATION ) && srcimage )
 	{
 		if( image )
 		{
@@ -304,9 +304,9 @@ void cBasicSprite :: Update( SDL_Renderer *renderer )
 		}
 		else if( width > 0 && height > 0 ) 
 		{
-			//image = zoomSurface( srcimage, width/(double)srcimage->w, height/(double)srcimage->h, 0 );
+			// image = zoomSurface( srcimage, width/(double)srcimage->w, height/(double)srcimage->h, 0 );
 			image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
-			//image = sge_transform_surface( srcimage, srcimage->format->colorkey, 0,
+			// image = sge_transform_surface( srcimage, srcimage->format->colorkey, 0,
 			//	(float)(width/(double)srcimage->w), (float)(height/(double)srcimage->h), srcimage->flags ); // untested
 			
 			rect.w = (int)width;
@@ -322,12 +322,12 @@ void cBasicSprite :: Update( SDL_Renderer *renderer )
 			rect.h = 0;
 		}
 
-		drawimg = 0;
+		drawimg = SDL_FALSE;
 
 	}
 	else if( !( this->Spritetype == SPRITE_ANGLE || this->Spritetype == SPRITE_ACCELEREATION ) )
 	{
-		drawimg = 0;
+		drawimg = SDL_FALSE;
 	}
 	
 	// CollisionCheck
@@ -410,11 +410,11 @@ void cVelocitySprite :: AddVelocity( double addvelx, double addvely,
 	}
 }
 
-void cVelocitySprite :: Update( SDL_Renderer *renderer, bool nMove )
+void cVelocitySprite :: Update( SDL_Renderer *renderer, SDL_bool nMove )
 {
 	cBasicSprite::Update(renderer);
 
-	if( nMove )
+	if( nMove == SDL_TRUE )
 	{
 		Move( velx * (*Spritespeedfactor) ,vely * (*Spritespeedfactor) );
 	}
@@ -423,7 +423,7 @@ void cVelocitySprite :: Update( SDL_Renderer *renderer, bool nMove )
 
 
 cAngleSprite :: cAngleSprite( SDL_Renderer *renderer, SDL_Surface *new_image, double x, double y, double nangle /* = 0 */,
-			double nspeed /* = 0 */, bool nanglerotate /* = 1  */)
+			double nspeed /* = 0 */, SDL_bool nanglerotate /* = 1  */)
 	: cBasicSprite( renderer, new_image, x, y )
 {
 	angle = 0;
@@ -467,7 +467,7 @@ void cAngleSprite :: SetDirection( double nangle /* = -1 */, double nspeed /* = 
 
 	speed = nspeed;
 
-	drawimg = 1;
+	drawimg = SDL_TRUE;
 }
 
 void cAngleSprite :: AddDirection( double nangle )
@@ -501,11 +501,11 @@ void cAngleSprite :: AddSpeed( double nspeed )
 	SetDirection();
 }
 
-void cAngleSprite :: Update( SDL_Renderer *renderer, bool nMove )
+void cAngleSprite :: Update( SDL_Renderer *renderer, SDL_bool nMove )
 {
 	cBasicSprite::Update(renderer);
 
-	if( anglerotate && drawimg && srcimage )
+	if( anglerotate == SDL_TRUE && drawimg == SDL_TRUE && srcimage )
 	{
 		//printf("%f\n",width);
 		if( image ) 
@@ -552,10 +552,10 @@ void cAngleSprite :: Update( SDL_Renderer *renderer, bool nMove )
 		SDL_CreateTextureFromSurface(renderer, image);
 		//SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
 		
-		drawimg = 0;
+		drawimg = SDL_FALSE;
 	}
 
-	if( nMove ) 
+	if( nMove == SDL_TRUE)
 	{
 		Move( dirx * *Spritespeedfactor, diry * *Spritespeedfactor );
 	}
@@ -599,7 +599,7 @@ void cAccelerationSprite :: AddDeAcceleration( double ndeacc )
 	deacc += ndeacc;
 }
 
-void cAccelerationSprite :: Update(SDL_Renderer *renderer, bool nMove )
+void cAccelerationSprite :: Update(SDL_Renderer *renderer, SDL_bool nMove )
 {
 	if(speed < 0 && acc != 0)
 	{
@@ -677,26 +677,26 @@ cMouseCursor :: ~cMouseCursor( void )
 	//
 }
 
-bool cMouseCursor :: CollisonCheck( double x, double y )
+SDL_bool cMouseCursor :: CollisonCheck( double x, double y )
 {
 	if( posx == x && posy == y ) 
 	{
-		return 1;
+		return SDL_TRUE;
 	}
 
-	return 0;
+	return SDL_FALSE;
 }
 
-bool cMouseCursor :: CollisonCheck( SDL_Rect *Crect )
+SDL_bool cMouseCursor :: CollisonCheck( SDL_Rect *Crect )
 {
 	SDL_Rect Mouse_rect = SetRect( (int)posx, (int)posy, 1, 1 );
 
-	if(  RectIntersect( Crect, &Mouse_rect ) )
+	if(  RectIntersect( Crect, &Mouse_rect ) == SDL_TRUE)
 	{
-		return 1;
+		return SDL_TRUE;
 	}
 
-	return 0;
+	return SDL_FALSE;
 }
 
 

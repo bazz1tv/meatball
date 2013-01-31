@@ -27,14 +27,14 @@ void cWeapon :: Fire( void )
 	// virtual 
 }
 
-bool cWeapon :: can_Fire( void )
+SDL_bool cWeapon :: can_Fire( void )
 {
 	if( timer <= 0) 
 	{
-		return 1;
+		return SDL_TRUE;
 	}
 
-	return 0;
+	return SDL_FALSE;
 }
 
 void cWeapon :: Update( void )
