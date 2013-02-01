@@ -247,7 +247,7 @@ static void CustomApplicationMain (int argc, char **argv)
  *  arguments. Previously, apps launched from the finder had nothing but
  *  an argv[0].
  *
- * This message may be received multiple times to open several docs on launch.
+ * This message may be received MultiSelect times to open several docs on launch.
  *
  * This message is ignored once the app's mainline has been called.
  */

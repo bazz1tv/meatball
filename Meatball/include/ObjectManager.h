@@ -10,7 +10,7 @@ public:
 	ObjectManager() { objects = NULL; numobjs = 0; }
 	~ObjectManager()
 	{
-		if ( objects && numobjs == 0)
+		/*if ( objects && numobjs > 0)
 		{
 			for( unsigned int i = 0;i < numobjs;i++ ) 
 			{
@@ -28,10 +28,23 @@ public:
 			
 			numobjs = 0;
 		}
-		else
+		else if(objects && numobjs == 0)
 		{
-			printf ("ObjectManager: Really Weird.. no Objects but an numobjs != 0\n");
+			printf ("ObjectManager: Really Weird.. There are Objects but an numobjs == 0\n");
+			
+			delete []objects;
+			objects = NULL;
+			numobjs = 0;
 		}
+		else if(!objects && numobjs > 0)
+		{
+			printf ("ObjectManager: Really Weird.. No Objects but an numobjs > 0\n");
+			
+			numobjs = 0;
+		}*/
+		free(objects);
+		objects= NULL;
+		numobjs = 0;
 	}
 	//virtual T* add();
 	virtual void add(T *);
@@ -78,7 +91,7 @@ void ObjectManager<T>::add(T *new_obj)
 template <class T>
 void ObjectManager<T>::RemoveAllObjects()
 {
-	if ( objects )
+	if ( objects && numobjs > 0 )
 	{
 		free(objects);
 		objects = NULL;

@@ -30,6 +30,7 @@ public:
 
 	/// Gets the first overlapping Collision
 	int GetCollidingSpriteNum( SDL_Rect *Crect );
+	SDL_bool GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<cMVelSprite> *obj_man );
 	cBasicSprite *GetCollidingSprite( SDL_Rect *Crect );
 
 	/// Delets an given Sprite
