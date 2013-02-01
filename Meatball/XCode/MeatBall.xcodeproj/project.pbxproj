@@ -27,7 +27,6 @@
 		E9CFA3F316B1D54D00B3919F /* leveleditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3DA16B1D54D00B3919F /* leveleditor.cpp */; };
 		E9CFA3F416B1D54D00B3919F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3DB16B1D54D00B3919F /* main.cpp */; };
 		E9CFA3F516B1D54D00B3919F /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3DC16B1D54D00B3919F /* MainMenu.cpp */; };
-		E9CFA3F716B1D54D00B3919F /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3DE16B1D54D00B3919F /* Menu.cpp */; };
 		E9CFA3F816B1D54D00B3919F /* Misc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3DF16B1D54D00B3919F /* Misc.cpp */; };
 		E9CFA3F916B1D54D00B3919F /* OptionsMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E016B1D54D00B3919F /* OptionsMenu.cpp */; };
 		E9CFA3FA16B1D54D00B3919F /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E116B1D54D00B3919F /* player.cpp */; };
@@ -92,7 +91,6 @@
 		E9CFA3DA16B1D54D00B3919F /* leveleditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 2; name = leveleditor.cpp; path = ../leveleditor.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		E9CFA3DB16B1D54D00B3919F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
 		E9CFA3DC16B1D54D00B3919F /* MainMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenu.cpp; path = ../MainMenu.cpp; sourceTree = "<group>"; };
-		E9CFA3DE16B1D54D00B3919F /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Menu.cpp; path = ../Menu.cpp; sourceTree = "<group>"; };
 		E9CFA3DF16B1D54D00B3919F /* Misc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Misc.cpp; path = ../Misc.cpp; sourceTree = "<group>"; };
 		E9CFA3E016B1D54D00B3919F /* OptionsMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OptionsMenu.cpp; path = ../OptionsMenu.cpp; sourceTree = "<group>"; };
 		E9CFA3E116B1D54D00B3919F /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = player.cpp; path = ../player.cpp; sourceTree = "<group>"; };
@@ -102,33 +100,32 @@
 		E9CFA3E516B1D54D00B3919F /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = ../sprite.cpp; sourceTree = "<group>"; };
 		E9CFA3E616B1D54D00B3919F /* TextObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextObject.cpp; path = ../TextObject.cpp; sourceTree = "<group>"; };
 		E9CFA3E716B1D54D00B3919F /* weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = weapon.cpp; path = ../weapon.cpp; sourceTree = "<group>"; };
-		E9CFA40216B1D56300B3919F /* AF-373.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AF-373.h"; sourceTree = "<group>"; };
+		E9CFA40216B1D56300B3919F /* AF-373.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AF-373.h"; path = "../include/AF-373.h"; sourceTree = "<group>"; };
 		E9CFA40316B1D56300B3919F /* boost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boost.h; sourceTree = "<group>"; };
-		E9CFA40416B1D56300B3919F /* bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bullet.h; sourceTree = "<group>"; };
-		E9CFA40516B1D56300B3919F /* ButtonObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonObject.h; sourceTree = "<group>"; };
-		E9CFA40616B1D56300B3919F /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		E9CFA40716B1D56300B3919F /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collision.h; sourceTree = "<group>"; };
-		E9CFA40816B1D56300B3919F /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
+		E9CFA40416B1D56300B3919F /* bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bullet.h; path = ../include/bullet.h; sourceTree = "<group>"; };
+		E9CFA40516B1D56300B3919F /* ButtonObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ButtonObject.h; path = ../include/ButtonObject.h; sourceTree = "<group>"; };
+		E9CFA40616B1D56300B3919F /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = ../include/Camera.h; sourceTree = "<group>"; };
+		E9CFA40716B1D56300B3919F /* Collision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Collision.h; path = ../include/Collision.h; sourceTree = "<group>"; };
+		E9CFA40816B1D56300B3919F /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = console.h; path = ../include/console.h; sourceTree = "<group>"; };
 		E9CFA40916B1D56300B3919F /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
-		E9CFA40A16B1D56300B3919F /* effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = effects.h; sourceTree = "<group>"; };
-		E9CFA40B16B1D56300B3919F /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enemy.h; sourceTree = "<group>"; };
-		E9CFA40C16B1D56300B3919F /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		E9CFA40D16B1D56300B3919F /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
-		E9CFA40E16B1D56300B3919F /* GraphicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsObject.h; sourceTree = "<group>"; };
-		E9CFA40F16B1D56300B3919F /* level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = level.h; sourceTree = "<group>"; };
+		E9CFA40A16B1D56300B3919F /* effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = effects.h; path = ../include/effects.h; sourceTree = "<group>"; };
+		E9CFA40B16B1D56300B3919F /* enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = enemy.h; path = ../include/enemy.h; sourceTree = "<group>"; };
+		E9CFA40C16B1D56300B3919F /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = ../include/Game.h; sourceTree = "<group>"; };
+		E9CFA40D16B1D56300B3919F /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Globals.h; path = ../include/Globals.h; sourceTree = "<group>"; };
+		E9CFA40E16B1D56300B3919F /* GraphicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphicsObject.h; path = ../include/GraphicsObject.h; sourceTree = "<group>"; };
+		E9CFA40F16B1D56300B3919F /* level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = level.h; path = ../include/level.h; sourceTree = "<group>"; };
 		E9CFA41016B1D56300B3919F /* leveleditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = leveleditor.h; path = ../include/leveleditor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		E9CFA41116B1D56300B3919F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
-		E9CFA41216B1D56300B3919F /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
-		E9CFA41316B1D56300B3919F /* Misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Misc.h; sourceTree = "<group>"; };
+		E9CFA41116B1D56300B3919F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenu.h; path = ../include/MainMenu.h; sourceTree = "<group>"; };
+		E9CFA41316B1D56300B3919F /* Misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Misc.h; path = ../include/Misc.h; sourceTree = "<group>"; };
 		E9CFA41416B1D56300B3919F /* ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectManager.h; sourceTree = "<group>"; };
-		E9CFA41516B1D56300B3919F /* OptionsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsMenu.h; sourceTree = "<group>"; };
-		E9CFA41616B1D56300B3919F /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
-		E9CFA41716B1D56300B3919F /* playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playlist.h; sourceTree = "<group>"; };
-		E9CFA41816B1D56300B3919F /* preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferences.h; sourceTree = "<group>"; };
-		E9CFA41916B1D56300B3919F /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
-		E9CFA41A16B1D56300B3919F /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sprite.h; sourceTree = "<group>"; };
-		E9CFA41B16B1D56300B3919F /* TextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextObject.h; sourceTree = "<group>"; };
-		E9CFA41C16B1D56300B3919F /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = weapon.h; sourceTree = "<group>"; };
+		E9CFA41516B1D56300B3919F /* OptionsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionsMenu.h; path = ../include/OptionsMenu.h; sourceTree = "<group>"; };
+		E9CFA41616B1D56300B3919F /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../include/player.h; sourceTree = "<group>"; };
+		E9CFA41716B1D56300B3919F /* playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playlist.h; path = ../include/playlist.h; sourceTree = "<group>"; };
+		E9CFA41816B1D56300B3919F /* preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = preferences.h; path = ../include/preferences.h; sourceTree = "<group>"; };
+		E9CFA41916B1D56300B3919F /* Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Slider.h; path = ../include/Slider.h; sourceTree = "<group>"; };
+		E9CFA41A16B1D56300B3919F /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = ../include/sprite.h; sourceTree = "<group>"; };
+		E9CFA41B16B1D56300B3919F /* TextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextObject.h; path = ../include/TextObject.h; sourceTree = "<group>"; };
+		E9CFA41C16B1D56300B3919F /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weapon.h; path = ../include/weapon.h; sourceTree = "<group>"; };
 		E9CFA43316B1D63700B3919F /* MeatballEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeatballEngine.framework; path = ../../../../../../../Library/Frameworks/MeatballEngine.framework; sourceTree = "<group>"; };
 		E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatBallAppDelegate.h; path = MacSDLFiles/MeatBallAppDelegate.h; sourceTree = "<group>"; };
 		E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeatBallAppDelegate.m; path = MacSDLFiles/MeatBallAppDelegate.m; sourceTree = "<group>"; };
@@ -157,12 +154,7 @@
 		9C93E38613942B590096FAB3 = {
 			isa = PBXGroup;
 			children = (
-				E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */,
-				E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */,
-				E9D5E53116B6009600FAC31F /* SDLMain.h */,
-				E9D5E53216B6009600FAC31F /* SDLMain.m */,
-				E9CFA3CE16B1D52800B3919F /* Source */,
-				E9CFA40116B1D56300B3919F /* include */,
+				E9A3438116BB7E4A00072818 /* Code */,
 				9C93E39413942B5A0096FAB3 /* Frameworks */,
 				9C93E39213942B5A0096FAB3 /* Products */,
 			);
@@ -201,6 +193,223 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		E9A3436C16BB7C2E00072818 /* Enemies */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA3D616B1D54D00B3919F /* enemy.cpp */,
+				E9CFA40B16B1D56300B3919F /* enemy.h */,
+				E9A3436E16BB7C3500072818 /* AF-373 */,
+			);
+			name = Enemies;
+			sourceTree = "<group>";
+		};
+		E9A3436E16BB7C3500072818 /* AF-373 */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */,
+				E9CFA40216B1D56300B3919F /* AF-373.h */,
+			);
+			name = "AF-373";
+			sourceTree = "<group>";
+		};
+		E9A3436F16BB7C4B00072818 /* Bullet */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40416B1D56300B3919F /* bullet.h */,
+				E9CFA3D016B1D54D00B3919F /* bullet.cpp */,
+			);
+			name = Bullet;
+			sourceTree = "<group>";
+		};
+		E9A3437016BB7C6000072818 /* Graphics Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40516B1D56300B3919F /* ButtonObject.h */,
+				E9CFA41916B1D56300B3919F /* Slider.h */,
+				E9CFA3E416B1D54D00B3919F /* Slider.cpp */,
+				E9CFA40E16B1D56300B3919F /* GraphicsObject.h */,
+				E9CFA41B16B1D56300B3919F /* TextObject.h */,
+				E9CFA3E616B1D54D00B3919F /* TextObject.cpp */,
+				E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */,
+			);
+			name = "Graphics Objects";
+			sourceTree = "<group>";
+		};
+		E9A3437116BB7C8B00072818 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA3D216B1D54D00B3919F /* Camera.cpp */,
+				E9CFA40616B1D56300B3919F /* Camera.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		E9A3437216BB7C9C00072818 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA41116B1D56300B3919F /* MainMenu.h */,
+				E9CFA3DC16B1D54D00B3919F /* MainMenu.cpp */,
+				E9A3437316BB7CA500072818 /* OptionsMenu */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
+		E9A3437316BB7CA500072818 /* OptionsMenu */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA3E016B1D54D00B3919F /* OptionsMenu.cpp */,
+				E9CFA41516B1D56300B3919F /* OptionsMenu.h */,
+			);
+			name = OptionsMenu;
+			sourceTree = "<group>";
+		};
+		E9A3437416BB7CE800072818 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA41616B1D56300B3919F /* player.h */,
+				E9CFA3E116B1D54D00B3919F /* player.cpp */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		E9A3437516BB7CF900072818 /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA41716B1D56300B3919F /* playlist.h */,
+				E9CFA3E216B1D54D00B3919F /* playlist.cpp */,
+			);
+			name = Playlist;
+			sourceTree = "<group>";
+		};
+		E9A3437616BB7D0A00072818 /* Settings&Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA3E316B1D54D00B3919F /* preferences.cpp */,
+				E9CFA41816B1D56300B3919F /* preferences.h */,
+			);
+			name = "Settings&Preferences";
+			sourceTree = "<group>";
+		};
+		E9A3437716BB7D5200072818 /* Weapon */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA3E716B1D54D00B3919F /* weapon.cpp */,
+				E9CFA41C16B1D56300B3919F /* weapon.h */,
+			);
+			name = Weapon;
+			sourceTree = "<group>";
+		};
+		E9A3437816BB7D5D00072818 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA41A16B1D56300B3919F /* sprite.h */,
+				E9CFA3E516B1D54D00B3919F /* sprite.cpp */,
+			);
+			name = Sprite;
+			sourceTree = "<group>";
+		};
+		E9A3437916BB7D7B00072818 /* Level */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40F16B1D56300B3919F /* level.h */,
+				E9CFA3D916B1D54D00B3919F /* level.cpp */,
+			);
+			name = Level;
+			sourceTree = "<group>";
+		};
+		E9A3437A16BB7D8600072818 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40D16B1D56300B3919F /* Globals.h */,
+				E9CFA3D816B1D54D00B3919F /* Globals.cpp */,
+			);
+			name = Globals;
+			sourceTree = "<group>";
+		};
+		E9A3437B16BB7D9200072818 /* MiniEngine(Game) */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40C16B1D56300B3919F /* Game.h */,
+				E9CFA3D716B1D54D00B3919F /* Game.cpp */,
+			);
+			name = "MiniEngine(Game)";
+			sourceTree = "<group>";
+		};
+		E9A3437C16BB7DB300072818 /* Collision */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40716B1D56300B3919F /* Collision.h */,
+				E9CFA3D316B1D54D00B3919F /* Collision.cpp */,
+			);
+			name = Collision;
+			sourceTree = "<group>";
+		};
+		E9A3437D16BB7DBA00072818 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40A16B1D56300B3919F /* effects.h */,
+				E9CFA3D516B1D54D00B3919F /* effects.cpp */,
+			);
+			name = Effects;
+			sourceTree = "<group>";
+		};
+		E9A3437E16BB7DC100072818 /* Console */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA40816B1D56300B3919F /* console.h */,
+				E9CFA3D416B1D54D00B3919F /* console.cpp */,
+			);
+			name = Console;
+			sourceTree = "<group>";
+		};
+		E9A3437F16BB7DCD00072818 /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA41316B1D56300B3919F /* Misc.h */,
+				E9CFA3DF16B1D54D00B3919F /* Misc.cpp */,
+			);
+			name = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		E9A3438016BB7E1400072818 /* Mac_Specific */ = {
+			isa = PBXGroup;
+			children = (
+				E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */,
+				E9D5E53116B6009600FAC31F /* SDLMain.h */,
+				E9D5E53216B6009600FAC31F /* SDLMain.m */,
+				E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */,
+			);
+			name = Mac_Specific;
+			sourceTree = "<group>";
+		};
+		E9A3438116BB7E4A00072818 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
+				E9A3438016BB7E1400072818 /* Mac_Specific */,
+				E9A3437216BB7C9C00072818 /* Menus */,
+				E9A3437116BB7C8B00072818 /* Camera */,
+				E9A3437016BB7C6000072818 /* Graphics Objects */,
+				E9A3436F16BB7C4B00072818 /* Bullet */,
+				E9A3436C16BB7C2E00072818 /* Enemies */,
+				E9A3437C16BB7DB300072818 /* Collision */,
+				E9A3437E16BB7DC100072818 /* Console */,
+				E9A3437D16BB7DBA00072818 /* Effects */,
+				E9A3437B16BB7D9200072818 /* MiniEngine(Game) */,
+				E9A3437A16BB7D8600072818 /* Globals */,
+				E9A3437916BB7D7B00072818 /* Level */,
+				E9BC1FAA16B960B70020965C /* LevelEditor */,
+				E9A3437F16BB7DCD00072818 /* Miscellaneous */,
+				E9A3437616BB7D0A00072818 /* Settings&Preferences */,
+				E9A3437516BB7CF900072818 /* Playlist */,
+				E9A3437416BB7CE800072818 /* Player */,
+				E9A3437816BB7D5D00072818 /* Sprite */,
+				E9A3437716BB7D5200072818 /* Weapon */,
+				E9CFA40116B1D56300B3919F /* include */,
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
 		E9BC1FAA16B960B70020965C /* LevelEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,67 +419,13 @@
 			name = LevelEditor;
 			sourceTree = "<group>";
 		};
-		E9CFA3CE16B1D52800B3919F /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */,
-				E9CFA3D016B1D54D00B3919F /* bullet.cpp */,
-				E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */,
-				E9CFA3D216B1D54D00B3919F /* Camera.cpp */,
-				E9CFA3D316B1D54D00B3919F /* Collision.cpp */,
-				E9CFA3D416B1D54D00B3919F /* console.cpp */,
-				E9CFA3D516B1D54D00B3919F /* effects.cpp */,
-				E9CFA3D616B1D54D00B3919F /* enemy.cpp */,
-				E9CFA3D716B1D54D00B3919F /* Game.cpp */,
-				E9CFA3D816B1D54D00B3919F /* Globals.cpp */,
-				E9CFA3D916B1D54D00B3919F /* level.cpp */,
-				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
-				E9CFA3DC16B1D54D00B3919F /* MainMenu.cpp */,
-				E9BC1FAA16B960B70020965C /* LevelEditor */,
-				E9CFA3DE16B1D54D00B3919F /* Menu.cpp */,
-				E9CFA3DF16B1D54D00B3919F /* Misc.cpp */,
-				E9CFA3E016B1D54D00B3919F /* OptionsMenu.cpp */,
-				E9CFA3E116B1D54D00B3919F /* player.cpp */,
-				E9CFA3E216B1D54D00B3919F /* playlist.cpp */,
-				E9CFA3E316B1D54D00B3919F /* preferences.cpp */,
-				E9CFA3E416B1D54D00B3919F /* Slider.cpp */,
-				E9CFA3E516B1D54D00B3919F /* sprite.cpp */,
-				E9CFA3E616B1D54D00B3919F /* TextObject.cpp */,
-				E9CFA3E716B1D54D00B3919F /* weapon.cpp */,
-			);
-			name = Source;
-			sourceTree = "<group>";
-		};
 		E9CFA40116B1D56300B3919F /* include */ = {
 			isa = PBXGroup;
 			children = (
-				E9CFA40216B1D56300B3919F /* AF-373.h */,
 				E9CFA40316B1D56300B3919F /* boost.h */,
-				E9CFA40416B1D56300B3919F /* bullet.h */,
-				E9CFA40516B1D56300B3919F /* ButtonObject.h */,
-				E9CFA40616B1D56300B3919F /* Camera.h */,
-				E9CFA40716B1D56300B3919F /* Collision.h */,
-				E9CFA40816B1D56300B3919F /* console.h */,
 				E9CFA40916B1D56300B3919F /* defines.h */,
-				E9CFA40A16B1D56300B3919F /* effects.h */,
-				E9CFA40B16B1D56300B3919F /* enemy.h */,
-				E9CFA40C16B1D56300B3919F /* Game.h */,
-				E9CFA40D16B1D56300B3919F /* Globals.h */,
 				E901FD7F16B364E200DB896C /* OS.h */,
-				E9CFA40E16B1D56300B3919F /* GraphicsObject.h */,
-				E9CFA40F16B1D56300B3919F /* level.h */,
-				E9CFA41116B1D56300B3919F /* MainMenu.h */,
-				E9CFA41216B1D56300B3919F /* Menu.h */,
-				E9CFA41316B1D56300B3919F /* Misc.h */,
 				E9CFA41416B1D56300B3919F /* ObjectManager.h */,
-				E9CFA41516B1D56300B3919F /* OptionsMenu.h */,
-				E9CFA41616B1D56300B3919F /* player.h */,
-				E9CFA41716B1D56300B3919F /* playlist.h */,
-				E9CFA41816B1D56300B3919F /* preferences.h */,
-				E9CFA41916B1D56300B3919F /* Slider.h */,
-				E9CFA41A16B1D56300B3919F /* sprite.h */,
-				E9CFA41B16B1D56300B3919F /* TextObject.h */,
-				E9CFA41C16B1D56300B3919F /* weapon.h */,
 			);
 			name = include;
 			path = ../include;
@@ -341,7 +496,6 @@
 				E9CFA3F316B1D54D00B3919F /* leveleditor.cpp in Sources */,
 				E9CFA3F416B1D54D00B3919F /* main.cpp in Sources */,
 				E9CFA3F516B1D54D00B3919F /* MainMenu.cpp in Sources */,
-				E9CFA3F716B1D54D00B3919F /* Menu.cpp in Sources */,
 				E9CFA3F816B1D54D00B3919F /* Misc.cpp in Sources */,
 				E9CFA3F916B1D54D00B3919F /* OptionsMenu.cpp in Sources */,
 				E9CFA3FA16B1D54D00B3919F /* player.cpp in Sources */,
