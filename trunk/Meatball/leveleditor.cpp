@@ -720,25 +720,25 @@ void cLevelEditor::HeldKey_fastcopy()
 		{
 			if( keys[SDL_SCANCODE_D])
 			{
-				usleep(LEVELEDIT_SLEEPWAIT);
+				//usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x + pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
 				pCamera->Move( pLevelEditor->CopyObject->width, 0 );
 			}
 			else if( keys[SDL_SCANCODE_W] )
 			{
-				usleep(LEVELEDIT_SLEEPWAIT);
+				//usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x, pLevelEditor->CopyObject->posy - pCamera->y - pLevelEditor->CopyObject->height );
 				pCamera->Move( 0, - pLevelEditor->CopyObject->height );
 			}
 			else if( keys[SDL_SCANCODE_A] )
 			{
-				usleep(LEVELEDIT_SLEEPWAIT);
+				//usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx - pCamera->x - pLevelEditor->CopyObject->width, pLevelEditor->CopyObject->posy - pCamera->y );
 				pCamera->Move( - pLevelEditor->CopyObject->width, 0 );
 			}
 			else if( keys[SDL_SCANCODE_S] )
 			{
-				usleep(LEVELEDIT_SLEEPWAIT);
+				//usleep(LEVELEDIT_SLEEPWAIT);
 				pLevelEditor->PasteObject( pLevelEditor->CopyObject->posx- pCamera->x , pLevelEditor->CopyObject->posy - pCamera->y + pLevelEditor->CopyObject->height );
 				pCamera->Move( 0, pLevelEditor->CopyObject->height );
 			}

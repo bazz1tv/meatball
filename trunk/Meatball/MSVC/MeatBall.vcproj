@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -73,15 +73,16 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="freetype_D.lib sdl.lib boost_system-vc90-mt-gd-1_51.lib boost_filesystem-vc90-mt-gd-1_51.lib"
+				AdditionalDependencies="sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib boost_system-vc90-mt-gd-1_51.lib boost_filesystem-vc90-mt-gd-1_51.lib"
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl_net\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_ttf\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_mixer\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sge\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_image\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl\libd\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\Debug;&quot;$(MEATBALL_LIBDIR)\freetype\libd\x86&quot;"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\md\libd\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\Debug;&quot;$(MEATBALL_LIBDIR)\freetype\libd\x86&quot;"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="Debug/MeatBall.pdb"
 				SubSystem="1"
-				EntryPointSymbol="SDL_main"
+				EntryPointSymbol=""
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
@@ -142,7 +143,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -165,15 +166,15 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
-				CommandLine="xcopy /i /y &quot;$(OutDir)\Dll\mt\Release\*.*&quot; &quot;$(OutDir)\&quot;"
+				CommandLine="xcopy /i /y &quot;$(OutDir)\Dll\Release\*.*&quot; &quot;$(OutDir)\&quot;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="freetype.lib sge.lib sdl_ep.lib sdl.lib sdl_ttf.lib sdl_image.lib sdl_mixer.lib  sdl_net.lib"
+				AdditionalDependencies="freetype.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib boost_system-vc90-mt-1_51.lib boost_filesystem-vc90-mt-1_51.lib"
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl_net\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_ttf\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_mixer\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sge\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl_image\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl\mt\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\mt\Release;&quot;$(MEATBALL_LIBDIR)\freetype\lib\x86&quot;"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\mt\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\Release;&quot;$(MEATBALL_LIBDIR)\freetype\lib\x86&quot;"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="Release/MeatBall.pdb"
@@ -775,6 +776,10 @@
 		</File>
 		<File
 			RelativePath="..\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\include\OS.h"
 			>
 		</File>
 	</Files>

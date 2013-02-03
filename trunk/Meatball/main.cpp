@@ -71,7 +71,7 @@ void initEngine()
 		return;
 	}*/
 	
-	Window = GetWindow(APP_TITLE, pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, SDL_WINDOW_SHOWN);
+	Window = GetWindow(APP_TITLE, pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN);
 	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED);
 	window_height = pGameSettings->Screen_H;
 	window_width = pGameSettings->Screen_W;
@@ -85,8 +85,8 @@ void initEngine()
 	//SetWindowCaption( "MeatBall - Vegetable Destruction" );
 	
 	icon = SDL_LoadBMP("data/favicon.bmp");
-	Uint32 colorkey = SDL_MapRGB(icon->format, 128, 128, 128);
-	SDL_SetColorKey(icon, SDL_TRUE, colorkey);
+	Uint32 ckey = SDL_MapRGB(icon->format, 128, 128, 128);
+	SDL_SetColorKey(icon, SDL_TRUE, ckey);
 	//SDL_WM_SetIcon(icon, NULL);
 	
 	// The icon is attached to the window pointer
