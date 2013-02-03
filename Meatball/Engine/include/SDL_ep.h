@@ -20,9 +20,9 @@
 
 
 #ifdef _WIN32
-	#ifdef _DEBUG
+	/*#ifdef _DEBUG
 		#include <vld.h>
-	#endif
+	#endif*/
 
 	#include <SDL.h>
 
@@ -36,11 +36,11 @@
 
 
 #ifdef _WIN32
-#pragma comment( lib, "SDL.lib" )
-#pragma comment( lib, "SDL_mixer.lib" )
-#pragma comment( lib, "SDL_image.lib" )
-#pragma comment( lib, "SDL_ttf.lib" )
-#pragma comment( lib, "SDL_net.lib" )
+#pragma comment( lib, "SDL2.lib" )
+#pragma comment( lib, "SDL2_mixer.lib" )
+#pragma comment( lib, "SDL2_image.lib" )
+#pragma comment( lib, "SDL2_ttf.lib" )
+#pragma comment( lib, "SDL2_net.lib" )
 //#pragma comment( lib, "Sge.lib" )
 #endif
 

@@ -27,8 +27,8 @@ MainMenu::MainMenu()
 	/// [Adding a Sprite]
 	// Add the image to the Image Manager
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Background3.png", colorkey ), "Menu_Background" );
-	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Start.png", colorkey, 140 ), "Start_Button" );
-	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Exit.png", colorkey, 140 ), "Exit_Button" );
+	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Start_32bpp.png", colorkey, 140 ), "Start_Button" );
+	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Exit_32bpp.png", colorkey, 140 ), "Exit_Button" );
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Light1.png", colorkey, 0 ), "Light_1" );
 	// Register the sprite
 	Menu_Background = new cBasicSprite( Renderer, IMan->GetPointer( "Menu_Background" ), 0, 0 );

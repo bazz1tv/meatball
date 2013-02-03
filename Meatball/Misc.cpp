@@ -92,9 +92,7 @@ SDL_bool IsFullScreen(SDL_Window *win)
 /// Toggles On/Off FullScreen
 /// @returns SDL_FALSE on error, SDL_TRUE on Set fullscreen successful, SDL_FALSE on Set Windowed successful
 SDL_bool SDL_ToggleFS(SDL_Window *win)
-{ 
-    //Uint32 flags = surface->flags; // Get the video surface flags
-    
+{  
     if (IsFullScreen(win))
     { 
         // Swith to WINDOWED mode 
@@ -108,7 +106,6 @@ SDL_bool SDL_ToggleFS(SDL_Window *win)
     } 
     
     // Swith to FULLSCREEN mode
-	//SDL_LockSurface(surface);
     if (SDL_SetWindowFullscreen(win, SDL_TRUE) < 0)
 	{
 		std::cout<<"Setting fullscreen failed : "<<SDL_GetError()<<std::endl;
