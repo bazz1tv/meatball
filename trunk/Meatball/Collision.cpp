@@ -295,6 +295,9 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 	Collision->iCollisionNumber = 0;
 	Collision->iCollisionType = 0;
 	Collision->collide = -1;
+
+	//if (width == 0 || height == 0)
+		//return;
 	
 	// Check for an Collision with the Player
 

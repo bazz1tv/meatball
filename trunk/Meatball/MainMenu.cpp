@@ -239,7 +239,7 @@ void MainMenu::Do()
 #ifndef DEMO
 		pAudio->FadeOutMusic( 2000 );
 #endif
-		FadeOutBG();
+		//FadeOutBG();
 #endif
 	}
 }

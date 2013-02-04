@@ -77,7 +77,7 @@
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\md\libd\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\Debug;&quot;$(MEATBALL_LIBDIR)\freetype\libd\x86&quot;"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\md\libd\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\md\libd\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\MD\Debug"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="Debug/MeatBall.pdb"
@@ -143,10 +143,10 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include;&quot;$(MEATBALL_LIBDIR)\freetype\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				PrecompiledHeaderFile=".\Release/MeatBall.pch"
 				AssemblerListingLocation=".\Release/"
@@ -170,11 +170,207 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="freetype.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib boost_system-vc90-mt-1_51.lib boost_filesystem-vc90-mt-1_51.lib"
+				AdditionalDependencies="sdl_Ep.lib freetype.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib boost_system-vc90-mt-1_51.lib boost_filesystem-vc90-mt-1_51.lib"
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\mt\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\Release;&quot;$(MEATBALL_LIBDIR)\freetype\lib\x86&quot;"
+				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile="Release/MeatBall.pdb"
+				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+				UseFAT32Workaround="true"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile="Release/MeatBall.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release_MD|Win32"
+			OutputDirectory=".\..\..\Bin"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TypeLibraryName=".\..\..\Bin/MeatBall.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include"
+				PreprocessorDefinitions=" _WIN32;WIN32;NDEBUG;_CONSOLE"
+				StringPooling="true"
+				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				PrecompiledHeaderFile=".\Release/MeatBall.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
+				BrowseInformation="1"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="xcopy /i /y &quot;$(OutDir)\Dll\MD\Release\*.*&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2\md\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_image\md\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_image\external\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_mixer\md\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_mixer\external\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_ttf\md\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_ttf\external\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_net\md\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="sdl_ep.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib"
+				OutputFile="$(OutDir)/MeatBall.exe"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\md\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\md\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\md\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\md\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\md\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\MD\Release"
+				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="false"
+				ProgramDatabaseFile="Release/MeatBall.pdb"
+				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+				UseFAT32Workaround="true"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+				SuppressStartupBanner="true"
+				OutputFile="Release/MeatBall.bsc"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				CommandLine=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release_MT|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="1"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TypeLibraryName=".\..\..\Bin/MeatBall.tlb"
+				HeaderFileName=""
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="2"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\include&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\include&quot;;&quot;$(BOOST_DIR)&quot;;..\include;..\Engine\include"
+				PreprocessorDefinitions=" _WIN32;WIN32;NDEBUG;_CONSOLE"
+				StringPooling="true"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="true"
+				PrecompiledHeaderFile=".\Release/MeatBall.pch"
+				AssemblerListingLocation=".\Release/"
+				ObjectFile=".\Release/"
+				ProgramDataBaseFileName=".\Release/"
+				BrowseInformation="1"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="1033"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+				CommandLine="xcopy /i /y &quot;$(OutDir)\Dll\MD\Release\*.*&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2\mt\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_image\mt\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_image\external\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_mixer\mt\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_mixer\external\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_ttf\mt\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_ttf\external\*.dll&quot; &quot;$(OutDir)\&quot;&#x0D;&#x0A;xcopy /i /y &quot;$(MEATBALL_LIBDIR)\sdl2_net\mt\lib\x86\*.dll&quot; &quot;$(OutDir)\&quot;"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="sdl_ep.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib libboost_system-vc90-mt-s-1_51.lib libboost_filesystem-vc90-mt-s-1_51.lib"
+				OutputFile="$(OutDir)/MeatBall.exe"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				AdditionalLibraryDirectories="&quot;$(MEATBALL_LIBDIR)\sdl2_ttf\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_mixer\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_net\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2_image\mt\lib\x86&quot;;&quot;$(MEATBALL_LIBDIR)\sdl2\mt\lib\x86&quot;;&quot;$(BOOST_DIR)\lib&quot;;..\..\Bin\Dll\MT\Release"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="Release/MeatBall.pdb"
@@ -240,6 +436,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -258,6 +470,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -285,6 +513,22 @@
 					</FileConfiguration>
 					<FileConfiguration
 						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_MD|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release_MT|Win32"
 						>
 						<Tool
 							Name="VCCLCompilerTool"
@@ -320,6 +564,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\include\player.h"
@@ -342,6 +602,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -376,6 +652,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\include\leveleditor.h"
@@ -398,6 +690,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -432,6 +740,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\include\console.h"
@@ -454,6 +778,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -488,6 +828,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\include\bullet.h"
@@ -510,6 +866,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -544,6 +916,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\include\Collision.h"
@@ -566,6 +954,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -604,6 +1008,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\include\Globals.h"
@@ -632,6 +1052,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\include\Game.h"
@@ -654,6 +1090,22 @@
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MD|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release_MT|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
