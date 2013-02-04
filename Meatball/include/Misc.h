@@ -18,7 +18,7 @@ void FillRectAlpha(SDL_Renderer *renderer, SDL_Rect *rect, Uint32 rgba);
 
 
 /// Toggle fullScreen
-SDL_bool SDL_ToggleFS(SDL_Window*);
+int SDL_ToggleFS(SDL_Window*);
 
 /// More english version of 
 SDL_bool MouseCollidesWith(SDL_Rect *Crect);
