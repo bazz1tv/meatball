@@ -75,7 +75,7 @@ string cImageManager :: GetIdentifier( SDL_Surface *nItem )
 
 unsigned int cImageManager :: GetSize( void )
 {
-	return ImageItems.size();
+	return (unsigned int)ImageItems.size();
 }
 
 

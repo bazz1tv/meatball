@@ -57,7 +57,7 @@ string cSoundManager :: GetIdentifier( Mix_Chunk *nItem )
 
 unsigned int cSoundManager :: GetSize( void )
 {
-	return SoundItems.size();
+	return (unsigned int)SoundItems.size();
 }
 
 

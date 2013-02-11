@@ -375,7 +375,7 @@ int cTCPNet :: Send_Message( TCPsocket sock, const string message ) // 2.6
 	
 	Uint32 len, result;
 
-	len = message.size() + 1; // + 1 for the terminating NULL
+	len = (Uint32)message.size() + 1; // + 1 for the terminating NULL
 	
 	// change endianness to network order
 	len = SDL_SwapBE32( len );
@@ -515,7 +515,7 @@ int cTCPNet :: Alloc_Socketset( void ) // 2.6
 	
 	if( state == STATE_HOSTING_CONNECTED ) 
 	{
-		socketset = SDLNet_AllocSocketSet( clients.size() + 1 ); // + 1 for csocket
+		socketset = SDLNet_AllocSocketSet( (int)clients.size() + 1 ); // + 1 for csocket
 	}
 	else if( state == STATE_CLIENT_CONNECTED || state == STATE_HOSTING_EMPTY ) 
 	{
