@@ -61,6 +61,9 @@ public:
 	DLLINTERFACE void Move( double move_x, double move_y );
 
 	DLLINTERFACE void Draw( SDL_Renderer *renderer );
+
+	DLLINTERFACE void UpdateTexture( SDL_Renderer *renderer );
+	DLLINTERFACE void DestroyTexture( void );
 	
 	//DLLINTERFACE virtual void Update( void );
 	DLLINTERFACE virtual void Update( SDL_Renderer *renderer );

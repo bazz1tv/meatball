@@ -91,7 +91,10 @@ void OptionsMenu::Update()
 {
 	PreUpdate();
 
-	
+	tMusicVol->Update();
+	tExit->Update();
+	tSoundVol->Update();
+	tControls->Update();
 
 	if (status == SLIDING_SVOL)
 	{
@@ -379,6 +382,18 @@ ControlsMenu::~ControlsMenu()
 
 void ControlsMenu::Update()
 {
+
+	tMoveLeft->Update();	
+	tMoveRight->Update();	
+	tFirePrimary->Update();
+	tJump->Update();
+	tExit->Update();
+
+	tMoveLeft_CurKey->Update();	
+	tMoveRight_CurKey->Update();
+	tFirePrimary_CurKey->Update();
+	tJump_CurKey->Update();
+
 	if (tMoveLeft_CurKey->text	!= SDL_GetKeyName(pPreferences->pSettings->Key_walk_left))
 	{
 		tMoveLeft_CurKey->text = SDL_GetKeyName(pPreferences->pSettings->Key_walk_left);

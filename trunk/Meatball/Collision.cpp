@@ -318,31 +318,31 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 	{
 		// This seems to check all level sprites.. This should be optimized to only check for collision with on screen sprites
 		// Check for an Collision with an LevelObject
-		for( i = 0;i < pLevel->pLevelData->BasicSpriteCount;i++ )
+		for( i = 0;i < pLevel->pLevelData_Layer1->BasicSpriteCount;i++ )
 		{
-			if( !pLevel->pLevelData->BasicSprites[i] )
+			if( !pLevel->pLevelData_Layer1->BasicSprites[i] )
 			{
 				continue;
 			}
 
-			if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE )
+			if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE )
 			{
-				if( RectIntersect( &rect1, &pLevel->pLevelData->BasicSprites[i]->rect ) ) // if Position is not valid
+				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect ) ) // if Position is not valid
 				{
 					Collision->iCollisionNumber = i;
 					Collision->iCollisionType = SPRITE_TYPE_MASSIVE;	// Massive Object
-					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData->BasicSprites[i]->rect );
+					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect );
 					return;
 				}
 			}
 
-			if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) // if Position is not valid
+			if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) // if Position is not valid
 			{
-				if( RectIntersect( &rect1, &pLevel->pLevelData->BasicSprites[i]->rect ) )
+				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect ) )
 				{
 					Collision->iCollisionNumber = i;
 					Collision->iCollisionType = SPRITE_TYPE_HALFMASSIVE;	// HalfMassive Object
-					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData->BasicSprites[i]->rect );
+					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect );
 					return;
 				}
 			}

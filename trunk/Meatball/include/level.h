@@ -37,6 +37,14 @@ public:
 	void DeleteSprite( unsigned int number );
 };
 
+
+/* New modes of rendering Layers... TILE MODE
+
+BackGround Slow_Scroll Mode
+
+*/
+
+
 /// Basic Level Class
 /// This time maybe with Alpha,glimming and Animation support ?
 class cLevel
@@ -64,7 +72,8 @@ public:
 	string levelfile;
 
 	/// The Level Data
-	cLevelData *pLevelData;
+	cLevelData *pLevelData_Layer1;
+	cLevelData *pLevelData_Layer1_Layer2;
 
 
 private:

@@ -73,7 +73,7 @@ SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<
 	
 	if( BasicSprites && Crect )
 	{
-		printf( "Using Crect coords x: %d, y: %d, width: %d, height: %d", Crect->x,Crect->y, Crect->w, Crect->h);
+		printf( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
 		
 		for( unsigned int i = 0; i < BasicSpriteCount; i++ )
 		{
@@ -131,7 +131,7 @@ void cLevelData :: DeleteSprite( unsigned int number )
 cLevel :: cLevel( void )
 {
 	levelfile = "none";
-	pLevelData = NULL;
+	pLevelData_Layer1 = NULL;
 }
 
 cLevel :: ~cLevel( void )
@@ -157,7 +157,7 @@ void cLevel :: Load( string filename )
 	
 	levelfile = filename;
 
-	pLevelData = new cLevelData();
+	pLevelData_Layer1 = new cLevelData();
 
 	ifstream ifs;
 	ifs.open( full_filename.c_str(), ios :: in );
@@ -178,10 +178,10 @@ void cLevel :: Load( string filename )
 
 void cLevel :: Unload( void )
 {
-	if( pLevelData ) 
+	if( pLevelData_Layer1 ) 
 	{
-		delete pLevelData;
-		pLevelData = NULL;
+		delete pLevelData_Layer1;
+		pLevelData_Layer1 = NULL;
 	}
 
 	levelfile.clear();
@@ -217,41 +217,41 @@ void cLevel :: Save( void )
 	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, (int)window_height - (int)pPlayer->Startposy );
 	ofs.write( row, strlen( row ) );
 
-	sprintf( row,  "Music %s\n\n", pLevelData->Musicfile.c_str() );
+	sprintf( row,  "Music %s\n\n", pLevelData_Layer1->Musicfile.c_str() );
 	ofs.write( row, strlen( row ) );
 
 	sprintf( row, "### Map Objects ###\n" );
 	ofs.write( row, strlen( row ) );
 	
 	// Map Objects
-	if( pLevel->pLevelData ) 
+	if( pLevel->pLevelData_Layer1 ) 
 	{
-		for( i = 0; pLevel->pLevelData->BasicSpriteCount > i; i++ )
+		for( i = 0; pLevel->pLevelData_Layer1->BasicSpriteCount > i; i++ )
 		{
-			if( !pLevel->pLevelData->BasicSprites[i] ) 
+			if( !pLevel->pLevelData_Layer1->BasicSprites[i] ) 
 			{
 				continue;
 			}
 			
-			string image_filename = IMan->GetIdentifier( pLevel->pLevelData->BasicSprites[i]->srcimage );
+			string image_filename = IMan->GetIdentifier( pLevel->pLevelData_Layer1->BasicSprites[i]->srcimage );
 
 			image_filename.erase( 0, strlen( PIXMAPS_DIR ) );
 			
-			if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE ) 
+			if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE ) 
 			{
-				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites[i]->posy );
 			}
-			else if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_PASSIVE ) 
+			else if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_PASSIVE ) 
 			{
-				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites[i]->posy );
 			}
-			else if( pLevel->pLevelData->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) 
+			else if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) 
 			{
-				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData->BasicSprites[i]->posy );
+				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites[i]->posy );
 			}
 			else
 			{
-				printf( "Warning Level Saving : Unknown Map Object type : %d\n",pLevel->pLevelData->BasicSprites[i]->type );
+				printf( "Warning Level Saving : Unknown Map Object type : %d\n",pLevel->pLevelData_Layer1->BasicSprites[i]->type );
 				continue;
 			}
 
@@ -291,8 +291,8 @@ void cLevel :: Update( void )
 {
 	if( !Mix_PlayingMusic() )
 	{
-		string filename = MUSIC_DIR + pLevelData->Musicfile;
-#define DEMO
+		string filename = MUSIC_DIR + pLevelData_Layer1->Musicfile;
+
 #ifndef DEMO
 		pAudio->PlayMusik( (char *)filename.c_str(),0,1 );
 #endif
@@ -302,15 +302,30 @@ void cLevel :: Update( void )
 
 void cLevel :: Draw( void )
 {
-	for( unsigned int i = 0; i < pLevelData->BasicSpriteCount;i++ )
+	// For all tiles Update and Draw... Hm don'chu think we should make a seperate Update & Draw Routine ???
+
+	// I'll tell you why we do it all at once... So we only Loop once>!! It's costly to do it twice...
+	// it doesn't seem right.
+
+	/* We should be drawing like 5 layers at a time... So hmmmmmm.... .What does that mean??? 
+
+	This seems to be very dependent on the level at the time it goes aT .
+
+	So i Suppose insteadd of... Having.. ... ..... >  I HAVEN O F >> >> >>> 
+
+	 */ 
+
+
+
+	for( unsigned int i = 0; i < pLevelData_Layer1->BasicSpriteCount;i++ )
 	{
-		if( !pLevelData->BasicSprites[i] ) 
+		if( !pLevelData_Layer1->BasicSprites[i] ) 
 		{
 			continue;
 		}
 
-		pLevelData->BasicSprites[i]->Update();
-		pLevelData->BasicSprites[i]->Draw( Renderer );
+		pLevelData_Layer1->BasicSprites[i]->Update();
+		pLevelData_Layer1->BasicSprites[i]->Draw( Renderer );
 	}
 }
 
@@ -407,19 +422,19 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 		{
 			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height -(double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_MASSIVE;
-			pLevelData->AddSprite( temp );
+			pLevelData_Layer1->AddSprite( temp );
 		}
 		else if( strcmp( parts[4], "PASSIVE" ) == 0 )
 		{
 			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height -(double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_PASSIVE;
-			pLevelData->AddSprite( temp );
+			pLevelData_Layer1->AddSprite( temp );
 		}
 		else if( strcmp( parts[4], "HALFMASSIVE" ) == 0 )
 		{
 			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height - (double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_HALFMASSIVE;
-			pLevelData->AddSprite( temp );
+			pLevelData_Layer1->AddSprite( temp );
 		}
 		else
 		{
@@ -508,7 +523,7 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 			return 0; // error			
 		}
 
-		pLevelData->Musicfile = parts[1];
+		pLevelData_Layer1->Musicfile = parts[1];
 	}
 	else
 	{

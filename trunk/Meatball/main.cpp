@@ -71,7 +71,8 @@ void initEngine()
 		return;
 	}*/
 	
-	Window = GetWindow(APP_TITLE, pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_SHOWN);
+	Window = GetWindow(APP_TITLE, pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS
+			| SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN , pPreferences->pSettings->Fullscreen ? SDL_TRUE : SDL_FALSE);
 	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED);
 	window_height = pGameSettings->Screen_H;
 	window_width = pGameSettings->Screen_W;
