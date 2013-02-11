@@ -35,6 +35,11 @@ void FillRectAlpha(SDL_Renderer *renderer, SDL_Rect *rect, Uint32 rgba)
 	FillRectAlpha(renderer, rect->x, rect->y, rect->w, rect->h, r, g, b, a);
 }
 
+void FillRectAlpha(SDL_Renderer *renderer, SDL_Rect *rect, Uint8 r,Uint8 g,Uint8 b,Uint8 a)
+{
+	FillRectAlpha(renderer, rect->x, rect->y, rect->w, rect->h, r, g, b, a);
+}
+
 //////// FOR SURFACES
 
 void FillRect(SDL_Surface *surface, int x, int y, int w, int h, Uint32 color)
@@ -108,7 +113,7 @@ int SDL_ToggleFS(SDL_Window *win)
 	//SDL_DisplayMode mode;
 	//SDL_GetWindowDisplayMode(Window, &mode);
 	
-	SDL_DestroyRenderer(Renderer);
+	//SDL_DestroyRenderer(Renderer);
 
     if (IsFullScreen(win))
     { 

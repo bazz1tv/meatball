@@ -210,6 +210,8 @@ public:
 	DLLINTERFACE SDL_bool CollisonCheck ( SDL_Rect *Crect );
 
 	DLLINTERFACE void Update( SDL_Renderer *renderer);
+	DLLINTERFACE void hide();
+	DLLINTERFACE void show();
 };
 
 #endif

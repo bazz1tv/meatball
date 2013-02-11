@@ -42,8 +42,8 @@ OptionsMenu::OptionsMenu()
 	sMusicVol = new Slider(x+tMusicVol->surface->w+25, tMusicVol->rect.y+16, 382, 0, 128);
 	sSoundVol = new Slider(sMusicVol->panel_x, tSoundVol->rect.y+16, 382, 0, 128);
 	// Set the Adjusters to lie on the Values of our previous User Settings
-	sMusicVol->SetAdjusterX(sMusicVol->doInverseCalculation(pPreferences->pSettings->mvol));
-	sSoundVol->SetAdjusterX(sSoundVol->doInverseCalculation(pPreferences->pSettings->svol));
+	sMusicVol->SetAdjusterXOffset(sMusicVol->getPixelValueFromTargetValue(pPreferences->pSettings->mvol));
+	sSoundVol->SetAdjusterXOffset(sSoundVol->getPixelValueFromTargetValue(pPreferences->pSettings->svol));
 }
 
 OptionsMenu::~OptionsMenu()
@@ -99,7 +99,7 @@ void OptionsMenu::Update()
 	if (status == SLIDING_SVOL)
 	{
 		sSoundVol->Slide((int)floor(pMouse->posx));
-		int svol = sSoundVol->doCalculation();
+		int svol = sSoundVol->getTargetValue();
 		pPreferences->pSettings->svol = svol;
 		pAudio->SetAllSoundsVolume(svol);
 		playSoundEffect();
@@ -110,7 +110,7 @@ void OptionsMenu::Update()
 	if (status == SLIDING_MVOL)
 	{
 		sMusicVol->Slide((int)floor(pMouse->posx));
-		int mvol = sMusicVol->doCalculation();
+		int mvol = sMusicVol->getTargetValue();
 		pPreferences->pSettings->mvol = mvol;
 		pAudio->SetMusicVolume(mvol);
 		// If music is not playing, this section here should throw on a tune
@@ -256,11 +256,13 @@ void OptionsMenu::Collisions()
 				{
 					if (MouseCollidesWith(&sSoundVol->adjuster_rect) && status == BROWSING)
 					{
+						pMouse->hide();
 						sSoundVol->Activate();
 						status = SLIDING_SVOL;
 					}
 					else if (MouseCollidesWith(&sMusicVol->adjuster_rect) && status == BROWSING)
 					{
+						pMouse->hide();
 						sMusicVol->Activate();
 						status = SLIDING_MVOL;
 					}
@@ -288,9 +290,15 @@ void OptionsMenu::Collisions()
 				// These will Release the SLIDING status after the user releases the mouse
 				// (the user is only sliding when the mouse is down)
 				else if (status == SLIDING_SVOL)
-						status = BROWSING;
+				{
+					status = BROWSING;
+					pMouse->show();
+				}
 				else if (status == SLIDING_MVOL)
-						status = BROWSING;
+				{
+					status = BROWSING;
+					pMouse->show();
+				}
 		
 			}
 			break;					

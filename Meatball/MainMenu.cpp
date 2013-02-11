@@ -281,7 +281,7 @@ void MainMenu::EventHandler()
 {		
 		while ( SDL_PollEvent( &event ) )
 		{
-			//UniversalEventHandler(&event);
+			UniversalEventHandler(&event);
 			switch ( event.type )
 			{
 				case SDL_QUIT:
@@ -295,7 +295,7 @@ void MainMenu::EventHandler()
 					{
 						SDL_ToggleFS(Window);
 						
-						Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED); // (Window, -1, 
+						/*Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED); // (Window, -1,
 						//Renderer = SDL_GetRenderer(Window);	
 						//for (int i=0; i  < 100000000; i++);
 
@@ -320,7 +320,7 @@ void MainMenu::EventHandler()
 						optionsmenu.controls_menu.tMoveRight_CurKey->drawtxt = SDL_TRUE;
 						optionsmenu.controls_menu.tFirePrimary_CurKey->drawtxt = SDL_TRUE;
 						optionsmenu.controls_menu.tJump_CurKey->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tWaitForInput->drawtxt = SDL_TRUE;
+						optionsmenu.controls_menu.tWaitForInput->drawtxt = SDL_TRUE;*/
 					}
 					if( event.key.keysym.sym == SDLK_ESCAPE )
 					{
