@@ -42,6 +42,13 @@ public:
 	void Update();
 	void EventHandler();
 	void HeldKey_Handler();
+	
+	void Player_Input();
+	void Keydown_Events(SDL_Event *event);
+	void MouseButtonDown_Events(SDL_Event*);
+	void MouseButtonUp_Events(SDL_Event*);
+	
+	void TurnOnCollisionRects();
 };
 
 
