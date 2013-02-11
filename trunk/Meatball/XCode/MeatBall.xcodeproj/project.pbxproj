@@ -77,6 +77,7 @@
 		E98CCB9516B46E6C0003938A /* SDL2_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_net.framework; path = ../../../../../../../Library/Frameworks/SDL2_net.framework; sourceTree = "<group>"; };
 		E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		E98CCB9716B46E6C0003938A /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		E9A5CDDA16C8BA4C004D4DF0 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Range.h; sourceTree = "<group>"; };
 		E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "AF-373.cpp"; path = "../AF-373.cpp"; sourceTree = "<group>"; };
 		E9CFA3D016B1D54D00B3919F /* bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bullet.cpp; path = ../bullet.cpp; sourceTree = "<group>"; };
 		E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonObject.cpp; path = ../ButtonObject.cpp; sourceTree = "<group>"; };
@@ -426,6 +427,7 @@
 				E9CFA40916B1D56300B3919F /* defines.h */,
 				E901FD7F16B364E200DB896C /* OS.h */,
 				E9CFA41416B1D56300B3919F /* ObjectManager.h */,
+				E9A5CDDA16C8BA4C004D4DF0 /* Range.h */,
 			);
 			name = include;
 			path = ../include;

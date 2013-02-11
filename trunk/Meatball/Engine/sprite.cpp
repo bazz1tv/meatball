@@ -717,3 +717,13 @@ void cMouseCursor :: Update( SDL_Renderer *renderer )
 
 	this->SetPos( Mx, My );
 }
+
+void cMouseCursor::hide()
+{
+	visible = SDL_FALSE;
+}
+
+void cMouseCursor::show()
+{
+	visible = SDL_TRUE;
+}

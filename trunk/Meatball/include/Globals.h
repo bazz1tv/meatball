@@ -86,6 +86,7 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 #include "Preferences.h"
 #include "Camera.h"
 #include "ObjectManager.h"
+#include "Range.h"
 #include "Collision.h"
 #include "sprite.h"
 #include "effects.h"
