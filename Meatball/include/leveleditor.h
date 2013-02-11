@@ -40,15 +40,13 @@ public:
 	
 	void EventHandler();
 
-
-
 	void Draw();
 	void Draw (SDL_Renderer *renderer);
 	/// Updates  all the Leveleditor stuff
 	void Update( void );
 
 	/// Draws all the Leveleditor stuff
-	void Draw( SDL_Surface *target );
+	//void Draw( SDL_Surface *target );
 
 	/// Sets the to-be-Copied Object
 	void SetCopyObject( cMVelSprite *nObject );
@@ -134,6 +132,7 @@ public:
 	SDL_bool multiple_objects_selected;
 
 	/// these very first ones are because I want to show the grid around selected tiles all the way until the point that the tiles actually start moving
+	// So I take these first offsets of one of the tiles I multiselect (the first one), I show the grid until there is a change from these coordinates
 	double veryfirst_MultiSelect_mouseXOffset, veryfirst_MultiSelect_mouseYOffset;
 	
 	double MultiSelect_mouseXOffset, MultiSelect_mouseYOffset;

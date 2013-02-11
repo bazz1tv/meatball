@@ -70,7 +70,7 @@ T* ObjectManager<T>::add()
 template <class T>
 SDL_bool ObjectManager<T>::hasa(T *o)
 {
-	int i;
+	unsigned int i;
 	for (i=0; i < numobjs; i++)
 	{
 		if (o == objects[i])

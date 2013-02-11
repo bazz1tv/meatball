@@ -61,43 +61,38 @@ void cLevelEditor :: Update( void )
 		
 		if (diff_X < 0)
 		{
-			MultiSelect_rect.x = pMouse->posx;
+			MultiSelect_rect.x = (int)pMouse->posx;
 			// new width is from X to original X
-			MultiSelect_rect.w = MultiSelect_rectX_origin - MultiSelect_rect.x;
+			MultiSelect_rect.w = (int)MultiSelect_rectX_origin - MultiSelect_rect.x;
 		}
 		else
 		{
-			MultiSelect_rect.x = MultiSelect_rectX_origin;
-			MultiSelect_rect.w = diff_X;
+			MultiSelect_rect.x = (int)MultiSelect_rectX_origin;
+			MultiSelect_rect.w = (int)diff_X;
 		}
 		
 		if (diff_Y < 0)
 		{
-			MultiSelect_rect.y = pMouse->posy;
+			MultiSelect_rect.y = (int)pMouse->posy;
 			// new width is from Y to original Y
-			MultiSelect_rect.h = MultiSelect_rectY_origin - MultiSelect_rect.y;
+			MultiSelect_rect.h = (int)MultiSelect_rectY_origin - MultiSelect_rect.y;
 		}
 		else
 		{
-			MultiSelect_rect.y = MultiSelect_rectY_origin;
-			MultiSelect_rect.h = diff_Y;
+			MultiSelect_rect.y = (int)MultiSelect_rectY_origin;
+			MultiSelect_rect.h = (int)diff_Y;
 		}
 
 	}
 	else if (Mouse_command == MOUSE_COMMAND_MOVING_MULTISELECT_TILES )
 	{
-		for (int i=0; i < MultiSelect_Objects.numobjs; i++)
+		for (unsigned int i=0; i < MultiSelect_Objects.numobjs; i++)
 		{
 			MultiSelect_Objects.objects[i]->SetPos( floor((pMouse->posx-MultiSelect_mouseXOffset) + (pCamera->x-MultiSelect_camXOffset) + MultiSelect_Objects.objects[i]->posx), floor((pMouse->posy - MultiSelect_mouseYOffset) + (pCamera->y-MultiSelect_camYOffset) + MultiSelect_Objects.objects[i]->posy) );
 			
 			MultiSelect_Objects.objects[i]->Startposx = floor(MultiSelect_Objects.objects[i]->posx);
 			MultiSelect_Objects.objects[i]->Startposy = floor(MultiSelect_Objects.objects[i]->posy);
 		}
-		
-		/*Object->SetPos( floor((pMouse->posx-MultiSelect_mouseXOffset) + (pCamera->x-MultiSelect_camXOffset) + Object->posx), floor((pMouse->posy - MultiSelect_mouseYOffset) + (pCamera->y-MultiSelect_camYOffset) + Object->posy) );
-		
-		Object->Startposx = floor(Object->posx);
-		Object->Startposy = floor(Object->posy);*/
 		
 		MultiSelect_mouseXOffset = pMouse->posx;
 		MultiSelect_mouseYOffset = pMouse->posy;
@@ -163,7 +158,7 @@ void cLevelEditor :: DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, 
 	// This is code to get a RECT from our sprite Tile
 	if (multiple_objects_selected)
 	{
-		for (int i=0; i < MultiSelect_Objects.numobjs; i++)
+		for (unsigned int i=0; i < MultiSelect_Objects.numobjs; i++)
 		{
 			// Draw a rect around each individual object
 			
@@ -300,7 +295,7 @@ void cLevelEditor :: PasteObject( double x, double y )
 
 		new_Object->type = CopyObject->type;
 
-		pLevel->pLevelData->AddSprite( new_Object );
+		pLevel->pLevelData_Layer1->AddSprite( new_Object );
 
 		if( Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
 		{
@@ -331,12 +326,12 @@ void cLevelEditor :: DeleteObject( double x, double y )
 	int CollisionNum = -1;
 
 	// Map Objects	
-	CollisionNum = pLevel->pLevelData->GetCollidingSpriteNum( &cRect );
+	CollisionNum = pLevel->pLevelData_Layer1->GetCollidingSpriteNum( &cRect );
 
 	if( CollisionNum >= 0 )
 	{
 		printf("Collision Detected. Deleting Sprite\n");
-		pLevel->pLevelData->DeleteSprite( CollisionNum );
+		pLevel->pLevelData_Layer1->DeleteSprite( CollisionNum );
 		return;
 	}
 	
@@ -392,11 +387,11 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 	}
 
 	// Map Objects	
-	CollisionNum = pLevel->pLevelData->GetCollidingSpriteNum( &cRect );
+	CollisionNum = pLevel->pLevelData_Layer1->GetCollidingSpriteNum( &cRect );
 
 	if( CollisionNum >= 0 )
 	{
-		return pLevel->pLevelData->BasicSprites[CollisionNum];
+		return pLevel->pLevelData_Layer1->BasicSprites[CollisionNum];
 	}
 
 	// Enemies
@@ -428,7 +423,7 @@ SDL_bool cLevelEditor :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager<
 	}
 	
 	// Map Objects
-	if (pLevel->pLevelData->GetAllCollidingSpriteNum( cRect, obj_man ))
+	if (pLevel->pLevelData_Layer1->GetAllCollidingSpriteNum( cRect, obj_man ))
 		were_objects_found = SDL_TRUE;
 	
 	
@@ -677,8 +672,12 @@ void cLevelEditor::init_MultiSelect_Tiles()
 		MultiSelect_mouseXOffset = pMouse->posx;
 		MultiSelect_mouseYOffset = pMouse->posy;
 		
-		MultiSelect_rect.x = MultiSelect_rectX_origin = pMouse->posx;
-		MultiSelect_rect.y = MultiSelect_rectY_origin = pMouse->posy;
+		MultiSelect_rectX_origin = pMouse->posx;
+		MultiSelect_rectY_origin = pMouse->posy;
+
+		MultiSelect_rect.x = (int)pMouse->posx;
+		MultiSelect_rect.y = (int)pMouse->posy;
+
 		MultiSelect_rect.w = 0;
 		MultiSelect_rect.h = 0;
 		

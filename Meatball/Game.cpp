@@ -88,7 +88,7 @@ void Game::Init()
 	
 	// if we are NOT in demo mode, let's load the level's MusicFile
 #ifndef DEMO
-	string filename = MUSIC_DIR + pLevel->pLevelData->Musicfile;
+	string filename = MUSIC_DIR + pLevel->pLevelData_Layer1->Musicfile;
 	pAudio->PlayMusik((char*)filename.c_str(), 1);
 	while (!pAudio->MusicPlaying()) {Mix_PlayMusic(pAudio->Music, 1);}
 #endif

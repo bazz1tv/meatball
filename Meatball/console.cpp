@@ -634,7 +634,7 @@ SDL_bool musicVol( string &str)
 
 SDL_bool play( string &str )
 {
-	pLevel->pLevelData->Musicfile = str;
+	pLevel->pLevelData_Layer1->Musicfile = str;
 
 	string file = MUSIC_DIR + str;
 

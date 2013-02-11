@@ -67,16 +67,27 @@ cBasicSprite :: ~cBasicSprite( void )
 	startimage = NULL;
 }
 
-void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, SDL_bool OverrideSize /* = 1  */ )
+void cBasicSprite :: UpdateTexture( SDL_Renderer *renderer )
 {
-	srcimage = new_image;
+	DestroyTexture();
 	
+	texture = SDL_CreateTextureFromSurface(renderer, image);
+}
+
+void cBasicSprite :: DestroyTexture ( void )
+{
 	if (texture)
 	{
 		SDL_DestroyTexture(texture);
 		texture = NULL;
 	}
+}
+
+void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, SDL_bool OverrideSize /* = 1  */ )
+{
+	srcimage = new_image;
 	
+	DestroyTexture();
 	texture = SDL_CreateTextureFromSurface(renderer, new_image);
 
 	drawimg = SDL_TRUE;
@@ -245,7 +256,7 @@ void cBasicSprite :: Move( double move_x, double move_y )
 
 void cBasicSprite :: Draw( SDL_Renderer *renderer )
 {
-	if ( visible == SDL_FALSE || !image || width <= 0 || height <= 0)
+	if ( visible == SDL_FALSE || !image || !texture || width <= 0 || height <= 0)
 	{
 		return;
 	}
@@ -275,11 +286,7 @@ void cBasicSprite :: Update( SDL_Renderer *renderer )
 			image = NULL;
 		}
 		
-		if (texture)
-		{
-			SDL_DestroyTexture(texture);
-			texture = NULL;
-		}
+		DestroyTexture();
 		
 		Uint32 colkey;
 		SDL_GetColorKey(srcimage, &colkey);

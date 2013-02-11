@@ -91,6 +91,7 @@ void TextObject::Draw()
 /// Update the surface with the object's internal text and font
 TextObject::TextObject()
 {
+	drawtxt = SDL_FALSE;
 	font = NULL;
 	text = "";
 	surface = NULL;
@@ -100,6 +101,7 @@ TextObject::TextObject()
 
 TextObject::TextObject(string text)
 {
+	drawtxt = SDL_FALSE;
 	initDefaultColors();
 	this->text = text;	
 }
@@ -119,6 +121,7 @@ TextObject::~TextObject()
 /// Update's the surface and internal font and text members
 TextObject::TextObject(string text, TTF_Font *font)
 {
+	drawtxt = SDL_FALSE;
 	initDefaultColors();
 	this->font = font;
 	this->text = text;
@@ -126,12 +129,14 @@ TextObject::TextObject(string text, TTF_Font *font)
 
 TextObject::TextObject(int x, int y)
 {
+	drawtxt = SDL_FALSE;
 	initDefaultColors();
 	SetPos(x,y);
 }
 
 TextObject::TextObject(int x, int y, string text)
 {
+	drawtxt = SDL_FALSE;
 	initDefaultColors();
 	this->text = text;
 	SetPos(x,y);
@@ -143,7 +148,7 @@ TextObject::TextObject(int x, int y, string text, TTF_Font *font)
 	this->font = font;
 	this->text = text;
 	SetPos(x,y);
-	
+	drawtxt = SDL_FALSE;
 }
 
 /// Set the active font engine handle
@@ -151,6 +156,7 @@ TextObject::TextObject(int x, int y, string text, TTF_Font *font)
 {
 	this->font_engine_handle = handle;
 }*/
+
 
 
 
@@ -173,5 +179,10 @@ void TextObject::SetPos(int x, int y)
 
 void TextObject::Update()
 {
+	if (drawtxt)
+	{
+		Render();
+		drawtxt = SDL_FALSE;
+	}
 	UpdateRect();
 }

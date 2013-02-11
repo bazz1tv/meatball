@@ -118,3 +118,4 @@ void cImageManager :: DeleteAll( void )
 
 	Count = 0;
 }
+
