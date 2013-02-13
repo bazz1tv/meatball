@@ -217,10 +217,10 @@ void cPlayer :: Update( void )
 	}
 
 
-	if (state == STATE_JUMPING && !JUMP_KEYS_HELD && vely < 0)
+	if (state == STATE_JUMPING && !JUMP_KEYS_HELD && vely <= 0)
 	{
 		//jumpvel = 1;
-		vely +=0.10;
+		vely += 0.35;
 	}
 	// Gravity
 	AddVelocity( 0, ( 0.30 + (vely*0.03) ) * pFramerate->speedfactor, 0, MAX_FALL_VELOCITY );

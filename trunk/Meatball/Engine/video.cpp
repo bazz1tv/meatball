@@ -81,13 +81,8 @@ int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int wi
 	return 0; // You did it! 
 }
 
-SDL_Window *GetWindow(const char *title, int width, int height, int bpp, Uint32 wflags, SDL_bool fullscreen /* = SDL_FALSE */)
-{
-	if (fullscreen == SDL_TRUE)
-	{
-		wflags |= SDL_WINDOW_FULLSCREEN;
-	}
-	
+SDL_Window *GetWindow(const char *title, int width, int height, int bpp, Uint32 wflags)
+{	
 	return SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, wflags);
 }
 

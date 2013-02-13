@@ -1,9 +1,10 @@
 #ifndef __OPTIONSMENU_H__
 #define __OPTIONSMENU_H__
 
-
+class MiniEngine;
 class TextObject;
 #include "Globals.h"
+
 class Slider;
 
 /// @ingroup Options_Screen_Statuses

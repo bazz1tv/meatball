@@ -16,7 +16,7 @@
 
 // Class declarations
 class TextObject;
-class TextObjectEngine;
+//class MiniEngine;
 
 // Icon
 extern SDL_Surface* icon;
@@ -81,7 +81,9 @@ void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
 
 // includes
 
+
 #include "Game.h"
+#include "MiniEngine.h"
 #include "Misc.h"
 #include "Preferences.h"
 #include "Camera.h"
