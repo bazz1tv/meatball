@@ -30,7 +30,7 @@ public:
 		}
 		else if(objects && numobjs == 0)
 		{
-			printf ("ObjectManager: Really Weird.. There are Objects but an numobjs == 0\n");
+			DEBUGLOG ("ObjectManager: Really Weird.. There are Objects but an numobjs == 0\n");
 			
 			delete []objects;
 			objects = NULL;
@@ -38,7 +38,7 @@ public:
 		}
 		else if(!objects && numobjs > 0)
 		{
-			printf ("ObjectManager: Really Weird.. No Objects but an numobjs > 0\n");
+			DEBUGLOG ("ObjectManager: Really Weird.. No Objects but an numobjs > 0\n");
 			
 			numobjs = 0;
 		}*/

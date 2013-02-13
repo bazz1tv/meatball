@@ -138,7 +138,7 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 
 	if (Collision->collide == 5)
 	{
-		//printf("\nstrange unexplained Collision on Regular generic check.. Setting to Down Collision to get the movements checked\n");
+		//DEBUGLOG("\nstrange unexplained Collision on Regular generic check.. Setting to Down Collision to get the movements checked\n");
 		Collision->collide = DOWN;
 	}
 	if( Collision->collide == -1 )
@@ -171,10 +171,10 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 			{
 				PositionCheck( (int)( Sprite->posx+12 + ( (fvelx > 0) ? (1) : (-1) ) ), (int)Sprite->posy, 10, (int)Sprite->height, Collision, type  );
 				
-				printf("MoveX: %d-%d | ", lastCollision.collide, Collision->collide);
+				DEBUGLOG("MoveX: %d-%d | ", lastCollision.collide, Collision->collide);
 				/*if (Collision->collide == 3 || Collision->collide == 2)
 				{
-					printf("(X_collision_Check..Down Collision?? - Setting to No Collision(-1) (to allow X movement)\n");
+					DEBUGLOG("(X_collision_Check..Down Collision?? - Setting to No Collision(-1) (to allow X movement)\n");
 					//Collision->collide = -1;
 					//Collision->direction = 3;
 				}*/
@@ -220,16 +220,16 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 			if( movey == SDL_TRUE )
 			{
 				PositionCheck( (int)Sprite->posx+12, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), 10, (int)Sprite->height, Collision, type );
-				//printf("MoveY: %d-%d | ", lastCollision.collide, Collision->collide);
+				//DEBUGLOG("MoveY: %d-%d | ", lastCollision.collide, Collision->collide);
 				/*if (Collision->collide == 5)
 				{
-					printf("\nstrange unexplained Collision on Vertical Check.. Setting to Down Collision\n");
+					DEBUGLOG("\nstrange unexplained Collision on Vertical Check.. Setting to Down Collision\n");
 					//Collision->collide = -1;
 				}
 
 				if (Collision->collide == 1 || Collision->collide == 0) // the unexplainable
 				{
-					printf("\n Right Collision on a Vertical check??? Setting to Down Collision\n");
+					DEBUGLOG("\n Right Collision on a Vertical check??? Setting to Down Collision\n");
 					//Collision->collide = -1;
 					//Collision->direction = 2;
 				}*/

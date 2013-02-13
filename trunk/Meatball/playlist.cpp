@@ -33,7 +33,7 @@ void musicover()
 	std::string file = MUSIC_DIR+musicfiles[index];
 
 		
-	printf("Song ended. loading %s", musicfiles[index].c_str());
+	DEBUGLOG("Song ended. loading %s", musicfiles[index].c_str());
 	pAudio->PlayMusik((char*)file.c_str(), SDL_TRUE, SDL_TRUE);*/
 }
 

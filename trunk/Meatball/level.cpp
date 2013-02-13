@@ -73,7 +73,7 @@ SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<
 	
 	if( BasicSprites && Crect )
 	{
-		printf( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
+		DEBUGLOG( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
 		
 		for( unsigned int i = 0; i < BasicSpriteCount; i++ )
 		{
@@ -145,7 +145,7 @@ void cLevel :: Load( string filename )
 
 	if( !FileValid( full_filename ) )
 	{
-		printf( "Error : Level does not exist : %s\n", full_filename.c_str() );
+		DEBUGLOG( "Error : Level does not exist : %s\n", full_filename.c_str() );
 		return;
 	}
 
@@ -194,14 +194,14 @@ void cLevel :: Save( void )
 
 	if( !FileValid( filename ) ) 
 	{
-		printf( "Error Level Save : Level file does not exist %s\n", filename.c_str() );
+		DEBUGLOG( "Error Level Save : Level file does not exist %s\n", filename.c_str() );
 	}
 
 	ofstream ofs( filename.c_str(), ios::out );
 
 	if( !ofs )
 	{
-		printf( "Error Level Save: could not open the Level file %s\n", filename.c_str() );
+		DEBUGLOG( "Error Level Save: could not open the Level file %s\n", filename.c_str() );
 		return;
 	}
 
@@ -251,7 +251,7 @@ void cLevel :: Save( void )
 			}
 			else
 			{
-				printf( "Warning Level Saving : Unknown Map Object type : %d\n",pLevel->pLevelData_Layer1->BasicSprites[i]->type );
+				DEBUGLOG( "Warning Level Saving : Unknown Map Object type : %d\n",pLevel->pLevelData_Layer1->BasicSprites[i]->type );
 				continue;
 			}
 
@@ -279,12 +279,12 @@ void cLevel :: Save( void )
 			}
 			else
 			{
-				printf( "Level Saving : Wrong Enemy type : %d\n", Enemies[i]->Enemy_type );
+				DEBUGLOG( "Level Saving : Wrong Enemy type : %d\n", Enemies[i]->Enemy_type );
 			}
 		}
 	}
 
-	printf( "Level saved to %s\n", levelfile.c_str() );
+	DEBUGLOG( "Level saved to %s\n", levelfile.c_str() );
 }
 
 void cLevel :: Update( void )
@@ -388,8 +388,8 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 	{
 		if( count != 5 )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf(" Sprite needs 5 parameters\n");
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG(" Sprite needs 5 parameters\n");
 			return 0; // error
 		}
 
@@ -398,21 +398,21 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 
 		if( !FileValid( full_filename ) )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf(" Sprite image does not exist\n");
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG(" Sprite image does not exist\n");
 			return 0; // error
 		}
 
 		if( !is_valid_number( parts[2] ) )
 		{
-			printf( "%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid integer value\n", parts[1] );
+			DEBUGLOG( "%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid integer value\n", parts[1] );
 			return 0; // error
 		}
 		if( !is_valid_number( parts[3] ) )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid integer value\n", parts[1] );
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid integer value\n", parts[1] );
 			return 0; // error
 		}
 
@@ -438,8 +438,8 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 		}
 		else
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid Sprite type\n", parts[4] );
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid Sprite type\n", parts[4] );
 			return 0; // error
 		}
 		
@@ -448,29 +448,29 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 	{
 		if( count != 4 )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf(" Enemy needs 4 parameters\n");
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG(" Enemy needs 4 parameters\n");
 			return 0; // error
 		}
 
 		if( !is_valid_number( parts[1] ) )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid integer value\n", parts[1] );
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid integer value\n", parts[1] );
 			return 0; // error
 		}
 		
 		if( !is_valid_number( parts[2] ) )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid integer value\n", parts[1] );
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid integer value\n", parts[1] );
 			return 0; // error
 		}
 		
 		if( !is_valid_number( parts[3] ) )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid integer value\n", parts[1] );
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid integer value\n", parts[1] );
 			return 0; // error
 		}
 
@@ -480,8 +480,8 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 		}
 		else
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid Enemy type\n", parts[3] );
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid Enemy type\n", parts[3] );
 			return 0; // error
 		}
 	}
@@ -489,20 +489,20 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 	{
 		if( count != 3 )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf(" Player needs 3 parameters\n");
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG(" Player needs 3 parameters\n");
 			return 0; // error
 		}
 		if( !is_valid_number( parts[1] ) )
 		{
-			printf( "%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid integer value\n", parts[1] );
+			DEBUGLOG( "%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid integer value\n", parts[1] );
 			return 0; // error
 		}
 		if( !is_valid_number( parts[2] ) )
 		{
-			printf("%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s is not a valid integer value\n", parts[1] );
+			DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s is not a valid integer value\n", parts[1] );
 			return 0; // error
 		}
 
@@ -518,8 +518,8 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 
 		if( !FileValid( filename ) ) 
 		{
-			printf( "%s : line %d Error : ", levelfile.c_str() , line );
-			printf( "%s music file does not exist\n", parts[1] );
+			DEBUGLOG( "%s : line %d Error : ", levelfile.c_str() , line );
+			DEBUGLOG( "%s music file does not exist\n", parts[1] );
 			return 0; // error			
 		}
 
@@ -527,8 +527,8 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 	}
 	else
 	{
-		printf("%s : line %d Error : ", levelfile.c_str() , line );
-		printf(" Unknown definition : %s\n", parts[0] );
+		DEBUGLOG("%s : line %d Error : ", levelfile.c_str() , line );
+		DEBUGLOG(" Unknown definition : %s\n", parts[0] );
 		return 0; // error
 	}
 

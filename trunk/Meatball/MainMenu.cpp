@@ -180,7 +180,7 @@ void MainMenu::UpdateLogic()
 			}
 			else
 			{
-				//printf ("setting toSDL_FALSE: %f\n", pFramerate->speedfactor);
+				//DEBUGLOG ("setting toSDL_FALSE: %f\n", pFramerate->speedfactor);
 				Light_reverse =SDL_FALSE;
 			}
 		}
@@ -257,8 +257,8 @@ void MainMenu::FadeOutBG()
 	SDL_FillRect( surface, NULL, SDL_MapRGB( Screen->format, 0, 0, 0 ) );
 	if(surface == NULL) 
 	{ 
-		fprintf(stderr, "Load image error: %s\n", 
-		SDL_GetError()); exit(-1); 
+		DEBUGLOG("Load image error: %s\n", SDL_GetError());
+		exit(-1);
 	} 
 	for (i=0; i < 256; i+=2) 
 	{ 

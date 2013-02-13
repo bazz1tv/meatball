@@ -87,13 +87,13 @@ void cPreferences :: Load( void )
 	{
 		if( FileValid( DEF_PREF_NAME ) )
 		{
-			printf( "Warning : No Preferences File found using default settings\n" );
+			DEBUGLOG( "Warning : No Preferences File found using default settings\n" );
 
 			Load( DEF_PREF_NAME );
 		}
 		else
 		{
-			printf( "Error : No Preferences File and no Default Preferences File found\n" );
+			DEBUGLOG( "Error : No Preferences File and no Default Preferences File found\n" );
 			exit( 1 );
 		}
 	}
@@ -111,7 +111,7 @@ void cPreferences :: Load( string filename )
 
 	if ( !ifs )
 	{
-		printf( "Could not open preferences file : %s\n", filename.c_str() );
+		DEBUGLOG( "Could not open preferences file : %s\n", filename.c_str() );
 		exit( 1 );
 	}
 
@@ -185,7 +185,7 @@ void cPreferences :: Default( void )
 	}
 	else
 	{
-		printf( "Error : No Default Preferences File found\n" );
+		DEBUGLOG( "Error : No Default Preferences File found\n" );
 		exit( 1 );
 	}
 }
@@ -394,8 +394,8 @@ int cPreferences :: ParseLine( char ** parts, unsigned int count, unsigned int l
 	}
 	else
 	{
-		printf("Preferences : line %d Error : ", line );
-		printf(" Unknown definition : %s\n", parts[0] );
+		DEBUGLOG("Preferences : line %d Error : ", line );
+		DEBUGLOG(" Unknown definition : %s\n", parts[0] );
 		return 0; // error
 	}
 

@@ -78,7 +78,7 @@ void cMParticle :: Update( void )
 		}
 		else if( Collision->direction == 1 )
 		{
-			printf("Unhandled Particle Collision from 2 directions\n");
+			DEBUGLOG("Unhandled Particle Collision from 2 directions\n");
 			// never happened 0.o
 		}
 
