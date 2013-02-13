@@ -70,7 +70,7 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 	}
 	else
 	{
-		printf( "Warning : Unknow Enemy Type : %d\n", etype );
+		DEBUGLOG( "Warning : Unknow Enemy Type : %d\n", etype );
 		return;
 	}
 

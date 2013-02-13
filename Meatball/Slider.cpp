@@ -74,10 +74,10 @@ void Slider::Slide(int mouse_x)
 	else
 		adjuster_rect.x = new_adjuster_x;
 
-	printf("Adjuster\n\t");
-	printf("[Mouse_X: %d] - [Mouse_X_logged: %d] = %d\n\t", mouse_x, mouse_x_logged, mouse_x-mouse_x_logged);
-	printf("adjuster_x_logged: %d | new_adjuster_x: %d\n\t", adjuster_x_logged,adjuster_rect.x);
-	printf("Pixel offset: %d. Target value: %d\n", adjuster_rect.x - panel_x, getTargetValue(adjuster_rect.x - panel_x));
+	DEBUGLOG("Adjuster\n\t");
+	DEBUGLOG("[Mouse_X: %d] - [Mouse_X_logged: %d] = %d\n\t", mouse_x, mouse_x_logged, mouse_x-mouse_x_logged);
+	DEBUGLOG("adjuster_x_logged: %d | new_adjuster_x: %d\n\t", adjuster_x_logged,adjuster_rect.x);
+	DEBUGLOG("Pixel offset: %d. Target value: %d\n", adjuster_rect.x - panel_x, getTargetValue(adjuster_rect.x - panel_x));
 }
 
 // This is only here incase for some reason we need to calculation the ratio for a specific value

@@ -13,6 +13,13 @@
 // Global Big Definitions (important)
 #include "defines.h"
 
+#ifdef _DEBUG
+// Update the following if needed…
+#define DEBUGLOG(...) printf(__VA_ARGS__)
+#else
+#define DEBUGLOG(...) do {} while (0)
+#endif
+
 
 // Class declarations
 class TextObject;
@@ -64,7 +71,7 @@ extern SDL_Event event;
 /// fps display SDL_boolean
 extern SDL_bool fps_display;
 
-/// Magneta (default) Colorkey
+/// Magenta (default) Colorkey
 extern Uint32 colorkey;
 
 // Game Global Functions

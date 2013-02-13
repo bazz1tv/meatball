@@ -313,7 +313,7 @@ void cLevelEditor :: PasteObject( double x, double y )
 
 void cLevelEditor :: DeleteObject( void )
 {
-	printf("Delete Object Called\n");
+	DEBUGLOG("Delete Object Called\n");
 	DeleteObject( pMouse->posx, pMouse->posy );
 }
 
@@ -330,7 +330,7 @@ void cLevelEditor :: DeleteObject( double x, double y )
 
 	if( CollisionNum >= 0 )
 	{
-		printf("Collision Detected. Deleting Sprite\n");
+		DEBUGLOG("Collision Detected. Deleting Sprite\n");
 		pLevel->pLevelData_Layer1->DeleteSprite( CollisionNum );
 		return;
 	}

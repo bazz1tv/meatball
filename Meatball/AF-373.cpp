@@ -275,7 +275,7 @@ void cAF373 :: Draw( SDL_Renderer *renderer )
 
 void cAF373 :: Die( void )
 {
-	printf( "Died\n" );
+	DEBUGLOG( "Died\n" );
 }
 
 void cAF373 :: Fire( int fdirection )
@@ -331,7 +331,7 @@ int cAF373 :: AI_PlayerSearch( int sdirection )
 		}
 		else
 		{
-			printf( "Warning : AF373 AI_PlayerSearch Wrong direction used : %d\n", sdirection );
+			DEBUGLOG( "Warning : AF373 AI_PlayerSearch Wrong direction used : %d\n", sdirection );
 			return 0;
 		}
 

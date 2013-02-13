@@ -73,21 +73,21 @@ void initEngine()
 	target.refresh_rate = 0; // don't care
 	target.driverdata   = 0; // initialize to 0
 	
-	printf("Requesting: \t%dx%dpx @ %dhz \n", target.w, target.h, target.refresh_rate);
+	DEBUGLOG("Requesting: \t%dx%dpx @ %dhz \n", target.w, target.h, target.refresh_rate);
 	
 	// Pass the display mode structures by reference to SDL_GetClosestDisplay
 	// and check that the result is not a null pointer.
 	if(SDL_GetClosestDisplayMode(0, &target, &closest)==NULL){
 		
 		// If the returned pointer is null ...
-		printf("\nNo match was found!\n\n");
+		DEBUGLOG("\nNo match was found!\n\n");
 		SDL_Quit();
 		return;
 		
 	}
 	// Otherwise, a display mode close to the target is available.
 	// Access the SDL_DisplayMode structure to see what was received.
-	printf("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
+	DEBUGLOG("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
 	
 	Window = GetWindow(APP_TITLE, closest.w, closest.h, pGameSettings->Screen_Bpp, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN);
 	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);

@@ -68,7 +68,7 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 		}
 		else
 		{
-			printf( "Warning : Unsupported Laser X-1 direction used : %d\n", direction );
+			DEBUGLOG( "Warning : Unsupported Laser X-1 direction used : %d\n", direction );
 
 			visible =SDL_FALSE;
 			return;
@@ -76,7 +76,7 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 	}
 	else
 	{
-		printf( "Warning : Unknown Bullet type used : %d\n", Bullet_type );
+		DEBUGLOG( "Warning : Unknown Bullet type used : %d\n", Bullet_type );
 
 		visible =SDL_FALSE;
 		return;
@@ -102,7 +102,7 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 	}
 	else
 	{
-		printf( "Warning : Unknown Bullet direction used : %d\n", direction );
+		DEBUGLOG( "Warning : Unknown Bullet direction used : %d\n", direction );
 
 		visible =SDL_FALSE;
 		return;

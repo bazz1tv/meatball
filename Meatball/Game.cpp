@@ -27,9 +27,9 @@ void Game::Init()
 	pPlayer->Reset();		// set direction, position, setACtiveWeapon (pistol)
 
 	
-	printf ("loading level\n");
+	DEBUGLOG ("loading level\n");
 	pLevel->Load( "test.lvl" );	// load the level
-	printf ("Finished loading level\n");
+	DEBUGLOG ("Finished loading level\n");
 	// if we are NOT in demo mode, let's load the level's MusicFile
 #ifndef DEMO
 	string filename = MUSIC_DIR + pLevel->pLevelData_Layer1->Musicfile;

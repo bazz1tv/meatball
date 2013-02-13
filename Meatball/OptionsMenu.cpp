@@ -282,7 +282,7 @@ void OptionsMenu::Collisions()
 					}
 					else if (MouseCollidesWith(&tControls->rect) )
 					{
-						printf("Derp");
+						DEBUGLOG("Derp");
 						curscreen = CONTROLS_SCREEN;
 					}
 				}
@@ -487,7 +487,7 @@ void ControlsMenu::EventHandler()
 			}
 			case SDL_MOUSEBUTTONUP:
 			{
-				printf("crap");
+				DEBUGLOG("crap");
 				break;					
 			}
 			default:
@@ -519,7 +519,7 @@ void ControlsMenu::Collisions()
 		{
 			if( event.button.button == 1 )
 			{
-				printf("CRAP");
+				DEBUGLOG("CRAP");
 				if (status == BROWSING)
 				{
 					if (MouseCollidesWith(&tMoveLeft_CurKey->rect) )
@@ -568,7 +568,7 @@ void ControlsMenu::GetInput(Uint8 type)
 	{
 		switch ( event.type )
 		{
-			//printf("BEEP");
+			//DEBUGLOG("BEEP");
 			case SDL_KEYDOWN:
 			{
 				SDL_Keycode key = event.key.keysym.sym;
