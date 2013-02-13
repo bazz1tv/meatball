@@ -80,8 +80,8 @@ void cCamera ::Limits_Check( void )
 		x = (double)Lleft;
 	}
 
-	if( y > 0 ) // Will not let the camera go DOWN past 0.
+	if( y > 0 ) // Will not let the camera Scroll Down
 	{
-		y = 0;
+		//y = 0;
 	}
 }

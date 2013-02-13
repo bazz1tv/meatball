@@ -37,6 +37,7 @@
 		E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E616B1D54D00B3919F /* TextObject.cpp */; };
 		E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E716B1D54D00B3919F /* weapon.cpp */; };
 		E9CFA43A16B1D63800B3919F /* MeatballEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CFA43316B1D63700B3919F /* MeatballEngine.framework */; };
+		E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */; };
 		E9D5E52916B5FDA600FAC31F /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E9D5E52A16B5FDA600FAC31F /* SDL2_mixer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
 		E9D5E52B16B5FDA600FAC31F /* SDL2_net.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
@@ -128,6 +129,8 @@
 		E9CFA41B16B1D56300B3919F /* TextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextObject.h; path = ../include/TextObject.h; sourceTree = "<group>"; };
 		E9CFA41C16B1D56300B3919F /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weapon.h; path = ../include/weapon.h; sourceTree = "<group>"; };
 		E9CFA43316B1D63700B3919F /* MeatballEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeatballEngine.framework; path = ../../../../../../../Library/Frameworks/MeatballEngine.framework; sourceTree = "<group>"; };
+		E9D3371816CB620400BB0F9D /* MiniEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiniEngine.h; path = ../include/MiniEngine.h; sourceTree = "<group>"; };
+		E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MiniEngine.cpp; path = ../MiniEngine.cpp; sourceTree = "<group>"; };
 		E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatBallAppDelegate.h; path = MacSDLFiles/MeatBallAppDelegate.h; sourceTree = "<group>"; };
 		E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeatBallAppDelegate.m; path = MacSDLFiles/MeatBallAppDelegate.m; sourceTree = "<group>"; };
 		E9D5E53116B6009600FAC31F /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLMain.h; path = MacSDLFiles/SDLMain.h; sourceTree = "<group>"; };
@@ -332,6 +335,8 @@
 			children = (
 				E9CFA40C16B1D56300B3919F /* Game.h */,
 				E9CFA3D716B1D54D00B3919F /* Game.cpp */,
+				E9D3371816CB620400BB0F9D /* MiniEngine.h */,
+				E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */,
 			);
 			name = "MiniEngine(Game)";
 			sourceTree = "<group>";
@@ -509,6 +514,7 @@
 				E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */,
 				E9D5E53316B6009600FAC31F /* MeatBallAppDelegate.m in Sources */,
 				E9D5E53416B6009600FAC31F /* SDLMain.m in Sources */,
+				E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

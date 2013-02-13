@@ -58,7 +58,7 @@ cCamera *pCamera;
 cPlayer *pPlayer;
 cLevel *pLevel;
 cLevelEditor *pLevelEditor;
-TextObjectEngine *TOE;
+//TextObjectEngine *TOE;
 
 /// The Console
 cConsole *pConsole;
@@ -182,7 +182,7 @@ void QuitGame( void )
 		delete pFont;
 	}
 
-	//SDL_FreeSurface(icon);
+	SDL_EnableScreenSaver();
 	
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);

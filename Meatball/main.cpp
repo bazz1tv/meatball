@@ -24,8 +24,6 @@ int DoGame()
 {
 	Game game;
 	MainMenu mainmenu;
-	
-	Game::Init();
 
 	mode = MODE_MAINMENU;
 
@@ -65,33 +63,53 @@ void initEngine()
 	pPreferences->Load();
 	pPreferences->Apply();
 	
-	/*if (InitWindow( Window, Renderer, APP_TITLE, pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp , SDL_WINDOW_SHOWN, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC, SDL_FALSE) < 0)
-	{
-		printf ("SHIT!! %s", SDL_GetError());
-		return;
-	}*/
+	// Declare structures to be filled in.
+	SDL_DisplayMode target, closest;
 	
-	Window = GetWindow(APP_TITLE, pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS
-			| SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN , pPreferences->pSettings->Fullscreen ? SDL_TRUE : SDL_FALSE);
-	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED);
+	// Set the target properties.
+	target.w = pGameSettings->Screen_W;     // weird request, but ok
+	target.h = pGameSettings->Screen_H;
+	target.format = 0;  // don't care
+	target.refresh_rate = 0; // don't care
+	target.driverdata   = 0; // initialize to 0
+	
+	printf("Requesting: \t%dx%dpx @ %dhz \n", target.w, target.h, target.refresh_rate);
+	
+	// Pass the display mode structures by reference to SDL_GetClosestDisplay
+	// and check that the result is not a null pointer.
+	if(SDL_GetClosestDisplayMode(0, &target, &closest)==NULL){
+		
+		// If the returned pointer is null ...
+		printf("\nNo match was found!\n\n");
+		SDL_Quit();
+		return;
+		
+	}
+	// Otherwise, a display mode close to the target is available.
+	// Access the SDL_DisplayMode structure to see what was received.
+	printf("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
+	
+	Window = GetWindow(APP_TITLE, closest.w, closest.h, pGameSettings->Screen_Bpp, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN);
+	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	
 	window_height = pGameSettings->Screen_H;
 	window_width = pGameSettings->Screen_W;
 	
-	/*Screen = SDL_GetWindowSurface(Window);
-	if (Screen == NULL)
-	{
-		printf("SDL_GetWindowSurface failed : %s", SDL_GetError());
-		return;
-	}*/
-	//SetWindowCaption( "MeatBall - Vegetable Destruction" );
+	SDL_SetWindowBordered(Window, SDL_FALSE);
+	SDL_SetWindowMaximumSize(Window, window_width, window_height);
+	SDL_SetWindowMinimumSize(Window, window_width, window_height);
+	SDL_DisableScreenSaver();
 	
 	icon = SDL_LoadBMP("data/favicon.bmp");
 	Uint32 ckey = SDL_MapRGB(icon->format, 128, 128, 128);
 	SDL_SetColorKey(icon, SDL_TRUE, ckey);
-	//SDL_WM_SetIcon(icon, NULL);
 	
+#if SDL1
+	SDL_WM_SetIcon(icon, NULL);
+#else
 	// The icon is attached to the window pointer
 	SDL_SetWindowIcon(Window, icon);
+#endif
 	
 	// ...and the surface containing the icon pixel data is no longer required.
 	SDL_FreeSurface(icon);

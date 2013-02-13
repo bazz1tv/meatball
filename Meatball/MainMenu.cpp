@@ -243,6 +243,8 @@ void MainMenu::Do()
 #endif
 		//FadeOutBG();
 #endif
+		
+		Game::Init();
 	}
 }
 
@@ -329,6 +331,10 @@ void MainMenu::EventHandler()
 					else if( event.key.keysym.sym == SDLK_RETURN )
 					{
 						mode = MODE_GAME;
+					}
+					else if ( event.key.keysym.sym == SDLK_o )
+					{
+						submode = OPTIONS;
 					}
 					break;
 				}

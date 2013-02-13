@@ -2,7 +2,9 @@
 #define __MAINMENU_H__
 
 
+class MiniEngine;
 #include "Globals.h"
+
 
 
 // submode definitions

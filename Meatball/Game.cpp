@@ -1,69 +1,12 @@
 #include "Globals.h"
+#include "MiniEngine.h"
 #include "Game.h"
 #include "playlist.h"
 
 
 
 
-void MiniEngine::Do()
-{
-	// Might have to change the whole ONLY checking input while !paused thing...
-	if ( !paused )
-	{
-		Input();
-		Update();
-	}
-	Draw();
-}
 
-/// Does general things
-void MiniEngine::PreUpdate( void )
-{	
-	pFramerate->SetSpeedFactor(); // Update
-	
-	pCamera->Update();
-	
-	pMouse->Update(Renderer);
-}
-
-void MiniEngine::Update()
-{
-	PreUpdate();
-	PostUpdate();
-}
-
-void MiniEngine::PostUpdate()
-{
-	
-	
-}
-
-void MiniEngine::PreDraw()
-{
-	SDL_RenderClear(Renderer);
-	
-	pLevel->Draw();
-}
-void MiniEngine::PostDraw()
-{
-	FramerateDraw( Screen );
-	
-	SDL_RenderPresent(Renderer);
-}
-void MiniEngine::Draw( void )
-{
-	PreDraw();
-    
-	DrawBullets(Renderer);
-	DrawParticleEmitter(Renderer);
-
-	DrawEnemies(Renderer);
-	
-	pPlayer->Draw( Renderer );
-	
-
-	PostDraw();	
-}
 
 //////////////////////////////////////////////////////
 // Game Engine : Derived from MiniEngine
@@ -84,8 +27,9 @@ void Game::Init()
 	pPlayer->Reset();		// set direction, position, setACtiveWeapon (pistol)
 
 	
+	printf ("loading level\n");
 	pLevel->Load( "test.lvl" );	// load the level
-	
+	printf ("Finished loading level\n");
 	// if we are NOT in demo mode, let's load the level's MusicFile
 #ifndef DEMO
 	string filename = MUSIC_DIR + pLevel->pLevelData_Layer1->Musicfile;

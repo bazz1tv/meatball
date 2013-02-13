@@ -4,7 +4,9 @@
 #ifndef __LEVELEDITOR_H__
 #define __LEVELEDITOR_H__
 
+
 #include "Globals.h"
+
 #include "ObjectManager.h"
 
 // used for poop pants
