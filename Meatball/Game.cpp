@@ -22,7 +22,7 @@ void Game::Init()
 	// Messing with Global Variables here XD 
 	done = 0;				// These need to get tighted up. Make their purpose more known
 	mode = MODE_GAME;		// this global universal variable tracks Game modes. (see defines.h)
-
+	
 	pPlayer->init();		// add his images to the Image Manager, give him initial weapon
 	pPlayer->Reset();		// set direction, position, setACtiveWeapon (pistol)
 

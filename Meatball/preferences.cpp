@@ -232,7 +232,7 @@ void cPreferences :: Parse( char* command, int line )
 	while(*str)
 	{
 		size_t len = strcspn( str," " );
-		parts[i] = (char*)malloc( len + 1 );
+		parts[i] = (char*)SDL_malloc( len + 1 );
 		memcpy( parts[i], str, len );
 		parts[i][len] = 0;
 		str += len + strspn( str + len, " " );

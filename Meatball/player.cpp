@@ -69,9 +69,9 @@ void cPlayer :: Update( void )
 	
 	cBasicSprite::Update(Renderer);
 
-	PositionCheck( (int)posx+14, (int)posy + 1, 6, (int)height, Collision, type );
+	PositionCheck( (int)posx+12, (int)posy + 1, 10, (int)height, Collision, type );
 
-	if( Collision->collide == DOWN && Collision->direction == ALL_COLLISIONS_UD ) 
+	if( Collision->collide == DOWN && Collision->direction == ALL_COLLISIONS_UD) 
 	{
 		if( Collision->iCollisionType == SPRITE_TYPE_MASSIVE || Collision->iCollisionType == SPRITE_TYPE_ENEMY ) 
 		{
@@ -209,7 +209,7 @@ void cPlayer :: Update( void )
 			state = STATE_FALLING;
 		}
 		
-		SetVelocity(0, -(vely*0.3) );
+		SetVelocity(velx, -(vely*0.3) );
 	}
 	else if( Collision->direction == 2 || Collision->direction == 1 || Collision->collide == LEFT || Collision->collide == RIGHT )
 	{

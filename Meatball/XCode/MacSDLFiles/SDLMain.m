@@ -247,7 +247,7 @@ static void CustomApplicationMain (int argc, char **argv)
  *  arguments. Previously, apps launched from the finder had nothing but
  *  an argv[0].
  *
- * This message may be received MultiSelect times to open several docs on launch.
+ * This message may be received Multi times to open several docs on launch.
  *
  * This message is ignored once the app's mainline has been called.
  */
@@ -262,7 +262,11 @@ static void CustomApplicationMain (int argc, char **argv)
         return SDL_FALSE;
 
     if (gCalledAppMainline)  /* app has started, ignore this document. */
+	{
+		//SDL_SendDropFile(filename);
         return SDL_FALSE;
+		//return (BOOL)SDL_SendDropFile([filename UTF8String]);
+	}
 
     temparg = [filename UTF8String];
     arglen = SDL_strlen(temparg) + 1;

@@ -76,7 +76,7 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 
 	new_Enemy->init();	
 
-	Enemies = (cEnemy**) realloc( Enemies, ++EnemyCount * sizeof(cEnemy*) );
+	Enemies = (cEnemy**) SDL_realloc( Enemies, ++EnemyCount * sizeof(cEnemy*) );
 	Enemies[EnemyCount - 1] = new_Enemy;
 }
 
@@ -176,7 +176,8 @@ void DeleteAllEnemies( void )
 			Enemies[i] = NULL;
 		}
 
-		delete []Enemies;
+		SDL_free(Enemies);
+		//delete []Enemies;
 		Enemies = NULL;
 	}
 

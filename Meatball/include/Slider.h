@@ -10,8 +10,10 @@
  
  
  
- To-Do: The adjuster width and height are Constant values.. There should be more dynamic ways to make a slider that is adjustable in size.
+ ToDo: The adjuster width and height are Constant values.. There should be more dynamic ways to make a slider that is adjustable in size.
 			this means adjusting its panel graphics, and adjuster width and height
+ 
+ So there is a relationship between the panel height and the adjuster height.
  
 		Vertical Sliders...
  

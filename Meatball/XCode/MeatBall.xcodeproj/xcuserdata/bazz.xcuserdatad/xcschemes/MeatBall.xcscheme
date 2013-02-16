@@ -73,15 +73,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9C93E39013942B5A0096FAB3"
-            BuildableName = "HelloSDL.app"
-            BlueprintName = "MeatBall"
-            ReferencedContainer = "container:HelloSDL.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

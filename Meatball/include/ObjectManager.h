@@ -1,48 +1,38 @@
 #pragma once
 
 
+#define OM_DELETE_OBJS					SDL_FALSE
+#define OM_FREE_OBJS					SDL_TRUE
 
+#define OM_DONT_OBLITERATE_OBJS_AT_DESTROY	SDL_FALSE
+#define OM_OBLITERATE_OBJS_AT_DESTROY			SDL_TRUE
 
 template <class T>
 class ObjectManager
 {
 public:
-	ObjectManager() { objects = NULL; numobjs = 0; }
+	ObjectManager(SDL_bool delete_at_destroy=SDL_FALSE, SDL_bool delete_or_free = OM_DELETE_OBJS)
+	{
+		objects = NULL; numobjs = 0;
+		obliterate_objects_at_destructor = delete_or_free;
+		obliterate_objects_at_destructor = delete_at_destroy;
+	}
 	~ObjectManager()
 	{
-		/*if ( objects && numobjs > 0)
+		if (obliterate_objects_at_destructor == SDL_TRUE)
 		{
-			for( unsigned int i = 0;i < numobjs;i++ ) 
+			if (delete_or_free_objects == OM_DELETE_OBJS)
 			{
-				if( !objects[i] ) 
-				{
-					continue;
-				} 
-			
-				delete objects[i];
-				objects[i] = NULL;
+				DEBUGLOG("Object Manager: Deleting Object(s) contents\n");
+				DeleteAllObjectContents();
 			}
-
-			delete []objects;
-			objects = NULL;
-			
-			numobjs = 0;
+			else // free them
+			{
+				DEBUGLOG("Object Manager: Freeing Object(s) contents\n");
+				FreeAllObjectContents();
+			}
 		}
-		else if(objects && numobjs == 0)
-		{
-			DEBUGLOG ("ObjectManager: Really Weird.. There are Objects but an numobjs == 0\n");
-			
-			delete []objects;
-			objects = NULL;
-			numobjs = 0;
-		}
-		else if(!objects && numobjs > 0)
-		{
-			DEBUGLOG ("ObjectManager: Really Weird.. No Objects but an numobjs > 0\n");
-			
-			numobjs = 0;
-		}*/
-		free(objects);
+		SDL_free(objects);
 		objects= NULL;
 		numobjs = 0;
 	}
@@ -50,9 +40,13 @@ public:
 	virtual void add(T *);
 	void RemoveAllObjects();
 	SDL_bool hasa(T *);
+	void DeleteAllObjectContents(); ///< uses Delete instead of Free()
+	void FreeAllObjectContents();	///< uses free();
 	
 
+	SDL_bool obliterate_objects_at_destructor;	///< this sets to only delete the manager of the objects/ or should we also delete the objects too???
 	unsigned int numobjs;
+	SDL_bool delete_or_free_objects;	///< delete them or free them? (depends of new was used or SDL_malloc-equiv)
 	T **objects;
 };
 
@@ -61,7 +55,7 @@ T* ObjectManager<T>::add()
 {
 	T *new_obj = new T;
 
-	objects = (T**) realloc( objects, ++numobjs * sizeof(T*) );
+	objects = (T**) SDL_realloc( objects, ++numobjs * sizeof(T*) );
 	objects[numobjs - 1] = new_obj;
 
 	return new_obj;
@@ -83,18 +77,52 @@ SDL_bool ObjectManager<T>::hasa(T *o)
 template <class T>
 void ObjectManager<T>::add(T *new_obj)
 {
-	objects = (T**) realloc( objects, ++numobjs * sizeof(T*) );
+	objects = (T**) SDL_realloc( objects, ++numobjs * sizeof(T*) );
 	objects[numobjs - 1] = new_obj;
 }
 
 
+/// Remove from OM but don't delete from memory
 template <class T>
 void ObjectManager<T>::RemoveAllObjects()
 {
 	if ( objects && numobjs > 0 )
 	{
-		free(objects);
+		SDL_free(objects);
 		objects = NULL;
+		numobjs = 0;
+	}
+}
+
+template <class T>
+void ObjectManager<T>::DeleteAllObjectContents()
+{
+	if (objects && numobjs > 0)
+	{
+		DEBUGLOG("\tDeleting %d objects\n", numobjs);
+		
+		for (unsigned int i=0; i < numobjs; i++)
+		{
+			delete objects[i];
+		}
+		
+		numobjs = 0;
+	}
+	
+	
+}
+
+template <class T>
+void ObjectManager<T>::FreeAllObjectContents()
+{
+	if (objects && numobjs > 0)
+	{
+		DEBUGLOG("\tFreeing %d objects\n", numobjs);
+		for (unsigned int i=0; i < numobjs; i++)
+		{
+			SDL_free(objects[i]);
+		}
+		
 		numobjs = 0;
 	}
 }

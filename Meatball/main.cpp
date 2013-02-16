@@ -9,7 +9,7 @@ int DoGame();
 void initEngine();
 
 
-int SDL_main (int argc, char **argv)
+int main (int argc, char **argv)
 {
 	initEngine();
 	DoGame();
@@ -54,8 +54,8 @@ void initEngine()
 	InitEP();
 	InitSDL( SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE );
 	
-	// 
-
+	//
+	SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 
 	pPreferences	= new cPreferences();
 	pGameSettings	= new cSettings();
@@ -95,7 +95,7 @@ void initEngine()
 	window_height = pGameSettings->Screen_H;
 	window_width = pGameSettings->Screen_W;
 	
-	SDL_SetWindowBordered(Window, SDL_FALSE);
+	//SDL_SetWindowBordered(Window, SDL_FALSE);
 	SDL_SetWindowMaximumSize(Window, window_width, window_height);
 	SDL_SetWindowMinimumSize(Window, window_width, window_height);
 	SDL_DisableScreenSaver();
@@ -165,7 +165,7 @@ void initEngine()
 	
 	
 	keys = SDL_GetKeyboardState(NULL);
-	
+
 	//int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, int bpp, SDL_SDL_bool fullscreen, Uint32 wflags, Uint32 rflags)
 	
 	pFramerate = new cFramerate( 60 );

@@ -29,13 +29,16 @@ SDL_bool allSoundsVol(string &str);	///< Change the volume of All sounds (0-128)
 SDL_bool musicVol(string &str);		///< Change the music volume (0-128)
 SDL_bool cd(string &str);			///< change the current directory
 SDL_bool ls(string &str);			///< list the directory
+SDL_bool SetScreenScaleXY(string &str);
+SDL_bool SetScreenScaleX(string &str);
+SDL_bool SetScreenScaleY(string &str);
 // @}
 
 /// Number of Output Lines to the Console
 #define NUM_LINES 11
 
 /// Move all output up one line
-void moveup();
+void moveConsoleHistoryLinesUp(int nlines=1);
 /// Queries the user to hit enter key.. kinda like a cheap [less] cmd
 void wait_for_input();
 /// Self Explanatory
@@ -43,11 +46,14 @@ void console_print(const char *str);
 
 
 /// This structure is for each Command to the Console
-struct cCMD
+class cCMD
 {
+public:
+	cCMD() : command(SDL_TRUE, SDL_FALSE) { }
 	SDL_bool ( *handler )( string &str );	///< Function pointer to Command's function
 
-	string command;						///< The string to identify the command
+	//string command;						///< The string(s) to identify the command
+	ObjectManager<string> command;
 	string helpstr;						///< This string is shown when you do "help [command]"
 	string syntax;						///< The syntax to the command. Shown when you ask for help
 	cCMD *next;							///< next command in the linked list

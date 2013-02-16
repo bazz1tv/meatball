@@ -31,7 +31,8 @@ cLevelData :: ~cLevelData( void )
 			} 
 		}
 
-		delete []BasicSprites;	
+		//delete []BasicSprites;
+		SDL_free(BasicSprites);
 		BasicSprites = NULL;	
 	}
 	
@@ -40,7 +41,7 @@ cLevelData :: ~cLevelData( void )
 
 void cLevelData :: AddSprite( cMVelSprite *Sprite )
 {
-	BasicSprites = (cMVelSprite**) realloc( BasicSprites, ++BasicSpriteCount * sizeof(cMVelSprite*) );
+	BasicSprites = (cMVelSprite**) SDL_realloc( BasicSprites, ++BasicSpriteCount * sizeof(cMVelSprite*) );
 	BasicSprites[BasicSpriteCount - 1] = Sprite;
 	return;
 }
@@ -73,7 +74,7 @@ SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<
 	
 	if( BasicSprites && Crect )
 	{
-		DEBUGLOG( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
+		//DEBUGLOG( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
 		
 		for( unsigned int i = 0; i < BasicSpriteCount; i++ )
 		{
@@ -358,7 +359,7 @@ void cLevel :: Parse( char* command, int line )
 	while(*str)
 	{
 		size_t len = strcspn( str," " );
-		parts[i] = (char*)malloc( len + 1 );
+		parts[i] = (char*)SDL_malloc( len + 1 );
 		memcpy( parts[i], str, len );
 		parts[i][len] = 0;
 		str += len + strspn( str + len, " " );

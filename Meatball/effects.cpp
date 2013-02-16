@@ -127,17 +127,8 @@ void cMParticle :: Draw( SDL_Renderer *renderer )
 		return;
 	}
 	
-	Uint8 oor,og,ob,oa;
+	DrawPixel(renderer, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ), red,green,blue,alpha);
 	
-	// Preserve old color
-	SDL_GetRenderDrawColor(renderer, &oor, &og, &ob, &oa);
-	// Set new Color
-	SDL_SetRenderDrawColor(renderer, (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha);
-	
-	// Draw the point
-	SDL_RenderDrawPoint(renderer, (int)( posx - pCamera->x ), (int)( posy - pCamera->y ));
-	// Restore old color
-	SDL_SetRenderDrawColor(renderer, oor, og, ob, oa);
 }
 
 void cMParticle :: HandleCollision( int direction )
@@ -209,7 +200,8 @@ cMParticleEmitter :: ~cMParticleEmitter( void )
 			Particles[i] = NULL;
 		}
 
-		delete []Particles;
+		SDL_free(Particles);
+		//delete []Particles;
 		Particles = NULL;
 	}
 }
@@ -229,7 +221,8 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 			Particles[i] = NULL;
 		}
 
-		delete []Particles;
+		//delete []Particles;
+		SDL_free(Particles);
 		Particles = NULL;
 	}
 
@@ -257,7 +250,7 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 
 		new_Particle->visible = SDL_TRUE;
 
-		Particles = (cMParticle**) realloc( Particles, ++ParticleCount * sizeof(cMParticle*) );
+		Particles = (cMParticle**) SDL_realloc( Particles, ++ParticleCount * sizeof(cMParticle*) );
 		Particles[ParticleCount - 1] = new_Particle;
 	}
 }
@@ -352,7 +345,7 @@ void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngre
 	
 	new_ParticleEmitter->InitParticles( power );
 
-	ParticleEmitter = (cMParticleEmitter**) realloc( ParticleEmitter, ++ParticleEmitterCount * sizeof(cMParticleEmitter*) );
+	ParticleEmitter = (cMParticleEmitter**) SDL_realloc( ParticleEmitter, ++ParticleEmitterCount * sizeof(cMParticleEmitter*) );
 	ParticleEmitter[ParticleEmitterCount - 1] = new_ParticleEmitter;
 }
 
