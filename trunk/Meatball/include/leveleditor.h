@@ -22,7 +22,7 @@ void leveleditor_ehandler(void);
 // @{
 // The Current Mouse Command
 enum {	MOUSE_COMMAND_NOTHING,
-		MOUSE_COMMAND_SINGLE_TILE_MOVING,
+		MOUSE_COMMAND_MOVING_SINGLE_TILE,
 		MOUSE_COMMAND_MOVING_MULTISELECT_TILES,
 		MOUSE_COMMAND_FASTCOPY,
 		MOUSE_COMMAND_SELECT_MULTISELECT_TILES
@@ -124,7 +124,7 @@ public:
 	// the actual MultiSelect_-copy process
 	//void MultiSelect_Copy( void );
 	
-	void init_MultiSelect_Tiles();
+	void init_MultiSelect_Tiles(SDL_bool release = SDL_FALSE);
 	void prepareToMove_MultiSelect_Tiles();
 	
 	SDL_bool GetAllCollidingObjects( SDL_Rect *crect, ObjectManager<cMVelSprite> *obj_man );

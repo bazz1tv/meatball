@@ -34,13 +34,12 @@ class ControlsMenu : public MiniEngine
 	ControlsMenu();
 	~ControlsMenu();
 
-	//void Do();
 	void Update();
 	void Draw();
 	void EventHandler();
 	void Collisions();
 	
-	void GetInput(Uint8);		// NEED TO WRITE THIS
+	void GetInput(Uint8);
 
 	TTF_Font *font;
 
@@ -48,8 +47,6 @@ class ControlsMenu : public MiniEngine
 	TextObject *tExit, *tMoveLeft, *tMoveRight, *tFirePrimary, *tJump;
 	TextObject *tWaitForInput;
 
-	// TO-DO implement these
-	TextObject *tFullscreen, *tScreenWidth, *tScreenHeight, *tScreenBpp;
 	// Text representing the current Controls preferences
 	TextObject *tMoveLeft_CurKey, *tMoveRight_CurKey, *tFirePrimary_CurKey, *tJump_CurKey;
 };
@@ -75,18 +72,15 @@ public:
 	void Draw();
 	void EventHandler();
 	void Collisions();
-	//BlinkCursor();
 	void LiveInput();
-	//Slide(Slider *slider);
-	//Keyboard_Joypad_Oneshot();
-
-	//cBasicSprite *Musicvol, *Soundvol; // This is how you store sprites in the class
-	//SDL_Surface *cursor;
-	//SDL_Event event;
+	
 	TTF_Font *optionsfont;
 
 	TextObject *tExit, *tMusicVol, *tSoundVol;
 	TextObject *tControls;
+	
+	// TODO: implement these
+	TextObject *tFullscreen, *tScreenWidth, *tScreenHeight, *tScreenBpp;
 	
 	Slider *sMusicVol, *sSoundVol;
 	// inherited from Console (not literally)

@@ -41,7 +41,6 @@
 #pragma comment( lib, "SDL2_image.lib" )
 #pragma comment( lib, "SDL2_ttf.lib" )
 #pragma comment( lib, "SDL2_net.lib" )
-//#pragma comment( lib, "Sge.lib" )
 #endif
 
 /**  WIN32 DLL interface */
@@ -51,6 +50,8 @@
 #else
 #define DLLINTERFACE
 #endif
+
+
 
 #include "framerate.h"
 #include "image.h"
@@ -63,6 +64,12 @@
 #include "snd_manager.h"
 
 #include "net.h"
+
+// External Variables
+// Defined in Video.cpp
+
+extern Screenscale ScreenScale;
+
 
 #define SDL_ENGINEPRIMITIVES_MAJOR	0
 #define SDL_ENGINEPRIMITIVES_MINOR	9

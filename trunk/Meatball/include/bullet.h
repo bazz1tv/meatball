@@ -24,6 +24,9 @@ public:
 	 * Reinitializes all values
 	 */
 	void init( int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel = 0.0 );
+	
+	///
+	void Explode( );
 
 	/// Updates the Bullet
 	void Update( void );
@@ -67,6 +70,9 @@ void UpdateBullets( void );
 
 /// Draws all Bullets
 void DrawBullets( SDL_Renderer *renderer );
+
+/// Dish out Damage
+void DoDamage();
 
 /// Deletes all Bullets ( Cleans the Array )
 void DeleteAllBullets( void );

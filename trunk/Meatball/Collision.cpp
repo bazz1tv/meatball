@@ -15,10 +15,11 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
     if (type == SPRITE_TYPE_BULLET)
     {
         PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(Sprite->width), (int)Sprite->height, Collision, type );
+		//
     }
     else
     {
-        PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(velx + Sprite->width), (int)Sprite->height, Collision, type );
+        PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(Sprite->width), (int)Sprite->height, Collision, type );
 	}
     
 	if( Collision->collide == -1 )
@@ -69,12 +70,20 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 				{
 
 					/** The direction of all Collisions\n
-	 * -1 = No Collision detected		<br>
-	 * 1 = Collision Up/Down/Left/Right	<br>
-	 * 2 = Collision in Left/Right		<br>
-	 * 3 = Collision Up/Down			<br>
-	 */
-
+					 * -1 = No Collision detected			<br>
+					 *  1 = Collision Up/Down/Left/Right	<br>
+					 *  2 = Collision in Left/Right			<br>
+					 *  3 = Collision Up/Down				<br>
+					 */
+					
+					if (velx > 0)
+					{
+						Collision->collide = LEFT;
+					}
+					else
+						Collision->collide = RIGHT;
+				
+					
 
 					if( Collision->direction == ALL_COLLISIONS_NONE ) 
 					{
@@ -91,7 +100,7 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 
 			if( movey == SDL_TRUE )
 			{
-				PositionCheck( (int)Sprite->posx, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), (int)Sprite->width, (int)Sprite->height, Collision, type );
+				//PositionCheck( (int)Sprite->posx, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), (int)Sprite->width, (int)Sprite->height, Collision, type );
 				
 				if( Collision->collide == -1 )
 				{
@@ -105,7 +114,14 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 				}
 				else
 				{
-					if( Collision->direction == ALL_COLLISIONS_NONE ) 
+					if (vely > 0)
+					{
+						Collision->collide = UP;
+					}
+					else
+						Collision->collide = DOWN;
+					
+					if( Collision->direction == ALL_COLLISIONS_NONE )
 					{
 						Collision->direction = ALL_COLLISIONS_UD;	// Collision Up/Down
 					}
@@ -133,14 +149,14 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 	Collisiondata lastCollision;
 
 
-	PositionCheck( (int)( Sprite->posx+12 + velx ) , (int)( Sprite->posy + vely ), (int)(velx + 10), (int)Sprite->height, Collision, type );
+	PositionCheck( (int)( Sprite->posx+12 + velx ) , (int)( Sprite->posy + vely ), (int)(10), (int)Sprite->height, Collision, type );
 	lastCollision = *Collision;
 
-	if (Collision->collide == 5)
+	/*if (Collision->collide == 5)
 	{
 		//DEBUGLOG("\nstrange unexplained Collision on Regular generic check.. Setting to Down Collision to get the movements checked\n");
 		Collision->collide = DOWN;
-	}
+	}*/
 	if( Collision->collide == -1 )
 	{
 		Sprite->posx += velx;
@@ -171,7 +187,6 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 			{
 				PositionCheck( (int)( Sprite->posx+12 + ( (fvelx > 0) ? (1) : (-1) ) ), (int)Sprite->posy, 10, (int)Sprite->height, Collision, type  );
 				
-				DEBUGLOG("MoveX: %d-%d | ", lastCollision.collide, Collision->collide);
 				/*if (Collision->collide == 3 || Collision->collide == 2)
 				{
 					DEBUGLOG("(X_collision_Check..Down Collision?? - Setting to No Collision(-1) (to allow X movement)\n");
@@ -193,18 +208,24 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 				//{
 				if (Collision->collide != -1)
 				{
-					if( Collision->direction == -1 ) 
+					if (velx > 0)
 					{
-						if (Collision->collide == 3 || Collision->collide == 2)
-							;//Collision->direction = 3;
-						else
-							Collision->direction = 2;	// Collision Left/Right
+						Collision->collide = LEFT;
 					}
-					else if( Collision->direction == 3 ) 
+					else
+						Collision->collide = RIGHT;
+					
+					//DEBUGLOG("MoveX: %d-%d\n", lastCollision.collide, Collision->collide);
+					
+					if( Collision->direction == ALL_COLLISIONS_NONE )
 					{
-						Collision->direction = 1;	// Collision Up/Down/Left/Right
+						Collision->direction = ALL_COLLISIONS_LR;	// Collision Left/Right
 					}
-
+					else if( Collision->direction == ALL_COLLISIONS_UD )
+					{
+						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
+					}
+					
 					movex = SDL_FALSE;
 				}
 				//}
@@ -258,17 +279,22 @@ void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Colli
 				}
 				if (Collision->collide != -1)
 				{
-					if( Collision->direction == -1 ) 
+					if (vely > 0)
 					{
-						if (Collision->collide == 1 || Collision->collide == 0)
-							Collision->direction = 2;
-						else Collision->direction = 3;	// Collision Up/Down
+						Collision->collide = UP;
 					}
-					else if( Collision->direction == 2 ) 
+					else
+						Collision->collide = DOWN;
+					
+					if( Collision->direction == ALL_COLLISIONS_NONE )
 					{
-						Collision->direction = 1;	// Collision Up/Down/Left/Right
+						Collision->direction = ALL_COLLISIONS_UD;	// Collision Up/Down
 					}
-
+					else if( Collision->direction == ALL_COLLISIONS_LR )
+					{
+						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
+					}
+					
 					movey = SDL_FALSE;
 				}
 
@@ -308,6 +334,7 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 			Collision->iCollisionNumber = 0;
 			Collision->iCollisionType = SPRITE_TYPE_PLAYER;
 			Collision->collide = GetCollide( &rect1, &pPlayer->rect );
+			Collision->cRect = &pPlayer->rect;
 			return;
 		}
 	}
@@ -332,6 +359,7 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 					Collision->iCollisionNumber = i;
 					Collision->iCollisionType = SPRITE_TYPE_MASSIVE;	// Massive Object
 					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect );
+					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites[i]->rect;
 					return;
 				}
 			}
@@ -343,6 +371,7 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 					Collision->iCollisionNumber = i;
 					Collision->iCollisionType = SPRITE_TYPE_HALFMASSIVE;	// HalfMassive Object
 					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect );
+					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites[i]->rect;
 					return;
 				}
 			}
@@ -365,6 +394,7 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 				Collision->iCollisionNumber = i;
 				Collision->iCollisionType = SPRITE_TYPE_ENEMY;	// Enemy Object
 				Collision->collide = GetCollide( &rect1, &Enemies[i]->rect );
+				Collision->cRect = &Enemies[i]->rect;
 				return;
 			}
 		}
@@ -374,22 +404,35 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 
 int GetCollide( SDL_Rect *r1, SDL_Rect *r2 )
 {
-	if( r1->y + 1 >= r2->y + r2->h )
+	/*DEBUGLOG ("r1\n");
+	DEBUGLOG ("\tx: %d y: %d\n", r1->x, r1->y);
+	DEBUGLOG ("\twidth: %d height: %d\n", r1->w, r1->h);
+	DEBUGLOG ("r2\n");
+	DEBUGLOG ("\tx: %d y: %d\n", r2->x, r2->y);
+	DEBUGLOG ("\twidth: %d height: %d\n", r2->w, r2->h);*/
+	
+	if( r1->y + 1 <= r2->y + r2->h)
 	{
-		return UP;
-	}
-	else if( r1->y + r1->h - 1 <= r2->y )
-	{
+		//DEBUGLOG ("\t\tReturned DOWN\n");
 		return DOWN;
 	}
-	else if( r1->x + 1 >= r2->x + r2->w )
+	else if( r1->y + r1->h - 1 >= r2->y )
 	{
-		return LEFT;
+		//DEBUGLOG ("\t\tReturned UP\n");
+		return UP;
 	}
-	else if( r1->x + r1->w - 1 <= r2->x )
+	else if( r1->x + 1 <= r2->x + r2->w )
 	{
+		//DEBUGLOG ("\t\tReturned RIGHT\n");
 		return RIGHT;
 	}
+	else if( r1->x + r1->w - 1 >= r2->x )
+	{
+		//DEBUGLOG ("\t\tReturned LEFT\n");
+		return LEFT;
+	}
+	
+	//DEBUGLOG ("\t\tReturned 5\n");
 
 	return 5; // should never happen ...
 	// But it does.. On top of boxes usually....

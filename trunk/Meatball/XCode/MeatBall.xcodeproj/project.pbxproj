@@ -44,8 +44,6 @@
 		E9D5E52C16B5FDA600FAC31F /* SDL2_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */; };
 		E9D5E52D16B5FDA600FAC31F /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9716B46E6C0003938A /* SDL2.framework */; };
 		E9D5E52E16B5FDA600FAC31F /* MeatballEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9CFA43316B1D63700B3919F /* MeatballEngine.framework */; };
-		E9D5E53316B6009600FAC31F /* MeatBallAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */; };
-		E9D5E53416B6009600FAC31F /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D5E53216B6009600FAC31F /* SDLMain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,7 +76,7 @@
 		E98CCB9516B46E6C0003938A /* SDL2_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_net.framework; path = ../../../../../../../Library/Frameworks/SDL2_net.framework; sourceTree = "<group>"; };
 		E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		E98CCB9716B46E6C0003938A /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		E9A5CDDA16C8BA4C004D4DF0 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Range.h; sourceTree = "<group>"; };
+		E9A5CDDA16C8BA4C004D4DF0 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Range.h; path = ../include/Range.h; sourceTree = "<group>"; };
 		E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "AF-373.cpp"; path = "../AF-373.cpp"; sourceTree = "<group>"; };
 		E9CFA3D016B1D54D00B3919F /* bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bullet.cpp; path = ../bullet.cpp; sourceTree = "<group>"; };
 		E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonObject.cpp; path = ../ButtonObject.cpp; sourceTree = "<group>"; };
@@ -119,7 +117,7 @@
 		E9CFA41016B1D56300B3919F /* leveleditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 2; name = leveleditor.h; path = ../include/leveleditor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E9CFA41116B1D56300B3919F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenu.h; path = ../include/MainMenu.h; sourceTree = "<group>"; };
 		E9CFA41316B1D56300B3919F /* Misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Misc.h; path = ../include/Misc.h; sourceTree = "<group>"; };
-		E9CFA41416B1D56300B3919F /* ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectManager.h; sourceTree = "<group>"; };
+		E9CFA41416B1D56300B3919F /* ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectManager.h; path = ../include/ObjectManager.h; sourceTree = "<group>"; };
 		E9CFA41516B1D56300B3919F /* OptionsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OptionsMenu.h; path = ../include/OptionsMenu.h; sourceTree = "<group>"; };
 		E9CFA41616B1D56300B3919F /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = player.h; path = ../include/player.h; sourceTree = "<group>"; };
 		E9CFA41716B1D56300B3919F /* playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playlist.h; path = ../include/playlist.h; sourceTree = "<group>"; };
@@ -131,10 +129,6 @@
 		E9CFA43316B1D63700B3919F /* MeatballEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeatballEngine.framework; path = ../../../../../../../Library/Frameworks/MeatballEngine.framework; sourceTree = "<group>"; };
 		E9D3371816CB620400BB0F9D /* MiniEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiniEngine.h; path = ../include/MiniEngine.h; sourceTree = "<group>"; };
 		E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MiniEngine.cpp; path = ../MiniEngine.cpp; sourceTree = "<group>"; };
-		E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeatBallAppDelegate.h; path = MacSDLFiles/MeatBallAppDelegate.h; sourceTree = "<group>"; };
-		E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeatBallAppDelegate.m; path = MacSDLFiles/MeatBallAppDelegate.m; sourceTree = "<group>"; };
-		E9D5E53116B6009600FAC31F /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLMain.h; path = MacSDLFiles/SDLMain.h; sourceTree = "<group>"; };
-		E9D5E53216B6009600FAC31F /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDLMain.m; path = MacSDLFiles/SDLMain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +191,16 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		E942ED2616CF1B9A0048C7EB /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				E9A5CDDA16C8BA4C004D4DF0 /* Range.h */,
+				E9CFA41916B1D56300B3919F /* Slider.h */,
+				E9CFA3E416B1D54D00B3919F /* Slider.cpp */,
+			);
+			name = Slider;
+			sourceTree = "<group>";
+		};
 		E9A3436C16BB7C2E00072818 /* Enemies */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,9 +232,9 @@
 		E9A3437016BB7C6000072818 /* Graphics Objects */ = {
 			isa = PBXGroup;
 			children = (
+				E942ED2616CF1B9A0048C7EB /* Slider */,
+				E9CFA41416B1D56300B3919F /* ObjectManager.h */,
 				E9CFA40516B1D56300B3919F /* ButtonObject.h */,
-				E9CFA41916B1D56300B3919F /* Slider.h */,
-				E9CFA3E416B1D54D00B3919F /* Slider.cpp */,
 				E9CFA40E16B1D56300B3919F /* GraphicsObject.h */,
 				E9CFA41B16B1D56300B3919F /* TextObject.h */,
 				E9CFA3E616B1D54D00B3919F /* TextObject.cpp */,
@@ -368,31 +372,19 @@
 			name = Console;
 			sourceTree = "<group>";
 		};
-		E9A3437F16BB7DCD00072818 /* Miscellaneous */ = {
+		E9A3437F16BB7DCD00072818 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
 				E9CFA41316B1D56300B3919F /* Misc.h */,
 				E9CFA3DF16B1D54D00B3919F /* Misc.cpp */,
 			);
-			name = Miscellaneous;
-			sourceTree = "<group>";
-		};
-		E9A3438016BB7E1400072818 /* Mac_Specific */ = {
-			isa = PBXGroup;
-			children = (
-				E9D5E53016B6009600FAC31F /* MeatBallAppDelegate.m */,
-				E9D5E53116B6009600FAC31F /* SDLMain.h */,
-				E9D5E53216B6009600FAC31F /* SDLMain.m */,
-				E9D5E52F16B6009600FAC31F /* MeatBallAppDelegate.h */,
-			);
-			name = Mac_Specific;
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		E9A3438116BB7E4A00072818 /* Code */ = {
 			isa = PBXGroup;
 			children = (
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
-				E9A3438016BB7E1400072818 /* Mac_Specific */,
 				E9A3437216BB7C9C00072818 /* Menus */,
 				E9A3437116BB7C8B00072818 /* Camera */,
 				E9A3437016BB7C6000072818 /* Graphics Objects */,
@@ -405,7 +397,7 @@
 				E9A3437A16BB7D8600072818 /* Globals */,
 				E9A3437916BB7D7B00072818 /* Level */,
 				E9BC1FAA16B960B70020965C /* LevelEditor */,
-				E9A3437F16BB7DCD00072818 /* Miscellaneous */,
+				E9A3437F16BB7DCD00072818 /* Misc */,
 				E9A3437616BB7D0A00072818 /* Settings&Preferences */,
 				E9A3437516BB7CF900072818 /* Playlist */,
 				E9A3437416BB7CE800072818 /* Player */,
@@ -431,8 +423,6 @@
 				E9CFA40316B1D56300B3919F /* boost.h */,
 				E9CFA40916B1D56300B3919F /* defines.h */,
 				E901FD7F16B364E200DB896C /* OS.h */,
-				E9CFA41416B1D56300B3919F /* ObjectManager.h */,
-				E9A5CDDA16C8BA4C004D4DF0 /* Range.h */,
 			);
 			name = include;
 			path = ../include;
@@ -512,8 +502,6 @@
 				E9CFA3FE16B1D54D00B3919F /* sprite.cpp in Sources */,
 				E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */,
 				E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */,
-				E9D5E53316B6009600FAC31F /* MeatBallAppDelegate.m in Sources */,
-				E9D5E53416B6009600FAC31F /* SDLMain.m in Sources */,
 				E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

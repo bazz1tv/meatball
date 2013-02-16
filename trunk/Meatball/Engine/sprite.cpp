@@ -304,8 +304,8 @@ void cBasicSprite :: Update( SDL_Renderer *renderer )
 			SDL_SetSurfaceAlphaMod(image, alpha);
 			//SDL_SetAlpha( image, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, alpha );
 			
-			rect.w = srcimage->w;
-			rect.h = srcimage->h;
+			rect.w = srcimage->w*ScreenScale.x;
+			rect.h = srcimage->h*ScreenScale.y;
 			
 			texture = SDL_CreateTextureFromSurface(renderer, image);
 		}
@@ -530,11 +530,12 @@ void cAngleSprite :: Update( SDL_Renderer *renderer, SDL_bool nMove )
 			//SDL_Surface *temp = zoomSurface( srcimage, width/(double)srcimage->w, height/(double)srcimage->h, 0 );
 			//image = rotozoomSurface( temp, angle,srcimage->format->colorkey );
 			// The comment below simply direct copies the surface
-			image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
+			//image = SDL_ConvertSurface(srcimage, srcimage->format, srcimage->flags);
 			//image = sge_transform_surface( srcimage, srcimage->format->colorkey, (float)angle, (float)(width/(double)srcimage->w),
 				//(float)(height/(double)srcimage->h), srcimage->flags ); // untested
 
 			//SDL_FreeSurface( temp );
+			
 			
 			rect.w = (int)width;
 			rect.h = (int)height;

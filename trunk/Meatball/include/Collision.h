@@ -32,12 +32,14 @@ typedef struct
 	int iCollisionNumber;
 
 	/** The direction of all Collisions\n
-	 * -1 = No Collision detected		<br>
-	 * 1 = Collision Up/Down/Left/Right	<br>
-	 * 2 = Collision in Left/Right		<br>
-	 * 3 = Collision Up/Down			<br>
+	 * -1 = No Collision detected			<br>
+	 *  1 = Collision Up/Down/Left/Right	<br>
+	 *  2 = Collision in Left/Right			<br>
+	 *  3 = Collision Up/Down				<br>
 	 */	
 	int direction;
+	
+	SDL_Rect *cRect;
 
 } Collisiondata;
 

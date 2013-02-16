@@ -1,6 +1,8 @@
 
 #include "SDL_ep.h"
 
+Screenscale ScreenScale;
+
 int InitSDL( Uint32 flags /* = SDL_INIT_EVERYTHING  */ )
 {
 	if ( !SDL_WasInit( NULL ) && ( SDL_Init( flags ) == -1 ) )
@@ -8,8 +10,17 @@ int InitSDL( Uint32 flags /* = SDL_INIT_EVERYTHING  */ )
 		printf ( "Error : Can't init SDL\n" );
 		return 0;
 	}
+	
+	ScreenScale.x = 1;
+	ScreenScale.y = 1;
 
 	return 1;
+}
+
+void SetScreenScale(int sx, int sy)
+{
+	ScreenScale.x = sx;
+	ScreenScale.y = sy;
 }
 
 //  * * * Tagged for mods to SDL2

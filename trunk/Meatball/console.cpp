@@ -14,9 +14,14 @@ void Push(cCMD*& head, string command, SDL_bool (*handler)(string &), string hel
 	newCmd->handler = handler;
 	newCmd->syntax = syntax;
 	newCmd->helpstr = helpstr;
-	newCmd->command = command;
+	newCmd->command.add(new string(command));
 	newCmd->next = head; 
 	head = newCmd;
+}
+
+void AddCmdString(cCMD* &cmd, string str)
+{
+	cmd->command.add(new string(str));
 }
 
 /// Gets the current working path, Loads the Background image to the Image Manager,
@@ -40,27 +45,34 @@ cConsole :: cConsole( void )
 
 	CMDList = NULL;
 
+	// No Limits
+	
 	/// [Console Commands]
-	Push(CMDList,	"clear",	clearcon,		"Clears all strings in console",	"clear"						);
-	Push(CMDList,	"loadmap",	loadmap,		"Loads a map file into the game",	"loadmap [mapfile]"			);
-	Push(CMDList,	"mx",		SetMx,			"Sets Meatball's X coordinate",		"Mx [x]"					);
-	Push(CMDList,	"my",		SetMy,			"Sets Meatball's Y coordinate",		"my [y]"					);
-	Push(CMDList,	"mxy",		SetMxy,			"Sets Meatball's X & Y coordinate",	"Mxy [x y]"					);
-	Push(CMDList,	"play",		play,			"Plays a music file",				"play [musicfile]"			);
-	Push(CMDList,	"quit",		QuitAll,		"Quits the game","quit"											);
-	Push(CMDList,	"fps",		ShowFPS,		"Displays or hides FPS",			"fps"					);
-	Push(CMDList,	"help",		help,			"",									""							);
-	Push(CMDList,	"svol",		soundVol,		"Set Sounds Volumes",				"svol [string_id] [0-128]"	);
-	Push(CMDList,	"mvol",		musicVol,		"Set Music Volumes",				"mvol [0-128]"				);
-	Push(CMDList,	"allsvol",	allSoundsVol,	"Set ALL Sounds Channel Volumes",	"allsvol [0-128]"			);
-	Push(CMDList,	"cd",		cd,				"change directory",					"cd [dir]"					);
-	Push(CMDList,	"ls",		ls,				"List Directoy Contents",			"ls [dir]"					);
+	Push(CMDList,	"clear",	clearcon,				"Clears all strings in console",						"clear"												);
+	Push(CMDList,	"loadmap",	loadmap,				"Loads a map file into the game",						"loadmap [mapfile]"									);
+	Push(CMDList,	"mx",		SetMx,					"Sets Meatball's X coordinate",							"Mx [x]"											);
+	Push(CMDList,	"my",		SetMy,					"Sets Meatball's Y coordinate",							"my [y]"											);
+	Push(CMDList,	"mxy",		SetMxy,					"Sets Meatball's X & Y coordinate",						"Mxy [x y]"											);
+	Push(CMDList,	"play",		play,					"Plays a music file",									"play [musicfile]"									);
+	Push(CMDList,	"quit",		QuitAll,				"Quits the game",										"quit"												);
+		
+	Push(CMDList,	"fps",		ShowFPS,				"Displays or hides FPS",								"fps"												);
+	Push(CMDList,	"help",		help,					"Displays all commands or help for a specific command",	"help [cmd]"										);
+		AddCmdString(CMDList, "h");
+	Push(CMDList,	"svol",		soundVol,				"Set Sounds Volumes",									"svol [string_id] [0-128]"							);
+	Push(CMDList,	"mvol",		musicVol,				"Set Music Volumes",									"mvol [0-128]"										);
+	Push(CMDList,	"allsvol",	allSoundsVol,			"Set ALL Sounds Channel Volumes",						"allsvol [0-128]"									);
+	Push(CMDList,	"cd",		cd,						"change directory",										"cd [dir]"											);
+	Push(CMDList,	"ls",		ls,						"List Directoy Contents",								"ls [dir]"											);
+	Push(CMDList,	"sxy",		SetScreenScaleXY,		"Set X/Y Screen Scale Factor",							"sxy [x] [y]"										);
+	Push(CMDList,	"sx",		SetScreenScaleX,		"Set X Screen Scale Factor",							"sx [x]"											);
+	Push(CMDList,	"sy",		SetScreenScaleY,		"Set Y Screen Scale Factor",							"sy [y]"											);
 	/// [Console Commands]
 
 	conx = 10.0;
 	cony = BG->height - 14;
 
-	DrawCur =SDL_FALSE;
+	DrawCur = SDL_FALSE;
 	ttDrawCur = SDL_GetTicks() + 500;
 }
 
@@ -126,20 +138,9 @@ void cConsole :: EventHandler( void )
 				{	
 					if ( !constr.empty() )
 					{
-						for ( int i = 9; i >= 0; i-- )
-						{
-							if ( !strcpy[i].empty() )
-							{
-								strcpy[i + 1] = strcpy[i];
-							}
-						}
-
-						strcpy[0] = constr;
-
+						console_print(constr.c_str());
 						constr.clear(); // Clear console input line
 						CMDHandler( strcpy[0] );
-
-						
 					}
 				}
 				else if ( event.key.keysym.sym == SDLK_UP )
@@ -349,10 +350,13 @@ SDL_bool cConsole :: CMDHandler( string cInput )
 
 	while ( ptr != NULL )
 	{
-		if ( base == ptr->command || base.substr(1) == ptr->command )
+		for (unsigned int i=0; i < ptr->command.numobjs; i++)
 		{
-			ptr->handler( parm );
-			return SDL_TRUE;
+			if ( base == (string)*(ptr->command.objects[i]) || base.substr(1) == (string)*(ptr->command.objects[i]) )
+			{
+				ptr->handler( parm );
+				return SDL_TRUE;
+			}
 		}
 
 		ptr = ptr->next;
@@ -409,15 +413,18 @@ SDL_bool cConsole :: helpCMD( string &str )
 	cCMD *ptr = CMDList;
 	while ( ptr != NULL )
 	{
-		if ( ptr->command == str)
+		for (unsigned int i=0; i < ptr->command.numobjs; i++)
 		{
-			console_print(buffer);
-			console_print(ptr->helpstr.c_str());
-
-			string usage = "usage: " + ptr->syntax;
-			console_print(usage.c_str());
+			if ( (string)*ptr->command.objects[i] == str)
+			{
+				console_print(buffer);
+				console_print(ptr->helpstr.c_str());
+				
+				string usage = "usage: " + ptr->syntax;
+				console_print(usage.c_str());
 			
-			return SDL_TRUE;
+				return SDL_TRUE;
+			}
 		}
 
 		ptr = ptr->next;
@@ -640,7 +647,7 @@ SDL_bool play( string &str )
 
 	if ( !FileValid( file ) )
 	{
-		console_print("Error: Music File does not Exist! OR it's already being played ;)");
+		console_print("Error: Music File does not Exist!");
 		return SDL_FALSE;
 	}
 	else
@@ -673,9 +680,13 @@ SDL_bool help( string &str )
 	{		
 		/** there are now more than 10 commands... too much for a screen full...
 			let's print 10 commands at a time then */
+		// We print a screenful, then one line at a time after that, each line after use presses a key, like less
+		// To-Do : add "held" key feature to speed up scrolling
 		cCMD *ptr = pConsole->CMDList;
 		while ( ptr != NULL )
 		{
+			// if we have printed >= a screenful..let's stop to let the user analyze, and press a key to continue
+			// Todo: add code to process Holding a key instead of just pressing
 			if (curline >= (NUM_LINES))
 			{
 				
@@ -687,10 +698,22 @@ SDL_bool help( string &str )
 				pConsole->constr.clear();
 			}
 			 
-
-			console_print((char*)ptr->command.c_str());
-			ptr = ptr->next;
+			// The following code will create a single-line string of all the aliases for the one command
+			string allcmds="";
+			unsigned int i;
+			for (i=0; i < ptr->command.numobjs-1; i++)
+			{
+				
+				allcmds = *ptr->command.objects[i] + ", ";
+				
+			}
+			allcmds += *ptr->command.objects[i];
+			console_print((char*)allcmds.c_str());
+			// print that one line, then move on
+			
 			curline++;
+			ptr = ptr->next;
+			
 		}
 
 		
@@ -703,12 +726,19 @@ SDL_bool help( string &str )
 	}
 }
 
-void moveup()
+void moveConsoleHistoryLinesUp(int nlines/*=1*/) // number of lines to move up by
 {
 	int i;
-	for (i=NUM_LINES-2; i >= 0; i--)
+	
+	for (i=NUM_LINES-1; i >= nlines; i--)
 	{
-		pConsole->strcpy[i+1] = pConsole->strcpy[i];
+		pConsole->strcpy[i] = pConsole->strcpy[i-nlines];
+	}
+		
+		
+	while(--nlines >= 0)
+	{
+		pConsole->strcpy[nlines--] = " ";
 	}
 }
 
@@ -732,6 +762,9 @@ void wait_for_input()
 		{
 			break;
 		}
+		
+		// Todo: Check for held down keys as well..
+		
 	
 	}
 }
@@ -743,7 +776,7 @@ void cConsole::Draw()
 
 void console_print(const char *str)
 {
-	moveup();
+	moveConsoleHistoryLinesUp(1);
 	pConsole->strcpy[0] = str;
 }
 
@@ -809,5 +842,86 @@ SDL_bool ls(string &str)
 		
 	}
 
+	return SDL_TRUE;
+}
+
+SDL_bool SetScreenScaleXY(string &str)
+{
+	// parse command, seperate arguments
+	if (str.empty())
+	{
+		stringstream x,y;
+		
+		x << "X: "<<ScreenScale.x;
+		console_print(x.str().c_str());
+		//y.clear();
+		y <<"Y: "<<ScreenScale.y;
+		
+		console_print(y.str().c_str());
+		
+		return SDL_TRUE;
+	}
+	else{
+		
+		size_t found;
+		string x,y;
+		string::iterator xi, yi;
+		
+		// parsing a int,int string combo
+		xi = str.begin();
+		
+		found = str.find_first_of( ' ' );
+		if (found == string::npos)
+		{
+			return SDL_FALSE;
+		}
+		yi = str.begin() + found;
+		
+		// Very incompetent String parsing here. The prog will crash if you suck at typing
+		
+		x.assign(xi,yi++);
+		y.assign(yi, str.end());
+		
+		cout << x << " " << y;
+		
+		SetScreenScale(atoi( x.c_str() ), atoi( y.c_str() ));
+		
+		
+		return SDL_TRUE;
+	}
+}
+SDL_bool SetScreenScaleX(string &str)
+{
+	// use first argument and only argument
+	if (str.empty())
+	{
+		//console_print(pConsole->full_path.string().c_str());
+		return SDL_FALSE;
+	}
+	int ScreenScale_x_logged = ScreenScale.x;
+	ScreenScale.x = atoi(str.c_str());
+	
+	char result[300];
+	sprintf(result,"Changed ScreenScale_x from %d to %d", ScreenScale_x_logged, ScreenScale.x);
+	
+	console_print(result);
+	return SDL_TRUE;
+}
+SDL_bool SetScreenScaleY(string &str)
+{
+	// use first argument and only argument
+	if (str.empty())
+	{
+		//console_print(pConsole->full_path.string().c_str());
+		
+		return SDL_FALSE;
+	}
+	int ScreenScale_y_logged = ScreenScale.y;
+	ScreenScale.y = atoi(str.c_str());
+	
+	char result[300];
+	sprintf(result,"Changed ScreenScale_y from %d to %d", ScreenScale_y_logged, ScreenScale.y);
+	
+	console_print(result);
 	return SDL_TRUE;
 }

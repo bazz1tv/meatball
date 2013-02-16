@@ -280,7 +280,8 @@ void MainMenu::PostDraw()
 }
 
 void MainMenu::EventHandler()
-{		
+{
+	
 		while ( SDL_PollEvent( &event ) )
 		{
 			UniversalEventHandler(&event);
@@ -296,33 +297,6 @@ void MainMenu::EventHandler()
 					if( event.key.keysym.sym == SDLK_BACKSLASH && (SDL_GetModState() & KMOD_ALT) )
 					{
 						SDL_ToggleFS(Window);
-						
-						/*Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED); // (Window, -1,
-						//Renderer = SDL_GetRenderer(Window);	
-						//for (int i=0; i  < 100000000; i++);
-
-						
-						Menu_Background->drawimg = SDL_TRUE;
-						Button_Start->drawimg = SDL_TRUE;
-						Button_Exit->drawimg = SDL_TRUE;
-						tOptions->drawtxt = SDL_TRUE;
-						pMouse->drawimg = SDL_TRUE;
-
-						optionsmenu.tExit->drawtxt = SDL_TRUE;
-						optionsmenu.tMusicVol->drawtxt = SDL_TRUE;
-						optionsmenu.tSoundVol->drawtxt = SDL_TRUE;
-						optionsmenu.tControls->drawtxt = SDL_TRUE;
-						
-						optionsmenu.controls_menu.tExit->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tMoveLeft->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tMoveRight->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tFirePrimary->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tJump->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tMoveLeft_CurKey->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tMoveRight_CurKey->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tFirePrimary_CurKey->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tJump_CurKey->drawtxt = SDL_TRUE;
-						optionsmenu.controls_menu.tWaitForInput->drawtxt = SDL_TRUE;*/
 					}
 					if( event.key.keysym.sym == SDLK_ESCAPE )
 					{
@@ -359,6 +333,7 @@ void MainMenu::EventHandler()
 					}
 					break;					
 				}
+				
 				default:
 					break;
 			}

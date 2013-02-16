@@ -47,7 +47,7 @@ void cLevelEditor :: Update( void )
 		}
 	}
 	// Integrate Single_tile_MOVING and MultiSelect_TILE_MOVING
-	else if( Mouse_command == MOUSE_COMMAND_SINGLE_TILE_MOVING )
+	else if( Mouse_command == MOUSE_COMMAND_MOVING_SINGLE_TILE )
 	{
 		Object->SetPos( floor(pMouse->posx + Mouse_w + pCamera->x), floor(pMouse->posy + Mouse_h + pCamera->y) );
 		
@@ -86,18 +86,7 @@ void cLevelEditor :: Update( void )
 	}
 	else if (Mouse_command == MOUSE_COMMAND_MOVING_MULTISELECT_TILES )
 	{
-		for (unsigned int i=0; i < MultiSelect_Objects.numobjs; i++)
-		{
-			MultiSelect_Objects.objects[i]->SetPos( floor((pMouse->posx-MultiSelect_mouseXOffset) + (pCamera->x-MultiSelect_camXOffset) + MultiSelect_Objects.objects[i]->posx), floor((pMouse->posy - MultiSelect_mouseYOffset) + (pCamera->y-MultiSelect_camYOffset) + MultiSelect_Objects.objects[i]->posy) );
-			
-			MultiSelect_Objects.objects[i]->Startposx = floor(MultiSelect_Objects.objects[i]->posx);
-			MultiSelect_Objects.objects[i]->Startposy = floor(MultiSelect_Objects.objects[i]->posy);
-		}
-		
-		MultiSelect_mouseXOffset = pMouse->posx;
-		MultiSelect_mouseYOffset = pMouse->posy;
-		MultiSelect_camXOffset = pCamera->x;
-		MultiSelect_camYOffset = pCamera->y;
+		MultiSelect_Move();
 	}
 
 	PostUpdate();
@@ -249,7 +238,18 @@ void cLevelEditor :: SetMultiSelect_Objects( cMVelSprite *nObject)
 
 void cLevelEditor::MultiSelect_Move(void)
 {
+	for (unsigned int i=0; i < MultiSelect_Objects.numobjs; i++)
+	{
+		MultiSelect_Objects.objects[i]->SetPos( floor((pMouse->posx-MultiSelect_mouseXOffset) + (pCamera->x-MultiSelect_camXOffset) + MultiSelect_Objects.objects[i]->posx), floor((pMouse->posy - MultiSelect_mouseYOffset) + (pCamera->y-MultiSelect_camYOffset) + MultiSelect_Objects.objects[i]->posy) );
+		
+		MultiSelect_Objects.objects[i]->Startposx = MultiSelect_Objects.objects[i]->posx;
+		MultiSelect_Objects.objects[i]->Startposy = MultiSelect_Objects.objects[i]->posy;
+	}
 	
+	MultiSelect_mouseXOffset = pMouse->posx;
+	MultiSelect_mouseYOffset = pMouse->posy;
+	MultiSelect_camXOffset = pCamera->x;
+	MultiSelect_camYOffset = pCamera->y;
 }
 
 void cLevelEditor :: SetMoveObject( cMVelSprite *nObject )
@@ -264,7 +264,7 @@ void cLevelEditor :: SetMoveObject( cMVelSprite *nObject )
 	
 	Object = nObject;
 
-	Mouse_command = MOUSE_COMMAND_SINGLE_TILE_MOVING;
+	Mouse_command = MOUSE_COMMAND_MOVING_SINGLE_TILE;
 }
 
 void cLevelEditor :: SetMoveObject( void )
@@ -410,7 +410,7 @@ SDL_bool cLevelEditor :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager<
 	// These variables are going to hold the data we need :)
 	SDL_bool were_objects_found = SDL_FALSE;
 	
-	obj_man->RemoveAllObjects();
+	//obj_man->RemoveAllObjects();
 	
 	// Player
 	if( RectIntersect( &(const SDL_Rect&)pPlayer->GetRect( SDL_TRUE ), cRect ) )
@@ -468,6 +468,13 @@ void cLevelEditor::EventHandler()
 			{
 				done = 2;
 				break;
+			}
+			case SDL_DROPFILE:
+			{
+				printf("%s\n", event.drop.file);
+				SDL_free(event.drop.file);
+				break;
+				
 			}
 			case SDL_KEYDOWN:
 			{
@@ -589,14 +596,21 @@ void cLevelEditor::EventHandler()
 				{
 					if (keys[SDL_SCANCODE_LCTRL] || keys[SDL_SCANCODE_RCTRL])
 					{
-						if (multiple_objects_selected && GetCollidingObject(pMouse->posx, pMouse->posy))
+						if (multiple_objects_selected)
 						{
-							pLevelEditor->SetMultiSelect_Objects(GetCollidingObject( pMouse->posx, pMouse->posy ));
-							prepareToMove_MultiSelect_Tiles();
+							if (GetCollidingObject(pMouse->posx, pMouse->posy))
+							{
+								pLevelEditor->SetMultiSelect_Objects(GetCollidingObject( pMouse->posx, pMouse->posy ));
+								prepareToMove_MultiSelect_Tiles();
+							}
+							else
+							{
+								init_MultiSelect_Tiles(SDL_FALSE);
+							}
 						}
 						else
 						{
-							init_MultiSelect_Tiles();
+							init_MultiSelect_Tiles(SDL_TRUE);
 						}
 					}
 					else
@@ -614,7 +628,7 @@ void cLevelEditor::EventHandler()
 						}
 						else if (!GetCollidingObject(pMouse->posx, pMouse->posy))
 						{
-							init_MultiSelect_Tiles();
+							init_MultiSelect_Tiles(SDL_TRUE);
 						}
 						else
 						{
@@ -664,11 +678,10 @@ void cLevelEditor::EventHandler()
 
 
 
-void cLevelEditor::init_MultiSelect_Tiles()
+void cLevelEditor::init_MultiSelect_Tiles(SDL_bool release/* = SDL_FALSE */)
 {	
-	if (Mouse_command != MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
-	{
 		Mouse_command = MOUSE_COMMAND_SELECT_MULTISELECT_TILES;
+	
 		MultiSelect_mouseXOffset = pMouse->posx;
 		MultiSelect_mouseYOffset = pMouse->posy;
 		
@@ -682,8 +695,8 @@ void cLevelEditor::init_MultiSelect_Tiles()
 		MultiSelect_rect.h = 0;
 		
 		// Release last time's old tiles
-		Release_MultiSelect_Select_Objects();
-	}
+		if (release)
+			Release_MultiSelect_Select_Objects();
 }
 
 void cLevelEditor::prepareToMove_MultiSelect_Tiles()
@@ -763,8 +776,18 @@ void cLevelEditor::HeldKey_movecamera()
 	{
 		pCamera->Move( 0, 10 * pFramerate->speedfactor );
 	}
-}
 
+	pCamera->x = floor(pCamera->x);
+	pCamera->y = floor(pCamera->y);
+	
+	/*if (Mouse_command == MOUSE_COMMAND_MOVING_MULTISELECT_TILES)
+	{
+		MultiSelect_camXOffset = pCamera->x;
+		MultiSelect_camYOffset = pCamera->y;
+
+	}*/
+}
+	
 void  cLevelEditor::HeldKey_Handler()
 {
 	// Fast copy

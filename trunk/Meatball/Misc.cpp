@@ -144,6 +144,21 @@ int SDL_ToggleFS(SDL_Window *win)
 	return 1;
 }
 
+void DrawPixel(SDL_Renderer *renderer, int x, int y, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha)
+{
+	Uint8 oor,og,ob,oa;
+	
+	// Preserve old color
+	SDL_GetRenderDrawColor(renderer, &oor, &og, &ob, &oa);
+	// Set new Color
+	SDL_SetRenderDrawColor(renderer, (Uint8)red, (Uint8)green, (Uint8)blue, (Uint8)alpha);
+	
+	// Draw the point
+	SDL_RenderDrawPoint(renderer, x, y);
+	// Restore old color
+	SDL_SetRenderDrawColor(renderer, oor, og, ob, oa);
+}
+
 /// Check for Collision with the Mouse
 /// @returnsSDL_TRUE for collision
 SDL_bool MouseCollidesWith(SDL_Rect *Crect)

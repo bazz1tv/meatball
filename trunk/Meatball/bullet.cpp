@@ -140,18 +140,18 @@ void cBullet :: Update( void )
 		{
 			if( Bullet_type == BULLET_PISTOL )
 			{
-				AddParticleEmitter( posx + ( width/2 ), posy + ( height/2 ), Random( ( velx + vely)/16, ( velx + vely)/8 ), 255, 250, 0, 10, 20, 20 ); // Yellow
-				visible =SDL_FALSE;
+				DoDamage();
+				Explode();
 			}
 			else if( Bullet_type == BULLET_MACHINEGUN ) 
 			{
-				AddParticleEmitter( posx + ( width/2 ), posy + ( height/2 ), Random( ( velx + vely)/16, ( velx + vely)/8 ), 255, 150, 0, 11, 10, 30 ); // Red-Yellow
-				visible =SDL_FALSE;
+				DoDamage();
+				Explode();
 			}
 			else if( Bullet_type == BULLET_LASER_X1 ) 
 			{
-				AddParticleEmitter( posx + ( width/2 ), posy + ( height/2 ), Random( ( velx + vely)/8, ( velx + vely)/4 ), 0, 250, 0, 5, 10, 5 ); // Green
-				visible =SDL_FALSE;
+				DoDamage();
+				Explode();
 			}
 		}
 	}	
@@ -176,6 +176,53 @@ void cBullet :: Update( void )
 	}
 }
 
+/// Finds the coordinates to place the explosion, adds the particle emmiter, and makes invisible the bullet
+void cBullet::Explode()
+{
+	int explode_posx, explode_posy;
+	/*DEBUGLOG ("\tCollision direction : %d\n", Collision->collide);
+	DEBUGLOG ("\tCollisions directons: %d\n", Collision->direction);*/
+	
+	if (Collision->direction == ALL_COLLISIONS_LR)
+	{
+		if (velx < 0)
+			explode_posx = Collision->cRect->x+Collision->cRect->w+1;
+		else
+			explode_posx = Collision->cRect->x-1;
+		
+		explode_posy = posy + (height/2);
+	}
+	else if (Collision->direction == ALL_COLLISIONS_UD)
+	{
+		//
+		if (vely < 0)
+			explode_posy = Collision->cRect->y+Collision->cRect->h+1;
+		else
+			explode_posy = Collision->cRect->y-1;
+		
+		explode_posx = posx + (width/2);
+	}
+	else if (Collision->direction == ALL_COLLISIONS_UDLR)
+	{
+		//
+	}
+
+	
+	if (Bullet_type == BULLET_PISTOL)
+		AddParticleEmitter( explode_posx, explode_posy, Random( ( velx + vely)/16, ( velx + vely)/8 ), 255, 250, 0, 10, 20, 20 ); // Yellow
+	else if (Bullet_type == BULLET_MACHINEGUN)
+		AddParticleEmitter( explode_posx, explode_posy, Random( ( velx + vely)/16, ( velx + vely)/8 ), 255, 150, 0, 11, 10, 30 ); // Red-Yellow
+	else if (Bullet_type == BULLET_LASER_X1)
+		AddParticleEmitter( explode_posx, explode_posy, Random( ( velx + vely)/8, ( velx + vely)/4 ), 0, 250, 0, 5, 10, 5 ); // Green
+	
+	visible = SDL_FALSE;
+}
+
+void DoDamage()
+{
+	
+}
+
 void cBullet :: Draw( SDL_Renderer *renderer )
 {
 	if ( !visible || !renderer || !image )
@@ -195,11 +242,6 @@ void cBullet :: Draw( SDL_Renderer *renderer )
 
 void PreloadBulletimages( void )
 {
-	// Pistol
-	//SDL_Surface *tmp = sge_transform_surface(LoadImage( PIXMAPS_DIR "game/weapons/pistol/default.png", colorkey ), colorkey, 0, 0.70f, 0.70f, 0);
-	//if (tmp)
-		//SDL_SetColorKey( tmp, SDL_SRCCOLORKEY | SDL_RLEACCEL | SDL_SRCALPHA, colorkey );
-	//SDL_Surface *sge_transform_surface(SDL_Surface *src, Uint32 bcol, float angle, float xscale, float yscale, Uint8 flags)
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/pistol/default2.png", colorkey ),PIXMAPS_DIR "game/weapons/pistol/default.png" );
 	// Machinegun
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/machinegun/default.png", colorkey ), PIXMAPS_DIR "game/weapons/machinegun/default.png" );
@@ -226,7 +268,7 @@ void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet
 
 	new_Bullet->init( ndirection, nBullet_type, nOrigin, nextravel );
 
-	Bullets = (cBullet**) realloc( Bullets, ++BulletCount * sizeof(cBullet*) );
+	Bullets = (cBullet**) SDL_realloc( Bullets, ++BulletCount * sizeof(cBullet*) );
 	Bullets[BulletCount - 1] = new_Bullet;
 }
 
@@ -265,7 +307,8 @@ void DeleteAllBullets( void )
 			Bullets[i] = NULL;
 		}
 
-		delete []Bullets;
+		//delete []Bullets;
+		SDL_free(Bullets);
 		Bullets = NULL;
 	}
 
