@@ -1,5 +1,6 @@
 #include "MultiSelect.h"
 #include "leveleditor.h"
+#include "player.h"
 
 void cMultiSelect :: DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, Uint32 Color)
 {

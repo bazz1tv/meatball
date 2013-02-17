@@ -1,7 +1,15 @@
-//#include "console.h"
+
 #include "Globals.h"
+#include "console.h"
 #include <string.h>
 #include <sstream>
+#include "Misc.h"
+#include "bullet.h"
+#include "enemy.h"
+#include "effects.h"
+#include "player.h"
+
+extern cConsole *pConsole;
 
 
 using namespace std;

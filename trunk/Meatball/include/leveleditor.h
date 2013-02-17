@@ -7,6 +7,9 @@
 
 
 #include "Globals.h"
+#include "sprite.h"
+#include "MiniEngine.h"
+
 class cMultiSelect;
 
 // used for poop pants

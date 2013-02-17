@@ -1,5 +1,6 @@
 
-#include "Globals.h"
+#include "sprite.h"
+#include "Collision.h"
 
 cMVelSprite :: cMVelSprite( SDL_Surface *new_image, double x, double y, double nvelx /* = 0 */, double nvely /* = 0  */ )
 : cVelocitySprite( Renderer, new_image, x, y, nvelx /* = 0 */, nvely /* = 0  */ )

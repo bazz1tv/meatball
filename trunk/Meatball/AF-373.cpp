@@ -1,6 +1,6 @@
 
 
-#include "Globals.h"
+#include "AF-373.h"
 
 cAF373 :: cAF373( double nposx, double nposy )
 : cEnemy( nposx, nposy )

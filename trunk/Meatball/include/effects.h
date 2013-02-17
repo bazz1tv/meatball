@@ -2,7 +2,12 @@
 #ifndef __EFFECTS_H__
 #define __EFFECTS_H__
 
-#include "Globals.h"
+#include "Collision.h"
+#include "Camera.h"
+#include "sprite.h"
+
+extern cFramerate *pFramerate;
+extern cCamera *pCamera;
 
 /// The Particle class
 class cMParticle : public cMAngleSprite

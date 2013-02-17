@@ -1,5 +1,5 @@
 
-#include "Globals.h"
+#include "weapon.h"
 
 cWeapon :: cWeapon( unsigned int nOrigin, unsigned int nPower, int nLifetime ) :
 cBasicSprite( Renderer,NULL, 0, 0 )

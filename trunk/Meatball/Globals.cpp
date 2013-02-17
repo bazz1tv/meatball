@@ -1,11 +1,14 @@
 
 #include "Globals.h"
-#include "Game.h"
-#include "MainMenu.h"
-
+#include "preferences.h"
+#include "player.h"
+#include "Camera.h"
+#include "level.h"
+#include "leveleditor.h"
+#include "console.h"
+#include "bullet.h"
 
 cMouseCursor *pMouse;		// The Mouse
-
 
 /// ifSDL_TRUE the game exits
 int done;
@@ -13,8 +16,9 @@ int done;
 /// ifSDL_TRUE the game if paused
 SDL_bool paused;
 	
-cPreferences *pPreferences;	// The Preferences
-cSettings *pGameSettings;	// The Game Settings
+//extern cPreferences *pPreferences;	// The Preferences
+//extern cSettings *pGameSettings;	// The Game Settings
+
 cFramerate *pFramerate;
 cImageManager *IMan;
 cSoundManager *SMan;
@@ -47,11 +51,7 @@ Uint32 colorkey = 0;
 /// The Current mode
 Uint8 mode, oldmode;
 	
-cCamera *pCamera;
-cPlayer *pPlayer;
-cLevel *pLevel;
-cLevelEditor *pLevelEditor;
-cConsole *pConsole;
+
 
 
 using namespace std;
@@ -59,147 +59,6 @@ using namespace std;
 void SetColorKey(Uint32 col)
 {
 	colorkey = col;
-}
-
-/// Initializes the basic
-/// Init some Fonts, set default colorkey, Add mouse to IMan
-/// Init the mouse,camera,player,level,leveleditor, and Console
-/// Preload bulletImages
-void InitGlobalObjects( void )
-{
-	
-	
-	pFramerate = new cFramerate( 60 );
-	
-	IMan	= new cImageManager();
-	SMan	= new cSoundManager();
-	
-	//To go into SharedDataMan
-	SetColorKey(0xffff00ff);
-	SetupMouse();
-	
-	pFont	= new cFont();
-	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
-	
-	pAudio = new cAudio();
-	pAudio->bMusic		 = pGameSettings->Music;
-	pAudio->bSounds		 = pGameSettings->Sounds;
-	pAudio->Sound_Volume = pGameSettings->svol;
-	pAudio->Music_Volume = pGameSettings->mvol;
-	pAudio->InitAudio();
-	
-	pCamera = new cCamera();
-	pPlayer = new cPlayer();
-	pLevel = new cLevel();
-	pLevelEditor = new cLevelEditor();
-	pConsole = new cConsole();
-}
-
-void SetupMouse()
-{
-	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
-	
-	// MeatBall
-	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
-	
-	// Do not show the Hardware Cursor
-	SDL_ShowCursor( 0 );
-}
-
-
-
-
-
-
-/// Quits the game
-void QuitGame( void )
-{	
-	DeleteAllBullets();
-	DeleteAllParticleEmitter();
-	DeleteAllEnemies();
-	
-	if( pPreferences )
-	{
-		delete pPreferences;
-	}
-	
-	if( pPlayer )
-	{
-		delete pPlayer;
-	}
-	
-	if( pLevel )
-	{
-		delete pLevel;
-	}
-	
-	if( pMouse )
-	{
-		delete pMouse;
-	}
-	
-	if( pLevelEditor )
-	{
-		delete pLevelEditor;
-	}
-	
-	if ( pConsole )
-	{
-		delete pConsole;
-	}
-	
-	if( pAudio )
-	{
-		delete pAudio;
-	}
-	
-	
-	
-	if( pFramerate )
-	{
-		delete pFramerate;
-	}
-	
-	if( SMan )
-	{
-		delete SMan;
-	}
-	if( IMan )
-	{
-		delete IMan;
-	}
-	
-	if( pCamera )
-	{
-		delete pCamera;
-	}
-	
-	if( pGameSettings )
-	{
-		delete pGameSettings;
-	}
-	
-	if( bold_16 )
-	{
-		TTF_CloseFont( bold_16 );
-	}
-	
-	if( pFont )
-	{
-		delete pFont;
-	}
-
-
-
-	SDL_EnableScreenSaver();
-	
-	SDL_DestroyWindow(Window);
-	SDL_DestroyRenderer(Renderer);
-
-	//SDL_FreeSurface(Screen);
-	//icon = NULL;
-
-	QuitSDL();
 }
 
 

@@ -8,6 +8,21 @@
 
 #pragma once
 
+#include "Globals.h"
+#include "level.h"
+#include "Camera.h"
+#include "player.h"
+#include "enemy.h"
+#include "effects.h"
+#include "bullet.h"
+
+extern cFramerate *pFramerate;
+extern cMouseCursor *pMouse;
+extern cCamera *pCamera;
+extern SDL_Renderer *Renderer;
+extern cLevel *pLevel;
+extern SDL_bool paused;
+
 /** @brief A base class from which the main Steam Rollers can derive from.
  @detail MiniEngine has genericized processes for general gameplay. Like tracking events,
  (EventHandler()), Tracking Held Keys (HeldKey_Handler()), General Updates (Update()), and Drawing (Draw()).

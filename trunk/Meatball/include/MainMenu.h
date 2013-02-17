@@ -1,15 +1,25 @@
 #ifndef __MAINMENU_H__
 #define __MAINMENU_H__
 
+#include "sprite.h"
+#include "TextObject.h"
+#include "Misc.h"
+#include "MiniEngine.h"
+#include "OptionsMenu.h"
 
-class MiniEngine;
-#include "Globals.h"
 
 
+extern cImageManager *IMan;
+extern cSoundManager *SMan;
+extern cFramerate *pFramerate;
+extern cAudio *pAudio;
+extern cFont *pFont;
 
 // submode definitions
 #define MAIN	1
 #define OPTIONS 0
+
+class OptionsMenu;
 
 class MainMenu : public MiniEngine
 {

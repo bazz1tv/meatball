@@ -1,8 +1,6 @@
 #include "MainMenu.h"
 #include "Game.h"
-//#include "Globals.h"
 
-//extern Game game;
 
 int MainMenu::submode = MAIN;
 

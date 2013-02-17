@@ -10,6 +10,10 @@
 #else
 #include <MeatBallEngine/SDL_ep.h>
 #endif
+
+class Collisiondata;
+extern SDL_Renderer *Renderer;
+
 /// @addtogroup SPRITE_TYPES
 // @{
 // SPRITE_TYPES

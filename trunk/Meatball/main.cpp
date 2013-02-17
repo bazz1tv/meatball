@@ -2,11 +2,30 @@
 #include "Game.h"
 #include "MainMenu.h"
 //#include "main.h"
+#include "leveleditor.h"
+#include "console.h"
+#include "preferences.h"
+#include "Camera.h"
+#include "player.h"
+#include "effects.h"
+#include "bullet.h"
+#include "enemy.h"
 
+cSettings *pGameSettings;
+cPreferences *pPreferences;
+
+cCamera *pCamera;
+cPlayer *pPlayer;
+cLevel *pLevel;
+cLevelEditor *pLevelEditor;
+cConsole *pConsole;
 
 
 int DoGame();
 void initEngine();
+void CreateWindow();
+void QuitGame();
+void SetupMouse();
 
 
 int main (int argc, char **argv)
@@ -57,16 +76,46 @@ void initEngine()
 	//
 	SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
 
-	pPreferences	= new cPreferences();
-	pGameSettings	= new cSettings();
-
+	pPreferences  = new cPreferences();
+	pGameSettings = new cSettings();
 	pPreferences->Load();
 	pPreferences->Apply();
 	
-	
-	
 	SetSpriteSpeedfactor( &pFramerate->speedfactor );
 	
+	CreateWindow();
+	
+	
+	keys = SDL_GetKeyboardState(NULL);
+	
+	pFramerate = new cFramerate( 60 );
+	
+	IMan	= new cImageManager();
+	SMan	= new cSoundManager();
+	
+	//To go into SharedDataMan
+	SetColorKey(0xffff00ff);
+	SetupMouse();
+	
+	pFont	= new cFont();
+	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
+	
+	pAudio = new cAudio();
+	pAudio->bMusic		 = pGameSettings->Music;
+	pAudio->bSounds		 = pGameSettings->Sounds;
+	pAudio->Sound_Volume = pGameSettings->svol;
+	pAudio->Music_Volume = pGameSettings->mvol;
+	pAudio->InitAudio();
+	
+	pCamera = new cCamera();
+	pPlayer = new cPlayer();
+	pLevel = new cLevel();
+	pLevelEditor = new cLevelEditor();
+	pConsole = new cConsole();
+}
+
+void CreateWindow()
+{
 	// Declare structures to be filled in.
 	SDL_DisplayMode target, closest;
 	
@@ -93,7 +142,7 @@ void initEngine()
 	// Access the SDL_DisplayMode structure to see what was received.
 	DEBUGLOG("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
 	
-	Window = GetWindow(APP_TITLE, closest.w, closest.h, pGameSettings->Screen_Bpp, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN);
+	Window = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN);
 	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	
 	window_height = pGameSettings->Screen_H;
@@ -107,14 +156,110 @@ void initEngine()
 	SDL_Surface *icon = SDL_LoadBMP("data/favicon.bmp");
 	Uint32 ckey = SDL_MapRGB(icon->format, 128, 128, 128);
 	SDL_SetColorKey(icon, SDL_TRUE, ckey);
-
+	
 	// The icon is attached to the window pointer
 	SDL_SetWindowIcon(Window, icon);
 	// ...and the surface containing the icon pixel data is no longer required.
 	SDL_FreeSurface(icon);
-	
-	
-	keys = SDL_GetKeyboardState(NULL);	
+}
 
-	InitGlobalObjects();
+void QuitGame( void )
+{
+	DeleteAllBullets();
+	DeleteAllParticleEmitter();
+	DeleteAllEnemies();
+	
+	if( pPreferences )
+	{
+		delete pPreferences;
+	}
+	
+	if( pPlayer )
+	{
+		delete pPlayer;
+	}
+	
+	if( pLevel )
+	{
+		delete pLevel;
+	}
+	
+	if( pMouse )
+	{
+		delete pMouse;
+	}
+	
+	if( pLevelEditor )
+	{
+		delete pLevelEditor;
+	}
+	
+	if ( pConsole )
+	{
+		delete pConsole;
+	}
+	
+	if( pAudio )
+	{
+		delete pAudio;
+	}
+	
+	
+	
+	if( pFramerate )
+	{
+		delete pFramerate;
+	}
+	
+	if( SMan )
+	{
+		delete SMan;
+	}
+	if( IMan )
+	{
+		delete IMan;
+	}
+	
+	if( pCamera )
+	{
+		delete pCamera;
+	}
+	
+	if( pGameSettings )
+	{
+		delete pGameSettings;
+	}
+	
+	if( bold_16 )
+	{
+		TTF_CloseFont( bold_16 );
+	}
+	
+	if( pFont )
+	{
+		delete pFont;
+	}
+	
+	
+	
+	SDL_EnableScreenSaver();
+	
+	SDL_DestroyWindow(Window);
+	SDL_DestroyRenderer(Renderer);
+	
+	//SDL_FreeSurface(Screen);
+	//icon = NULL;
+	
+	QuitSDL();
+}
+
+void SetupMouse()
+{
+	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
+	
+	// MeatBall
+	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
+	
+	// Do not show the Hardware Cursor
+	SDL_ShowCursor( 0 );
 }

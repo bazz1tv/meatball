@@ -5,6 +5,10 @@
 
 #include "Globals.h"
 
+#include "weapon.h"
+
+#include "enemy.h"
+class cEnemy;
 class cAF373 : public cEnemy
 {
 public:

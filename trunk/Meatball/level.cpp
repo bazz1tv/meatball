@@ -1,6 +1,8 @@
 
-#include "Globals.h"
-
+#include "level.h"
+#include "effects.h"
+#include "bullet.h"
+#include "enemy.h"
 
 using namespace std;
 

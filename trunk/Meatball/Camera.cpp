@@ -1,5 +1,6 @@
 
-#include "Globals.h"
+#include "Camera.h"
+#include "player.h"
 
 cCamera :: cCamera( void )
 {

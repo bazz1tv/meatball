@@ -5,6 +5,22 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
+#include "Collision.h"
+#include "sprite.h"
+#include "ObjectManager.h"
+#include "defines.h"
+#include "effects.h"
+#include "Camera.h"
+
+class cCamera;
+class Collisiondata;
+
+extern SDL_Renderer *Renderer;
+extern cCamera *pCamera;
+extern cImageManager *IMan;
+extern int window_height;
+extern int window_width;
+
 /// @defgroup BULLET_TYPES
 // @{
 // Bullet types

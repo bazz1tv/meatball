@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Globals.h"
+#include "sprite.h"
+#include "ObjectManager.h"
+#include "Camera.h"
 
 class cLevelEditor;
 

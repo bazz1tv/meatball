@@ -1,6 +1,6 @@
 
-#include "Globals.h"
-
+#include "enemy.h"
+#include "AF-373.h"
 
 //unsigned int EnemyCount = 0;
 //cEnemy **Enemies = NULL;

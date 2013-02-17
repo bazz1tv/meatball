@@ -1,5 +1,4 @@
 #include "effects.h"
-#include "Globals.h"
 
 cMParticleEmitter **ParticleEmitter = NULL;
 unsigned int ParticleEmitterCount = 0;

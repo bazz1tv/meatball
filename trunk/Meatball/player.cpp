@@ -1,7 +1,9 @@
 
-#include "Globals.h"
+#include "player.h"
+#include "weapon.h"
+#include "preferences.h"
 
-#include "defines.h"
+extern cSettings *pGameSettings;
 
 #define WALK_VELOCITY 0.9
 

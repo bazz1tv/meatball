@@ -1,5 +1,4 @@
 #include "MiniEngine.h"
-#include "Globals.h"
 
 void MiniEngine::Do()
 {

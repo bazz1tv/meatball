@@ -1,5 +1,7 @@
 #pragma once
 
+#include "OS.h"
+
 #ifdef _DEBUG
 	#include <typeinfo>
 #endif

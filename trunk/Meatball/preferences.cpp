@@ -1,5 +1,6 @@
 
-#include "Globals.h"
+#include "preferences.h"
+extern cSettings *pGameSettings;
 
 using namespace std;
 

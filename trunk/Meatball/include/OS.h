@@ -9,6 +9,14 @@
 #ifndef MeatBall_OS_h
 #define MeatBall_OS_h
 
+//
+#ifdef _DEBUG
+// Update the following if needed…
+#define DEBUGLOG(...) printf(__VA_ARGS__)
+#else
+#define DEBUGLOG(...) do {} while (0)
+#endif
+
 /* OS SPECIFIC DEFINITIONS ---------------------------------- */
 /////////////// APPLE ////////////////
 #ifdef __APPLE__
@@ -29,7 +37,7 @@
 	// The shortcut is set to Apple-Option-D, these are the keys I selected to use for moving jumpinh shooting. So it was accidently triggering the shortcut
 
 
-//
+
 
 ////////////// WIN32 ////////////////
 #elif _WIN32

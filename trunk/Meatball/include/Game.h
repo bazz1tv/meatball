@@ -4,7 +4,6 @@
 #define __GAME_H__
 
 #include "MiniEngine.h"
-#include "Globals.h"
 
 
 class cPlayer;

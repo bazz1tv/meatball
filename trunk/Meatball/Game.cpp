@@ -2,7 +2,16 @@
 #include "MiniEngine.h"
 #include "Game.h"
 #include "playlist.h"
+#include "bullet.h"
+#include "enemy.h"
+#include "effects.h"
+#include "Misc.h"
+#include "preferences.h"
+#include "weapon.h"
 
+extern cPlayer *pPlayer;
+extern cSettings *pGameSettings;
+extern cPreferences *pPreferences;
 
 
 
