@@ -16,10 +16,6 @@ cAudio *pAudio;
 cTCPNet *pTCP;
 
 
-
-// Main window Icon
-SDL_Surface *icon;
-
 /// ifSDL_TRUE the game exits
 int done;
 
@@ -31,12 +27,10 @@ TTF_Font *Menu_Font;
 TTF_Font *bold_16;
 
 /// the Screen
-SDL_Surface *Screen;
 SDL_Window *Window;
 int window_width;
 int window_height;
 SDL_Renderer *Renderer;
-SDL_Texture *ScreenTexture;
 
 /// Keyboard Keystate
 Uint8 *keys;
@@ -58,16 +52,13 @@ cCamera *pCamera;
 cPlayer *pPlayer;
 cLevel *pLevel;
 cLevelEditor *pLevelEditor;
-//TextObjectEngine *TOE;
+
 
 /// The Console
 cConsole *pConsole;
 
 /// The Current mode
 Uint8 mode, oldmode;
-
-/// The screen settings 
-//const SDL_VideoInfo* screeninfo;
 
 /// Initializes the basic
 /// Init some Fonts, set default colorkey, Add mouse to IMan
@@ -188,7 +179,7 @@ void QuitGame( void )
 	SDL_DestroyRenderer(Renderer);
 
 	//SDL_FreeSurface(Screen);
-	icon = NULL;
+	//icon = NULL;
 
 	QuitSDL();
 }
@@ -225,7 +216,7 @@ SDL_bool is_valid_number( char *c )
 			else { return SDL_FALSE; }
 		}
 		
-		if ((*c < '0' || *c > '9') && *c != '\r')
+		if ((*c < '0' || *c > '9') && *c != '\r' && *c != '\n')
 		{
 			return SDL_FALSE;
 	
@@ -234,7 +225,7 @@ SDL_bool is_valid_number( char *c )
 	return SDL_TRUE;
 }
 
-void FramerateDraw( SDL_Surface *target, double posx /** = 5.0 */, double posy /** = 5.0  */)
+void FramerateDraw( SDL_Renderer *renderer, double posx /** = 5.0 */, double posy /** = 5.0  */)
 {
 	if ( !fps_display )
 	{
@@ -252,10 +243,13 @@ void FramerateDraw( SDL_Surface *target, double posx /** = 5.0 */, double posy /
 	}
 	
 	SDL_Rect rect = SetRect( (int)posx, (int)posy, image->w, image->h );
+	SDL_Texture *tex = SDL_CreateTextureFromSurface(renderer, image);
+	SDL_RenderCopy(renderer, tex, NULL, &rect);
 
-	SDL_BlitSurface( image, NULL, target, &rect );
+	//SDL_BlitSurface( image, NULL, target, &rect );
 
 	SDL_FreeSurface( image );
+	SDL_DestroyTexture(tex);
 }
 
 

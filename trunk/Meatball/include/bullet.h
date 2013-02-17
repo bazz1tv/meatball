@@ -27,7 +27,11 @@ public:
 	
 	///
 	void Explode( );
-
+	/// Dish out Damage
+	void DoDamage();	
+	
+	void Windows_BoundsChecking();
+	
 	/// Updates the Bullet
 	void Update( void );
 	
@@ -48,12 +52,13 @@ public:
 
 };
 
-extern unsigned int BulletCount;
+//extern unsigned int BulletCount;
 
 /// holds all of the bullets getting put to the screen.
 /// The array is dynamically allocated as bullets are spawned, and
 /// it maintains its largest allocated size.
-extern cBullet **Bullets;
+//extern cBullet **Bullets;
+extern ObjectManager<cBullet> Bullets;
 
 /** Preloads all Bullet images
  * get the pointer with the image manager and the image path
@@ -71,8 +76,7 @@ void UpdateBullets( void );
 /// Draws all Bullets
 void DrawBullets( SDL_Renderer *renderer );
 
-/// Dish out Damage
-void DoDamage();
+
 
 /// Deletes all Bullets ( Cleans the Array )
 void DeleteAllBullets( void );

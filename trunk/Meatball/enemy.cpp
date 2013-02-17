@@ -2,9 +2,9 @@
 #include "Globals.h"
 
 
-unsigned int EnemyCount = 0;
-cEnemy **Enemies = NULL;
-
+//unsigned int EnemyCount = 0;
+//cEnemy **Enemies = NULL;
+ObjectManager<cEnemy> Enemies(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS);
 
 
 cEnemy :: cEnemy( double nposx, double nposy )
@@ -50,13 +50,13 @@ void cEnemy :: Die( void )
 
 void AddEnemy( double nposx, double nposy, unsigned int etype )
 {
-	for( unsigned int i = 0; i < EnemyCount; i++ )
+	for( unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
-		if ( !Enemies[i]->visible && Enemies[i]->Enemy_type == etype )
+		if ( !Enemies.objects[i]->visible && Enemies.objects[i]->Enemy_type == etype )
 		{
-			Enemies[i]->SetPos( nposx, nposy );
+			Enemies.objects[i]->SetPos( nposx, nposy );
 			
-			Enemies[i]->init();
+			Enemies.objects[i]->init();
 			
 			return;
 		}
@@ -76,39 +76,40 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 
 	new_Enemy->init();	
 
-	Enemies = (cEnemy**) SDL_realloc( Enemies, ++EnemyCount * sizeof(cEnemy*) );
-	Enemies[EnemyCount - 1] = new_Enemy;
+	Enemies.add(new_Enemy);
+	//Enemies = (cEnemy**) SDL_realloc( Enemies, ++EnemyCount * sizeof(cEnemy*) );
+	//Enemies[EnemyCount - 1] = new_Enemy;
 }
 
 void UpdateEnemies( void )
 {
-	for( unsigned int i = 0; i < EnemyCount; i++ )
+	for( unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
-		if( !Enemies[i] ) 
+		if( !Enemies.objects[i] ) 
 		{
 			continue;
 		}
 		
-		if( Enemies[i]->visible ) 
+		if( Enemies.objects[i]->visible ) 
 		{
-			CollideMove( (cBasicSprite*)Enemies[i], Enemies[i]->velx * pFramerate->speedfactor, Enemies[i]->vely * pFramerate->speedfactor, Enemies[i]->Collision, Enemies[i]->type );
-			Enemies[i]->Update();
+			CollideMove( (cBasicSprite*)Enemies.objects[i], Enemies.objects[i]->velx * pFramerate->speedfactor, Enemies.objects[i]->vely * pFramerate->speedfactor, Enemies.objects[i]->Collision, Enemies.objects[i]->type );
+			Enemies.objects[i]->Update();
 		}
 	}
 }
 
 int GetCollidingEnemyNum( SDL_Rect *Crect )
 {
-	if( Enemies && Crect ) 
+	if( Enemies.objects && Crect )
 	{
-		for( unsigned int i = 0; i < EnemyCount; i++ )
+		for( unsigned int i = 0; i < Enemies.objcount; i++ )
 		{
-			if( !Enemies[i] ) 
+			if( !Enemies.objects[i] ) 
 			{
 				continue;
 			}
 
-			if( RectIntersect( &(const SDL_Rect&)Enemies[i]->GetRect( SDL_TRUE ), Crect ) )
+			if( RectIntersect( &(const SDL_Rect&)Enemies.objects[i]->GetRect( SDL_TRUE ), Crect ) )
 			{
 				return i;
 			}
@@ -120,18 +121,18 @@ int GetCollidingEnemyNum( SDL_Rect *Crect )
 
 cEnemy *GetCollidingEnemy( SDL_Rect *Crect )
 {
-	if( Enemies && Crect ) 
+	if( Enemies.objects && Crect )
 	{
-		for( unsigned int i = 0; i < EnemyCount; i++ )
+		for( unsigned int i = 0; i < Enemies.objcount; i++ )
 		{
-			if( !Enemies[i] ) 
+			if( !Enemies.objects[i] ) 
 			{
 				continue;
 			}
 
-			if( RectIntersect( &(const SDL_Rect&)Enemies[i]->GetRect( SDL_TRUE ), Crect ) )
+			if( RectIntersect( &(const SDL_Rect&)Enemies.objects[i]->GetRect( SDL_TRUE ), Crect ) )
 			{
-				return Enemies[i];
+				return Enemies.objects[i];
 			}
 		}
 	}
@@ -141,39 +142,40 @@ cEnemy *GetCollidingEnemy( SDL_Rect *Crect )
 
 void DrawEnemies( SDL_Renderer *renderer )
 {
-	for( unsigned int i = 0; i < EnemyCount; i++ )
+	for( unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
-		if( !Enemies[i] ) 
+		if( !Enemies.objects[i] ) 
 		{
 			continue;
 		}
 		
-		Enemies[i]->Draw( renderer );
+		Enemies.objects[i]->Draw( renderer );
 	}
 }
 
 void DeletEnemy( unsigned int number )
 {
-	if( Enemies && number < EnemyCount && Enemies[number] ) 
+	if( Enemies.objects && number < Enemies.objcount && Enemies.objects[number] )
 	{
-		delete Enemies[number];
-		Enemies[number] = NULL;
+		delete Enemies.objects[number];
+		Enemies.objects[number] = NULL;
+		
 	}
 }
 
 void DeleteAllEnemies( void )
 {
-	if( Enemies ) 
+	/*if( Enemies.objects )
 	{
-		for( unsigned int i = 0; i < EnemyCount; i++ )
+		for( unsigned int i = 0; i < Enemies.objcount; i++ )
 		{
-			if( !Enemies[i] ) 
+			if( !Enemies.objects[i] ) 
 			{
 				continue;
 			}
 
-			delete Enemies[i];
-			Enemies[i] = NULL;
+			delete Enemies.objects[i];
+			Enemies.objects[i] = NULL;
 		}
 
 		SDL_free(Enemies);
@@ -181,5 +183,7 @@ void DeleteAllEnemies( void )
 		Enemies = NULL;
 	}
 
-	EnemyCount = 0;
+	EnemyCount = 0;*/
+	
+	Enemies.~ObjectManager();
 }

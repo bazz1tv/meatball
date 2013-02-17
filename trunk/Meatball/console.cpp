@@ -3,7 +3,6 @@
 #include <string.h>
 #include <sstream>
 
-#define HISTORY_LINES 11
 
 using namespace std;
 
@@ -19,7 +18,7 @@ void Push(cCMD*& head, string command, SDL_bool (*handler)(string &), string hel
 	head = newCmd;
 }
 
-void AddCmdString(cCMD* &cmd, string str)
+void CmdAddAlias(cCMD* &cmd, string str)
 {
 	cmd->command.add(new string(str));
 }
@@ -27,7 +26,18 @@ void AddCmdString(cCMD* &cmd, string str)
 /// Gets the current working path, Loads the Background image to the Image Manager,
 /// Creates the console font, Push() all cCMDs to cConsole::CMDList, 
 cConsole :: cConsole( void )
-{	
+{
+	// clear surfaces
+	consoleInput_surface = NULL;	// input display
+	consoleInput_tex = NULL;
+	for (Uint8 n=0; n < HISTORY_LINES; n++)
+	{
+		sc_surface[n] = NULL;
+		sc_tex[n] = NULL;
+	}
+	cursor_surface = NULL;	// Cursor Display
+	cursor_tex = NULL;
+	
 	full_path = fs::current_path();
 
 	histcounter = -1;
@@ -49,28 +59,30 @@ cConsole :: cConsole( void )
 	
 	/// [Console Commands]
 	Push(CMDList,	"clear",	clearcon,				"Clears all strings in console",						"clear"												);
+		CmdAddAlias(CMDList, "cls");
 	Push(CMDList,	"loadmap",	loadmap,				"Loads a map file into the game",						"loadmap [mapfile]"									);
 	Push(CMDList,	"mx",		SetMx,					"Sets Meatball's X coordinate",							"Mx [x]"											);
 	Push(CMDList,	"my",		SetMy,					"Sets Meatball's Y coordinate",							"my [y]"											);
 	Push(CMDList,	"mxy",		SetMxy,					"Sets Meatball's X & Y coordinate",						"Mxy [x y]"											);
-	Push(CMDList,	"play",		play,					"Plays a music file",									"play [musicfile]"									);
+	Push(CMDList,	"playmus",		play,					"Plays a music file",									"play [musicfile]"									);
 	Push(CMDList,	"quit",		QuitAll,				"Quits the game",										"quit"												);
-		
+		CmdAddAlias(CMDList, "q");
 	Push(CMDList,	"fps",		ShowFPS,				"Displays or hides FPS",								"fps"												);
 	Push(CMDList,	"help",		help,					"Displays all commands or help for a specific command",	"help [cmd]"										);
-		AddCmdString(CMDList, "h");
+		CmdAddAlias(CMDList, "h");
 	Push(CMDList,	"svol",		soundVol,				"Set Sounds Volumes",									"svol [string_id] [0-128]"							);
 	Push(CMDList,	"mvol",		musicVol,				"Set Music Volumes",									"mvol [0-128]"										);
 	Push(CMDList,	"allsvol",	allSoundsVol,			"Set ALL Sounds Channel Volumes",						"allsvol [0-128]"									);
 	Push(CMDList,	"cd",		cd,						"change directory",										"cd [dir]"											);
 	Push(CMDList,	"ls",		ls,						"List Directoy Contents",								"ls [dir]"											);
+		CmdAddAlias(CMDList, "l");
 	Push(CMDList,	"sxy",		SetScreenScaleXY,		"Set X/Y Screen Scale Factor",							"sxy [x] [y]"										);
 	Push(CMDList,	"sx",		SetScreenScaleX,		"Set X Screen Scale Factor",							"sx [x]"											);
 	Push(CMDList,	"sy",		SetScreenScaleY,		"Set Y Screen Scale Factor",							"sy [y]"											);
 	/// [Console Commands]
 
-	conx = 10.0;
-	cony = BG->height - 14;
+	consoleInput_x = 10.0;
+	consoleInput_y = BG->height - 14;
 
 	DrawCur = SDL_FALSE;
 	ttDrawCur = SDL_GetTicks() + 500;
@@ -129,17 +141,17 @@ void cConsole :: EventHandler( void )
 
 				else if ( event.key.keysym.sym == SDLK_BACKSPACE )
 				{
-					if ( !constr.empty() )
+					if ( !consoleInput_str.empty() )
 					{
-						constr.erase( constr.end()-1 , constr.end() );
+						consoleInput_str.erase( consoleInput_str.end()-1 , consoleInput_str.end() );
 					}
 				}	
 				else if ( event.key.keysym.sym == SDLK_RETURN )
 				{	
-					if ( !constr.empty() )
+					if ( !consoleInput_str.empty() )
 					{
-						console_print(constr.c_str());
-						constr.clear(); // Clear console input line
+						console_print(consoleInput_str.c_str());
+						consoleInput_str.clear(); // Clear console input line
 						CMDHandler( strcpy[0] );
 					}
 				}
@@ -147,14 +159,14 @@ void cConsole :: EventHandler( void )
 				{	
 					if (histcounter >= NUM_LINES)
 					{	histcounter = NUM_LINES; }
-					else constr = strcpy[++histcounter];
+					else consoleInput_str = strcpy[++histcounter];
 					
 				}
 				else if ( event.key.keysym.sym == SDLK_DOWN )
 				{	
 					if (histcounter <= 0)
-					{	constr.clear(); histcounter = -1;}
-					else constr = strcpy[--histcounter];
+					{	consoleInput_str.clear(); histcounter = -1;}
+					else consoleInput_str = strcpy[--histcounter];
 					
 				}
 				
@@ -163,7 +175,7 @@ void cConsole :: EventHandler( void )
 			}
 			case SDL_TEXTINPUT:
 			{
-				constr += event.text.text; // += (char)event.key.keysym.unicode;
+				consoleInput_str += event.text.text; // += (char)event.key.keysym.unicode;
 				break;
 			}
 		default:
@@ -211,124 +223,150 @@ void cConsole :: Draw( SDL_Renderer *renderer )
 	
 	DrawEnemies(renderer);
 
-	int i;
+	
 	// display console BG
 	BG->Draw( renderer );
 	
-	#define topHistoryLine_Y 23.0;		// The top vertical coordinate for first line of input history
-	double history_y = topHistoryLine_Y;
-										// all lines are then seperated by HIST_VERTICAL_SEPERATION_PIXELS
-	#define CONSOLE_HIST_VERTICAL_SEPERATION_PIXELS 15.0
-	SDL_Rect conput_rect, strcpy_rect[11], cur_rect;
+	BlinkCursor();
+	CreateTextOnSurfaces();
+	SetRects();
+	CreateTexturesAndRender(renderer);
+	FreeAllUsedSurfaces();
+
+	PostDraw();
 	
-	SDL_Surface *conput = NULL;	// input display
-	SDL_Texture *conput_tex = NULL;
-	SDL_Surface *sc[HISTORY_LINES];		// history displays
-	SDL_Texture *sc_tex[HISTORY_LINES];		// history displays
-	SDL_Surface *Cur = NULL;	// Cursor Display
-	SDL_Texture *Cur_tex = NULL;
-	
-	// Init all history displays to NULL
-	for( i = 0; i < HISTORY_LINES; i++ )
-	{
-		sc[i] = NULL;
-	}
-	
+	// Free all used Surfaces
+}
+
+void cConsole::BlinkCursor()
+{
 	// The blinking Cursor
 	if( DrawCur == SDL_TRUE)
 	{
-		Cur = pFont->CreateText( "_", Console_font );
+		cursor_surface = pFont->CreateText( "_", Console_font );
 	}
 	else
 	{
-		Cur = pFont->CreateText( " ", Console_font );
+		cursor_surface = pFont->CreateText( " ", Console_font );
 	}
+}
 
+void cConsole :: CreateTextOnSurfaces()
+{
 	// Text Creation
-	if( !constr.empty() )	// if we have input in our String...
+	if( !consoleInput_str.empty() )	// if we have input in our String...
 	{
-		// Use pfont to create Text to the conput SDL_Surface
-		conput = pFont->CreateText( constr.c_str(), Console_font );
+		// Use pfont to create Text to the consoleInput SDL_Surface
+		consoleInput_surface = pFont->CreateText( consoleInput_str.c_str(), Console_font );
 	}
-
+	
 	// Fill the history Surfaces with any Text we have
-	for( i=0; i < 11; i++ )
+	for(int i=0; i < 11; i++ )
 	{
 		if ( !strcpy[i].empty() )
 		{
-			sc[i] = pFont->CreateText( strcpy[i].c_str(), Console_font );
+			sc_surface[i] = pFont->CreateText( strcpy[i].c_str(), Console_font );
 		}
 	}
+}
 
+void cConsole :: SetRects()
+{
+	history_y = topHistoryLine_Y;
 	// Rect specification
-	int curx = 0;
-	
+	int cursorx = 0;
 	// If we have input displayed
-	if( conput ) 
+	if( consoleInput_surface )
 	{
-		curx += conput->w;	// Set cursor X coordinate to the end of that Surface
-		conput_rect = SetRect( (int)conx, (int)cony, conput->w, conput->h );
+		cursorx += consoleInput_surface->w;	// Set cursor X coordinate to the end of that Surface
+		consoleInput_rect = SetRect( (int)consoleInput_x, (int)consoleInput_y, consoleInput_surface->w, consoleInput_surface->h );
 	}
 	
-	cur_rect = SetRect( (int)(conx + curx), (int)cony-2, Cur->w, Cur->h );
-
-	for( i=0; i < 11; i++ )
+	cursor_rect = SetRect( (int)(consoleInput_x + cursorx), (int)consoleInput_y-2, cursor_surface->w, cursor_surface->h );
+	
+	for(int i=0; i < 11; i++ )
 	{
-		if ( sc[i] )
+		if ( sc_surface[i] )
 		{
-			strcpy_rect[i] = SetRect( (int)conx, (int)(cony - history_y), sc[i]->w, sc[i]->h );
-			history_y += CONSOLE_HIST_VERTICAL_SEPERATION_PIXELS;
+			strcpy_rect[i] = SetRect( (int)consoleInput_x, (int)(consoleInput_y - history_y), sc_surface[i]->w, sc_surface[i]->h );
+			history_y += CONSOLE_HISTORY_VERTICAL_SEPERATION_PIXELS;
 		}
 	}
-
-
-	// the actual drawing
-	//SDL_BlitSurface( Cur, NULL, target, &cur_rect );
-	Cur_tex = SDL_CreateTextureFromSurface(renderer, Cur);
-	SDL_RenderCopy(renderer, Cur_tex, NULL, &cur_rect);
 	
-	if ( conput )
-	{
-		//SDL_BlitSurface( conput, NULL, target, &conput_rect );
-		conput_tex = SDL_CreateTextureFromSurface(renderer, conput);
-		SDL_RenderCopy(renderer, conput_tex, NULL, &conput_rect);
-	}
+}
 
-	for ( i=0; i < 11; i++ )
+
+void cConsole :: CreateTexturesAndRender(SDL_Renderer *renderer)
+{
+	cursor_tex = SDL_CreateTextureFromSurface(renderer, cursor_surface);
+	SDL_RenderCopy(renderer, cursor_tex, NULL, &cursor_rect);
+	
+	if ( consoleInput_surface )
 	{
-		if ( sc[i] )
+		//SDL_BlitSurface( consoleInput, NULL, target, &consoleInput_rect );
+		consoleInput_tex = SDL_CreateTextureFromSurface(renderer, consoleInput_surface);
+		SDL_RenderCopy(renderer, consoleInput_tex, NULL, &consoleInput_rect);
+	}
+	
+	for (int i=0; i < 11; i++ )
+	{
+		if ( sc_surface[i] )
 		{
 			//SDL_BlitSurface( sc[i], NULL, target, &strcpy_rect[i] );
-			sc_tex[i]  = SDL_CreateTextureFromSurface(renderer, sc[i]);
+			sc_tex[i]  = SDL_CreateTextureFromSurface(renderer, sc_surface[i]);
 			SDL_RenderCopy(renderer, sc_tex[i], NULL, &strcpy_rect[i]);
 		}
 	}
+}
+
+void cConsole :: FreeAllUsedSurfaces()
+{
+	if ( cursor_surface )
+	{
+		SDL_FreeSurface( cursor_surface);
+		cursor_surface = NULL;
+	}
+	if (cursor_tex)
+	{
+		SDL_DestroyTexture(cursor_tex);
+		cursor_tex = NULL;
+	}
 	
-
-	// Free all used Surfaces
-	if ( Cur )
+	if ( consoleInput_surface )
 	{
-		SDL_FreeSurface( Cur );
-		SDL_DestroyTexture(Cur_tex);
+		SDL_FreeSurface( consoleInput_surface );
+		consoleInput_surface = NULL;
 	}
-
-	if ( conput )
+	if (consoleInput_tex)
 	{
-		SDL_FreeSurface( conput );
-		SDL_DestroyTexture(conput_tex);
+		SDL_DestroyTexture(consoleInput_tex);
+		consoleInput_tex = NULL;
 	}
+	
+	ClearHistory_SurfacesAndTextures();
+	
+}
 
-	for ( i=0; i < 11; i++ )
+
+void cConsole :: ClearHistory_SurfacesAndTextures()
+{
+	for (int i=0; i < HISTORY_LINES; i++ )
 	{
-		if ( sc[i] )
+		if ( sc_surface[i] )
 		{
-			SDL_FreeSurface( sc[i] );
+			SDL_FreeSurface( sc_surface[i] );
+			sc_surface[i] = NULL;
+		}
+		if (sc_tex[i])
+		{
 			SDL_DestroyTexture(sc_tex[i]);
+			sc_tex[i] = NULL;
 		}
 	}
-
-	PostDraw();
 }
+
+
+
 
 /// The Command Handler parses the input line for it's base (command) and it's parameters
 /// It then checks with all registered commands for a match
@@ -346,23 +384,41 @@ SDL_bool cConsole :: CMDHandler( string cInput )
 		return SDL_FALSE;
 	}
 
-	cCMD *ptr = CMDList;
+	cCMD *cmd_match = FindMatch(base);
 
+	if (cmd_match)
+	{
+		cmd_match->handler( parm );
+		return SDL_TRUE;
+	}
+		
+	return SDL_FALSE;
+}
+
+cCMD* cConsole::FindMatch(string &cmd)
+{
+	cCMD *ptr = CMDList;
+	
 	while ( ptr != NULL )
 	{
-		for (unsigned int i=0; i < ptr->command.numobjs; i++)
+		for (unsigned int i=0; i < ptr->command.objcount; i++)
 		{
-			if ( base == (string)*(ptr->command.objects[i]) || base.substr(1) == (string)*(ptr->command.objects[i]) )
+			if ( cmd == (string)*(ptr->command.objects[i]) )
 			{
-				ptr->handler( parm );
-				return SDL_TRUE;
+				return ptr;
+			}
+			else
+			{
+				if (cmd.c_str()[0] == '/')
+					if (cmd.substr(1) == (string)*(ptr->command.objects[i]))
+						return ptr;
 			}
 		}
-
+		
 		ptr = ptr->next;
 	}
-
-	return SDL_FALSE;
+	
+	return NULL;
 }
 
 /// Strips the input line for only the base (first word)
@@ -413,7 +469,7 @@ SDL_bool cConsole :: helpCMD( string &str )
 	cCMD *ptr = CMDList;
 	while ( ptr != NULL )
 	{
-		for (unsigned int i=0; i < ptr->command.numobjs; i++)
+		for (unsigned int i=0; i < ptr->command.objcount; i++)
 		{
 			if ( (string)*ptr->command.objects[i] == str)
 			{
@@ -440,7 +496,7 @@ SDL_bool cConsole :: helpCMD( string &str )
 
 SDL_bool clearcon( string &str )
 {
-	pConsole->constr.clear();
+	pConsole->consoleInput_str.clear();
 
 	for ( int i = 0; i < 11; i++ )
 	{
@@ -690,18 +746,18 @@ SDL_bool help( string &str )
 			if (curline >= (NUM_LINES))
 			{
 				
-				pConsole->constr = "Press any key..";
+				pConsole->consoleInput_str = "Press any key..";
 				
 				wait_for_input();
 				
 				
-				pConsole->constr.clear();
+				pConsole->consoleInput_str.clear();
 			}
 			 
 			// The following code will create a single-line string of all the aliases for the one command
 			string allcmds="";
 			unsigned int i;
-			for (i=0; i < ptr->command.numobjs-1; i++)
+			for (i=0; i < ptr->command.objcount-1; i++)
 			{
 				
 				allcmds = *ptr->command.objects[i] + ", ";
@@ -745,7 +801,7 @@ void moveConsoleHistoryLinesUp(int nlines/*=1*/) // number of lines to move up b
 SDL_bool QuitAll( string &str )
 {
 	done = 1;
-
+	mode = MODE_QUIT;
 	return SDL_TRUE;
 }
 
@@ -806,11 +862,11 @@ SDL_bool ls(string &str)
 			if (curline >= (NUM_LINES))
 			{
 				
-				pConsole->constr = "Press any key..";
+				pConsole->consoleInput_str = "Press any key..";
 				
 				wait_for_input();
 				
-				pConsole->constr.clear();
+				pConsole->consoleInput_str.clear();
 			}
 
 			string s(dir_itr->path().filename().string());

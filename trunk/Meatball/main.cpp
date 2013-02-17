@@ -100,7 +100,7 @@ void initEngine()
 	SDL_SetWindowMinimumSize(Window, window_width, window_height);
 	SDL_DisableScreenSaver();
 	
-	icon = SDL_LoadBMP("data/favicon.bmp");
+	SDL_Surface *icon = SDL_LoadBMP("data/favicon.bmp");
 	Uint32 ckey = SDL_MapRGB(icon->format, 128, 128, 128);
 	SDL_SetColorKey(icon, SDL_TRUE, ckey);
 	

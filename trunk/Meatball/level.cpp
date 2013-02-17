@@ -4,10 +4,11 @@
 
 using namespace std;
 
-cLevelData :: cLevelData( void )
+cLevelData :: cLevelData( void ) :
+BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 {
-	BasicSprites = NULL;
-	BasicSpriteCount = 0;
+	//BasicSprites = NULL;
+	//BasicSprites.objcount = 0;
 
 	BG_red = 0;
 	BG_green = 0;
@@ -18,16 +19,16 @@ cLevelData :: cLevelData( void )
 
 cLevelData :: ~cLevelData( void )
 {
-	unsigned int i = 0;
+	/*unsigned int i = 0;
 	
-	if( BasicSprites ) 
+	if( BasicSprites.objects )
 	{
-		for( i = 0;i < BasicSpriteCount;i++ ) 
+		for( i = 0;i < BasicSprites.objcount;i++ ) 
 		{
-			if( BasicSprites[i] ) 
+			if( BasicSprites.objects[i] ) 
 			{
-				delete BasicSprites[i];
-				BasicSprites[i] = NULL; 
+				delete BasicSprites.objects[i];
+				BasicSprites.objects[i] = NULL; 
 			} 
 		}
 
@@ -36,28 +37,31 @@ cLevelData :: ~cLevelData( void )
 		BasicSprites = NULL;	
 	}
 	
-	BasicSpriteCount = 0;	
+	BasicSprites.objcount = 0;	*/
+	
+	BasicSprites.~ObjectManager();
 }
 
 void cLevelData :: AddSprite( cMVelSprite *Sprite )
 {
-	BasicSprites = (cMVelSprite**) SDL_realloc( BasicSprites, ++BasicSpriteCount * sizeof(cMVelSprite*) );
-	BasicSprites[BasicSpriteCount - 1] = Sprite;
-	return;
+	//BasicSprites = (cMVelSprite**) SDL_realloc( BasicSprites, ++BasicSprites.objcount * sizeof(cMVelSprite*) );
+	//BasicSprites[BasicSprites.objcount - 1] = Sprite;
+	//return;
+	BasicSprites.add(Sprite);
 }
 
 int cLevelData :: GetCollidingSpriteNum( SDL_Rect *Crect )
 {
-	if( BasicSprites && Crect ) 
+	if( BasicSprites.objects && Crect )
 	{
-		for( unsigned int i = 0; i < BasicSpriteCount; i++ )
+		for( unsigned int i = 0; i < BasicSprites.objcount; i++ )
 		{
-			if( !BasicSprites[i] ) 
+			if( !BasicSprites.objects[i] ) 
 			{
 				continue;
 			}
             
-			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( SDL_TRUE ), Crect ) )
+			if( RectIntersect( &(const SDL_Rect&)BasicSprites.objects[i]->GetRect( SDL_TRUE ), Crect ) )
 			{
 				return i;
 			}
@@ -72,22 +76,22 @@ SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<
 {
 	SDL_bool did_we_get_objects = SDL_FALSE;
 	
-	if( BasicSprites && Crect )
+	if( BasicSprites.objects && Crect )
 	{
 		//DEBUGLOG( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
 		
-		for( unsigned int i = 0; i < BasicSpriteCount; i++ )
+		for( unsigned int i = 0; i < BasicSprites.objcount; i++ )
 		{
-			if( !BasicSprites[i] )
+			if( !BasicSprites.objects[i] )
 			{
 				continue;
 			}
             
-			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( SDL_TRUE ), Crect ) )
+			if( RectIntersect( &(const SDL_Rect&)BasicSprites.objects[i]->GetRect( SDL_TRUE ), Crect ) )
 			{
 				// Add this sprite num to the list
-				if (!obj_man->hasa(BasicSprites[i]))
-					obj_man->add(BasicSprites[i]);
+				if (obj_man->hasa(BasicSprites.objects[i]) < 0)
+					obj_man->add(BasicSprites.objects[i]);
 				
 				did_we_get_objects = SDL_TRUE;
 			}
@@ -99,18 +103,18 @@ SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<
 
 cBasicSprite *cLevelData :: GetCollidingSprite( SDL_Rect *Crect )
 {
-	if( BasicSprites && Crect ) 
+	if( BasicSprites.objects && Crect )
 	{
-		for( unsigned int i = 0; i < BasicSpriteCount; i++ )
+		for( unsigned int i = 0; i < BasicSprites.objcount; i++ )
 		{
-			if( !BasicSprites[i] ) 
+			if( !BasicSprites.objects[i] ) 
 			{
 				continue;
 			}
 
-			if( RectIntersect( &(const SDL_Rect&)BasicSprites[i]->GetRect( SDL_FALSE ), Crect ) )
+			if( RectIntersect( &(const SDL_Rect&)BasicSprites.objects[i]->GetRect( SDL_FALSE ), Crect ) )
 			{
-				return BasicSprites[i];
+				return BasicSprites.objects[i];
 			}
 		}
 	}
@@ -124,8 +128,8 @@ void cLevelData :: DeleteSprite( unsigned int number )
 	//if( (BasicSprites && number) < (EnemyCount && BasicSprites[number]) ) 
 	//{
 		cout<<"deleted "<<number;
-		delete BasicSprites[number];
-		BasicSprites[number] = NULL;
+		delete BasicSprites.objects[number];
+		BasicSprites.objects[number] = NULL;
 	//}
 }
 
@@ -198,94 +202,115 @@ void cLevel :: Save( void )
 		DEBUGLOG( "Error Level Save : Level file does not exist %s\n", filename.c_str() );
 	}
 
-	ofstream ofs( filename.c_str(), ios::out );
+	ofstream out( filename.c_str(), ios::out );
+	ofs = &out;
 
 	if( !ofs )
 	{
 		DEBUGLOG( "Error Level Save: could not open the Level file %s\n", filename.c_str() );
 		return;
 	}
-
-	unsigned int i;
-	char row[300];
-
-	sprintf( row,  "### Level Saved with MeatBall FX V.0 ###\n\n" );
-	ofs.write( row, strlen( row ) );
-
-	//sprintf( row,  "### Level Saved on the %s\n", Get_Curr_Time() );
-	//ofs.write( row, strlen( row ) );
-
-	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, (int)window_height - (int)pPlayer->Startposy );
-	ofs.write( row, strlen( row ) );
-
-	sprintf( row,  "Music %s\n\n", pLevelData_Layer1->Musicfile.c_str() );
-	ofs.write( row, strlen( row ) );
-
-	sprintf( row, "### Map Objects ###\n" );
-	ofs.write( row, strlen( row ) );
 	
-	// Map Objects
-	if( pLevel->pLevelData_Layer1 ) 
-	{
-		for( i = 0; pLevel->pLevelData_Layer1->BasicSpriteCount > i; i++ )
-		{
-			if( !pLevel->pLevelData_Layer1->BasicSprites[i] ) 
-			{
-				continue;
-			}
-			
-			string image_filename = IMan->GetIdentifier( pLevel->pLevelData_Layer1->BasicSprites[i]->srcimage );
-
-			image_filename.erase( 0, strlen( PIXMAPS_DIR ) );
-			
-			if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE ) 
-			{
-				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites[i]->posy );
-			}
-			else if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_PASSIVE ) 
-			{
-				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites[i]->posy );
-			}
-			else if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) 
-			{
-				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites[i]->posy );
-			}
-			else
-			{
-				DEBUGLOG( "Warning Level Saving : Unknown Map Object type : %d\n",pLevel->pLevelData_Layer1->BasicSprites[i]->type );
-				continue;
-			}
-
-			ofs.write( row, strlen( row ) );
-		}
-	}
-
-	sprintf( row, "### Enemies ###\n" );
-	ofs.write( row, strlen( row ) );
-	
-	// Enemies
-	if( Enemies ) 
-	{
-		for( i = 0; EnemyCount > i; i++ )
-		{
-			if( !Enemies[i] )
-			{
-				continue;
-			}
-
-			if( Enemies[i]->Enemy_type == ENEMY_AF373 )
-			{
-				sprintf( row,  "Enemy %d %d %d\n", (int)Enemies[i]->Startposx, (int)Enemies[i]->Startposy, Enemies[i]->Enemy_type );
-				ofs.write( row, strlen( row ) );
-			}
-			else
-			{
-				DEBUGLOG( "Level Saving : Wrong Enemy type : %d\n", Enemies[i]->Enemy_type );
-			}
-		}
-	}
+	PrintSaveHeader();
+	SavePlayerPos();
+	SaveMusicFile();
+	SaveMapObjects();
+	SaveMapEnemies();
 
 	DEBUGLOG( "Level saved to %s\n", levelfile.c_str() );
+	
+	ofs = NULL;
+}
+
+void cLevel :: PrintSaveHeader()
+{
+	sprintf( row,  "### Level Saved with MeatBall FX V.0 ###\n\n" );
+	ofs->write( row, strlen( row ) );
+	
+	sprintf( row,  "### Level Saved on %s\n", Get_Curr_Date().c_str() );
+	ofs->write( row, strlen( row ) );
+}
+
+void cLevel :: SavePlayerPos()
+{
+	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, (int)window_height - (int)pPlayer->Startposy );
+	ofs->write( row, strlen( row ) );
+}
+
+void cLevel :: SaveMusicFile()
+{
+	sprintf( row,  "Music %s\n\n", pLevelData_Layer1->Musicfile.c_str() );
+	ofs->write( row, strlen( row ) );
+}
+
+void cLevel :: SaveMapObjects()
+{
+	sprintf( row, "### Map Objects ###\n" );
+	ofs->write( row, strlen( row ) );
+	
+	// Map Objects
+	if( pLevel->pLevelData_Layer1 )
+	{
+		for( i = 0; pLevel->pLevelData_Layer1->BasicSprites.objcount > i; i++ )
+		{
+			if( !pLevel->pLevelData_Layer1->BasicSprites.objects[i] )
+			{
+				continue;
+			}
+			
+			string image_filename = IMan->GetIdentifier( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->srcimage );
+			
+			image_filename.erase( 0, strlen( PIXMAPS_DIR ) );
+			
+			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_MASSIVE )
+			{
+				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posy );
+			}
+			else if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_PASSIVE )
+			{
+				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posy );
+			}
+			else if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_HALFMASSIVE )
+			{
+				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posy );
+			}
+			else
+			{
+				DEBUGLOG( "Warning Level Saving : Unknown Map Object type : %d\n",pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type );
+				continue;
+			}
+			
+			ofs->write( row, strlen( row ) );
+		}
+	}
+}
+
+void cLevel :: SaveMapEnemies()
+{
+	sprintf( row, "### Enemies ###\n" );
+	ofs->write( row, strlen( row ) );
+	
+	// Enemies
+	if( Enemies.objects )
+	{
+		for( i = 0; Enemies.objcount > i; i++ )
+		{
+			if( !Enemies.objects[i] )
+			{
+				continue;
+			}
+			
+			if( Enemies.objects[i]->Enemy_type == ENEMY_AF373 )
+			{
+				sprintf( row,  "Enemy %d %d %d\n", (int)Enemies.objects[i]->Startposx, (int)Enemies.objects[i]->Startposy, Enemies.objects[i]->Enemy_type );
+				ofs->write( row, strlen( row ) );
+			}
+			else
+			{
+				DEBUGLOG( "Level Saving : Wrong Enemy type : %d\n", Enemies.objects[i]->Enemy_type );
+			}
+		}
+	}
 }
 
 void cLevel :: Update( void )
@@ -318,15 +343,15 @@ void cLevel :: Draw( void )
 
 
 
-	for( unsigned int i = 0; i < pLevelData_Layer1->BasicSpriteCount;i++ )
+	for( unsigned int i = 0; i < pLevelData_Layer1->BasicSprites.objcount;i++ )
 	{
-		if( !pLevelData_Layer1->BasicSprites[i] ) 
+		if( !pLevelData_Layer1->BasicSprites.objects[i] ) 
 		{
 			continue;
 		}
 
-		pLevelData_Layer1->BasicSprites[i]->Update();
-		pLevelData_Layer1->BasicSprites[i]->Draw( Renderer );
+		pLevelData_Layer1->BasicSprites.objects[i]->Update();
+		pLevelData_Layer1->BasicSprites.objects[i]->Draw( Renderer );
 	}
 }
 

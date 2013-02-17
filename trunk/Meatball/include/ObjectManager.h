@@ -1,19 +1,24 @@
 #pragma once
 
+#ifdef _DEBUG
+	#include <typeinfo>
+#endif
 
-#define OM_DELETE_OBJS					SDL_FALSE
-#define OM_FREE_OBJS					SDL_TRUE
+#define OM_SAVE_OBJS_AT_DESTROY				SDL_FALSE
+#define OM_OBLITERATE_OBJS_AT_DESTROY		SDL_TRUE
 
-#define OM_DONT_OBLITERATE_OBJS_AT_DESTROY	SDL_FALSE
-#define OM_OBLITERATE_OBJS_AT_DESTROY			SDL_TRUE
+#define OM_DELETE_OBJS						SDL_FALSE
+#define OM_FREE_OBJS						SDL_TRUE
+
+
 
 template <class T>
 class ObjectManager
 {
 public:
-	ObjectManager(SDL_bool delete_at_destroy=SDL_FALSE, SDL_bool delete_or_free = OM_DELETE_OBJS)
+	ObjectManager(SDL_bool delete_at_destroy=OM_SAVE_OBJS_AT_DESTROY, SDL_bool delete_or_free = OM_DELETE_OBJS)
 	{
-		objects = NULL; numobjs = 0;
+		objects = NULL; objcount = 0;
 		obliterate_objects_at_destructor = delete_or_free;
 		obliterate_objects_at_destructor = delete_at_destroy;
 	}
@@ -21,32 +26,39 @@ public:
 	{
 		if (obliterate_objects_at_destructor == SDL_TRUE)
 		{
+			//std::cout<<<<std::endl;
 			if (delete_or_free_objects == OM_DELETE_OBJS)
 			{
-				DEBUGLOG("Object Manager: Deleting Object(s) contents\n");
+				#ifdef _DEBUG
+					DEBUGLOG("Object Manager: Deleting OM<%s> contents\n", typeid(T).name());
+				#endif
 				DeleteAllObjectContents();
 			}
 			else // free them
 			{
-				DEBUGLOG("Object Manager: Freeing Object(s) contents\n");
+				#ifdef _DEBUG
+					DEBUGLOG("Object Manager: Freeing OM<%s> contents\n", typeid(T).name());
+				#endif
 				FreeAllObjectContents();
 			}
 		}
 		SDL_free(objects);
 		objects= NULL;
-		numobjs = 0;
+		objcount = 0;
 	}
 	//virtual T* add();
 	virtual void add(T *);
 	void RemoveAllObjects();
-	SDL_bool hasa(T *);
+	int hasa(T *);
+	void Remove(int n);
 	void DeleteAllObjectContents(); ///< uses Delete instead of Free()
 	void FreeAllObjectContents();	///< uses free();
 	
 
 	SDL_bool obliterate_objects_at_destructor;	///< this sets to only delete the manager of the objects/ or should we also delete the objects too???
-	unsigned int numobjs;
+	unsigned int objcount;
 	SDL_bool delete_or_free_objects;	///< delete them or free them? (depends of new was used or SDL_malloc-equiv)
+
 	T **objects;
 };
 
@@ -55,30 +67,44 @@ T* ObjectManager<T>::add()
 {
 	T *new_obj = new T;
 
-	objects = (T**) SDL_realloc( objects, ++numobjs * sizeof(T*) );
-	objects[numobjs - 1] = new_obj;
+	objects = (T**) SDL_realloc( objects, ++objcount * sizeof(T*) );
+	objects[objcount - 1] = new_obj;
 
 	return new_obj;
 }*/
 
 template <class T>
-SDL_bool ObjectManager<T>::hasa(T *o)
+int ObjectManager<T>::hasa(T *o)
 {
 	unsigned int i;
-	for (i=0; i < numobjs; i++)
+	for (i=0; i < objcount; i++)
 	{
 		if (o == objects[i])
-			return SDL_TRUE;
+		{
+			return (int)i;
+		}
 	}
 	
-	return SDL_FALSE;
+	return -1;
+}
+
+template <class T>
+void ObjectManager<T> :: Remove(int n)
+{
+	objects[n] = NULL;
+	
+	for (n=n; n<objcount-1; n++)
+	{
+		objects[n] = objects[n+1];
+	}
+	objects = (T**) SDL_realloc( objects, --objcount * sizeof(T*) );
 }
 
 template <class T>
 void ObjectManager<T>::add(T *new_obj)
 {
-	objects = (T**) SDL_realloc( objects, ++numobjs * sizeof(T*) );
-	objects[numobjs - 1] = new_obj;
+	objects = (T**) SDL_realloc( objects, ++objcount * sizeof(T*) );
+	objects[objcount - 1] = new_obj;
 }
 
 
@@ -86,27 +112,27 @@ void ObjectManager<T>::add(T *new_obj)
 template <class T>
 void ObjectManager<T>::RemoveAllObjects()
 {
-	if ( objects && numobjs > 0 )
+	if ( objects && objcount > 0 )
 	{
 		SDL_free(objects);
 		objects = NULL;
-		numobjs = 0;
+		objcount = 0;
 	}
 }
 
 template <class T>
 void ObjectManager<T>::DeleteAllObjectContents()
 {
-	if (objects && numobjs > 0)
+	if (objects && objcount > 0)
 	{
-		DEBUGLOG("\tDeleting %d objects\n", numobjs);
+		DEBUGLOG("\tDeleting %d objects\n", objcount);
 		
-		for (unsigned int i=0; i < numobjs; i++)
+		for (unsigned int i=0; i < objcount; i++)
 		{
 			delete objects[i];
 		}
 		
-		numobjs = 0;
+		objcount = 0;
 	}
 	
 	
@@ -115,14 +141,14 @@ void ObjectManager<T>::DeleteAllObjectContents()
 template <class T>
 void ObjectManager<T>::FreeAllObjectContents()
 {
-	if (objects && numobjs > 0)
+	if (objects && objcount > 0)
 	{
-		DEBUGLOG("\tFreeing %d objects\n", numobjs);
-		for (unsigned int i=0; i < numobjs; i++)
+		DEBUGLOG("\tFreeing %d objects\n", objcount);
+		for (unsigned int i=0; i < objcount; i++)
 		{
 			SDL_free(objects[i]);
 		}
 		
-		numobjs = 0;
+		objcount = 0;
 	}
 }

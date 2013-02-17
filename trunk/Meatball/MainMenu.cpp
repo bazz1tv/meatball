@@ -253,8 +253,8 @@ void MainMenu::FadeOutBG()
 	int i; 
 	SDL_Surface *surface; 
 
-	surface = SDL_ConvertSurface(Screen, Screen->format, Screen->flags);
-	SDL_FillRect( surface, NULL, SDL_MapRGB( Screen->format, 0, 0, 0 ) );
+	//surface = SDL_ConvertSurface(Screen, Screen->format, Screen->flags);
+	//SDL_FillRect( surface, NULL, SDL_MapRGB( Screen->format, 0, 0, 0 ) );
 	if(surface == NULL) 
 	{ 
 		DEBUGLOG("Load image error: %s\n", SDL_GetError());
@@ -265,7 +265,7 @@ void MainMenu::FadeOutBG()
 		UpdateGraphics();
 		//SDL_SetAlpha(surface,SDL_TRUE,(Uint8)i);
 		SDL_SetSurfaceAlphaMod(surface, (Uint8)i);
-		SDL_BlitSurface(surface,NULL,Screen,NULL); 
+		//SDL_BlitSurface(surface,NULL,Screen,NULL);
 		PostDraw();
 		//Sleep(10);
 	}

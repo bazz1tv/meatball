@@ -56,8 +56,9 @@ public:
 
 };
 
-extern unsigned int EnemyCount;
-extern cEnemy **Enemies;
+//extern unsigned int EnemyCount;
+//extern cEnemy **Enemies;
+extern ObjectManager<cEnemy> Enemies;
 
 /// Adds an Enemy with the given type
 void AddEnemy( double nposx, double nposy, unsigned int etype );

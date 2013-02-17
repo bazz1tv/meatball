@@ -2,6 +2,8 @@
 
 #include "Globals.h"
 
+/// A simple collection of Surface/Texture/Rect
+/// for most basic graphics objects
 class GraphicsObject
 {
 public:
@@ -24,6 +26,6 @@ public:
 		}
 	}
 	SDL_Surface *surface;
-	SDL_Rect rect;
+	SDL_Rect	 rect;
 	SDL_Texture *texture;
 };

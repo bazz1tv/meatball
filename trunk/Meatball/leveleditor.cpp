@@ -147,7 +147,7 @@ void cLevelEditor :: DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, 
 	// This is code to get a RECT from our sprite Tile
 	if (multiple_objects_selected)
 	{
-		for (unsigned int i=0; i < MultiSelect_Objects.numobjs; i++)
+		for (unsigned int i=0; i < MultiSelect_Objects.objcount; i++)
 		{
 			// Draw a rect around each individual object
 			
@@ -214,23 +214,28 @@ void cLevelEditor :: SetCopyObject( void )
 void cLevelEditor :: SetMultiSelect_Objects( void )
 {
 	// Only Map and Enemy Objects can be Copied (FOR NOW)
-	// SetMultiSelect_Objects( GetCollidingObject( pMouse->posx, pMouse->posy )  );
+	// SetMultiSelect_Object( GetCollidingObject( pMouse->posx, pMouse->posy )  );
 	GetAllCollidingObjects(&MultiSelect_rect, &MultiSelect_Objects);
 	
-	multiple_objects_selected = (MultiSelect_Objects.numobjs > 0) ? SDL_TRUE:SDL_FALSE;
+	multiple_objects_selected = (MultiSelect_Objects.objcount > 0) ? SDL_TRUE:SDL_FALSE;
 }
 
-void cLevelEditor :: SetMultiSelect_Objects( cMVelSprite *nObject)
+void cLevelEditor :: SetMultiSelect_Object( cMVelSprite *nObject)
 {
 	if( !nObject )
 	{
 		return;
 	}
 	
-	if (!MultiSelect_Objects.hasa(nObject))
+	int index = MultiSelect_Objects.hasa(nObject);
+	if ( index < 0 )
 	{
 		MultiSelect_Objects.add(nObject);
 		multiple_objects_selected = SDL_TRUE;
+	}
+	else
+	{
+		MultiSelect_Objects.Remove(index);
 	}
 
 	
@@ -238,7 +243,7 @@ void cLevelEditor :: SetMultiSelect_Objects( cMVelSprite *nObject)
 
 void cLevelEditor::MultiSelect_Move(void)
 {
-	for (unsigned int i=0; i < MultiSelect_Objects.numobjs; i++)
+	for (unsigned int i=0; i < MultiSelect_Objects.objcount; i++)
 	{
 		MultiSelect_Objects.objects[i]->SetPos( floor((pMouse->posx-MultiSelect_mouseXOffset) + (pCamera->x-MultiSelect_camXOffset) + MultiSelect_Objects.objects[i]->posx), floor((pMouse->posy - MultiSelect_mouseYOffset) + (pCamera->y-MultiSelect_camYOffset) + MultiSelect_Objects.objects[i]->posy) );
 		
@@ -391,7 +396,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 
 	if( CollisionNum >= 0 )
 	{
-		return pLevel->pLevelData_Layer1->BasicSprites[CollisionNum];
+		return pLevel->pLevelData_Layer1->BasicSprites.objects[CollisionNum];
 	}
 
 	// Enemies
@@ -399,7 +404,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 
 	if( CollisionNum >= 0 )
 	{
-		return (cMVelSprite *)Enemies[CollisionNum];
+		return (cMVelSprite *)Enemies.objects[CollisionNum];
 	}
 	
 	return NULL;
@@ -415,7 +420,7 @@ SDL_bool cLevelEditor :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager<
 	// Player
 	if( RectIntersect( &(const SDL_Rect&)pPlayer->GetRect( SDL_TRUE ), cRect ) )
 	{
-		if (!obj_man->hasa((cMVelSprite *)pPlayer))
+		if (obj_man->hasa((cMVelSprite *)pPlayer) < 0)
 		{
 			obj_man->add((cMVelSprite*)pPlayer);
 			were_objects_found = SDL_TRUE;
@@ -600,7 +605,7 @@ void cLevelEditor::EventHandler()
 						{
 							if (GetCollidingObject(pMouse->posx, pMouse->posy))
 							{
-								pLevelEditor->SetMultiSelect_Objects(GetCollidingObject( pMouse->posx, pMouse->posy ));
+								pLevelEditor->SetMultiSelect_Object(GetCollidingObject( pMouse->posx, pMouse->posy ));
 								prepareToMove_MultiSelect_Tiles();
 							}
 							else
@@ -615,7 +620,7 @@ void cLevelEditor::EventHandler()
 					}
 					else
 					{
-						if (multiple_objects_selected == SDL_TRUE && (MultiSelect_Objects.hasa(GetCollidingObject( pMouse->posx, pMouse->posy )) == SDL_TRUE) )
+						if (multiple_objects_selected == SDL_TRUE && (MultiSelect_Objects.hasa(GetCollidingObject( pMouse->posx, pMouse->posy )) >= 0) )
 						{
 							// There is an explanation for the explicit checks for SDL_TRUE/SDL_FALSE
 							// I was not sure if these values could use the if (varname) since i was unsure of the values
@@ -633,7 +638,7 @@ void cLevelEditor::EventHandler()
 						else
 						{
 							// Release any MultiSelect_-shit
-							Release_MultiSelect_Select_Objects();
+							Release_MultiSelect_Objects();
 							pLevelEditor->SetMoveObject();
 					
 						}
@@ -656,7 +661,7 @@ void cLevelEditor::EventHandler()
 				if( event.button.button == 1 ) // Left Mouse Button
 				{
 					if (Mouse_command != MOUSE_COMMAND_MOVING_MULTISELECT_TILES && Mouse_command != MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
-						Release_MultiSelect_Select_Objects();
+						Release_MultiSelect_Objects();
 					
 					pLevelEditor->Release_Command();
 				}
@@ -696,7 +701,7 @@ void cLevelEditor::init_MultiSelect_Tiles(SDL_bool release/* = SDL_FALSE */)
 		
 		// Release last time's old tiles
 		if (release)
-			Release_MultiSelect_Select_Objects();
+			Release_MultiSelect_Objects();
 }
 
 void cLevelEditor::prepareToMove_MultiSelect_Tiles()
@@ -710,7 +715,7 @@ void cLevelEditor::prepareToMove_MultiSelect_Tiles()
 	MultiSelect_camYOffset = pCamera->y;
 }
 
-SDL_bool cLevelEditor::Release_MultiSelect_Select_Objects()
+SDL_bool cLevelEditor::Release_MultiSelect_Objects()
 {
 	MultiSelect_Objects.RemoveAllObjects();
 	

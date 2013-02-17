@@ -403,7 +403,7 @@ void cPlayer :: Fire( void )
 	// Todo : Ammo
 
 	// The used ammo ;)
-	AddParticleEmitter( Particle_posx, posy + 8, 2, 150, 150, 150, 0.1, 1, 2, 270 ); // grey
+	AddParticleEmitter( Particle_posx, posy + 8, 2, 150, 150, 150, 1, 1, 2, 270 ); // grey
 }
 
 void cPlayer :: Get_Hit( unsigned int damage )

@@ -14,9 +14,10 @@ public:
 	~cLevelData( void );
 
 	/// The Basic Sprites
-	cMVelSprite **BasicSprites;
+	//cMVelSprite **BasicSprites;
 	/// Basic Sprite Count
-	unsigned int BasicSpriteCount;
+	//unsigned int BasicSpriteCount;
+	ObjectManager<cMVelSprite> BasicSprites;
 	/// Background Color
 	Uint8 BG_red,BG_green,BG_blue;
 	/// Background Image
@@ -53,6 +54,16 @@ public:
 	cLevel( void );
 	~cLevel( void );
 	
+	void PrintSaveHeader();
+	
+	void SavePlayerPos();
+	
+	void SaveMusicFile();
+	
+	void SaveMapObjects();
+	
+	void SaveMapEnemies();
+	
 	/// Loads an Level
 	void Load( string filename );
 
@@ -73,7 +84,7 @@ public:
 
 	/// The Level Data
 	cLevelData *pLevelData_Layer1;
-	cLevelData *pLevelData_Layer1_Layer2;
+	cLevelData *pLevelData_Layer2;
 
 
 private:
@@ -81,6 +92,10 @@ private:
 	void Parse( char* command, int line );
 	/// Parses the Command and also reports any Error
 	int ParseLine( char ** parts, unsigned int count, unsigned int line );
+	
+	char row[300];
+	unsigned int i;
+	std::ofstream *ofs;
 };
 /*@}*/
 #endif

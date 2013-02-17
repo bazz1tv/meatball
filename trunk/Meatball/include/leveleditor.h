@@ -89,7 +89,7 @@ public:
 	
 	/// Releases any MultiSelect_ selected object
 	/// @returns SDL_TRUE if there were objects to remove, SDL_FALSE if there wasnt
-	SDL_bool Release_MultiSelect_Select_Objects();
+	SDL_bool Release_MultiSelect_Objects();
 
 	/** Gets the Current Colliding Object
 	 * types : the Objects which should be checked
@@ -117,7 +117,7 @@ public:
 	void DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, Uint32 Color);
 	
 	/// Add to MultiSelect_Objects array
-	void SetMultiSelect_Objects( cMVelSprite *nObject);
+	void SetMultiSelect_Object( cMVelSprite *nObject);
 	void SetMultiSelect_Objects( void );
 	// MultiSelect_ move
 	void MultiSelect_Move(void);
