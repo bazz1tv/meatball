@@ -1,6 +1,6 @@
 
 #include "preferences.h"
-extern cSettings *pGameSettings;
+#include <fstream>
 
 using namespace std;
 

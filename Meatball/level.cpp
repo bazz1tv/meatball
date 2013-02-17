@@ -3,6 +3,10 @@
 #include "effects.h"
 #include "bullet.h"
 #include "enemy.h"
+#include <fstream>
+#include "player.h"
+
+extern cPlayer *pPlayer;
 
 using namespace std;
 

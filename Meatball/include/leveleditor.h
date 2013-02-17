@@ -7,7 +7,7 @@
 
 
 #include "Globals.h"
-#include "sprite.h"
+class cMVelSprite;
 #include "MiniEngine.h"
 
 class cMultiSelect;

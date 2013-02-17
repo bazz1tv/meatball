@@ -1,6 +1,8 @@
 
 #include "Camera.h"
 #include "player.h"
+extern cPlayer *pPlayer;
+extern cFramerate *pFramerate;
 
 cCamera :: cCamera( void )
 {

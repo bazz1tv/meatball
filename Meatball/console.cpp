@@ -8,9 +8,11 @@
 #include "enemy.h"
 #include "effects.h"
 #include "player.h"
+#include "level.h"
 
 extern cConsole *pConsole;
-
+extern cPlayer *pPlayer;
+extern cLevel *pLevel;
 
 using namespace std;
 
@@ -380,7 +382,7 @@ void cConsole :: ClearHistory_SurfacesAndTextures()
 /// It then checks with all registered commands for a match
 /// If there's a match it will call the registered command's handler function with the parameters as a string argument
 
-/// @returnsSDL_FALSE on no match or base empty.SDL_TRUE on a match
+/// @returns SDL_FALSE on no match or base empty.SDL_TRUE on a match
 SDL_bool cConsole :: CMDHandler( string cInput )
 {
 	string base = ParseBase( cInput );

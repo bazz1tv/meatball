@@ -6,7 +6,6 @@
 
 //#include "Globals.h"
 #include "sprite.h"
-#include "bullet.h"
 #include "defines.h"
 
 extern cSoundManager *SMan;

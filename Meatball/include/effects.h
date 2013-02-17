@@ -2,9 +2,10 @@
 #ifndef __EFFECTS_H__
 #define __EFFECTS_H__
 
-#include "Collision.h"
-#include "Camera.h"
+#include "Globals.h"
 #include "sprite.h"
+
+class cCamera;
 
 extern cFramerate *pFramerate;
 extern cCamera *pCamera;

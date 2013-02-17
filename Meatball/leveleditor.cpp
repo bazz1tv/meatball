@@ -5,8 +5,14 @@
 #include "leveleditor.h"
 #include "enemy.h"
 #include "Misc.h"
-extern cPlayer *pPlayer;
+#include "level.h"
+#include "player.h"
+#include "Camera.h"
 
+extern cPlayer *pPlayer;
+extern cCamera *pCamera;
+extern cLevel *pLevel;
+extern cCamera *pCamera;
 
 // This is the amount of time to SLEEP when doing HELD_KEY events (so we don't work at the speed of light)
 #define LEVELEDIT_SLEEPWAIT 100000

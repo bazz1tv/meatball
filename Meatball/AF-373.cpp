@@ -1,6 +1,9 @@
 
 
 #include "AF-373.h"
+#include "Camera.h"
+#include "effects.h"
+#include "Collision.h"
 
 cAF373 :: cAF373( double nposx, double nposy )
 : cEnemy( nposx, nposy )
@@ -221,24 +224,24 @@ void cAF373 :: Update( void )
 	// Position Correction
 	if( posx < 0 ) 
 	{
-		SetPos( 0, posy );
+		//SetPos( 0, posy );
 	}
 	else if( (double)posx + width > (double)window_width + pCamera->x ) 
 	{
-		posx = (double)window_width - width;
+		//posx = (double)window_width - width;
 	}
 
 	if( posy < 0 ) // Up
 	{
-		SetPos( posx, 0 );
-		SetVelocity( velx, 0 );
-		state = STATE_FALLING;
+		//SetPos( posx, 0 );
+		//SetVelocity( velx, 0 );
+		//state = STATE_FALLING;
 	}
 	else if( (double)posy + height > (double)window_height + pCamera->y ) // Bottom
 	{
-		SetPos( posx, (double)window_height - height );
+		//SetPos( posx, (double)window_height - height );
 		
-		state = STATE_STAYING;
+		//state = STATE_STAYING;
 	}
 	
 

@@ -1,4 +1,7 @@
 #include "bullet.h"
+#include "Camera.h"
+#include "Collision.h"
+#include "effects.h"
 
 #define PISTOL_VELOCITY	10
 #define MACHINEGUN_VELOCITY	15

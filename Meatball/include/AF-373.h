@@ -3,11 +3,9 @@
 #ifndef __ENEMY_AF373_H__
 #define __ENEMY_AF373_H__
 
-#include "Globals.h"
-
 #include "weapon.h"
-
 #include "enemy.h"
+
 class cEnemy;
 class cAF373 : public cEnemy
 {

@@ -9,13 +9,7 @@
 #ifndef MeatBall_OS_h
 #define MeatBall_OS_h
 
-//
-#ifdef _DEBUG
-// Update the following if needed…
-#define DEBUGLOG(...) printf(__VA_ARGS__)
-#else
-#define DEBUGLOG(...) do {} while (0)
-#endif
+
 
 /* OS SPECIFIC DEFINITIONS ---------------------------------- */
 /////////////// APPLE ////////////////

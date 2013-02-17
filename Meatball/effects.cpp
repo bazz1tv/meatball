@@ -1,4 +1,7 @@
 #include "effects.h"
+#include "Camera.h"
+#include "Collision.h"
+
 
 cMParticleEmitter **ParticleEmitter = NULL;
 unsigned int ParticleEmitterCount = 0;

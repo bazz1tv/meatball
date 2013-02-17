@@ -1,5 +1,7 @@
 #include "TextObject.h"
 
+extern SDL_Renderer *Renderer;
+
 void TextObject::SetBGColor(SDL_Color color)
 {
 	bgColor = color;

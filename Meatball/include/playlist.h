@@ -1,16 +1,16 @@
 #ifndef __PLAYLIST_H__
 #define __PLAYLIST_H__
 
-//#include "boost.h"
+#include "boost.h"
 #include <string.h>
 
 /// Conjured to do smooth transitioning of Music while I develop..
 /// May not be a permanent thing.. who knows!
 namespace Playlist
 {
-	//static std::string musicfiles[100];
+	static std::string musicfiles[100];
 	extern int numsongs;
-	//static fs::path full_path;
+	static fs::path full_path;
 
 	void ls_music(); ///< This gets all music files from the music directory.
 						/// Puts them into musicfiles array

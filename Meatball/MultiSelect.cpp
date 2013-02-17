@@ -1,6 +1,12 @@
 #include "MultiSelect.h"
 #include "leveleditor.h"
 #include "player.h"
+#include "level.h"
+#include "Camera.h"
+
+extern cPlayer *pPlayer;
+extern cLevel *pLevel;
+extern cCamera *pCamera;
 
 void cMultiSelect :: DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, Uint32 Color)
 {

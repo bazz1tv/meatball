@@ -4,7 +4,8 @@
 #define __PLAYER_H__
 
 #include "defines.h"
-#include "effects.h"
+#include "sprite.h"
+
 
 
 class cWeapon;
@@ -17,14 +18,7 @@ extern cImageManager *IMan;
 
 extern int window_width;
 extern int window_height;
-/// @defgroup PLAYER_STATES
-// @{
-#define STATE_STAYING 0
-#define STATE_WALKING 1
-#define STATE_JUMPING 2
-#define STATE_FALLING 3
-#define STATE_FLYING  4	///< Not implemented
-// @}
+
 
 
 

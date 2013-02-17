@@ -7,8 +7,6 @@
 #include "Globals.h"
 #include "sprite.h"
 #include "ObjectManager.h"
-class cAF373;
-#include "Collision.h"
 
 /// Enemy Types
 #define ENEMY_UNDEFINED 0

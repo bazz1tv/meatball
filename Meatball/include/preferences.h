@@ -38,6 +38,8 @@ public:
 	SDL_Keycode Key_jump;
 };
 
+extern cSettings *pGameSettings;
+
 /// The Preferences
 class cPreferences
 {

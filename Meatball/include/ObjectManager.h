@@ -1,6 +1,6 @@
 #pragma once
 
-#include "OS.h"
+#include "Globals.h"
 
 #ifdef _DEBUG
 	#include <typeinfo>
