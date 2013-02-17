@@ -25,7 +25,7 @@ enum {	MOUSE_COMMAND_NOTHING,
 		MOUSE_COMMAND_MOVING_SINGLE_TILE,
 		MOUSE_COMMAND_MOVING_MULTISELECT_TILES,
 		MOUSE_COMMAND_FASTCOPY,
-		MOUSE_COMMAND_SELECT_MULTISELECT_TILES
+		MOUSE_COMMAND_SELECT_MULTISELECT_TILES,
 };
 // @}
 
@@ -55,6 +55,8 @@ public:
 	/// Sets the to-be-Copied Object
 	void SetCopyObject( cMVelSprite *nObject );
 	void SetCopyObject( void );
+	
+	void NewMoveObject(cMVelSprite*);
 	
 	/// Sets an Object for Mouse Movement
 	void SetMoveObject( cMVelSprite *nObject );
