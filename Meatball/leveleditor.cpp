@@ -239,6 +239,24 @@ void cLevelEditor :: PasteObject( void )
 	PasteObject( pMouse->posx, pMouse->posy );
 }
 
+void cLevelEditor::NewMoveObject(cMVelSprite *nObject)
+{
+	if( !nObject )
+	{
+		return;
+	}
+	
+	CopyObject = nObject;
+
+	PasteObject(pMouse->posx, pMouse->posy);
+	Mouse_w = (int)(lastCopiedObject->posx -= pMouse->posx + pCamera->x);
+	Mouse_h = (int)(lastCopiedObject->posy -= pMouse->posy + pCamera->y);
+	
+	Object = lastCopiedObject;
+	
+	Mouse_command = MOUSE_COMMAND_MOVING_SINGLE_TILE;
+}
+
 void cLevelEditor :: PasteObject( double x, double y )
 {
 	if( !CopyObject ) 
@@ -451,9 +469,16 @@ void cLevelEditor::EventHandler()
 					//LCTRL+V to paste
 					else if( event.key.keysym.sym == PASTE_KEY  )
 					{
-						PasteObject();
+						if (!MultiSelect->multiple_objects_selected)
+							PasteObject();
+						else
+						{
+							MultiSelect->Prepare();
+							MultiSelect->PasteObjects();
+						}
 					}
 				}
+				
 
 				// F Key for Fast Copy
 				else if (event.key.keysym.sym == FASTCOPY_KEY)
@@ -535,6 +560,21 @@ void cLevelEditor::EventHandler()
 						else
 						{
 							MultiSelect->InitTiles(SDL_TRUE);
+						}
+					}
+					else if (keys[SDL_SCANCODE_LALT])
+					{
+						if (MultiSelect->multiple_objects_selected)
+						{
+							MultiSelect->NewMoveObjects();
+						}
+						else
+						{
+							cMVelSprite *ptr;
+							if ((ptr = GetCollidingObject(pMouse->posx, pMouse->posy)))
+							{
+								NewMoveObject(ptr);
+							}
 						}
 					}
 					else
@@ -676,6 +716,9 @@ void  cLevelEditor::HeldKey_Handler()
 	// if at anytime 'e' is pressed. Delete the object the mouse is hovering over.
 	if ( keys[SDL_SCANCODE_E] )
 	{
-		DeleteObject();
+		if (!MultiSelect->multiple_objects_selected)
+			DeleteObject();
+		else
+			MultiSelect->DeleteObjects();
 	}
 }

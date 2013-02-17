@@ -3,6 +3,7 @@
 #include "player.h"
 #include "level.h"
 #include "Camera.h"
+#include "enemy.h"
 
 extern cPlayer *pPlayer;
 extern cLevel *pLevel;
@@ -27,6 +28,103 @@ void cMultiSelect :: DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, 
 		}
 	}
 }
+
+void cMultiSelect::NewMoveObjects()
+{
+	PasteObjects();
+	PrepareToMove();
+}
+
+void cMultiSelect::CopyObjects()
+{
+	
+}
+
+void cMultiSelect::DeleteObjects()
+{
+	// Only Map Objects and Enemies can be deleted
+	
+	
+	int index;
+	
+	for (unsigned int i=0; i < OM.objcount; i++)
+	{
+		// Map Objects
+		index = pLevel->pLevelData_Layer1->BasicSprites.hasa(OM.objects[i]);
+		if (index >= 0)
+		{
+			pLevel->pLevelData_Layer1->DeleteSprite( index );
+			continue;
+		}
+
+		index = Enemies.hasa((cEnemy*)OM.objects[i]);
+		if (index >= 0)
+		{
+			DeletEnemy( index);
+			continue;
+		}
+		
+		
+	}
+	
+	OM.~ObjectManager();
+	multiple_objects_selected = SDL_FALSE;
+
+}
+
+void cMultiSelect::PasteObjects()
+{
+	double leftmostx,leftmosty;
+	//ObjectManager<cMVelSprite> newsprites(OM_SAVE_OBJS_AT_DESTROY);
+	
+	if (OM.objects && OM.objcount > 0)
+	{
+		leftmostx = OM.objects[0]->posx;
+		leftmosty = OM.objects[0]->posy;
+	}
+	
+	if (OM.objcount > 1)
+	{
+		for (unsigned int i=0; i < OM.objcount; i++)
+		{
+			int x;
+			x = OM.objects[i]->posx;
+			if (x <= leftmostx)
+			{
+				leftmostx = x;
+				leftmosty = OM.objects[i]->posy;
+			}
+		}
+	}
+	
+	for (unsigned int i=0; i < OM.objcount; i++)
+	{
+		// Add the New Object
+		if( OM.objects[i]->type == SPRITE_TYPE_MASSIVE || OM.objects[i]->type == SPRITE_TYPE_PASSIVE || OM.objects[i]->type == SPRITE_TYPE_HALFMASSIVE)
+		{
+			// Create the new Sprite
+			cMVelSprite *new_Object = new cMVelSprite( OM.objects[i]->srcimage, floor((pMouse->posx-leftmostx) + (pCamera->x-camXOffset) + OM.objects[i]->posx),
+													  floor( (pMouse->posy - leftmosty) + (pCamera->y-camYOffset) + OM.objects[i]->posy) );
+			
+			new_Object->type = OM.objects[i]->type;
+			
+			pLevel->pLevelData_Layer1->AddSprite( new_Object );
+			OM.objects[i] = new_Object;
+		}
+		else if( OM.objects[i]->type == SPRITE_TYPE_ENEMY )
+		{
+			cEnemy *pEnemy = (cEnemy *)OM.objects[i];
+			
+			AddEnemy(floor((pMouse->posy - mouseYOffset) + (pCamera->y-camYOffset) + OM.objects[i]->posy), floor((pMouse->posy - mouseYOffset) + (pCamera->y-camYOffset) + OM.objects[i]->posy), pEnemy->Enemy_type );
+			
+			OM.objects[i] = pEnemy;
+		}
+	}
+	
+	//OM.~ObjectManager();
+	//OM = newsprites;
+}
+
 void cMultiSelect :: SetObjects( void )
 {
 	// Only Map and Enemy Objects can be Copied (FOR NOW)
@@ -126,6 +224,14 @@ void cMultiSelect::InitTiles(SDL_bool release/* = SDL_FALSE */)
 	// Release last time's old tiles
 	if (release)
 		Release();
+}
+
+void cMultiSelect :: Prepare()
+{
+	//mouseXOffset = veryfirst_mouseXOffset =  pMouse->posx;
+	//mouseYOffset = veryfirst_mouseYOffset =  pMouse->posy;
+	//camXOffset = pCamera->x;
+	//camYOffset = pCamera->y;
 }
 
 void cMultiSelect::PrepareToMove()

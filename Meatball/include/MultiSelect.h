@@ -13,6 +13,10 @@ public:
 	/////////////////////////////////////////////////////////
 	void DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, Uint32 Color);
 	
+	void NewMoveObjects();
+	void CopyObjects();
+	void PasteObjects();
+	void DeleteObjects();
 	/// Add to OM array
 	void SetObject( cMVelSprite *nObject);
 	void SetObjects( void );
@@ -23,6 +27,7 @@ public:
 	
 	void InitTiles(SDL_bool release = SDL_FALSE);
 	void PrepareToMove();
+	void Prepare();
 	
 	SDL_bool GetAllCollidingObjects( SDL_Rect *crect, ObjectManager<cMVelSprite> *obj_man );
 	
