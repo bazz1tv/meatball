@@ -4,8 +4,9 @@
 #define MACHINEGUN_VELOCITY	15
 #define LASER_VELOCITY 15
 
-unsigned int BulletCount = 0;
-cBullet **Bullets = NULL;
+//unsigned int BulletCount = 0;
+//cBullet **Bullets = NULL;
+ObjectManager<cBullet> Bullets(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS);
 
 cBullet :: cBullet( double nposx, double nposy )
 : cMVelSprite( NULL, nposx, nposy )
@@ -157,7 +158,12 @@ void cBullet :: Update( void )
 	}	
 
 	// Position Correction
-	if( posx - width > (double)window_width + pCamera->x ) 
+	Windows_BoundsChecking();
+}
+
+void cBullet::Windows_BoundsChecking()
+{
+	if( posx - width > (double)window_width + pCamera->x )
 	{
 		visible =SDL_FALSE;
 	}
@@ -165,12 +171,12 @@ void cBullet :: Update( void )
 	{
 		visible =SDL_FALSE;
 	}
-
+	
 	if( posy < -height + pCamera->y )
 	{
 		visible =SDL_FALSE;
 	}
-	else if( posy - height > (double)window_height + pCamera->y ) 
+	else if( posy - height > (double)window_height + pCamera->y )
 	{
 		visible =SDL_FALSE;
 	}
@@ -218,7 +224,7 @@ void cBullet::Explode()
 	visible = SDL_FALSE;
 }
 
-void DoDamage()
+void cBullet::DoDamage()
 {
 	
 }
@@ -252,13 +258,13 @@ void PreloadBulletimages( void )
 
 void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel /** = 0.0  */ )
 {
-	for( unsigned int i = 0; i < BulletCount; i++ )
+	for( unsigned int i = 0; i < Bullets.objcount; i++ )
 	{
-		if ( !Bullets[i]->visible )
+		if ( !Bullets.objects[i]->visible )
 		{
-			Bullets[i]->SetPos( nposx, nposy );
+			Bullets.objects[i]->SetPos( nposx, nposy );
 			
-			Bullets[i]->init( ndirection, nBullet_type, nOrigin, nextravel );
+			Bullets.objects[i]->init( ndirection, nBullet_type, nOrigin, nextravel );
 
 			return;
 		}
@@ -268,49 +274,31 @@ void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet
 
 	new_Bullet->init( ndirection, nBullet_type, nOrigin, nextravel );
 
-	Bullets = (cBullet**) SDL_realloc( Bullets, ++BulletCount * sizeof(cBullet*) );
-	Bullets[BulletCount - 1] = new_Bullet;
+	Bullets.add(new_Bullet);
 }
 
 void UpdateBullets( void )
 {
-	for( unsigned int i = 0; i < BulletCount; i++ )
+	for( unsigned int i = 0; i < Bullets.objcount; i++ )
 	{
-		if( Bullets[i]->visible == SDL_TRUE )
+		if( Bullets.objects[i]->visible == SDL_TRUE )
 		{
-			CollideMove( (cBasicSprite*)Bullets[i], Bullets[i]->velx * pFramerate->speedfactor, Bullets[i]->vely * pFramerate->speedfactor, Bullets[i]->Collision, Bullets[i]->type );
-			Bullets[i]->Update();
+			cBullet *bullet = Bullets.objects[i];
+			CollideMove( (cBasicSprite*)bullet, bullet->velx * pFramerate->speedfactor, bullet->vely * pFramerate->speedfactor, bullet->Collision, bullet->type );
+			bullet->Update();
 		}
 	}
 }
 
 void DrawBullets( SDL_Renderer *renderer )
 {
-	for( unsigned int i = 0; i < BulletCount; i++ )
+	for( unsigned int i = 0; i < Bullets.objcount; i++ )
 	{
-		Bullets[i]->Draw( renderer );
+		Bullets.objects[i]->Draw( renderer );
 	}
 }
 
 void DeleteAllBullets( void )
 {
-	if ( Bullets )
-	{
-		for( unsigned int i = 0;i < BulletCount;i++ ) 
-		{
-			if( !Bullets[i] ) 
-			{
-				continue;
-			} 
-			
-			delete Bullets[i];
-			Bullets[i] = NULL;
-		}
-
-		//delete []Bullets;
-		SDL_free(Bullets);
-		Bullets = NULL;
-	}
-
-	BulletCount = 0;
+	Bullets.~ObjectManager();
 }

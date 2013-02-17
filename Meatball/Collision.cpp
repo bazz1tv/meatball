@@ -345,33 +345,33 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 	{
 		// This seems to check all level sprites.. This should be optimized to only check for collision with on screen sprites
 		// Check for an Collision with an LevelObject
-		for( i = 0;i < pLevel->pLevelData_Layer1->BasicSpriteCount;i++ )
+		for( i = 0;i < pLevel->pLevelData_Layer1->BasicSprites.objcount;i++ )
 		{
-			if( !pLevel->pLevelData_Layer1->BasicSprites[i] )
+			if( !pLevel->pLevelData_Layer1->BasicSprites.objects[i] )
 			{
 				continue;
 			}
 
-			if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_MASSIVE )
+			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_MASSIVE )
 			{
-				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect ) ) // if Position is not valid
+				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect ) ) // if Position is not valid
 				{
 					Collision->iCollisionNumber = i;
 					Collision->iCollisionType = SPRITE_TYPE_MASSIVE;	// Massive Object
-					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect );
-					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites[i]->rect;
+					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect );
+					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect;
 					return;
 				}
 			}
 
-			if( pLevel->pLevelData_Layer1->BasicSprites[i]->type == SPRITE_TYPE_HALFMASSIVE ) // if Position is not valid
+			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_HALFMASSIVE ) // if Position is not valid
 			{
-				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect ) )
+				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect ) )
 				{
 					Collision->iCollisionNumber = i;
 					Collision->iCollisionType = SPRITE_TYPE_HALFMASSIVE;	// HalfMassive Object
-					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites[i]->rect );
-					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites[i]->rect;
+					Collision->collide = GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect );
+					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect;
 					return;
 				}
 			}
@@ -382,19 +382,19 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 
 	if( type == SPRITE_TYPE_PLAYER || type == SPRITE_TYPE_PARTICLE || type == SPRITE_TYPE_BULLET ) 
 	{
-		for( i = 0;i < EnemyCount;i++ )
+		for( i = 0;i < Enemies.objcount;i++ )
 		{
-			if( !Enemies[i] )
+			if( !Enemies.objects[i] )
 			{
 				continue;
 			}
 
-			if( RectIntersect( &rect1, &Enemies[i]->rect ) ) // if Position is not valid
+			if( RectIntersect( &rect1, &Enemies.objects[i]->rect ) ) // if Position is not valid
 			{
 				Collision->iCollisionNumber = i;
 				Collision->iCollisionType = SPRITE_TYPE_ENEMY;	// Enemy Object
-				Collision->collide = GetCollide( &rect1, &Enemies[i]->rect );
-				Collision->cRect = &Enemies[i]->rect;
+				Collision->collide = GetCollide( &rect1, &Enemies.objects[i]->rect );
+				Collision->cRect = &Enemies.objects[i]->rect;
 				return;
 			}
 		}

@@ -108,11 +108,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../console.cpp"
-         timestampString = "382690849.076552"
+         timestampString = "382736197.475344"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "573"
-         endingLineNumber = "573"
+         startingLineNumber = "629"
+         endingLineNumber = "629"
          landmarkName = "soundVol( string &amp;str)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -121,22 +121,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../console.cpp"
-         timestampString = "382690849.076552"
+         timestampString = "382736197.475344"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "552"
-         endingLineNumber = "552">
+         startingLineNumber = "608"
+         endingLineNumber = "608">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../console.cpp"
-         timestampString = "382690849.076552"
+         timestampString = "382736197.475344"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "574"
-         endingLineNumber = "574"
+         startingLineNumber = "630"
+         endingLineNumber = "630"
          landmarkName = "soundVol( string &amp;str)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -145,11 +145,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../leveleditor.cpp"
-         timestampString = "382682160.061493"
+         timestampString = "382751298.058239"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "591"
-         endingLineNumber = "591"
+         startingLineNumber = "596"
+         endingLineNumber = "596"
          landmarkName = "cLevelEditor::EventHandler()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -171,11 +171,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../leveleditor.cpp"
-         timestampString = "381385658.155566"
+         timestampString = "382751298.058239"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "431"
-         endingLineNumber = "431"
+         startingLineNumber = "436"
+         endingLineNumber = "436"
          landmarkName = "cLevelEditor :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager&lt;cMVelSprite&gt; *obj_man )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -184,11 +184,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../console.cpp"
-         timestampString = "382690849.076552"
+         timestampString = "382736197.475344"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "905"
-         endingLineNumber = "905"
+         startingLineNumber = "961"
+         endingLineNumber = "961"
          landmarkName = "SetScreenScaleX(string &amp;str)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -197,11 +197,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../include/ObjectManager.h"
-         timestampString = "382673181.198357"
+         timestampString = "382750529.488138"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "22"
-         endingLineNumber = "22"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
          landmarkName = "~ObjectManager()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -210,11 +210,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../include/ObjectManager.h"
-         timestampString = "382673181.198357"
+         timestampString = "382750529.488138"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "24"
-         endingLineNumber = "24"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
          landmarkName = "~ObjectManager()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -236,11 +236,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../leveleditor.cpp"
-         timestampString = "382685927.892021"
+         timestampString = "382751298.058239"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "608"
-         endingLineNumber = "608"
+         startingLineNumber = "613"
+         endingLineNumber = "613"
          landmarkName = "cLevelEditor::EventHandler()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -249,13 +249,91 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../console.cpp"
-         timestampString = "382690849.076552"
+         timestampString = "382736197.475344"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "737"
-         endingLineNumber = "737"
+         startingLineNumber = "793"
+         endingLineNumber = "793"
          landmarkName = "moveConsoleHistoryLinesUp(int nlines/*=1*/)"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../AF-373.cpp"
+         timestampString = "382737839.377339"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "61"
+         endingLineNumber = "61"
+         landmarkName = "cAF373 :: Update( void )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../AF-373.cpp"
+         timestampString = "382737867.889019"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "69"
+         endingLineNumber = "69"
+         landmarkName = "cAF373 :: Update( void )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../player.cpp"
+         timestampString = "382737955.95675"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "cPlayer :: Update( void )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../AF-373.cpp"
+         timestampString = "382738170.891798"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
+         landmarkName = "cAF373 :: Update( void )"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../Collision.cpp"
+         timestampString = "382738225.041905"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "372"
+         endingLineNumber = "372"
+         landmarkName = "PositionCheck( int x, int y, int width, int height, Collisiondata *Collision, unsigned int type )"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../leveleditor.cpp"
+         timestampString = "382751326.304034"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "238"
+         endingLineNumber = "238"
+         landmarkName = "cLevelEditor :: SetMultiSelect_Object( cMVelSprite *nObject)"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

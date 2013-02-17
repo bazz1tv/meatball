@@ -42,7 +42,7 @@ void MiniEngine::PreDraw()
 }
 void MiniEngine::PostDraw()
 {
-	FramerateDraw( Screen );
+	FramerateDraw( Renderer );
 	
 	SDL_RenderPresent(Renderer);
 }

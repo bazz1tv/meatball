@@ -66,7 +66,7 @@ void cAF373 :: Update( void )
 	
 	PositionCheck( (int)posx, (int)posy + 1, (int)width, (int)height, Collision, type );
 
-	if( Collision->collide == DOWN && Collision->direction == 3 ) 
+	if( Collision->collide == DOWN ) 
 	{
 		if( Collision->iCollisionType == 1 ) 
 		{

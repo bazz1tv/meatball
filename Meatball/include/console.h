@@ -8,6 +8,8 @@ class MiniEngine;
 
 #include "boost.h"
 
+
+
 /// @defgroup Console_Commands Console Commands
 /// These functions are for the console commands
 /// @note The function names may differ from the actual command names you type in the console
@@ -34,8 +36,12 @@ SDL_bool SetScreenScaleX(string &str);
 SDL_bool SetScreenScaleY(string &str);
 // @}
 
-/// Number of Output Lines to the Console
 #define NUM_LINES 11
+
+#define HISTORY_LINES 11
+#define topHistoryLine_Y 23.0	// The top vertical coordinate for first line of input history. gets subtracted from console_input Y
+// all lines are then seperated by HIST_VERTICAL_SEPERATION_PIXELS
+#define CONSOLE_HISTORY_VERTICAL_SEPERATION_PIXELS 15.0
 
 /// Move all output up one line
 void moveConsoleHistoryLinesUp(int nlines=1);
@@ -49,7 +55,7 @@ void console_print(const char *str);
 class cCMD
 {
 public:
-	cCMD() : command(SDL_TRUE, SDL_FALSE) { }
+	cCMD() : command(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS) { }
 	SDL_bool ( *handler )( string &str );	///< Function pointer to Command's function
 
 	//string command;						///< The string(s) to identify the command
@@ -77,6 +83,7 @@ public:
 	void EventHandler( void );
 
 	SDL_bool CMDHandler( string cInput );
+	cCMD* FindMatch(string &cmd);
 	void Update( void );
 	
 	void Draw( SDL_Renderer *renderer );
@@ -91,12 +98,12 @@ public:
 
 	string strcpy[NUM_LINES];	// history strings (past entered commands which are displayed)
 
-	string constr;				// main string where input is entered into.
+	string consoleInput_str;				// main string where input is entered into.
 	int histcounter;
 	fs::path full_path;
 
 
-	double conx, cony;			// x coord and y coord for str's, x coord for cursor
+	double consoleInput_x, consoleInput_y;			// x coord and y coord for str's, x coord for cursor
 
 	SDL_bool DrawCur;
 	double ttDrawCur;
@@ -104,6 +111,25 @@ public:
 	cBasicSprite *BG;
 
 	TTF_Font *Console_font;
+	
+	double history_y = topHistoryLine_Y;
+	
+	SDL_Rect consoleInput_rect, strcpy_rect[11], cursor_rect;
+	
+	SDL_Surface *consoleInput_surface;	// input display
+	SDL_Texture *consoleInput_tex;
+	SDL_Surface *sc_surface[HISTORY_LINES];		// history displays
+	SDL_Texture *sc_tex[HISTORY_LINES];		// history displays
+	SDL_Surface *cursor_surface;	// Cursor Display
+	SDL_Texture *cursor_tex;
+	
+	void ClearHistory_SurfacesAndTextures();
+	void BlinkCursor();
+	void CreateTextOnSurfaces();
+	void SetRects();
+	void CreateTexturesAndRender(SDL_Renderer *renderer);
+	// Free all used Surfaces
+	void FreeAllUsedSurfaces();
 };
 
 

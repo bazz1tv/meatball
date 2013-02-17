@@ -26,7 +26,7 @@ class TextObject;
 //class MiniEngine;
 
 // Icon
-extern SDL_Surface* icon;
+//extern SDL_Surface* icon;
 
 
 
@@ -54,13 +54,11 @@ extern TTF_Font *Menu_Font;
 extern TTF_Font *bold_16;
 
 /// the Screen
-extern SDL_Surface *Screen;
 extern SDL_Window *Window;
 extern int window_width;
 extern int window_height;
 
 extern SDL_Renderer *Renderer;
-extern SDL_Texture *ScreenTexture;
 
 /// Keyboard Keystate
 extern Uint8 *keys;
@@ -84,7 +82,7 @@ SDL_bool FileValid( string filename );
 /// Checks if it's an Number
 SDL_bool is_valid_number( char *c );
 /// Draws the Framerate
-void FramerateDraw( SDL_Surface *target, double posx = 5.0, double posy = 5.0 );
+void FramerateDraw( SDL_Renderer *renderer, double posx = 5.0, double posy = 5.0 );
 
 // includes
 
@@ -131,10 +129,6 @@ extern cPlayer *pPlayer;			// The Player
 extern cLevel *pLevel;				// The Level
 extern cLevelEditor *pLevelEditor;	// The Leveleditor
 extern cConsole *pConsole;			// The Console
-
-
-/// screen settings
-//extern const SDL_VideoInfo* screeninfo;
 
 /// The Current mode
 extern Uint8 mode, oldmode;

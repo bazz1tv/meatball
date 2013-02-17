@@ -90,6 +90,46 @@ void Game::HeldKey_Handler()
 	Player_Input();
 }
 
+
+
+void Game::TurnOnCollisionRects()
+{
+	// Turns on the Collision Rects for all collide-able images on the screen
+	
+	//
+}
+
+void Game::EventHandler()
+{
+	while ( SDL_PollEvent( &event ) )
+	{
+		UniversalEventHandler(&event);
+		
+		switch ( event.type )
+		{
+			case SDL_KEYDOWN:
+			{
+				Keydown_Events(&event);
+				break;
+			}
+			case SDL_MOUSEBUTTONDOWN:
+			{
+				MouseButtonDown_Events(&event);
+				break;
+			}
+			case SDL_MOUSEBUTTONUP:
+			{
+				MouseButtonUp_Events(&event);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
+	}
+}
+
 void Game::Keydown_Events(SDL_Event *event)
 {
 	if( event->key.keysym.sym == SDLK_ESCAPE )
@@ -136,22 +176,15 @@ void Game::Keydown_Events(SDL_Event *event)
 		AddEnemy( 200, 0 + (double)( window_height/2 ), ENEMY_AF373 );
 	}
 	
-// DEBUG MODE FEATURES
-//============
+	// DEBUG MODE FEATURES
+	//============
 #ifdef _DEBUG
 	if (event->key.keysym.sym == SDLK_c)
 	{
 		TurnOnCollisionRects();
 	}
 #endif
-//------------
-}
-
-void Game::TurnOnCollisionRects()
-{
-	// Turns on the Collision Rects for all collide-able images on the screen
-	
-	//
+	//------------
 }
 
 void Game::MouseButtonDown_Events(SDL_Event *event)
@@ -186,36 +219,7 @@ void Game::MouseButtonUp_Events(SDL_Event *event)
 	}
 }
 
-void Game::EventHandler()
-{
-	while ( SDL_PollEvent( &event ) )
-	{
-		UniversalEventHandler(&event);
 
-		switch ( event.type )
-		{
-			case SDL_KEYDOWN:
-			{
-				Keydown_Events(&event);
-				break;
-			}
-			case SDL_MOUSEBUTTONDOWN:
-			{
-				MouseButtonDown_Events(&event);
-				break;					
-			}
-			case SDL_MOUSEBUTTONUP:
-			{
-				MouseButtonUp_Events(&event);
-				break;	
-			}
-			default:
-			{
-				break;
-			}
-		}
-	}
-}
 
 
 

@@ -14,6 +14,8 @@
 #ifndef __EP_MISC_H__
 #define __EP_MISC_H__
 
+#include <string.h>
+
 
 /// Random float between min and max
 DLLINTERFACE float Random( float min, float max );
@@ -43,6 +45,8 @@ DLLINTERFACE SDL_bool RectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 );
 
 /// returns 1 if the complete rect1 intersects with rect2
 DLLINTERFACE SDL_bool FullRectIntersect(const SDL_Rect *r1, const SDL_Rect *r2 );
+
+DLLINTERFACE std::string Get_Curr_Date();
 
 #endif
 

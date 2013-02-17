@@ -1,5 +1,6 @@
 
 #include "SDL_ep.h"
+#include <sstream>
 
 
 float Random( float min, float max )
@@ -96,4 +97,19 @@ SDL_bool FullRectIntersect( const SDL_Rect *r1, const SDL_Rect *r2 )
 	}
 
 	return SDL_TRUE;
+}
+
+DLLINTERFACE std::string Get_Curr_Date()
+{
+	time_t t = time(0);   // get time now
+	string str;
+    struct tm *now = localtime( & t );
+	
+	std::stringstream var;
+	
+	var << (now->tm_year + 1900) << '-'<< (now->tm_mon + 1) << '-' <<  now->tm_mday << std::endl;
+	//console_print(var.str().c_str());
+	//sprintf(result,"%d-%d-%d", now->tm_year+1900, now->tm_mon+1, now->tm_mday);
+	return var.str();
+    //cout << ;
 }
