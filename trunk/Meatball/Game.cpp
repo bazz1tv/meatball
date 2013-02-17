@@ -12,12 +12,42 @@
 // Game Engine : Derived from MiniEngine
 //////////////////////////////////////////////////////
 
+
+Game::~Game()
+{
+	/*if( pPlayer )
+	{
+		delete pPlayer;
+	}
+	
+	if( pLevel )
+	{
+		delete pLevel;
+	}
+	if( pLevelEditor )
+	{
+		delete pLevelEditor;
+	}
+	
+	if ( pConsole )
+	{
+		delete pConsole;
+	}
+	if( pCamera )
+	{
+		delete pCamera;
+	}*/
+}
 /// The init function to be called before starting your First Game.
 void Game::Init()
 {
 	// This function is for the audio playlist, and all it does is fill up some variables
 	// with every song filename in the MUSIC_DIR directory
 	Playlist::ls_music();
+	
+	PreloadBulletimages();
+	
+	
 	
 	// Messing with Global Variables here XD 
 	done = 0;				// These need to get tighted up. Make their purpose more known

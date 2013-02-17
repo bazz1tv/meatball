@@ -3,17 +3,8 @@
 #include "Game.h"
 #include "MainMenu.h"
 
-using namespace std;
 
-
-
-// SDL_ep classes
-cFramerate *pFramerate;
-cImageManager *IMan;
-cSoundManager *SMan;
-cFont *pFont;
-cAudio *pAudio;
-cTCPNet *pTCP;
+cMouseCursor *pMouse;		// The Mouse
 
 
 /// ifSDL_TRUE the game exits
@@ -21,10 +12,19 @@ int done;
 
 /// ifSDL_TRUE the game if paused
 SDL_bool paused;
-
-// Fonts
-TTF_Font *Menu_Font;
+	
+cPreferences *pPreferences;	// The Preferences
+cSettings *pGameSettings;	// The Game Settings
+cFramerate *pFramerate;
+cImageManager *IMan;
+cSoundManager *SMan;
+	
+cFont *pFont;
+cAudio *pAudio;
+cTCPNet *pTCP;
 TTF_Font *bold_16;
+
+
 
 /// the Screen
 SDL_Window *Window;
@@ -44,134 +44,152 @@ SDL_bool fps_display =SDL_FALSE;
 /// Magneta (default) Colorkey
 Uint32 colorkey = 0;
 
-/// MeatBall
-cPreferences *pPreferences;
-cSettings *pGameSettings;
-cMouseCursor *pMouse;
+/// The Current mode
+Uint8 mode, oldmode;
+	
 cCamera *pCamera;
 cPlayer *pPlayer;
 cLevel *pLevel;
 cLevelEditor *pLevelEditor;
-
-
-/// The Console
 cConsole *pConsole;
 
-/// The Current mode
-Uint8 mode, oldmode;
+
+using namespace std;
+
+void SetColorKey(Uint32 col)
+{
+	colorkey = col;
+}
 
 /// Initializes the basic
 /// Init some Fonts, set default colorkey, Add mouse to IMan
 /// Init the mouse,camera,player,level,leveleditor, and Console
 /// Preload bulletImages
-void InitObjects( void )
+void InitGlobalObjects( void )
 {
-	Menu_Font = pFont->CreateFont( FONT_DIR "Bluehigd.ttf", 27, TTF_STYLE_BOLD );
-	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
-
-	// Set Magneta (default) Colorkey
-	//colorkey = SDL_MapRGB( Screen->format, 255, 0, 255 );
-	colorkey = 0xffff00ff; // GHETTO STYLE <- 
 	
-	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
-
-	// MeatBall
-	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
+	
+	pFramerate = new cFramerate( 60 );
+	
+	IMan	= new cImageManager();
+	SMan	= new cSoundManager();
+	
+	//To go into SharedDataMan
+	SetColorKey(0xffff00ff);
+	SetupMouse();
+	
+	pFont	= new cFont();
+	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
+	
+	pAudio = new cAudio();
+	pAudio->bMusic		 = pGameSettings->Music;
+	pAudio->bSounds		 = pGameSettings->Sounds;
+	pAudio->Sound_Volume = pGameSettings->svol;
+	pAudio->Music_Volume = pGameSettings->mvol;
+	pAudio->InitAudio();
+	
 	pCamera = new cCamera();
 	pPlayer = new cPlayer();
 	pLevel = new cLevel();
 	pLevelEditor = new cLevelEditor();
 	pConsole = new cConsole();
+}
 
+void SetupMouse()
+{
+	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
+	
+	// MeatBall
+	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
+	
 	// Do not show the Hardware Cursor
 	SDL_ShowCursor( 0 );
-	
-	PreloadBulletimages();
 }
+
+
+
+
+
 
 /// Quits the game
 void QuitGame( void )
-{
+{	
+	DeleteAllBullets();
+	DeleteAllParticleEmitter();
+	DeleteAllEnemies();
+	
 	if( pPreferences )
 	{
 		delete pPreferences;
 	}
 	
-	DeleteAllBullets();
-	DeleteAllParticleEmitter();
-	DeleteAllEnemies();
-
-	if( pPlayer ) 
+	if( pPlayer )
 	{
 		delete pPlayer;
 	}
-
-	if( pLevel ) 
+	
+	if( pLevel )
 	{
 		delete pLevel;
 	}
-
+	
 	if( pMouse )
 	{
 		delete pMouse;
 	}
-
-	if( pLevelEditor ) 
+	
+	if( pLevelEditor )
 	{
 		delete pLevelEditor;
 	}
-
+	
 	if ( pConsole )
 	{
 		delete pConsole;
 	}
-
+	
 	if( pAudio )
 	{
 		delete pAudio;
 	}
-
+	
 	
 	
 	if( pFramerate )
 	{
 		delete pFramerate;
 	}
-
-	if( SMan ) 
+	
+	if( SMan )
 	{
 		delete SMan;
 	}
-	if( IMan ) 
+	if( IMan )
 	{
 		delete IMan;
 	}
-
+	
 	if( pCamera )
 	{
 		delete pCamera;
 	}
-
+	
 	if( pGameSettings )
 	{
 		delete pGameSettings;
 	}
-
-	if( Menu_Font ) 
-	{
-		TTF_CloseFont( Menu_Font );
-	}
-
-	if( bold_16 ) 
+	
+	if( bold_16 )
 	{
 		TTF_CloseFont( bold_16 );
 	}
 	
-
 	if( pFont )
 	{
 		delete pFont;
 	}
+
+
 
 	SDL_EnableScreenSaver();
 	

@@ -7,6 +7,11 @@
 
 #include "Globals.h"
 
+class cEnemy;
+class cPlayer;
+class cAudio;
+
+
 class cLevelData
 {
 public:

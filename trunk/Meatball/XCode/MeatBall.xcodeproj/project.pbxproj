@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C93E39513942B5A0096FAB3 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */; };
 		E98CCB9816B46E6C0003938A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E98CCB9916B46E6C0003938A /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
 		E98CCB9A16B46E6C0003938A /* SDL2_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
@@ -71,6 +72,8 @@
 		9C93E39913942B5A0096FAB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9C93E39A13942B5A0096FAB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E901FD7F16B364E200DB896C /* OS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OS.h; sourceTree = "<group>"; };
+		E942ED5916D064CF0048C7EB /* MultiSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiSelect.h; path = ../include/MultiSelect.h; sourceTree = "<group>"; };
+		E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiSelect.cpp; path = ../MultiSelect.cpp; sourceTree = "<group>"; };
 		E98CCB9316B46E6C0003938A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		E98CCB9516B46E6C0003938A /* SDL2_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_net.framework; path = ../../../../../../../Library/Frameworks/SDL2_net.framework; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 		E9BC1FAA16B960B70020965C /* LevelEditor */ = {
 			isa = PBXGroup;
 			children = (
+				E942ED5916D064CF0048C7EB /* MultiSelect.h */,
+				E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */,
 				E9CFA41016B1D56300B3919F /* leveleditor.h */,
 				E9CFA3DA16B1D54D00B3919F /* leveleditor.cpp */,
 			);
@@ -503,6 +508,7 @@
 				E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */,
 				E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */,
 				E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */,
+				E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +593,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = NO;
+				USER_HEADER_SEARCH_PATHS = include;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -622,6 +629,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = NO;
+				USER_HEADER_SEARCH_PATHS = include;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

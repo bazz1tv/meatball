@@ -23,58 +23,13 @@
 
 // Class declarations
 class TextObject;
-//class MiniEngine;
 
-// Icon
-//extern SDL_Surface* icon;
-
-
-
-/// @addtogroup Engine_Meatball
-/// These are classes Meatball uses from the SDL_ep Engine Library.
-/// SDL_ep is the Home-grown engine that Meatball is built on. IT's still
-/// in development. Since it kind of develops alongside of meatball. It stands for Engine Primitives
-// @{
-extern cFramerate *pFramerate;
-extern cImageManager *IMan;
-extern cSoundManager *SMan;
-extern cFont *pFont;
-extern cAudio *pAudio;
-extern cTCPNet *pTCP;
-// @}
-
-/// finished with game or not?
-extern int done;
-
-/// game paused?
-extern SDL_bool paused;
-
-// Fonts
-extern TTF_Font *Menu_Font;
-extern TTF_Font *bold_16;
-
-/// the Screen
-extern SDL_Window *Window;
-extern int window_width;
-extern int window_height;
-
-extern SDL_Renderer *Renderer;
-
-/// Keyboard Keystate
-extern Uint8 *keys;
-
-/// events
-extern SDL_Event event;
-
-/// fps display SDL_boolean
-extern SDL_bool fps_display;
-
-/// Magenta (default) Colorkey
-extern Uint32 colorkey;
 
 // Game Global Functions
-void InitObjects( void );
+void InitGlobalObjects( void );
 void QuitGame( void );
+void SetColorKey(Uint32);
+void SetupMouse();
 
 
 /// Checks if the file exists
@@ -89,6 +44,8 @@ void FramerateDraw( SDL_Renderer *renderer, double posx = 5.0, double posy = 5.0
 
 #include "Game.h"
 #include "MiniEngine.h"
+
+
 #include "Misc.h"
 #include "Preferences.h"
 #include "Camera.h"
@@ -102,7 +59,10 @@ void FramerateDraw( SDL_Renderer *renderer, double posx = 5.0, double posy = 5.0
 #include "player.h"
 #include "enemy.h"
 #include "bullet.h"
-#include "leveleditor.h"
+
+
+
+
 #include "console.h"
 
 #include "GraphicsObject.h"
@@ -113,6 +73,10 @@ void FramerateDraw( SDL_Renderer *renderer, double posx = 5.0, double posy = 5.0
 #include "OptionsMenu.h"
 #include "MainMenu.h"
 
+#include "MultiSelect.h"
+#include "leveleditor.h"
+
+
 
 
 
@@ -120,17 +84,64 @@ void FramerateDraw( SDL_Renderer *renderer, double posx = 5.0, double posy = 5.0
 //Enemies
 #include "AF-373.h"
 
+// i didnt like the look of global::pmouse (it's obvious)
+extern cMouseCursor *pMouse;		// The Mouse
+
 // MeatBall
 extern cPreferences *pPreferences;	// The Preferences
 extern cSettings *pGameSettings;	// The Game Settings
-extern cMouseCursor *pMouse;		// The Mouse
-extern cCamera *pCamera;			// The Camera
-extern cPlayer *pPlayer;			// The Player
-extern cLevel *pLevel;				// The Level
-extern cLevelEditor *pLevelEditor;	// The Leveleditor
-extern cConsole *pConsole;			// The Console
+
+	
+	/// @addtogroup Engine_Meatball
+	/// These are classes Meatball uses from the SDL_ep Engine Library.
+	/// SDL_ep is the Home-grown engine that Meatball is built on. IT's still
+	/// in development. Since it kind of develops alongside of meatball. It stands for Engine Primitives
+	// @{
+	extern cFramerate *pFramerate;
+	extern cImageManager *IMan;
+	extern cSoundManager *SMan;
+	extern cFont *pFont;
+	extern cAudio *pAudio;
+	extern cTCPNet *pTCP;
+	// @}
+	
+	/// finished with game or not?
+	extern int done;
+	
+	/// game paused?
+	extern SDL_bool paused;
+	
+	// Fonts
+	extern TTF_Font *Menu_Font;
+	extern TTF_Font *bold_16;
+	
+	/// the Screen
+	extern SDL_Window *Window;
+	extern int window_width;
+	extern int window_height;
+	
+	extern SDL_Renderer *Renderer;
+	
+	/// Keyboard Keystate
+	extern Uint8 *keys;
+	
+	/// events
+	extern SDL_Event event;
+	
+	/// fps display SDL_boolean
+	extern SDL_bool fps_display;
+	
+	/// Magenta (default) Colorkey
+	extern Uint32 colorkey;
+	
+	extern cCamera *pCamera;
+	extern cPlayer *pPlayer;
+	extern cLevel *pLevel;
+	extern cLevelEditor *pLevelEditor;
+	extern cConsole *pConsole;
 
 /// The Current mode
 extern Uint8 mode, oldmode;
+
 
 #endif
