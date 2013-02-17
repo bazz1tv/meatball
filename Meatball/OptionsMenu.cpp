@@ -1,5 +1,8 @@
 
-#include "Globals.h"
+#include "OptionsMenu.h"
+#include "MainMenu.h"
+
+extern cPreferences *pPreferences;
 
 SDL_bool mouse_alreadypressed =SDL_FALSE;
 

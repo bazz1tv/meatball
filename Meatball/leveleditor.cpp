@@ -3,6 +3,9 @@
 //#include "leveleditor.h"
 #include "MultiSelect.h"
 #include "leveleditor.h"
+#include "enemy.h"
+#include "Misc.h"
+extern cPlayer *pPlayer;
 
 
 // This is the amount of time to SLEEP when doing HELD_KEY events (so we don't work at the speed of light)

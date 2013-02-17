@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Globals.h"
+#include "GraphicsObject.h"
 
 /// To write Text requires the cFont class to be activated.
 class TextObject : public GraphicsObject

@@ -7,6 +7,8 @@ class MiniEngine;
 #include "Globals.h"
 
 #include "boost.h"
+#include "MiniEngine.h"
+#include "ObjectManager.h"
 
 
 

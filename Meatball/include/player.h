@@ -3,8 +3,20 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include "Globals.h"
+#include "defines.h"
+#include "effects.h"
 
+
+class cWeapon;
+class cCamera;
+
+extern cFramerate *pFramerate;
+extern cCamera *pCamera;
+extern cImageManager *IMan;
+
+
+extern int window_width;
+extern int window_height;
 /// @defgroup PLAYER_STATES
 // @{
 #define STATE_STAYING 0
@@ -13,6 +25,8 @@
 #define STATE_FALLING 3
 #define STATE_FLYING  4	///< Not implemented
 // @}
+
+
 
 
 /// Keep track of the player.

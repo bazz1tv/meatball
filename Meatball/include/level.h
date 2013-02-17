@@ -6,10 +6,8 @@
 #define __LEVEL_H__
 
 #include "Globals.h"
-
-class cEnemy;
-class cPlayer;
-class cAudio;
+#include "sprite.h"
+#include "ObjectManager.h"
 
 
 class cLevelData

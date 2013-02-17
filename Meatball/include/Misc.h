@@ -6,10 +6,9 @@
 *** Put miscellaneous Routines that may be used by several different files HERE
 
 */
-
 #include "Globals.h"
 
-
+extern cMouseCursor *pMouse;
 
 
 /// Toggle fullScreen

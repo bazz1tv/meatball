@@ -1,11 +1,13 @@
 #ifndef __OPTIONSMENU_H__
 #define __OPTIONSMENU_H__
 
-class MiniEngine;
-class TextObject;
-#include "Globals.h"
 
-class Slider;
+#include "Globals.h"
+#include "MiniEngine.h"
+#include "TextObject.h"
+#include "Slider.h"
+#include "Misc.h"
+#include "preferences.h"
 
 /// @ingroup Options_Screen_Statuses
 // @{
@@ -22,8 +24,6 @@ enum Screens {
 };
 
 
-
-class OptionsMenu;
 
 class ControlsMenu : public MiniEngine
 {

@@ -4,7 +4,15 @@
 #ifndef __WEAPON_H__
 #define __WEAPON_H__
 
-#include "Globals.h"
+//#include "Globals.h"
+#include "sprite.h"
+#include "bullet.h"
+#include "defines.h"
+
+extern cSoundManager *SMan;
+extern cFramerate *pFramerate;
+extern cAudio *pAudio;
+extern SDL_Renderer *Renderer;
 
 /// @defgroup WEAPON_TYPES WEAPON_TYPES 
 //@{

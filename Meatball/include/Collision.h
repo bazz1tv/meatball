@@ -2,7 +2,14 @@
 #ifndef __COLLISION_H__
 #define __COLLISION_H__
 
-#include "Globals.h"
+#include "sprite.h"
+#include "level.h"
+#include "enemy.h"
+#include "player.h"
+
+class cPlayer;
+extern cLevel *pLevel;
+extern cPlayer *pPlayer;
 
 /// @ingroup ALL_COLLISIONS_DIRECTIONS
 // @{
@@ -12,8 +19,9 @@
 #define ALL_COLLISIONS_UD	3
 // @}
 
-typedef struct
+class Collisiondata
 {
+public:
 	/** The first direct Collision direction\n
 	 * -1 : No Collision	\n
 	 * 0  : Left			\n
@@ -40,8 +48,7 @@ typedef struct
 	int direction;
 	
 	SDL_Rect *cRect;
-
-} Collisiondata;
+};
 
 /// Returns the Collision data if a Collision happened
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );

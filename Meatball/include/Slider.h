@@ -19,6 +19,9 @@
  
  */
 
+#include "Globals.h"
+#include "Range.h"
+
 
 
 class Slider 

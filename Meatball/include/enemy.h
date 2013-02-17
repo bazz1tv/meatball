@@ -2,7 +2,13 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
 
+
+
 #include "Globals.h"
+#include "sprite.h"
+#include "ObjectManager.h"
+class cAF373;
+#include "Collision.h"
 
 /// Enemy Types
 #define ENEMY_UNDEFINED 0

@@ -1,4 +1,4 @@
-#include "Globals.h"
+#include "bullet.h"
 
 #define PISTOL_VELOCITY	10
 #define MACHINEGUN_VELOCITY	15
