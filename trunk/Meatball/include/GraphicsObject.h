@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Globals.h"
+#include "OS.h"
 
 /// A simple collection of Surface/Texture/Rect
 /// for most basic graphics objects

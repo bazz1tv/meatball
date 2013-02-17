@@ -87,8 +87,8 @@ void cBasicSprite :: SetImage( SDL_Renderer *renderer, SDL_Surface *new_image, S
 {
 	srcimage = new_image;
 	
-	DestroyTexture();
-	texture = SDL_CreateTextureFromSurface(renderer, new_image);
+	//DestroyTexture();
+	//texture = SDL_CreateTextureFromSurface(renderer, new_image);
 
 	drawimg = SDL_TRUE;
 

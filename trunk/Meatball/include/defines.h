@@ -36,6 +36,15 @@
 #define NONE	4
 // @}
 
+/// @defgroup PLAYER_STATES
+// @{
+#define STATE_STAYING 0
+#define STATE_WALKING 1
+#define STATE_JUMPING 2
+#define STATE_FALLING 3
+#define STATE_FLYING  4	///< Not implemented
+// @}
+
 // Modes
 /// @addtogroup GAME_MODE
 /// This is a list of the current different types of Game Modes available

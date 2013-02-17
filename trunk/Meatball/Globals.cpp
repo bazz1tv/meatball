@@ -7,6 +7,7 @@
 #include "leveleditor.h"
 #include "console.h"
 #include "bullet.h"
+#include <fstream>
 
 cMouseCursor *pMouse;		// The Mouse
 

@@ -2,14 +2,8 @@
 #ifndef __COLLISION_H__
 #define __COLLISION_H__
 
-#include "sprite.h"
-#include "level.h"
-#include "enemy.h"
-#include "player.h"
-
-class cPlayer;
-extern cLevel *pLevel;
-extern cPlayer *pPlayer;
+#include "Globals.h"
+class cBasicSprite;
 
 /// @ingroup ALL_COLLISIONS_DIRECTIONS
 // @{

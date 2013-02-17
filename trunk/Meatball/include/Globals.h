@@ -4,14 +4,22 @@
 // You can define DEMO mode to do specific things for when demoing to your friends :) 
 //#define DEMO
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <fstream>
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <time.h>
+//#include <fstream>
 
 #include "OS.h"
 // Global Big Definitions (important)
 #include "defines.h"
+
+//
+#ifdef _DEBUG
+// Update the following if needed…
+#define DEBUGLOG(...) printf(__VA_ARGS__)
+#else
+#define DEBUGLOG(...) do {} while (0)
+#endif
 
 
 

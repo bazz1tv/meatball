@@ -1,6 +1,7 @@
 
 #include "enemy.h"
 #include "AF-373.h"
+#include "Collision.h"
 
 //unsigned int EnemyCount = 0;
 //cEnemy **Enemies = NULL;

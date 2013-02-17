@@ -1,7 +1,7 @@
 #include "Globals.h"
 #include "Game.h"
 #include "MainMenu.h"
-//#include "main.h"
+#include "level.h"
 #include "leveleditor.h"
 #include "console.h"
 #include "preferences.h"

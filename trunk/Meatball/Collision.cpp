@@ -1,6 +1,13 @@
 
 #include "Collision.h"
+#include "sprite.h"
+#include "level.h"
+#include "enemy.h"
+#include "player.h"
 
+class cPlayer;
+extern cLevel *pLevel;
+extern cPlayer *pPlayer;
 
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type )
 {

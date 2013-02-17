@@ -4,10 +4,7 @@
 #define __CAMERA_H__
 
 #include "Globals.h"
-class cPlayer;
 
-extern cPlayer *pPlayer;
-extern cFramerate *pFramerate;
 
 /// The Camera class
 class cCamera

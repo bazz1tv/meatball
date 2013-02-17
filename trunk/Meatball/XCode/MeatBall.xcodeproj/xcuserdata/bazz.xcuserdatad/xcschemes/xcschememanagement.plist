@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Doxygen.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>MeatBall.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,21 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>9C93E39013942B5A0096FAB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E942ED6916D0BF8E0048C7EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E942ED6D16D0C0330048C7EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E942ED7216D0C0A70048C7EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

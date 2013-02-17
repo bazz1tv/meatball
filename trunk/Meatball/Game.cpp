@@ -1,5 +1,7 @@
 #include "Globals.h"
 #include "MiniEngine.h"
+#include "player.h"
+#include "level.h"
 #include "Game.h"
 #include "playlist.h"
 #include "bullet.h"
@@ -9,10 +11,8 @@
 #include "preferences.h"
 #include "weapon.h"
 
-extern cPlayer *pPlayer;
-extern cSettings *pGameSettings;
-extern cPreferences *pPreferences;
 
+extern cLevel *pLevel;
 
 
 

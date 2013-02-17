@@ -5,12 +5,11 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
-#include "Collision.h"
+//#include "Collision.h"
 #include "sprite.h"
 #include "ObjectManager.h"
-#include "defines.h"
-#include "effects.h"
-#include "Camera.h"
+//#include "defines.h"
+
 
 class cCamera;
 class Collisiondata;

@@ -1,9 +1,13 @@
 
 #include "player.h"
 #include "weapon.h"
+#include "Camera.h"
 #include "preferences.h"
+#include "effects.h"
+#include "Collision.h"
 
 extern cSettings *pGameSettings;
+extern cPlayer *pPlayer;
 
 #define WALK_VELOCITY 0.9
 

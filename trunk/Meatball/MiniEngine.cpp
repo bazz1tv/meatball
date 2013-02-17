@@ -1,4 +1,18 @@
 #include "MiniEngine.h"
+#include "level.h"
+#include "Camera.h"
+#include "player.h"
+#include "enemy.h"
+#include "effects.h"
+#include "bullet.h"
+
+extern cFramerate *pFramerate;
+extern cMouseCursor *pMouse;
+extern cCamera *pCamera;
+extern SDL_Renderer *Renderer;
+extern cLevel *pLevel;
+extern SDL_bool paused;
+extern cPlayer *pPlayer;
 
 void MiniEngine::Do()
 {
