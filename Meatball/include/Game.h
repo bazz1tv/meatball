@@ -7,6 +7,10 @@
 #include "Globals.h"
 
 
+class cPlayer;
+class cLevel;
+class cLevelEditor;
+class cConsole;
 
 /** @brief The Game class houses the Specific Gameplay routines for the Actual Game!! A.k.A when you are in
 	@link MODE_GAME @endlink
@@ -15,6 +19,7 @@
 class Game : public MiniEngine
 {
 public:
+	~Game();
 	static void Init();
 	void Update();
 	void EventHandler();
@@ -26,6 +31,7 @@ public:
 	void MouseButtonUp_Events(SDL_Event*);
 	
 	void TurnOnCollisionRects();
+
 };
 
 

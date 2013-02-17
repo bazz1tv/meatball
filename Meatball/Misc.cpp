@@ -27,7 +27,7 @@ void UniversalEventHandler(SDL_Event *event)
 		{
 			if( event->key.keysym.sym == SDLK_BACKSLASH && (SDL_GetModState() & KMOD_ALT) )
 			{
-				SDL_ToggleFS(Window);	
+				SDL_ToggleFS(Window);
 			}
 			break;
 		}

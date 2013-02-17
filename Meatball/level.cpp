@@ -9,6 +9,8 @@ BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 {
 	//BasicSprites = NULL;
 	//BasicSprites.objcount = 0;
+	
+
 
 	BG_red = 0;
 	BG_green = 0;
@@ -249,34 +251,34 @@ void cLevel :: SaveMapObjects()
 	ofs->write( row, strlen( row ) );
 	
 	// Map Objects
-	if( pLevel->pLevelData_Layer1 )
+	if( pLevelData_Layer1 )
 	{
-		for( i = 0; pLevel->pLevelData_Layer1->BasicSprites.objcount > i; i++ )
+		for( i = 0; pLevelData_Layer1->BasicSprites.objcount > i; i++ )
 		{
-			if( !pLevel->pLevelData_Layer1->BasicSprites.objects[i] )
+			if( !pLevelData_Layer1->BasicSprites.objects[i] )
 			{
 				continue;
 			}
 			
-			string image_filename = IMan->GetIdentifier( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->srcimage );
+			string image_filename = IMan->GetIdentifier( pLevelData_Layer1->BasicSprites.objects[i]->srcimage );
 			
 			image_filename.erase( 0, strlen( PIXMAPS_DIR ) );
 			
-			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_MASSIVE )
+			if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_MASSIVE )
 			{
-				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posy );
+				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
-			else if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_PASSIVE )
+			else if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_PASSIVE )
 			{
-				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posy );
+				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
-			else if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_HALFMASSIVE )
+			else if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_HALFMASSIVE )
 			{
-				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevel->pLevelData_Layer1->BasicSprites.objects[i]->posy );
+				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
 			else
 			{
-				DEBUGLOG( "Warning Level Saving : Unknown Map Object type : %d\n",pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type );
+				DEBUGLOG( "Warning Level Saving : Unknown Map Object type : %d\n",pLevelData_Layer1->BasicSprites.objects[i]->type );
 				continue;
 			}
 			
