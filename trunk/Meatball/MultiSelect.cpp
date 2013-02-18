@@ -9,9 +9,9 @@ extern cPlayer *pPlayer;
 extern cLevel *pLevel;
 extern cCamera *pCamera;
 
-void cMultiSelect :: DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, Uint32 Color)
+void cMultiSelect :: DrawTileOutlines(SDL_Renderer *renderer)
 {
-	//HoveredObject = SetRect( 0, 0, 0, 0 );
+	//HoveredObjectRect = SetRect( 0, 0, 0, 0 );
 	
 	// This is code to get a RECT from our sprite Tile
 	if (multiple_objects_selected)
@@ -24,8 +24,45 @@ void cMultiSelect :: DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, 
 			cMVelSprite *ptr = OM.objects[i];
 			SDL_Rect orect = ptr->GetRect(SDL_TRUE);
 			
-			cLevelEditor::OutlineObject(renderer, Color, &orect);
+			cLevelEditor::OutlineObject(renderer, TILE_OUTLINE_COLOR, &orect);
 		}
+	}
+}
+
+void cMultiSelect::DrawRect(SDL_Renderer *renderer)
+{
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	FillRectAlpha(renderer, &rect, RECT_COLOR );
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+}
+
+void cMultiSelect::DoRect()
+{
+	double diff_X = pMouse->posx - rectX_origin;
+	double diff_Y = pMouse->posy - rectY_origin;
+	
+	if (diff_X < 0)
+	{
+		rect.x = (int)pMouse->posx;
+		// new width is from X to original X
+		rect.w = (int)rectX_origin - rect.x;
+	}
+	else
+	{
+		rect.x = (int)rectX_origin;
+		rect.w = (int)diff_X;
+	}
+	
+	if (diff_Y < 0)
+	{
+		rect.y = (int)pMouse->posy;
+		// new width is from Y to original Y
+		rect.h = (int)rectY_origin - rect.y;
+	}
+	else
+	{
+		rect.y = (int)rectY_origin;
+		rect.h = (int)diff_Y;
 	}
 }
 
@@ -74,28 +111,72 @@ void cMultiSelect::DeleteObjects()
 
 void cMultiSelect::PasteObjects()
 {
-	double leftmostx,leftmosty;
-	//ObjectManager<cMVelSprite> newsprites(OM_SAVE_OBJS_AT_DESTROY);
+	SDL_Point leftmost,topmost;
 	
 	if (OM.objects && OM.objcount > 0)
 	{
-		leftmostx = OM.objects[0]->posx;
-		leftmosty = OM.objects[0]->posy;
+		leftmost.x = topmost.x = OM.objects[0]->posx;
+		leftmost.y = topmost.y = OM.objects[0]->posy;
 	}
 	
 	if (OM.objcount > 1)
 	{
-		for (unsigned int i=0; i < OM.objcount; i++)
+		for (unsigned int i=1; i < OM.objcount; i++)
 		{
-			int x;
+			int x,y;
 			x = OM.objects[i]->posx;
-			if (x <= leftmostx)
+			y = OM.objects[i]->posy;
+			
+			if (x <= leftmost.x)
 			{
-				leftmostx = x;
-				leftmosty = OM.objects[i]->posy;
+				if (x == leftmost.x)
+				{
+					if (y < leftmost.y)
+						leftmost.y = y;
+				}
+				else
+				{
+					leftmost.x = x;
+					leftmost.y = y;
+				}
+			}
+			
+			if (topmost.y >= y)
+			{
+				if (topmost.y == y)
+				{
+					if (x < topmost.x)
+						topmost.x = x;
+				}
+				else
+				{
+					topmost.y = y;
+					topmost.x = x;
+				}
 			}
 		}
 	}
+	
+	// get offsets
+	int x_offset, y_offset;
+	SDL_Point *selected;
+	if (topmost.x > leftmost.x)
+	{
+		x_offset = topmost.x-leftmost.x;
+	}
+	else
+		x_offset = leftmost.x - topmost.x;
+	
+	if (topmost.y > leftmost.y)
+	{
+		y_offset = topmost.y-leftmost.y;
+	}
+	else
+		y_offset = leftmost.y - topmost.y;
+	
+	if (x_offset > y_offset)
+		selected = &topmost;
+	else selected = &leftmost;
 	
 	for (unsigned int i=0; i < OM.objcount; i++)
 	{
@@ -103,8 +184,8 @@ void cMultiSelect::PasteObjects()
 		if( OM.objects[i]->type == SPRITE_TYPE_MASSIVE || OM.objects[i]->type == SPRITE_TYPE_PASSIVE || OM.objects[i]->type == SPRITE_TYPE_HALFMASSIVE)
 		{
 			// Create the new Sprite
-			cMVelSprite *new_Object = new cMVelSprite( OM.objects[i]->srcimage, floor((pMouse->posx-leftmostx) + (pCamera->x-camXOffset) + OM.objects[i]->posx),
-													  floor( (pMouse->posy - leftmosty) + (pCamera->y-camYOffset) + OM.objects[i]->posy) );
+			cMVelSprite *new_Object = new cMVelSprite( OM.objects[i]->srcimage, floor((pMouse->posx-selected->x) + (pCamera->x-camXOffset) + OM.objects[i]->posx),
+													  floor( (pMouse->posy - selected->y) + (pCamera->y-camYOffset) + OM.objects[i]->posy) );
 			
 			new_Object->type = OM.objects[i]->type;
 			

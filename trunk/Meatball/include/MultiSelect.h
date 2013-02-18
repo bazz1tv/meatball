@@ -6,12 +6,15 @@
 
 class cLevelEditor;
 
+#define TILE_OUTLINE_COLOR 0xff00ff00
+#define RECT_COLOR 0x4000f080
+
 class cMultiSelect
 {
 public:
 	// This next section is for the MultiSelect Tiles
 	/////////////////////////////////////////////////////////
-	void DrawOutlineAroundMultiSelect_Tiles(SDL_Renderer *renderer, Uint32 Color);
+	void DrawTileOutlines(SDL_Renderer *renderer);
 	
 	void NewMoveObjects();
 	void CopyObjects();
@@ -22,8 +25,11 @@ public:
 	void SetObjects( void );
 	// MultiSelect_ move
 	void Move(void);
+	void DoRect();
 	// the actual MultiSelect_-copy process
 	//void MultiSelect_Copy( void );
+	
+	void DrawRect(SDL_Renderer *renderer);
 	
 	void InitTiles(SDL_bool release = SDL_FALSE);
 	void PrepareToMove();

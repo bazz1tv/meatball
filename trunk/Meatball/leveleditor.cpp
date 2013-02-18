@@ -12,7 +12,6 @@
 extern cPlayer *pPlayer;
 extern cCamera *pCamera;
 extern cLevel *pLevel;
-extern cCamera *pCamera;
 
 // This is the amount of time to SLEEP when doing HELD_KEY events (so we don't work at the speed of light)
 #define LEVELEDIT_SLEEPWAIT 100000
@@ -23,7 +22,9 @@ extern cCamera *pCamera;
 #define PASTE_KEY SDLK_v
 #define FASTCOPY_KEY SDLK_f
 
-#define MultiSelect_COLOR 0xff00ff00
+
+#define COLOR_WHITE 0xffffffff
+#define COLOR_BLUE 0xff7878ff
 
 Uint8 cLevelEditor::Mouse_command = MOUSE_COMMAND_NOTHING;
 
@@ -46,57 +47,36 @@ cLevelEditor :: ~cLevelEditor( void )
 	delete MultiSelect;
 }
 
+SDL_Rect cLevelEditor::GetHoveredObjectRect()
+{
+	//HoveredObjectRect = SetRect( 0, 0, 0, 0 );
+	
+	cMVelSprite *Collision_Object = GetCollidingObject( pMouse->posx, pMouse->posy );
+	
+	if( Collision_Object )
+	{
+		return  HoveredObjectRect=Collision_Object->GetRect( SDL_TRUE );
+	}
+	
+	return SetRect(0,0,0,0);
+}
+
 void cLevelEditor :: Update( void )
 {
 	PreUpdate();
-	HoveredObject = SetRect( 0, 0, 0, 0 );
+	
 
 	if( Mouse_command == MOUSE_COMMAND_NOTHING || Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
 	{
-		cMVelSprite *Collision_Object = GetCollidingObject( pMouse->posx, pMouse->posy );
-
-		if( Collision_Object ) 
-		{
-			HoveredObject = Collision_Object->GetRect( SDL_TRUE );
-		}
+		HoveredObjectRect = GetHoveredObjectRect();
 	}
-	// Integrate Single_tile_MOVING and MultiSelect_TILE_MOVING
 	else if( Mouse_command == MOUSE_COMMAND_MOVING_SINGLE_TILE )
 	{
-		Object->SetPos( floor(pMouse->posx + Mouse_w + pCamera->x), floor(pMouse->posy + Mouse_h + pCamera->y) );
-		
-		Object->Startposx = floor(pMouse->posx + Mouse_w + pCamera->x);
-		Object->Startposy = floor(pMouse->posy + Mouse_h + pCamera->y);
+		MoveSingleTile();
 	}
 	else if (Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
 	{
-		double diff_X = pMouse->posx - MultiSelect->rectX_origin;
-		double diff_Y = pMouse->posy - MultiSelect->rectY_origin;
-		
-		if (diff_X < 0)
-		{
-			MultiSelect->rect.x = (int)pMouse->posx;
-			// new width is from X to original X
-			MultiSelect->rect.w = (int)MultiSelect->rectX_origin - MultiSelect->rect.x;
-		}
-		else
-		{
-			MultiSelect->rect.x = (int)MultiSelect->rectX_origin;
-			MultiSelect->rect.w = (int)diff_X;
-		}
-		
-		if (diff_Y < 0)
-		{
-			MultiSelect->rect.y = (int)pMouse->posy;
-			// new width is from Y to original Y
-			MultiSelect->rect.h = (int)MultiSelect->rectY_origin - MultiSelect->rect.y;
-		}
-		else
-		{
-			MultiSelect->rect.y = (int)MultiSelect->rectY_origin;
-			MultiSelect->rect.h = (int)diff_Y;
-		}
-
+		MultiSelect->DoRect();
 	}
 	else if (Mouse_command == MOUSE_COMMAND_MOVING_MULTISELECT_TILES )
 	{
@@ -107,6 +87,13 @@ void cLevelEditor :: Update( void )
 
 }
 
+void cLevelEditor::MoveSingleTile()
+{
+	Object->SetPos( floor(pMouse->posx + Mouse_w + pCamera->x), floor(pMouse->posy + Mouse_h + pCamera->y) );
+	
+	Object->Startposx = floor(pMouse->posx + Mouse_w + pCamera->x);
+	Object->Startposy = floor(pMouse->posy + Mouse_h + pCamera->y);
+}
 
 void cLevelEditor :: Draw()
 {
@@ -114,7 +101,7 @@ void cLevelEditor :: Draw()
 }
 void cLevelEditor :: Draw (SDL_Renderer *renderer)
 {
-	Uint32 Color;
+	
 
 	PreDraw();
 
@@ -124,32 +111,21 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 	pMouse->Draw( renderer );
 
 
-	if( Mouse_command != MOUSE_COMMAND_FASTCOPY ) 
-	{
-		Color = 0xffffffff; // White
-	}
-	else if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
-	{
-		Color = 0xff7878ff; // Blue
-	}
+	
 	
 	// Draw the outline of the hovered Object
-	OutlineHoveredObject(renderer, Color);
+	OutlineHoveredObject(renderer);
 	
 	if (Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
 	{
-		// Preserve the Color
-		//Uint8 oor,ob,og,oa;
-		SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-		FillRectAlpha(renderer, &MultiSelect->rect, 0x4000f080);
-		SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+		MultiSelect->DrawRect(renderer);
 	}
 	
 	// Only the draw the MultiSelect_-tile outlines if we are not moving them (for accuracy when moving)
 	if (Mouse_command != MOUSE_COMMAND_MOVING_MULTISELECT_TILES || (MultiSelect->veryfirst_mouseXOffset == pMouse->posx && MultiSelect->veryfirst_mouseYOffset == pMouse->posy))
 	{
 		// Draw the MultiSelect_-outline (it will check automatically if we have MultiSelect_ tiles to draw)
-		MultiSelect->DrawOutlineAroundMultiSelect_Tiles(renderer, MultiSelect_COLOR);
+		MultiSelect->DrawTileOutlines(renderer);
 	}
 	PostDraw();
 }
@@ -179,9 +155,24 @@ void cLevelEditor :: OutlineObject(SDL_Renderer *renderer, Uint32 Color, SDL_Rec
 	FillRectAlpha(renderer, object_rect->x+object_rect->w, object_rect->y, 1, object_rect->h, Color);
 }
 
-void cLevelEditor:: OutlineHoveredObject( SDL_Renderer *renderer, Uint32 Color)
+void cLevelEditor::OutlineHoveredObject(SDL_Renderer *renderer, Uint32 Color)
 {
-	OutlineObject(renderer, Color, &HoveredObject);
+	//
+}
+
+void cLevelEditor:: OutlineHoveredObject( SDL_Renderer *renderer)
+{
+	Uint32 Color;
+	if( Mouse_command != MOUSE_COMMAND_FASTCOPY )
+	{
+		Color = COLOR_WHITE; // White
+	}
+	else if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
+	{
+		Color = COLOR_BLUE; // Blue
+	}
+	
+	OutlineObject(renderer, Color, &HoveredObjectRect);
 }
 
 
@@ -641,7 +632,24 @@ void cLevelEditor::EventHandler()
 }
 
 
-
+void  cLevelEditor::HeldKey_Handler()
+{
+	// Fast copy
+	HeldKey_fastcopy();
+	
+	/// Move camera functions
+	HeldKey_movecamera();
+	
+	
+	// if at anytime 'e' is pressed. Delete the object the mouse is hovering over.
+	if ( keys[SDL_SCANCODE_E] )
+	{
+		if (!MultiSelect->multiple_objects_selected)
+			DeleteObject();
+		else
+			MultiSelect->DeleteObjects();
+	}
+}
 
 
 void cLevelEditor::HeldKey_fastcopy()
@@ -701,24 +709,6 @@ void cLevelEditor::HeldKey_movecamera()
 	// I floor it because otherwise weird results in using decimal values
 	pCamera->x = floor(pCamera->x);
 	pCamera->y = floor(pCamera->y);
-	
 }
 	
-void  cLevelEditor::HeldKey_Handler()
-{
-	// Fast copy
-	HeldKey_fastcopy();
-	
-	/// Move camera functions
-	HeldKey_movecamera();
-	
-	
-	// if at anytime 'e' is pressed. Delete the object the mouse is hovering over.
-	if ( keys[SDL_SCANCODE_E] )
-	{
-		if (!MultiSelect->multiple_objects_selected)
-			DeleteObject();
-		else
-			MultiSelect->DeleteObjects();
-	}
-}
+

@@ -43,6 +43,8 @@ public:
 	void HeldKey_movecamera();
 	
 	void EventHandler();
+	
+	SDL_Rect GetHoveredObjectRect();
 
 	void Draw();
 	void Draw (SDL_Renderer *renderer);
@@ -65,6 +67,7 @@ public:
 	
 	
 	/// Draw the outline of the hovered Object
+	void OutlineHoveredObject( SDL_Renderer *renderer);
 	void OutlineHoveredObject( SDL_Renderer *renderer, Uint32 Color);
 	static void OutlineObject (SDL_Renderer *renderer, Uint32 Color, SDL_Rect *orect);
 	
@@ -91,6 +94,8 @@ public:
 	/// Releases every command
 	void Release_Command( void );
 	
+	void MoveSingleTile();
+	
 	
 
 	/** Gets the Current Colliding Object
@@ -100,7 +105,7 @@ public:
 	cMVelSprite *GetCollidingObject( double x, double y );
 	
 	/// The Object Size which should get Hovered
-	SDL_Rect HoveredObject;
+	SDL_Rect HoveredObjectRect;
 
 	/// The currently used object for moving
 	cMVelSprite *Object;
