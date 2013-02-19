@@ -72,10 +72,7 @@ void TextObject::Render_solid()
 void TextObject::Render(TTF_Font *font)
 {
 	preRender();
-	
-	surface = cFont::CreateText(text.c_str(), font,FONT_TYPE_BLENDED,fgColor,bgColor);
-	
-	texture = SDL_CreateTextureFromSurface(Renderer, surface);
+	Render_blended();
 	UpdateRect();
 }
 

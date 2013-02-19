@@ -26,9 +26,6 @@ public:
 	/// Background Image
 	/// not implemented
 
-	/// The Music
-	string Musicfile;
-
 	/// Adds an Sprite to the Leveldata
 	void AddSprite( cMVelSprite *Sprite );
 
@@ -75,6 +72,7 @@ public:
 
 	/// Saves the Current Level
 	void Save( void );
+	void SaveToFile(string &filename);
 
 	/// Updates the Level
 	void Update( void );
@@ -88,6 +86,9 @@ public:
 	/// The Level Data
 	cLevelData *pLevelData_Layer1;
 	cLevelData *pLevelData_Layer2;
+	
+	/// The Music
+	string Musicfile;
 
 
 private:
