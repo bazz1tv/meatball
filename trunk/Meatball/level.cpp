@@ -22,7 +22,7 @@ BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 	BG_green = 0;
 	BG_blue = 0;
 
-	Musicfile = "badmofo.mod";
+	//Musicfile = "badmofo.mod";
 }
 
 cLevelData :: ~cLevelData( void )
@@ -230,6 +230,36 @@ void cLevel :: Save( void )
 	ofs = NULL;
 }
 
+void cLevel :: SaveToFile( string &filename )
+{
+	string absfilename = LEVEL_DIR;
+	absfilename += filename;
+	
+	/*if( !FileValid( filename ) )
+	{
+		DEBUGLOG( "Error Level Save : Level file does not exist %s\n", filename.c_str() );
+	}*/
+	
+	ofstream out( absfilename.c_str(), ios::out );
+	ofs = &out;
+	
+	if( !ofs )
+	{
+		DEBUGLOG( "Error Level Save: could not open the Level file %s\n", filename.c_str() );
+		return;
+	}
+	
+	PrintSaveHeader();
+	SavePlayerPos();
+	SaveMusicFile();
+	SaveMapObjects();
+	SaveMapEnemies();
+	
+	DEBUGLOG( "Level saved to %s\n", filename.c_str() );
+	
+	ofs = NULL;
+}
+
 void cLevel :: PrintSaveHeader()
 {
 	sprintf( row,  "### Level Saved with MeatBall FX V.0 ###\n\n" );
@@ -247,7 +277,7 @@ void cLevel :: SavePlayerPos()
 
 void cLevel :: SaveMusicFile()
 {
-	sprintf( row,  "Music %s\n\n", pLevelData_Layer1->Musicfile.c_str() );
+	sprintf( row,  "Music %s\n\n", Musicfile.c_str() );
 	ofs->write( row, strlen( row ) );
 }
 
@@ -325,10 +355,10 @@ void cLevel :: Update( void )
 {
 	if( !Mix_PlayingMusic() )
 	{
-		string filename = MUSIC_DIR + pLevelData_Layer1->Musicfile;
+		string filename = MUSIC_DIR + Musicfile;
 
 #ifndef DEMO
-		pAudio->PlayMusik( (char *)filename.c_str(),0,1 );
+		pAudio->PlayMusik( (char *)filename.c_str(),0,SDL_TRUE );
 #endif
 		
 	}
@@ -557,7 +587,7 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 			return 0; // error			
 		}
 
-		pLevelData_Layer1->Musicfile = parts[1];
+		Musicfile = parts[1];
 	}
 	else
 	{

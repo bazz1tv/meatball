@@ -1,6 +1,7 @@
 #include "MainMenu.h"
 #include "Game.h"
 
+#define MAINMENU_MUSIC MUSIC_DIR "chillin.xm"
 
 int MainMenu::submode = MAIN;
 
@@ -15,7 +16,7 @@ MainMenu::MainMenu()
 	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 	
 	//tOptions->rect = SetRect(100,100,tOptions->surface->w, tOptions->surface->h);
-	pAudio->PlayMusik( MUSIC_DIR "Monday.it");
+	pAudio->PlayMusik( MAINMENU_MUSIC );
 	//SMan->Add( pAudio->LoadSound( MUSIC_DIR "menumusic.wav"), MUSIC_DIR "menumusic.wav");
 	//pAudio->PlaySound(SMan->GetPointer(MUSIC_DIR "menumusic.wav"));
 

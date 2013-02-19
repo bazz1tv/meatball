@@ -43,6 +43,10 @@ public:
 	void HeldKey_movecamera();
 	
 	void EventHandler();
+	void MouseButton_Held_Events();
+	void KeyDownEvents(SDL_Event&);
+	void MouseButton_Down_Events(SDL_Event&);
+	void MouseButton_Up_Events(SDL_Event&);
 	
 	SDL_Rect GetHoveredObjectRect();
 
@@ -120,6 +124,7 @@ public:
 	int Mouse_w,Mouse_h;
 	
 	cMultiSelect *MultiSelect;
+	SDL_bool coordinates;
 	
 };
 

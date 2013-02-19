@@ -68,27 +68,28 @@ cConsole :: cConsole( void )
 	// No Limits
 	
 	/// [Console Commands]
-	Push(CMDList,	"clear",	clearcon,				"Clears all strings in console",						"clear"												);
+	Push(CMDList,	"clear",		clearcon,				"Clears all strings in console",						"clear"												);
 		CmdAddAlias(CMDList, "cls");
-	Push(CMDList,	"loadmap",	loadmap,				"Loads a map file into the game",						"loadmap [mapfile]"									);
-	Push(CMDList,	"mx",		SetMx,					"Sets Meatball's X coordinate",							"Mx [x]"											);
-	Push(CMDList,	"my",		SetMy,					"Sets Meatball's Y coordinate",							"my [y]"											);
-	Push(CMDList,	"mxy",		SetMxy,					"Sets Meatball's X & Y coordinate",						"Mxy [x y]"											);
+	Push(CMDList,	"loadmap",		loadmap,				"Loads a map file into the game",						"loadmap [mapfile]"									);
+	Push(CMDList,	"mx",			SetMx,					"Sets Meatball's X coordinate",							"Mx [x]"											);
+	Push(CMDList,	"my",			SetMy,					"Sets Meatball's Y coordinate",							"my [y]"											);
+	Push(CMDList,	"mxy",			SetMxy,					"Sets Meatball's X & Y coordinate",						"Mxy [x y]"											);
 	Push(CMDList,	"playmus",		play,					"Plays a music file",									"play [musicfile]"									);
-	Push(CMDList,	"quit",		QuitAll,				"Quits the game",										"quit"												);
+	Push(CMDList,	"quit",			QuitAll,				"Quits the game",										"quit"												);
 		CmdAddAlias(CMDList, "q");
-	Push(CMDList,	"fps",		ShowFPS,				"Displays or hides FPS",								"fps"												);
-	Push(CMDList,	"help",		help,					"Displays all commands or help for a specific command",	"help [cmd]"										);
+	Push(CMDList,	"fps",			ShowFPS,				"Displays or hides FPS",								"fps"												);
+	Push(CMDList,	"help",			help,					"Displays all commands or help for a specific command",	"help [cmd]"										);
 		CmdAddAlias(CMDList, "h");
-	Push(CMDList,	"svol",		soundVol,				"Set Sounds Volumes",									"svol [string_id] [0-128]"							);
-	Push(CMDList,	"mvol",		musicVol,				"Set Music Volumes",									"mvol [0-128]"										);
-	Push(CMDList,	"allsvol",	allSoundsVol,			"Set ALL Sounds Channel Volumes",						"allsvol [0-128]"									);
-	Push(CMDList,	"cd",		cd,						"change directory",										"cd [dir]"											);
-	Push(CMDList,	"ls",		ls,						"List Directoy Contents",								"ls [dir]"											);
+	Push(CMDList,	"svol",			soundVol,				"Set Sounds Volumes",									"svol [string_id] [0-128]"							);
+	Push(CMDList,	"mvol",			musicVol,				"Set Music Volumes",									"mvol [0-128]"										);
+	Push(CMDList,	"allsvol",		allSoundsVol,			"Set ALL Sounds Channel Volumes",						"allsvol [0-128]"									);
+	Push(CMDList,	"cd",			cd,						"change directory",										"cd [dir]"											);
+	Push(CMDList,	"ls",			ls,						"List Directoy Contents",								"ls [dir]"											);
 		CmdAddAlias(CMDList, "l");
-	Push(CMDList,	"sxy",		SetScreenScaleXY,		"Set X/Y Screen Scale Factor",							"sxy [x] [y]"										);
-	Push(CMDList,	"sx",		SetScreenScaleX,		"Set X Screen Scale Factor",							"sx [x]"											);
-	Push(CMDList,	"sy",		SetScreenScaleY,		"Set Y Screen Scale Factor",							"sy [y]"											);
+	Push(CMDList,	"sxy",			SetScreenScaleXY,		"Set X/Y Screen Scale Factor",							"sxy [x] [y]"										);
+	Push(CMDList,	"sx",			SetScreenScaleX,		"Set X Screen Scale Factor",							"sx [x]"											);
+	Push(CMDList,	"sy",			SetScreenScaleY,		"Set Y Screen Scale Factor",							"sy [y]"											);
+	Push(CMDList,	"savelevel",	SaveLevel,				"Saves the Level to [lvlfile]",							"savelevel [lvlfile]"								);
 	/// [Console Commands]
 
 	consoleInput_x = 10.0;
@@ -707,7 +708,7 @@ SDL_bool musicVol( string &str)
 
 SDL_bool play( string &str )
 {
-	pLevel->pLevelData_Layer1->Musicfile = str;
+	pLevel->Musicfile = str;
 
 	string file = MUSIC_DIR + str;
 
@@ -718,7 +719,7 @@ SDL_bool play( string &str )
 	}
 	else
 	{
-			pAudio->PlayMusik( file.c_str(), SDL_TRUE, SDL_TRUE );
+		pAudio->PlayMusik( file.c_str(), SDL_TRUE, SDL_TRUE );
 	}
 
 	return SDL_TRUE;
@@ -989,5 +990,18 @@ SDL_bool SetScreenScaleY(string &str)
 	sprintf(result,"Changed ScreenScale_y from %d to %d", ScreenScale_y_logged, ScreenScale.y);
 	
 	console_print(result);
+	return SDL_TRUE;
+}
+
+SDL_bool SaveLevel(string &str)
+{
+	if (str.empty())
+	{
+		pLevel->Save();
+	}
+	else{
+		pLevel->SaveToFile(str);
+	}
+	
 	return SDL_TRUE;
 }

@@ -3,7 +3,7 @@
 
 #define APP_TITLE "MeatBall - Vegetable Destruction"
 
-#define DEMO
+//#define DEMO
 
 #define MEATBALL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
 #define MEATBALL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
