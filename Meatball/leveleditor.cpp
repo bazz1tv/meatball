@@ -117,6 +117,10 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 	// Draw the outline of the hovered Object
 	if (Mouse_command == MOUSE_COMMAND_NOTHING)
 		OutlineHoveredObject(renderer);
+	else if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
+	{
+		OutlineHoveredObject(renderer, COLOR_BLUE);
+	}
 	
 	if (Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
 	{
@@ -130,7 +134,7 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 		MultiSelect->DrawTileOutlines(renderer);
 	}
 	
-	//draw
+	// draw
 	if (coordinates)
 	{
 		// draw coordinates
@@ -141,6 +145,8 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 		xy_coordinate.Render();
 		xy_coordinate.Draw();
 	}
+	
+	
 	PostDraw();
 }
 
@@ -171,7 +177,7 @@ void cLevelEditor :: OutlineObject(SDL_Renderer *renderer, Uint32 Color, SDL_Rec
 
 void cLevelEditor::OutlineHoveredObject(SDL_Renderer *renderer, Uint32 Color)
 {
-	//
+	OutlineObject(renderer, Color, &HoveredObjectRect);
 }
 
 void cLevelEditor:: OutlineHoveredObject( SDL_Renderer *renderer)
@@ -180,10 +186,6 @@ void cLevelEditor:: OutlineHoveredObject( SDL_Renderer *renderer)
 	if( Mouse_command != MOUSE_COMMAND_FASTCOPY )
 	{
 		Color = COLOR_WHITE; // White
-	}
-	else if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
-	{
-		Color = COLOR_BLUE; // Blue
 	}
 	
 	OutlineObject(renderer, Color, &HoveredObjectRect);
@@ -387,21 +389,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 	return NULL;
 }
 
-void cLevelEditor::MouseButton_Held_Events()
-{
-	// First Let's poll for Mouse button HELD Down
-	// You can hold right click to delete tiles constantly
-	Uint8 ms = SDL_GetMouseState(NULL,NULL);
-	if (ms & SDL_BUTTON(SDL_BUTTON_RIGHT))
-	{
-		DeleteObject();
-	}
-	
-	if (ms & SDL_BUTTON(SDL_BUTTON_LEFT) && Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
-	{
-		MultiSelect->SetObjects();
-	}
-}
+
 
 /** @ingroup LE_Input */
 void cLevelEditor::EventHandler()
@@ -459,133 +447,159 @@ void cLevelEditor::EventHandler()
 void cLevelEditor::KeyDownEvents(SDL_Event &event)
 {
 
-		// ESCAPE to ESCAPE mouse command or LEVEL MODE
-		if( event.key.keysym.sym == SDLK_ESCAPE )
-		{
-			
-			if (Mouse_command == MOUSE_COMMAND_NOTHING && !MultiSelect->multiple_objects_selected)
-				mode = MODE_GAME;
-			else if (MultiSelect->multiple_objects_selected)
-			{
-				MultiSelect->OM.RemoveAllObjects();
-				MultiSelect->multiple_objects_selected = SDL_FALSE;
-			}
-			
-			
-			Mouse_command = MOUSE_COMMAND_NOTHING;
-			
-		}
-		else if ( event.key.keysym.sym == SDLK_c)
-		{
-			// c for coordinates
-			if (coordinates)
-				coordinates= SDL_FALSE;
-			else coordinates = SDL_TRUE;
-			
-			
-		}
-		// ~ to enter CONSOLE
-		else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
-		{
-			oldmode = mode;
-			mode = MODE_CONSOLE;
-			
-		}
-		// F8 to Exit LEVLE MODE
-		else if( event.key.keysym.sym == SDLK_F8 )
-		{
-			
+	// ESCAPE to ESCAPE mouse command or LEVEL MODE
+	if( event.key.keysym.sym == SDLK_ESCAPE )
+	{
+		
+		if (Mouse_command == MOUSE_COMMAND_NOTHING && !MultiSelect->multiple_objects_selected)
 			mode = MODE_GAME;
-			
-			pCamera->SetPos( pPlayer->posx - pCamera->x - window_width, 0 );
-			
-		}
-		// IF LCTRL IS HELD
-		else if (event.key.keysym.mod & KMOD_LCTRL)
+		else if (MultiSelect->multiple_objects_selected)
 		{
-			// LCTRL S to save
-			if( event.key.keysym.sym == SAVE_KEY )
-			{
-				pLevel->Save();
-			}
-			// LCTRL+C to copy
-			
-			else if( event.key.keysym.sym == COPY_KEY  )
-			{
+			MultiSelect->OM.RemoveAllObjects();
+			MultiSelect->multiple_objects_selected = SDL_FALSE;
+		}
+		
+		
+		Mouse_command = MOUSE_COMMAND_NOTHING;
+		
+	}
+	else if ( event.key.keysym.sym == SDLK_c && !(event.key.keysym.mod & KMOD_LCTRL) )
+	{
+		// c for coordinates
+		if (coordinates)
+			coordinates= SDL_FALSE;
+		else coordinates = SDL_TRUE;
+	}
+	// ~ to enter CONSOLE
+	else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
+	{
+		oldmode = mode;
+		mode = MODE_CONSOLE;
+		
+	}
+	// F8 to Exit LEVLE MODE
+	else if( event.key.keysym.sym == SDLK_F8 )
+	{
+		mode = MODE_GAME;
+		pCamera->SetPos( pPlayer->posx - pCamera->x - window_width, 0 );
+	}
+	// IF LCTRL IS HELD
+	else if (event.key.keysym.mod & KMOD_LCTRL)
+	{
+		// LCTRL S to save
+		if( event.key.keysym.sym == SAVE_KEY )
+		{
+			pLevel->Save();
+		}
+		// LCTRL+C to copy
+		
+		else if( event.key.keysym.sym == COPY_KEY  )
+		{
+			if (!MultiSelect->multiple_objects_selected)
 				SetCopyObject();
-			}
-			//LCTRL+V to paste
-			else if( event.key.keysym.sym == PASTE_KEY  )
+			else
 			{
-				if (!MultiSelect->multiple_objects_selected)
-					PasteObject();
-				else
-				{
-					MultiSelect->Prepare();
-					MultiSelect->PasteObjects();
-				}
+				MultiSelect->CopyObjects();
 			}
+			
 		}
-		
-		
-		// F Key for Fast Copy
-		else if (event.key.keysym.sym == FASTCOPY_KEY)
+		//LCTRL+V to paste
+		else if( event.key.keysym.sym == PASTE_KEY  )
 		{
-			if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
-				Mouse_command = MOUSE_COMMAND_NOTHING;
+			if (!MultiSelect->multiple_objects_selected)
+				PasteObject();
 			else
-				SetFastCopyObject();
+			{
+				MultiSelect->Prepare();
+				MultiSelect->PasteObjects();
+			}
+		}
+	}
+	
+	
+	// F Key for Fast Copy
+	else if (event.key.keysym.sym == FASTCOPY_KEY)
+	{
+		if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
+			Mouse_command = MOUSE_COMMAND_NOTHING;
+		else
+			SetFastCopyObject();
+	}
+	
+	else if( Mouse_command == MOUSE_COMMAND_FASTCOPY && CopyObject)
+	{
+		if( event.key.keysym.sym == SDLK_d)
+		{
+			PasteObject( CopyObject->posx - pCamera->x + CopyObject->width, CopyObject->posy - pCamera->y );
+			pCamera->Move( CopyObject->width, 0 );
+		}
+		else if( event.key.keysym.sym == SDLK_w )
+		{
+			PasteObject( CopyObject->posx - pCamera->x, CopyObject->posy - pCamera->y - CopyObject->height );
+			pCamera->Move( 0, - CopyObject->height );
+		}
+		else if( event.key.keysym.sym == SDLK_a )
+		{
+			PasteObject( CopyObject->posx - pCamera->x - CopyObject->width, CopyObject->posy - pCamera->y );
+			pCamera->Move( - CopyObject->width, 0 );
+		}
+		else if( event.key.keysym.sym == SDLK_s )
+		{
+			PasteObject( CopyObject->posx- pCamera->x , CopyObject->posy - pCamera->y + CopyObject->height );
+			pCamera->Move( 0, CopyObject->height );
+		}
+	}
+	else
+	{
+		// level editor mode
+		
+		
+		if (event.key.keysym.mod & KMOD_SHIFT)
+		{
+			/*if( event.key.keysym.sym == SDLK_d)
+			{
+				pCamera->Move( 10*pFramerate->speedfactor, 0 );
+			}
+			else if( event.key.keysym.sym == SDLK_w )
+			{
+				pCamera->Move( 0, -10*pFramerate->speedfactor );
+			}
+			else if( event.key.keysym.sym == SDLK_a )
+			{
+				pCamera->Move( -10*pFramerate->speedfactor, 0 );
+			}
+			else if( event.key.keysym.sym == SDLK_s )
+			{
+				pCamera->Move( 0, 10*pFramerate->speedfactor );
+			}
+			
+			pCamera->x = floor(pCamera->x);
+			pCamera->y = floor(pCamera->y);*/
+		}
+		else
+		{
+			if( event.key.keysym.sym == SDLK_d)
+			{
+				pCamera->Move( 1, 0 );
+			}
+			else if( event.key.keysym.sym == SDLK_a )
+			{
+				pCamera->Move( -1, 0 );
+			}
+			
+			
+			if( event.key.keysym.sym == SDLK_w )
+			{
+				pCamera->Move( 0, -1 );
+			}
+			
+			else if( event.key.keysym.sym == SDLK_s )
+			{
+				pCamera->Move( 0, 1 );
+			}
 		}
 		
-			// level editor mode
-			if( Mouse_command == MOUSE_COMMAND_FASTCOPY && CopyObject)
-			{
-				if( event.key.keysym.sym == SDLK_d)
-				{
-					PasteObject( CopyObject->posx - pCamera->x + CopyObject->width, CopyObject->posy - pCamera->y );
-					pCamera->Move( CopyObject->width, 0 );
-				}
-				else if( event.key.keysym.sym == SDLK_w )
-				{
-					PasteObject( CopyObject->posx - pCamera->x, CopyObject->posy - pCamera->y - CopyObject->height );
-					pCamera->Move( 0, - CopyObject->height );
-				}
-				else if( event.key.keysym.sym == SDLK_a )
-				{
-					PasteObject( CopyObject->posx - pCamera->x - CopyObject->width, CopyObject->posy - pCamera->y );
-					pCamera->Move( - CopyObject->width, 0 );
-				}
-				else if( event.key.keysym.sym == SDLK_s )
-				{
-					PasteObject( CopyObject->posx- pCamera->x , CopyObject->posy - pCamera->y + CopyObject->height );
-					pCamera->Move( 0, CopyObject->height );
-				}
-			}
-			else
-			{
-				// level editor mode
-				
-				
-				if (event.key.keysym.mod & KMOD_SHIFT)
-				{
-					if( event.key.keysym.sym == SDLK_d)
-					{
-						pCamera->Move( 1, 0 );
-					}
-					else if( event.key.keysym.sym == SDLK_w )
-					{
-						pCamera->Move( 0, - 1 );
-					}
-					else if( event.key.keysym.sym == SDLK_a )
-					{
-						pCamera->Move( - 1, 0 );
-					}
-					else if( event.key.keysym.sym == SDLK_s )
-					{
-						pCamera->Move( 0, 1 );
-					}				}
-				
-			}
+	}
 	
 	return;
 }
@@ -742,29 +756,66 @@ void cLevelEditor::HeldKey_fastcopy()
 
 void cLevelEditor::HeldKey_movecamera()
 {
-	if (!keys[SDL_SCANCODE_LSHIFT] && !keys[SDL_SCANCODE_RSHIFT])
-	{
-		if( keys[SDL_SCANCODE_RIGHT] || keys[SDL_SCANCODE_D] )
+	
+		if (Mouse_command == MOUSE_COMMAND_FASTCOPY || keys[SDL_SCANCODE_LCTRL] || (mouse_state & SDL_BUTTON(SDL_BUTTON_LEFT) && !keys[SDL_SCANCODE_LSHIFT]) )
 		{
-			pCamera->Move( 10 * pFramerate->speedfactor, 0 );
+			if( keys[SDL_SCANCODE_RIGHT] )
+			{
+				pCamera->Move( 10 * pFramerate->speedfactor, 0 );
+			}
+			else if( keys[SDL_SCANCODE_LEFT])
+			{
+				pCamera->Move( -10 * pFramerate->speedfactor, 0 );
+			}
+			
+			if( keys[SDL_SCANCODE_UP])
+			{
+				pCamera->Move( 0, -10 * pFramerate->speedfactor );
+			}
+			else if( keys[SDL_SCANCODE_DOWN])
+			{
+				pCamera->Move( 0, 10 * pFramerate->speedfactor );
+			}
 		}
-		else if( keys[SDL_SCANCODE_LEFT] || keys[SDL_SCANCODE_A] )
+		else
 		{
-			pCamera->Move( -10 * pFramerate->speedfactor, 0 );
+			if( keys[SDL_SCANCODE_RIGHT] || keys[SDL_SCANCODE_D] )
+			{
+				pCamera->Move( 10 * pFramerate->speedfactor, 0 );
+			}
+			else if( keys[SDL_SCANCODE_LEFT] || keys[SDL_SCANCODE_A] )
+			{
+				pCamera->Move( -10 * pFramerate->speedfactor, 0 );
+			}
+			
+			if( keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W] )
+			{
+				pCamera->Move( 0, -10 * pFramerate->speedfactor );
+			}
+			else if( keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_S] )
+			{
+				pCamera->Move( 0, 10 * pFramerate->speedfactor );
+			}
 		}
-		
-		if( keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W] )
-		{
-			pCamera->Move( 0, -10 * pFramerate->speedfactor );
-		}
-		else if( keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_S] )
-		{
-			pCamera->Move( 0, 10 * pFramerate->speedfactor );
-		}
-
 		// I floor it because otherwise weird results in using decimal values
 		pCamera->x = floor(pCamera->x);
 		pCamera->y = floor(pCamera->y);
+	
+}
+
+void cLevelEditor::MouseButton_Held_Events()
+{
+	// First Let's poll for Mouse button HELD Down
+	// You can hold right click to delete tiles constantly
+	mouse_state = SDL_GetMouseState(NULL,NULL);
+	if (mouse_state & SDL_BUTTON(SDL_BUTTON_RIGHT))
+	{
+		DeleteObject();
+	}
+	
+	if (mouse_state & SDL_BUTTON(SDL_BUTTON_LEFT) && Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
+	{
+		MultiSelect->SetObjects();
 	}
 }
 	

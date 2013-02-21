@@ -36,6 +36,8 @@ SDL_bool SetScreenScaleXY(string &str);
 SDL_bool SetScreenScaleX(string &str);
 SDL_bool SetScreenScaleY(string &str);
 SDL_bool SaveLevel(string &str);
+SDL_bool camx(string &str);
+SDL_bool camy(string &str);
 // @}
 
 #define NUM_LINES 11

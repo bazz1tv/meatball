@@ -2,15 +2,18 @@
 #define __DEFINES_H__
 
 #define APP_TITLE "MeatBall - Vegetable Destruction"
+// GAME-WIDE
 
+// DEMO MODE | IN GAME LEVEL EDITOR
 //#define DEMO
+#define INGAME_LEVEL_EDITOR
 
 #define MEATBALL_CUSTOM_FLAGS (SDL_HWSURFACE | SDL_HWACCEL | SDL_RLEACCEL | SDL_DOUBLEBUF | SDL_RESIZABLE)
-#define MEATBALL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
-#define MEATBALL_FULLSCREEN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
+//#define MEATBALL_WIN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
+//#define MEATBALL_FULLSCREEN_SETTINGS pGameSettings->Screen_W, pGameSettings->Screen_H, pGameSettings->Screen_Bpp
 
 /* The PLAYER */
-/// The player won't fall any faster than this (pixels iirc)
+/// The player won't fall any faster than this (pixels) per frame
 #define MAX_FALL_VELOCITY 8
 #define JUMP_KEYS_HELD		(keys[SDL_GetScancodeFromKey(pGameSettings->Key_jump)]) // || keys[SDLK_RALT] || keys[SDLK_SEMICOLON] || keys[SDLK_PERIOD] || keys[SDLK_m])
 #define MOVELEFT_KEYS_HELD	(keys[SDL_GetScancodeFromKey(pGameSettings->Key_walk_left)]) //  || keys[SDLK_a])
@@ -26,7 +29,7 @@
 #define FONT_DIR "data/font/"
 #define LEVEL_DIR "data/levels/"
 
-// Player Directions
+// Sprite Directions
 /// @ingroup PLAYER_DIRECTIONS
 /// @{
 #define LEFT	0
