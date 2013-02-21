@@ -69,7 +69,7 @@ string cImageManager :: GetIdentifier( SDL_Surface *nItem )
 		}
 	}
 
-	return NULL; // not found
+	return ""; // not found
 }
 
 

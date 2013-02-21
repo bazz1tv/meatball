@@ -297,6 +297,14 @@ void cLevel :: SaveMapObjects()
 			}
 			
 			string image_filename = IMan->GetIdentifier( pLevelData_Layer1->BasicSprites.objects[i]->srcimage );
+			if (image_filename.empty())
+			{
+				cout<<"Um... WTF  I don't get it...."<<endl;
+				cout << "i=" << i << endl << "object[i] = "<< pLevelData_Layer1->BasicSprites.objects[i] << endl;
+				cout << "We won't save the level then.. or let;s just skip this sprite.. how about that :P"<<endl;
+				//return;
+				continue;
+			}
 			
 			image_filename.erase( 0, strlen( PIXMAPS_DIR ) );
 			

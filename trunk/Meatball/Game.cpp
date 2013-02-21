@@ -33,10 +33,12 @@ Game::~Game()
 	{
 		delete pLevel;
 	}
+#ifdef INGAME_LEVEL_EDITOR
 	if( pLevelEditor )
 	{
 		delete pLevelEditor;
 	}
+#endif
 	
 	if ( pConsole )
 	{
@@ -65,8 +67,8 @@ void Game::Init()
 	pPlayer->init();		// add his images to the Image Manager, give him initial weapon
 	pPlayer->Reset();		// set direction, position, setACtiveWeapon (pistol)
 
-	
-	DEBUGLOG ("loading level\n");
+	string levelname = "test.lvl";
+	DEBUGLOG ("loading level: %s\n", levelname.c_str());
 	pLevel->Load( "test.lvl" );	// load the level
 	DEBUGLOG ("Finished loading level\n");
 	// if we are NOT in demo mode, let's load the level's MusicFile
@@ -203,7 +205,9 @@ void Game::Keydown_Events(SDL_Event *event)
 	}
 	else if( event->key.keysym.sym == SDLK_F8 )
 	{
+#ifdef INGAME_LEVEL_EDITOR
 		mode = MODE_LEVELEDITOR;
+#endif
 	}
 	
 	else if( event->key.keysym.sym == SDLK_F1 ) // Particle Test

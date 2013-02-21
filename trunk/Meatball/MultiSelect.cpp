@@ -9,6 +9,8 @@ extern cPlayer *pPlayer;
 extern cLevel *pLevel;
 extern cCamera *pCamera;
 
+using namespace std;
+
 void cMultiSelect :: DrawTileOutlines(SDL_Renderer *renderer)
 {
 	//HoveredObjectRect = SetRect( 0, 0, 0, 0 );
@@ -100,8 +102,6 @@ void cMultiSelect::DeleteObjects()
 			DeletEnemy( index);
 			continue;
 		}
-		
-		
 	}
 	
 	OM.~ObjectManager();
@@ -175,8 +175,8 @@ void cMultiSelect::PasteObjects()
 		y_offset = leftmost.y - topmost.y;
 	
 	if (x_offset > y_offset)
-		selected = &topmost;
-	else selected = &leftmost;
+		selected = &leftmost;
+	else selected = &topmost;
 	
 	for (unsigned int i=0; i < OM.objcount; i++)
 	{
@@ -184,8 +184,9 @@ void cMultiSelect::PasteObjects()
 		if( OM.objects[i]->type == SPRITE_TYPE_MASSIVE || OM.objects[i]->type == SPRITE_TYPE_PASSIVE || OM.objects[i]->type == SPRITE_TYPE_HALFMASSIVE)
 		{
 			// Create the new Sprite
-			cMVelSprite *new_Object = new cMVelSprite( OM.objects[i]->srcimage, floor((pMouse->posx-selected->x) + (pCamera->x-camXOffset) + OM.objects[i]->posx),
-													  floor( (pMouse->posy - selected->y) + (pCamera->y-camYOffset) + OM.objects[i]->posy) );
+			
+			cMVelSprite *new_Object = new cMVelSprite( OM.objects[i]->srcimage, floor((pMouse->posx-selected->x) + (pCamera->x) + OM.objects[i]->posx),
+													  floor( (pMouse->posy - selected->y) + (pCamera->y) + OM.objects[i]->posy) );
 			
 			new_Object->type = OM.objects[i]->type;
 			
@@ -201,9 +202,6 @@ void cMultiSelect::PasteObjects()
 			OM.objects[i] = pEnemy;
 		}
 	}
-	
-	//OM.~ObjectManager();
-	//OM = newsprites;
 }
 
 void cMultiSelect :: SetObjects( void )

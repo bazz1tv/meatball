@@ -9,10 +9,12 @@
 #include "effects.h"
 #include "player.h"
 #include "level.h"
+#include "Camera.h"
 
 extern cConsole *pConsole;
 extern cPlayer *pPlayer;
 extern cLevel *pLevel;
+extern cCamera *pCamera;
 
 using namespace std;
 
@@ -90,6 +92,9 @@ cConsole :: cConsole( void )
 	Push(CMDList,	"sx",			SetScreenScaleX,		"Set X Screen Scale Factor",							"sx [x]"											);
 	Push(CMDList,	"sy",			SetScreenScaleY,		"Set Y Screen Scale Factor",							"sy [y]"											);
 	Push(CMDList,	"savelevel",	SaveLevel,				"Saves the Level to [lvlfile]",							"savelevel [lvlfile]"								);
+	Push(CMDList,	"camx",			camx,					"Sets camera X coordinate",								"camx [x]"								);
+	Push(CMDList,	"camy",			camy,					"Sets camera Y coordinate",								"camx [y]"								);
+
 	/// [Console Commands]
 
 	consoleInput_x = 10.0;
@@ -337,7 +342,7 @@ void cConsole :: FreeAllUsedSurfaces()
 		SDL_FreeSurface( cursor_surface);
 		cursor_surface = NULL;
 	}
-	if (cursor_tex)
+	if ( cursor_tex )
 	{
 		SDL_DestroyTexture(cursor_tex);
 		cursor_tex = NULL;
@@ -348,7 +353,7 @@ void cConsole :: FreeAllUsedSurfaces()
 		SDL_FreeSurface( consoleInput_surface );
 		consoleInput_surface = NULL;
 	}
-	if (consoleInput_tex)
+	if ( consoleInput_tex )
 	{
 		SDL_DestroyTexture(consoleInput_tex);
 		consoleInput_tex = NULL;
@@ -1005,3 +1010,37 @@ SDL_bool SaveLevel(string &str)
 	
 	return SDL_TRUE;
 }
+
+SDL_bool camx(string &str)
+{
+	if (str.empty())
+	{
+		stringstream camx;
+		camx << "Camera X: "<<pCamera->x;
+		console_print(camx.str().c_str());
+	}
+	
+	else{
+		pCamera->SetPos(atoi(str.c_str()), pCamera->y);
+	}
+	
+	return SDL_TRUE;
+}
+
+
+SDL_bool camy(string &str)
+{
+	if (str.empty())
+	{
+		stringstream camy;
+		camy << "Camera y: "<<pCamera->y;
+		console_print(camy.str().c_str());
+	}
+	
+	else{
+		pCamera->SetPos(pCamera->x, atoi(str.c_str()));
+	}
+	
+	return SDL_TRUE;
+}
+

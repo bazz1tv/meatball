@@ -125,7 +125,7 @@ public:
 	
 	cMultiSelect *MultiSelect;
 	SDL_bool coordinates;
-	
+	Uint8 mouse_state;
 };
 
 

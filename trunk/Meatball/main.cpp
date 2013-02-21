@@ -53,10 +53,10 @@ int DoGame()
 
 		else if (mode == MODE_GAME)
 			game.Do();
-
+#ifdef INGAME_LEVEL_EDITOR
 		else if (mode == MODE_LEVELEDITOR)
 			pLevelEditor->Do();
-
+#endif
 		else if (mode == MODE_CONSOLE)
 			pConsole->Do();
 
@@ -110,7 +110,9 @@ void initEngine()
 	pCamera = new cCamera();
 	pPlayer = new cPlayer();
 	pLevel = new cLevel();
+#ifdef INGAME_LEVEL_EDITOR
 	pLevelEditor = new cLevelEditor();
+#endif
 	pConsole = new cConsole();
 }
 
@@ -188,12 +190,12 @@ void QuitGame( void )
 	{
 		delete pMouse;
 	}
-	
+#ifdef INGAME_LEVEL_EDITOR
 	if( pLevelEditor )
 	{
 		delete pLevelEditor;
 	}
-	
+#endif
 	if ( pConsole )
 	{
 		delete pConsole;

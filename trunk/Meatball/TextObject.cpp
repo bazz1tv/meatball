@@ -150,14 +150,6 @@ TextObject::TextObject(int x, int y, string text, TTF_Font *font)
 	drawtxt = SDL_FALSE;
 }
 
-/// Set the active font engine handle
-/*void TextObject::SetFontEngineHandle(cFont *handle)
-{
-	this->font_engine_handle = handle;
-}*/
-
-
-
 
 void TextObject::UpdateRect(int x, int y)
 {
