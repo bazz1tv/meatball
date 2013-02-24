@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E942ED6D16D0C0330048C7EB"
+               BlueprintIdentifier = "E942ED7216D0C0A70048C7EB"
                BuildableName = "Doxygen"
                BlueprintName = "Doxygen"
                ReferencedContainer = "container:MeatBall.xcodeproj">
