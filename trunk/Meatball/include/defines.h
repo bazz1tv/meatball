@@ -52,15 +52,17 @@
 /// @addtogroup GAME_MODE
 /// This is a list of the current different types of Game Modes available
 // @{
-#define MODE_MAINMENU		0
-#define MODE_GAME			1
-#define MODE_LEVELEDITOR	2
-#define MODE_CONSOLE		3
-#define MODE_OPTIONS		4
-#define MODE_QUIT			5
-#define MODE_DEBUG			6		///< Not implemented
+enum GameMode {
+MODE_MAINMENU=1,
+MODE_GAME,
+MODE_LEVELEDITOR,
+MODE_CONSOLE,
+MODE_OPTIONS,
+MODE_QUIT,
+MODE_DEBUG,				///< Not implemented
 
-#define NUM_GAMEMODES		7
+NUM_GAMEMODES
+};
 // @}
 
 #endif

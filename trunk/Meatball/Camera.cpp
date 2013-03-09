@@ -1,6 +1,9 @@
 
 #include "Camera.h"
 #include "player.h"
+#include "MasterBlaster.h"
+extern MasterBlaster *MB;
+
 extern cPlayer *pPlayer;
 extern cFramerate *pFramerate;
 
@@ -21,7 +24,7 @@ cCamera :: ~cCamera( void )
 
 void cCamera :: Update( void )
 {
-	if( mode == MODE_GAME ) 
+	if( MB->mode == MODE_GAME )
 	{
 		
 		// The actual algorithm here is a mystery to me. It was made by FLuxy 
@@ -54,7 +57,7 @@ void cCamera :: SetPos( double nx, double ny )
 	x = nx;
 	y = ny;
 
-	if( mode == MODE_GAME ) 
+	if( MB->mode == MODE_GAME )
 	{
 		Limits_Check();
 	}
@@ -65,7 +68,7 @@ void cCamera :: Move( double ax, double ay )
 	x += ax;
 	y += ay;
 
-	if( mode == MODE_GAME ) 
+	if( MB->mode == MODE_GAME )
 	{
 		Limits_Check();
 	}

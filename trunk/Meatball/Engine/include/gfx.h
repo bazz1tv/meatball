@@ -4,7 +4,7 @@
 /* 
 	@file gfx.h  Graphic functions
 	
-	(c) F. Richter
+	(c) Bazz
 	
 	V 1.3
 */

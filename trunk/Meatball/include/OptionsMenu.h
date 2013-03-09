@@ -36,7 +36,7 @@ class ControlsMenu : public MiniEngine
 
 	void Update();
 	void Draw();
-	void EventHandler();
+	int EventHandler();
 	void Collisions();
 	
 	void GetInput(Uint8);
@@ -66,13 +66,13 @@ public:
 	OptionsMenu();
 	~OptionsMenu();
 
-	void Do();
+	int Do();
 	void PreUpdate();
 	void Update();
 	void Draw();
-	void EventHandler();
-	void Collisions();
-	void LiveInput();
+	int EventHandler();
+	int Collisions();
+	int LiveInput();
 	
 	TTF_Font *optionsfont;
 

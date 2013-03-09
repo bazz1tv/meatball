@@ -10,9 +10,8 @@
 	SDL_image
 	SDL_ttf
 	SDL_net
-	SGE
 
-	LGPL (c) F. Richter
+	 Bazz
 */
 
 #ifndef _SDL_EnginePrimitives_h

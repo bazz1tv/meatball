@@ -14,15 +14,32 @@ extern cLevel *pLevel;
 extern SDL_bool paused;
 extern cPlayer *pPlayer;
 
-void MiniEngine::Do()
+int MiniEngine::Do()
 {
-	// Might have to change the whole ONLY checking input while !paused thing...
-	if ( !paused )
+	Uint8 mode=0;
+	
+	while (mode == 0)
 	{
-		Input();
-		Update();
+		// Might have to change the whole ONLY checking input while !paused thing...
+		if ( !paused )
+		{
+			mode = Input();
+			Update();
+		}
+	
+		Draw();
 	}
-	Draw();
+	
+	return (int)mode;
+}
+
+int MiniEngine::Input()
+{
+	Uint8 mode=0;
+	mode = EventHandler();
+	HeldKey_Handler();
+	
+	return (int)mode;
 }
 
 /// Does general things

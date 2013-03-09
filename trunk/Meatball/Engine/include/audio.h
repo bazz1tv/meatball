@@ -3,9 +3,9 @@
 /** 
 	@file audio.h  Audio Engine Header
 
-	Version 2.4
+	Version 2.5
 
-	LGPL (c) F. Richter
+	 Bazz
 
 */
 

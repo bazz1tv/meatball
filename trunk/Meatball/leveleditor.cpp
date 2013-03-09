@@ -392,11 +392,14 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 
 
 /** @ingroup LE_Input */
-void cLevelEditor::EventHandler()
+int cLevelEditor::EventHandler()
 {
+	Uint8 mode=0;
 	while ( SDL_PollEvent( &event ) )
 	{
-		UniversalEventHandler(&event);
+		mode = UniversalEventHandler(&event);
+		if (mode > 0)
+			return mode;
 		
 		MouseButton_Held_Events();
 		
@@ -418,7 +421,7 @@ void cLevelEditor::EventHandler()
 			}
 			case SDL_KEYDOWN:
 			{
-				KeyDownEvents(event);
+				mode = KeyDownEvents(event);
 				break;
 			}
 				
@@ -437,6 +440,8 @@ void cLevelEditor::EventHandler()
 			default: break;
 		}
 	}
+	
+	return mode;
 }
 
 /*void cLevelEditor::ActiveCoordinatesMode()
@@ -444,9 +449,9 @@ void cLevelEditor::EventHandler()
 	coordinates = SDL_TRUE;
 }*/
 
-void cLevelEditor::KeyDownEvents(SDL_Event &event)
+int cLevelEditor::KeyDownEvents(SDL_Event &event)
 {
-
+	Uint8 mode=0;
 	// ESCAPE to ESCAPE mouse command or LEVEL MODE
 	if( event.key.keysym.sym == SDLK_ESCAPE )
 	{
@@ -473,7 +478,7 @@ void cLevelEditor::KeyDownEvents(SDL_Event &event)
 	// ~ to enter CONSOLE
 	else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
 	{
-		oldmode = mode;
+		//oldmode = mode;
 		mode = MODE_CONSOLE;
 		
 	}
@@ -601,7 +606,7 @@ void cLevelEditor::KeyDownEvents(SDL_Event &event)
 		
 	}
 	
-	return;
+	return mode;
 }
 
 void cLevelEditor::MouseButton_Down_Events(SDL_Event &event)

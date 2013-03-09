@@ -4,9 +4,9 @@
 
 	@file font.h  Font Class
 
-	V 1.3
+	V 1.4
 
-	LGPL (c) F. Richter
+	 Bazz
 
 */
 

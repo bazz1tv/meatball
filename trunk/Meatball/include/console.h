@@ -84,7 +84,7 @@ public:
 	/** Handles console input.
 	It's as simple as that */
 	/// @ingroup Console_Input
-	void EventHandler( void );
+	int EventHandler( void );
 
 	SDL_bool CMDHandler( string cInput );
 	cCMD* FindMatch(string &cmd);

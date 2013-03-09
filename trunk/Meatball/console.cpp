@@ -133,8 +133,9 @@ cConsole :: ~cConsole( void )
 /// The input Handler
 /// There is support for up/down input history,
 /// When you hit enter, sends the input to CMDHandler()
-void cConsole :: EventHandler( void )
+int cConsole :: EventHandler( void )
 {
+	Uint8 mode=0;
 	SDL_StartTextInput();
 	
 	while ( SDL_PollEvent( &event ) )
@@ -152,7 +153,7 @@ void cConsole :: EventHandler( void )
 				if( event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					//done = 1;
-					mode = oldmode;
+					mode = 1;	// code to exit console
 				}
 
 				else if ( event.key.keysym.sym == SDLK_BACKSPACE )
@@ -203,6 +204,7 @@ void cConsole :: EventHandler( void )
 	}
 
 	SDL_StopTextInput();
+	return mode;
 }
 
 /// Updates background, Updates logic to draw the cursor or not (blinking underscore)
@@ -817,7 +819,7 @@ void moveConsoleHistoryLinesUp(int nlines/*=1*/) // number of lines to move up b
 SDL_bool QuitAll( string &str )
 {
 	done = 1;
-	mode = MODE_QUIT;
+	//mode = MODE_QUIT;
 	return SDL_TRUE;
 }
 

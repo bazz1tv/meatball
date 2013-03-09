@@ -2,13 +2,13 @@
 
 
 
-void UniversalEventHandler(SDL_Event *event)
+int UniversalEventHandler(SDL_Event *event)
 {
 	switch(event->type)
 	{
 		case SDL_QUIT:
 		{
-			mode = MODE_QUIT;
+			return MODE_QUIT;	// Shouldn't return.. should actually QUIT
 			break;
 		}
 		case SDL_WINDOWEVENT:
@@ -33,6 +33,7 @@ void UniversalEventHandler(SDL_Event *event)
 		}
 
 	}
+	return 0;
 }
 
 

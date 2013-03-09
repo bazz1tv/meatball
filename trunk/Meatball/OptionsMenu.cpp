@@ -66,22 +66,28 @@ OptionsMenu::~OptionsMenu()
 
 }
 
-void OptionsMenu::Do()
+int OptionsMenu::Do()
 {
-	if (curscreen == OPTIONS_SCREEN)
+	int mode =0;
+	while (mode == 0)
 	{
-		EventHandler();
-		Update();
-		Draw();
+		if (curscreen == OPTIONS_SCREEN)
+		{
+			mode = EventHandler();
+			Update();
+			Draw();
+		}
+		else if (curscreen == CONTROLS_SCREEN)
+		{
+			// Do specifics for The Controls Screen
+			controls_menu.EventHandler();
+			PreUpdate();
+			controls_menu.Update();
+			controls_menu.Draw();
+		}
 	}
-	else if (curscreen == CONTROLS_SCREEN)
-	{
-		// Do specifics for The Controls Screen
-		controls_menu.EventHandler();
-		PreUpdate();
-		controls_menu.Update();
-		controls_menu.Draw();
-	}
+	
+	return mode;
 }
 
 void OptionsMenu::PreUpdate()
@@ -146,9 +152,10 @@ void OptionsMenu::Draw()
 }
 
 
-void OptionsMenu::LiveInput( void )
+int OptionsMenu::LiveInput( void )
 {
 	//SDL_EnableUNICODE( 1 );				// http://sdl.beuc.net/sdl.wiki/SDL_EnableUNICODE
+	Uint8 mode=0;
 	
 	while ( SDL_PollEvent( &event ) )
 	{
@@ -164,7 +171,7 @@ void OptionsMenu::LiveInput( void )
 				if( event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					//done = 1;
-					mode = oldmode;
+					mode = MODE_MAINMENU;
 				}
 
 				else if ( event.key.keysym.sym == SDLK_BACKSPACE )
@@ -198,16 +205,23 @@ void OptionsMenu::LiveInput( void )
 			break;
 		}
 	}
-	
+	return mode;
 	//SDL_EnableUNICODE( 0 );
 }
 
-void OptionsMenu::EventHandler()
-{		
+int OptionsMenu::EventHandler()
+{
+	Uint8 submode=0;
+	
 	while ( SDL_PollEvent( &event ) )
 	{
-		UniversalEventHandler(&event);
-		Collisions();
+		submode = UniversalEventHandler(&event);
+		if (submode > 0)
+			return submode;
+		
+		submode = Collisions();
+		if (submode > 0) return submode;
+		
 		switch ( event.type )
 		{
 			case SDL_QUIT:
@@ -221,7 +235,7 @@ void OptionsMenu::EventHandler()
 				if( event.key.keysym.sym == SDLK_ESCAPE )
 				{
 					pPreferences->Apply();
-					MainMenu::submode = MAIN;
+					submode = MAIN;
 				}
 				else if( event.key.keysym.sym == SDLK_RETURN )
 				{
@@ -237,9 +251,11 @@ void OptionsMenu::EventHandler()
 				break;
 		}
 	}
+	
+	return submode;
 }
 
-void OptionsMenu::Collisions()
+int OptionsMenu::Collisions()
 {
 	Uint8 ms = SDL_GetMouseState(NULL,NULL);
 	if ((ms & SDL_BUTTON(SDL_BUTTON_LEFT)) && (status == SLIDING_SVOL || status == SLIDING_MVOL))
@@ -281,7 +297,7 @@ void OptionsMenu::Collisions()
 					if( MouseCollidesWith( &tExit->rect ) ) 
 					{
 						pPreferences->Apply();
-						MainMenu::submode = MAIN; // Exit
+						return MAIN; // Exit
 					}
 					else if (MouseCollidesWith(&tControls->rect) )
 					{
@@ -309,6 +325,8 @@ void OptionsMenu::Collisions()
 		default:
 			break;
 	}
+	
+	return 0;
 }
 
 
@@ -461,12 +479,14 @@ void ControlsMenu::Draw()
 	
 }
 
-void ControlsMenu::EventHandler()
+int ControlsMenu::EventHandler()
 {
+	//Uint8 mode;
 	while ( SDL_PollEvent( &event ) )
 	{
 		UniversalEventHandler(&event);
 		Collisions();
+		
 		switch ( event.type )
 		{
 			case SDL_QUIT:
@@ -497,6 +517,7 @@ void ControlsMenu::EventHandler()
 				break;
 		}
 	}
+	return 0;
 }
 
 

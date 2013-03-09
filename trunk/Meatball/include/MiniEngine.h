@@ -29,10 +29,10 @@ public:
 	virtual void PreDraw( void );
 	virtual void PostDraw( void );
 	virtual void Draw( void );
-	virtual void Do();
+	virtual int Do();
 	
-	virtual void Input() { EventHandler(); HeldKey_Handler(); }
-	virtual void EventHandler() {}
+	virtual int Input();
+	virtual int EventHandler() { return 0; }
 	virtual void HeldKey_Handler() {}
 };
 

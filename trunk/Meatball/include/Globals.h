@@ -83,7 +83,7 @@ extern SDL_bool fps_display;
 extern Uint32 colorkey;
 
 /// The Current mode
-extern Uint8 mode, oldmode;
+//extern Uint8 mode, oldmode;
 
 extern SDL_Renderer *Renderer;
 

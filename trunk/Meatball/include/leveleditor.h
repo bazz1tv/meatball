@@ -8,6 +8,7 @@
 
 #include "Globals.h"
 class cMVelSprite;
+
 #include "MiniEngine.h"
 
 class cMultiSelect;
@@ -42,9 +43,9 @@ public:
 	void HeldKey_fastcopy();
 	void HeldKey_movecamera();
 	
-	void EventHandler();
+	int EventHandler();
 	void MouseButton_Held_Events();
-	void KeyDownEvents(SDL_Event&);
+	int KeyDownEvents(SDL_Event&);
 	void MouseButton_Down_Events(SDL_Event&);
 	void MouseButton_Up_Events(SDL_Event&);
 	
