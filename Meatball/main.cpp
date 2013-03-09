@@ -10,6 +10,7 @@
 #include "effects.h"
 #include "bullet.h"
 #include "enemy.h"
+#include "MasterBlaster.h"
 
 cSettings *pGameSettings;
 cPreferences *pPreferences;
@@ -17,8 +18,6 @@ cPreferences *pPreferences;
 cCamera *pCamera;
 cPlayer *pPlayer;
 cLevel *pLevel;
-cLevelEditor *pLevelEditor;
-cConsole *pConsole;
 
 
 int DoGame();
@@ -27,43 +26,21 @@ void CreateWindow();
 void QuitGame();
 void SetupMouse();
 
+MasterBlaster *MB;
 
 int main (int argc, char **argv)
 {
+	
 	initEngine();
-	DoGame();
-
+	MB = new MasterBlaster();
+	
+	
+	
+	MB->Loop();
 	// After having MUCH FUN.....
+	delete MB;
 	QuitGame();
-	return 0;
-}
-
-/// Runs the actual Game
-int DoGame()
-{
-	Game game;
-	MainMenu mainmenu;
-
-	mode = MODE_MAINMENU;
-
-	while( 1 )
-	{
-		if (mode == MODE_MAINMENU)
-			mainmenu.Do();
-
-		else if (mode == MODE_GAME)
-			game.Do();
-#ifdef INGAME_LEVEL_EDITOR
-		else if (mode == MODE_LEVELEDITOR)
-			pLevelEditor->Do();
-#endif
-		else if (mode == MODE_CONSOLE)
-			pConsole->Do();
-
-		else if (mode == MODE_QUIT)
-			break;
-	}
-
+	
 	return 0;
 }
 
@@ -110,10 +87,7 @@ void initEngine()
 	pCamera = new cCamera();
 	pPlayer = new cPlayer();
 	pLevel = new cLevel();
-#ifdef INGAME_LEVEL_EDITOR
-	pLevelEditor = new cLevelEditor();
-#endif
-	pConsole = new cConsole();
+
 }
 
 void CreateWindow()
@@ -190,16 +164,7 @@ void QuitGame( void )
 	{
 		delete pMouse;
 	}
-#ifdef INGAME_LEVEL_EDITOR
-	if( pLevelEditor )
-	{
-		delete pLevelEditor;
-	}
-#endif
-	if ( pConsole )
-	{
-		delete pConsole;
-	}
+
 	
 	if( pAudio )
 	{

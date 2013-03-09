@@ -6,7 +6,7 @@
 
 	V 2.3.2
 
-	LGPL (c) F. Richter
+	 Michael Bazzinotti
 
 */
 

@@ -3,9 +3,9 @@
 
 #define MAINMENU_MUSIC MUSIC_DIR "chillin.xm"
 
-int MainMenu::submode = MAIN;
+int cMainMenu::submode = MAIN;
 
-MainMenu::MainMenu()
+cMainMenu::cMainMenu()
 {
 	Light_reverse =SDL_FALSE;
 	done = 0;
@@ -47,7 +47,7 @@ MainMenu::MainMenu()
 	SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
 }
 
-MainMenu::~MainMenu()
+cMainMenu::~cMainMenu()
 {
 	delete Button_Exit;
 	delete Button_Start;
@@ -67,13 +67,13 @@ MainMenu::~MainMenu()
 
 }
 
-void MainMenu::UpdateHardware()
+void cMainMenu::UpdateHardware()
 {
 	pMouse->Update(Renderer);
 	pAudio->Update();
 }
 
-void MainMenu::UpdateGraphics()
+void cMainMenu::UpdateGraphics()
 {
 	pFramerate->SetSpeedFactor( );
 
@@ -103,7 +103,7 @@ void MainMenu::UpdateGraphics()
 }
 
 /// @todo The Alpha adjustments here could be turned into API calls.
-void MainMenu::Collisions()
+void cMainMenu::Collisions()
 {
 	
 	if( MouseCollidesWith( &Button_Exit->rect ) && Button_Exit->GetAlpha() < 245 ) 
@@ -153,7 +153,7 @@ void MainMenu::Collisions()
 		}
 }
 
-void MainMenu::Update()
+void cMainMenu::Update()
 {
 	UpdateHardware();
 	UpdateGraphics();
@@ -161,7 +161,7 @@ void MainMenu::Update()
 	UpdateLogic();
 }
 
-void MainMenu::UpdateLogic()
+void cMainMenu::UpdateLogic()
 {
 	if( Light_reverse ==SDL_TRUE ) 
 		{
@@ -216,38 +216,35 @@ void MainMenu::UpdateLogic()
 
 
 
-void MainMenu::Do()
+int cMainMenu::Do()
 {
-	//pAudio->PlayMusik( MUSIC_DIR "menumusic.mp3" );
+	Uint8 mode=0;
 
-	
-	if (submode == MAIN)
+	while (mode == 0)
 	{
-		Update();
-		EventHandler();
-		PostDraw();
-	}
-	else if (submode == OPTIONS)
-	{
-		optionsmenu.Do();
-	}
-	
-	// if the mode got switched (we pressed start game or quit)
-	if( mode == MODE_GAME ) // Start
-	{
-#ifndef _DEBUG
-		pAudio->PlaySound( SMan->GetPointer( SOUNDS_DIR "Button_1.ogg" ) );
-#ifndef DEMO
-		pAudio->FadeOutMusic( 2000 );
-#endif
-		//FadeOutBG();
-#endif
+		if (submode == MAIN)
+		{
+			Update();
+			mode = EventHandler();
+			PostDraw();
+		}
+		else if (submode == OPTIONS)
+		{
+			submode = optionsmenu.Do();
+		}
 		
-		Game::Init();
+		// if the mode got switched (we pressed start game or quit)
 	}
+	
+	if (mode == MODE_GAME)
+	{
+		pAudio->PlaySound( SMan->GetPointer( SOUNDS_DIR "Button_1.ogg" ) );
+	}
+	
+	return mode;
 }
 
-void MainMenu::FadeOutBG()
+void cMainMenu::FadeOutBG()
 {
 	int i; 
 	SDL_Surface *surface; 
@@ -271,19 +268,22 @@ void MainMenu::FadeOutBG()
 
 }
 
-void MainMenu::PostDraw()
+void cMainMenu::PostDraw()
 {
 	//ScreenTexture = SDL_CreateTextureFromSurface(Renderer, Screen);
 	SDL_RenderPresent(Renderer);
 	//SDL_Flip( Screen );
 }
 
-void MainMenu::EventHandler()
+int cMainMenu::EventHandler()
 {
-	
+	int mode=0;
 		while ( SDL_PollEvent( &event ) )
 		{
-			UniversalEventHandler(&event);
+			mode = UniversalEventHandler(&event);
+			if (mode > 0)
+				return mode;
+			
 			switch ( event.type )
 			{
 				case SDL_QUIT:
@@ -299,11 +299,11 @@ void MainMenu::EventHandler()
 					}
 					if( event.key.keysym.sym == SDLK_ESCAPE )
 					{
-						mode = MODE_QUIT;
+						return MODE_QUIT;
 					}
 					else if( event.key.keysym.sym == SDLK_RETURN )
 					{
-						mode = MODE_GAME;
+						return MODE_GAME;
 					}
 					else if ( event.key.keysym.sym == SDLK_o )
 					{
@@ -318,11 +318,11 @@ void MainMenu::EventHandler()
 						/// [Mouse Collision Check]
 						if( MouseCollidesWith( &Button_Exit->rect ) ) 
 						{
-							mode = MODE_QUIT; // Exit
+							return MODE_QUIT; // Exit
 						}
 						else if( MouseCollidesWith( &Button_Start->rect ) ) 
 						{
-							mode = MODE_GAME; // Start
+							return MODE_GAME; // Start
 						}
 						else if( MouseCollidesWith( &tOptions->rect ) )
 						{
@@ -337,4 +337,6 @@ void MainMenu::EventHandler()
 					break;
 			}
 		}
+	
+	return 0;
 }

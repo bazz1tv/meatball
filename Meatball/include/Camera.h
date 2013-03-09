@@ -6,6 +6,7 @@
 #include "Globals.h"
 
 
+
 /// The Camera class
 class cCamera
 {

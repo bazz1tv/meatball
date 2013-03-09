@@ -21,19 +21,19 @@ extern cPreferences *pPreferences;
 	@link MODE_GAME @endlink
 	@detail ..? 
 */
-class Game : public MiniEngine
+class cGame : public MiniEngine
 {
 public:
-	~Game();
-	static void Init();
+	~cGame();
+	void Init();
 	void Update();
-	void EventHandler();
+	int EventHandler();
 	void HeldKey_Handler();
 	
 	void Player_Input();
-	void Keydown_Events(SDL_Event *event);
-	void MouseButtonDown_Events(SDL_Event*);
-	void MouseButtonUp_Events(SDL_Event*);
+	int Keydown_Events(SDL_Event *event);
+	int MouseButtonDown_Events(SDL_Event*);
+	int MouseButtonUp_Events(SDL_Event*);
 	
 	void TurnOnCollisionRects();
 

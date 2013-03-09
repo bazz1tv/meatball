@@ -19,7 +19,7 @@ SDL_bool MouseCollidesWith(SDL_Rect *Crect);
 
 /// The Universal Event Handler handles some events that should be handled in ANY event handler,
 /// like Window Resize events for instance
-void UniversalEventHandler(SDL_Event*);
+int UniversalEventHandler(SDL_Event*);
 //
 
 #endif

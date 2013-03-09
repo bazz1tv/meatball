@@ -50,7 +50,7 @@ SDL_bool fps_display =SDL_FALSE;
 Uint32 colorkey = 0;
 
 /// The Current mode
-Uint8 mode, oldmode;
+//Uint8 mode, oldmode;
 	
 
 

@@ -6,7 +6,7 @@
 
 	V 1.1
 
-	LGPL (c) F. Richter
+	 Bazz
 
 */
 

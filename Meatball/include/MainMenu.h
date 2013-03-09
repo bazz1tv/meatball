@@ -21,11 +21,11 @@ extern cFont *pFont;
 
 class OptionsMenu;
 
-class MainMenu : public MiniEngine
+class cMainMenu : public MiniEngine
 {
 public:
-	MainMenu();
-	~MainMenu();
+	cMainMenu();
+	~cMainMenu();
 
 
 	cBasicSprite *Button_Start,*Button_Exit;
@@ -48,8 +48,8 @@ public:
 	void UpdateGraphics();
 	void UpdateHardware();
 	void UpdateLogic();
-	void Do();
-	void EventHandler();
+	int Do();
+	int EventHandler();
 };
 
 

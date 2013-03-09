@@ -105,7 +105,7 @@ void cPlayer :: Update( void )
 	
 	// Movement
 
-	if( direction == LEFT && MOVELEFT_KEYS_HELD && mode != MODE_CONSOLE )
+	if( direction == LEFT && MOVELEFT_KEYS_HELD /*&& mode != MODE_CONSOLE*/ )
 	{
 		if( onGround ) 
 		{
@@ -136,7 +136,7 @@ void cPlayer :: Update( void )
 			AddVelocity( (-WALK_VELOCITY+0.4)*pFramerate->speedfactor, 0 );	
 		}
 	}
-	else if( direction == RIGHT && MOVERIGHT_KEYS_HELD && mode != MODE_CONSOLE ) 
+	else if( direction == RIGHT && MOVERIGHT_KEYS_HELD /*&& mode != MODE_CONSOLE*/ )
 	{
 		if( onGround ) 
 		{
@@ -256,7 +256,7 @@ void cPlayer :: Update( void )
 	}
 	else if( (double)posy + height > (double)window_height + pCamera->y ) // Bottom
 	{
-		SetPos( posx, (double)window_height - height );
+		//SetPos( posx, (double)window_height - height );
 		
 		state = STATE_STAYING;
 		jumpvel = 0;

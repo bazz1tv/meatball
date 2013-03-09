@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C93E39513942B5A0096FAB3 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		E931074416EBBA0600434FA6 /* MasterBlaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E931074316EBBA0600434FA6 /* MasterBlaster.cpp */; };
 		E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */; };
 		E98CCB9816B46E6C0003938A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E98CCB9916B46E6C0003938A /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
@@ -86,6 +87,8 @@
 		9C93E39913942B5A0096FAB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9C93E39A13942B5A0096FAB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E901FD7F16B364E200DB896C /* OS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OS.h; sourceTree = "<group>"; };
+		E931074316EBBA0600434FA6 /* MasterBlaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MasterBlaster.cpp; path = ../MasterBlaster.cpp; sourceTree = "<group>"; };
+		E931074616EBBA1300434FA6 /* MasterBlaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterBlaster.h; path = ../include/MasterBlaster.h; sourceTree = "<group>"; };
 		E942ED5916D064CF0048C7EB /* MultiSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiSelect.h; path = ../include/MultiSelect.h; sourceTree = "<group>"; };
 		E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiSelect.cpp; path = ../MultiSelect.cpp; sourceTree = "<group>"; };
 		E98CCB9316B46E6C0003938A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -206,6 +209,15 @@
 				9C93E39A13942B5A0096FAB3 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E931074716EBBA2200434FA6 /* MasterBlaster */ = {
+			isa = PBXGroup;
+			children = (
+				E931074316EBBA0600434FA6 /* MasterBlaster.cpp */,
+				E931074616EBBA1300434FA6 /* MasterBlaster.h */,
+			);
+			name = MasterBlaster;
 			sourceTree = "<group>";
 		};
 		E942ED2616CF1B9A0048C7EB /* Slider */ = {
@@ -401,6 +413,7 @@
 		E9A3438116BB7E4A00072818 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
 				E9A3437216BB7C9C00072818 /* Menus */,
 				E9A3437116BB7C8B00072818 /* Camera */,
@@ -540,6 +553,7 @@
 				E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */,
 				E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */,
 				E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */,
+				E931074416EBBA0600434FA6 /* MasterBlaster.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +583,7 @@
 				);
 				PRELINK_LIBS = "";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = ../Meatball/include;
 			};
 			name = Debug;
 		};
@@ -585,12 +600,14 @@
 				HEADER_SEARCH_PATHS = /opt/local/include;
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lboost_system-mt",
 					"-lboost_filesystem-mt",
 				);
 				PRELINK_LIBS = "";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = ../Meatball/include;
 			};
 			name = Release;
 		};

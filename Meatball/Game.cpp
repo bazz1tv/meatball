@@ -22,7 +22,7 @@ extern cLevel *pLevel;
 //////////////////////////////////////////////////////
 
 
-Game::~Game()
+cGame::~cGame()
 {
 	/*if( pPlayer )
 	{
@@ -50,7 +50,7 @@ Game::~Game()
 	}*/
 }
 /// The init function to be called before starting your First Game.
-void Game::Init()
+void cGame::Init()
 {
 	// This function is for the audio playlist, and all it does is fill up some variables
 	// with every song filename in the MUSIC_DIR directory
@@ -62,7 +62,7 @@ void Game::Init()
 	
 	// Messing with Global Variables here XD 
 	done = 0;				// These need to get tighted up. Make their purpose more known
-	mode = MODE_GAME;		// this global universal variable tracks Game modes. (see defines.h)
+	//mode = MODE_GAME;		// this global universal variable tracks Game modes. (see defines.h)
 	
 	pPlayer->init();		// add his images to the Image Manager, give him initial weapon
 	pPlayer->Reset();		// set direction, position, setACtiveWeapon (pistol)
@@ -80,7 +80,7 @@ void Game::Init()
 	
 }
 
-void Game::Update()
+void cGame::Update()
 {
 	PreUpdate();
 	pLevel->Update();
@@ -91,7 +91,7 @@ void Game::Update()
 	PostUpdate();
 }
 
-void Game::Player_Input()
+void cGame::Player_Input()
 {
 	if( MOVERIGHT_KEYS_HELD )
 	{
@@ -117,50 +117,54 @@ void Game::Player_Input()
 	
 	if( FIRE_KEY_HELD )
 	{
-		if( mode == MODE_GAME )
-		{
+		//if( mode == MODE_GAME )
+		//{
 			pPlayer->Fire( );
-		}
+		//}
 	}
 	
 
 }
 
-void Game::HeldKey_Handler()
+void cGame::HeldKey_Handler()
 {
 	Player_Input();
 }
 
 
 
-void Game::TurnOnCollisionRects()
+void cGame::TurnOnCollisionRects()
 {
 	// Turns on the Collision Rects for all collide-able images on the screen
 	
 	//
 }
 
-void Game::EventHandler()
+int cGame::EventHandler()
 {
+	Uint8 mode=0;
+	
 	while ( SDL_PollEvent( &event ) )
 	{
-		UniversalEventHandler(&event);
+		mode = UniversalEventHandler(&event);
+		if (mode > 0)
+			return mode;
 		
 		switch ( event.type )
 		{
 			case SDL_KEYDOWN:
 			{
-				Keydown_Events(&event);
+				return Keydown_Events(&event);
 				break;
 			}
 			case SDL_MOUSEBUTTONDOWN:
 			{
-				MouseButtonDown_Events(&event);
+				return MouseButtonDown_Events(&event);
 				break;
 			}
 			case SDL_MOUSEBUTTONUP:
 			{
-				MouseButtonUp_Events(&event);
+				return MouseButtonUp_Events(&event);
 				break;
 			}
 			default:
@@ -169,14 +173,15 @@ void Game::EventHandler()
 			}
 		}
 	}
+	return 0;
 }
 
-void Game::Keydown_Events(SDL_Event *event)
+int cGame::Keydown_Events(SDL_Event *event)
 {
 	if( event->key.keysym.sym == SDLK_ESCAPE )
 	{
 		// universal!
-		mode = MODE_MAINMENU;
+		return MODE_MAINMENU;
 	}
 	else if( FIRE_KEY_TRIGGERED )
 	{
@@ -200,13 +205,13 @@ void Game::Keydown_Events(SDL_Event *event)
 	}
 	else if ( event->key.keysym.sym == SDLK_BACKQUOTE )
 	{
-		oldmode = mode;
-		mode = MODE_CONSOLE;
+		//oldmode = mode;
+		return MODE_CONSOLE;
 	}
 	else if( event->key.keysym.sym == SDLK_F8 )
 	{
 #ifdef INGAME_LEVEL_EDITOR
-		mode = MODE_LEVELEDITOR;
+		return MODE_LEVELEDITOR;
 #endif
 	}
 	
@@ -228,9 +233,11 @@ void Game::Keydown_Events(SDL_Event *event)
 	}
 #endif
 	//------------
+	
+	return 0;
 }
 
-void Game::MouseButtonDown_Events(SDL_Event *event)
+int cGame::MouseButtonDown_Events(SDL_Event *event)
 {
 	if( event->button.button == 1 ) // Left Mouse Button
 	{
@@ -244,9 +251,10 @@ void Game::MouseButtonDown_Events(SDL_Event *event)
 	{
 		pPlayer->Jump();
 	}
+	return 0;
 }
 
-void Game::MouseButtonUp_Events(SDL_Event *event)
+int cGame::MouseButtonUp_Events(SDL_Event *event)
 {
 	if( event->button.button == 1 ) // Left Mouse Button
 	{
@@ -260,6 +268,7 @@ void Game::MouseButtonUp_Events(SDL_Event *event)
 	{
 		
 	}
+	return 0;
 }
 
 

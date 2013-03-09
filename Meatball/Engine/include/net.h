@@ -6,7 +6,7 @@
 
 	V 2.1 Beta 150
 
-	LGPL (c) F. Richter
+	 Bazz
 
 */
 
