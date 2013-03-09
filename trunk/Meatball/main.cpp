@@ -144,15 +144,15 @@ void CreateWindow()
 	// Access the SDL_DisplayMode structure to see what was received.
 	DEBUGLOG("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
 	
-	Window = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN);
+	Window = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	
 	window_height = pGameSettings->Screen_H;
 	window_width = pGameSettings->Screen_W;
 	
 	//SDL_SetWindowBordered(Window, SDL_FALSE);
-	SDL_SetWindowMaximumSize(Window, window_width, window_height);
-	SDL_SetWindowMinimumSize(Window, window_width, window_height);
+	//SDL_SetWindowMaximumSize(Window, window_width, window_height);
+	//SDL_SetWindowMinimumSize(Window, window_width, window_height);
 	SDL_DisableScreenSaver();
 	
 	SDL_Surface *icon = SDL_LoadBMP("data/favicon.bmp");

@@ -271,7 +271,7 @@ void cLevel :: PrintSaveHeader()
 
 void cLevel :: SavePlayerPos()
 {
-	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, (int)window_height - (int)pPlayer->Startposy );
+	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, /*(int)window_height -*/ (int)pPlayer->Startposy );
 	ofs->write( row, strlen( row ) );
 }
 
@@ -578,10 +578,10 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 			return 0; // error
 		}
 
-		pPlayer->SetPos( (double) atoi( parts[1] ), (double)window_height - (double) atoi( parts[2] ) );
+		pPlayer->SetPos( (double) atoi( parts[1] ), /*(double)window_height - */(double) atoi( parts[2] ) );
 		
 		pPlayer->Startposx = (double) atoi( parts[1] );
-		pPlayer->Startposy = (double)window_height - (double) atoi( parts[2] );
+		pPlayer->Startposy = /*(double)window_height - */(double) atoi( parts[2] );
 	}
 	else if( strcmp( parts[0], "Music") == 0 )
 	{
