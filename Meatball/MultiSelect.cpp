@@ -58,7 +58,7 @@ void cMultiSelect::DoRect()
 	if (diff_Y < 0)
 	{
 		rect.y = (int)pMouse->posy;
-		// new width is from Y to original Y
+		// new height is from Y to original Y
 		rect.h = (int)rectY_origin - rect.y;
 	}
 	else

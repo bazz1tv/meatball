@@ -7,7 +7,7 @@
 
 #ifdef _WIN32
 #include <SDL_ep.h>
-#else
+#elif __APPLE__
 #include <MeatBallEngine/SDL_ep.h>
 #endif
 
