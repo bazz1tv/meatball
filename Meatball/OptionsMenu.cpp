@@ -31,7 +31,7 @@ OptionsMenu::OptionsMenu()
 	tMusicVol   = new TextObject(x,y,"Music Volume", optionsfont);
 	tSoundVol   = new TextObject(x,y+40,"Sound Volume", optionsfont);
 	tControls	= new TextObject(x,y+180, "Controls", optionsfont);
-	tExit		= new TextObject(x,window_height-40,"Exit", optionsfont);
+	tExit		= new TextObject(x,window.h-40,"Exit", optionsfont);
 
 
 	tMusicVol->SetFGColor(SetColor(255,0,0));
@@ -344,8 +344,8 @@ ControlsMenu::ControlsMenu()
 	tMoveRight		= new TextObject(x,y+40,		"Move Right: ",	font);
 	tFirePrimary	= new TextObject(x,y+180,		"Fire: ", font);
 	tJump			= new TextObject(x,y+220,		"Jump: ",			font);
-	tExit			= new TextObject(x,window_height-40,"Exit",			font);
-	tWaitForInput	= new TextObject(window_width/2,window_height/2,"Press a Key...", font);
+	tExit			= new TextObject(x,window.h-40,"Exit",			font);
+	tWaitForInput	= new TextObject(window.w/2,window.h/2,"Press a Key...", font);
 
 	//Render
 	tMoveLeft->Render();
@@ -380,8 +380,8 @@ ControlsMenu::ControlsMenu()
 	tFirePrimary_CurKey->Render();
 	tJump_CurKey->Render();
 	tWaitForInput->Render_shaded();
-	tWaitForInput->rect.x = (window_width/2 - tWaitForInput->surface->w/2);
-	tWaitForInput->rect.y = (window_height/2 - tWaitForInput->surface->h/2);
+	tWaitForInput->rect.x = (window.w/2 - tWaitForInput->surface->w/2);
+	tWaitForInput->rect.y = (window.h/2 - tWaitForInput->surface->h/2);
 
 	
 }

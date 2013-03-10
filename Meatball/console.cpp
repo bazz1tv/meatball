@@ -63,7 +63,7 @@ cConsole :: cConsole( void )
 
 	BG = new cBasicSprite( Renderer, IMan->GetPointer( "Console_BG" ), 0, 0 );
 
-	BG->SetSize( (double)window_width, window_height / 3.1);
+	BG->SetSize( (double)window.w, window.h / 3.1);
 	/////////////////
 
 	// Init Font ////

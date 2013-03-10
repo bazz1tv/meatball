@@ -487,7 +487,7 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 	else if( event.key.keysym.sym == SDLK_F8 )
 	{
 		mode = MODE_GAME;
-		pCamera->SetPos( pPlayer->posx - pCamera->x - window_width, 0 );
+		pCamera->SetPos( pPlayer->posx - pCamera->x - window.w, 0 );
 	}
 	// IF LCTRL IS HELD
 	else if (event.key.keysym.mod & KMOD_LCTRL)

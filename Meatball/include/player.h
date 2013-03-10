@@ -5,8 +5,7 @@
 
 #include "defines.h"
 #include "sprite.h"
-
-
+//#include "Globals.h"
 
 class cWeapon;
 class cCamera;
@@ -14,10 +13,9 @@ class cCamera;
 extern cFramerate *pFramerate;
 extern cCamera *pCamera;
 extern cImageManager *IMan;
+extern Window window;
 
 
-extern int window_width;
-extern int window_height;
 
 
 

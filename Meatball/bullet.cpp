@@ -166,7 +166,7 @@ void cBullet :: Update( void )
 
 void cBullet::Windows_BoundsChecking()
 {
-	if( posx - width > (double)window_width + pCamera->x )
+	if( posx - width > (double)window.w + pCamera->x )
 	{
 		visible =SDL_FALSE;
 	}
@@ -179,7 +179,7 @@ void cBullet::Windows_BoundsChecking()
 	{
 		visible =SDL_FALSE;
 	}
-	else if( posy - height > (double)window_height + pCamera->y )
+	else if( posy - height > (double)window.h + pCamera->y )
 	{
 		visible =SDL_FALSE;
 	}

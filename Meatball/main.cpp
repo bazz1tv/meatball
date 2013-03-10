@@ -12,10 +12,12 @@
 #include "enemy.h"
 #include "MasterBlaster.h"
 
+// Local Globals
+MasterBlaster *MB;
 
+// Extern Globals
 cSettings *pGameSettings;
 cPreferences *pPreferences;
-
 cCamera *pCamera;
 cPlayer *pPlayer;
 cLevel *pLevel;
@@ -39,7 +41,7 @@ void InitCamera();
 void InitPlayer();
 void InitLevel();
 
-MasterBlaster *MB;
+
 
 int main (int argc, char **argv)
 {
@@ -128,15 +130,15 @@ void MakeWindow()
 	// Access the SDL_DisplayMode structure to see what was received.
 	DEBUGLOG("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
 	
-	Window = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+	window.sdlw = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 	
-	//SDL_SetWindowMaximumSize(Window, window_width, window_height);
-	//SDL_SetWindowMinimumSize(Window, window_width, window_height);
+	//SDL_SetWindowMaximumSize(Window, window.h, window.h);
+	//SDL_SetWindowMinimumSize(Window, window.h, window.h);
 	
-	Renderer = GetRenderer(Window, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	Renderer = GetRenderer(window.sdlw, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	
-	window_height = pGameSettings->Screen_H;
-	window_width = pGameSettings->Screen_W;
+	window.h = pGameSettings->Screen_H;
+	window.w = pGameSettings->Screen_W;
 	
 	//SDL_SetWindowBordered(Window, SDL_FALSE);
 	
@@ -152,7 +154,7 @@ void SetupWindowAndDockIcon()
 	SDL_SetColorKey(icon, SDL_TRUE, ckey);
 	
 	// The icon is attached to the window pointer
-	SDL_SetWindowIcon(Window, icon);
+	SDL_SetWindowIcon(window.sdlw, icon);
 	// ...and the surface containing the icon pixel data is no longer required.
 	SDL_FreeSurface(icon);
 }
@@ -240,7 +242,7 @@ void QuitGame( void )
 	
 	SDL_EnableScreenSaver();
 	
-	SDL_DestroyWindow(Window);
+	SDL_DestroyWindow(window.sdlw);
 	SDL_DestroyRenderer(Renderer);
 	
 	//SDL_FreeSurface(Screen);

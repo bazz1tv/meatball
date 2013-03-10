@@ -26,7 +26,7 @@ int UniversalEventHandler(SDL_Event *event)
 		{
 			if( event->key.keysym.sym == SDLK_BACKSLASH && (SDL_GetModState() & KMOD_ALT) )
 			{
-				SDL_ToggleFS(Window);
+				SDL_ToggleFS(window.sdlw);
 			}
 			break;
 		}
@@ -65,7 +65,7 @@ int SDL_ToggleFS(SDL_Window *win)
 			return -1;
 		}
 
-		//SDL_SetWindowSize(Window,window_width,window_height);
+		//SDL_SetWindowSize(Window,window.w,window.h);
 		
         return 0;
     } 
@@ -78,7 +78,7 @@ int SDL_ToggleFS(SDL_Window *win)
 		return -1;
 	}
 
-	//SDL_SetWindowSize(Window,window_width,window_height);
+	//SDL_SetWindowSize(Window,window.w,window.h);
 
 	// Code here to redo all graphics textures ( Windows Only ) 
 	

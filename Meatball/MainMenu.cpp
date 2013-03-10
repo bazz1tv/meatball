@@ -1,17 +1,15 @@
 #include "MainMenu.h"
 #include "Game.h"
 
-#define MAINMENU_MUSIC MUSIC_DIR "chillin.xm"
+#define MAINMENU_MUSIC MUSIC_DIR "fight.ogg"
 
 int cMainMenu::submode = MAIN;
 
 cMainMenu::cMainMenu()
 {
 	Light_reverse =SDL_FALSE;
-	//done = 0;
+	
 	submode = MAIN;
-
-	//optionsmenu = OptionsMenu();
 
 	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 	
@@ -31,15 +29,15 @@ cMainMenu::cMainMenu()
 	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Light1.png", colorkey, 0 ), "Light_1" );
 	// Register the sprite
 	Menu_Background = new cBasicSprite( Renderer, IMan->GetPointer( "Menu_Background" ), 0, 0 );
-	Button_Start = new cBasicSprite( Renderer, IMan->GetPointer( "Start_Button" ), window_width - window_width/3, 250 );
-	Button_Exit = new cBasicSprite( Renderer, IMan->GetPointer( "Exit_Button" ), window_width - window_width/3, 250 + (int)Button_Start->height + 125);
-	Light1 = new cBasicSprite( Renderer, IMan->GetPointer( "Light_1" ), window_width/7-20, window_height/2 );
+	Button_Start = new cBasicSprite( Renderer, IMan->GetPointer( "Start_Button" ), window.w - window.w/3, 250 );
+	Button_Exit = new cBasicSprite( Renderer, IMan->GetPointer( "Exit_Button" ), window.w - window.w/3, 250 + (int)Button_Start->height + 125);
+	Light1 = new cBasicSprite( Renderer, IMan->GetPointer( "Light_1" ), window.w/7-20, window.h/2 );
 	/// [Adding a Sprite]
 
 	// Resize The Background image
-	Menu_Background->SetSize( (double)window_width, (double)window_height );
+	Menu_Background->SetSize( (double)window.w, (double)window.h );
 
-	tOptions = new TextObject(window_width - window_width/3, 250 + (int)Button_Start->height + 50, "Options", myfont);
+	tOptions = new TextObject(window.w - window.w/3, 250 + (int)Button_Start->height + 50, "Options", myfont);
 	SDL_Color optionsColor = SetColor(0,0,0);
 	tOptions->SetFGColor(optionsColor);
 	tOptions->Render();
@@ -295,7 +293,7 @@ int cMainMenu::EventHandler()
 				{
 					if( event.key.keysym.sym == SDLK_BACKSLASH && (SDL_GetModState() & KMOD_ALT) )
 					{
-						SDL_ToggleFS(Window);
+						SDL_ToggleFS(window.sdlw);
 					}
 					if( event.key.keysym.sym == SDLK_ESCAPE )
 					{

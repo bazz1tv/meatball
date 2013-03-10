@@ -271,7 +271,7 @@ void cLevel :: PrintSaveHeader()
 
 void cLevel :: SavePlayerPos()
 {
-	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, /*(int)window_height -*/ (int)pPlayer->Startposy );
+	sprintf( row, "Player %d %d\n", (int) pPlayer->Startposx, /*(int)window.h -*/ (int)pPlayer->Startposy );
 	ofs->write( row, strlen( row ) );
 }
 
@@ -310,15 +310,15 @@ void cLevel :: SaveMapObjects()
 			
 			if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_MASSIVE )
 			{
-				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
+				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
 			else if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_PASSIVE )
 			{
-				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
+				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
 			else if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_HALFMASSIVE )
 			{
-				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window_height - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
+				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
 			else
 			{
@@ -492,19 +492,19 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 
 		if( strcmp( parts[4], "MASSIVE" ) == 0 )
 		{
-			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height -(double)atoi( parts[3] ) );
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h -(double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_MASSIVE;
 			pLevelData_Layer1->AddSprite( temp );
 		}
 		else if( strcmp( parts[4], "PASSIVE" ) == 0 )
 		{
-			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height -(double)atoi( parts[3] ) );
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h -(double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_PASSIVE;
 			pLevelData_Layer1->AddSprite( temp );
 		}
 		else if( strcmp( parts[4], "HALFMASSIVE" ) == 0 )
 		{
-			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window_height - (double)atoi( parts[3] ) );
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h - (double)atoi( parts[3] ) );
 			temp->type = SPRITE_TYPE_HALFMASSIVE;
 			pLevelData_Layer1->AddSprite( temp );
 		}
@@ -578,10 +578,10 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 			return 0; // error
 		}
 
-		pPlayer->SetPos( (double) atoi( parts[1] ), /*(double)window_height - */(double) atoi( parts[2] ) );
+		pPlayer->SetPos( (double) atoi( parts[1] ), /*(double)window.h - */(double) atoi( parts[2] ) );
 		
 		pPlayer->Startposx = (double) atoi( parts[1] );
-		pPlayer->Startposy = /*(double)window_height - */(double) atoi( parts[2] );
+		pPlayer->Startposy = /*(double)window.h - */(double) atoi( parts[2] );
 	}
 	else if( strcmp( parts[0], "Music") == 0 )
 	{

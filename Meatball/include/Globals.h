@@ -66,9 +66,7 @@ extern TTF_Font *Menu_Font;
 extern TTF_Font *bold_16;
 
 /// the Screen
-extern SDL_Window *Window;
-extern int window_width;
-extern int window_height;
+extern Window window;
 
 /// Keyboard Keystate
 extern Uint8 *keys;

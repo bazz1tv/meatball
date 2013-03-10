@@ -42,5 +42,12 @@ DLLINTERFACE void SetScreenScale (int sx, int sy);
 /// Quits SDL
 DLLINTERFACE void QuitSDL( void );
 
+struct Window
+{
+	SDL_Window *sdlw;
+	int w;
+	int h;
+};
+
 #endif
 // @}
