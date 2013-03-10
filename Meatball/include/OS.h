@@ -37,9 +37,9 @@
 #elif _WIN32
 //
 // Include the Memory Leak Detection
-/*#ifdef _DEBUG
+#ifdef _DEBUG
 #include <vld.h>
-#endif*/
+#endif
 
 #include <SDL_ep.h>
 

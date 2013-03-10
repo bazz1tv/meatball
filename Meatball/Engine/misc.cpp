@@ -1,6 +1,7 @@
 
 #include "SDL_ep.h"
 #include <sstream>
+#include <ctime>
 
 
 float Random( float min, float max )

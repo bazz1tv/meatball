@@ -673,6 +673,14 @@
 				RelativePath="..\include\leveleditor.h"
 				>
 			</File>
+			<File
+				RelativePath="..\MultiSelect.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\MultiSelect.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Weapon"
@@ -1073,6 +1081,14 @@
 				RelativePath="..\include\Game.h"
 				>
 			</File>
+			<File
+				RelativePath="..\MiniEngine.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\MiniEngine.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Sprite"
@@ -1169,6 +1185,10 @@
 				Name="Slider"
 				>
 				<File
+					RelativePath="..\include\Range.h"
+					>
+				</File>
+				<File
 					RelativePath="..\Slider.cpp"
 					>
 				</File>
@@ -1215,6 +1235,18 @@
 			</File>
 			<File
 				RelativePath="..\include\TextObject.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="MasterBlaster"
+			>
+			<File
+				RelativePath="..\MasterBlaster.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\include\MasterBlaster.h"
 				>
 			</File>
 		</Filter>

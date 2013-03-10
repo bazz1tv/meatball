@@ -21,7 +21,7 @@ public:
 	ObjectManager(SDL_bool delete_at_destroy=OM_SAVE_OBJS_AT_DESTROY, SDL_bool delete_or_free = OM_DELETE_OBJS)
 	{
 		objects = NULL; objcount = 0;
-		obliterate_objects_at_destructor = delete_or_free;
+		delete_or_free_objects = delete_or_free;
 		obliterate_objects_at_destructor = delete_at_destroy;
 	}
 	~ObjectManager()
@@ -32,14 +32,14 @@ public:
 			if (delete_or_free_objects == OM_DELETE_OBJS)
 			{
 				#ifdef _DEBUG
-					DEBUGLOG("Object Manager: Deleting OM<%s> contents\n", typeid(T).name());
+					//DEBUGLOG("Object Manager: Deleting OM<%s> contents\n", typeid(T).name());
 				#endif
 				DeleteAllObjectContents();
 			}
 			else // free them
 			{
 				#ifdef _DEBUG
-					DEBUGLOG("Object Manager: Freeing OM<%s> contents\n", typeid(T).name());
+					//DEBUGLOG("Object Manager: Freeing OM<%s> contents\n", typeid(T).name());
 				#endif
 				FreeAllObjectContents();
 			}
@@ -127,7 +127,7 @@ void ObjectManager<T>::DeleteAllObjectContents()
 {
 	if (objects && objcount > 0)
 	{
-		DEBUGLOG("\tDeleting %d objects\n", objcount);
+		//DEBUGLOG("\tDeleting %d objects\n", objcount);
 		
 		for (unsigned int i=0; i < objcount; i++)
 		{
@@ -145,7 +145,7 @@ void ObjectManager<T>::FreeAllObjectContents()
 {
 	if (objects && objcount > 0)
 	{
-		DEBUGLOG("\tFreeing %d objects\n", objcount);
+		//DEBUGLOG("\tFreeing %d objects\n", objcount);
 		for (unsigned int i=0; i < objcount; i++)
 		{
 			SDL_free(objects[i]);

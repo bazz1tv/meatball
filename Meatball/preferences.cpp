@@ -245,7 +245,7 @@ void cPreferences :: Parse( char* command, int line )
 	
 	for( i = 0; i < count ; i++ )
 	{
-		delete( parts[i] );
+		//delete( parts[i] );
 	}
 	
 	delete []parts;

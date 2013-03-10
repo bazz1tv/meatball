@@ -116,7 +116,7 @@ public:
 
 	TTF_Font *Console_font;
 	
-	double history_y = topHistoryLine_Y;
+	double history_y; // = topHistoryLine_Y;
 	
 	SDL_Rect consoleInput_rect, strcpy_rect[11], cursor_rect;
 	
