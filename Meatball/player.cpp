@@ -5,9 +5,11 @@
 #include "preferences.h"
 #include "effects.h"
 #include "Collision.h"
+#include "MasterBlaster.h"
 
 extern cSettings *pGameSettings;
 extern cPlayer *pPlayer;
+extern MasterBlaster *MB;
 
 #define WALK_VELOCITY 0.9
 
@@ -105,7 +107,7 @@ void cPlayer :: Update( void )
 	
 	// Movement
 
-	if( direction == LEFT && MOVELEFT_KEYS_HELD /*&& mode != MODE_CONSOLE*/ )
+	if( direction == LEFT && MOVELEFT_KEYS_HELD && MB->mode != MODE_CONSOLE )
 	{
 		if( onGround ) 
 		{
@@ -136,7 +138,7 @@ void cPlayer :: Update( void )
 			AddVelocity( (-WALK_VELOCITY+0.4)*pFramerate->speedfactor, 0 );	
 		}
 	}
-	else if( direction == RIGHT && MOVERIGHT_KEYS_HELD /*&& mode != MODE_CONSOLE*/ )
+	else if( direction == RIGHT && MOVERIGHT_KEYS_HELD && MB->mode != MODE_CONSOLE )
 	{
 		if( onGround ) 
 		{
@@ -243,7 +245,7 @@ void cPlayer :: Update( void )
 	}
 	else if( (double)posx + width > (double)window_width + pCamera->x ) 
 	{
-		posx = (double)window_width - width;
+		//posx = (double)window_width - width;
 	}
 
 	if( posy < 0 ) // Up

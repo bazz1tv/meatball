@@ -17,7 +17,6 @@ int UniversalEventHandler(SDL_Event *event)
 				{
 					case SDL_WINDOWEVENT_RESIZED:
 						{
-							
 							break;
 						}
 				}

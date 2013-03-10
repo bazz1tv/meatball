@@ -24,30 +24,7 @@ extern cLevel *pLevel;
 
 cGame::~cGame()
 {
-	/*if( pPlayer )
-	{
-		delete pPlayer;
-	}
 	
-	if( pLevel )
-	{
-		delete pLevel;
-	}
-#ifdef INGAME_LEVEL_EDITOR
-	if( pLevelEditor )
-	{
-		delete pLevelEditor;
-	}
-#endif
-	
-	if ( pConsole )
-	{
-		delete pConsole;
-	}
-	if( pCamera )
-	{
-		delete pCamera;
-	}*/
 }
 /// The init function to be called before starting your First Game.
 void cGame::Init()
@@ -61,7 +38,7 @@ void cGame::Init()
 	
 	
 	// Messing with Global Variables here XD 
-	done = 0;				// These need to get tighted up. Make their purpose more known
+	//done = 0;				// These need to get tighted up. Make their purpose more known
 	//mode = MODE_GAME;		// this global universal variable tracks Game modes. (see defines.h)
 	
 	pPlayer->init();		// add his images to the Image Manager, give him initial weapon

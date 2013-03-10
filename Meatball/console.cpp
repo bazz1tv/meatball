@@ -10,7 +10,9 @@
 #include "player.h"
 #include "level.h"
 #include "Camera.h"
+#include "MasterBlaster.h"
 
+extern MasterBlaster *MB;
 extern cConsole *pConsole;
 extern cPlayer *pPlayer;
 extern cLevel *pLevel;
@@ -145,7 +147,7 @@ int cConsole :: EventHandler( void )
 		{
 		case SDL_QUIT:
 			{
-				done = 2;
+				//done = 2;
 				break;
 			}
 		case SDL_KEYDOWN:
@@ -153,7 +155,7 @@ int cConsole :: EventHandler( void )
 				if( event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					//done = 1;
-					mode = 1;	// code to exit console
+					return mode = 1;	// code to exit console
 				}
 
 				else if ( event.key.keysym.sym == SDLK_BACKSPACE )
@@ -192,6 +194,8 @@ int cConsole :: EventHandler( void )
 			}
 			case SDL_TEXTINPUT:
 			{
+				if (strcmp("`", event.text.text) == 0)
+					break;
 				consoleInput_str += event.text.text; // += (char)event.key.keysym.unicode;
 				break;
 			}
@@ -818,8 +822,10 @@ void moveConsoleHistoryLinesUp(int nlines/*=1*/) // number of lines to move up b
 
 SDL_bool QuitAll( string &str )
 {
-	done = 1;
+	//done = 1;
 	//mode = MODE_QUIT;
+	MB->mode = MODE_QUIT;
+	
 	return SDL_TRUE;
 }
 

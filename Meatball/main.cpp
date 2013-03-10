@@ -25,6 +25,18 @@ void initEngine();
 void CreateWindow();
 void QuitGame();
 void SetupMouse();
+void InitPreferences();
+void InitObjects();
+void SetupWindowAndDockIcon();
+
+void InitFramerate(int nframes_sec);
+void InitImageManager();
+void InitSoundManager();
+void InitAudio();
+void InitFont();
+void InitCamera();
+void InitPlayer();
+void InitLevel();
 
 MasterBlaster *MB;
 
@@ -32,11 +44,10 @@ int main (int argc, char **argv)
 {
 	
 	initEngine();
+	
 	MB = new MasterBlaster();
-	
-	
-	
 	MB->Loop();
+	
 	// After having MUCH FUN.....
 	delete MB;
 	QuitGame();
@@ -50,46 +61,44 @@ void initEngine()
 	InitEP();
 	InitSDL( SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE );
 	
-	//
+	SetColorKey(0xffff00ff);
+	
+	// Enable Dropfile Support
 	SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
+	
+	InitFramerate(60);
+	InitPreferences();
+	
+	InitImageManager();
+	InitSoundManager();
+	
+	InitAudio();
+	InitFont();
+	InitCamera();
+	InitPlayer();
+	InitLevel();
+	
+	CreateWindow();
+	SetupMouse();
+	keys = SDL_GetKeyboardState(NULL);
+}
 
+void InitFramerate(int nframes_sec)
+{
+	pFramerate = new cFramerate( nframes_sec );
+	SetSpriteSpeedfactor( &pFramerate->speedfactor );
+}
+
+void InitPreferences()
+{
+	// InitPreferences
 	pPreferences  = new cPreferences();
 	pGameSettings = new cSettings();
 	pPreferences->Load();
 	pPreferences->Apply();
-	
-	SetSpriteSpeedfactor( &pFramerate->speedfactor );
-	
-	CreateWindow();
-	
-	
-	keys = SDL_GetKeyboardState(NULL);
-	
-	pFramerate = new cFramerate( 60 );
-	
-	IMan	= new cImageManager();
-	SMan	= new cSoundManager();
-	
-	//To go into SharedDataMan
-	SetColorKey(0xffff00ff);
-	SetupMouse();
-	
-	pFont	= new cFont();
-	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
-	
-	pAudio = new cAudio();
-	pAudio->bMusic		 = pGameSettings->Music;
-	pAudio->bSounds		 = pGameSettings->Sounds;
-	pAudio->Sound_Volume = pGameSettings->svol;
-	pAudio->Music_Volume = pGameSettings->mvol;
-	pAudio->InitAudio();
-	
-	pCamera = new cCamera();
-	pPlayer = new cPlayer();
-	pLevel = new cLevel();
-
 }
 
+// To-Do: Expand this function to query available video modes and make best Selection.
 void CreateWindow()
 {
 	// Declare structures to be filled in.
@@ -128,8 +137,13 @@ void CreateWindow()
 	//SDL_SetWindowMaximumSize(Window, window_width, window_height);
 	//SDL_SetWindowMinimumSize(Window, window_width, window_height);
 	SDL_DisableScreenSaver();
-	
+	SetupWindowAndDockIcon();
+}
+
+void SetupWindowAndDockIcon()
+{
 	SDL_Surface *icon = SDL_LoadBMP("data/favicon.bmp");
+	// this ckey is hardcoded based on the bg color of favicon.bmp
 	Uint32 ckey = SDL_MapRGB(icon->format, 128, 128, 128);
 	SDL_SetColorKey(icon, SDL_TRUE, ckey);
 	
@@ -137,6 +151,17 @@ void CreateWindow()
 	SDL_SetWindowIcon(Window, icon);
 	// ...and the surface containing the icon pixel data is no longer required.
 	SDL_FreeSurface(icon);
+}
+
+void SetupMouse()
+{
+	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
+	
+	// MeatBall
+	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
+	
+	// Do not show the Hardware Cursor
+	SDL_ShowCursor( 0 );
 }
 
 void QuitGame( void )
@@ -220,13 +245,35 @@ void QuitGame( void )
 	QuitSDL();
 }
 
-void SetupMouse()
+void InitImageManager()
+{	IMan	= new cImageManager();	}
+void InitSoundManager()
+{	SMan	= new cSoundManager();	}
+void InitAudio()
 {
-	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
-	
-	// MeatBall
-	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
-	
-	// Do not show the Hardware Cursor
-	SDL_ShowCursor( 0 );
+	// Preferences must be loaded Already
+	pAudio = new cAudio();
+	pAudio->bMusic		 = pGameSettings->Music;
+	pAudio->bSounds		 = pGameSettings->Sounds;
+	pAudio->Sound_Volume = pGameSettings->svol;
+	pAudio->Music_Volume = pGameSettings->mvol;
+	pAudio->InitAudio();
 }
+void InitFont()
+{
+	pFont	= new cFont();
+	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
+}
+void InitCamera()
+{
+	pCamera = new cCamera();
+}
+void InitPlayer()
+{
+	pPlayer = new cPlayer();
+}
+void InitLevel()
+{
+	pLevel = new cLevel();
+}
+

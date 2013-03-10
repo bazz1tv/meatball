@@ -18,6 +18,7 @@ public:
 	int Game();
 	int MainMenu();
 	int Console();
+	int LevelEditor();
 	
 	Uint8 mode, oldmode;
 	cLevelEditor *pLevelEditor;
