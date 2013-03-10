@@ -446,10 +446,10 @@ void cLevel :: Parse( char* command, int line )
 	// Level Message handler
 	ParseLine( parts, count, line );
 	
-	for( i = 0; i < count ; i++ )
+	/*for( i = 0; i < count ; i++ )
 	{
-		delete( parts[i] );
-	}
+		//delete( parts[i] );
+	}*/
 	
 	delete []parts;
 }

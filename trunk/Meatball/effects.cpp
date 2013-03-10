@@ -3,8 +3,10 @@
 #include "Collision.h"
 
 
-cMParticleEmitter **ParticleEmitter = NULL;
-unsigned int ParticleEmitterCount = 0;
+//cMParticleEmitter **ParticleEmitter = NULL;
+//unsigned int ParticleEmitterCount = 0;
+
+ObjectManager<cMParticleEmitter> ParticleEmitter(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS);
 
 cMParticle :: cMParticle( double x, double y, double nangle /** = 0 */, double nspeed /** = 0  */ ) :
 cMAngleSprite( NULL, x, y, nangle, nspeed )
@@ -167,10 +169,11 @@ void cMParticle :: HandleCollision( int direction )
 }
 /**################################ MParticle Emitter #########################################*/
 
-cMParticleEmitter :: cMParticleEmitter( double x, double y )
+cMParticleEmitter :: cMParticleEmitter( double x, double y ) :
+Particles(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 {	
-	Particles = NULL;
-	ParticleCount = 0;
+	//Particles = NULL;
+	//ParticleCount = 0;
 
 	posx = x;
 	posy = y;
@@ -189,7 +192,7 @@ cMParticleEmitter :: cMParticleEmitter( double x, double y )
 
 cMParticleEmitter :: ~cMParticleEmitter( void )
 {
-	if( Particles ) 
+	/*if( Particles ) 
 	{
 		for( unsigned int i = 0; i < ParticleCount; i++ )
 		{
@@ -205,12 +208,13 @@ cMParticleEmitter :: ~cMParticleEmitter( void )
 		SDL_free(Particles);
 		//delete []Particles;
 		Particles = NULL;
-	}
+	}*/
+	Particles.~ObjectManager();
 }
 
 void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 {
-	if( Particles )
+	/*if( Particles )
 	{
 		for( unsigned int i = 0; i < ParticleCount; i++ )
 		{
@@ -226,9 +230,10 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 		//delete []Particles;
 		SDL_free(Particles);
 		Particles = NULL;
-	}
+	}*/
+	Particles.~ObjectManager();
 
-	ParticleCount = 0;
+	//ParticleCount = 0;
 
 	for( unsigned int i = 0; i < numParticles; i++ )
 	{
@@ -252,8 +257,9 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 
 		new_Particle->visible = SDL_TRUE;
 
-		Particles = (cMParticle**) SDL_realloc( Particles, ++ParticleCount * sizeof(cMParticle*) );
-		Particles[ParticleCount - 1] = new_Particle;
+		Particles.add(new_Particle);
+		//Particles = (cMParticle**) SDL_realloc( Particles, ++ParticleCount * sizeof(cMParticle*) );
+		//Particles[ParticleCount - 1] = new_Particle;
 	}
 }
 
@@ -264,18 +270,19 @@ void cMParticleEmitter :: Update( void )
 		return;
 	}
 	
-	int PvisibleCount = ParticleCount;
+	int PvisibleCount = Particles.objcount;
 
-	for( unsigned int i = 0; i < ParticleCount; i++ )
+	for( unsigned int i = 0; i < Particles.objcount; i++ )
 	{
-		if( Particles[i]->active == SDL_TRUE && Particles[i]->visible == SDL_TRUE )
+		cMParticle *ptr = Particles.objects[i];
+		if( ptr->active == SDL_TRUE && ptr->visible == SDL_TRUE )
 		{
-			CollideMove( (cBasicSprite*)Particles[i], Particles[i]->dirx * pFramerate->speedfactor, Particles[i]->diry * pFramerate->speedfactor, Particles[i]->Collision, Particles[i]->type );
+			CollideMove( (cBasicSprite*)ptr, ptr->dirx * pFramerate->speedfactor, ptr->diry * pFramerate->speedfactor, ptr->Collision, ptr->type );
 		}
 		
-		Particles[i]->Update();
+		ptr->Update();
 
-		if( !Particles[i]->visible == SDL_TRUE )
+		if( !ptr->visible == SDL_TRUE )
 		{
 			PvisibleCount--;
 		}
@@ -296,9 +303,9 @@ void cMParticleEmitter :: Draw( SDL_Renderer *renderer )
 	
 	
 	
-	for( unsigned int i = 0; i < ParticleCount; i++ )
+	for( unsigned int i = 0; i < Particles.objcount; i++ )
 	{
-		Particles[i]->Draw( renderer );
+		Particles.objects[i]->Draw( renderer );
 	}
 	
 	
@@ -307,28 +314,28 @@ void cMParticleEmitter :: Draw( SDL_Renderer *renderer )
 void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngreen,Uint8 nblue,
 						double nfadeoutspeed, unsigned int power, double nRandomness, double fixedDirection /** = -1  */)
 {
-	for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
+	for( unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
-		if( !ParticleEmitter[i] ) 
+		if( !ParticleEmitter.objects[i] ) 
 		{
 			continue;
 		}
 
-		if( ParticleEmitter[i]->visible == SDL_FALSE )
+		if( ParticleEmitter.objects[i]->visible == SDL_FALSE )
 		{
-			ParticleEmitter[i]->posx = x;
-			ParticleEmitter[i]->posy = y;
-			ParticleEmitter[i]->angle = fixedDirection;
-			ParticleEmitter[i]->speed = nSpeed;
-			ParticleEmitter[i]->red = nred;
-			ParticleEmitter[i]->green = ngreen;
-			ParticleEmitter[i]->blue = nblue;
-			ParticleEmitter[i]->alpha = 255;
-			ParticleEmitter[i]->fadeoutspeed = nfadeoutspeed;
-			ParticleEmitter[i]->Randomness = nRandomness;	
-			ParticleEmitter[i]->visible = SDL_TRUE;
+			ParticleEmitter.objects[i]->posx = x;
+			ParticleEmitter.objects[i]->posy = y;
+			ParticleEmitter.objects[i]->angle = fixedDirection;
+			ParticleEmitter.objects[i]->speed = nSpeed;
+			ParticleEmitter.objects[i]->red = nred;
+			ParticleEmitter.objects[i]->green = ngreen;
+			ParticleEmitter.objects[i]->blue = nblue;
+			ParticleEmitter.objects[i]->alpha = 255;
+			ParticleEmitter.objects[i]->fadeoutspeed = nfadeoutspeed;
+			ParticleEmitter.objects[i]->Randomness = nRandomness;	
+			ParticleEmitter.objects[i]->visible = SDL_TRUE;
 
-			ParticleEmitter[i]->InitParticles( power );
+			ParticleEmitter.objects[i]->InitParticles( power );
 			
 			return;
 		}
@@ -347,20 +354,21 @@ void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngre
 	
 	new_ParticleEmitter->InitParticles( power );
 
-	ParticleEmitter = (cMParticleEmitter**) SDL_realloc( ParticleEmitter, ++ParticleEmitterCount * sizeof(cMParticleEmitter*) );
-	ParticleEmitter[ParticleEmitterCount - 1] = new_ParticleEmitter;
+	//ParticleEmitter = (cMParticleEmitter**) SDL_realloc( ParticleEmitter, ++ParticleEmitterCount * sizeof(cMParticleEmitter*) );
+	//ParticleEmitter[ParticleEmitterCount - 1] = new_ParticleEmitter;
+	ParticleEmitter.add(new_ParticleEmitter);
 }
 
 void UpdateParticleEmitter( void )
 {
-	for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
+	for( unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
-		if( !ParticleEmitter[i] ) 
+		if( !ParticleEmitter.objects[i] ) 
 		{
 			continue;
 		}
 
-		ParticleEmitter[i]->Update();
+		ParticleEmitter.objects[i]->Update();
 	}
 }
 
@@ -368,14 +376,14 @@ void DrawParticleEmitter( SDL_Renderer *renderer )
 {
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	
-	for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
+	for( unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
-		if( !ParticleEmitter[i] ) 
+		if( !ParticleEmitter.objects[i] ) 
 		{
 			continue;
 		}
 
-		ParticleEmitter[i]->Draw( renderer );
+		ParticleEmitter.objects[i]->Draw( renderer );
 	}
 	
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
@@ -383,7 +391,7 @@ void DrawParticleEmitter( SDL_Renderer *renderer )
 
 void DeleteAllParticleEmitter( void )
 {
-	if( ParticleEmitter ) 
+	/*if( ParticleEmitter ) 
 	{
 		for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
 		{
@@ -396,9 +404,10 @@ void DeleteAllParticleEmitter( void )
 			ParticleEmitter[i] = NULL;
 		}
 
-		delete []ParticleEmitter;
-		ParticleEmitter = NULL;
+		//delete []ParticleEmitter;
+		//ParticleEmitter = NULL;
 	}
 
-	ParticleEmitterCount = 0;
+	ParticleEmitterCount = 0;*/
+	ParticleEmitter.~ObjectManager();
 }

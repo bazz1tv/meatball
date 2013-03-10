@@ -4,6 +4,7 @@
 
 #include "Globals.h"
 #include "sprite.h"
+#include "ObjectManager.h"
 
 class cCamera;
 
@@ -69,14 +70,16 @@ public:
 	SDL_bool visible;
 	
 	/// The Particles
-	cMParticle **Particles;
-	unsigned int ParticleCount;
+	//cMParticle **Particles;
+	//unsigned int ParticleCount;
+	ObjectManager<cMParticle> Particles;
 
 };
 
 /// The dynamic Particle Emittter Array
-extern cMParticleEmitter **ParticleEmitter;
-extern unsigned int ParticleEmitterCount;
+extern ObjectManager<cMParticleEmitter> ParticleEmitter;
+//extern cMParticleEmitter **ParticleEmitter;
+//extern unsigned int ParticleEmitterCount;
 
 /** Adds an Particle Emitter
  * Power : Amount of Particles

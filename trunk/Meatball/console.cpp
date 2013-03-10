@@ -41,6 +41,9 @@ void CmdAddAlias(cCMD* &cmd, string str)
 /// Creates the console font, Push() all cCMDs to cConsole::CMDList, 
 cConsole :: cConsole( void )
 {
+
+	history_y = topHistoryLine_Y;
+
 	// clear surfaces
 	consoleInput_surface = NULL;	// input display
 	consoleInput_tex = NULL;
