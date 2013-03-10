@@ -28,9 +28,9 @@ void cCamera :: Update( void )
 	{
 		
 		// The actual algorithm here is a mystery to me. It was made by FLuxy 
-		if( (pPlayer->posx - window_width) > (x - 300) ) // Right
+		if( (pPlayer->posx - window.w) > (x - 300) ) // Right
 		{
-			x += ((pPlayer->posx - x + 300 - window_width)/10)*pFramerate->speedfactor; // nice and smooth ;)
+			x += ((pPlayer->posx - x + 300 - window.w)/10)*pFramerate->speedfactor; // nice and smooth ;)
 		}
 		else if( pPlayer->posx < (x + 300) ) // Left
 		{
@@ -39,9 +39,9 @@ void cCamera :: Update( void )
 
 		// Added Vertical Scrolling. Jan 6 2012
 		// Note: Play with (y-200) and (y+200) to adjust when scrolling activates
-		if( (pPlayer->posy - window_height) > (y - 200) ) // DOWN
+		if( (pPlayer->posy - window.h) > (y - 200) ) // DOWN
 		{
-			y += ((pPlayer->posy - y + 200 - window_height)/10)*pFramerate->speedfactor; // nice and smooth ;)
+			y += ((pPlayer->posy - y + 200 - window.h)/10)*pFramerate->speedfactor; // nice and smooth ;)
 		}
 		else if( pPlayer->posy < (y + 140) ) // UP
 		{

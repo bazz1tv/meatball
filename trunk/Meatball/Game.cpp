@@ -49,12 +49,12 @@ void cGame::Init()
 	pLevel->Load( "test.lvl" );	// load the level
 	DEBUGLOG ("Finished loading level\n");
 	// if we are NOT in demo mode, let's load the level's MusicFile
-#ifndef DEMO
+/*#ifndef DEMO
 	string filename = MUSIC_DIR + pLevel->Musicfile;
 	pAudio->PlayMusik((char*)filename.c_str(), 1);
 	while (!pAudio->MusicPlaying()) {Mix_PlayMusic(pAudio->Music, 1);}
 #endif
-	
+*/	
 }
 
 void cGame::Update()
@@ -198,7 +198,7 @@ int cGame::Keydown_Events(SDL_Event *event)
 	}
 	else if( event->key.keysym.sym == SDLK_F2 ) // Enemy Test
 	{
-		AddEnemy( 200, 0 + (double)( window_height/2 ), ENEMY_AF373 );
+		AddEnemy( 200, 0 + (double)( window.h/2 ), ENEMY_AF373 );
 	}
 	
 	// DEBUG MODE FEATURES

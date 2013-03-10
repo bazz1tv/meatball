@@ -40,8 +40,8 @@ void cSettings :: Apply( void )
 	}
 
 	/*if( Screen && ( ( Screen->flags & SDL_FULLSCREEN && !Fullscreen ) || ( !( Screen->flags & SDL_FULLSCREEN ) &&
-		Fullscreen ) || ( Screen->format->BytesPerPixel != Screen_Bpp ) || ( window_width != Screen_W ) || 
-		( window_height != Screen_H ) ) ) 
+		Fullscreen ) || ( Screen->format->BytesPerPixel != Screen_Bpp ) || ( window.w != Screen_W ) || 
+		( window.h != Screen_H ) ) ) 
 	{
 		// Todo : Reload the images and reset the Screen
 	}*/

@@ -17,8 +17,7 @@ class Collisiondata;
 extern SDL_Renderer *Renderer;
 extern cCamera *pCamera;
 extern cImageManager *IMan;
-extern int window_height;
-extern int window_width;
+extern Window window;
 
 /// @defgroup BULLET_TYPES
 // @{

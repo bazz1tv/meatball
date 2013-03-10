@@ -32,9 +32,10 @@ TTF_Font *bold_16;
 
 
 /// the Screen
-SDL_Window *Window;
-int window_width;
-int window_height;
+/*SDL_Window *Window;
+int window.h;
+int window.h;*/
+Window window;
 SDL_Renderer *Renderer;
 
 /// Keyboard Keystate

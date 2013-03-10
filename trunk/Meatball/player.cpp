@@ -243,9 +243,9 @@ void cPlayer :: Update( void )
 	{
 		SetPos( 0, posy );
 	}
-	else if( (double)posx + width > (double)window_width + pCamera->x ) 
+	else if( (double)posx + width > (double)window.w + pCamera->x )
 	{
-		//posx = (double)window_width - width;
+		//posx = (double)window.w - width;
 	}
 
 	if( posy < 0 ) // Up
@@ -256,9 +256,9 @@ void cPlayer :: Update( void )
 		SetVelocity( velx, 0 );
 		state = STATE_FALLING;*/
 	}
-	else if( (double)posy + height > (double)window_height + pCamera->y ) // Bottom
+	else if( (double)posy + height > (double)window.h + pCamera->y ) // Bottom
 	{
-		//SetPos( posx, (double)window_height - height );
+		//SetPos( posx, (double)window.h - height );
 		
 		state = STATE_STAYING;
 		jumpvel = 0;
