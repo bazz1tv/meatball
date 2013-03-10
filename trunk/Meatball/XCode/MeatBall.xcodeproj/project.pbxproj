@@ -413,8 +413,8 @@
 		E9A3438116BB7E4A00072818 /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
+				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9A3437216BB7C9C00072818 /* Menus */,
 				E9A3437116BB7C8B00072818 /* Camera */,
 				E9A3437016BB7C6000072818 /* Graphics Objects */,

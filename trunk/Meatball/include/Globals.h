@@ -56,7 +56,7 @@ extern cTCPNet *pTCP;
 // @}
 
 /// finished with game or not?
-extern int done;
+//extern int done;
 
 /// game paused?
 extern SDL_bool paused;

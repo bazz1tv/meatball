@@ -394,7 +394,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 /** @ingroup LE_Input */
 int cLevelEditor::EventHandler()
 {
-	Uint8 mode=0;
+	int mode=0;
 	while ( SDL_PollEvent( &event ) )
 	{
 		mode = UniversalEventHandler(&event);
@@ -409,7 +409,7 @@ int cLevelEditor::EventHandler()
 		{
 			case SDL_QUIT:
 			{
-				done = 2;
+				//done = 2;
 				break;
 			}
 			case SDL_DROPFILE:
@@ -422,6 +422,7 @@ int cLevelEditor::EventHandler()
 			case SDL_KEYDOWN:
 			{
 				mode = KeyDownEvents(event);
+				if (mode > 0) return mode;
 				break;
 			}
 				
@@ -441,7 +442,7 @@ int cLevelEditor::EventHandler()
 		}
 	}
 	
-	return mode;
+	return (int)mode;
 }
 
 /*void cLevelEditor::ActiveCoordinatesMode()
@@ -451,7 +452,7 @@ int cLevelEditor::EventHandler()
 
 int cLevelEditor::KeyDownEvents(SDL_Event &event)
 {
-	Uint8 mode=0;
+	int mode=0;
 	// ESCAPE to ESCAPE mouse command or LEVEL MODE
 	if( event.key.keysym.sym == SDLK_ESCAPE )
 	{
@@ -479,7 +480,7 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 	else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
 	{
 		//oldmode = mode;
-		mode = MODE_CONSOLE;
+		return MODE_CONSOLE;
 		
 	}
 	// F8 to Exit LEVLE MODE

@@ -8,7 +8,7 @@ int cMainMenu::submode = MAIN;
 cMainMenu::cMainMenu()
 {
 	Light_reverse =SDL_FALSE;
-	done = 0;
+	//done = 0;
 	submode = MAIN;
 
 	//optionsmenu = OptionsMenu();
@@ -288,7 +288,7 @@ int cMainMenu::EventHandler()
 			{
 				case SDL_QUIT:
 				{
-					done = MODE_QUIT;
+					//done = MODE_QUIT;
 					break;
 				}
 				case SDL_KEYDOWN:

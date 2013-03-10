@@ -163,7 +163,7 @@ int OptionsMenu::LiveInput( void )
 		{
 		case SDL_QUIT:
 			{
-				done = 2;
+				//done = 2;
 				break;
 			}
 		case SDL_KEYDOWN:
@@ -227,7 +227,7 @@ int OptionsMenu::EventHandler()
 			case SDL_QUIT:
 			{
 				pPreferences->Apply();
-				done = MODE_QUIT;
+				//done = MODE_QUIT;
 				break;
 			}
 			case SDL_KEYDOWN:
@@ -492,7 +492,7 @@ int ControlsMenu::EventHandler()
 			case SDL_QUIT:
 			{
 				pPreferences->Apply();
-				done = MODE_QUIT;
+				//done = MODE_QUIT;
 				break;
 			}
 			case SDL_KEYDOWN:

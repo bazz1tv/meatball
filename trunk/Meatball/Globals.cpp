@@ -12,7 +12,7 @@
 cMouseCursor *pMouse;		// The Mouse
 
 /// ifSDL_TRUE the game exits
-int done;
+//int done;
 
 /// ifSDL_TRUE the game if paused
 SDL_bool paused;

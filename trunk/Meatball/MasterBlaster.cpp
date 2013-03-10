@@ -44,16 +44,6 @@ MasterBlaster::~MasterBlaster()
 
 int MasterBlaster::Game()
 {
-	/*#ifndef _DEBUG
-		
-		#ifndef DEMO
-			pAudio->FadeOutMusic( 2000 );
-		#endif
-		//FadeOutBG();
-	#endif
-	*/	
-	
-	
 	int mode = pGame->Do();
 	
 	return mode;
@@ -72,28 +62,33 @@ int MasterBlaster::Console()
 	return oldmode;
 }
 
+int MasterBlaster::LevelEditor()
+{
+	return pLevelEditor->Do();
+}
+
 void MasterBlaster::Loop()
 {
+	Uint8 newmode = MODE_MAINMENU; // for first time
 	while( mode != MODE_QUIT )
 	{
-		
+		oldmode = mode;
+		mode = newmode;
 		
 		if (mode == MODE_MAINMENU)
-			mode = MainMenu();
+			newmode = MainMenu();
 		
 		else if (mode == MODE_GAME)
 		{
-			oldmode = MODE_GAME;
-			mode = Game();
+			newmode = Game();
 		}
 		#ifdef INGAME_LEVEL_EDITOR
 			else if (mode == MODE_LEVELEDITOR)
 			{
-				oldmode = MODE_LEVELEDITOR;
-				mode = pLevelEditor->Do();
+				newmode = LevelEditor();
 			}
 		#endif
 		else if (mode == MODE_CONSOLE)
-			mode = Console();
+			newmode = Console();
 	}
 }
