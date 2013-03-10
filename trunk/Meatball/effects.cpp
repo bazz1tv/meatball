@@ -231,12 +231,14 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 		SDL_free(Particles);
 		Particles = NULL;
 	}*/
-	Particles.~ObjectManager();
+	//Particles.~ObjectManager();
+	Particles.DeleteAllObjectContents();
 
 	//ParticleCount = 0;
 
 	for( unsigned int i = 0; i < numParticles; i++ )
 	{
+		//SDL_bool found = SDL_FALSE;
 		double nangle = angle;
 
 		if( angle < 0 ) 
@@ -244,6 +246,35 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 			// Random Direction
 			nangle = Random( 360.0 ); 
 		}
+
+		/*for( unsigned int i = 0; i < Particles.objcount; i++ )
+		{
+			if ( !Particles.objects[i]->visible )
+			{
+				cMParticle *new_Particle = Particles.objects[i];
+				new_Particle->posx = posx;
+				new_Particle->posy = posy;
+				new_Particle->angle = nangle;
+				new_Particle->speed = speed;
+				new_Particle->active = SDL_TRUE;
+				new_Particle->red = this->red;
+				new_Particle->green = this->green;
+				new_Particle->blue = this->blue;
+				new_Particle->alpha = this->alpha;
+
+				new_Particle->fadeoutspeed = this->fadeoutspeed;
+				new_Particle->Randomness = Randomness;
+
+				new_Particle->visible = SDL_TRUE;
+				found = SDL_TRUE;
+				break;
+			}
+		}
+
+		if (found)
+			continue;*/
+
+		
 		
 		cMParticle *new_Particle = new cMParticle( posx, posy, nangle, speed );
 		
