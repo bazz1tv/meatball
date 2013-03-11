@@ -26,6 +26,7 @@
 #define PIXMAPS_DIR "data/pixmaps/"
 #define MUSIC_DIR "data/music/"
 #define SOUNDS_DIR "data/sound/"
+#define SOUNDS_DIR_GUNS SOUNDS_DIR "guns/"
 #define FONT_DIR "data/font/"
 #define LEVEL_DIR "data/levels/"
 

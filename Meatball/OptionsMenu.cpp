@@ -19,7 +19,7 @@ OptionsMenu::OptionsMenu()
 {
 	//curscreen = OPTIONS_SCREEN;
 	status = BROWSING;
-	SMan->Add( pAudio->LoadSound( SOUNDS_DIR "pistol_1.ogg" ), "pistol" );
+	SMan->Add( pAudio->LoadSound( SOUNDS_DIR_GUNS "pistol_1.ogg" ), "pistol" );
 
 	
 	// Init Font ////

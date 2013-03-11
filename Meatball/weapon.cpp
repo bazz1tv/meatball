@@ -54,7 +54,7 @@ cWeapon_Pistol :: cWeapon_Pistol( unsigned int nOrigin, unsigned int nPower, int
 	Weapon_type = WEAPON_PISTOL;
 
 	// Preload the Firing Sound
-	SMan->Add( pAudio->LoadSound( SOUNDS_DIR "pistol_1.ogg" ), "pistol" );
+	SMan->Add( pAudio->LoadSound( SOUNDS_DIR_GUNS "pistol_1.ogg" ), "pistol" );
 }
 
 cWeapon_Pistol :: ~cWeapon_Pistol( void )
@@ -80,7 +80,7 @@ cWeapon_Machinegun :: cWeapon_Machinegun( unsigned int nOrigin, unsigned int nPo
 	Weapon_type = WEAPON_MACHINEGUN;
 
 	// Preload the Firing Sound
-	SMan->Add( pAudio->LoadSound( SOUNDS_DIR "machinegun_1.ogg" ), "machinegun" );
+	SMan->Add( pAudio->LoadSound( SOUNDS_DIR_GUNS "machinegun_1.ogg" ), "machinegun" );
 }
 
 cWeapon_Machinegun :: ~cWeapon_Machinegun( void )
@@ -106,7 +106,7 @@ cWeapon_Laser_X1 :: cWeapon_Laser_X1( unsigned int nOrigin, unsigned int nPower,
 	Weapon_type = WEAPON_LASER_X1;
 
 	// Preload the Firing Sound
-	SMan->Add( pAudio->LoadSound( SOUNDS_DIR "Laser_X1.ogg" ), "laser" );
+	SMan->Add( pAudio->LoadSound( SOUNDS_DIR_GUNS "Laser_X1.ogg" ), "laser" );
 }
 
 cWeapon_Laser_X1 :: ~cWeapon_Laser_X1( void )
