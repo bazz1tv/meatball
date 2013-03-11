@@ -24,6 +24,7 @@ extern cPreferences *pPreferences;
 class cGame : public MiniEngine
 {
 public:
+	cGame() : MiniEngine() { }
 	~cGame();
 	void Init();
 	void Update();

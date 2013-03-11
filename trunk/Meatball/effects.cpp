@@ -236,7 +236,7 @@ void cMParticleEmitter :: InitParticles( unsigned int numParticles )
 
 	//ParticleCount = 0;
 
-	for( unsigned int i = 0; i < numParticles; i++ )
+	for( register unsigned int i = 0; i < numParticles; i++ )
 	{
 		//SDL_bool found = SDL_FALSE;
 		double nangle = angle;
@@ -303,7 +303,7 @@ void cMParticleEmitter :: Update( void )
 	
 	int PvisibleCount = Particles.objcount;
 
-	for( unsigned int i = 0; i < Particles.objcount; i++ )
+	for( register unsigned int i = 0; i < Particles.objcount; i++ )
 	{
 		cMParticle *ptr = Particles.objects[i];
 		if( ptr->active == SDL_TRUE && ptr->visible == SDL_TRUE )
@@ -334,7 +334,7 @@ void cMParticleEmitter :: Draw( SDL_Renderer *renderer )
 	
 	
 	
-	for( unsigned int i = 0; i < Particles.objcount; i++ )
+	for( register unsigned int i = 0; i < Particles.objcount; i++ )
 	{
 		Particles.objects[i]->Draw( renderer );
 	}
@@ -345,7 +345,7 @@ void cMParticleEmitter :: Draw( SDL_Renderer *renderer )
 void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngreen,Uint8 nblue,
 						double nfadeoutspeed, unsigned int power, double nRandomness, double fixedDirection /** = -1  */)
 {
-	for( unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
+	for( register unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
 		if( !ParticleEmitter.objects[i] ) 
 		{
@@ -392,7 +392,7 @@ void AddParticleEmitter( double x, double y, double nSpeed,Uint8 nred,Uint8 ngre
 
 void UpdateParticleEmitter( void )
 {
-	for( unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
+	for( register unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
 		if( !ParticleEmitter.objects[i] ) 
 		{
@@ -407,7 +407,7 @@ void DrawParticleEmitter( SDL_Renderer *renderer )
 {
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	
-	for( unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
+	for( register unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
 		if( !ParticleEmitter.objects[i] ) 
 		{

@@ -62,7 +62,7 @@ int cLevelData :: GetCollidingSpriteNum( SDL_Rect *Crect )
 {
 	if( BasicSprites.objects && Crect )
 	{
-		for( unsigned int i = 0; i < BasicSprites.objcount; i++ )
+		for( register unsigned int i = 0; i < BasicSprites.objcount; i++ )
 		{
 			if( !BasicSprites.objects[i] ) 
 			{
@@ -88,7 +88,7 @@ SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<
 	{
 		//DEBUGLOG( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
 		
-		for( unsigned int i = 0; i < BasicSprites.objcount; i++ )
+		for( register unsigned int i = 0; i < BasicSprites.objcount; i++ )
 		{
 			if( !BasicSprites.objects[i] )
 			{
@@ -113,7 +113,7 @@ cBasicSprite *cLevelData :: GetCollidingSprite( SDL_Rect *Crect )
 {
 	if( BasicSprites.objects && Crect )
 	{
-		for( unsigned int i = 0; i < BasicSprites.objcount; i++ )
+		for( register unsigned int i = 0; i < BasicSprites.objcount; i++ )
 		{
 			if( !BasicSprites.objects[i] ) 
 			{
@@ -177,7 +177,7 @@ void cLevel :: Load( string filename )
 
 	char *contents = new char[500]; // maximal length of an line
 	
-	for( unsigned int i = 0; ifs.getline( contents, 500 ); i++ )
+	for( register unsigned int i = 0; ifs.getline( contents, 500 ); i++ )
 	{
 		Parse( contents, i );
 	}
@@ -289,7 +289,7 @@ void cLevel :: SaveMapObjects()
 	// Map Objects
 	if( pLevelData_Layer1 )
 	{
-		for( i = 0; pLevelData_Layer1->BasicSprites.objcount > i; i++ )
+		for( register unsigned int i = 0; pLevelData_Layer1->BasicSprites.objcount > i; i++ )
 		{
 			if( !pLevelData_Layer1->BasicSprites.objects[i] )
 			{
@@ -339,7 +339,7 @@ void cLevel :: SaveMapEnemies()
 	// Enemies
 	if( Enemies.objects )
 	{
-		for( i = 0; Enemies.objcount > i; i++ )
+		for( register unsigned int i = 0; Enemies.objcount > i; i++ )
 		{
 			if( !Enemies.objects[i] )
 			{
@@ -389,7 +389,7 @@ void cLevel :: Draw( void )
 
 
 
-	for( unsigned int i = 0; i < pLevelData_Layer1->BasicSprites.objcount;i++ )
+	for( register unsigned int i = 0; i < pLevelData_Layer1->BasicSprites.objcount;i++ )
 	{
 		if( !pLevelData_Layer1->BasicSprites.objects[i] ) 
 		{

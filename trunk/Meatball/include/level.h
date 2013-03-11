@@ -98,7 +98,7 @@ private:
 	int ParseLine( char ** parts, unsigned int count, unsigned int line );
 	
 	char row[300];
-	unsigned int i;
+	//unsigned int i;
 	std::ofstream *ofs;
 };
 /*@}*/

@@ -14,29 +14,33 @@ extern cLevel *pLevel;
 extern SDL_bool paused;
 extern cPlayer *pPlayer;
 
+MiniEngine::MiniEngine()
+{
+	mode = 0;
+}
+
 int MiniEngine::Do()
 {
-	Uint8 mode=0;
-	
+	// Reset mode to 0
+	mode = 0;
 	while (mode == 0)
 	{
 		// Might have to change the whole ONLY checking input while !paused thing...
 		if ( !paused )
 		{
-			mode = Input();
+			Input();	// input will return mode value (however, now we use MiniEngine modevariable, it's kinda pointless)
 			Update();
 		}
 	
 		Draw();
 	}
 	
-	return (int)mode;
+	return mode;
 }
 
 int MiniEngine::Input()
 {
-	Uint8 mode=0;
-	mode = EventHandler();
+	EventHandler();
 	HeldKey_Handler();
 	
 	return (int)mode;

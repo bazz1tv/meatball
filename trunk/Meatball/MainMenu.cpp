@@ -5,7 +5,7 @@
 
 int cMainMenu::submode = MAIN;
 
-cMainMenu::cMainMenu()
+cMainMenu::cMainMenu() : MiniEngine()
 {
 	Light_reverse =SDL_FALSE;
 	
@@ -275,7 +275,7 @@ void cMainMenu::PostDraw()
 
 int cMainMenu::EventHandler()
 {
-	int mode=0;
+	//int mode=0;
 		while ( SDL_PollEvent( &event ) )
 		{
 			mode = UniversalEventHandler(&event);
@@ -297,11 +297,11 @@ int cMainMenu::EventHandler()
 					}
 					if( event.key.keysym.sym == SDLK_ESCAPE )
 					{
-						return MODE_QUIT;
+						return mode= MODE_QUIT;
 					}
 					else if( event.key.keysym.sym == SDLK_RETURN )
 					{
-						return MODE_GAME;
+						return mode=MODE_GAME;
 					}
 					else if ( event.key.keysym.sym == SDLK_o )
 					{
@@ -316,11 +316,11 @@ int cMainMenu::EventHandler()
 						/// [Mouse Collision Check]
 						if( MouseCollidesWith( &Button_Exit->rect ) ) 
 						{
-							return MODE_QUIT; // Exit
+							return mode=MODE_QUIT; // Exit
 						}
 						else if( MouseCollidesWith( &Button_Start->rect ) ) 
 						{
-							return MODE_GAME; // Start
+							return mode=MODE_GAME; // Start
 						}
 						else if( MouseCollidesWith( &tOptions->rect ) )
 						{

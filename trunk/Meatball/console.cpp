@@ -40,8 +40,8 @@ void CmdAddAlias(cCMD* &cmd, string str)
 /// Gets the current working path, Loads the Background image to the Image Manager,
 /// Creates the console font, Push() all cCMDs to cConsole::CMDList, 
 cConsole :: cConsole( void )
+: MiniEngine()
 {
-
 	history_y = topHistoryLine_Y;
 
 	// clear surfaces
@@ -140,7 +140,7 @@ cConsole :: ~cConsole( void )
 /// When you hit enter, sends the input to CMDHandler()
 int cConsole :: EventHandler( void )
 {
-	Uint8 mode=0;
+	//Uint8 mode=0;
 	SDL_StartTextInput();
 	
 	while ( SDL_PollEvent( &event ) )
@@ -151,6 +151,7 @@ int cConsole :: EventHandler( void )
 		case SDL_QUIT:
 			{
 				//done = 2;
+				return mode = MODE_QUIT;
 				break;
 			}
 		case SDL_KEYDOWN:
@@ -286,7 +287,7 @@ void cConsole :: CreateTextOnSurfaces()
 	}
 	
 	// Fill the history Surfaces with any Text we have
-	for(int i=0; i < 11; i++ )
+	for(register int i=0; i < 11; i++ )
 	{
 		if ( !strcpy[i].empty() )
 		{
@@ -309,7 +310,7 @@ void cConsole :: SetRects()
 	
 	cursor_rect = SetRect( (int)(consoleInput_x + cursorx), (int)consoleInput_y-2, cursor_surface->w, cursor_surface->h );
 	
-	for(int i=0; i < 11; i++ )
+	for(register int i=0; i < 11; i++ )
 	{
 		if ( sc_surface[i] )
 		{
@@ -825,9 +826,7 @@ void moveConsoleHistoryLinesUp(int nlines/*=1*/) // number of lines to move up b
 
 SDL_bool QuitAll( string &str )
 {
-	//done = 1;
-	//mode = MODE_QUIT;
-	MB->mode = MODE_QUIT;
+	pConsole->mode = MODE_QUIT;
 	
 	return SDL_TRUE;
 }
@@ -978,7 +977,9 @@ SDL_bool SetScreenScaleX(string &str)
 	// use first argument and only argument
 	if (str.empty())
 	{
-		//console_print(pConsole->full_path.string().c_str());
+		stringstream x;
+		x << "X: "<<ScreenScale.x;
+		console_print(x.str().c_str());
 		return SDL_FALSE;
 	}
 	int ScreenScale_x_logged = ScreenScale.x;
@@ -995,7 +996,10 @@ SDL_bool SetScreenScaleY(string &str)
 	// use first argument and only argument
 	if (str.empty())
 	{
-		//console_print(pConsole->full_path.string().c_str());
+		stringstream y;
+		y <<"Y: "<<ScreenScale.y;
+		
+		console_print(y.str().c_str());
 		
 		return SDL_FALSE;
 	}

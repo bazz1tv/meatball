@@ -44,9 +44,7 @@ MasterBlaster::~MasterBlaster()
 
 int MasterBlaster::Game()
 {
-	int mode = pGame->Do();
-	
-	return mode;
+	return pGame->Do();
 }
 
 int MasterBlaster::MainMenu()
@@ -58,8 +56,11 @@ int MasterBlaster::MainMenu()
 
 int MasterBlaster::Console()
 {
-	pConsole->Do();
-	return oldmode;
+	int rval = pConsole->Do();
+	if (rval == MODE_QUIT)
+		return MODE_QUIT;
+	else
+		return oldmode;
 }
 
 int MasterBlaster::LevelEditor()
@@ -69,7 +70,7 @@ int MasterBlaster::LevelEditor()
 
 void MasterBlaster::Loop()
 {
-	Uint8 newmode = MODE_MAINMENU; // for first time
+	register Uint8 newmode = MODE_MAINMENU; // for first time
 	while( mode != MODE_QUIT )
 	{
 		oldmode = mode;

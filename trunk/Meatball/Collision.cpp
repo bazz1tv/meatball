@@ -323,7 +323,7 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 {
 	SDL_Rect rect1 = SetRect( x, y, width, height );
 
-	unsigned int i;
+	register unsigned int i;
 
 	Collision->iCollisionNumber = 0;
 	Collision->iCollisionType = 0;

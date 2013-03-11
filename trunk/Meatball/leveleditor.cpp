@@ -30,7 +30,7 @@ extern cLevel *pLevel;
 
 Uint8 cLevelEditor::Mouse_command = MOUSE_COMMAND_NOTHING;
 
-cLevelEditor :: cLevelEditor( void )
+cLevelEditor :: cLevelEditor( void ) : MiniEngine()
 {
 	Mouse_command = MOUSE_COMMAND_NOTHING;
 	
@@ -394,7 +394,7 @@ cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
 /** @ingroup LE_Input */
 int cLevelEditor::EventHandler()
 {
-	int mode=0;
+	//int mode=0;
 	while ( SDL_PollEvent( &event ) )
 	{
 		mode = UniversalEventHandler(&event);
@@ -452,7 +452,7 @@ int cLevelEditor::EventHandler()
 
 int cLevelEditor::KeyDownEvents(SDL_Event &event)
 {
-	int mode=0;
+	//int mode=0;
 	// ESCAPE to ESCAPE mouse command or LEVEL MODE
 	if( event.key.keysym.sym == SDLK_ESCAPE )
 	{
@@ -480,7 +480,7 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 	else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
 	{
 		//oldmode = mode;
-		return MODE_CONSOLE;
+		return mode=MODE_CONSOLE;
 		
 	}
 	// F8 to Exit LEVLE MODE

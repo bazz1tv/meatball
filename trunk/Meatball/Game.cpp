@@ -119,7 +119,7 @@ void cGame::TurnOnCollisionRects()
 
 int cGame::EventHandler()
 {
-	Uint8 mode=0;
+	//Uint8 mode=0;
 	
 	while ( SDL_PollEvent( &event ) )
 	{
@@ -158,7 +158,7 @@ int cGame::Keydown_Events(SDL_Event *event)
 	if( event->key.keysym.sym == SDLK_ESCAPE )
 	{
 		// universal!
-		return MODE_MAINMENU;
+		return mode=MODE_MAINMENU;
 	}
 	else if( FIRE_KEY_TRIGGERED )
 	{
@@ -182,13 +182,12 @@ int cGame::Keydown_Events(SDL_Event *event)
 	}
 	else if ( event->key.keysym.sym == SDLK_BACKQUOTE )
 	{
-		//oldmode = mode;
-		return MODE_CONSOLE;
+		return mode=MODE_CONSOLE;
 	}
 	else if( event->key.keysym.sym == SDLK_F8 )
 	{
 #ifdef INGAME_LEVEL_EDITOR
-		return MODE_LEVELEDITOR;
+		return mode= MODE_LEVELEDITOR;
 #endif
 	}
 	
