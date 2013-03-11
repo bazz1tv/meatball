@@ -261,7 +261,7 @@ void PreloadBulletimages( void )
 
 void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel /** = 0.0  */ )
 {
-	for( unsigned int i = 0; i < Bullets.objcount; i++ )
+	for( register unsigned int i = 0; i < Bullets.objcount; i++ )
 	{
 		if ( !Bullets.objects[i]->visible )
 		{
@@ -282,7 +282,7 @@ void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet
 
 void UpdateBullets( void )
 {
-	for( unsigned int i = 0; i < Bullets.objcount; i++ )
+	for( register unsigned int i = 0; i < Bullets.objcount; i++ )
 	{
 		if( Bullets.objects[i]->visible == SDL_TRUE )
 		{
@@ -295,7 +295,7 @@ void UpdateBullets( void )
 
 void DrawBullets( SDL_Renderer *renderer )
 {
-	for( unsigned int i = 0; i < Bullets.objcount; i++ )
+	for( register unsigned int i = 0; i < Bullets.objcount; i++ )
 	{
 		Bullets.objects[i]->Draw( renderer );
 	}

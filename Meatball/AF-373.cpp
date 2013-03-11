@@ -8,7 +8,7 @@
 cAF373 :: cAF373( double nposx, double nposy )
 : cEnemy( nposx, nposy )
 {
-	for( int i = 0;i < 2; i++ )
+	for(register int i = 0;i < 2; i++ )
 	{
 		images[i] = NULL;
 	}

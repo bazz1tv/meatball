@@ -108,7 +108,7 @@ public:
 
 
 	double consoleInput_x, consoleInput_y;			// x coord and y coord for str's, x coord for cursor
-
+	//int mode;
 	SDL_bool DrawCur;
 	double ttDrawCur;
 

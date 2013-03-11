@@ -68,7 +68,6 @@ OptionsMenu::~OptionsMenu()
 
 int OptionsMenu::Do()
 {
-	int mode =0;
 	while (mode == 0)
 	{
 		if (curscreen == OPTIONS_SCREEN)

@@ -51,7 +51,7 @@ void cEnemy :: Die( void )
 
 void AddEnemy( double nposx, double nposy, unsigned int etype )
 {
-	for( unsigned int i = 0; i < Enemies.objcount; i++ )
+	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
 		if ( !Enemies.objects[i]->visible && Enemies.objects[i]->Enemy_type == etype )
 		{
@@ -84,7 +84,7 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 
 void UpdateEnemies( void )
 {
-	for( unsigned int i = 0; i < Enemies.objcount; i++ )
+	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
 		if( !Enemies.objects[i] ) 
 		{
@@ -103,7 +103,7 @@ int GetCollidingEnemyNum( SDL_Rect *Crect )
 {
 	if( Enemies.objects && Crect )
 	{
-		for( unsigned int i = 0; i < Enemies.objcount; i++ )
+		for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 		{
 			if( !Enemies.objects[i] ) 
 			{
@@ -124,7 +124,7 @@ cEnemy *GetCollidingEnemy( SDL_Rect *Crect )
 {
 	if( Enemies.objects && Crect )
 	{
-		for( unsigned int i = 0; i < Enemies.objcount; i++ )
+		for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 		{
 			if( !Enemies.objects[i] ) 
 			{
@@ -143,7 +143,7 @@ cEnemy *GetCollidingEnemy( SDL_Rect *Crect )
 
 void DrawEnemies( SDL_Renderer *renderer )
 {
-	for( unsigned int i = 0; i < Enemies.objcount; i++ )
+	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
 		if( !Enemies.objects[i] ) 
 		{

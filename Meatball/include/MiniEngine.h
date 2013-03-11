@@ -23,6 +23,7 @@
 class MiniEngine
 {
 public:
+	MiniEngine();
 	virtual void PreUpdate( void );
 	virtual void PostUpdate( void );
 	virtual void Update( void );
@@ -34,5 +35,7 @@ public:
 	virtual int Input();
 	virtual int EventHandler() { return 0; }
 	virtual void HeldKey_Handler() {}
+	
+	Uint8 mode;
 };
 

@@ -116,7 +116,7 @@ void cPreferences :: Load( string filename )
 		exit( 1 );
 	}
 
-	for( int i = 0; ifs.getline( contents, 600 ); i++ )
+	for( register int i = 0; ifs.getline( contents, 600 ); i++ )
 	{
 		Parse( contents, i );
 	}
