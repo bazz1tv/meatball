@@ -22,18 +22,11 @@ void TextObject::initDefaultColors()
 	bgColor = SetColor( 0, 0, 100 );	// Default Background Color : Dark Blue
 	fgColor = SetColor( 255, 255, 255 );	// Default Text Color : White
 }
+
 void TextObject::preRender()
 {
-	if (surface)
-	{
-		SDL_FreeSurface(surface);
-		surface = NULL;
-	}
-	if (texture)
-	{
-		SDL_DestroyTexture(texture);
-		texture = NULL;
-	}
+	freeSurface();
+	freeTexture();
 }
 /// Makes the surface and updates the Rect
 void TextObject::Render()
@@ -78,7 +71,6 @@ void TextObject::Render(TTF_Font *font)
 
 void TextObject::Draw(SDL_Renderer *renderer)
 {
-	//SDL_BlitSurface(surface, NULL, dest, &rect );
 	SDL_RenderCopy(renderer, texture, NULL, &rect);
 }
 
@@ -90,7 +82,7 @@ void TextObject::Draw()
 /// Update the surface with the object's internal text and font
 TextObject::TextObject()
 {
-	drawtxt = SDL_FALSE;
+	rendertext = SDL_FALSE;
 	font = NULL;
 	text = "";
 	surface = NULL;
@@ -100,7 +92,7 @@ TextObject::TextObject()
 
 TextObject::TextObject(string text)
 {
-	drawtxt = SDL_FALSE;
+	rendertext = SDL_FALSE;
 	initDefaultColors();
 	this->text = text;	
 }
@@ -120,7 +112,7 @@ TextObject::~TextObject()
 /// Update's the surface and internal font and text members
 TextObject::TextObject(string text, TTF_Font *font)
 {
-	drawtxt = SDL_FALSE;
+	rendertext = SDL_FALSE;
 	initDefaultColors();
 	this->font = font;
 	this->text = text;
@@ -128,14 +120,14 @@ TextObject::TextObject(string text, TTF_Font *font)
 
 TextObject::TextObject(int x, int y)
 {
-	drawtxt = SDL_FALSE;
+	rendertext = SDL_FALSE;
 	initDefaultColors();
 	SetPos(x,y);
 }
 
 TextObject::TextObject(int x, int y, string text)
 {
-	drawtxt = SDL_FALSE;
+	rendertext = SDL_FALSE;
 	initDefaultColors();
 	this->text = text;
 	SetPos(x,y);
@@ -147,7 +139,7 @@ TextObject::TextObject(int x, int y, string text, TTF_Font *font)
 	this->font = font;
 	this->text = text;
 	SetPos(x,y);
-	drawtxt = SDL_FALSE;
+	rendertext = SDL_FALSE;
 }
 
 
@@ -170,10 +162,12 @@ void TextObject::SetPos(int x, int y)
 
 void TextObject::Update()
 {
-	if (drawtxt)
+	if (rendertext)
 	{
+		rendertext = SDL_FALSE;
+		
 		Render();
-		drawtxt = SDL_FALSE;
+		
+		UpdateRect();
 	}
-	UpdateRect();
 }

@@ -65,8 +65,10 @@ SDL_Rect cLevelEditor::GetHoveredObjectRect()
 
 void cLevelEditor :: Update( void )
 {
-	PreUpdate();
-	
+	//PreUpdate();
+	pFramerate->SetSpeedFactor(); // Update
+	pCamera->Update();
+	pMouse->Update(Renderer);
 
 	if( Mouse_command == MOUSE_COMMAND_NOTHING || Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
 	{
@@ -104,8 +106,10 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 {
 	
 
-	PreDraw();
-
+	//PreDraw();
+	SDL_RenderClear(Renderer);
+	pLevel->Draw();
+	
 	pPlayer->Draw( renderer );
 	
 	DrawEnemies(renderer);
@@ -147,7 +151,9 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 	}
 	
 	
-	PostDraw();
+	///PostDraw();
+	DrawFramerate();
+	DrawAllToScreen();
 }
 
 

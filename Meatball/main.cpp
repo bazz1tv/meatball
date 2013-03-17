@@ -11,40 +11,22 @@
 #include "bullet.h"
 #include "enemy.h"
 #include "MasterBlaster.h"
-
-// Local Globals
-MasterBlaster *MB;
-
-// Extern Globals
-cSettings *pGameSettings;
-cPreferences *pPreferences;
-cCamera *pCamera;
-cPlayer *pPlayer;
-cLevel *pLevel;
-
+#include "TestSuite.h"
 
 int DoGame();
-void initEngine();
-void MakeWindow();
 void QuitGame();
-void SetupMouse();
-void InitPreferences();
-void InitObjects();
-void SetupWindowAndDockIcon();
-
-void InitFramerate(int nframes_sec);
-void InitImageManager();
-void InitSoundManager();
-void InitAudio();
-void InitFont();
-void InitCamera();
-void InitPlayer();
-void InitLevel();
-
-
+void initEngine();
+int processclargs(int, char **);
+void Test();
 
 int main (int argc, char **argv)
 {
+	
+	// Add Code to Check arguments for -Test
+	// this will Run Test Cases code for All Components
+	int rval = processclargs(argc, argv);
+	if (rval == MODE_TEST)
+		return 0;
 	
 	initEngine();
 	
@@ -58,6 +40,57 @@ int main (int argc, char **argv)
 	return 0;
 }
 
+#include "Collision.h"
+void Test()
+{
+	TestSuite TS;
+	TS.Begin();
+}
+
+int processclargs(int argc, char *argv[])
+{
+	int c;
+	
+	printf ("Processing arguments!\n");
+	
+	while( --argc > 0 && (*++argv)[0] == '-')
+		while( (c = *++argv[0]) ) //bug to investigate: what are the side effects of c == *++argv[0], which was a bug before the fix.
+			switch (c) {
+				case 't':
+					//printf("Argv[1] = : %s\n", argv[1]);
+					Test();
+					return MODE_TEST;
+					break;
+				default:
+					printf("illegal option %c\n", c);
+					argc = 0;
+					return -1;
+					break;
+			}
+	
+	//if( argc != 1)
+		//printf("Usage: tail [-n #]\n");
+	
+    return 0;
+}
+
+
+
+// For InitEngine
+void InitFramerate(int nframes_sec);
+void InitImageManager();
+void InitSoundManager();
+void InitAudio();
+void InitFont();
+void InitCamera();
+void InitPlayer();
+void InitLevel();
+
+void MakeWindow();
+void SetupMouse();
+void InitPreferences();
+void InitObjects();
+void SetupWindowAndDockIcon();
 
 void initEngine()
 {

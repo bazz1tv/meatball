@@ -136,7 +136,7 @@ void cBullet :: Update( void )
 
 
 	// If there's an Collision 
-	if( Collision->direction != -1 || Collision->collide != -1 )
+	if( Collision->direction != -1 || Collision->collision )
 	{
 		if( ( Collision->iCollisionType == SPRITE_TYPE_PLAYER && this->Origin == SPRITE_TYPE_ENEMY ) ||
 			( Collision->iCollisionType == SPRITE_TYPE_ENEMY && this->Origin == SPRITE_TYPE_PLAYER ) ||
@@ -289,6 +289,132 @@ void UpdateBullets( void )
 			cBullet *bullet = Bullets.objects[i];
 			CollideMove( (cBasicSprite*)bullet, bullet->velx * pFramerate->speedfactor, bullet->vely * pFramerate->speedfactor, bullet->Collision, bullet->type );
 			bullet->Update();
+		}
+	}
+}
+
+void CollideMove_Bullets( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type )
+{
+	Collision->Reset();
+	
+	PositionCheck( (int)( Sprite->posx + velx ) , (int)( Sprite->posy + vely ), (int)(Sprite->width), (int)Sprite->height, Collision, type );
+    
+	if( !Collision->collision )
+	{
+		Sprite->posx += velx;
+		Sprite->posy += vely;
+	}
+	else
+	{
+		double posx_old = Sprite->posx;
+		double posy_old = Sprite->posy;
+		double fvelx = velx;
+		double fvely = vely;
+		double tvelx=0,tvely=0;
+		
+		SDL_bool movex = SDL_FALSE;
+		SDL_bool movey = SDL_FALSE;
+		
+		if( vely != 0 )
+		{
+			movey = SDL_TRUE;
+		}
+		
+		if( velx != 0 )
+		{
+			movex = SDL_TRUE;
+		}
+		
+		while( movey == SDL_TRUE || movex == SDL_TRUE ) // While there is movement
+		{
+			if( movex == SDL_TRUE )
+			{
+				// If we do a new PositionCheck on a Bullet, this may cause the bullet to slow down when approaching objects. That's undesired.
+				// so we make sure type != bullet
+                    PositionCheck( (int)( Sprite->posx + ( (fvelx > 0) ? (tvelx+=1) : (tvelx+=-1) ) ), (int)Sprite->posy, (int)Sprite->width, (int)Sprite->height, Collision, type  );
+				
+				if ((fvelx > 0 && tvelx >= fvelx) || (fvelx < 0 && tvelx <= fvelx))
+					movex = SDL_FALSE;
+				
+				if( !Collision->collision)	// if no collisions
+				{
+					Sprite->posx += ((fvelx > 0) ? (1) : (-1)); // Add the one
+					
+					// But if the actual velocity is < 1, add that lesser value instead of 1
+					if((Sprite->posx > posx_old + fvelx && fvelx > 0) || (Sprite->posx < posx_old + fvelx && fvelx < 0) )
+					{
+						Sprite->posx = posx_old + fvelx;
+					}
+					//movex = SDL_FALSE;
+				}
+				else	// there was a collision
+				{
+					
+					/** The direction of all Collisions\n
+					 * -1 = No Collision detected			<br>
+					 *  1 = Collision Up/Down/Left/Right	<br>
+					 *  2 = Collision in Left/Right			<br>
+					 *  3 = Collision Up/Down				<br>
+					 */
+					
+					if (velx > 0)
+					{
+						Collision->collide = RIGHT;
+					}
+					else
+						Collision->collide = LEFT;
+					
+					
+					
+					if( Collision->direction == ALL_COLLISIONS_NONE )
+					{
+						Collision->direction = ALL_COLLISIONS_LR;	// Collision Left/Right
+					}
+					else if( Collision->direction == ALL_COLLISIONS_UD )
+					{
+						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
+					}
+					
+					movex = SDL_FALSE;
+				}
+			}
+			
+			if( movey == SDL_TRUE )
+			{
+				if( !Collision->collision )
+				{
+					Sprite->posy += ((fvely > 0) ? (tvely+=1) : (tvely+=-1));
+					
+					if ((fvely > 0 && tvely >= fvely) || (fvely < 0 && tvely <= fvely))
+						movey = SDL_FALSE;
+					
+					if((Sprite->posy > posy_old + fvely && fvely > 0) || (Sprite->posy < posy_old + fvely && fvely < 0))
+					{
+						Sprite->posy = posy_old + fvely;
+					}
+					movey = SDL_FALSE;
+				}
+				else
+				{
+					if (vely > 0)
+					{
+						Collision->collide = DOWN;
+					}
+					else
+						Collision->collide = UP;
+					
+					if( Collision->direction == ALL_COLLISIONS_NONE )
+					{
+						Collision->direction = ALL_COLLISIONS_UD;	// Collision Up/Down
+					}
+					else if( Collision->direction == ALL_COLLISIONS_LR )
+					{
+						Collision->direction = ALL_COLLISIONS_UDLR;	// Collision Up/Down/Left/Right
+					}
+					
+					movey = SDL_FALSE;
+				}
+			}
 		}
 	}
 }

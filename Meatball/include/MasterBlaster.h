@@ -26,4 +26,8 @@ public:
 	
 	cGame *pGame;
 	cMainMenu *pMainMenu;
+	
+	SDL_bool fps_display;
 };
+
+extern MasterBlaster *MB;

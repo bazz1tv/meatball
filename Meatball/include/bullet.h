@@ -66,6 +66,8 @@ public:
 
 };
 
+void CollideMove_Bullets( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
+
 //extern unsigned int BulletCount;
 
 /// holds all of the bullets getting put to the screen.

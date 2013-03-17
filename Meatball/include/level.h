@@ -9,6 +9,9 @@
 #include "sprite.h"
 #include "ObjectManager.h"
 
+class cLevel;
+extern cLevel *pLevel;
+
 
 class cLevelData
 {

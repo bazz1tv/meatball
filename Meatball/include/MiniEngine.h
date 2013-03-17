@@ -26,7 +26,9 @@ public:
 	MiniEngine();
 	virtual void PreUpdate( void );
 	virtual void PostUpdate( void );
+
 	virtual void Update( void );
+	
 	virtual void PreDraw( void );
 	virtual void PostDraw( void );
 	virtual void Draw( void );
@@ -36,6 +38,13 @@ public:
 	virtual int EventHandler() { return 0; }
 	virtual void HeldKey_Handler() {}
 	
+	void DrawFramerate();
+	void DrawAllToScreen();
+	void ClearScreen();
+	void ClearScreen(SDL_Renderer *renderer);
+	
 	Uint8 mode;
 };
+
+int MiniEngineTest();
 

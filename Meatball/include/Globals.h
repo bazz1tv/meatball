@@ -75,7 +75,7 @@ extern Uint8 *keys;
 extern SDL_Event event;
 
 /// fps display SDL_boolean
-extern SDL_bool fps_display;
+//extern SDL_bool fps_display;
 
 /// Magenta (default) Colorkey
 extern Uint32 colorkey;

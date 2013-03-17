@@ -49,16 +49,13 @@ int MiniEngine::Input()
 /// Does general things
 void MiniEngine::PreUpdate( void )
 {
-	pFramerate->SetSpeedFactor(); // Update
 	
-	pCamera->Update();
-	
-	pMouse->Update(Renderer);
 }
 
 void MiniEngine::Update()
 {
 	PreUpdate();
+	
 	PostUpdate();
 }
 
@@ -70,19 +67,16 @@ void MiniEngine::PostUpdate()
 
 void MiniEngine::PreDraw()
 {
-	SDL_RenderClear(Renderer);
 	
-	pLevel->Draw();
 }
 void MiniEngine::PostDraw()
 {
-	FramerateDraw( Renderer );
 	
-	SDL_RenderPresent(Renderer);
 }
 void MiniEngine::Draw( void )
 {
-	PreDraw();
+	ClearScreen();
+	pLevel->Draw();
     
 	DrawBullets(Renderer);
 	DrawParticleEmitter(Renderer);
@@ -91,6 +85,38 @@ void MiniEngine::Draw( void )
 	
 	pPlayer->Draw( Renderer );
 	
+	DrawFramerate();	///< only draws framerate if it's set to
+	DrawAllToScreen();	// Renders the Renderer' contents to screen
+}
+
+void MiniEngine::DrawFramerate()
+{
+	FramerateDraw( Renderer );
+}
+
+void MiniEngine::DrawAllToScreen()
+{
+	SDL_RenderPresent(Renderer);
+}
+
+void MiniEngine::ClearScreen()
+{
+	ClearScreen(Renderer);
+}
+
+void MiniEngine::ClearScreen(SDL_Renderer *renderer)
+{
+	SDL_RenderClear(renderer);
+}
+
+/* Mini Engine Rules
+ ----
+ 1 ) in Do(), while mode == 0, that loop should never leave
+*/
+int MiniEngineTest()
+{
+	//MiniEngine test;
 	
-	PostDraw();
+	
+	return 0;
 }

@@ -7,6 +7,8 @@ extern MasterBlaster *MB;
 extern cPlayer *pPlayer;
 extern cFramerate *pFramerate;
 
+cCamera *pCamera;
+
 cCamera :: cCamera( void )
 {
 	x = 0.0;
