@@ -22,7 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C93E39513942B5A0096FAB3 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		E9207A8916F0BB2600F9A1AC /* GraphicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9207A8816F0BB2600F9A1AC /* GraphicsObject.cpp */; };
 		E931074416EBBA0600434FA6 /* MasterBlaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E931074316EBBA0600434FA6 /* MasterBlaster.cpp */; };
+		E935680816F5644300DD47C9 /* TestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E935680716F5644300DD47C9 /* TestSuite.cpp */; };
 		E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */; };
 		E98CCB9816B46E6C0003938A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E98CCB9916B46E6C0003938A /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
@@ -87,8 +89,11 @@
 		9C93E39913942B5A0096FAB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9C93E39A13942B5A0096FAB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E901FD7F16B364E200DB896C /* OS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OS.h; sourceTree = "<group>"; };
+		E9207A8816F0BB2600F9A1AC /* GraphicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GraphicsObject.cpp; path = ../GraphicsObject.cpp; sourceTree = "<group>"; };
 		E931074316EBBA0600434FA6 /* MasterBlaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MasterBlaster.cpp; path = ../MasterBlaster.cpp; sourceTree = "<group>"; };
 		E931074616EBBA1300434FA6 /* MasterBlaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterBlaster.h; path = ../include/MasterBlaster.h; sourceTree = "<group>"; };
+		E935680716F5644300DD47C9 /* TestSuite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSuite.cpp; path = ../TestSuite.cpp; sourceTree = "<group>"; };
+		E935680A16F5647000DD47C9 /* TestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSuite.h; path = ../include/TestSuite.h; sourceTree = "<group>"; };
 		E942ED5916D064CF0048C7EB /* MultiSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiSelect.h; path = ../include/MultiSelect.h; sourceTree = "<group>"; };
 		E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiSelect.cpp; path = ../MultiSelect.cpp; sourceTree = "<group>"; };
 		E98CCB9316B46E6C0003938A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
@@ -211,6 +216,15 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		E92B688A16F57E320068EA31 /* TestSuite */ = {
+			isa = PBXGroup;
+			children = (
+				E935680716F5644300DD47C9 /* TestSuite.cpp */,
+				E935680A16F5647000DD47C9 /* TestSuite.h */,
+			);
+			name = TestSuite;
+			sourceTree = "<group>";
+		};
 		E931074716EBBA2200434FA6 /* MasterBlaster */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +278,7 @@
 				E942ED2616CF1B9A0048C7EB /* Slider */,
 				E9CFA41416B1D56300B3919F /* ObjectManager.h */,
 				E9CFA40516B1D56300B3919F /* ButtonObject.h */,
+				E9207A8816F0BB2600F9A1AC /* GraphicsObject.cpp */,
 				E9CFA40E16B1D56300B3919F /* GraphicsObject.h */,
 				E9CFA41B16B1D56300B3919F /* TextObject.h */,
 				E9CFA3E616B1D54D00B3919F /* TextObject.cpp */,
@@ -414,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
+				E92B688A16F57E320068EA31 /* TestSuite */,
 				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9A3437216BB7C9C00072818 /* Menus */,
 				E9A3437116BB7C8B00072818 /* Camera */,
@@ -554,6 +570,8 @@
 				E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */,
 				E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */,
 				E931074416EBBA0600434FA6 /* MasterBlaster.cpp in Sources */,
+				E9207A8916F0BB2600F9A1AC /* GraphicsObject.cpp in Sources */,
+				E935680816F5644300DD47C9 /* TestSuite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -224,7 +224,8 @@ int cMainMenu::Do()
 		{
 			Update();
 			mode = EventHandler();
-			PostDraw();
+			//PostDraw();
+			DrawAllToScreen();
 		}
 		else if (submode == OPTIONS)
 		{
@@ -260,7 +261,8 @@ void cMainMenu::FadeOutBG()
 		//SDL_SetAlpha(surface,SDL_TRUE,(Uint8)i);
 		SDL_SetSurfaceAlphaMod(surface, (Uint8)i);
 		//SDL_BlitSurface(surface,NULL,Screen,NULL);
-		PostDraw();
+		//PostDraw();
+		DrawAllToScreen();
 		//Sleep(10);
 	}
 

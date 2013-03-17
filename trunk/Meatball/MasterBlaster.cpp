@@ -1,10 +1,12 @@
 #include "MasterBlaster.h"
 #include "Camera.h"
-cConsole *pConsole;
-extern cCamera *pCamera;
+#include "console.h"
+
+MasterBlaster *MB;
 
 MasterBlaster::MasterBlaster()
 {
+	fps_display = SDL_FALSE;
 	mode = MODE_MAINMENU;
 	
 #ifdef INGAME_LEVEL_EDITOR

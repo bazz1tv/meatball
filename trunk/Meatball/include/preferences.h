@@ -12,6 +12,12 @@
 /// Default Settings File
 #define DEF_PREF_NAME "default.ini"
 
+
+class cSettings;
+class cPreferences;
+extern cSettings *pGameSettings;
+extern cPreferences *pPreferences;
+
 class cSettings
 {
 public:

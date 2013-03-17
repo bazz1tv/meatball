@@ -4,6 +4,11 @@
 
 using namespace std;
 
+// Those sweet Globals
+cSettings *pGameSettings;
+cPreferences *pPreferences;
+
+
 cSettings :: cSettings( void )
 {
 	Screen_Bpp			= 32;

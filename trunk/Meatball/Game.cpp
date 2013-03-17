@@ -10,10 +10,11 @@
 #include "Misc.h"
 #include "preferences.h"
 #include "weapon.h"
+#include "Camera.h"
 
 
 extern cLevel *pLevel;
-
+//extern cCamera *pCamera;
 
 
 
@@ -59,13 +60,17 @@ void cGame::Init()
 
 void cGame::Update()
 {
-	PreUpdate();
+	//PreUpdate();
+	pFramerate->SetSpeedFactor(); // Update
+	pCamera->Update();
+	pMouse->Update(Renderer);
+	
 	pLevel->Update();
 	UpdateEnemies();
 	UpdateBullets();
 	UpdateParticleEmitter();
 	UpdatePlayer();
-	PostUpdate();
+	//PostUpdate();
 }
 
 void cGame::Player_Input()

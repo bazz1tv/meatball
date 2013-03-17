@@ -40,5 +40,7 @@ private:
 								///< @see Lleft Lright
 };
 
+extern cCamera *pCamera;
+
 #endif
 // @}

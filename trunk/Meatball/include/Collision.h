@@ -16,6 +16,9 @@ class cBasicSprite;
 class Collisiondata
 {
 public:
+	void Reset();
+	
+	
 	/** The first direct Collision direction\n
 	 * -1 : No Collision	\n
 	 * 0  : Left			\n
@@ -24,6 +27,7 @@ public:
 	 * 3  : Down			\n
 	 */
 	int collide;
+	SDL_bool collision;
 
 	/** Collisiontypes. Based on SPRITE_TYPES
 	 * @see SPRITE_TYPES
@@ -47,13 +51,15 @@ public:
 /// Returns the Collision data if a Collision happened
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
 
-void CollideMove_Meatball( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
+
 /**	Checks if the given position is valid
  *	if the Position is not valid it returns the direction
  */
 void PositionCheck( int x, int y, int width, int height, Collisiondata *Collision, unsigned int type );
 
-/// Returns the collision direction
-int GetCollide( SDL_Rect *r1, SDL_Rect *r2 );
+// Returns the collision direction
+//SDL_bool GetCollide( SDL_Rect *r1, SDL_Rect *r2 );
+
+int CollisionTest();
 
 #endif

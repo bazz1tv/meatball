@@ -18,6 +18,10 @@ extern cPlayer *pPlayer;
 extern cLevel *pLevel;
 extern cCamera *pCamera;
 
+// Globals!
+cConsole *pConsole;
+
+
 using namespace std;
 
 
@@ -218,7 +222,10 @@ int cConsole :: EventHandler( void )
 /// Updates background, Updates logic to draw the cursor or not (blinking underscore)
 void cConsole :: Update( void )
 {
-	PreUpdate();
+	//PreUpdate();
+	pFramerate->SetSpeedFactor(); // Update
+	pCamera->Update();
+	pMouse->Update(Renderer);
 
 	BG->Update(Renderer);
 
@@ -240,8 +247,10 @@ void cConsole :: Update( void )
 /// Draws the BG, the input display and history displays, the blinking cursor
 void cConsole :: Draw( SDL_Renderer *renderer )
 {
-	PreDraw();
-
+	//PreDraw();
+	SDL_RenderClear(Renderer);
+	pLevel->Draw();
+	
 	DrawBullets(renderer);
 	DrawParticleEmitter(renderer);
 
@@ -259,7 +268,9 @@ void cConsole :: Draw( SDL_Renderer *renderer )
 	CreateTexturesAndRender(renderer);
 	FreeAllUsedSurfaces();
 
-	PostDraw();
+	//PostDraw();
+	DrawFramerate();
+	DrawAllToScreen();
 	
 	// Free all used Surfaces
 }
@@ -743,12 +754,12 @@ SDL_bool play( string &str )
 SDL_bool ShowFPS( string &str )
 {
 
-	if (fps_display == SDL_FALSE)
+	if (MB->fps_display == SDL_FALSE)
 	{
-		fps_display = SDL_TRUE;
+		MB->fps_display = SDL_TRUE;
 	}
 	else{
-		fps_display = SDL_FALSE;
+		MB->fps_display = SDL_FALSE;
 	}
 	
 	return SDL_TRUE;

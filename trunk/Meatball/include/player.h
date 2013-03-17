@@ -15,7 +15,8 @@ extern cCamera *pCamera;
 extern cImageManager *IMan;
 extern Window window;
 
-
+class cPlayer;
+extern cPlayer *pPlayer;
 
 
 
@@ -45,6 +46,8 @@ public:
 
 	/// Jump with the given Power
 	void Jump( int power = 5 );
+	
+	void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );
 
 	/// Change the Active Weapon
 	void ChangeActiveWeapon( unsigned int Weapon_type );
@@ -120,6 +123,7 @@ public:
 };
 
 void UpdatePlayer( void );
+
 
 #endif
 // @}

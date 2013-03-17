@@ -54,7 +54,7 @@ void cMParticle :: Update( void )
 
 	if( active == SDL_TRUE ) // If the Particle is moving
 	{
-		if( Collision->collide != -1) 
+		if( Collision->collision)
 		{
 			HandleCollision( Collision->collide );
 		}
@@ -62,22 +62,22 @@ void cMParticle :: Update( void )
 		{
 			if( angle < 270 && angle > 90 ) // left 
 			{
-				HandleCollision( LEFT );
+				HandleCollision( RIGHT );
 			}
 			else // right
 			{
-				HandleCollision( RIGHT );
+				HandleCollision( LEFT );
 			}
 		}
 		else if( Collision->direction == 3 ) 
 		{
 			if( angle > 180 && angle < 90 ) // Up 
 			{
-				HandleCollision( UP );
+				HandleCollision( DOWN );
 			}
 			else // down
 			{
-				HandleCollision( DOWN );
+				HandleCollision( UP );
 			}
 		}
 		else if( Collision->direction == 1 )
@@ -87,7 +87,7 @@ void cMParticle :: Update( void )
 		}
 
 		// Gravity
-		if( Collision->collide == -1 && Collision->direction == -1 )  // No Collision
+		if( !Collision->collision && Collision->direction == -1 )  // No Collision
 		{
 			if( ( angle > 150 || angle < 30 ) && speed > 0 ) // flying upwards
 			{
@@ -105,7 +105,7 @@ void cMParticle :: Update( void )
 
 		}
 		
-		if( Collision->collide == -1 && Collision->direction == -1 ) // No Collision
+		if( !Collision->collision && Collision->direction == -1 ) // No Collision
 		{
 			AddDirection( Random( -Randomness, Randomness ) * pFramerate->speedfactor );
 		}

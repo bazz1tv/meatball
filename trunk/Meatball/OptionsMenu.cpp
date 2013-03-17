@@ -147,7 +147,9 @@ void OptionsMenu::Draw()
 
 	pMouse->Draw( Renderer );
 
-	PostDraw();
+	//PostDraw();
+	DrawFramerate();
+	DrawAllToScreen();
 }
 
 
@@ -474,8 +476,8 @@ void ControlsMenu::Draw()
 		tWaitForInput->Draw();
 	}
 
-	PostDraw();
-	
+	DrawFramerate();
+	DrawAllToScreen();
 }
 
 int ControlsMenu::EventHandler()

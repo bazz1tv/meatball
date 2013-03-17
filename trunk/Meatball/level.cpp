@@ -10,6 +10,10 @@ extern cPlayer *pPlayer;
 
 using namespace std;
 
+// Global!
+cLevel *pLevel;
+
+
 cLevelData :: cLevelData( void ) :
 BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 {

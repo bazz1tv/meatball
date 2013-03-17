@@ -9,6 +9,9 @@
 #include "MiniEngine.h"
 #include "ObjectManager.h"
 
+class cConsole;
+extern cConsole *pConsole;
+
 
 
 /// @defgroup Console_Commands Console Commands

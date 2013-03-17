@@ -7,6 +7,7 @@
 #include "leveleditor.h"
 #include "console.h"
 #include "bullet.h"
+#include "MasterBlaster.h"
 #include <fstream>
 
 cMouseCursor *pMouse;		// The Mouse
@@ -45,7 +46,7 @@ Uint8 *keys;
 SDL_Event event;
 
 /// ifSDL_TRUE the fps display is active
-SDL_bool fps_display =SDL_FALSE;
+ //=SDL_FALSE;
 
 /// Magneta (default) Colorkey
 Uint32 colorkey = 0;
@@ -106,7 +107,7 @@ SDL_bool is_valid_number( char *c )
 
 void FramerateDraw( SDL_Renderer *renderer, double posx /** = 5.0 */, double posy /** = 5.0  */)
 {
-	if ( !fps_display )
+	if ( !MB->fps_display )
 	{
 		return;
 	}

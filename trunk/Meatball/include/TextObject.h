@@ -10,7 +10,7 @@ public:
 	TTF_Font *font;
 	SDL_Color fgColor;
 	SDL_Color bgColor;
-	SDL_bool drawtxt;
+	SDL_bool rendertext;
 
 
 	TextObject();
