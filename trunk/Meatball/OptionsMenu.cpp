@@ -68,7 +68,8 @@ OptionsMenu::~OptionsMenu()
 
 int OptionsMenu::Do()
 {
-	while (mode == 0)
+	mode = OPTIONS;
+	while (mode == OPTIONS)
 	{
 		if (curscreen == OPTIONS_SCREEN)
 		{
@@ -79,7 +80,7 @@ int OptionsMenu::Do()
 		else if (curscreen == CONTROLS_SCREEN)
 		{
 			// Do specifics for The Controls Screen
-			controls_menu.EventHandler();
+			mode = controls_menu.EventHandler();
 			PreUpdate();
 			controls_menu.Update();
 			controls_menu.Draw();
@@ -156,7 +157,7 @@ void OptionsMenu::Draw()
 int OptionsMenu::LiveInput( void )
 {
 	//SDL_EnableUNICODE( 1 );				// http://sdl.beuc.net/sdl.wiki/SDL_EnableUNICODE
-	Uint8 mode=0;
+	Uint8 mode=OPTIONS;
 	
 	while ( SDL_PollEvent( &event ) )
 	{
@@ -164,7 +165,7 @@ int OptionsMenu::LiveInput( void )
 		{
 		case SDL_QUIT:
 			{
-				//done = 2;
+				return mode=MODE_QUIT;
 				break;
 			}
 		case SDL_KEYDOWN:
@@ -172,7 +173,7 @@ int OptionsMenu::LiveInput( void )
 				if( event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
 					//done = 1;
-					mode = MODE_MAINMENU;
+					mode = MAIN;
 				}
 
 				else if ( event.key.keysym.sym == SDLK_BACKSPACE )
@@ -212,16 +213,16 @@ int OptionsMenu::LiveInput( void )
 
 int OptionsMenu::EventHandler()
 {
-	Uint8 submode=0;
+	Uint8 submode=OPTIONS;
 	
 	while ( SDL_PollEvent( &event ) )
 	{
 		submode = UniversalEventHandler(&event);
-		if (submode > 0)
+		if (submode != OPTIONS)
 			return submode;
 		
 		submode = Collisions();
-		if (submode > 0) return submode;
+		if (submode != OPTIONS) return submode;
 		
 		switch ( event.type )
 		{
@@ -229,6 +230,7 @@ int OptionsMenu::EventHandler()
 			{
 				pPreferences->Apply();
 				//done = MODE_QUIT;
+				return mode = MODE_QUIT;
 				break;
 			}
 			case SDL_KEYDOWN:
@@ -238,9 +240,9 @@ int OptionsMenu::EventHandler()
 					pPreferences->Apply();
 					submode = MAIN;
 				}
-				else if( event.key.keysym.sym == SDLK_RETURN )
+				else if( event.key.keysym.sym == SDLK_c )
 				{
-					
+					curscreen = CONTROLS_SCREEN;
 				}
 				break;
 			}
@@ -302,7 +304,7 @@ int OptionsMenu::Collisions()
 					}
 					else if (MouseCollidesWith(&tControls->rect) )
 					{
-						DEBUGLOG("Derp");
+						//DEBUGLOG("Derp");
 						curscreen = CONTROLS_SCREEN;
 					}
 				}
@@ -327,7 +329,7 @@ int OptionsMenu::Collisions()
 			break;
 	}
 	
-	return 0;
+	return OPTIONS;
 }
 
 
@@ -493,7 +495,7 @@ int ControlsMenu::EventHandler()
 			case SDL_QUIT:
 			{
 				pPreferences->Apply();
-				//done = MODE_QUIT;
+				return mode=MODE_QUIT;
 				break;
 			}
 			case SDL_KEYDOWN:
@@ -506,6 +508,22 @@ int ControlsMenu::EventHandler()
 				else if( event.key.keysym.sym == SDLK_RETURN )
 				{
 					
+				}
+				else if( event.key.keysym.sym == SDLK_l )
+				{
+					GetInput(KEY_LEFT);
+				}
+				else if( event.key.keysym.sym == SDLK_r )
+				{
+					GetInput(KEY_RIGHT);
+				}
+				else if( event.key.keysym.sym == SDLK_f )
+				{
+					GetInput(KEY_FIRE);
+				}
+				else if( event.key.keysym.sym == SDLK_j )
+				{
+					GetInput(KEY_JUMP);
 				}
 				break;
 			}

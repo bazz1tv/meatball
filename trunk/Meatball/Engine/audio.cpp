@@ -286,9 +286,9 @@ int cAudio :: GetSoundVolume(Mix_Chunk *chunk)
 }
 
 
-int cAudio :: SetSoundVolume (Mix_Chunk *chunk, Uint8 iVolume)
+int cAudio :: SetSoundVolume (Mix_Chunk *chunk, int iVolume)
 {
-	if( iVolume > 128 || iVolume < 0 || chunk == NULL)
+	if( iVolume > 128 || chunk == NULL)
 	{
 		return -1;
 	}

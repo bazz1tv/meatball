@@ -7,8 +7,6 @@
 #define MACHINEGUN_VELOCITY	15
 #define LASER_VELOCITY 15
 
-//unsigned int BulletCount = 0;
-//cBullet **Bullets = NULL;
 ObjectManager<cBullet> Bullets(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS);
 
 cBullet :: cBullet( double nposx, double nposy )
@@ -251,6 +249,8 @@ void cBullet :: Draw( SDL_Renderer *renderer )
 
 void PreloadBulletimages( void )
 {
+	if (!IMan)
+		throw 1;
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/pistol/default2.png", colorkey ),PIXMAPS_DIR "game/weapons/pistol/default.png" );
 	// Machinegun
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/machinegun/default.png", colorkey ), PIXMAPS_DIR "game/weapons/machinegun/default.png" );
@@ -359,10 +359,10 @@ void CollideMove_Bullets( cBasicSprite *Sprite, double velx, double vely, Collis
 					
 					if (velx > 0)
 					{
-						Collision->collide = RIGHT;
+						Collision->collide = LEFT;
 					}
 					else
-						Collision->collide = LEFT;
+						Collision->collide = RIGHT;
 					
 					
 					
@@ -398,10 +398,10 @@ void CollideMove_Bullets( cBasicSprite *Sprite, double velx, double vely, Collis
 				{
 					if (vely > 0)
 					{
-						Collision->collide = DOWN;
+						Collision->collide = UP;
 					}
 					else
-						Collision->collide = UP;
+						Collision->collide = DOWN;
 					
 					if( Collision->direction == ALL_COLLISIONS_NONE )
 					{

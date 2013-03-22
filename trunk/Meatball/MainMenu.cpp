@@ -1,7 +1,7 @@
 #include "MainMenu.h"
 #include "Game.h"
 
-#define MAINMENU_MUSIC MUSIC_DIR "fight.ogg"
+
 
 int cMainMenu::submode = MAIN;
 
@@ -11,14 +11,26 @@ cMainMenu::cMainMenu() : MiniEngine()
 	
 	submode = MAIN;
 
+	if (!pFont)
+	{
+		throw 1;
+	}
 	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 	
 	//tOptions->rect = SetRect(100,100,tOptions->surface->w, tOptions->surface->h);
-	pAudio->PlayMusik( MAINMENU_MUSIC );
+	if (!pAudio)
+	{
+		throw 2;
+	}
+	
 	//SMan->Add( pAudio->LoadSound( MUSIC_DIR "menumusic.wav"), MUSIC_DIR "menumusic.wav");
 	//pAudio->PlaySound(SMan->GetPointer(MUSIC_DIR "menumusic.wav"));
 
 	// Preload the Button Sound
+	if (!SMan)
+	{
+		throw 3;
+	}
 	SMan->Add( pAudio->LoadSound( SOUNDS_DIR "Button_1.ogg" ), SOUNDS_DIR "Button_1.ogg" );
 
 	/// [Adding a Sprite]
@@ -231,6 +243,10 @@ int cMainMenu::Do()
 		{
 			submode = optionsmenu.Do();
 		}
+		else
+		{
+			mode = submode;
+		}
 		
 		// if the mode got switched (we pressed start game or quit)
 	}
@@ -288,7 +304,7 @@ int cMainMenu::EventHandler()
 			{
 				case SDL_QUIT:
 				{
-					//done = MODE_QUIT;
+					return mode=MODE_QUIT;
 					break;
 				}
 				case SDL_KEYDOWN:

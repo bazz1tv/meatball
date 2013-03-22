@@ -40,6 +40,8 @@ void cAF373 :: init( void )
 
 	SetVelocity( 0, 0 );
 
+	if (!IMan)
+		throw 1;
 	// Right Standing
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/enemies/Bots/AF-373/right_1.png", colorkey ), "AF373_right" );
 	// Left Satnding

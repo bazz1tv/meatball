@@ -18,7 +18,7 @@
 
 struct Screenscale
 {
-	int x,y;
+	double x,y;
 };
 
 
