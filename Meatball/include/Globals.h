@@ -12,6 +12,10 @@
 #include "OS.h"
 // Global Big Definitions (important)
 #include "defines.h"
+//#include "Misc.h"
+#include <sstream>
+extern std::stringstream error;
+//error << "Error in syntax: " << str;
 
 //
 #ifdef _DEBUG

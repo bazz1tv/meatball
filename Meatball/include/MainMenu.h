@@ -11,13 +11,15 @@
 
 extern cImageManager *IMan;
 extern cSoundManager *SMan;
-extern cFramerate *pFramerate;
+//extern cFramerate *pFramerate;
 extern cAudio *pAudio;
 extern cFont *pFont;
 
 // submode definitions
 #define MAIN	1
 #define OPTIONS 0
+
+#define MAINMENU_MUSIC MUSIC_DIR "fight.ogg"
 
 class OptionsMenu;
 

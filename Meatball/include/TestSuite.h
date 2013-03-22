@@ -2,6 +2,10 @@
 
 #include "MiniEngine.h"
 #include "Collision.h"
+#include "Console.h"
+#include <iostream>
+#include <string>
+using namespace std;
 
 class TestSuite
 {
@@ -17,8 +21,14 @@ public:
 	void testprint(string, ...);
 	void testprintnts(string, ...);
 	
+	// Components Testing
+	int ConsoleTest();
+	int TestCommand(string);
+	
 	void MiniEngineTest();
 	int CollisionTest();
+	
+	//cConsole *Console;
 	
 	int numtabs;
 };

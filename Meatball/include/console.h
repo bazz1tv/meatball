@@ -43,8 +43,6 @@ SDL_bool camx(string &str);
 SDL_bool camy(string &str);
 // @}
 
-#define NUM_LINES 11
-
 #define HISTORY_LINES 11
 #define topHistoryLine_Y 23.0	// The top vertical coordinate for first line of input history. gets subtracted from console_input Y
 // all lines are then seperated by HIST_VERTICAL_SEPERATION_PIXELS
@@ -101,11 +99,11 @@ public:
 
 	SDL_bool helpCMD( string &str );
 
-	cCMD *CMDList;				// The commands
+	cCMD *CMDList;									// The commands
 
-	string strcpy[NUM_LINES];	// history strings (past entered commands which are displayed)
+	string strcpy[HISTORY_LINES];					// history strings (past entered commands which are displayed)
 
-	string consoleInput_str;				// main string where input is entered into.
+	string consoleInput_str;						// main string where input is entered into.
 	int histcounter;
 	fs::path full_path;
 
@@ -119,21 +117,22 @@ public:
 
 	TTF_Font *Console_font;
 	
-	double history_y; // = topHistoryLine_Y;
+	double history_y;								// = topHistoryLine_Y;
 	
 	SDL_Rect consoleInput_rect, strcpy_rect[11], cursor_rect;
 	
-	SDL_Surface *consoleInput_surface;	// input display
+	SDL_Surface *consoleInput_surface;				// input display
 	SDL_Texture *consoleInput_tex;
-	SDL_Surface *sc_surface[HISTORY_LINES];		// history displays
-	SDL_Texture *sc_tex[HISTORY_LINES];		// history displays
-	SDL_Surface *cursor_surface;	// Cursor Display
+	SDL_Surface *sc_surface[HISTORY_LINES];			// history displays
+	SDL_Texture *sc_tex[HISTORY_LINES];				// history displays
+	SDL_Surface *cursor_surface;					// Cursor Display
 	SDL_Texture *cursor_tex;
 	
 	void ClearHistory_SurfacesAndTextures();
-	void BlinkCursor();
+	void DrawCursor();
+	
 	void CreateTextOnSurfaces();
-	void SetRects();
+	void SetConsoleLineRects();
 	void CreateTexturesAndRender(SDL_Renderer *renderer);
 	// Free all used Surfaces
 	void FreeAllUsedSurfaces();

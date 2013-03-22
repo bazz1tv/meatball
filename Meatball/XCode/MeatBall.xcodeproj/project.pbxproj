@@ -430,6 +430,7 @@
 			children = (
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
 				E92B688A16F57E320068EA31 /* TestSuite */,
+				E9A3437E16BB7DC100072818 /* Console */,
 				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9A3437216BB7C9C00072818 /* Menus */,
 				E9A3437116BB7C8B00072818 /* Camera */,
@@ -437,7 +438,6 @@
 				E9A3436F16BB7C4B00072818 /* Bullet */,
 				E9A3436C16BB7C2E00072818 /* Enemies */,
 				E9A3437C16BB7DB300072818 /* Collision */,
-				E9A3437E16BB7DC100072818 /* Console */,
 				E9A3437D16BB7DBA00072818 /* Effects */,
 				E9A3437B16BB7D9200072818 /* MiniEngine(Game) */,
 				E9A3437A16BB7D8600072818 /* Globals */,
@@ -645,6 +645,7 @@
 					/usr/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MacSDLFiles/MeatBall-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib/,
 					/usr/lib,
@@ -680,6 +681,7 @@
 					/usr/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MacSDLFiles/MeatBall-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/opt/local/lib/,
 					/usr/lib,

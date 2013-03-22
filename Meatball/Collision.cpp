@@ -77,10 +77,10 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 			{
 				if (velx > 0)
 				{
-					Collision->collide = RIGHT;
+					Collision->collide = LEFT;
 				}
 				else
-					Collision->collide = LEFT;
+					Collision->collide = RIGHT;
 				
 				
 				
@@ -196,10 +196,10 @@ void CollideMove_Weak( cBasicSprite *Sprite, double velx, double vely, Collision
 				{
 					if (velx > 0)
 					{
-						Collision->collide = RIGHT;
+						Collision->collide = LEFT;
 					}
 					else
-						Collision->collide = LEFT;
+						Collision->collide = RIGHT;
 					
 					
 					
@@ -234,10 +234,10 @@ void CollideMove_Weak( cBasicSprite *Sprite, double velx, double vely, Collision
 				{
 					if (vely > 0)
 					{
-						Collision->collide = DOWN;
+						Collision->collide = UP;
 					}
 					else
-						Collision->collide = UP;
+						Collision->collide = DOWN;
 					
 					if( Collision->direction == ALL_COLLISIONS_NONE )
 					{

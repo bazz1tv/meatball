@@ -93,7 +93,7 @@ public:
 	DLLINTERFACE void FadeOutSounds( int milliseconds = 2000, int channel = -1 );
 
 	/// Set a specific sound's volume with it's chunk ptr.
-	DLLINTERFACE int SetSoundVolume ( Mix_Chunk *chunk, Uint8 iVolume );
+	DLLINTERFACE int SetSoundVolume ( Mix_Chunk *chunk, int iVolume );
 	
 	DLLINTERFACE int GetSoundVolume(Mix_Chunk *chunk);
 	

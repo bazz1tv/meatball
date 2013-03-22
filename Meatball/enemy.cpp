@@ -165,26 +165,6 @@ void DeletEnemy( unsigned int number )
 }
 
 void DeleteAllEnemies( void )
-{
-	/*if( Enemies.objects )
-	{
-		for( unsigned int i = 0; i < Enemies.objcount; i++ )
-		{
-			if( !Enemies.objects[i] ) 
-			{
-				continue;
-			}
-
-			delete Enemies.objects[i];
-			Enemies.objects[i] = NULL;
-		}
-
-		SDL_free(Enemies);
-		//delete []Enemies;
-		Enemies = NULL;
-	}
-
-	EnemyCount = 0;*/
-	
+{	
 	Enemies.~ObjectManager();
 }

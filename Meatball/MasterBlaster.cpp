@@ -51,6 +51,8 @@ int MasterBlaster::Game()
 
 int MasterBlaster::MainMenu()
 {
+	pAudio->PlayMusik( MAINMENU_MUSIC );
+	
 	int mode = pMainMenu->Do();
 	
 	return mode;

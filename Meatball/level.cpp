@@ -17,11 +17,6 @@ cLevel *pLevel;
 cLevelData :: cLevelData( void ) :
 BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 {
-	//BasicSprites = NULL;
-	//BasicSprites.objcount = 0;
-	
-
-
 	BG_red = 0;
 	BG_green = 0;
 	BG_blue = 0;
@@ -30,27 +25,7 @@ BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 }
 
 cLevelData :: ~cLevelData( void )
-{
-	/*unsigned int i = 0;
-	
-	if( BasicSprites.objects )
-	{
-		for( i = 0;i < BasicSprites.objcount;i++ ) 
-		{
-			if( BasicSprites.objects[i] ) 
-			{
-				delete BasicSprites.objects[i];
-				BasicSprites.objects[i] = NULL; 
-			} 
-		}
-
-		//delete []BasicSprites;
-		SDL_free(BasicSprites);
-		BasicSprites = NULL;	
-	}
-	
-	BasicSprites.objcount = 0;	*/
-	
+{	
 	BasicSprites.~ObjectManager();
 }
 

@@ -383,6 +383,7 @@
 				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = ../..;
 				INFOPLIST_FILE = "MeatballEngine/MeatballEngine-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -402,6 +403,7 @@
 				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = ../..;
 				INFOPLIST_FILE = "MeatballEngine/MeatballEngine-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};

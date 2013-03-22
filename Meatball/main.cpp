@@ -12,6 +12,10 @@
 #include "enemy.h"
 #include "MasterBlaster.h"
 #include "TestSuite.h"
+#ifdef __APPLE__
+#include <CoreFoundation/CoreFoundation.h>
+#endif
+
 
 int DoGame();
 void QuitGame();
@@ -19,18 +23,51 @@ void initEngine();
 int processclargs(int, char **);
 void Test();
 
+void OS_Specific()
+{
+#ifdef __APPLE__
+	
+	CFURLRef resourcesURL = CFBundleCopyExecutableURL( CFBundleGetMainBundle() );
+	char pathtofile[PATH_MAX];
+	if (!CFURLGetFileSystemRepresentation(resourcesURL, TRUE, (UInt8 *)pathtofile, PATH_MAX))
+	{
+		// error!
+	}
+	CFRelease(resourcesURL);
+	
+	string longpath(pathtofile);
+	string desiredpath;
+	size_t pos;
+	
+	pos = longpath.rfind(".app/");
+	desiredpath = longpath.substr(0,pos);
+	// trim off the rest
+	pos = desiredpath.find_last_of('/');
+	desiredpath.erase(pos);
+	
+	chdir(desiredpath.c_str());
+#endif
+
+}
+
 int main (int argc, char **argv)
 {
+	OS_Specific();
+	initEngine();
 	
+	MB = new MasterBlaster();
 	// Add Code to Check arguments for -Test
 	// this will Run Test Cases code for All Components
 	int rval = processclargs(argc, argv);
 	if (rval == MODE_TEST)
+	{
+		QuitGame();
 		return 0;
+	}
 	
-	initEngine();
 	
-	MB = new MasterBlaster();
+	
+	
 	MB->Loop();
 	
 	// After having MUCH FUN.....

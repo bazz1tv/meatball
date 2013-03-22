@@ -25,6 +25,7 @@ cConsole *pConsole;
 using namespace std;
 
 
+// Pushes a new Command onto the linked list of aLL commands
 void Push(cCMD*& head, string command, SDL_bool (*handler)(string &), string helpstr, string syntax)
 {
 	cCMD* newCmd = new cCMD;
@@ -36,6 +37,7 @@ void Push(cCMD*& head, string command, SDL_bool (*handler)(string &), string hel
 	head = newCmd;
 }
 
+// Adds an alias for cmd
 void CmdAddAlias(cCMD* &cmd, string str)
 {
 	cmd->command.add(new string(str));
@@ -48,21 +50,33 @@ cConsole :: cConsole( void )
 {
 	history_y = topHistoryLine_Y;
 
+	//-------------------
 	// clear surfaces
-	consoleInput_surface = NULL;	// input display
-	consoleInput_tex = NULL;
+	//-------------------
+	consoleInput_surface= NULL;			// input display
+	consoleInput_tex	= NULL;
 	for (Uint8 n=0; n < HISTORY_LINES; n++)
 	{
-		sc_surface[n] = NULL;
-		sc_tex[n] = NULL;
+		sc_surface[n]	= NULL;
+		sc_tex[n]		=	NULL;
 	}
-	cursor_surface = NULL;	// Cursor Display
-	cursor_tex = NULL;
 	
+	cursor_surface		= NULL;			// Cursor Display
+	cursor_tex			= NULL;
+	//----------------------
+	
+	// 
 	full_path = fs::current_path();
 
+	// 
 	histcounter = -1;
+	
 	// Init Background //////////
+	if (IMan == NULL)
+	{
+		throw 1;
+	}
+	
 	IMan->Add( LoadImage( PIXMAPS_DIR "game/background/conBG.png", colorkey, 140 ), "Console_BG" );
 
 	BG = new cBasicSprite( Renderer, IMan->GetPointer( "Console_BG" ), 0, 0 );
@@ -71,6 +85,10 @@ cConsole :: cConsole( void )
 	/////////////////
 
 	// Init Font ////
+	if (!pFont)
+	{
+		throw 2;
+	}
 	Console_font = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 13, TTF_STYLE_BOLD );
 	//
 
@@ -106,9 +124,11 @@ cConsole :: cConsole( void )
 
 	/// [Console Commands]
 
+	//
 	consoleInput_x = 10.0;
 	consoleInput_y = BG->height - 14;
 
+	//
 	DrawCur = SDL_FALSE;
 	ttDrawCur = SDL_GetTicks() + 500;
 }
@@ -116,7 +136,6 @@ cConsole :: cConsole( void )
 /// Delete the Background, close the font, Delete all commands from CMDList
 cConsole :: ~cConsole( void )
 {
-	//free(full_path);
 	if( BG ) 
 	{
 		delete BG;
@@ -134,9 +153,6 @@ cConsole :: ~cConsole( void )
 		delete ptr;
 		ptr = ptr2;
 	}
-
-	//full_path;
-
 }
 
 /// The input Handler
@@ -144,7 +160,6 @@ cConsole :: ~cConsole( void )
 /// When you hit enter, sends the input to CMDHandler()
 int cConsole :: EventHandler( void )
 {
-	//Uint8 mode=0;
 	SDL_StartTextInput();
 	
 	while ( SDL_PollEvent( &event ) )
@@ -152,27 +167,27 @@ int cConsole :: EventHandler( void )
 		UniversalEventHandler(&event);
 		switch ( event.type )
 		{
-		case SDL_QUIT:
+			/////////////////////////////////
+			case SDL_QUIT:
 			{
-				//done = 2;
 				return mode = MODE_QUIT;
 				break;
 			}
-		case SDL_KEYDOWN:
+			///////////////////////////////////
+			case SDL_KEYDOWN:
 			{
 				if( event.key.keysym.sym == SDLK_ESCAPE || event.key.keysym.sym == SDLK_BACKQUOTE)
 				{
-					//done = 1;
 					return mode = 1;	// code to exit console
 				}
-
+				//----------------------
 				else if ( event.key.keysym.sym == SDLK_BACKSPACE )
 				{
 					if ( !consoleInput_str.empty() )
 					{
 						consoleInput_str.erase( consoleInput_str.end()-1 , consoleInput_str.end() );
 					}
-				}	
+				}//----------------------
 				else if ( event.key.keysym.sym == SDLK_RETURN )
 				{	
 					if ( !consoleInput_str.empty() )
@@ -181,14 +196,14 @@ int cConsole :: EventHandler( void )
 						consoleInput_str.clear(); // Clear console input line
 						CMDHandler( strcpy[0] );
 					}
-				}
+				}//----------------------
 				else if ( event.key.keysym.sym == SDLK_UP )
 				{	
-					if (histcounter >= NUM_LINES)
-					{	histcounter = NUM_LINES; }
+					if (histcounter >= HISTORY_LINES)
+					{	histcounter = HISTORY_LINES; }
 					else consoleInput_str = strcpy[++histcounter];
 					
-				}
+				}//----------------------
 				else if ( event.key.keysym.sym == SDLK_DOWN )
 				{	
 					if (histcounter <= 0)
@@ -200,6 +215,7 @@ int cConsole :: EventHandler( void )
 				
 				break;
 			}
+			///////////////////////////////////
 			case SDL_TEXTINPUT:
 			{
 				if (strcmp("`", event.text.text) == 0)
@@ -207,9 +223,9 @@ int cConsole :: EventHandler( void )
 				consoleInput_str += event.text.text; // += (char)event.key.keysym.unicode;
 				break;
 			}
-		default:
+			///////////////////////////////////
+			default:
 			{
-				
 				break;
 			}
 		}
@@ -222,7 +238,6 @@ int cConsole :: EventHandler( void )
 /// Updates background, Updates logic to draw the cursor or not (blinking underscore)
 void cConsole :: Update( void )
 {
-	//PreUpdate();
 	pFramerate->SetSpeedFactor(); // Update
 	pCamera->Update();
 	pMouse->Update(Renderer);
@@ -262,20 +277,20 @@ void cConsole :: Draw( SDL_Renderer *renderer )
 	// display console BG
 	BG->Draw( renderer );
 	
-	BlinkCursor();
+	DrawCursor();
+	
 	CreateTextOnSurfaces();
-	SetRects();
+	SetConsoleLineRects();
 	CreateTexturesAndRender(renderer);
 	FreeAllUsedSurfaces();
 
-	//PostDraw();
 	DrawFramerate();
 	DrawAllToScreen();
 	
-	// Free all used Surfaces
+	
 }
 
-void cConsole::BlinkCursor()
+void cConsole::DrawCursor()
 {
 	// The blinking Cursor
 	if( DrawCur == SDL_TRUE)
@@ -307,7 +322,7 @@ void cConsole :: CreateTextOnSurfaces()
 	}
 }
 
-void cConsole :: SetRects()
+void cConsole :: SetConsoleLineRects()
 {
 	history_y = topHistoryLine_Y;
 	// Rect specification
@@ -495,14 +510,8 @@ SDL_bool cConsole :: helpCMD( string &str )
 {
 	char buffer[1000];
 
-	//string::iterator pos = str.end() - 1;
-
-	//cout<<(int)*pos;
-	//str.erase( pos );
-	
 	sprintf( buffer, "Revealing information on CMD %s:", str.c_str() );
 
-	//int j = 0;
 	cCMD *ptr = CMDList;
 	while ( ptr != NULL )
 	{
@@ -526,7 +535,12 @@ SDL_bool cConsole :: helpCMD( string &str )
 	return SDL_FALSE;
 }
 
-
+SDL_bool printerrortoconsole()
+{
+	console_print(error.str().c_str());
+	error.str(std::string());
+	return SDL_FALSE;
+}
 
 
 
@@ -546,6 +560,7 @@ SDL_bool clearcon( string &str )
 
 SDL_bool loadmap( string &str )
 {
+	// Shouldn't we be checking for valid filename??
 	pLevel->Load( str );
 
 	return SDL_TRUE;
@@ -561,7 +576,10 @@ SDL_bool SetMx( string &str )
 		console_print(var.str().c_str());
 	}
 	else{
-		pPlayer->posx = atoi( str.c_str() );
+		if (!strtoval<double>(str, pPlayer->posx))
+		{
+			return printerrortoconsole();
+		}
 	}
 	return SDL_TRUE;
 }
@@ -575,8 +593,12 @@ SDL_bool SetMy( string &str )
 		var << pPlayer->posy;
 		console_print(var.str().c_str());
 	}
-	else{
-		pPlayer->posy = atoi( str.c_str() );
+	else
+	{
+		if (!strtoval<double>( str, pPlayer->posy ) )
+		{
+			return printerrortoconsole();
+		}
 	}
 
 	return SDL_TRUE;
@@ -590,60 +612,29 @@ SDL_bool SetMxy( string &str )
 		
 		x << "X: "<<pPlayer->posx;
 		console_print(x.str().c_str());
-		//y.clear();
-		y <<"Y: "<<pPlayer->posy;
 		
+		y << "Y: "<<pPlayer->posy;
 		console_print(y.str().c_str());
 		
 		return SDL_TRUE;
 	}
-	else{
-	
-		size_t found;
-		string x,y;
-		string::iterator xi, yi;
-
-		// parsing a int,int string combo
-		xi = str.begin();
-
-		found = str.find_first_of( ' ' );
-		if (found == string::npos)
+	else
+	{
+		double xy[2];
+		
+		if (!strtovals<double>(str,xy,2))
 		{
-			return SDL_FALSE;
+			return printerrortoconsole();
 		}
-		yi = str.begin() + found;
-
-	// Very incompetent String parsing here. The prog will crash if you suck at typing
-
-		x.assign(xi,yi++);
-		y.assign(yi, str.end());
-
-		cout << x << " " << y;
-
-		pPlayer->SetPos( atoi( x.c_str() ), atoi( y.c_str() ) );
-	
-
+		pPlayer->SetPos( xy[0], xy[1] );
+		
 		return SDL_TRUE;
 	}
 }
 
 SDL_bool allSoundsVol(string &str)
 {
-	int avg = pAudio->SetAllSoundsVolume(atoi(str.c_str()));
-
-	if (avg == -1)
-	{
-		console_print("Error. Volume invalid");
-		return SDL_FALSE;
-	}
-	char result[300];
-	sprintf(result,"Successful. Avg/Old volume = %d", avg);
-	console_print(result);
-	return SDL_TRUE;
-}
-
-SDL_bool soundVol( string &str)
-{
+	
 	if (str.empty())
 	{
 		stringstream var;
@@ -655,53 +646,94 @@ SDL_bool soundVol( string &str)
 	}
 	else
 	{
-		size_t found;
-		string sound,vol;
-		string::iterator soundi, voli;
+		int avg;
+		
+		if (!strtoval<int>(str,avg))
+			return printerrortoconsole();
+		
+		pAudio->SetAllSoundsVolume(avg);
 
-		// parsing a int,int string combo
-		soundi = str.begin();
-		sound.assign(soundi,str.end());
-
-		found = str.find_first_of( ' ' );
-		if (found == string::npos)
+		if (avg == -1)
 		{
-			stringstream soundvol;
+			console_print("Error. Volume invalid");
+			return SDL_FALSE;
+		}
+		
+		stringstream result;
+		result << "Successful. Avg/Old volume = " << avg;
+		console_print(result.str().c_str());
+		
+		return SDL_TRUE;
+	}
+}
+
+SDL_bool soundVol( string &str)
+{
+	if (str.empty())
+	{
+		// Should print out a list of all Sounds
+		error << "No arguments!";
+		return printerrortoconsole();
+	}
+	else
+	{
+		string sound,volstr;
+		int vol;
+		
+		istringstream ss(str);
+		string tmp;
+		
+		// IF parameter 1 is malformed
+		if (!(ss >> sound))
+		{
+			error << "Sound string is malformed!";
+			return printerrortoconsole();
+		}
+		
+		// If only 1 parameter
+		if (ss.eof())
+		{
+			int oldvol = pAudio->SetSoundVolume(SMan->GetPointer(sound), -1);	// just see the current volume
 			
-			soundvol<<pAudio->GetSoundVolume(SMan->GetPointer(sound));
-			console_print(soundvol.str().c_str());
+			if (oldvol == -1)
+			{
+				console_print("Error viewing Sound Volume! Perhaps your string is incorrect");
+				return SDL_FALSE;
+			}
+			else
+			{
+				stringstream result;
+				result << sound << "_vol = " << oldvol;
+				console_print(result.str().c_str());
+			}
 			
 			return SDL_TRUE;
 		}
-		
-		
-		
-		voli = str.begin() + found;
-
-		// Very incompetent String parsing here. The prog will crash if you suck at typing
-
-		
-		vol.assign(voli, str.end());
-
-		cout << sound << " " << vol;
-
-		int oldvol = pAudio->SetSoundVolume(SMan->GetPointer(sound), atoi(vol.c_str()));
-
-		if (oldvol == -1)
+		else // 2 parameters
 		{
-			console_print("Error Changing Sound Volume!");
-			return SDL_FALSE;
+			if (!(ss >> volstr))
+			{
+				error << "Malformed volume";
+				return printerrortoconsole();
+			}
+			
+			int oldvol = pAudio->SetSoundVolume(SMan->GetPointer(sound), vol);
+			
+			if (oldvol == -1)
+			{
+				console_print("Error Changing Sound Volume!");
+				return SDL_FALSE;
+			}
+			else
+			{
+				stringstream result;
+				result << sound << "_vol : " << oldvol << " => " << vol;
+				console_print(result.str().c_str());
+			}
+			
+			return SDL_TRUE;
+				
 		}
-		else 
-		{
-			char Result[200]; // string which will contain the number
-
-			sprintf(Result,"%s_vol : %d => %s", sound.c_str(), oldvol,vol.c_str() ); // %d makes the result be a decimal integer 
-
-			console_print(Result);
-		}
-		//pAudio->SetSoundsVolume(atoi( str.c_str() ));
-		return SDL_TRUE;
 	}
 }
 
@@ -716,8 +748,11 @@ SDL_bool musicVol( string &str)
 		return SDL_TRUE;
 	}
 	else{
-		int oldvol = pAudio->SetMusicVolume(atoi( str.c_str() ));
-		char result[100];
+		int vol;
+		if (!strtoval<int>(str,vol))
+			return printerrortoconsole();
+		
+		int oldvol = pAudio->SetMusicVolume( vol );
 
 		if (oldvol == -1)
 		{
@@ -725,8 +760,9 @@ SDL_bool musicVol( string &str)
 		}
 		else
 		{
-			sprintf(result,"Music_vol : %d => %s", oldvol, str.c_str());
-			console_print(result);
+			stringstream result;
+			result << "Music_vol : " << oldvol << " => " << str;
+			console_print(result.str().c_str());
 		}
 		return SDL_TRUE;
 	}
@@ -764,6 +800,21 @@ SDL_bool ShowFPS( string &str )
 	
 	return SDL_TRUE;
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+string GetApplicableCommandNames(cCMD *ptr)
+{
+	string allcmds="";
+	register unsigned int i;
+	for (i=0; i < ptr->command.objcount-1; i++)
+	{
+		
+		allcmds = *ptr->command.objects[i] + ", ";
+		
+	}
+	allcmds += *ptr->command.objects[i];
+	
+	return allcmds;
+}
 
 SDL_bool help( string &str )
 {
@@ -780,7 +831,7 @@ SDL_bool help( string &str )
 		{
 			// if we have printed >= a screenful..let's stop to let the user analyze, and press a key to continue
 			// Todo: add code to process Holding a key instead of just pressing
-			if (curline >= (NUM_LINES))
+			if (curline >= (HISTORY_LINES))
 			{
 				
 				pConsole->consoleInput_str = "Press any key..";
@@ -792,15 +843,8 @@ SDL_bool help( string &str )
 			}
 			 
 			// The following code will create a single-line string of all the aliases for the one command
-			string allcmds="";
-			unsigned int i;
-			for (i=0; i < ptr->command.objcount-1; i++)
-			{
-				
-				allcmds = *ptr->command.objects[i] + ", ";
-				
-			}
-			allcmds += *ptr->command.objects[i];
+			string allcmds = GetApplicableCommandNames(ptr);
+			
 			console_print((char*)allcmds.c_str());
 			// print that one line, then move on
 			
@@ -818,12 +862,12 @@ SDL_bool help( string &str )
 		return pConsole->helpCMD( str );
 	}
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////
 void moveConsoleHistoryLinesUp(int nlines/*=1*/) // number of lines to move up by
 {
 	int i;
 	
-	for (i=NUM_LINES-1; i >= nlines; i--)
+	for (i=HISTORY_LINES-1; i >= nlines; i--)
 	{
 		pConsole->strcpy[i] = pConsole->strcpy[i-nlines];
 	}
@@ -893,10 +937,10 @@ SDL_bool ls(string &str)
 	if ( fs::is_directory( pConsole->full_path ) )
 	{
 		fs::directory_iterator end_iter;
-		char result[500];
+		
 		for ( fs::directory_iterator dir_itr( pConsole->full_path ); dir_itr != end_iter; ++dir_itr )
 		{
-			if (curline >= (NUM_LINES))
+			if (curline >= (HISTORY_LINES))
 			{
 				
 				pConsole->consoleInput_str = "Press any key..";
@@ -911,18 +955,20 @@ SDL_bool ls(string &str)
 			{
 				if ( fs::is_directory( dir_itr->status() ) )
 				{
-					sprintf(result,"%s [directory]", s.c_str());
-					console_print(result);
+					stringstream result;
+					result << s << " [directory]";
+					console_print(result.str().c_str());
 				}
 				else if ( fs::is_regular_file( dir_itr->status() ) )
 				{
 					
-					console_print((char*)s.c_str());
+					console_print(s.c_str());
 				}
 				else
 				{
-					sprintf(result,"%s [other]", s.c_str());
-					console_print(result);
+					stringstream result;
+					result << s << " [other]";
+					console_print(result.str().c_str());
 				}
 				curline++;
 	
@@ -947,7 +993,7 @@ SDL_bool SetScreenScaleXY(string &str)
 		
 		x << "X: "<<ScreenScale.x;
 		console_print(x.str().c_str());
-		//y.clear();
+		
 		y <<"Y: "<<ScreenScale.y;
 		
 		console_print(y.str().c_str());
@@ -956,29 +1002,12 @@ SDL_bool SetScreenScaleXY(string &str)
 	}
 	else{
 		
-		size_t found;
-		string x,y;
-		string::iterator xi, yi;
+		double xy[2];
 		
-		// parsing a int,int string combo
-		xi = str.begin();
+		if (!strtovals<double>(str,xy,2))
+			return printerrortoconsole();
 		
-		found = str.find_first_of( ' ' );
-		if (found == string::npos)
-		{
-			return SDL_FALSE;
-		}
-		yi = str.begin() + found;
-		
-		// Very incompetent String parsing here. The prog will crash if you suck at typing
-		
-		x.assign(xi,yi++);
-		y.assign(yi, str.end());
-		
-		cout << x << " " << y;
-		
-		SetScreenScale(atoi( x.c_str() ), atoi( y.c_str() ));
-		
+		SetScreenScale( xy[0], xy[1] );
 		
 		return SDL_TRUE;
 	}
@@ -993,13 +1022,14 @@ SDL_bool SetScreenScaleX(string &str)
 		console_print(x.str().c_str());
 		return SDL_FALSE;
 	}
-	int ScreenScale_x_logged = ScreenScale.x;
-	ScreenScale.x = atoi(str.c_str());
+	double ScreenScale_x_logged = ScreenScale.x;
+	if (!strtoval<double>(str,ScreenScale.x))
+		return printerrortoconsole();
 	
-	char result[300];
-	sprintf(result,"Changed ScreenScale_x from %d to %d", ScreenScale_x_logged, ScreenScale.x);
+	stringstream result;
+	result << "Changed ScreenScale_x from " << ScreenScale_x_logged << "to " << ScreenScale.x;
 	
-	console_print(result);
+	console_print(result.str().c_str());
 	return SDL_TRUE;
 }
 SDL_bool SetScreenScaleY(string &str)
@@ -1014,13 +1044,14 @@ SDL_bool SetScreenScaleY(string &str)
 		
 		return SDL_FALSE;
 	}
-	int ScreenScale_y_logged = ScreenScale.y;
-	ScreenScale.y = atoi(str.c_str());
+	double ScreenScale_y_logged = ScreenScale.y;
+	if (!strtoval<double>(str,ScreenScale.y))
+		return printerrortoconsole();
 	
-	char result[300];
-	sprintf(result,"Changed ScreenScale_y from %d to %d", ScreenScale_y_logged, ScreenScale.y);
+	stringstream result;
+	result << "Changed ScreenScale_y from " << ScreenScale_y_logged << "to " << ScreenScale.y;
 	
-	console_print(result);
+	console_print(result.str().c_str());
 	return SDL_TRUE;
 }
 
@@ -1045,9 +1076,13 @@ SDL_bool camx(string &str)
 		camx << "Camera X: "<<pCamera->x;
 		console_print(camx.str().c_str());
 	}
-	
-	else{
-		pCamera->SetPos(atoi(str.c_str()), pCamera->y);
+	else
+	{
+		double posx;
+		if (!strtoval<double>(str,posx))
+			return printerrortoconsole();
+		
+		pCamera->SetPos(posx, pCamera->y);
 	}
 	
 	return SDL_TRUE;
@@ -1062,9 +1097,13 @@ SDL_bool camy(string &str)
 		camy << "Camera y: "<<pCamera->y;
 		console_print(camy.str().c_str());
 	}
-	
-	else{
-		pCamera->SetPos(pCamera->x, atoi(str.c_str()));
+	else
+	{
+		double posy;
+		if (!strtoval<double>(str,posy))
+			return printerrortoconsole();
+		
+		pCamera->SetPos(pCamera->x, posy);
 	}
 	
 	return SDL_TRUE;

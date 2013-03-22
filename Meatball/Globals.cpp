@@ -10,6 +10,8 @@
 #include "MasterBlaster.h"
 #include <fstream>
 
+std::stringstream error;
+
 cMouseCursor *pMouse;		// The Mouse
 
 /// ifSDL_TRUE the game exits
