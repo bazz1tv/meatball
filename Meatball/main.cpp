@@ -21,7 +21,7 @@ int DoGame();
 void QuitGame();
 void initEngine();
 int processclargs(int, char **);
-void Test();
+void Test(SDL_bool with_verbose);
 
 void OS_Specific()
 {
@@ -77,36 +77,44 @@ int main (int argc, char **argv)
 	return 0;
 }
 
-#include "Collision.h"
-void Test()
+void Test(SDL_bool with_verbose)
 {
-	TestSuite TS;
-	TS.Begin();
+	//TestSuite TS;
+	TS::verbose = with_verbose;
+	TS::Begin();
 }
 
 int processclargs(int argc, char *argv[])
 {
 	int c;
+	SDL_bool testmode=SDL_FALSE,verbosemode=SDL_FALSE;
+	// parse for Verbose too
 	
-	printf ("Processing arguments!\n");
+	printf ("Processing arguments!\n\n");
 	
 	while( --argc > 0 && (*++argv)[0] == '-')
 		while( (c = *++argv[0]) ) //bug to investigate: what are the side effects of c == *++argv[0], which was a bug before the fix.
 			switch (c) {
 				case 't':
 					//printf("Argv[1] = : %s\n", argv[1]);
-					Test();
-					return MODE_TEST;
-					break;
+					testmode = SDL_TRUE;
+					continue;
+				case 'v':
+					verbosemode = SDL_TRUE;
+					continue;
 				default:
-					printf("illegal option %c\n", c);
-					argc = 0;
-					return -1;
+					//printf("illegal option %c\n", c);
+					//argc = 0;
+					//return -1;
 					break;
 			}
 	
-	//if( argc != 1)
-		//printf("Usage: tail [-n #]\n");
+	if (testmode)
+	{
+		SDL_ShowCursor(1);
+		Test(verbosemode);
+		return MODE_TEST;
+	}
 	
     return 0;
 }

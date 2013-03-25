@@ -5,12 +5,21 @@
 #include "Console.h"
 #include <iostream>
 #include <string>
+
+#include "Os.h"
+#include <string>
+#include "player.h"
+
+#include "TestHelperFunctions.h"
+
+// Components
+#include "ConsoleTest.h"
+#include "CollisionTest.h"
+
 using namespace std;
 
-class TestSuite
+namespace TS
 {
-public:
-	TestSuite();
 	
 	void Begin();
 	
@@ -23,12 +32,17 @@ public:
 	
 	// Components Testing
 	int ConsoleTest();
-	int TestCommand(string);
+	
 	
 	void MiniEngineTest();
 	int CollisionTest();
 	
-	//cConsole *Console;
+	//friend class cConsoleTest;
+	extern cConsoleTest TC_console;
+	extern cCollisionTest TC_collision;
 	
-	int numtabs;
+	extern SDL_bool verbose;
+	extern int numtabs;
 };
+
+

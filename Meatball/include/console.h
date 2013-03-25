@@ -88,7 +88,7 @@ public:
 	int EventHandler( void );
 
 	SDL_bool CMDHandler( string cInput );
-	cCMD* FindMatch(string &cmd);
+	cCMD* FindMatch(string &cmd, string &match);
 	void Update( void );
 	
 	void Draw( SDL_Renderer *renderer );

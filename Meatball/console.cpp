@@ -435,8 +435,8 @@ SDL_bool cConsole :: CMDHandler( string cInput )
 		cout<<"base empty\n";
 		return SDL_FALSE;
 	}
-
-	cCMD *cmd_match = FindMatch(base);
+	string matchstr;
+	cCMD *cmd_match = FindMatch(base, matchstr);
 
 	if (cmd_match)
 	{
@@ -447,7 +447,7 @@ SDL_bool cConsole :: CMDHandler( string cInput )
 	return SDL_FALSE;
 }
 
-cCMD* cConsole::FindMatch(string &cmd)
+cCMD* cConsole::FindMatch(string &cmd, string&matchstr)
 {
 	cCMD *ptr = CMDList;
 	
@@ -457,6 +457,10 @@ cCMD* cConsole::FindMatch(string &cmd)
 		{
 			if ( cmd == (string)*(ptr->command.objects[i]) )
 			{
+				//if (matchstr != "")
+				//{
+					matchstr = cmd;
+				//}
 				return ptr;
 			}
 			else
@@ -485,7 +489,7 @@ string cConsole :: ParseBase( string str )
 	string::iterator ending	= str.end();
 
 	str.erase( beginning, ending );
-	cout<<str;
+	//cout<<str;
 	return str;
 }
 
@@ -502,7 +506,7 @@ string cConsole :: ParseParm( string str )
 	string::iterator ending = str.begin() + found+1;
 
 	str.erase( beginning, ending );
-	cout<<str;
+	//cout<<str;
 	return str;
 }
 
@@ -549,7 +553,7 @@ SDL_bool clearcon( string &str )
 {
 	pConsole->consoleInput_str.clear();
 
-	for ( int i = 0; i < 11; i++ )
+	for ( int i = 0; i < HISTORY_LINES; i++ )
 	{
 		pConsole->strcpy[i].clear();
 	}

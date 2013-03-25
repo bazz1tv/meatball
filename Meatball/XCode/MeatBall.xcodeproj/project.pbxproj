@@ -24,13 +24,16 @@
 		9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C93E39513942B5A0096FAB3 /* Cocoa.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		E9207A8916F0BB2600F9A1AC /* GraphicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9207A8816F0BB2600F9A1AC /* GraphicsObject.cpp */; };
 		E931074416EBBA0600434FA6 /* MasterBlaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E931074316EBBA0600434FA6 /* MasterBlaster.cpp */; };
-		E935680816F5644300DD47C9 /* TestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E935680716F5644300DD47C9 /* TestSuite.cpp */; };
 		E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */; };
+		E95FDED916FFE1EB0024D903 /* CollisionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95FDED416FFE1EB0024D903 /* CollisionTest.cpp */; };
+		E95FDEDA16FFE1EB0024D903 /* ConsoleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95FDED716FFE1EB0024D903 /* ConsoleTest.cpp */; };
 		E98CCB9816B46E6C0003938A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E98CCB9916B46E6C0003938A /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
 		E98CCB9A16B46E6C0003938A /* SDL2_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
 		E98CCB9B16B46E6C0003938A /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */; };
 		E98CCB9C16B46E6C0003938A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9716B46E6C0003938A /* SDL2.framework */; };
+		E9C25BA516FCFE6D0090BB09 /* TestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */; };
+		E9C25BB016FD09290090BB09 /* TestHelpFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9C25BAF16FD09290090BB09 /* TestHelpFunctions.cpp */; };
 		E9CFA3E816B1D54D00B3919F /* AF-373.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */; };
 		E9CFA3E916B1D54D00B3919F /* bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3D016B1D54D00B3919F /* bullet.cpp */; };
 		E9CFA3EA16B1D54D00B3919F /* ButtonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */; };
@@ -92,16 +95,23 @@
 		E9207A8816F0BB2600F9A1AC /* GraphicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GraphicsObject.cpp; path = ../GraphicsObject.cpp; sourceTree = "<group>"; };
 		E931074316EBBA0600434FA6 /* MasterBlaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MasterBlaster.cpp; path = ../MasterBlaster.cpp; sourceTree = "<group>"; };
 		E931074616EBBA1300434FA6 /* MasterBlaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterBlaster.h; path = ../include/MasterBlaster.h; sourceTree = "<group>"; };
-		E935680716F5644300DD47C9 /* TestSuite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSuite.cpp; path = ../TestSuite.cpp; sourceTree = "<group>"; };
-		E935680A16F5647000DD47C9 /* TestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSuite.h; path = ../include/TestSuite.h; sourceTree = "<group>"; };
 		E942ED5916D064CF0048C7EB /* MultiSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiSelect.h; path = ../include/MultiSelect.h; sourceTree = "<group>"; };
 		E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiSelect.cpp; path = ../MultiSelect.cpp; sourceTree = "<group>"; };
+		E95FDEBF16FFCAE40024D903 /* TestComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestComponent.h; path = ../TestComponent.h; sourceTree = "<group>"; };
+		E95FDED416FFE1EB0024D903 /* CollisionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionTest.cpp; sourceTree = "<group>"; };
+		E95FDED516FFE1EB0024D903 /* CollisionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTest.h; sourceTree = "<group>"; };
+		E95FDED716FFE1EB0024D903 /* ConsoleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleTest.cpp; sourceTree = "<group>"; };
+		E95FDED816FFE1EB0024D903 /* ConsoleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleTest.h; sourceTree = "<group>"; };
 		E98CCB9316B46E6C0003938A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		E98CCB9516B46E6C0003938A /* SDL2_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_net.framework; path = ../../../../../../../Library/Frameworks/SDL2_net.framework; sourceTree = "<group>"; };
 		E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		E98CCB9716B46E6C0003938A /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		E9A5CDDA16C8BA4C004D4DF0 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Range.h; path = ../include/Range.h; sourceTree = "<group>"; };
+		E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSuite.cpp; path = ../TestSuite/TestSuite.cpp; sourceTree = "<group>"; };
+		E9C25BA416FCFE6D0090BB09 /* TestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSuite.h; path = ../TestSuite/TestSuite.h; sourceTree = "<group>"; };
+		E9C25BAE16FD08420090BB09 /* TestHelperFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestHelperFunctions.h; path = ../TestSuite/TestHelperFunctions.h; sourceTree = "<group>"; };
+		E9C25BAF16FD09290090BB09 /* TestHelpFunctions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestHelpFunctions.cpp; path = ../TestSuite/TestHelpFunctions.cpp; sourceTree = "<group>"; };
 		E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "AF-373.cpp"; path = "../AF-373.cpp"; sourceTree = "<group>"; };
 		E9CFA3D016B1D54D00B3919F /* bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bullet.cpp; path = ../bullet.cpp; sourceTree = "<group>"; };
 		E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ButtonObject.cpp; path = ../ButtonObject.cpp; sourceTree = "<group>"; };
@@ -219,8 +229,10 @@
 		E92B688A16F57E320068EA31 /* TestSuite */ = {
 			isa = PBXGroup;
 			children = (
-				E935680716F5644300DD47C9 /* TestSuite.cpp */,
-				E935680A16F5647000DD47C9 /* TestSuite.h */,
+				E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */,
+				E9C25BA416FCFE6D0090BB09 /* TestSuite.h */,
+				E95FDED216FFE1EB0024D903 /* TestComponents */,
+				E95FDED116FFE11B0024D903 /* Helpers */,
 			);
 			name = TestSuite;
 			sourceTree = "<group>";
@@ -242,6 +254,44 @@
 				E9CFA3E416B1D54D00B3919F /* Slider.cpp */,
 			);
 			name = Slider;
+			sourceTree = "<group>";
+		};
+		E95FDED116FFE11B0024D903 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E9C25BAE16FD08420090BB09 /* TestHelperFunctions.h */,
+				E9C25BAF16FD09290090BB09 /* TestHelpFunctions.cpp */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		E95FDED216FFE1EB0024D903 /* TestComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E95FDEBF16FFCAE40024D903 /* TestComponent.h */,
+				E95FDED316FFE1EB0024D903 /* Collision */,
+				E95FDED616FFE1EB0024D903 /* Console */,
+			);
+			name = TestComponents;
+			path = ../TestSuite/TestComponents;
+			sourceTree = "<group>";
+		};
+		E95FDED316FFE1EB0024D903 /* Collision */ = {
+			isa = PBXGroup;
+			children = (
+				E95FDED416FFE1EB0024D903 /* CollisionTest.cpp */,
+				E95FDED516FFE1EB0024D903 /* CollisionTest.h */,
+			);
+			path = Collision;
+			sourceTree = "<group>";
+		};
+		E95FDED616FFE1EB0024D903 /* Console */ = {
+			isa = PBXGroup;
+			children = (
+				E95FDED716FFE1EB0024D903 /* ConsoleTest.cpp */,
+				E95FDED816FFE1EB0024D903 /* ConsoleTest.h */,
+			);
+			path = Console;
 			sourceTree = "<group>";
 		};
 		E9A3436C16BB7C2E00072818 /* Enemies */ = {
@@ -571,7 +621,10 @@
 				E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */,
 				E931074416EBBA0600434FA6 /* MasterBlaster.cpp in Sources */,
 				E9207A8916F0BB2600F9A1AC /* GraphicsObject.cpp in Sources */,
-				E935680816F5644300DD47C9 /* TestSuite.cpp in Sources */,
+				E9C25BA516FCFE6D0090BB09 /* TestSuite.cpp in Sources */,
+				E9C25BB016FD09290090BB09 /* TestHelpFunctions.cpp in Sources */,
+				E95FDED916FFE1EB0024D903 /* CollisionTest.cpp in Sources */,
+				E95FDEDA16FFE1EB0024D903 /* ConsoleTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
