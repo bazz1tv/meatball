@@ -11,6 +11,14 @@
 #include <fstream>
 
 std::stringstream error;
+void PrintErrorToConsole()
+{
+	std::cout << error.str();
+}
+void ClearErrorStream()
+{
+	error.str(std::string());
+}
 
 cMouseCursor *pMouse;		// The Mouse
 

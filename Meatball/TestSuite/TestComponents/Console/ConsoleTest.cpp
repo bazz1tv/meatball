@@ -1,14 +1,9 @@
 #include "ConsoleTest.h"
 #include "player.h"
 #include "TestSuite.h"
+#include "TestDefinitions.h"
 
-
-	//cmdstr = "ls";
-	//cmd = Console->FindMatch("ls");
-	
-		// Call functions to test each command
-	// or whatever
-	/*
+	/* Command List
 	 SDL_bool clearcon( string &str );	///< Clears the console
 	 // nothing to test here
 	 SDL_bool loadmap( string &str );	///< Load a new Level from @link LEVEL_DIR @endlink
@@ -32,6 +27,12 @@
 	 SDL_bool camy(string &str);
 	 */
 
+string cConsoleTest::cmdstr = "";
+string cConsoleTest::matchstr = "";
+string cConsoleTest::parm = "";
+int cConsoleTest::rval = 1;
+
+// Here is our list of Full Test Commands to Run
 string commands_to_test[] = {
 	"cls",
 	"ls",
@@ -55,28 +56,62 @@ string commands_to_test[] = {
 	""
 };
 
+// A Command -> Function Mapping System
+CmdtoFunc CommandToFunctionMap[] = {
+	{"clear", cConsoleTest::TestClear},
+	{"ls", cConsoleTest::TestLS},
+	{"mx",cConsoleTest::TestMx},
+	{"my",cConsoleTest::TestMy},
+	{"loadmap",cConsoleTest::TestLoadMap},
+	{"mxy", cConsoleTest::TestMxy},
+	{"playmus", cConsoleTest::TestPlayMus},
+	{"fps", cConsoleTest::TestFPS},
+	{"svol", cConsoleTest::TestSvol},
+	{"allsvol", cConsoleTest::TestAllSvol},
+	{"mvol", cConsoleTest::TestMvol},
+	{"cd", cConsoleTest::TestCD},
+	{"sx", cConsoleTest::TestSx},
+	{"sy", cConsoleTest::TestSy},
+	{"sxy", cConsoleTest::TestSxy},
+	{"savelevel", cConsoleTest::TestSaveLevel},
+	{"camx", cConsoleTest::TestCamX},
+	{"camy", cConsoleTest::TestCamY},
+	{"quit", cConsoleTest::TestQuit},
+	{"", NULL}
+	
+};
+
+cConsoleTest::cConsoleTest() :
+TestComponent()
+{
+	
+}
+
 int cConsoleTest :: Test()
 {
-	cout << "Console Test\n---------------" << endl;
-	
+	//cout << "Console Test\n---------------" << endl;
 	int i=0;
 	while (1)
 	{
-		PrintTestNumber(testnum);
-		TestCommand(commands_to_test[i++]);
+		PrintTestNumber();
+		// get current command into easy-access variable
+		cmdstr = commands_to_test[i++];
+		
+		if (TestCommand(cmdstr) == TEST_FAILED)
+			SomethingFailed = SDL_TRUE;
 		
 		if (commands_to_test[i] == "")
 			break;
 	}
 	
-	return 0;
+	if (SomethingFailed)
+		return TEST_FAILED;
+		
+	return TEST_SUCCESS;
 }
 
 int cConsoleTest :: TestCommand(string cmdstr)
 {
-	this->cmdstr = cmdstr;
-	//this->parm //= parm;
-	int rval = 0;
 	string base = pConsole->ParseBase(cmdstr);
 	parm = pConsole->ParseParm(cmdstr);
 	
@@ -89,119 +124,28 @@ int cConsoleTest :: TestCommand(string cmdstr)
 	
 	cCMD *cmd_match = pConsole->FindMatch(base,matchstr);
 	
-		
-	// Not automated Checking of commands.. This means that when the command list gets updated...
-	// You will have to manually update this Test File
-	
 	if (TS::verbose)
 	{
 		cout << "Testing " << base << ", original command name = "<< *cmd_match->command.objects[0] << ": ";
 	}
 	
-	// Here test by a command's Basename
-	if (*cmd_match->command.objects[0] == "clear" )
+	// Automated Mapping of Command-Name to its proper TestFunction
+	for (int i=0; CommandToFunctionMap[i].commandname != ""; i++ )
 	{
-		TestClear(cmdstr);
+		if (*cmd_match->command.objects[0] == CommandToFunctionMap[i].commandname)
+		{
+			return CommandToFunctionMap[i].TestFunction();
+		}
 	}
 	
-	else if (*cmd_match->command.objects[0] == "mx")
-	{
-		
-		TestMx();
-	}
-	else if (*cmd_match->command.objects[0] == "my")
-	{
-		TestMy();
-	}
-	else if (*cmd_match->command.objects[0] == "ls")
-	{
-		if (!TestLS())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "loadmap")
-	{
-		if (!TestLoadMap())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "mxy")
-	{
-		if (!TestMxy())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "playmus")
-	{
-		if (!TestPlayMus())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "quit")
-	{
-		cout << "Test Quit Yourself ;)"<<endl;
-	}
-	else if (*cmd_match->command.objects[0] == "fps")
-	{
-		if (!TestFPS())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "svol")
-	{
-		if (!TestSvol())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "allsvol")
-	{
-		if (!TestAllSvol())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "mvol")
-	{
-		if (!TestMvol())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "cd")
-	{
-		if (!TestCD())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "sx")
-	{
-		if (!TestSx())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "sy")
-	{
-		if (!TestSy())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "sxy")
-	{
-		if (!TestSxy())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "savelevel")
-	{
-		if (!TestSaveLevel())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "camx")
-	{
-		if (!TestCamX())
-			;//OK();
-	}
-	else if (*cmd_match->command.objects[0] == "camy")
-	{
-		if (!TestCamY())
-			;//OK();
-	}
-	else { cout << "weird" <<endl; }
+	cout << "No Command->Function match for " << *cmd_match->command.objects[0];
 	
-	return rval;
-	
-	
+	return -2;
 }
 
 
 
-int cConsoleTest::TestClear(string cmdstr)
+int cConsoleTest::TestClear()
 {
 	if (pConsole->CMDHandler(cmdstr) == SDL_TRUE)
 	{
@@ -326,6 +270,11 @@ int cConsoleTest::TestCamX()
 int cConsoleTest::TestCamY()
 {
 	Stub(); return 0;
+}
+int cConsoleTest::TestQuit()
+{
+	cout << "Test Quit Yourself :P"<<endl;
+	return 1;
 }
 
 

@@ -542,6 +542,7 @@ SDL_bool cConsole :: helpCMD( string &str )
 SDL_bool printerrortoconsole()
 {
 	console_print(error.str().c_str());
+	// clear errorStream
 	error.str(std::string());
 	return SDL_FALSE;
 }
@@ -650,21 +651,21 @@ SDL_bool allSoundsVol(string &str)
 	}
 	else
 	{
-		int avg;
+		int newvol, oldvol;
 		
-		if (!strtoval<int>(str,avg))
+		if (!strtoval<int>(str,newvol))
 			return printerrortoconsole();
 		
-		pAudio->SetAllSoundsVolume(avg);
+		oldvol = pAudio->SetAllSoundsVolume(newvol);
 
-		if (avg == -1)
+		if (oldvol == -1)
 		{
 			console_print("Error. Volume invalid");
 			return SDL_FALSE;
 		}
 		
 		stringstream result;
-		result << "Successful. Avg/Old volume = " << avg;
+		result << "Successful. Avg/Old volume = " << oldvol;
 		console_print(result.str().c_str());
 		
 		return SDL_TRUE;

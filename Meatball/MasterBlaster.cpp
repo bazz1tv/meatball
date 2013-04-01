@@ -1,6 +1,7 @@
 #include "MasterBlaster.h"
 #include "Camera.h"
 #include "console.h"
+#include "level.h"
 
 MasterBlaster *MB;
 
@@ -46,6 +47,13 @@ MasterBlaster::~MasterBlaster()
 
 int MasterBlaster::Game()
 {
+	if (oldmode == MODE_MAINMENU)
+	{
+		string levelname = "test2.lvl";
+		DEBUGLOG ("loading level: %s\n", levelname.c_str());
+		pLevel->Load( levelname);	// load the level
+		DEBUGLOG ("Finished loading level\n");
+	}
 	return pGame->Do();
 }
 

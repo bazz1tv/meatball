@@ -16,6 +16,8 @@
 #include <CoreFoundation/CoreFoundation.h>
 #endif
 
+#define NOTEST 0
+
 
 int DoGame();
 void QuitGame();
@@ -97,10 +99,12 @@ int processclargs(int argc, char *argv[])
 			switch (c) {
 				case 't':
 					//printf("Argv[1] = : %s\n", argv[1]);
-					testmode = SDL_TRUE;
+					if (argv[0][1] == '\0')
+						testmode = SDL_TRUE;
 					continue;
 				case 'v':
-					verbosemode = SDL_TRUE;
+					if (argv[0][1] == '\0')
+						verbosemode = SDL_TRUE;
 					continue;
 				default:
 					//printf("illegal option %c\n", c);
@@ -109,7 +113,7 @@ int processclargs(int argc, char *argv[])
 					break;
 			}
 	
-	if (testmode)
+	if (testmode && NOTEST == 0)
 	{
 		SDL_ShowCursor(1);
 		Test(verbosemode);

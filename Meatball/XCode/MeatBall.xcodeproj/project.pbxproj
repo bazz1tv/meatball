@@ -32,6 +32,7 @@
 		E98CCB9A16B46E6C0003938A /* SDL2_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
 		E98CCB9B16B46E6C0003938A /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */; };
 		E98CCB9C16B46E6C0003938A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9716B46E6C0003938A /* SDL2.framework */; };
+		E9B7B62417035DC1008A1139 /* SettingsPreferencesTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9B7B62217035DC1008A1139 /* SettingsPreferencesTest.cpp */; };
 		E9C25BA516FCFE6D0090BB09 /* TestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */; };
 		E9C25BB016FD09290090BB09 /* TestHelpFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9C25BAF16FD09290090BB09 /* TestHelpFunctions.cpp */; };
 		E9CFA3E816B1D54D00B3919F /* AF-373.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */; };
@@ -102,12 +103,15 @@
 		E95FDED516FFE1EB0024D903 /* CollisionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTest.h; sourceTree = "<group>"; };
 		E95FDED716FFE1EB0024D903 /* ConsoleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleTest.cpp; sourceTree = "<group>"; };
 		E95FDED816FFE1EB0024D903 /* ConsoleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleTest.h; sourceTree = "<group>"; };
+		E98727B317090B3400355E6E /* TestDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDefinitions.h; path = ../TestSuite/TestDefinitions.h; sourceTree = "<group>"; };
 		E98CCB9316B46E6C0003938A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		E98CCB9516B46E6C0003938A /* SDL2_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_net.framework; path = ../../../../../../../Library/Frameworks/SDL2_net.framework; sourceTree = "<group>"; };
 		E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		E98CCB9716B46E6C0003938A /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		E9A5CDDA16C8BA4C004D4DF0 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Range.h; path = ../include/Range.h; sourceTree = "<group>"; };
+		E9B7B62217035DC1008A1139 /* SettingsPreferencesTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SettingsPreferencesTest.cpp; sourceTree = "<group>"; };
+		E9B7B62317035DC1008A1139 /* SettingsPreferencesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsPreferencesTest.h; sourceTree = "<group>"; };
 		E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSuite.cpp; path = ../TestSuite/TestSuite.cpp; sourceTree = "<group>"; };
 		E9C25BA416FCFE6D0090BB09 /* TestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSuite.h; path = ../TestSuite/TestSuite.h; sourceTree = "<group>"; };
 		E9C25BAE16FD08420090BB09 /* TestHelperFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestHelperFunctions.h; path = ../TestSuite/TestHelperFunctions.h; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				E9C25BA416FCFE6D0090BB09 /* TestSuite.h */,
 				E95FDED216FFE1EB0024D903 /* TestComponents */,
 				E95FDED116FFE11B0024D903 /* Helpers */,
+				E98727B317090B3400355E6E /* TestDefinitions.h */,
 			);
 			name = TestSuite;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				E95FDEBF16FFCAE40024D903 /* TestComponent.h */,
+				E9B7B62117035DC1008A1139 /* SettingsPreferences */,
 				E95FDED316FFE1EB0024D903 /* Collision */,
 				E95FDED616FFE1EB0024D903 /* Console */,
 			);
@@ -504,6 +510,15 @@
 			name = Code;
 			sourceTree = "<group>";
 		};
+		E9B7B62117035DC1008A1139 /* SettingsPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				E9B7B62217035DC1008A1139 /* SettingsPreferencesTest.cpp */,
+				E9B7B62317035DC1008A1139 /* SettingsPreferencesTest.h */,
+			);
+			path = SettingsPreferences;
+			sourceTree = "<group>";
+		};
 		E9BC1FAA16B960B70020965C /* LevelEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -625,6 +640,7 @@
 				E9C25BB016FD09290090BB09 /* TestHelpFunctions.cpp in Sources */,
 				E95FDED916FFE1EB0024D903 /* CollisionTest.cpp in Sources */,
 				E95FDEDA16FFE1EB0024D903 /* ConsoleTest.cpp in Sources */,
+				E9B7B62417035DC1008A1139 /* SettingsPreferencesTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

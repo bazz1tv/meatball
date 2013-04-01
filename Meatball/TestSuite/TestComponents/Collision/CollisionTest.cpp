@@ -1,92 +1,82 @@
 #include "CollisionTest.h"
+#include "TestDefinitions.h"
+#include "TestSuite.h"
 
+struct TwoRectIntersect
+{
+	SDL_Rect r1,r2;
+	SDL_bool intersect_expected;
+};
+
+TwoRectIntersect RectTestList[] = {
+	{ {0,0,20,20},{30,0,20,20},SDL_FALSE },
+	{ {0,0,20,20},{0,20,20,20},SDL_FALSE },
+	{ {0,0,20,20},{0,19,20,20},SDL_TRUE  },
+	{ {0,0,20,20},{18,18,20,20},SDL_TRUE },
+	{ {10,10,10,10},{8,0,20,30}, SDL_TRUE },
+	{ {0,20,20,20},{20,0,20,20}, SDL_FALSE},
+	{ {0,0,20,20},{0,18,20,20}, SDL_TRUE },
+	{ {0,0,0,0},{0,0,0,0},SDL_FALSE },
+};
+
+void cCollisionTest::PrintVerboseInfo()
+{
+	if (TS::verbose)
+	{
+		cout << "r1: " << "X: " << r1->x << "\tY: " << r1->y << endl << "\t" << "w: " << r1->w << "\th: " << r1->h << endl;
+		cout << "r2: " << "X: " << r2->x << "\tY: " << r2->y << endl << "\t" << "w: " << r2->w << "\th: " << r2->h << endl;
+	}
+}
 int cCollisionTest::Test()
 {
-	// All that really has to be done here to Checking for different rects in RectIntersect
-	SDL_Rect r1,r2;
-	int testnum=1;
+	int i=0;
 	
-	cout << "Collision Test\n---------------" << endl;
-	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(0,0,20,20);
-	r2 = SetRect(30,0,20,20);
-	if (RectIntersect(&r1, &r2))
+	while (1)
 	{
-		cout << " ERROR: Rect Intersect!" << endl;
-		return -1;
+		PrintTestNumber();
+		
+		r1 = &RectTestList[i].r1;
+		r2 = &RectTestList[i].r2;
+		
+		PrintVerboseInfo();
+		
+		if (RectIntersect(r1,r2))
+		{
+			if (RectTestList[i].intersect_expected)
+			{
+				PrintOK();
+			}
+			else
+			{
+				PrintTestFailed();
+				SomethingFailed = SDL_TRUE;
+			}
+		}
+		else
+		{
+			if (RectTestList[i].intersect_expected)
+			{
+				PrintTestFailed();
+				SomethingFailed = SDL_TRUE;
+			}
+			else
+			{
+				PrintOK();
+			}
+		}
+		
+		// increase TestListCounter
+		i++;
+		
+		
+		// If r1,r2 are both set to 0 everything, then we are done. That's our terminator
+		if ((RectTestList[i].r1.x == 0 && RectTestList[i].r1.y == 0 && RectTestList[i].r1.w == 0 && RectTestList[i].r1.h == 0) && (RectTestList[i].r2.x == 0 && RectTestList[i].r2.y == 0 && RectTestList[i].r2.w == 0 && RectTestList[i].r2.h == 0) )
+			break;
 	}
-	cout << "OK" << endl;
 	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(0,0,20,20);
-	r2 = SetRect(0,20,20,20);
-	if (RectIntersect(&r1, &r2))
-	{
-		cout << " ERROR: Rect Intersect!" << endl;
-		return -1;
-	}
-	cout << "OK" << endl;
 	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(0,0,20,20);
-	r2 = SetRect(0,20,20,20);
-	if (RectIntersect(&r1, &r2))
-	{
-		cout << " ERROR: Rect Intersect!" << endl;
-		return -1;
-	}
-	cout << "OK" << endl;
+	if (SomethingFailed)
+		return TEST_FAILED;
 	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(0,0,20,20);
-	r2 = SetRect(0,19,20,20);
-	if (!RectIntersect(&r1, &r2))
-	{
-		cout << " ERROR: NO Rect Intersect!" << endl;
-		return -1;
-	}
-	cout << "OK" << endl;
-	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(0,0,20,20);
-	r2 = SetRect(18,18,20,20);
-	if (!RectIntersect(&r1, &r2))
-	{
-		cout << " ERROR: NO Rect Intersect!" << endl;
-		return -1;
-	}
-	cout << "OK" << endl;
-	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(10,10,10,10);
-	r2 = SetRect(8,0,20,30);
-	if (!RectIntersect(&r1, &r2))
-	{
-		cout << " ERROR: NO Rect Intersect!" << endl;
-		return -1;
-	}
-	cout << "OK" << endl;
-	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(0,20,20,20);
-	r2 = SetRect(20,0,20,20);
-	if (RectIntersect(&r1, &r2))
-	{
-		cout << " ERROR: Rect Intersect!" << endl;
-		return -1;
-	}
-	cout << "OK" << endl;
-	
-	cout << "Test" << testnum++ << ": ";
-	r1 = SetRect(0,0,20,20);
-	r2 = SetRect(0,18,20,20);
-	if (!RectIntersect(&r1, &r2))
-	{
-		cout << " ERROR: NO Rect Intersect!" << endl;
-		return -1;
-	}
-	cout << "OK" << endl;
-	
-	return 0;
+	return TEST_SUCCESS;
 }
