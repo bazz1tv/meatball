@@ -8,6 +8,11 @@ struct TwoRectIntersect
 	SDL_bool intersect_expected;
 };
 
+void cCollisionTest::PrintOK()
+{
+	cout << " | OK | " <<endl;
+}
+
 TwoRectIntersect RectTestList[] = {
 	{ {0,0,20,20},{30,0,20,20},SDL_FALSE },
 	{ {0,0,20,20},{0,20,20,20},SDL_FALSE },
@@ -23,8 +28,9 @@ void cCollisionTest::PrintVerboseInfo()
 {
 	if (TS::verbose)
 	{
-		cout << "r1: " << "X: " << r1->x << "\tY: " << r1->y << endl << "\t" << "w: " << r1->w << "\th: " << r1->h << endl;
-		cout << "r2: " << "X: " << r2->x << "\tY: " << r2->y << endl << "\t" << "w: " << r2->w << "\th: " << r2->h << endl;
+		cout << endl;
+		cout << "r1: " << "X: " << r1->x << "\tY: " << r1->y << endl << "\t" << "W: " << r1->w << "\tH: " << r1->h << endl;
+		cout << "r2: " << "X: " << r2->x << "\tY: " << r2->y << endl << "\t" << "W: " << r2->w << "\tH: " << r2->h << endl;
 	}
 }
 int cCollisionTest::Test()
@@ -45,10 +51,12 @@ int cCollisionTest::Test()
 			if (RectTestList[i].intersect_expected)
 			{
 				PrintOK();
+				cout << endl;
 			}
 			else
 			{
 				PrintTestFailed();
+				cout << endl;
 				SomethingFailed = SDL_TRUE;
 			}
 		}
@@ -57,11 +65,13 @@ int cCollisionTest::Test()
 			if (RectTestList[i].intersect_expected)
 			{
 				PrintTestFailed();
+				cout << endl;
 				SomethingFailed = SDL_TRUE;
 			}
 			else
 			{
 				PrintOK();
+				cout << endl;
 			}
 		}
 		
@@ -78,5 +88,5 @@ int cCollisionTest::Test()
 	if (SomethingFailed)
 		return TEST_FAILED;
 	
-	return TEST_SUCCESS;
+	return TEST_SUCCESSFUL;
 }
