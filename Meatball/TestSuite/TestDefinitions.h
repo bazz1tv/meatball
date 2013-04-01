@@ -11,7 +11,7 @@
 
 
 // DEFINITIONS
-#define TEST_SUCCESS 1
+#define TEST_SUCCESSFUL 1
 #define TEST_FAILED -1
 
 #endif

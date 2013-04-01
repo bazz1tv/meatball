@@ -18,6 +18,9 @@
 #include "TestComponents/SettingsPreferences/SettingsPreferencesTest.h"
 
 using namespace std;
+class cConsoleTest;
+class cCollisionTest;
+class cSettingsPreferencesTest;
 
 namespace TS
 {
@@ -31,18 +34,14 @@ namespace TS
 	void TestComponents();
 	
 	void tabprint();
-	//void testprint(string, ...);
-	//void testprintnts(string, ...);
 	
 	// Components Testing
 	int ConsoleTest();
-	
-	
 	int MiniEngineTest();
 	int CollisionTest();
 	int SettingsPreferencesTest();
 	
-	//friend class cConsoleTest;
+	
 	extern cConsoleTest TC_console;
 	extern cCollisionTest TC_collision;
 	extern cSettingsPreferencesTest TC_settingsPreferences;
@@ -50,19 +49,18 @@ namespace TS
 	extern SDL_bool verbose;
 	extern int numtabs;
 	
-	/*class Component
-	{ public:
-		Component() { next = NULL; }
-		string component_name;
-		int ( *handler )( void );
-		Component *next;
-	};*/
+	
+	
 	struct SingleComponent
 	{
 		string component_name;
 		int ( *TestComponent )( void );
 	};
+	
+	
 	//extern Component *ComponentList;
 };
+
+
 
 

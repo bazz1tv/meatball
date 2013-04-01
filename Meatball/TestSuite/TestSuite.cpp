@@ -1,4 +1,5 @@
 #include "TestSuite.h"
+#include "TestDefinitions.h"
 
 using namespace std;
 
@@ -90,32 +91,16 @@ void tabprint()
 
 
 void TestAll()
-{
-	/*if (!CollisionTest())
-		cout << "Collision Test Successful!\n" << endl;
-	else cout << "Collision Test Failed!\n" << endl;
-	
-	if (!ConsoleTest())
-	{
-		cout << "Console Test Successful!!\n" << endl;
-	}
-	else cout << "Console Test Failed!\n" << endl;
-	
-	if (!CollisionTest())
-	{
-		cout << "Collision Test Successful!!\n" << endl;
-	}
-	else cout << "Collision Test Failed!\n" << endl;*/
-	
+{	
 	for (int i=0; CL[i].component_name != ""; i++ )
 	{
 		cout << i+1 << ") " << CL[i].component_name << " Test" << endl << "---------------" << endl;
 		
-		if (CL[i].TestComponent() == 1)
+		if (CL[i].TestComponent() == TEST_SUCCESSFUL)
 		{
 			cout << CL[i].component_name << " Test Successful!\n" << endl;
 		}
-		else if (CL[i].TestComponent() == -1)
+		else if (CL[i].TestComponent() == TEST_FAILED)
 		{
 			cout << CL[i].component_name << " Test Failed!!\n" << endl;
 		}

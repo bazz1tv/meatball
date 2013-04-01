@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-class cConsoleTest : TestComponent
+class cConsoleTest : TS::TestComponent
 {
 	
 public:

@@ -85,6 +85,34 @@ int SDL_ToggleFS(SDL_Window *win)
 	return 1;
 }
 
+string StringPadding(string original, size_t charCount )
+{
+    original.resize( charCount, ' ' );
+    return original;
+}
+
+string ParseParm( string &str )
+{
+	string empty("");
+	string temp;
+	temp = str;
+	size_t found = temp.find_first_of( ' ' );
+	
+	if (found == string::npos)
+		return str;
+	
+	
+	
+	string::iterator beginning = temp.begin()+ found+1;
+	string::iterator ending = temp.end() ;
+	temp.erase( beginning, ending );
+	
+	str = str.substr(found+1,str.length());
+	//std::cout << str << " ";
+	//cout<<str;
+	//cout << temp << endl;
+	return temp;
+}
 
 
 /// Check for Collision with the Mouse

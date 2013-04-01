@@ -2,6 +2,7 @@
 #include "player.h"
 #include "TestSuite.h"
 #include "TestDefinitions.h"
+#include "Misc.h"
 
 	/* Command List
 	 SDL_bool clearcon( string &str );	///< Clears the console
@@ -93,7 +94,7 @@ int cConsoleTest :: Test()
 	int i=0;
 	while (1)
 	{
-		PrintTestNumber();
+		PrintTestNumber(commands_to_test[i]);
 		// get current command into easy-access variable
 		cmdstr = commands_to_test[i++];
 		
@@ -107,7 +108,7 @@ int cConsoleTest :: Test()
 	if (SomethingFailed)
 		return TEST_FAILED;
 		
-	return TEST_SUCCESS;
+	return TEST_SUCCESSFUL;
 }
 
 int cConsoleTest :: TestCommand(string cmdstr)
@@ -126,7 +127,8 @@ int cConsoleTest :: TestCommand(string cmdstr)
 	
 	if (TS::verbose)
 	{
-		cout << "Testing " << base << ", original command name = "<< *cmd_match->command.objects[0] << ": ";
+		string bla = " | original command name: "+ *cmd_match->command.objects[0];
+		cout << StringPadding(bla, 40) << " | ";
 	}
 	
 	// Automated Mapping of Command-Name to its proper TestFunction

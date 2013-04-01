@@ -512,9 +512,9 @@ string cConsole :: ParseParm( string str )
 
 SDL_bool cConsole :: helpCMD( string &str )
 {
-	char buffer[1000];
+	ostringstream buffer;
 
-	sprintf( buffer, "Revealing information on CMD %s:", str.c_str() );
+	buffer << "Revealing information on CMD " << str.c_str();
 
 	cCMD *ptr = CMDList;
 	while ( ptr != NULL )
@@ -523,7 +523,7 @@ SDL_bool cConsole :: helpCMD( string &str )
 		{
 			if ( (string)*ptr->command.objects[i] == str)
 			{
-				console_print(buffer);
+				console_print(buffer.str().c_str());
 				console_print(ptr->helpstr.c_str());
 				
 				string usage = "usage: " + ptr->syntax;

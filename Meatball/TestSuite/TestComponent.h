@@ -2,24 +2,43 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
-using namespace std;
-/* The TestComponent Abstracts the role of TestComponents.
- Namely, to test themselves! */
+#include "Misc.h"
 
 
 
+namespace TS
+{
+	extern SDL_bool verbose;
+	
+/** The TestComponent Abstracts the role of TestComponents.
+	 Namely, to test themselves! */
 class TestComponent
 {
 public:
-	TestComponent() { testnum=1; SomethingFailed = SDL_FALSE; }
+	TestComponent() { testnum=1; SomethingFailed = SDL_FALSE; Description = "Undocumented Component\n"; }
 	~TestComponent() { }
 	
 	virtual int Test() { return 0; } // Tests the Component
-	virtual void Description() { cout << "Undocumented Component\n"; }
-	void PrintTestNumber(string t="")
+	std::string GetDescription() { return Description; }
+	void SetDescription(std::string desc) { Description = desc; }
+	
+	void PrintTestNumber(std::string t="")
 	{
-		cout << "Test" << testnum++ << ": " << t << endl;
+		if (verbose == SDL_FALSE)
+			t = "";
+		ostringstream testnumss;
+		testnumss << "Test" << testnum++ << ": ";
+		
+		std::cout << StringPadding(testnumss.str(),10) << StringPadding(t,20);
 	}
 	int testnum;
 	SDL_bool SomethingFailed;
+	std::string Description;
 };
+	
+}
+
+//#include "TestSuite.h"
+
+//using namespace TS;
+
