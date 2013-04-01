@@ -60,7 +60,7 @@ void console_print(const char *str);
 class cCMD
 {
 public:
-	cCMD() : command(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS) { }
+	cCMD() : command(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS) { next = NULL; }
 	SDL_bool ( *handler )( string &str );	///< Function pointer to Command's function
 
 	//string command;						///< The string(s) to identify the command

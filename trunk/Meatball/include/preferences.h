@@ -74,6 +74,8 @@ public:
 	
 	/// The Settings
 	cSettings *pSettings;
+	
+	string filename;
 
 private:
 	void Parse( char* command, int line );

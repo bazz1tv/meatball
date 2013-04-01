@@ -15,6 +15,8 @@
 //#include "Misc.h"
 #include <sstream>
 extern std::stringstream error;
+void PrintErrorToConsole();
+void ClearErrorStream();
 //error << "Error in syntax: " << str;
 
 //

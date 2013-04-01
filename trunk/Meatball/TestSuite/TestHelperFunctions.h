@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <iostream>
 using namespace std;
 
@@ -8,8 +9,8 @@ void PrintOK();
 void OK();
 
 //
-void PrintTestFailed();
-void PrintFailed();
+int PrintTestFailed();
+int PrintFailed();
 void PrintTestNumber(int &testnum);
 
 // STubs!

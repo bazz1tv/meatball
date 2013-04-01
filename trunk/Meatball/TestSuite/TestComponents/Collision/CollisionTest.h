@@ -9,5 +9,8 @@ class cCollisionTest : TestComponent
 public:
 	cCollisionTest() : TestComponent() {}
 	
+	void PrintVerboseInfo();
 	int Test();
+	
+	SDL_Rect *r1,*r2;
 };

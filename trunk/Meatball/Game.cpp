@@ -45,10 +45,10 @@ void cGame::Init()
 	pPlayer->init();		// add his images to the Image Manager, give him initial weapon
 	pPlayer->Reset();		// set direction, position, setACtiveWeapon (pistol)
 
-	string levelname = "test2.lvl";
+	/*string levelname = "test2.lvl";
 	DEBUGLOG ("loading level: %s\n", levelname.c_str());
 	pLevel->Load( levelname);	// load the level
-	DEBUGLOG ("Finished loading level\n");
+	DEBUGLOG ("Finished loading level\n");*/
 	// if we are NOT in demo mode, let's load the level's MusicFile
 /*#ifndef DEMO
 	string filename = MUSIC_DIR + pLevel->Musicfile;

@@ -1,4 +1,6 @@
 #include "TestHelperFunctions.h"
+#include "TestDefinitions.h"
+
 using namespace std;
 
 void OK()
@@ -9,13 +11,15 @@ void PrintOK()
 {
 	cout << "OK" <<endl;
 }
-void PrintTestFailed()
+int PrintTestFailed()
 {
-	PrintFailed();
+	return PrintFailed();
+	//return -1;
 }
-void PrintFailed()
+int PrintFailed()
 {
 	cout << " Test Failed " << endl;
+	return TEST_FAILED;
 }
 
 void PrintTestNumber(int &testnum)

@@ -6,35 +6,47 @@
 
 using namespace std;
 
+
+
 class cConsoleTest : TestComponent
 {
 	
 public:
-	cConsoleTest() : TestComponent() { }
+	cConsoleTest();
 	int Test();
 	int TestCommand(string);
 	
 	// all the different Commands to Test
-	int TestClear(string);
-	int TestMx();
-	int TestMy();
-	int TestLS();
-	int TestLoadMap();
-	int TestMxy();
-	int TestPlayMus();
-	int TestFPS();
-	int TestSvol();
-	int TestAllSvol();
-	int TestMvol();
-	int TestCD();
-	int TestSx();
-	int TestSy();
-	int TestSxy();
-	int TestSaveLevel();
-	int TestCamX();
-	int TestCamY();
+	static int TestClear();
+	static int TestMx();
+	static int TestMy();
+	static int TestLS();
+	static int TestLoadMap();
+	static int TestMxy();
+	static int TestPlayMus();
+	static int TestFPS();
+	static int TestSvol();
+	static int TestAllSvol();
+	static int TestMvol();
+	static int TestCD();
+	static int TestSx();
+	static int TestSy();
+	static int TestSxy();
+	static int TestSaveLevel();
+	static int TestCamX();
+	static int TestCamY();
+	static int TestQuit();
 	
-	int rval;
-	string matchstr;
-	string cmdstr,parm;
+	static int rval;
+	static string matchstr;
+	static string cmdstr,parm;
+	
+	
+	//static TestCmd CommandsToTest[];
+};
+
+struct CmdtoFunc
+{
+	string commandname;
+	int (*TestFunction)( void );
 };

@@ -11,15 +11,36 @@ namespace TS {
 
 	cConsoleTest TC_console;
 	cCollisionTest TC_collision;
+	cSettingsPreferencesTest TC_settingspreferences;
 	
 	SDL_bool verbose=SDL_FALSE;
 	int numtabs=0;
+	//Component *ComponentList = NULL;
+
+// ALL COMPONENTS HERE
+SingleComponent CL[] =
+{
+	{"Collision",CollisionTest},
+	{"Console",ConsoleTest},
+	{"Settings&Preferences",SettingsPreferencesTest},
+	
+	// The Terminator
+	{"", NULL}
+};
+	
+void init()
+{
+	//sc[1].handler();
+}
 
 void Begin()
 {
 	int input;
 	
 	cout << "Test Mode!\n----------" << endl;
+	
+	
+	init();
 	
 	cout << "Make a Selection" << endl;
 	cout << "1) Test All" << endl;
@@ -34,14 +55,30 @@ void Begin()
 		TestAll();
 	else if (input == 2)
 	{
-		TestComponents();
+		ComponentView();
 	}
-}
-
-// Stub
-void TestComponents()
-{
 	
+	//Quit
+	
+}
+	
+
+	
+void ComponentView()
+{
+	for (int i=0; CL[i].component_name != ""; i++ )
+	{
+		cout << i+1 << ") " << CL[i].component_name << endl;
+	}
+	
+	cout << ": ";
+	
+	// Select Component
+	int selected_component_number;
+	cin >> selected_component_number;
+	
+	//Test that Component
+	CL[selected_component_number-1].TestComponent();
 }
 
 void tabprint()
@@ -50,108 +87,11 @@ void tabprint()
 		cout << "\t";
 }
 
-void testprint(string format, ...)
-{
-	//SDL_bool finished = SDL_FALSE;
-	char* tabs = (char*) SDL_malloc(sizeof(char)*numtabs+1);
-	register Uint8 i;
-	for (i=0; i < numtabs; i++)
-	{
-		tabs[i] = '\t';
-	}
-	tabs[i] = '\0';
-	
-	string str = tabs;
-	//str.append(tabs);
-	
-	
-	size_t oldpos=0;
-	size_t posnewline=0;
-	while (1)
-	{
-		posnewline = format.find('\n', posnewline);
-		// cout << "posnewline = %ld\n",posnewline);
-		str.append(format.substr(oldpos, posnewline));
-		if (posnewline == string::npos)
-		{
-			break;
-		}
-		else if (posnewline != format.length()-1)
-		{
-			str.append("\n");
-			str.append(tabs);
-			oldpos = ++posnewline;
-		}
-		else if (posnewline == format.length()-1)
-		{
-			//str.append("" << endl;
-			//str.append(tabs);
-			break;
-		}
-	}
-	
-	//str.append(formatstr);
-	
-	va_list argptr;
-    va_start(argptr, format);
-    vfprintf(stdout, str.c_str(), argptr);
-    va_end(argptr);
-	
-	SDL_free(tabs);
-}
 
-void testprintnts( string format, ...)
-{
-	//SDL_bool finished = SDL_FALSE;
-	char* tabs = (char*) SDL_malloc(sizeof(char)*numtabs+1);
-	register Uint8 i;
-	for (i=0; i < numtabs; i++)
-	{
-		tabs[i] = '\t';
-	}
-	tabs[i] = '\0';
-	
-	string str = "";
-	//str.append(tabs);
-	
-	size_t oldpos=0;
-	size_t posnewline=0;
-	while (1)
-	{
-		posnewline = format.find('\n', posnewline);
-		// cout << "posnewline = %ld\n",posnewline);
-		str.append(format.substr(oldpos, posnewline));
-		if (posnewline == string::npos)
-		{
-			break;
-		}
-		else if (posnewline != format.length()-1)
-		{
-			str.append("\n"); // << endl;
-			str.append(tabs);
-			oldpos = ++posnewline;
-		}
-		else if (posnewline == format.length()-1)
-		{
-			str.append("\n"); // << endl;
-			//str.append(tabs);
-			break;
-		}
-	}
-	
-	//str.append(formatstr);
-	
-	va_list argptr;
-    va_start(argptr, format);
-    vfprintf(stdout, str.c_str(), argptr);
-    va_end(argptr);
-	
-	SDL_free(tabs);
-}
 
 void TestAll()
 {
-	if (!CollisionTest())
+	/*if (!CollisionTest())
 		cout << "Collision Test Successful!\n" << endl;
 	else cout << "Collision Test Failed!\n" << endl;
 	
@@ -160,6 +100,26 @@ void TestAll()
 		cout << "Console Test Successful!!\n" << endl;
 	}
 	else cout << "Console Test Failed!\n" << endl;
+	
+	if (!CollisionTest())
+	{
+		cout << "Collision Test Successful!!\n" << endl;
+	}
+	else cout << "Collision Test Failed!\n" << endl;*/
+	
+	for (int i=0; CL[i].component_name != ""; i++ )
+	{
+		cout << i+1 << ") " << CL[i].component_name << " Test" << endl << "---------------" << endl;
+		
+		if (CL[i].TestComponent() == 1)
+		{
+			cout << CL[i].component_name << " Test Successful!\n" << endl;
+		}
+		else if (CL[i].TestComponent() == -1)
+		{
+			cout << CL[i].component_name << " Test Failed!!\n" << endl;
+		}
+	}
 }
 
 int CollisionTest()
@@ -174,6 +134,11 @@ int ConsoleTest()
 {
 	return TC_console.Test();
 
+}
+	
+int SettingsPreferencesTest()
+{
+	return TC_settingspreferences.Test();
 }
 	
 // END NAMESPACE
