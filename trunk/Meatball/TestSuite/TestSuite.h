@@ -16,6 +16,7 @@
 #include "ConsoleTest.h"
 #include "CollisionTest.h"
 #include "TestComponents/SettingsPreferences/SettingsPreferencesTest.h"
+#include "TestStream.h"
 
 using namespace std;
 class cConsoleTest;
@@ -48,6 +49,7 @@ namespace TS
 	
 	extern SDL_bool verbose;
 	extern int numtabs;
+	
 	
 	
 	

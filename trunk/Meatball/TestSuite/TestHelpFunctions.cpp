@@ -1,5 +1,6 @@
 #include "TestHelperFunctions.h"
 #include "TestDefinitions.h"
+#include "TestStream.h"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ void OK()
 }
 void PrintOK()
 {
-	cout << "OK" <<endl;
+	test << "OK" <<endl;
 }
 int PrintTestFailed()
 {
@@ -18,16 +19,16 @@ int PrintTestFailed()
 }
 int PrintFailed()
 {
-	cout << " Test Failed " << endl;
+	test << " Test Failed " << endl;
 	return TEST_FAILED;
 }
 
-void PrintTestNumber(int &testnum)
-{
-	cout << "Test" << testnum++ << ": ";
-}
+//void PrintTestNumber(int &testnum)
+//{
+//	test << "Test" << testnum++ << ": ";
+//}
 
 void Stub()
 {
-	cout << "Stub Function!! " <<endl ;
+	test << "Stub Function!! " <<endl ;
 }
