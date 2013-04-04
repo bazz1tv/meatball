@@ -3,11 +3,8 @@
 
 using namespace std;
 
+TestStream test;
 
-/*TestSuite :: TestSuite()
-{
-	numtabs = 0;
-}*/
 namespace TS {
 
 	cConsoleTest TC_console;
@@ -16,8 +13,7 @@ namespace TS {
 	
 	SDL_bool verbose=SDL_FALSE;
 	int numtabs=0;
-	//Component *ComponentList = NULL;
-
+	
 // ALL COMPONENTS HERE
 SingleComponent CL[] =
 {
@@ -34,14 +30,12 @@ void init()
 	//sc[1].handler();
 }
 
+	
 void Begin()
 {
 	int input;
 	
 	cout << "Test Mode!\n----------" << endl;
-	
-	
-	init();
 	
 	cout << "Make a Selection" << endl;
 	cout << "1) Test All" << endl;

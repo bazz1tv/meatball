@@ -11,7 +11,7 @@ void OK();
 //
 int PrintTestFailed();
 int PrintFailed();
-void PrintTestNumber(int &testnum);
+//void PrintTestNumber(int &testnum);
 
 // STubs!
 void Stub();
