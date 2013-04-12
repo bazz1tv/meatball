@@ -48,6 +48,19 @@ DLLINTERFACE SDL_bool FullRectIntersect(const SDL_Rect *r1, const SDL_Rect *r2 )
 
 DLLINTERFACE std::string Get_Curr_Date();
 
+/// Checks if the file exists
+DLLINTERFACE SDL_bool FileValid( std::string filename );
+/// Checks if it's an Number
+DLLINTERFACE SDL_bool is_valid_number( char *c );
+
+
+
+
+
+
+
+
+
 #endif
 
 // @}

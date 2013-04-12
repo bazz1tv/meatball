@@ -114,3 +114,46 @@ DLLINTERFACE std::string Get_Curr_Date()
 	return var.str();
     //cout << ;
 }
+
+#include <fstream>
+using namespace std;
+SDL_bool FileValid( string filename )
+{
+	std::ifstream ifs;
+	ifs.open( filename.c_str(), ios :: out );
+	
+	if( ifs )
+	{
+		ifs.close();
+		return SDL_TRUE;
+	}
+	
+	return SDL_FALSE;
+}
+
+SDL_bool is_valid_number( char *c )
+{
+	SDL_bool floatnumber = SDL_FALSE;
+	if (*c == '-')
+		c++;
+	for(;*c;c++)
+	{
+		if (*c == '.')
+		{
+			if (!floatnumber)
+			{
+				floatnumber = SDL_TRUE;
+				c++;
+			}
+			else { return SDL_FALSE; }
+		}
+		
+		if ((*c < '0' || *c > '9') && *c != '\r' && *c != '\n')
+		{
+			return SDL_FALSE;
+			
+		}
+	}
+	return SDL_TRUE;
+}
+

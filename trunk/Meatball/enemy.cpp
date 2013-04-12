@@ -53,13 +53,16 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 {
 	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
-		if ( !Enemies.objects[i]->visible && Enemies.objects[i]->Enemy_type == etype )
+		if (Enemies.objects[i])
 		{
-			Enemies.objects[i]->SetPos( nposx, nposy );
-			
-			Enemies.objects[i]->init();
-			
-			return;
+			if ( !Enemies.objects[i]->visible && Enemies.objects[i]->Enemy_type == etype)
+			{
+				Enemies.objects[i]->SetPos( nposx, nposy );
+				
+				Enemies.objects[i]->init();
+				
+				return;
+			}
 		}
 	}
 

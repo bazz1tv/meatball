@@ -141,11 +141,16 @@ void clearsstream(stringstream &s)
 	s.str(std::string());
 }
 
-void cPreferences :: Save( void )
+void cPreferences:: Save()
+{
+	Save(USER_PREF_NAME);
+}
+
+void cPreferences :: Save( string filename )
 {
 	Update();
 
-	ofstream ofs( USER_PREF_NAME, ios::out );
+	ofstream ofs( filename.c_str(), ios::out );
 
 	// This is bad, taking out
 	//char row[250];
@@ -222,6 +227,7 @@ void cPreferences :: Default( void )
 	}
 }
 
+/// Set Preferences to be Game Settings
 void cPreferences :: Update( void )
 {
 	pSettings->Update( pGameSettings ); // Looks dirty

@@ -422,23 +422,5 @@ void DrawParticleEmitter( SDL_Renderer *renderer )
 
 void DeleteAllParticleEmitter( void )
 {
-	/*if( ParticleEmitter ) 
-	{
-		for( unsigned int i = 0; i < ParticleEmitterCount; i++ )
-		{
-			if( !ParticleEmitter[i] ) 
-			{
-				continue;
-			}
-
-			delete ParticleEmitter[i];
-			ParticleEmitter[i] = NULL;
-		}
-
-		//delete []ParticleEmitter;
-		//ParticleEmitter = NULL;
-	}
-
-	ParticleEmitterCount = 0;*/
 	ParticleEmitter.~ObjectManager();
 }

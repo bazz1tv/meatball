@@ -85,11 +85,11 @@ cConsole :: cConsole( void )
 	/////////////////
 
 	// Init Font ////
-	if (!pFont)
+	/*if (!pFont)
 	{
 		throw 2;
-	}
-	Console_font = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 13, TTF_STYLE_BOLD );
+	}*/
+	Console_font = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 13, TTF_STYLE_BOLD );
 	//
 
 	CMDList = NULL;
@@ -295,11 +295,11 @@ void cConsole::DrawCursor()
 	// The blinking Cursor
 	if( DrawCur == SDL_TRUE)
 	{
-		cursor_surface = pFont->CreateText( "_", Console_font );
+		cursor_surface = cFont::CreateText( "_", Console_font );
 	}
 	else
 	{
-		cursor_surface = pFont->CreateText( " ", Console_font );
+		cursor_surface = cFont::CreateText( " ", Console_font );
 	}
 }
 
@@ -309,7 +309,7 @@ void cConsole :: CreateTextOnSurfaces()
 	if( !consoleInput_str.empty() )	// if we have input in our String...
 	{
 		// Use pfont to create Text to the consoleInput SDL_Surface
-		consoleInput_surface = pFont->CreateText( consoleInput_str.c_str(), Console_font );
+		consoleInput_surface = cFont::CreateText( consoleInput_str.c_str(), Console_font );
 	}
 	
 	// Fill the history Surfaces with any Text we have
@@ -317,7 +317,7 @@ void cConsole :: CreateTextOnSurfaces()
 	{
 		if ( !strcpy[i].empty() )
 		{
-			sc_surface[i] = pFont->CreateText( strcpy[i].c_str(), Console_font );
+			sc_surface[i] = cFont::CreateText( strcpy[i].c_str(), Console_font );
 		}
 	}
 }

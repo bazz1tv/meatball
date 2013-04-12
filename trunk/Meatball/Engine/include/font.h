@@ -28,8 +28,8 @@
 class cFont
 {
 public:
-	DLLINTERFACE cFont( void );
-	DLLINTERFACE ~cFont( void );
+	 DLLINTERFACE cFont( void );
+	 DLLINTERFACE ~cFont( void );
 
 	//DLLINTERFACE void RenderText(TextObject *o);
 
@@ -42,7 +42,7 @@ public:
 	static DLLINTERFACE SDL_Surface *CreateText( const char *text, TTF_Font *font, unsigned int type,
 		SDL_Color Text_Color, SDL_Color Background_Color );
 
-	DLLINTERFACE SDL_Surface *CreateText( const char *text, TTF_Font *font, unsigned int type = FONT_TYPE_BLENDED )
+	static DLLINTERFACE SDL_Surface *CreateText( const char *text, TTF_Font *font, unsigned int type = FONT_TYPE_BLENDED )
 	{
 		return CreateText( text, font, type, coldefText, coldefBackground );
 	}
@@ -51,7 +51,7 @@ public:
 	 *	default pointsize is 16
 	 *	default style is TTF_STYLE_NORMAL
 	 */
-	DLLINTERFACE TTF_Font *CreateFont( const char *Font_File, unsigned int ptsize = 16, unsigned int style = TTF_STYLE_NORMAL );
+	static DLLINTERFACE TTF_Font *CreateFont( const char *Font_File, unsigned int ptsize = 16, unsigned int style = TTF_STYLE_NORMAL );
 
 	/**	Sets the Style of an Font
 	 *	styles :
@@ -60,9 +60,9 @@ public:
 	 *	TTF_STYLE_ITALIC
 	 *	TTF_STYLE_UNDERLINE
 	 */
-	DLLINTERFACE void SetFontStyle( TTF_Font *font, unsigned int style = TTF_STYLE_NORMAL );
+	static DLLINTERFACE void SetFontStyle( TTF_Font *font, unsigned int style = TTF_STYLE_NORMAL );
 	
-	SDL_Color coldefText, coldefBackground;
+	static SDL_Color coldefText, coldefBackground;
 };
 
 #endif

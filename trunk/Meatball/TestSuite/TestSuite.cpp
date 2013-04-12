@@ -72,8 +72,17 @@ void ComponentView()
 	int selected_component_number;
 	cin >> selected_component_number;
 	
+	int SomethingFailed = CL[selected_component_number-1].TestComponent();
+	
 	//Test that Component
-	CL[selected_component_number-1].TestComponent();
+	if (SomethingFailed == TEST_SUCCESSFUL)
+	{
+		test << CL[selected_component_number-1].component_name << " Test Successful!\n" << endl;
+	}
+	else if (SomethingFailed == TEST_FAILED)
+	{
+		test << CL[selected_component_number-1].component_name << " Test Failed!!\n" << endl;
+	}
 }
 
 void tabprint()

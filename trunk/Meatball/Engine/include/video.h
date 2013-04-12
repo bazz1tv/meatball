@@ -25,7 +25,7 @@ struct Screenscale
 
 DLLINTERFACE int InitSDL( Uint32 flags = SDL_INIT_EVERYTHING );
 
-DLLINTERFACE int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, Uint32 wflags, Uint32 rflags, SDL_bool fullscreen = SDL_FALSE);
+//DLLINTERFACE int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, Uint32 wflags, Uint32 rflags, SDL_bool fullscreen = SDL_FALSE);
 
 DLLINTERFACE SDL_Window *GetWindow(const char *title, int width, int height, Uint32 wflags);
 
@@ -38,6 +38,7 @@ DLLINTERFACE void SetWindowCaption( SDL_Window *win, const char *Caption );
 DLLINTERFACE void SetWindowIcon( SDL_Window *win, SDL_Surface *Icon );
 
 DLLINTERFACE void SetScreenScale (int sx, int sy);
+DLLINTERFACE int SDL_ToggleFS(SDL_Window*); ///< Toggle fullScreen
 
 /// Quits SDL
 DLLINTERFACE void QuitSDL( void );
