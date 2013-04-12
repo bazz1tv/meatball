@@ -34,21 +34,19 @@ void cCollisionTest::PrintVerboseInfo()
 	}
 }
 int cCollisionTest::Test()
-{
-	int i=0;
-	
+{	
 	while (1)
 	{
 		PrintTestNumber();
 		
-		r1 = &RectTestList[i].r1;
-		r2 = &RectTestList[i].r2;
+		r1 = &RectTestList[testnum-1].r1;
+		r2 = &RectTestList[testnum-1].r2;
 		
 		PrintVerboseInfo();
 		
 		if (RectIntersect(r1,r2))
 		{
-			if (RectTestList[i].intersect_expected)
+			if (RectTestList[testnum-1].intersect_expected)
 			{
 				PrintOK();
 				cout << endl;
@@ -62,7 +60,7 @@ int cCollisionTest::Test()
 		}
 		else
 		{
-			if (RectTestList[i].intersect_expected)
+			if (RectTestList[testnum-1].intersect_expected)
 			{
 				PrintTestFailed();
 				cout << endl;
@@ -75,12 +73,8 @@ int cCollisionTest::Test()
 			}
 		}
 		
-		// increase TestListCounter
-		i++;
-		
-		
 		// If r1,r2 are both set to 0 everything, then we are done. That's our terminator
-		if ((RectTestList[i].r1.x == 0 && RectTestList[i].r1.y == 0 && RectTestList[i].r1.w == 0 && RectTestList[i].r1.h == 0) && (RectTestList[i].r2.x == 0 && RectTestList[i].r2.y == 0 && RectTestList[i].r2.w == 0 && RectTestList[i].r2.h == 0) )
+		if ((RectTestList[testnum-1].r1.x == 0 && RectTestList[testnum-1].r1.y == 0 && RectTestList[testnum-1].r1.w == 0 && RectTestList[testnum-1].r1.h == 0) && (RectTestList[testnum-1].r2.x == 0 && RectTestList[testnum-1].r2.y == 0 && RectTestList[testnum-1].r2.w == 0 && RectTestList[testnum-1].r2.h == 0) )
 			break;
 	}
 	

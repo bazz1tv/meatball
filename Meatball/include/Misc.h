@@ -12,17 +12,17 @@
 extern cMouseCursor *pMouse;
 
 
-string StringPadding(string original, size_t charCount );
+string StringPadding(string original, size_t charCount ); // Meatball
 
-/// Toggle fullScreen
-int SDL_ToggleFS(SDL_Window*);
 
-/// More english version of 
-SDL_bool MouseCollidesWith(SDL_Rect *Crect);
+/// More english version of
+SDL_bool MouseCollidesWith(SDL_Rect *Crect);	// Engine
+
 
 /// The Universal Event Handler handles some events that should be handled in ANY event handler,
 /// like Window Resize events for instance
-int UniversalEventHandler(SDL_Event*);
+int UniversalEventHandler(SDL_Event*);			//
+
 
 template< typename T >
 int strtoval(const std::string& str, T &val)
@@ -31,7 +31,6 @@ int strtoval(const std::string& str, T &val)
 	std::istringstream ess(str);
 	char x;
 	T temp;
-	//T result;
 	
 	if( !(iss >> temp) )
 	{
@@ -39,7 +38,7 @@ int strtoval(const std::string& str, T &val)
 		ess >> wrong;
 		error << "Error in syntax: " << wrong;
 		return 0;
-	}//throw "Dude, you need error handling!";
+	}
 	else {
 		if  (!(iss >> x))
 		{
@@ -57,6 +56,7 @@ int strtoval(const std::string& str, T &val)
 }
 
 // this is used by strtovals to properly check each parameter
+/// It returns a string of just one part of the whole string, the base, or a parameter itself.
 string ParseParm( string &str );
 //
 using namespace std;

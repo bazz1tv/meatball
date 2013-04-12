@@ -17,9 +17,8 @@
 extern std::stringstream error;
 void PrintErrorToConsole();
 void ClearErrorStream();
-//error << "Error in syntax: " << str;
 
-//
+// The next lines make DEBUGLOG function a printf if we are a _DEBUG build, but make it do nothing for a Release Build.
 #ifdef _DEBUG
 // Update the following if needed…
 #define DEBUGLOG(...) printf(__VA_ARGS__)
@@ -28,18 +27,11 @@ void ClearErrorStream();
 #endif
 
 
-
-
-
-
-// Game Global Functions
+// Set the Transparent Color for Bitmaps / Pngs
 void SetColorKey(Uint32);
 
 
-/// Checks if the file exists
-SDL_bool FileValid( string filename );
-/// Checks if it's an Number
-SDL_bool is_valid_number( char *c );
+
 /// Draws the Framerate
 void FramerateDraw( SDL_Renderer *renderer, double posx = 5.0, double posy = 5.0 );
 

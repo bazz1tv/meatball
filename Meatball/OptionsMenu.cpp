@@ -23,7 +23,7 @@ OptionsMenu::OptionsMenu()
 
 	
 	// Init Font ////
-	optionsfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
+	optionsfont = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 
 	int x=20;
 	int y=20;
@@ -338,7 +338,7 @@ ControlsMenu::ControlsMenu()
 {
 	status = BROWSING;
 	// Init Font ////
-	font = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
+	font = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 
 	int x=20;
 	int y=20;

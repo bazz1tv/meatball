@@ -1,6 +1,9 @@
 
 #include "SDL_ep.h"
 
+SDL_Color cFont :: coldefText = SetColor( 255, 255, 255 );
+SDL_Color cFont :: coldefBackground = SetColor( 0, 0, 100 );
+
 cFont :: cFont( void )
 {
 	coldefBackground = SetColor( 0, 0, 100 );	// Default Background Color : Dark Blue

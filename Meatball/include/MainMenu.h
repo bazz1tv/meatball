@@ -13,7 +13,7 @@ extern cImageManager *IMan;
 extern cSoundManager *SMan;
 //extern cFramerate *pFramerate;
 extern cAudio *pAudio;
-extern cFont *pFont;
+//extern cFont *pFont;
 
 // submode definitions
 #define MAIN	1

@@ -63,6 +63,7 @@ public:
 
 	/// Saves the Current Settings to the User Settungs File
 	void Save( void );
+	void Save (string);
 
 	/// Loads the default settings
 	void Default( void );

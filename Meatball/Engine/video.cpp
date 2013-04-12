@@ -66,31 +66,7 @@ void SetScreenScale(int sx, int sy)
  
  
  */
-int InitWindow( SDL_Window *win, SDL_Renderer *Screen, const char *title, int width, int height, Uint32 wflags, Uint32 rflags, SDL_bool fullscreen /* = SDL_FALSE */)
-{
-	if (fullscreen == SDL_TRUE)
-	{
-		wflags |= SDL_WINDOW_FULLSCREEN;
-	}
-	
-	win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, wflags);
-	
-	if( win == NULL )
-	{
-		printf( "Error : Can't create Window\n" );
-		return -1;
-	}
-	
-	Screen = SDL_CreateRenderer(win, -1, rflags);
-	
-	if (Screen == NULL)
-	{
-		printf("Error : Can't create Renderer\n");
-		return -1;
-	}
-	
-	return 0; // You did it! 
-}
+
 
 SDL_Window *GetWindow(const char *title, int width, int height, Uint32 wflags)
 {	
@@ -115,6 +91,56 @@ void SetWindowIcon( SDL_Window *win, SDL_Surface *Icon )
 	}
 
 	SDL_SetWindowIcon( win, Icon);
+}
+
+
+/// Queries the Screen to see if it's set to Fullscreen or Not
+/// @returns SDL_FALSE if windowed, SDL_TRUE if fullscreen
+SDL_bool IsFullScreen(SDL_Window *win)
+{
+	Uint32 flags = SDL_GetWindowFlags(win);
+	
+    if (flags & SDL_WINDOW_FULLSCREEN) return SDL_TRUE; // return SDL_TRUE if fullscreen
+    
+	return SDL_FALSE; // Return SDL_FALSE if windowed
+}
+
+/// Toggles On/Off FullScreen
+/// @returns -1 on error, 1 on Set fullscreen successful, 0 on Set Windowed successful
+int SDL_ToggleFS(SDL_Window *win)
+{
+	//SDL_DisplayMode mode;
+	//SDL_GetWindowDisplayMode(Window, &mode);
+	
+	//SDL_DestroyRenderer(Renderer);
+	
+    if (IsFullScreen(win))
+    {
+        // Swith to WINDOWED mode
+        if (SDL_SetWindowFullscreen(win, SDL_FALSE) < 0)
+		{
+			std::cout<<"Setting windowed failed : "<<SDL_GetError()<<std::endl;
+			return -1;
+		}
+		
+		//SDL_SetWindowSize(Window,window.w,window.h);
+		
+        return 0;
+    }
+    
+    // Swith to FULLSCREEN mode
+	
+    if (SDL_SetWindowFullscreen(win, SDL_TRUE) < 0)
+	{
+		std::cout<<"Setting fullscreen failed : "<<SDL_GetError()<<std::endl;
+		return -1;
+	}
+	
+	//SDL_SetWindowSize(Window,window.w,window.h);
+	
+	// Code here to redo all graphics textures ( Windows Only )
+	
+	return 1;
 }
 
 void QuitSDL( void )

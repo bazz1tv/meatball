@@ -35,7 +35,7 @@ cFramerate *pFramerate;
 cImageManager *IMan;
 cSoundManager *SMan;
 	
-cFont *pFont;
+//cFont *pFont;
 cAudio *pAudio;
 cTCPNet *pTCP;
 TTF_Font *bold_16;
@@ -75,45 +75,7 @@ void SetColorKey(Uint32 col)
 }
 
 
-SDL_bool FileValid( string filename )
-{
-	ifstream ifs;
-	ifs.open( filename.c_str(), ios :: out );
 
-	if( ifs ) 
-	{
-		ifs.close();
-		return SDL_TRUE;
-	}
-
-	return SDL_FALSE;
-}
-
-SDL_bool is_valid_number( char *c )
-{
-	SDL_bool floatnumber = SDL_FALSE;
-	if (*c == '-') 
-		c++;
-	for(;*c;c++)
-	{
-		if (*c == '.')
-		{
-			if (!floatnumber)
-			{
-				floatnumber = SDL_TRUE;
-				c++;
-			} 
-			else { return SDL_FALSE; }
-		}
-		
-		if ((*c < '0' || *c > '9') && *c != '\r' && *c != '\n')
-		{
-			return SDL_FALSE;
-	
-		}
-	}
-	return SDL_TRUE;
-}
 
 void FramerateDraw( SDL_Renderer *renderer, double posx /** = 5.0 */, double posy /** = 5.0  */)
 {
@@ -125,7 +87,7 @@ void FramerateDraw( SDL_Renderer *renderer, double posx /** = 5.0 */, double pos
 	char fps_string[100]; 
 	sprintf( fps_string, "FPS : %d", (int)pFramerate->fps );
 	
-	SDL_Surface *image = pFont->CreateText( fps_string, bold_16 );
+	SDL_Surface *image = cFont::CreateText( fps_string, bold_16 );
 	
 	if( !image ) 
 	{

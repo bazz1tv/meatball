@@ -11,11 +11,11 @@ cMainMenu::cMainMenu() : MiniEngine()
 	
 	submode = MAIN;
 
-	if (!pFont)
+	/*if (!pFont)
 	{
 		throw 1;
-	}
-	myfont = pFont->CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
+	}*/
+	myfont = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 	
 	//tOptions->rect = SetRect(100,100,tOptions->surface->w, tOptions->surface->h);
 	if (!pAudio)

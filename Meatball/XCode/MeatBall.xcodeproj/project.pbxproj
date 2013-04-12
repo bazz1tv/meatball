@@ -168,6 +168,7 @@
 		E9CFA43316B1D63700B3919F /* MeatballEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeatballEngine.framework; path = ../../../../../../../Library/Frameworks/MeatballEngine.framework; sourceTree = "<group>"; };
 		E9D3371816CB620400BB0F9D /* MiniEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiniEngine.h; path = ../include/MiniEngine.h; sourceTree = "<group>"; };
 		E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MiniEngine.cpp; path = ../MiniEngine.cpp; sourceTree = "<group>"; };
+		E9E2BD55170D3BD7000B3088 /* TestStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestStream.h; path = ../TestSuite/TestStream.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +234,7 @@
 		E92B688A16F57E320068EA31 /* TestSuite */ = {
 			isa = PBXGroup;
 			children = (
+				E9E2BD55170D3BD7000B3088 /* TestStream.h */,
 				E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */,
 				E9C25BA416FCFE6D0090BB09 /* TestSuite.h */,
 				E95FDED216FFE1EB0024D903 /* TestComponents */,
@@ -487,6 +489,7 @@
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
 				E92B688A16F57E320068EA31 /* TestSuite */,
 				E9A3437E16BB7DC100072818 /* Console */,
+				E9A3437616BB7D0A00072818 /* Settings&Preferences */,
 				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9A3437216BB7C9C00072818 /* Menus */,
 				E9A3437116BB7C8B00072818 /* Camera */,
@@ -500,7 +503,6 @@
 				E9A3437916BB7D7B00072818 /* Level */,
 				E9BC1FAA16B960B70020965C /* LevelEditor */,
 				E9A3437F16BB7DCD00072818 /* Misc */,
-				E9A3437616BB7D0A00072818 /* Settings&Preferences */,
 				E9A3437516BB7CF900072818 /* Playlist */,
 				E9A3437416BB7CE800072818 /* Player */,
 				E9A3437816BB7D5D00072818 /* Sprite */,

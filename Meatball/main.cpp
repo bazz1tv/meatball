@@ -315,9 +315,14 @@ void QuitGame( void )
 		TTF_CloseFont( bold_16 );
 	}
 	
-	if( pFont )
+	/*if( pFont )
 	{
 		delete pFont;
+	}*/
+	//cFont::~cFont();
+	if( TTF_WasInit() )
+	{
+		TTF_Quit();
 	}
 	
 	
@@ -349,8 +354,12 @@ void InitAudio()
 }
 void InitFont()
 {
-	pFont	= new cFont();
-	bold_16 = pFont->CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
+	//pFont	= new cFont();
+	if( !TTF_WasInit() )
+	{
+		TTF_Init();
+	}
+	bold_16 = cFont::CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
 }
 void InitCamera()
 {
