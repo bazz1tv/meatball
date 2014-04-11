@@ -22,11 +22,11 @@ class cMultiSelect;
 /// @defgroup Mouse_Cmd Mouse Commands
 // @{
 // The Current Mouse Command
-enum {	MOUSE_COMMAND_NOTHING,
-		MOUSE_COMMAND_MOVING_SINGLE_TILE,
-		MOUSE_COMMAND_MOVING_MULTISELECT_TILES,
-		MOUSE_COMMAND_FASTCOPY,
-		MOUSE_COMMAND_SELECT_MULTISELECT_TILES,
+enum {	COMMAND_NOTHING,
+		COMMAND_MOVING_SINGLE_TILE,
+		COMMAND_MOVING_MULTISELECT_TILES,
+		COMMAND_SELECT_MULTISELECT_TILES,
+		COMMAND_FASTCOPY
 };
 // @}
 
@@ -119,7 +119,7 @@ public:
 	cMVelSprite *lastCopiedObject;
 
 	/// The Mouse Command ( moving,copying etc.. )
-	static Uint8 Mouse_command;
+	static Uint8 command;
 
 	/// The additional Mouse position when moving
 	int Mouse_w,Mouse_h;

@@ -217,22 +217,18 @@ int cSettingsPreferencesTest::CompareValues()
 		}*/
 		if (comp->value.type() == typeid(SDL_bool))
 		{
-			//test<<"derp"<< " ";
 			comptwo<SDL_bool>(comp);
 		}
 		else if (comp->value.type() == typeid(Uint8))
 		{
-			//test<<"derp2"<< " ";
 			comptwo<Uint8>(comp);
 		}
 		else if (comp->value.type() == typeid(Uint16))
 		{
-			//test<<"derp3"<< " ";
 			comptwo<Uint16>(comp); 
 		}
 		else if (comp->value.type() == typeid(SDL_Keycode))
 		{
-			//test<<"derp4"<< " ";
 			comptwo<SDL_Keycode>(comp);
 		}
 		

@@ -28,11 +28,11 @@ extern cLevel *pLevel;
 #define COLOR_WHITE 0xffffffff
 #define COLOR_BLUE 0xff7878ff
 
-Uint8 cLevelEditor::Mouse_command = MOUSE_COMMAND_NOTHING;
+Uint8 cLevelEditor::command =COMMAND_NOTHING;
 
 cLevelEditor :: cLevelEditor( void ) : MiniEngine()
 {
-	Mouse_command = MOUSE_COMMAND_NOTHING;
+	command =COMMAND_NOTHING;
 	
 	MultiSelect = new cMultiSelect;
 
@@ -70,19 +70,19 @@ void cLevelEditor :: Update( void )
 	pCamera->Update();
 	pMouse->Update(Renderer);
 
-	if( Mouse_command == MOUSE_COMMAND_NOTHING || Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
+	if( command == COMMAND_NOTHING || command == COMMAND_FASTCOPY ) 
 	{
 		HoveredObjectRect = GetHoveredObjectRect();
 	}
-	else if( Mouse_command == MOUSE_COMMAND_MOVING_SINGLE_TILE )
+	else if( command == COMMAND_MOVING_SINGLE_TILE )
 	{
 		MoveSingleTile();
 	}
-	else if (Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
+	else if (command == COMMAND_SELECT_MULTISELECT_TILES)
 	{
 		MultiSelect->DoRect();
 	}
-	else if (Mouse_command == MOUSE_COMMAND_MOVING_MULTISELECT_TILES )
+	else if (command == COMMAND_MOVING_MULTISELECT_TILES )
 	{
 		MultiSelect->Move();
 	}
@@ -119,20 +119,20 @@ void cLevelEditor :: Draw (SDL_Renderer *renderer)
 	
 	
 	// Draw the outline of the hovered Object
-	if (Mouse_command == MOUSE_COMMAND_NOTHING)
+	if (command == COMMAND_NOTHING)
 		OutlineHoveredObject(renderer);
-	else if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
+	else if (command == COMMAND_FASTCOPY)
 	{
 		OutlineHoveredObject(renderer, COLOR_BLUE);
 	}
 	
-	if (Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
+	if (command == COMMAND_SELECT_MULTISELECT_TILES)
 	{
 		MultiSelect->DrawRect(renderer);
 	}
 	
 	// Only the draw the MultiSelect_-tile outlines if we are not moving them (for accuracy when moving)
-	if (Mouse_command != MOUSE_COMMAND_MOVING_MULTISELECT_TILES || (MultiSelect->veryfirst_mouseXOffset == pMouse->posx && MultiSelect->veryfirst_mouseYOffset == pMouse->posy))
+	if (command != COMMAND_MOVING_MULTISELECT_TILES || (MultiSelect->veryfirst_mouseXOffset == pMouse->posx && MultiSelect->veryfirst_mouseYOffset == pMouse->posy))
 	{
 		// Draw the MultiSelect_-outline (it will check automatically if we have MultiSelect_ tiles to draw)
 		MultiSelect->DrawTileOutlines(renderer);
@@ -189,7 +189,7 @@ void cLevelEditor::OutlineHoveredObject(SDL_Renderer *renderer, Uint32 Color)
 void cLevelEditor:: OutlineHoveredObject( SDL_Renderer *renderer)
 {
 	Uint32 Color;
-	if( Mouse_command != MOUSE_COMMAND_FASTCOPY )
+	if( command != COMMAND_FASTCOPY )
 	{
 		Color = COLOR_WHITE; // White
 	}
@@ -236,7 +236,7 @@ void cLevelEditor :: SetMoveObject( cMVelSprite *nObject )
 	
 	Object = nObject;
 
-	Mouse_command = MOUSE_COMMAND_MOVING_SINGLE_TILE;
+	command =COMMAND_MOVING_SINGLE_TILE;
 }
 
 void cLevelEditor :: SetMoveObject( void )
@@ -267,7 +267,7 @@ void cLevelEditor::NewMoveObject(cMVelSprite *nObject)
 	
 	Object = lastCopiedObject;
 	
-	Mouse_command = MOUSE_COMMAND_MOVING_SINGLE_TILE;
+	command =COMMAND_MOVING_SINGLE_TILE;
 }
 
 void cLevelEditor :: PasteObject( double x, double y )
@@ -287,7 +287,7 @@ void cLevelEditor :: PasteObject( double x, double y )
 
 		pLevel->pLevelData_Layer1->AddSprite( new_Object );
 
-		if( Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
+		if( command == COMMAND_FASTCOPY ) 
 		{
 			SetFastCopyObject( new_Object );
 		}
@@ -339,14 +339,14 @@ void cLevelEditor :: SetFastCopyObject( cMVelSprite *nObject )
 {
 	SetCopyObject( nObject );
 
-	Mouse_command = MOUSE_COMMAND_FASTCOPY;
+	command =COMMAND_FASTCOPY;
 }
 
 void cLevelEditor :: SetFastCopyObject( void )
 {
 	SetCopyObject();
 	
-	Mouse_command = MOUSE_COMMAND_FASTCOPY;
+	command =COMMAND_FASTCOPY;
 }
 
 void cLevelEditor :: Release_Command( void )
@@ -356,12 +356,12 @@ void cLevelEditor :: Release_Command( void )
 		Object = NULL;
 	}
 
-	if( Mouse_command == MOUSE_COMMAND_FASTCOPY ) 
+	if( command == COMMAND_FASTCOPY ) 
 	{
 		CopyObject = NULL;
 	}
 
-	Mouse_command = MOUSE_COMMAND_NOTHING;
+	command =COMMAND_NOTHING;
 }
 
 cMVelSprite *cLevelEditor :: GetCollidingObject( double x, double y )
@@ -451,11 +451,6 @@ int cLevelEditor::EventHandler()
 	return (int)mode;
 }
 
-/*void cLevelEditor::ActiveCoordinatesMode()
-{
-	coordinates = SDL_TRUE;
-}*/
-
 int cLevelEditor::KeyDownEvents(SDL_Event &event)
 {
 	//int mode=0;
@@ -463,7 +458,7 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 	if( event.key.keysym.sym == SDLK_ESCAPE )
 	{
 		
-		if (Mouse_command == MOUSE_COMMAND_NOTHING && !MultiSelect->multiple_objects_selected)
+		if (command == COMMAND_NOTHING && !MultiSelect->multiple_objects_selected)
 			mode = MODE_GAME;
 		else if (MultiSelect->multiple_objects_selected)
 		{
@@ -472,7 +467,7 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 		}
 		
 		
-		Mouse_command = MOUSE_COMMAND_NOTHING;
+		command =COMMAND_NOTHING;
 		
 	}
 	else if ( event.key.keysym.sym == SDLK_c && !(event.key.keysym.mod & KMOD_LCTRL) )
@@ -485,11 +480,10 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 	// ~ to enter CONSOLE
 	else if ( event.key.keysym.sym == SDLK_BACKQUOTE )
 	{
-		//oldmode = mode;
 		return mode=MODE_CONSOLE;
 		
 	}
-	// F8 to Exit LEVLE MODE
+	// F8 to Exit LEVEL MODE
 	else if( event.key.keysym.sym == SDLK_F8 )
 	{
 		mode = MODE_GAME;
@@ -532,13 +526,13 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 	// F Key for Fast Copy
 	else if (event.key.keysym.sym == FASTCOPY_KEY)
 	{
-		if (Mouse_command == MOUSE_COMMAND_FASTCOPY)
-			Mouse_command = MOUSE_COMMAND_NOTHING;
+		if (command == COMMAND_FASTCOPY)
+			command =COMMAND_NOTHING;
 		else
 			SetFastCopyObject();
 	}
 	
-	else if( Mouse_command == MOUSE_COMMAND_FASTCOPY && CopyObject)
+	else if( command == COMMAND_FASTCOPY && CopyObject)
 	{
 		if( event.key.keysym.sym == SDLK_d)
 		{
@@ -563,30 +557,9 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 	}
 	else
 	{
-		// level editor mode
-		
-		
 		if (event.key.keysym.mod & KMOD_SHIFT)
 		{
-			/*if( event.key.keysym.sym == SDLK_d)
-			{
-				pCamera->Move( 10*pFramerate->speedfactor, 0 );
-			}
-			else if( event.key.keysym.sym == SDLK_w )
-			{
-				pCamera->Move( 0, -10*pFramerate->speedfactor );
-			}
-			else if( event.key.keysym.sym == SDLK_a )
-			{
-				pCamera->Move( -10*pFramerate->speedfactor, 0 );
-			}
-			else if( event.key.keysym.sym == SDLK_s )
-			{
-				pCamera->Move( 0, 10*pFramerate->speedfactor );
-			}
 			
-			pCamera->x = floor(pCamera->x);
-			pCamera->y = floor(pCamera->y);*/
 		}
 		else
 		{
@@ -626,7 +599,7 @@ void cLevelEditor::MouseButton_Down_Events(SDL_Event &event)
 			{
 				if (GetCollidingObject(pMouse->posx, pMouse->posy))
 				{
-					MultiSelect->SetObject(GetCollidingObject( pMouse->posx, pMouse->posy ));
+					MultiSelect->AddObject(GetCollidingObject( pMouse->posx, pMouse->posy ));
 					MultiSelect->PrepareToMove();
 				}
 				else
@@ -695,7 +668,7 @@ void cLevelEditor::MouseButton_Up_Events(SDL_Event &event)
 {
 	if( event.button.button == 1 ) // Left Mouse Button
 	{
-		if (Mouse_command != MOUSE_COMMAND_MOVING_MULTISELECT_TILES && Mouse_command != MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
+		if (command != COMMAND_MOVING_MULTISELECT_TILES && command != COMMAND_SELECT_MULTISELECT_TILES)
 			MultiSelect->Release();
 		
 		Release_Command();
@@ -734,7 +707,7 @@ void  cLevelEditor::HeldKey_Handler()
 void cLevelEditor::HeldKey_fastcopy()
 {
 	// Lets break this down to HeldKey_fastcopy();
-	if( Mouse_command == MOUSE_COMMAND_FASTCOPY && CopyObject)
+	if( command == COMMAND_FASTCOPY && CopyObject)
 	{
 		if( keys[SDL_SCANCODE_RCTRL] || keys[SDL_SCANCODE_LCTRL] )
 		{
@@ -769,7 +742,7 @@ void cLevelEditor::HeldKey_fastcopy()
 void cLevelEditor::HeldKey_movecamera()
 {
 	
-		if (Mouse_command == MOUSE_COMMAND_FASTCOPY || keys[SDL_SCANCODE_LCTRL] || (mouse_state & SDL_BUTTON(SDL_BUTTON_LEFT) && !keys[SDL_SCANCODE_LSHIFT]) )
+		if (command == COMMAND_FASTCOPY || keys[SDL_SCANCODE_LCTRL] || (mouse_state & SDL_BUTTON(SDL_BUTTON_LEFT) && !keys[SDL_SCANCODE_LSHIFT]) )
 		{
 			if( keys[SDL_SCANCODE_RIGHT] )
 			{
@@ -825,9 +798,15 @@ void cLevelEditor::MouseButton_Held_Events()
 		DeleteObject();
 	}
 	
-	if (mouse_state & SDL_BUTTON(SDL_BUTTON_LEFT) && Mouse_command == MOUSE_COMMAND_SELECT_MULTISELECT_TILES)
+	if (command == COMMAND_SELECT_MULTISELECT_TILES)
 	{
-		MultiSelect->SetObjects();
+		if (mouse_state & SDL_BUTTON(SDL_BUTTON_LEFT))
+		{
+			if (keys[SDL_SCANCODE_LCTRL])
+				MultiSelect->AddObjects(SDL_FALSE);
+			else
+				MultiSelect->AddObjects(SDL_TRUE);
+		}
 	}
 }
 	

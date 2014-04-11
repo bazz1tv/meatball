@@ -123,6 +123,36 @@ int GetCollidingEnemyNum( SDL_Rect *Crect )
 	return -1;
 }
 
+// This function takes external pointers
+SDL_bool GetAllCollidingEnemyNum( SDL_Rect *Crect, ObjectManager<cMVelSprite> &obj_man )
+{
+	SDL_bool did_we_get_objects = SDL_FALSE;
+	
+	if( Enemies.objects && Crect )
+	{
+		//DEBUGLOG( "Using Crect coords x: %d, y: %d, width: %d, height: %d\n", Crect->x,Crect->y, Crect->w, Crect->h);
+		
+		for( register unsigned int i = 0; i < Enemies.objcount; i++ )
+		{
+			if( !Enemies.objects[i] )
+			{
+				continue;
+			}
+            
+			if( RectIntersect( &(const SDL_Rect&)Enemies.objects[i]->GetRect( SDL_TRUE ), Crect ) )
+			{
+				// Add this sprite num to the list
+				if (obj_man.hasa(Enemies.objects[i]) < 0)
+					obj_man.add(Enemies.objects[i]);
+				
+				did_we_get_objects = SDL_TRUE;
+			}
+		}
+	}
+	
+	return did_we_get_objects;
+}
+
 cEnemy *GetCollidingEnemy( SDL_Rect *Crect )
 {
 	if( Enemies.objects && Crect )
