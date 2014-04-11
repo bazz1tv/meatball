@@ -27,11 +27,15 @@
 		E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */; };
 		E95FDED916FFE1EB0024D903 /* CollisionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95FDED416FFE1EB0024D903 /* CollisionTest.cpp */; };
 		E95FDEDA16FFE1EB0024D903 /* ConsoleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E95FDED716FFE1EB0024D903 /* ConsoleTest.cpp */; };
+		E98C014718F7E1A400DF90C7 /* MeatBallEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98C014618F7E1A400DF90C7 /* MeatBallEngine.framework */; };
+		E98C014818F7E1BD00DF90C7 /* MeatBallEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98C014618F7E1A400DF90C7 /* MeatBallEngine.framework */; };
 		E98CCB9816B46E6C0003938A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E98CCB9916B46E6C0003938A /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
 		E98CCB9A16B46E6C0003938A /* SDL2_net.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
 		E98CCB9B16B46E6C0003938A /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */; };
 		E98CCB9C16B46E6C0003938A /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98CCB9716B46E6C0003938A /* SDL2.framework */; };
+		E9A8CB801718A0E200D5914F /* LevelEditorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9A8CB7E1718A0E200D5914F /* LevelEditorTest.cpp */; };
+		E9A8CB851718A51600D5914F /* LevelTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9A8CB831718A51600D5914F /* LevelTest.cpp */; };
 		E9B7B62417035DC1008A1139 /* SettingsPreferencesTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9B7B62217035DC1008A1139 /* SettingsPreferencesTest.cpp */; };
 		E9C25BA516FCFE6D0090BB09 /* TestSuite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */; };
 		E9C25BB016FD09290090BB09 /* TestHelpFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9C25BAF16FD09290090BB09 /* TestHelpFunctions.cpp */; };
@@ -58,14 +62,12 @@
 		E9CFA3FE16B1D54D00B3919F /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E516B1D54D00B3919F /* sprite.cpp */; };
 		E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E616B1D54D00B3919F /* TextObject.cpp */; };
 		E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E716B1D54D00B3919F /* weapon.cpp */; };
-		E9CFA43A16B1D63800B3919F /* MeatballEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CFA43316B1D63700B3919F /* MeatballEngine.framework */; };
 		E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */; };
 		E9D5E52916B5FDA600FAC31F /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9316B46E6C0003938A /* SDL2_image.framework */; };
 		E9D5E52A16B5FDA600FAC31F /* SDL2_mixer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */; };
 		E9D5E52B16B5FDA600FAC31F /* SDL2_net.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9516B46E6C0003938A /* SDL2_net.framework */; };
 		E9D5E52C16B5FDA600FAC31F /* SDL2_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */; };
 		E9D5E52D16B5FDA600FAC31F /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E98CCB9716B46E6C0003938A /* SDL2.framework */; };
-		E9D5E52E16B5FDA600FAC31F /* MeatballEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9CFA43316B1D63700B3919F /* MeatballEngine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,12 +77,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E98C014818F7E1BD00DF90C7 /* MeatBallEngine.framework in CopyFiles */,
 				E9D5E52916B5FDA600FAC31F /* SDL2_image.framework in CopyFiles */,
 				E9D5E52A16B5FDA600FAC31F /* SDL2_mixer.framework in CopyFiles */,
 				E9D5E52B16B5FDA600FAC31F /* SDL2_net.framework in CopyFiles */,
 				E9D5E52C16B5FDA600FAC31F /* SDL2_ttf.framework in CopyFiles */,
 				E9D5E52D16B5FDA600FAC31F /* SDL2.framework in CopyFiles */,
-				E9D5E52E16B5FDA600FAC31F /* MeatballEngine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,12 +106,17 @@
 		E95FDED716FFE1EB0024D903 /* ConsoleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleTest.cpp; sourceTree = "<group>"; };
 		E95FDED816FFE1EB0024D903 /* ConsoleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleTest.h; sourceTree = "<group>"; };
 		E98727B317090B3400355E6E /* TestDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDefinitions.h; path = ../TestSuite/TestDefinitions.h; sourceTree = "<group>"; };
+		E98C014618F7E1A400DF90C7 /* MeatBallEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeatBallEngine.framework; path = ../../../../../../../Library/Frameworks/MeatBallEngine.framework; sourceTree = "<group>"; };
 		E98CCB9316B46E6C0003938A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		E98CCB9516B46E6C0003938A /* SDL2_net.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_net.framework; path = ../../../../../../../Library/Frameworks/SDL2_net.framework; sourceTree = "<group>"; };
 		E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		E98CCB9716B46E6C0003938A /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		E9A5CDDA16C8BA4C004D4DF0 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Range.h; path = ../include/Range.h; sourceTree = "<group>"; };
+		E9A8CB7E1718A0E200D5914F /* LevelEditorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorTest.cpp; sourceTree = "<group>"; };
+		E9A8CB7F1718A0E200D5914F /* LevelEditorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelEditorTest.h; sourceTree = "<group>"; };
+		E9A8CB831718A51600D5914F /* LevelTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelTest.cpp; sourceTree = "<group>"; };
+		E9A8CB841718A51600D5914F /* LevelTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelTest.h; sourceTree = "<group>"; };
 		E9B7B62217035DC1008A1139 /* SettingsPreferencesTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SettingsPreferencesTest.cpp; sourceTree = "<group>"; };
 		E9B7B62317035DC1008A1139 /* SettingsPreferencesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsPreferencesTest.h; sourceTree = "<group>"; };
 		E9C25BA316FCFE6D0090BB09 /* TestSuite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestSuite.cpp; path = ../TestSuite/TestSuite.cpp; sourceTree = "<group>"; };
@@ -165,7 +172,6 @@
 		E9CFA41A16B1D56300B3919F /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = ../include/sprite.h; sourceTree = "<group>"; };
 		E9CFA41B16B1D56300B3919F /* TextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextObject.h; path = ../include/TextObject.h; sourceTree = "<group>"; };
 		E9CFA41C16B1D56300B3919F /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weapon.h; path = ../include/weapon.h; sourceTree = "<group>"; };
-		E9CFA43316B1D63700B3919F /* MeatballEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeatballEngine.framework; path = ../../../../../../../Library/Frameworks/MeatballEngine.framework; sourceTree = "<group>"; };
 		E9D3371816CB620400BB0F9D /* MiniEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiniEngine.h; path = ../include/MiniEngine.h; sourceTree = "<group>"; };
 		E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MiniEngine.cpp; path = ../MiniEngine.cpp; sourceTree = "<group>"; };
 		E9E2BD55170D3BD7000B3088 /* TestStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestStream.h; path = ../TestSuite/TestStream.h; sourceTree = "<group>"; };
@@ -177,8 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */,
-				E9CFA43A16B1D63800B3919F /* MeatballEngine.framework in Frameworks */,
 				E98CCB9816B46E6C0003938A /* SDL2_image.framework in Frameworks */,
+				E98C014718F7E1A400DF90C7 /* MeatBallEngine.framework in Frameworks */,
 				E98CCB9916B46E6C0003938A /* SDL2_mixer.framework in Frameworks */,
 				E98CCB9A16B46E6C0003938A /* SDL2_net.framework in Frameworks */,
 				E98CCB9B16B46E6C0003938A /* SDL2_ttf.framework in Frameworks */,
@@ -209,12 +215,12 @@
 		9C93E39413942B5A0096FAB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E98C014618F7E1A400DF90C7 /* MeatBallEngine.framework */,
 				E98CCB9316B46E6C0003938A /* SDL2_image.framework */,
 				E98CCB9416B46E6C0003938A /* SDL2_mixer.framework */,
 				E98CCB9516B46E6C0003938A /* SDL2_net.framework */,
 				E98CCB9616B46E6C0003938A /* SDL2_ttf.framework */,
 				E98CCB9716B46E6C0003938A /* SDL2.framework */,
-				E9CFA43316B1D63700B3919F /* MeatballEngine.framework */,
 				9C93E39513942B5A0096FAB3 /* Cocoa.framework */,
 				9C93E39713942B5A0096FAB3 /* Other Frameworks */,
 			);
@@ -276,6 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				E95FDEBF16FFCAE40024D903 /* TestComponent.h */,
+				E9A8CB821718A51600D5914F /* Level */,
+				E9A8CB7D1718A0E200D5914F /* LevelEditor */,
 				E9B7B62117035DC1008A1139 /* SettingsPreferences */,
 				E95FDED316FFE1EB0024D903 /* Collision */,
 				E95FDED616FFE1EB0024D903 /* Console */,
@@ -489,6 +497,7 @@
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
 				E92B688A16F57E320068EA31 /* TestSuite */,
 				E9A3437E16BB7DC100072818 /* Console */,
+				E9A3437916BB7D7B00072818 /* Level */,
 				E9A3437616BB7D0A00072818 /* Settings&Preferences */,
 				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9A3437216BB7C9C00072818 /* Menus */,
@@ -500,7 +509,6 @@
 				E9A3437D16BB7DBA00072818 /* Effects */,
 				E9A3437B16BB7D9200072818 /* MiniEngine(Game) */,
 				E9A3437A16BB7D8600072818 /* Globals */,
-				E9A3437916BB7D7B00072818 /* Level */,
 				E9BC1FAA16B960B70020965C /* LevelEditor */,
 				E9A3437F16BB7DCD00072818 /* Misc */,
 				E9A3437516BB7CF900072818 /* Playlist */,
@@ -510,6 +518,24 @@
 				E9CFA40116B1D56300B3919F /* include */,
 			);
 			name = Code;
+			sourceTree = "<group>";
+		};
+		E9A8CB7D1718A0E200D5914F /* LevelEditor */ = {
+			isa = PBXGroup;
+			children = (
+				E9A8CB7E1718A0E200D5914F /* LevelEditorTest.cpp */,
+				E9A8CB7F1718A0E200D5914F /* LevelEditorTest.h */,
+			);
+			path = LevelEditor;
+			sourceTree = "<group>";
+		};
+		E9A8CB821718A51600D5914F /* Level */ = {
+			isa = PBXGroup;
+			children = (
+				E9A8CB831718A51600D5914F /* LevelTest.cpp */,
+				E9A8CB841718A51600D5914F /* LevelTest.h */,
+			);
+			path = Level;
 			sourceTree = "<group>";
 		};
 		E9B7B62117035DC1008A1139 /* SettingsPreferences */ = {
@@ -569,7 +595,7 @@
 		9C93E38813942B590096FAB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Student;
 			};
 			buildConfigurationList = 9C93E38B13942B590096FAB3 /* Build configuration list for PBXProject "MeatBall" */;
@@ -643,6 +669,8 @@
 				E95FDED916FFE1EB0024D903 /* CollisionTest.cpp in Sources */,
 				E95FDEDA16FFE1EB0024D903 /* ConsoleTest.cpp in Sources */,
 				E9B7B62417035DC1008A1139 /* SettingsPreferencesTest.cpp in Sources */,
+				E9A8CB801718A0E200D5914F /* LevelEditorTest.cpp in Sources */,
+				E9A8CB851718A51600D5914F /* LevelTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,24 +680,31 @@
 		9C93E3AD13942B5A0096FAB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /opt/local/include;
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-lboost_system-mt",
-					"-lboost_filesystem-mt",
-				);
+				OTHER_LDFLAGS = "";
 				PRELINK_LIBS = "";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ../Meatball/include;
@@ -679,21 +714,28 @@
 		9C93E3AE13942B5A0096FAB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /opt/local/include;
-				LIBRARY_SEARCH_PATHS = /opt/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-lboost_system-mt",
-					"-lboost_filesystem-mt",
-				);
+				OTHER_LDFLAGS = "";
 				PRELINK_LIBS = "";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ../Meatball/include;
@@ -704,28 +746,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacSDLFiles/MeatBall-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
+					/usr/local/include,
 					/usr/include,
+					/opt/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MacSDLFiles/MeatBall-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					/opt/local/lib/,
+					/usr/local/lib,
 					/usr/lib,
+					/opt/local/lib/,
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
-					"-lboost_system-mt",
-					"-lboost_filesystem-mt",
+					/usr/local/lib/libboost_filesystem.a,
+					/usr/local/lib/libboost_system.a,
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -740,29 +789,36 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacSDLFiles/MeatBall-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					/opt/local/include,
+					/usr/local/include,
 					/usr/include,
+					/opt/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MacSDLFiles/MeatBall-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					/opt/local/lib/,
+					/usr/local/lib,
 					/usr/lib,
+					/opt/local/lib/,
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"-lboost_system-mt",
-					"-lboost_filesystem-mt",
+					/usr/local/lib/libboost_filesystem.a,
+					/usr/local/lib/libboost_system.a,
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
