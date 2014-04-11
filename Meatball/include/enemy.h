@@ -72,6 +72,7 @@ void UpdateEnemies( void );
 
 /// Gets the first Collision if the rect overlaps
 int GetCollidingEnemyNum( SDL_Rect *Crect );
+SDL_bool GetAllCollidingEnemyNum( SDL_Rect *Crect, ObjectManager<cMVelSprite> &obj_man );
 cEnemy *GetCollidingEnemy( SDL_Rect *Crect );
 
 /// Draws all Enemies

@@ -111,12 +111,12 @@ void cMultiSelect::DeleteObjects()
 
 void cMultiSelect::PasteObjects()
 {
-	SDL_Point leftmost,topmost;
+	SDL_Point leftmost_tile,topmost_tile;
 	
 	if (OM.objects && OM.objcount > 0)
 	{
-		leftmost.x = topmost.x = OM.objects[0]->posx;
-		leftmost.y = topmost.y = OM.objects[0]->posy;
+		leftmost_tile.x = topmost_tile.x = OM.objects[0]->posx;
+		leftmost_tile.y = topmost_tile.y = OM.objects[0]->posy;
 	}
 	
 	if (OM.objcount > 1)
@@ -127,31 +127,31 @@ void cMultiSelect::PasteObjects()
 			x = OM.objects[i]->posx;
 			y = OM.objects[i]->posy;
 			
-			if (x <= leftmost.x)
+			if (x <= leftmost_tile.x)
 			{
-				if (x == leftmost.x)
+				if (x == leftmost_tile.x)
 				{
-					if (y < leftmost.y)
-						leftmost.y = y;
+					if (y < leftmost_tile.y)
+						leftmost_tile.y = y;
 				}
 				else
 				{
-					leftmost.x = x;
-					leftmost.y = y;
+					leftmost_tile.x = x;
+					leftmost_tile.y = y;
 				}
 			}
 			
-			if (topmost.y >= y)
+			if (topmost_tile.y >= y)
 			{
-				if (topmost.y == y)
+				if (topmost_tile.y == y)
 				{
-					if (x < topmost.x)
-						topmost.x = x;
+					if (x < topmost_tile.x)
+						topmost_tile.x = x;
 				}
 				else
 				{
-					topmost.y = y;
-					topmost.x = x;
+					topmost_tile.y = y;
+					topmost_tile.x = x;
 				}
 			}
 		}
@@ -160,23 +160,23 @@ void cMultiSelect::PasteObjects()
 	// get offsets
 	int x_offset, y_offset;
 	SDL_Point *selected;
-	if (topmost.x > leftmost.x)
+	if (topmost_tile.x > leftmost_tile.x)
 	{
-		x_offset = topmost.x-leftmost.x;
+		x_offset = topmost_tile.x-leftmost_tile.x;
 	}
 	else
-		x_offset = leftmost.x - topmost.x;
+		x_offset = leftmost_tile.x - topmost_tile.x;
 	
-	if (topmost.y > leftmost.y)
+	if (topmost_tile.y > leftmost_tile.y)
 	{
-		y_offset = topmost.y-leftmost.y;
+		y_offset = topmost_tile.y-leftmost_tile.y;
 	}
 	else
-		y_offset = leftmost.y - topmost.y;
+		y_offset = leftmost_tile.y - topmost_tile.y;
 	
 	if (x_offset > y_offset)
-		selected = &leftmost;
-	else selected = &topmost;
+		selected = &leftmost_tile;
+	else selected = &topmost_tile;
 	
 	for (unsigned int i=0; i < OM.objcount; i++)
 	{
@@ -204,15 +204,15 @@ void cMultiSelect::PasteObjects()
 	}
 }
 
-void cMultiSelect :: SetObjects( void )
+void cMultiSelect :: AddObjects( SDL_bool erase_current_rect /*= SDL_TRUE*/ )
 {
 	// Only Map and Enemy Objects can be Copied (FOR NOW)
 	// SetObject( GetCollidingObject( pMouse->posx, pMouse->posy )  );
-	GetAllCollidingObjects(&rect, &OM);
+	GetAllCollidingObjects(&rect, OM, erase_current_rect);
 	
 	multiple_objects_selected = (OM.objcount > 0) ? SDL_TRUE:SDL_FALSE;
 }
-void cMultiSelect :: SetObject( cMVelSprite *nObject)
+void cMultiSelect :: AddObject( cMVelSprite *nObject)
 {
 	if( !nObject )
 	{
@@ -248,19 +248,20 @@ void cMultiSelect::Move(void)
 	camXOffset = pCamera->x;
 	camYOffset = pCamera->y;
 }
-SDL_bool cMultiSelect :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager<cMVelSprite> *obj_man )
+SDL_bool cMultiSelect :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager<cMVelSprite> &obj_man, SDL_bool erase_current_rect /*= SDL_TRUE*/ )
 {
 	// These variables are going to hold the data we need :)
 	SDL_bool were_objects_found = SDL_FALSE;
 	
-	//obj_man->RemoveAllObjects();
+	if (erase_current_rect)
+		obj_man.RemoveAllObjects();
 	
 	// Player
 	if( RectIntersect( &(const SDL_Rect&)pPlayer->GetRect( SDL_TRUE ), cRect ) )
 	{
-		if (obj_man->hasa((cMVelSprite *)pPlayer) < 0)
+		if (obj_man.hasa((cMVelSprite *)pPlayer) < 0)
 		{
-			obj_man->add((cMVelSprite*)pPlayer);
+			obj_man.add((cMVelSprite*)pPlayer);
 			were_objects_found = SDL_TRUE;
 		}
 	}
@@ -273,12 +274,9 @@ SDL_bool cMultiSelect :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager<
 	// Do ENEMIES LATER
 	
 	// Enemies
-	/*CollisionNum = GetCollidingEnemyNum( cRect );
-	 
-	 if( CollisionNum >= 0 )
-	 {
-	 return (cMVelSprite *)Enemies[CollisionNum];
-	 }*/
+	if (GetAllCollidingEnemyNum(cRect, obj_man))
+		were_objects_found = SDL_TRUE;
+	
 	
 	//return NULL;
 	
@@ -286,7 +284,7 @@ SDL_bool cMultiSelect :: GetAllCollidingObjects( SDL_Rect *cRect, ObjectManager<
 }
 void cMultiSelect::InitTiles(SDL_bool release/* = SDL_FALSE */)
 {
-	cLevelEditor::Mouse_command = MOUSE_COMMAND_SELECT_MULTISELECT_TILES;
+	cLevelEditor::command = COMMAND_SELECT_MULTISELECT_TILES;
 	
 	mouseXOffset = pMouse->posx;
 	mouseYOffset = pMouse->posy;
@@ -316,7 +314,7 @@ void cMultiSelect :: Prepare()
 void cMultiSelect::PrepareToMove()
 {
 	//Object = GetCollidingObject( pMouse->posx, pMouse->posy );
-	cLevelEditor::Mouse_command = MOUSE_COMMAND_MOVING_MULTISELECT_TILES;
+	cLevelEditor::command = COMMAND_MOVING_MULTISELECT_TILES;
 	
 	mouseXOffset = veryfirst_mouseXOffset =  pMouse->posx;
 	mouseYOffset = veryfirst_mouseYOffset =  pMouse->posy;

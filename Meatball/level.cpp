@@ -20,8 +20,6 @@ BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 	BG_red = 0;
 	BG_green = 0;
 	BG_blue = 0;
-
-	//Musicfile = "badmofo.mod";
 }
 
 cLevelData :: ~cLevelData( void )
@@ -31,9 +29,6 @@ cLevelData :: ~cLevelData( void )
 
 void cLevelData :: AddSprite( cMVelSprite *Sprite )
 {
-	//BasicSprites = (cMVelSprite**) SDL_realloc( BasicSprites, ++BasicSprites.objcount * sizeof(cMVelSprite*) );
-	//BasicSprites[BasicSprites.objcount - 1] = Sprite;
-	//return;
 	BasicSprites.add(Sprite);
 }
 
@@ -59,7 +54,7 @@ int cLevelData :: GetCollidingSpriteNum( SDL_Rect *Crect )
 }
 
 // This function takes external pointers
-SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<cMVelSprite> *obj_man )
+SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<cMVelSprite> &obj_man )
 {
 	SDL_bool did_we_get_objects = SDL_FALSE;
 	
@@ -77,8 +72,8 @@ SDL_bool cLevelData :: GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<
 			if( RectIntersect( &(const SDL_Rect&)BasicSprites.objects[i]->GetRect( SDL_TRUE ), Crect ) )
 			{
 				// Add this sprite num to the list
-				if (obj_man->hasa(BasicSprites.objects[i]) < 0)
-					obj_man->add(BasicSprites.objects[i]);
+				if (obj_man.hasa(BasicSprites.objects[i]) < 0)
+					obj_man.add(BasicSprites.objects[i]);
 				
 				did_we_get_objects = SDL_TRUE;
 			}

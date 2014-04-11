@@ -66,6 +66,7 @@ cConsole :: cConsole( void )
 	//----------------------
 	
 	// 
+	//fs::path pathy(fs::current_path());
 	full_path = fs::current_path();
 
 	// 

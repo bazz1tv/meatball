@@ -16,13 +16,15 @@ public:
 	/////////////////////////////////////////////////////////
 	void DrawTileOutlines(SDL_Renderer *renderer);
 	
+	// Could be worded better 
 	void NewMoveObjects();
+	
 	void CopyObjects();
 	void PasteObjects();
 	void DeleteObjects();
 	/// Add to OM array
-	void SetObject( cMVelSprite *nObject);
-	void SetObjects( void );
+	void AddObject( cMVelSprite *nObject);
+	void AddObjects( SDL_bool erase_current_rect );
 	// MultiSelect_ move
 	void Move(void);
 	void DoRect();
@@ -35,7 +37,7 @@ public:
 	void PrepareToMove();
 	void Prepare();
 	
-	SDL_bool GetAllCollidingObjects( SDL_Rect *crect, ObjectManager<cMVelSprite> *obj_man );
+	SDL_bool GetAllCollidingObjects( SDL_Rect *crect, ObjectManager<cMVelSprite> &obj_man, SDL_bool erase_current_rect = SDL_TRUE );
 	
 	/// Releases any MultiSelect_ selected object
 	/// @returns SDL_TRUE if there were objects to remove, SDL_FALSE if there wasnt

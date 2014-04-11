@@ -34,7 +34,7 @@ public:
 
 	/// Gets the first overlapping Collision
 	int GetCollidingSpriteNum( SDL_Rect *Crect );
-	SDL_bool GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<cMVelSprite> *obj_man );
+	SDL_bool GetAllCollidingSpriteNum( SDL_Rect *Crect, ObjectManager<cMVelSprite> &obj_man );
 	cBasicSprite *GetCollidingSprite( SDL_Rect *Crect );
 
 	/// Delets an given Sprite
@@ -101,7 +101,6 @@ private:
 	int ParseLine( char ** parts, unsigned int count, unsigned int line );
 	
 	char row[300];
-	//unsigned int i;
 	std::ofstream *ofs;
 };
 /*@}*/
