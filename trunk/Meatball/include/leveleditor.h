@@ -20,7 +20,7 @@ class cMultiSelect;
 
 
 /// @defgroup Mouse_Cmd Mouse Commands
-// @{
+//  @{
 // The Current Mouse Command
 enum {	COMMAND_NOTHING,
 		COMMAND_MOVING_SINGLE_TILE,
@@ -28,7 +28,7 @@ enum {	COMMAND_NOTHING,
 		COMMAND_SELECT_MULTISELECT_TILES,
 		COMMAND_FASTCOPY
 };
-// @}
+//  @}
 
 
 
@@ -43,6 +43,8 @@ public:
 	void HeldKey_fastcopy();
 	void HeldKey_movecamera();
 	
+	static int submode;
+	
 	int EventHandler();
 	void MouseButton_Held_Events();
 	int KeyDownEvents(SDL_Event&);
@@ -50,6 +52,8 @@ public:
 	void MouseButton_Up_Events(SDL_Event&);
 	
 	SDL_Rect GetHoveredObjectRect();
+	
+	int Do();
 
 	void Draw();
 	void Draw (SDL_Renderer *renderer);

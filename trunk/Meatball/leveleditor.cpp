@@ -15,6 +15,12 @@ extern cPlayer *pPlayer;
 extern cCamera *pCamera;
 extern cLevel *pLevel;
 
+enum LevelEditor_Modes {
+	MAIN=0,
+	TABMODE
+};
+int cLevelEditor::submode = MAIN;
+
 // This is the amount of time to SLEEP when doing HELD_KEY events (so we don't work at the speed of light)
 #define LEVELEDIT_SLEEPWAIT 100000
 
@@ -49,6 +55,39 @@ cLevelEditor :: cLevelEditor( void ) : MiniEngine()
 cLevelEditor :: ~cLevelEditor( void )
 {
 	delete MultiSelect;
+}
+
+int cLevelEditor :: Do()
+{
+	// Reset mode to 0
+	mode = 0;
+	
+	while (mode == 0)
+	{
+		if (submode == MAIN)
+		{
+			Update();
+			mode = EventHandler();
+			this->Draw(Renderer);
+			//PostDraw();
+			//DrawAllToScreen();
+		}
+		/*else if (submode == TABMODE)
+		{
+			//submode = optionsmenu.Do();
+		}*/
+		else
+		{
+			// can't remember why I have this .-.
+			mode = submode;
+		}
+		
+		// if the mode got switched (we pressed start game or quit)
+	}
+	
+	return mode;
+	
+	
 }
 
 SDL_Rect cLevelEditor::GetHoveredObjectRect()
@@ -188,7 +227,7 @@ void cLevelEditor::OutlineHoveredObject(SDL_Renderer *renderer, Uint32 Color)
 
 void cLevelEditor:: OutlineHoveredObject( SDL_Renderer *renderer)
 {
-	Uint32 Color;
+	Uint32 Color = COLOR_WHITE;
 	if( command != COMMAND_FASTCOPY )
 	{
 		Color = COLOR_WHITE; // White
@@ -278,7 +317,7 @@ void cLevelEditor :: PasteObject( double x, double y )
 	}
 
 	// Add the New Object
-	if( CopyObject->type == SPRITE_TYPE_MASSIVE || CopyObject->type == SPRITE_TYPE_PASSIVE || CopyObject->type == SPRITE_TYPE_HALFMASSIVE) 
+	if( CopyObject->type == SPRITE_TYPE_SOLID || CopyObject->type == SPRITE_TYPE_PASSIVE || CopyObject->type == SPRITE_TYPE_TOPSOLID) 
 	{
 		// Create the new Sprite
 		cMVelSprite *new_Object = new cMVelSprite( CopyObject->srcimage, x + pCamera->x, y + pCamera->y );
@@ -467,9 +506,13 @@ int cLevelEditor::KeyDownEvents(SDL_Event &event)
 		}
 		
 		
-		command =COMMAND_NOTHING;
+		command = COMMAND_NOTHING;
 		
 	}
+	/*else if ( event.key.keysym.sym == SDLK_TAB )
+	{
+		submode = TABMODE;
+	}*/
 	else if ( event.key.keysym.sym == SDLK_c && !(event.key.keysym.mod & KMOD_LCTRL) )
 	{
 		// c for coordinates

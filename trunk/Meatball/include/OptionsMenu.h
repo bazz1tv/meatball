@@ -11,10 +11,13 @@
 
 /// @ingroup Options_Screen_Statuses
 // @{
-#define BROWSING 0
-#define SLIDING_SVOL	1
-#define SLIDING_MVOL 2
-#define EDITING	3
+enum Options_Screen_Statuses
+{
+BROWSING,
+SLIDING_SVOL,
+SLIDING_MVOL,
+EDITING,
+};
 // @}
 
 // Controls status

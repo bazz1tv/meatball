@@ -15,7 +15,7 @@ cMainMenu::cMainMenu() : MiniEngine()
 	{
 		throw 1;
 	}*/
-	myfont = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
+	myfont = cFont::CreateFont( DIR_FONT "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 	
 	//tOptions->rect = SetRect(100,100,tOptions->surface->w, tOptions->surface->h);
 	if (!pAudio)
@@ -23,22 +23,22 @@ cMainMenu::cMainMenu() : MiniEngine()
 		throw 2;
 	}
 	
-	//SMan->Add( pAudio->LoadSound( MUSIC_DIR "menumusic.wav"), MUSIC_DIR "menumusic.wav");
-	//pAudio->PlaySound(SMan->GetPointer(MUSIC_DIR "menumusic.wav"));
+	//SMan->Add( pAudio->LoadSound( DIR_MUSIC "menumusic.wav"), DIR_MUSIC "menumusic.wav");
+	//pAudio->PlaySound(SMan->GetPointer(DIR_MUSIC "menumusic.wav"));
 
 	// Preload the Button Sound
 	if (!SMan)
 	{
 		throw 3;
 	}
-	SMan->Add( pAudio->LoadSound( SOUNDS_DIR "Button_1.ogg" ), SOUNDS_DIR "Button_1.ogg" );
+	SMan->Add( pAudio->LoadSound( DIR_SOUNDS "Button_1.ogg" ), DIR_SOUNDS "Button_1.ogg" );
 
 	/// [Adding a Sprite]
 	// Add the image to the Image Manager
-	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Background3.png", colorkey ), "Menu_Background" );
-	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Start_32bpp.png", colorkey, 140 ), "Start_Button" );
-	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Buttons/Exit_32bpp.png", colorkey, 140 ), "Exit_Button" );
-	IMan->Add( LoadImage( PIXMAPS_DIR "Menu/Light1.png", colorkey, 0 ), "Light_1" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "Menu/Background3.png", colorkey ), "Menu_Background" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "Menu/Buttons/Start_32bpp.png", colorkey, 140 ), "Start_Button" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "Menu/Buttons/Exit_32bpp.png", colorkey, 140 ), "Exit_Button" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "Menu/Light1.png", colorkey, 0 ), "Light_1" );
 	// Register the sprite
 	Menu_Background = new cBasicSprite( Renderer, IMan->GetPointer( "Menu_Background" ), 0, 0 );
 	Button_Start = new cBasicSprite( Renderer, IMan->GetPointer( "Start_Button" ), window.w - window.w/3, 250 );
@@ -245,6 +245,7 @@ int cMainMenu::Do()
 		}
 		else
 		{
+			// can't remember why I have this .-.
 			mode = submode;
 		}
 		
@@ -253,7 +254,7 @@ int cMainMenu::Do()
 	
 	if (mode == MODE_GAME)
 	{
-		pAudio->PlaySound( SMan->GetPointer( SOUNDS_DIR "Button_1.ogg" ) );
+		pAudio->PlaySound( SMan->GetPointer( DIR_SOUNDS "Button_1.ogg" ) );
 	}
 	
 	return mode;
@@ -262,11 +263,11 @@ int cMainMenu::Do()
 void cMainMenu::FadeOutBG()
 {
 	int i; 
-	SDL_Surface *surface; 
+	SDL_Surface *surface = NULL; 
 
 	//surface = SDL_ConvertSurface(Screen, Screen->format, Screen->flags);
 	//SDL_FillRect( surface, NULL, SDL_MapRGB( Screen->format, 0, 0, 0 ) );
-	if(surface == NULL) 
+	if(surface == NULL)
 	{ 
 		DEBUGLOG("Load image error: %s\n", SDL_GetError());
 		exit(-1);

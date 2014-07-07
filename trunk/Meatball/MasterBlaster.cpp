@@ -47,11 +47,12 @@ MasterBlaster::~MasterBlaster()
 
 int MasterBlaster::Game()
 {
+	// Only load the level on the first time we press START GAME
 	if (oldmode == MODE_MAINMENU)
 	{
-		string levelname = "test2.lvl";
+		string levelname = "test.lvl";
 		DEBUGLOG ("loading level: %s\n", levelname.c_str());
-		pLevel->Load( levelname);	// load the level
+		pLevel->Load( levelname );	// load the level
 		DEBUGLOG ("Finished loading level\n");
 	}
 	return pGame->Do();

@@ -19,7 +19,7 @@ extern cAudio *pAudio;
 #define MAIN	1
 #define OPTIONS 0
 
-#define MAINMENU_MUSIC MUSIC_DIR "fight.ogg"
+#define MAINMENU_MUSIC DIR_MUSIC "fight.ogg"
 
 class OptionsMenu;
 

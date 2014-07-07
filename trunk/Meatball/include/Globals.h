@@ -67,7 +67,7 @@ extern TTF_Font *bold_16;
 extern Window window;
 
 /// Keyboard Keystate
-extern Uint8 *keys;
+extern const Uint8 *keys; // migration
 
 /// events
 extern SDL_Event event;

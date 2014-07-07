@@ -50,7 +50,7 @@ Window window;
 SDL_Renderer *Renderer;
 
 /// Keyboard Keystate
-Uint8 *keys;
+const Uint8 *keys;
 
 /// Input Events
 SDL_Event event;
