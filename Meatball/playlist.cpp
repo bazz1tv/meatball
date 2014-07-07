@@ -8,7 +8,7 @@
 
 #include "Globals.h"
 
-#define MUSIC_DIR "data/music/"
+#define DIR_MUSIC "data/music/"
 extern cAudio *pAudio;
 
 namespace Playlist
@@ -32,7 +32,7 @@ void ls_music()
 void musicover()
 {
 	int index = Random(0,numsongs-1);
-	std::string file = MUSIC_DIR+musicfiles[index];
+	std::string file = DIR_MUSIC+musicfiles[index];
 
 		
 	DEBUGLOG("Song ended. loading %s", musicfiles[index].c_str());

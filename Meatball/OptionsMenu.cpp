@@ -1,10 +1,11 @@
 
 #include "OptionsMenu.h"
 #include "MainMenu.h"
+#include "colors.h"
 
 extern cPreferences *pPreferences;
 
-SDL_bool mouse_alreadypressed =SDL_FALSE;
+SDL_bool mouse_alreadypressed = SDL_FALSE;
 
 int channel=0;
 void playSoundEffect()
@@ -19,12 +20,15 @@ OptionsMenu::OptionsMenu()
 {
 	//curscreen = OPTIONS_SCREEN;
 	status = BROWSING;
-	SMan->Add( pAudio->LoadSound( SOUNDS_DIR_GUNS "pistol_1.ogg" ), "pistol" );
+	// Sound effect for Sound Volume Adjustment
+	SMan->Add( pAudio->LoadSound( DIR_SOUNDS_GUNS "pistol_1.ogg" ), "pistol" );
 
 	
 	// Init Font ////
-	optionsfont = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
+	optionsfont = cFont::CreateFont( DIR_FONT "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 
+	
+	// Font Coords
 	int x=20;
 	int y=20;
 
@@ -32,7 +36,11 @@ OptionsMenu::OptionsMenu()
 	tSoundVol   = new TextObject(x,y+40,"Sound Volume", optionsfont);
 	tControls	= new TextObject(x,y+180, "Controls", optionsfont);
 	tExit		= new TextObject(x,window.h-40,"Exit", optionsfont);
+	
+	// Sky Blue
+	tControls->SetFGColor(SkyBlue);
 
+	
 
 	tMusicVol->SetFGColor(SetColor(255,0,0));
 
@@ -124,7 +132,7 @@ void OptionsMenu::Update()
 		pAudio->SetMusicVolume(mvol);
 		// If music is not playing, this section here should throw on a tune
 		if (pAudio->MusicPlaying() !=SDL_TRUE)
-			pAudio->PlayMusik(MUSIC_DIR "badmofo.mod");
+			pAudio->PlayMusik(DIR_MUSIC "badmofo.mod");
 	}
 	
 }
@@ -195,10 +203,10 @@ int OptionsMenu::LiveInput( void )
 				}
 				else
 				{
-					if( event.key.keysym.unicode )
+					/*if( event.key.keysym.unicode )
 					{
 						livestring += (char)event.key.keysym.unicode;
-					}
+					}*/ //migration
 				}
 				
 				break;
@@ -338,7 +346,7 @@ ControlsMenu::ControlsMenu()
 {
 	status = BROWSING;
 	// Init Font ////
-	font = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
+	font = cFont::CreateFont( DIR_FONT "NIMBU14.TTF", 40, TTF_STYLE_BOLD );
 
 	int x=20;
 	int y=20;

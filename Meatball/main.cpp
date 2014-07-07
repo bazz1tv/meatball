@@ -243,7 +243,7 @@ void SetupWindowAndDockIcon()
 
 void SetupMouse()
 {
-	IMan->Add( LoadImage( PIXMAPS_DIR "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "internal/Mouse.png", colorkey ), "Mouse_Cursor" );
 	
 	// MeatBall
 	pMouse = new cMouseCursor( Renderer,0, 0, IMan->GetPointer( "Mouse_Cursor" ) );
@@ -359,7 +359,7 @@ void InitFont()
 	{
 		TTF_Init();
 	}
-	bold_16 = cFont::CreateFont( FONT_DIR "bluebold.ttf", 16, TTF_STYLE_BOLD );
+	bold_16 = cFont::CreateFont( DIR_FONT "bluebold.ttf", 16, TTF_STYLE_BOLD );
 }
 void InitCamera()
 {

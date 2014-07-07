@@ -23,12 +23,12 @@
 #define FIRE_KEY_HELD	(keys[SDL_GetScancodeFromKey(pGameSettings->Key_shoot_primary)])
 
 // The Directorys
-#define PIXMAPS_DIR "data/pixmaps/"
-#define MUSIC_DIR "data/music/"
-#define SOUNDS_DIR "data/sound/"
-#define SOUNDS_DIR_GUNS SOUNDS_DIR "guns/"
-#define FONT_DIR "data/font/"
-#define LEVEL_DIR "data/levels/"
+#define DIR_PIXMAPS "data/pixmaps/"
+#define DIR_MUSIC "data/music/"
+#define DIR_SOUNDS "data/sound/"
+#define DIR_SOUNDS_GUNS DIR_SOUNDS "guns/"
+#define DIR_FONT "data/font/"
+#define DIR_LEVEL "data/levels/"
 
 // Sprite Directions
 /// @ingroup PLAYER_DIRECTIONS

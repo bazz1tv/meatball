@@ -5,6 +5,7 @@
 #ifndef __SPRITE_H__
 #define __SPRITE_H__
 
+// Differentiate from including Win32 regular header file or Mac OSX Framework Header file
 #ifdef _WIN32
 #include <SDL_ep.h>
 #elif __APPLE__
@@ -18,11 +19,20 @@ extern SDL_Renderer *Renderer;
 // @{
 // SPRITE_TYPES
 enum SPRITE_TYPES {
-SPRITE_TYPE_NO_TYPE,
+SPRITE_TYPE_NO_TYPE=0,
 SPRITE_TYPE_PLAYER,
-SPRITE_TYPE_MASSIVE,
+
+/// The following are more-so Level tile types
+	// But We'll keep calling them sprites to move things along 
+SPRITE_TYPE_SOLID,
 SPRITE_TYPE_PASSIVE,
-SPRITE_TYPE_HALFMASSIVE,
+//SPRITE_TYPE_TOPSOLID,
+SPRITE_TYPE_TOPSOLID,
+SPRITE_TYPE_BOTTOMSOLID,
+SPRITE_TYPE_LEFTSOLID,
+SPRITE_TYPE_RIGHTSOLID,
+//
+	
 SPRITE_TYPE_BULLET,
 SPRITE_TYPE_PARTICLE,
 SPRITE_TYPE_ENEMY,
@@ -42,6 +52,7 @@ public:
 	SDL_Rect GetRect( SDL_bool with_camerapos = SDL_FALSE );
 
 	/** The Type
+	 * probably old here because we updated the actual sprite section
 	 * 0 = No Type			<br>
 	 * 1 = Player			<br>
 	 * 2 = Sprite Massive	<br>

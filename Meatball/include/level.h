@@ -2,6 +2,9 @@
  
 */
 /*@{*/
+
+
+// Notes -- Change background Color by using SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
 #ifndef __LEVEL_H__
 #define __LEVEL_H__
 

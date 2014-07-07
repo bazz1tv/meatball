@@ -6,6 +6,7 @@
 #include <fstream>
 #include "player.h"
 
+// Used to set player's start position
 extern cPlayer *pPlayer;
 
 using namespace std;
@@ -17,9 +18,9 @@ cLevel *pLevel;
 cLevelData :: cLevelData( void ) :
 BasicSprites(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS)
 {
-	BG_red = 0;
-	BG_green = 0;
-	BG_blue = 0;
+	BG_red = 255;
+	BG_green = 255;
+	BG_blue = 255;
 }
 
 cLevelData :: ~cLevelData( void )
@@ -128,7 +129,7 @@ cLevel :: ~cLevel( void )
 
 void cLevel :: Load( string filename )
 {
-	string full_filename = LEVEL_DIR + filename;
+	string full_filename = DIR_LEVEL + filename;
 
 	if( !FileValid( full_filename ) )
 	{
@@ -176,7 +177,7 @@ void cLevel :: Unload( void )
 
 void cLevel :: Save( void )
 {
-	string filename = LEVEL_DIR;
+	string filename = DIR_LEVEL;
 	filename += levelfile.c_str();
 
 	if( !FileValid( filename ) ) 
@@ -206,7 +207,7 @@ void cLevel :: Save( void )
 
 void cLevel :: SaveToFile( string &filename )
 {
-	string absfilename = LEVEL_DIR;
+	string absfilename = DIR_LEVEL;
 	absfilename += filename;
 	
 	/*if( !FileValid( filename ) )
@@ -280,9 +281,9 @@ void cLevel :: SaveMapObjects()
 				continue;
 			}
 			
-			image_filename.erase( 0, strlen( PIXMAPS_DIR ) );
+			image_filename.erase( 0, strlen( DIR_PIXMAPS ) );
 			
-			if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_MASSIVE )
+			if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_SOLID )
 			{
 				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
@@ -290,7 +291,7 @@ void cLevel :: SaveMapObjects()
 			{
 				sprintf(row,  "Sprite %s %d %d PASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
-			else if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_HALFMASSIVE )
+			else if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_TOPSOLID )
 			{
 				sprintf(row,  "Sprite %s %d %d HALFMASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
@@ -337,7 +338,7 @@ void cLevel :: Update( void )
 {
 	if( !Mix_PlayingMusic() )
 	{
-		string filename = MUSIC_DIR + Musicfile;
+		string filename = DIR_MUSIC + Musicfile;
 
 #ifndef DEMO
 		pAudio->PlayMusik( (char *)filename.c_str(),0,SDL_TRUE );
@@ -373,6 +374,32 @@ void cLevel :: Draw( void )
 		pLevelData_Layer1->BasicSprites.objects[i]->Update();
 		pLevelData_Layer1->BasicSprites.objects[i]->Draw( Renderer );
 	}
+	
+	/////// BRIGHTNESS FADER EFFECT TEST ///////
+	/*static Uint8 r=0,g=0,b=0;
+	static Uint8 p=0xff;
+	//static SDL_bool plus=SDL_TRUE;
+	//static SDL_bool first_time=SDL_TRUE;
+	
+	if (r == 254 || r == 0)
+	{
+		//plus = SDL_FALSE;
+		p = (p^0xFF)+1;
+	}*/
+	/* else if (r == 0 /*&& first_time == SDL_FALSE*///)
+	//{
+	//plus = SDL_TRUE;
+	//	p = -p;
+	//}
+	
+	
+	/*r += p;
+	g += p;
+	b += p;
+	
+	
+	SDL_SetRenderDrawColor(Renderer, r, g, b, 255);*/
+	/////// BRIGHTNESS FADER EFFECT TEST ///////
 }
 
 void cLevel :: Parse( char* command, int line )
@@ -439,7 +466,7 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 			return 0; // error
 		}
 
-		string full_filename = PIXMAPS_DIR;
+		string full_filename = DIR_PIXMAPS;
 		full_filename += parts[1];
 
 		if( !FileValid( full_filename ) )
@@ -464,10 +491,10 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 
 		IMan->Add( LoadImage( full_filename.c_str(), colorkey ), full_filename );
 
-		if( strcmp( parts[4], "MASSIVE" ) == 0 )
+		if( strcmp( parts[4], "SOLID" ) == 0 )
 		{
 			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h -(double)atoi( parts[3] ) );
-			temp->type = SPRITE_TYPE_MASSIVE;
+			temp->type = SPRITE_TYPE_SOLID;
 			pLevelData_Layer1->AddSprite( temp );
 		}
 		else if( strcmp( parts[4], "PASSIVE" ) == 0 )
@@ -476,10 +503,29 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 			temp->type = SPRITE_TYPE_PASSIVE;
 			pLevelData_Layer1->AddSprite( temp );
 		}
-		else if( strcmp( parts[4], "HALFMASSIVE" ) == 0 )
+		else if( strcmp( parts[4], "TOPSOLID" ) == 0 )
 		{
 			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h - (double)atoi( parts[3] ) );
-			temp->type = SPRITE_TYPE_HALFMASSIVE;
+			temp->type = SPRITE_TYPE_TOPSOLID;
+			pLevelData_Layer1->AddSprite( temp );
+		}
+		//else if ( strcmp( parts ) )
+		else if( strcmp( parts[4], "BOTTOMSOLID" ) == 0 )
+		{
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h - (double)atoi( parts[3] ) );
+			temp->type = SPRITE_TYPE_BOTTOMSOLID;
+			pLevelData_Layer1->AddSprite( temp );
+		}
+		else if( strcmp( parts[4], "LEFTSOLID" ) == 0 )
+		{
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h - (double)atoi( parts[3] ) );
+			temp->type = SPRITE_TYPE_LEFTSOLID;
+			pLevelData_Layer1->AddSprite( temp );
+		}
+		else if( strcmp( parts[4], "RIGHTSOLID" ) == 0 )
+		{
+			cMVelSprite *temp = new cMVelSprite( IMan->GetPointer( full_filename ), (double)atoi( parts[2] ), (double)window.h - (double)atoi( parts[3] ) );
+			temp->type = SPRITE_TYPE_RIGHTSOLID;
 			pLevelData_Layer1->AddSprite( temp );
 		}
 		else
@@ -557,9 +603,17 @@ int cLevel :: ParseLine( char ** parts, unsigned int count, unsigned int line )
 		pPlayer->Startposx = (double) atoi( parts[1] );
 		pPlayer->Startposy = /*(double)window.h - */(double) atoi( parts[2] );
 	}
+	else if( strcmp( parts[0], "BGColor") == 0 )
+	{
+		Uint8 r,g,b;
+		r = (Uint8)atoi(parts[1]);
+		g = (Uint8)atoi(parts[2]);
+		b = (Uint8)atoi(parts[3]);
+		SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
+	}
 	else if( strcmp( parts[0], "Music") == 0 )
 	{
-		string filename = MUSIC_DIR;
+		string filename = DIR_MUSIC;
 		filename += parts[1];
 
 		if( !FileValid( filename ) ) 

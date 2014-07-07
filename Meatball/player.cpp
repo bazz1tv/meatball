@@ -52,9 +52,9 @@ cPlayer :: ~cPlayer( void )
 void cPlayer :: init( void )
 {
 	// Right Standing
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/meatball/right_3.png", colorkey ), "Meatball_right_1" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/meatball/right_3.png", colorkey ), "Meatball_right_1" );
 	// Left Standing
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/meatball/left_3.png", colorkey ), "Meatball_left_1" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/meatball/left_3.png", colorkey ), "Meatball_left_1" );
 
 	// Get the Pointer
 	images[LEFT] = IMan->GetPointer( "Meatball_left_1" );
@@ -88,14 +88,14 @@ void cPlayer :: Update( void )
 	
 	if( Collision->collision && Collision->direction == ALL_COLLISIONS_UD)
 	{
-		if( Collision->iCollisionType == SPRITE_TYPE_MASSIVE || Collision->iCollisionType == SPRITE_TYPE_ENEMY ) 
+		if( Collision->iCollisionType == SPRITE_TYPE_SOLID || Collision->iCollisionType == SPRITE_TYPE_ENEMY ) 
 		{
 			onGround = 1; // an Massive ground
 			state = STATE_STAYING;
 			SetVelocity( velx, 0 );
 			jumpvel = 0;
 		}
-		else if( Collision->iCollisionType == SPRITE_TYPE_HALFMASSIVE ) 
+		else if( Collision->iCollisionType == SPRITE_TYPE_TOPSOLID ) 
 		{
 			onGround = 2; // an Halfmassive ground
 			state = STATE_STAYING;

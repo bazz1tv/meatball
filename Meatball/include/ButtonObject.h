@@ -6,5 +6,4 @@ class ButtonObject
 {
 	TextObject *text;
 	SDL_Surface *frame;
-
 };

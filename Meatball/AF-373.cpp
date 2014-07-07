@@ -43,9 +43,9 @@ void cAF373 :: init( void )
 	if (!IMan)
 		throw 1;
 	// Right Standing
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/enemies/Bots/AF-373/right_1.png", colorkey ), "AF373_right" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/enemies/Bots/AF-373/right_1.png", colorkey ), "AF373_right" );
 	// Left Satnding
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/enemies/Bots/AF-373/left_1.png", colorkey ), "AF373_left" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/enemies/Bots/AF-373/left_1.png", colorkey ), "AF373_left" );
 
 	// Get the Pointer
 	images[LEFT] = IMan->GetPointer( "AF373_left" );

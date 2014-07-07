@@ -7,11 +7,11 @@
 	/* Command List
 	 SDL_bool clearcon( string &str );	///< Clears the console
 	 // nothing to test here
-	 SDL_bool loadmap( string &str );	///< Load a new Level from @link LEVEL_DIR @endlink
+	 SDL_bool loadmap( string &str );	///< Load a new Level from @link DIR_LEVEL @endlink
 	 SDL_bool SetMx( string &str );		///< Set Meatball's X Coordinate
 	 SDL_bool SetMy( string &str );		///< Set Meatball's Y Coordinate
 	 SDL_bool SetMxy( string &str );		///< Set Meatball (X,Y) coordinate
-	 SDL_bool play( string &str );		///< Play a song from the @link MUSIC_DIR @endlink
+	 SDL_bool play( string &str );		///< Play a song from the @link DIR_MUSIC @endlink
 	 SDL_bool QuitAll( string &str);		///< Quit the Game
 	 SDL_bool ShowFPS( string & str);	///< Toggle FPS framerate to be displayed
 	 SDL_bool help( string &str );		///< bring up help on all commands or specific command

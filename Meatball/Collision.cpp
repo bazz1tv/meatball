@@ -298,24 +298,24 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 				continue;
 			}
 
-			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_MASSIVE )
+			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_SOLID )
 			{
 				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect ) ) // if Position is not valid
 				{
 					Collision->iCollisionNumber = i;
-					Collision->iCollisionType = SPRITE_TYPE_MASSIVE;	// Massive Object
+					Collision->iCollisionType = SPRITE_TYPE_SOLID;	// Massive Object
 					Collision->collision = SDL_TRUE; //GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect );
 					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect;
 					return;
 				}
 			}
 
-			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_HALFMASSIVE ) // if Position is not valid
+			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_TOPSOLID ) // if Position is not valid
 			{
 				if( RectIntersect( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect ) )
 				{
 					Collision->iCollisionNumber = i;
-					Collision->iCollisionType = SPRITE_TYPE_HALFMASSIVE;	// HalfMassive Object
+					Collision->iCollisionType = SPRITE_TYPE_TOPSOLID;	// HalfMassive Object
 					Collision->collision = SDL_TRUE; //GetCollide( &rect1, &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect );
 					Collision->cRect = &pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect;
 					return;

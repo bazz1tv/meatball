@@ -78,7 +78,7 @@ cConsole :: cConsole( void )
 		throw 1;
 	}
 	
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/background/conBG.png", colorkey, 140 ), "Console_BG" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/background/conBG.png", colorkey, 140 ), "Console_BG" );
 
 	BG = new cBasicSprite( Renderer, IMan->GetPointer( "Console_BG" ), 0, 0 );
 
@@ -90,7 +90,7 @@ cConsole :: cConsole( void )
 	{
 		throw 2;
 	}*/
-	Console_font = cFont::CreateFont( FONT_DIR "NIMBU14.TTF", 13, TTF_STYLE_BOLD );
+	Console_font = cFont::CreateFont( DIR_FONT "NIMBU14.TTF", 13, TTF_STYLE_BOLD );
 	//
 
 	CMDList = NULL;
@@ -684,7 +684,7 @@ SDL_bool soundVol( string &str)
 	else
 	{
 		string sound,volstr;
-		int vol;
+		int vol = 0;
 		
 		istringstream ss(str);
 		string tmp;
@@ -722,6 +722,8 @@ SDL_bool soundVol( string &str)
 				error << "Malformed volume";
 				return printerrortoconsole();
 			}
+			
+			vol = atoi(volstr.c_str());
 			
 			int oldvol = pAudio->SetSoundVolume(SMan->GetPointer(sound), vol);
 			
@@ -778,7 +780,7 @@ SDL_bool play( string &str )
 {
 	pLevel->Musicfile = str;
 
-	string file = MUSIC_DIR + str;
+	string file = DIR_MUSIC + str;
 
 	if ( !FileValid( file ) )
 	{

@@ -313,7 +313,7 @@ void cMParticleEmitter :: Update( void )
 		
 		ptr->Update();
 
-		if( !ptr->visible == SDL_TRUE )
+		if( ptr->visible == SDL_FALSE )
 		{
 			PvisibleCount--;
 		}

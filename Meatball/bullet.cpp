@@ -48,13 +48,13 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 		nVelocity = PISTOL_VELOCITY;
 
 		
-		SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/pistol/default.png" ) );
+		SetImage( Renderer, IMan->GetPointer( DIR_PIXMAPS "game/weapons/pistol/default.png" ) );
 	}
 	else if( Bullet_type == BULLET_MACHINEGUN )  // The Machinegun Bullet
 	{
 		nVelocity = MACHINEGUN_VELOCITY;
 		
-		SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/machinegun/default.png" ) );
+		SetImage( Renderer, IMan->GetPointer( DIR_PIXMAPS "game/weapons/machinegun/default.png" ) );
 	}
 	else if( Bullet_type == BULLET_LASER_X1 )  // The Laser X-1
 	{
@@ -62,11 +62,11 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 		
 		if( direction == LEFT ) 
 		{
-			SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/Laser_X1/left.png" ) );
+			SetImage( Renderer, IMan->GetPointer( DIR_PIXMAPS "game/weapons/Laser_X1/left.png" ) );
 		}
 		else if( direction == RIGHT ) 
 		{
-			SetImage( Renderer, IMan->GetPointer( PIXMAPS_DIR "game/weapons/Laser_X1/right.png" ) );
+			SetImage( Renderer, IMan->GetPointer( DIR_PIXMAPS "game/weapons/Laser_X1/right.png" ) );
 		}
 		else
 		{
@@ -138,7 +138,7 @@ void cBullet :: Update( void )
 	{
 		if( ( Collision->iCollisionType == SPRITE_TYPE_PLAYER && this->Origin == SPRITE_TYPE_ENEMY ) ||
 			( Collision->iCollisionType == SPRITE_TYPE_ENEMY && this->Origin == SPRITE_TYPE_PLAYER ) ||
-			( Collision->iCollisionType == SPRITE_TYPE_MASSIVE || Collision->iCollisionType == SPRITE_TYPE_HALFMASSIVE ) ) 
+			( Collision->iCollisionType == SPRITE_TYPE_SOLID || Collision->iCollisionType == SPRITE_TYPE_TOPSOLID ) ) 
 		{
 			if( Bullet_type == BULLET_PISTOL )
 			{
@@ -251,12 +251,12 @@ void PreloadBulletimages( void )
 {
 	if (!IMan)
 		throw 1;
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/pistol/default2.png", colorkey ),PIXMAPS_DIR "game/weapons/pistol/default.png" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/weapons/pistol/default2.png", colorkey ),DIR_PIXMAPS "game/weapons/pistol/default.png" );
 	// Machinegun
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/machinegun/default.png", colorkey ), PIXMAPS_DIR "game/weapons/machinegun/default.png" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/weapons/machinegun/default.png", colorkey ), DIR_PIXMAPS "game/weapons/machinegun/default.png" );
 	// Laser X-1
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/Laser_X1/left.png", colorkey ), PIXMAPS_DIR "game/weapons/Laser_X1/left.png" );
-	IMan->Add( LoadImage( PIXMAPS_DIR "game/weapons/Laser_X1/right.png", colorkey ), PIXMAPS_DIR "game/weapons/Laser_X1/right.png" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/weapons/Laser_X1/left.png", colorkey ), DIR_PIXMAPS "game/weapons/Laser_X1/left.png" );
+	IMan->Add( LoadImage( DIR_PIXMAPS "game/weapons/Laser_X1/right.png", colorkey ), DIR_PIXMAPS "game/weapons/Laser_X1/right.png" );
 }
 
 void AddBullet( double nposx, double nposy, int ndirection, unsigned int nBullet_type, unsigned int nOrigin, double nextravel /** = 0.0  */ )

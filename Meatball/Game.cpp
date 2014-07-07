@@ -31,7 +31,7 @@ cGame::~cGame()
 void cGame::Init()
 {
 	// This function is for the audio playlist, and all it does is fill up some variables
-	// with every song filename in the MUSIC_DIR directory
+	// with every song filename in the DIR_MUSIC directory
 	Playlist::ls_music();
 	
 	PreloadBulletimages();
@@ -51,7 +51,7 @@ void cGame::Init()
 	DEBUGLOG ("Finished loading level\n");*/
 	// if we are NOT in demo mode, let's load the level's MusicFile
 /*#ifndef DEMO
-	string filename = MUSIC_DIR + pLevel->Musicfile;
+	string filename = DIR_MUSIC + pLevel->Musicfile;
 	pAudio->PlayMusik((char*)filename.c_str(), 1);
 	while (!pAudio->MusicPlaying()) {Mix_PlayMusic(pAudio->Music, 1);}
 #endif
@@ -192,7 +192,7 @@ int cGame::Keydown_Events(SDL_Event *event)
 	else if( event->key.keysym.sym == SDLK_F8 )
 	{
 #ifdef INGAME_LEVEL_EDITOR
-		return mode= MODE_LEVELEDITOR;
+		return mode=MODE_LEVELEDITOR;
 #endif
 	}
 	

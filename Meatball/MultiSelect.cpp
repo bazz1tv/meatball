@@ -181,7 +181,7 @@ void cMultiSelect::PasteObjects()
 	for (unsigned int i=0; i < OM.objcount; i++)
 	{
 		// Add the New Object
-		if( OM.objects[i]->type == SPRITE_TYPE_MASSIVE || OM.objects[i]->type == SPRITE_TYPE_PASSIVE || OM.objects[i]->type == SPRITE_TYPE_HALFMASSIVE)
+		if( OM.objects[i]->type == SPRITE_TYPE_SOLID || OM.objects[i]->type == SPRITE_TYPE_PASSIVE || OM.objects[i]->type == SPRITE_TYPE_TOPSOLID)
 		{
 			// Create the new Sprite
 			
