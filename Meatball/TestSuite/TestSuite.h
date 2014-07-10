@@ -13,8 +13,8 @@
 #include "TestHelperFunctions.h"
 
 // Components
-#include "ConsoleTest.h"
-#include "CollisionTest.h"
+#include "Console/ConsoleTest.h"
+#include "Collision/CollisionTest.h"
 #include "TestComponents/SettingsPreferences/SettingsPreferencesTest.h"
 #include "TestStream.h"
 

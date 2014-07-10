@@ -45,6 +45,9 @@
     <ClCompile Include="..\video.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\net.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\audio.h">
@@ -78,6 +81,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\include\video.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\net.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

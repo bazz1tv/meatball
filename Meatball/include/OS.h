@@ -38,7 +38,7 @@
 //
 // Include the Memory Leak Detection
 #ifdef _DEBUG
-#include <vld.h>
+ #include <vld.h>
 #endif
 
 #include <SDL_ep.h>

@@ -243,6 +243,7 @@
     <ClCompile Include="..\image.cpp" />
     <ClCompile Include="..\img_manager.cpp" />
     <ClCompile Include="..\misc.cpp" />
+    <ClCompile Include="..\net.cpp" />
     <ClCompile Include="..\SDL_ep.cpp" />
     <ClCompile Include="..\snd_manager.cpp" />
     <ClCompile Include="..\sprite.cpp" />
@@ -256,6 +257,7 @@
     <ClInclude Include="..\include\image.h" />
     <ClInclude Include="..\include\img_manager.h" />
     <ClInclude Include="..\include\misc.h" />
+    <ClInclude Include="..\include\net.h" />
     <ClInclude Include="..\include\SDL_ep.h" />
     <ClInclude Include="..\include\snd_manager.h" />
     <ClInclude Include="..\include\sprite.h" />
