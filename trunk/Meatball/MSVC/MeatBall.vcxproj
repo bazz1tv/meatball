@@ -68,12 +68,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\..\..\Bin\penis</OutDir>
+    <OutDir>.\..\..\Bin\</OutDir>
     <IntDir>$(OutDir)Debug\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>C:\local\boost_1_55_0\lib32-msvc-12.0;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\..\..\Bin\</OutDir>
@@ -97,7 +98,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(MEATBALL_LIBDIR)\sdl2_ttf\include;$(MEATBALL_LIBDIR)\sdl2\include;$(MEATBALL_LIBDIR)\sdl2_net\include;$(MEATBALL_LIBDIR)\sdl2\sdl2_ttf\include;$(MEATBALL_LIBDIR)\sdl2_image\include;$(MEATBALL_LIBDIR)\sdl2_mixer\include;$(BOOST_DIR);..\include;..\Engine\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MEATBALL_LIBDIR)\sdl2_ttf\include;$(MEATBALL_LIBDIR)\sdl2\include;$(MEATBALL_LIBDIR)\sdl2_net\include;$(MEATBALL_LIBDIR)\sdl2\sdl2_ttf\include;$(MEATBALL_LIBDIR)\sdl2_image\include;$(MEATBALL_LIBDIR)\sdl2_mixer\include;$(BOOST_DIR);..\include;..\Engine\include;..\TestSuite;..\TestSuite\TestComponents;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -127,10 +128,12 @@ xcopy /i /y "$(MEATBALL_LIBDIR)\sdl2_ttf\md\libd\x86\*.dll" "$(OutDir)"
 xcopy /i /y "$(MEATBALL_LIBDIR)\sdl2_ttf\external\*.dll" "$(OutDir)"
 xcopy /i /y "$(MEATBALL_LIBDIR)\sdl2_net\md\libd\x86\*.dll" "$(OutDir)"
 
+xcopy /i /y "$(BOOST_DIR)\lib32-msvc-12.0\boost_filesystem-vc120-mt-gd-1_55.dll" "$(OutDir)"
+xcopy /i /y "$(BOOST_DIR)\lib32-msvc-12.0\boost_system-vc120-mt-gd-1_55.dll" "$(OutDir)"
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>sdl2_mixer.lib;sdl2_image.lib;sdl2_ttf.lib;sdl2_net.lib;sdl2main.lib;sdl2.lib;boost_system-vc90-mt-gd-1_51.lib;boost_filesystem-vc90-mt-gd-1_51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sdl2_mixer.lib;sdl2_image.lib;sdl2_ttf.lib;SDL2_net.lib;sdl2main.lib;sdl2.lib;boost_system-vc120-mt-gd-1_55.lib;boost_filesystem-vc120-mt-gd-1_55.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)MeatBall.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(MEATBALL_LIBDIR)\sdl2_ttf\md\libd\x86;$(MEATBALL_LIBDIR)\sdl2_mixer\md\libd\x86;$(MEATBALL_LIBDIR)\sdl2_net\md\libd\x86;$(MEATBALL_LIBDIR)\sdl2_image\md\libd\x86;$(MEATBALL_LIBDIR)\sdl2\md\libd\x86;$(BOOST_DIR)\lib;..\..\Bin\Dll\MD\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -320,68 +323,85 @@ xcopy /i /y "$(MEATBALL_LIBDIR)\sdl2_net\mt\lib\x86\*.dll" "$(OutDir)"
     <ResourceCompile Include="Skript.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\AF-373.cpp" />
-    <ClCompile Include="..\bullet.cpp" />
-    <ClCompile Include="..\ButtonObject.cpp" />
-    <ClCompile Include="..\Camera.cpp" />
-    <ClCompile Include="..\Collision.cpp" />
-    <ClCompile Include="..\console.cpp" />
-    <ClCompile Include="..\effects.cpp" />
     <ClCompile Include="..\enemy.cpp" />
-    <ClCompile Include="..\Game.cpp" />
-    <ClCompile Include="..\Globals.cpp" />
+    <ClCompile Include="..\AF-373.cpp" />
+    <ClCompile Include="..\player.cpp" />
     <ClCompile Include="..\level.cpp" />
     <ClCompile Include="..\leveleditor.cpp" />
-    <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\MainMenu.cpp" />
-    <ClCompile Include="..\MasterBlaster.cpp" />
-    <ClCompile Include="..\Menu.cpp" />
-    <ClCompile Include="..\MiniEngine.cpp" />
-    <ClCompile Include="..\Misc.cpp" />
     <ClCompile Include="..\MultiSelect.cpp" />
-    <ClCompile Include="..\OptionsMenu.cpp" />
-    <ClCompile Include="..\player.cpp" />
-    <ClCompile Include="..\playlist.cpp" />
-    <ClCompile Include="..\preferences.cpp" />
-    <ClCompile Include="..\Slider.cpp" />
-    <ClCompile Include="..\sprite.cpp" />
-    <ClCompile Include="..\TextObject.cpp" />
+    <ClCompile Include="..\TestSuite\TestComponents\Collision\CollisionTest.cpp" />
+    <ClCompile Include="..\TestSuite\TestComponents\Console\ConsoleTest.cpp" />
+    <ClCompile Include="..\TestSuite\TestComponents\LevelEditor\LevelEditorTest.cpp" />
+    <ClCompile Include="..\TestSuite\TestComponents\Level\LevelTest.cpp" />
+    <ClCompile Include="..\TestSuite\TestComponents\SettingsPreferences\SettingsPreferencesTest.cpp" />
+    <ClCompile Include="..\TestSuite\TestHelpFunctions.cpp" />
+    <ClCompile Include="..\TestSuite\TestSuite.cpp" />
     <ClCompile Include="..\weapon.cpp" />
+    <ClCompile Include="..\console.cpp" />
+    <ClCompile Include="..\preferences.cpp" />
+    <ClCompile Include="..\bullet.cpp" />
+    <ClCompile Include="..\Camera.cpp" />
+    <ClCompile Include="..\Collision.cpp" />
+    <ClCompile Include="..\effects.cpp" />
+    <ClCompile Include="..\Globals.cpp" />
+    <ClCompile Include="..\Game.cpp" />
+    <ClCompile Include="..\MiniEngine.cpp" />
+    <ClCompile Include="..\sprite.cpp" />
+    <ClCompile Include="..\playlist.cpp" />
+    <ClCompile Include="..\Menu.cpp" />
+    <ClCompile Include="..\MainMenu.cpp" />
+    <ClCompile Include="..\OptionsMenu.cpp" />
+    <ClCompile Include="..\Slider.cpp" />
+    <ClCompile Include="..\Misc.cpp" />
+    <ClCompile Include="..\ButtonObject.cpp" />
+    <ClCompile Include="..\TextObject.cpp" />
+    <ClCompile Include="..\MasterBlaster.cpp" />
+    <ClCompile Include="..\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\doxygen.h" />
-    <ClInclude Include="..\include\AF-373.h" />
-    <ClInclude Include="..\include\boost.h" />
-    <ClInclude Include="..\include\bullet.h" />
-    <ClInclude Include="..\include\ButtonObject.h" />
-    <ClInclude Include="..\include\Camera.h" />
-    <ClInclude Include="..\include\Collision.h" />
-    <ClInclude Include="..\include\console.h" />
-    <ClInclude Include="..\include\defines.h" />
-    <ClInclude Include="..\include\effects.h" />
     <ClInclude Include="..\include\enemy.h" />
-    <ClInclude Include="..\include\Game.h" />
-    <ClInclude Include="..\include\Globals.h" />
-    <ClInclude Include="..\include\GraphicsObject.h" />
+    <ClInclude Include="..\include\AF-373.h" />
+    <ClInclude Include="..\include\player.h" />
     <ClInclude Include="..\include\level.h" />
     <ClInclude Include="..\include\leveleditor.h" />
-    <ClInclude Include="..\include\MainMenu.h" />
-    <ClInclude Include="..\include\MasterBlaster.h" />
-    <ClInclude Include="..\include\Menu.h" />
-    <ClInclude Include="..\include\MiniEngine.h" />
-    <ClInclude Include="..\include\Misc.h" />
     <ClInclude Include="..\include\MultiSelect.h" />
-    <ClInclude Include="..\include\ObjectManager.h" />
-    <ClInclude Include="..\include\OptionsMenu.h" />
-    <ClInclude Include="..\include\OS.h" />
-    <ClInclude Include="..\include\player.h" />
-    <ClInclude Include="..\include\playlist.h" />
+    <ClInclude Include="..\include\weapon.h" />
+    <ClInclude Include="..\include\console.h" />
     <ClInclude Include="..\include\preferences.h" />
+    <ClInclude Include="..\include\bullet.h" />
+    <ClInclude Include="..\include\Camera.h" />
+    <ClInclude Include="..\include\Collision.h" />
+    <ClInclude Include="..\include\effects.h" />
+    <ClInclude Include="..\include\defines.h" />
+    <ClInclude Include="..\include\Globals.h" />
+    <ClInclude Include="..\include\Game.h" />
+    <ClInclude Include="..\include\MiniEngine.h" />
+    <ClInclude Include="..\include\sprite.h" />
+    <ClInclude Include="..\include\playlist.h" />
+    <ClInclude Include="..\include\Menu.h" />
+    <ClInclude Include="..\include\MainMenu.h" />
+    <ClInclude Include="..\include\OptionsMenu.h" />
     <ClInclude Include="..\include\Range.h" />
     <ClInclude Include="..\include\Slider.h" />
-    <ClInclude Include="..\include\sprite.h" />
+    <ClInclude Include="..\include\Misc.h" />
+    <ClInclude Include="..\include\ButtonObject.h" />
+    <ClInclude Include="..\include\GraphicsObject.h" />
+    <ClInclude Include="..\include\ObjectManager.h" />
     <ClInclude Include="..\include\TextObject.h" />
-    <ClInclude Include="..\include\weapon.h" />
+    <ClInclude Include="..\include\MasterBlaster.h" />
+    <ClInclude Include="..\include\boost.h" />
+    <ClInclude Include="..\doxygen.h" />
+    <ClInclude Include="..\include\OS.h" />
+    <ClInclude Include="..\TestSuite\TestComponent.h" />
+    <ClInclude Include="..\TestSuite\TestComponents\Collision\CollisionTest.h" />
+    <ClInclude Include="..\TestSuite\TestComponents\Console\ConsoleTest.h" />
+    <ClInclude Include="..\TestSuite\TestComponents\LevelEditor\LevelEditorTest.h" />
+    <ClInclude Include="..\TestSuite\TestComponents\Level\LevelTest.h" />
+    <ClInclude Include="..\TestSuite\TestComponents\SettingsPreferences\SettingsPreferencesTest.h" />
+    <ClInclude Include="..\TestSuite\TestDefinitions.h" />
+    <ClInclude Include="..\TestSuite\TestHelperFunctions.h" />
+    <ClInclude Include="..\TestSuite\TestStream.h" />
+    <ClInclude Include="..\TestSuite\TestSuite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
