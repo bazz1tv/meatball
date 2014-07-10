@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{df1b5865-b0c3-4507-9436-a08f2b886782}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{a83b9430-ebc5-464f-854f-793918af5dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\AF-373">
+      <UniqueIdentifier>{be3cdc38-8154-4cc0-ab8b-0ba033739018}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{1c2c6235-dece-4a5a-82b6-8f427eaebdce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{d8393f62-fa53-41ee-a250-6a957b3f604f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LevelEditor">
+      <UniqueIdentifier>{71675e8a-4975-493c-86a3-fa322e2e2b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Weapon">
+      <UniqueIdentifier>{9960b2e0-ba57-4e76-afff-30a2e0f5d02a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console">
+      <UniqueIdentifier>{42629e42-6808-49b1-abf2-5bcc436e52b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Preferences">
+      <UniqueIdentifier>{1e11f01e-c258-4046-a9aa-743662efe878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{ee4d9ec6-25cc-42b8-96e6-4c231456eb28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{3ac1447f-eeb4-47c1-a96f-cd0ae85bc048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{860b35b4-c396-4cd1-b92e-977ea1358e47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effects">
+      <UniqueIdentifier>{c7b47326-6a41-475c-b797-dc889ef313d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Globals">
+      <UniqueIdentifier>{bf2d9754-510e-4b86-ba2a-d49a7e7061c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{cf6290b4-278a-4f92-9929-efd4f962972b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite">
+      <UniqueIdentifier>{407d0135-1fef-4d38-8bde-4940d6fd537b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Playlist">
+      <UniqueIdentifier>{92c795c8-9cb0-4bde-a7b3-9285e4ba851f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus">
+      <UniqueIdentifier>{cb3bace2-8653-49f6-9a66-052cc03d2ebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus\MainMenu">
+      <UniqueIdentifier>{9641b9df-3052-443f-9879-41e70ab38028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus\Options Menu">
+      <UniqueIdentifier>{a28fd3a9-94db-458c-873b-91786c30f9f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus\Slider">
+      <UniqueIdentifier>{3d2ad82a-fdb1-47ec-8513-c02f6dd0994a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{53231b8a-7654-449b-bff1-2bdd18222635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicsObjects">
+      <UniqueIdentifier>{b6005efc-adf4-47bc-9772-6311060b6b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MasterBlaster">
+      <UniqueIdentifier>{9f79167c-e100-46d1-aafc-db89ef6b0310}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Skript.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\enemy.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AF-373.cpp">
+      <Filter>Enemy\AF-373</Filter>
+    </ClCompile>
+    <ClCompile Include="..\player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\leveleditor.cpp">
+      <Filter>LevelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MultiSelect.cpp">
+      <Filter>LevelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\weapon.cpp">
+      <Filter>Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\console.cpp">
+      <Filter>Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\preferences.cpp">
+      <Filter>Preferences</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Collision.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\effects.cpp">
+      <Filter>Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Globals.cpp">
+      <Filter>Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MiniEngine.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sprite.cpp">
+      <Filter>Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\playlist.cpp">
+      <Filter>Playlist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Menu.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MainMenu.cpp">
+      <Filter>Menus\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\OptionsMenu.cpp">
+      <Filter>Menus\Options Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Slider.cpp">
+      <Filter>Menus\Slider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Misc.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ButtonObject.cpp">
+      <Filter>GraphicsObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TextObject.cpp">
+      <Filter>GraphicsObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MasterBlaster.cpp">
+      <Filter>MasterBlaster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\enemy.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\AF-373.h">
+      <Filter>Enemy\AF-373</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\leveleditor.h">
+      <Filter>LevelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MultiSelect.h">
+      <Filter>LevelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\weapon.h">
+      <Filter>Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\console.h">
+      <Filter>Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\preferences.h">
+      <Filter>Preferences</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\bullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Collision.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\effects.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\defines.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Globals.h">
+      <Filter>Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MiniEngine.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\sprite.h">
+      <Filter>Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\playlist.h">
+      <Filter>Playlist</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Menu.h">
+      <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MainMenu.h">
+      <Filter>Menus\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\OptionsMenu.h">
+      <Filter>Menus\Options Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Range.h">
+      <Filter>Menus\Slider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Slider.h">
+      <Filter>Menus\Slider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Misc.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ButtonObject.h">
+      <Filter>GraphicsObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GraphicsObject.h">
+      <Filter>GraphicsObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ObjectManager.h">
+      <Filter>GraphicsObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\TextObject.h">
+      <Filter>GraphicsObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MasterBlaster.h">
+      <Filter>MasterBlaster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\boost.h" />
+    <ClInclude Include="..\doxygen.h" />
+    <ClInclude Include="..\include\OS.h" />
+  </ItemGroup>
+</Project>
