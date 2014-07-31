@@ -23,9 +23,6 @@
     <Filter Include="Weapon">
       <UniqueIdentifier>{e905bc70-d2d4-4b94-81c7-88fc2cc15cdc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Console">
-      <UniqueIdentifier>{0562bc0e-8e1c-433a-8255-e50c39494929}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Preferences">
       <UniqueIdentifier>{198fadb6-6256-46e3-bc77-f7c5d561b83a}</UniqueIdentifier>
     </Filter>
@@ -91,6 +88,9 @@
     </Filter>
     <Filter Include="TestSuite\SettingsPreferences">
       <UniqueIdentifier>{2022783a-2da1-4e17-ac7b-8c7762eeca02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Console">
+      <UniqueIdentifier>{0562bc0e-8e1c-433a-8255-e50c39494929}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
