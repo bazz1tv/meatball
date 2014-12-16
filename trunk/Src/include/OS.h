@@ -15,7 +15,7 @@
 /////////////// APPLE ////////////////
 #ifdef __APPLE__
 //// Since we are using Frameworks on OSX. We must change the include if we are on Windows
-#include <MeatBallEngine/SDL_ep.h>
+#include <SDLEngine/SDL_ep.h>
 
 // Call the CTRL key in Windows the META key in Mac
 // This needs MORE WORK to be FOOL PROOF

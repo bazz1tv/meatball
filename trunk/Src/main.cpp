@@ -11,7 +11,9 @@
 #include "bullet.h"
 #include "enemy.h"
 #include "MasterBlaster.h"
+#ifdef TEST
 #include "TestSuite.h"
+#endif
 #ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
 #endif
@@ -79,12 +81,16 @@ int main (int argc, char **argv)
 	return 0;
 }
 
+
 void Test(SDL_bool with_verbose)
 {
 	//TestSuite TS;
+  #ifdef TEST
 	TS::verbose = with_verbose;
 	TS::Begin();
+  #endif 
 }
+
 
 int processclargs(int argc, char *argv[])
 {

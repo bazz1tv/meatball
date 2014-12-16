@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Engine.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Run MeatBall.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -43,6 +48,31 @@
 			<true/>
 		</dict>
 		<key>E942ED7216D0C0A70048C7EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F42FF51A4092C500AA93C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F42FFF1A4092C500AA93C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F430BD1A409BDE00AA93C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F4310A1A409DF700AA93C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9F431141A409DF700AA93C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,6 +9,21 @@ using namespace std;
 cSettings *pGameSettings;
 cPreferences *pPreferences;
 
+std::string default_settings[] =
+{ "Music 1",
+  "Sounds 1",
+  "Fullscreen 1",
+  "Screen_W 800",
+  "Screen_H 600",
+  "Screen_Bpp 32",
+  "svol 113",
+  "mvol 128",
+  "WalkLeft 97",
+  "WalkRight 100",
+  "Jump 307",
+  "FirePrimary 305",
+ "" };
+
 
 cSettings :: cSettings( void )
 {
@@ -101,8 +116,12 @@ void cPreferences :: Load( void )
 		}
 		else
 		{
-			DEBUGLOG( "Error : No Preferences File and no Default Preferences File found\n" );
-			exit( 1 );
+			//DEBUGLOG( "Error : No Preferences File and no Default Preferences File found\n" );
+			//exit( 1 );
+      for (int i=0; default_settings[i] != ""; i++)
+      {
+        Parse((char *)default_settings[i].c_str(), i);
+      }
 		}
 	}
 	else
