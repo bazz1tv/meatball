@@ -1,0 +1,22 @@
+--lvl 1--
+grass
+mud
+straw
+
+--tropical island--
+lava
+sand
+jungle floor
+water
+
+--space ship--
+metal
+
+--outer space--
+meteor
+moon rock
+space rock
+
+--other--
+glass
+gift box
