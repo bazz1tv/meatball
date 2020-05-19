@@ -1,0 +1,55 @@
+-- Notes
+
+SWORD? When dashing you can impale the shit out of some vegies.
+
+Long and short ways through the level. Hidden areas to explore, short cuts. Rogue-like elements?
+
+Takes skill to get power-ups (Contra).
+
+Difficulty settings, beginner mode you can take more damage, harder modes you get less lives + there is more damage.
+
+-- Universal Gameplay Elements
+
+The ways the game is played across all the different input methods. The three targeted inputs are the super nintendo controller, touch screens, and mouse and keyboard.
+
+Today ( 7/17/14 ) We are brainstorming how these three different controls can work, so that the gameplay experience remains the same across every device.
+
+* Reconfigurable controls *
+Basic and Advance Controls
+
+-- SNES controller
+
+Buttons:
+* Directional Pad. Four cardinal directions. Can be combined for eight total directions.
+	- Up = Aim up
+	- Down = Nothing
+	- Left = Move left
+	- Right = Move right
+	( Double tap to run )
+	( ability to shoot forwards while moving backwards)
+		if the player is holding the shoot button 
+		down then the direction of the player is locked
+
+* Face buttons.
+	- A = Bomb/Alternate
+	- B = Jump
+	- Y = Shoot
+	- X = ???
+
+* Shoulder Buttons
+	- L = ???
+	- R = ???
+* Menu Buttons
+	- Start = Pause game
+	- Select = Change weapon
+
+Button Combinations
+-------------------
+Down+Jump = Go down thru ledge
+
+
+-- Tablet
+
+Controls will overlay the canvas. The canvas is the surface the game is drawn on. UI and HUD elements are treated separately from the canvas. The buttons and interfaces will be scalable and repositionable.
+
+-- Mouse and Keyboard
