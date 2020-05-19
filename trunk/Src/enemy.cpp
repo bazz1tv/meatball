@@ -2,6 +2,7 @@
 #include "enemy.h"
 #include "AF-373.h"
 #include "Collision.h"
+#include "effects.h"
 
 //unsigned int EnemyCount = 0;
 //cEnemy **Enemies = NULL;
@@ -15,6 +16,8 @@ cEnemy :: cEnemy( double nposx, double nposy )
 
 	Enemy_type = ENEMY_UNDEFINED;
 	Enemy_state = ENEMY_AI_STATE_UNKNOWN;
+
+	Health = 10;
 	
 	SetPos( nposx, nposy );
 }
@@ -26,7 +29,8 @@ cEnemy :: ~cEnemy( void )
 
 void cEnemy :: init( void )
 {
-	// virtual 
+	// virtual
+	visible = SDL_TRUE;
 }
 
 void cEnemy :: Update( void )
@@ -44,19 +48,48 @@ void cEnemy :: Jump( int power /** = 5  */ )
 	// virtual 
 }
 
+void cEnemy::Get_Hit(int damage)
+{
+	DEBUGLOG("cEnemy::Get_Hit\n");
+	if ( (Health - damage) <= 0)
+	{
+		Health = 0;
+		Die();
+	}
+	else
+	{
+		Health -= damage;
+	}
+}
+
 void cEnemy :: Die( void )
 {
-	// virtual 
+	// virtual
+	DEBUGLOG("cEnemy::Die\n");
+	int explode_posx, explode_posy;
+	/*DEBUGLOG ("\tCollision direction : %d\n", Collision->collide);
+	DEBUGLOG ("\tCollisions directons: %d\n", Collision->direction);*/
+
+	explode_posx = posx + (width / 2);
+	explode_posy = posy + (height / 2);
+
+	AddParticleEmitter(explode_posx, explode_posy, 4, 255, 255, 255, 1, 30, 10);
+	pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
+
+	visible = SDL_FALSE;
 }
 
 void AddEnemy( double nposx, double nposy, unsigned int etype )
 {
+	DEBUGLOG("AddEnemy\n");
 	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
 		if (Enemies.objects[i])
 		{
+			DEBUGLOG("\t1 ");
 			if ( !Enemies.objects[i]->visible && Enemies.objects[i]->Enemy_type == etype)
 			{
+				DEBUGLOG("2 ");
 				Enemies.objects[i]->SetPos( nposx, nposy );
 				
 				Enemies.objects[i]->init();
@@ -66,6 +99,7 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 		}
 	}
 
+	DEBUGLOG("\t3 ");
 	cEnemy *new_Enemy = NULL;
 
 	if( etype == ENEMY_AF373 )// Enemy type 
@@ -178,7 +212,7 @@ void DrawEnemies( SDL_Renderer *renderer )
 {
 	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
-		if( !Enemies.objects[i] ) 
+		if( !Enemies.objects[i] || !Enemies.objects[i]->visible ) 
 		{
 			continue;
 		}
@@ -193,7 +227,6 @@ void DeletEnemy( unsigned int number )
 	{
 		delete Enemies.objects[number];
 		Enemies.objects[number] = NULL;
-		
 	}
 }
 

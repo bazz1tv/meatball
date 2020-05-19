@@ -6,6 +6,7 @@
 #include "effects.h"
 #include "Collision.h"
 #include "MasterBlaster.h"
+#include "enemy.h"
 
 extern cSettings *pGameSettings;
 extern cPlayer *pPlayer;
@@ -73,6 +74,19 @@ void cPlayer :: init( void )
 
 void cPlayer :: Update( void )
 {
+	static SDL_bool beatlevel = SDL_FALSE;
+	if (posx > 5900 && !beatlevel)
+	{
+		//pAudio->StopMusic();
+		pAudio->SetMusicVolume(0);
+		pAudio->PlaySound(SMan->GetPointer("yeah"));
+		beatlevel = SDL_TRUE;
+		//explode all the enemies
+		for (register unsigned int i = 0; i < Enemies.objcount; i++)
+			if (Enemies.objects[i] && Enemies.objects[i]->visible)
+				Enemies.objects[i]->Die();
+	}
+
 	CollideMove( (cBasicSprite*)this, velx * pFramerate->speedfactor, vely * pFramerate->speedfactor, Collision, type );
 	
 	pWeapon->Update();
@@ -302,7 +316,7 @@ void cPlayer :: Reset( void )
 	direction = RIGHT;
 	onGround = 0;
 
-	ChangeActiveWeapon( WEAPON_PISTOL );
+	ChangeActiveWeapon( WEAPON_PISTOL);
 }
 //
 
@@ -421,9 +435,10 @@ void cPlayer :: Fire( void )
 	//AddParticleEmitter( Particle_posx, posy + 8, 2, 150, 150, 150, 1, 1, 2, 270 ); // grey
 }
 
-void cPlayer :: Get_Hit( unsigned int damage )
+void cPlayer :: Get_Hit( int damage )
 {
-	if( Health - damage <= 0 ) 
+	DEBUGLOG("cPlayer::Get_Hit\n");
+	if( (Health - damage) <= 0 ) 
 	{
 		Health = 0;
 		Die();
@@ -436,6 +451,7 @@ void cPlayer :: Get_Hit( unsigned int damage )
 
 void cPlayer :: Die( void )
 {
+	DEBUGLOG("cPlayer::Die\n");
 	// todo
 }
 

@@ -151,6 +151,8 @@ void initEngine()
 {
 	InitEP();
 	InitSDL( SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE );
+
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "2");
 	
 	SetColorKey(0xffff00ff);
 	
@@ -218,15 +220,26 @@ void MakeWindow()
 	// Access the SDL_DisplayMode structure to see what was received.
 	DEBUGLOG("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
 	
-	window.sdlw = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+	window.sdlw = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 	
 	//SDL_SetWindowMaximumSize(Window, window.h, window.h);
 	//SDL_SetWindowMinimumSize(Window, window.h, window.h);
 	
 	Renderer = GetRenderer(window.sdlw, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (Renderer == NULL)
+	{
+		Renderer = GetRenderer(window.sdlw, SDL_RENDERER_ACCELERATED);
+		if (Renderer == NULL)
+		{
+			Renderer = GetRenderer(window.sdlw, 0);
+		}
+	}
+
 	
 	window.h = pGameSettings->Screen_H;
 	window.w = pGameSettings->Screen_W;
+
+	SDL_RenderSetLogicalSize(Renderer, window.w, window.h);
 	
 	//SDL_SetWindowBordered(Window, SDL_FALSE);
 	
@@ -347,7 +360,9 @@ void QuitGame( void )
 void InitImageManager()
 {	IMan	= new cImageManager();	}
 void InitSoundManager()
-{	SMan	= new cSoundManager();	}
+{
+	SMan	= new cSoundManager();
+}
 void InitAudio()
 {
 	// Preferences must be loaded Already
@@ -357,6 +372,9 @@ void InitAudio()
 	pAudio->Sound_Volume = pGameSettings->svol;
 	pAudio->Music_Volume = pGameSettings->mvol;
 	pAudio->InitAudio();
+
+	SMan->Add(pAudio->LoadSound(DIR_SOUNDS "dry-explosion-fx.ogg"), "dry-explosion-fx");
+	SMan->Add(pAudio->LoadSound(DIR_SOUNDS "yeah.ogg"), "yeah");
 }
 void InitFont()
 {

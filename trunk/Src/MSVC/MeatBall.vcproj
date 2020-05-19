@@ -170,7 +170,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="sdl_Ep.lib freetype.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib boost_system-vc90-mt-1_51.lib boost_filesystem-vc90-mt-1_51.lib"
+				AdditionalDependencies="Engine.lib freetype.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib boost_system-vc90-mt-1_51.lib boost_filesystem-vc90-mt-1_51.lib"
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -268,7 +268,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="sdl_ep.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib"
+				AdditionalDependencies="Engine.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib"
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -366,7 +366,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="sdl_ep.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib libboost_system-vc90-mt-s-1_51.lib libboost_filesystem-vc90-mt-s-1_51.lib"
+				AdditionalDependencies="Engine.lib sdl2_mixer.lib sdl2_image.lib sdl2_ttf.lib sdl2_net.lib sdl2main.lib sdl2.lib libboost_system-vc90-mt-s-1_51.lib libboost_filesystem-vc90-mt-s-1_51.lib"
 				OutputFile="$(OutDir)/MeatBall.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"

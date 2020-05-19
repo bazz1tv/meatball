@@ -68,6 +68,7 @@ int cLevelEditor :: Do()
 		{
 			Update();
 			mode = EventHandler();
+			HeldKey_Handler();
 			this->Draw(Renderer);
 			//PostDraw();
 			//DrawAllToScreen();

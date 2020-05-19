@@ -106,7 +106,7 @@ cWeapon_Laser_X1 :: cWeapon_Laser_X1( unsigned int nOrigin, unsigned int nPower,
 	Weapon_type = WEAPON_LASER_X1;
 
 	// Preload the Firing Sound
-	SMan->Add( pAudio->LoadSound( DIR_SOUNDS_GUNS "Laser_X1.ogg" ), "laser" );
+	SMan->Add( pAudio->LoadSound( DIR_SOUNDS_GUNS "Laser_X1.ogg", 78 ), "laser" );
 }
 
 cWeapon_Laser_X1 :: ~cWeapon_Laser_X1( void )
