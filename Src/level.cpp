@@ -285,7 +285,7 @@ void cLevel :: SaveMapObjects()
 			
 			if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_SOLID )
 			{
-				sprintf(row,  "Sprite %s %d %d MASSIVE\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
+				sprintf(row,  "Sprite %s %d %d SOLID\n", image_filename.c_str(), (int) pLevelData_Layer1->BasicSprites.objects[i]->posx, (int)window.h - (int)pLevelData_Layer1->BasicSprites.objects[i]->posy );
 			}
 			else if( pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_PASSIVE )
 			{

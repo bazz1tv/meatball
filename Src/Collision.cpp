@@ -4,6 +4,7 @@
 #include "level.h"
 #include "enemy.h"
 #include "player.h"
+#include "Camera.h"
 
 class cPlayer;
 extern cLevel *pLevel;
@@ -260,6 +261,9 @@ void CollideMove_Weak( cBasicSprite *Sprite, double velx, double vely, Collision
 void PositionCheck( int x, int y, int width, int height, Collisiondata *Collision, unsigned int type )
 {
 	SDL_Rect rect1 = SetRect( x, y, width, height );
+	SDL_Rect camrect = SetRect(pCamera->x, pCamera->y, window.w, window.h);
+	//if (!RectIntersect(&rect1, &camrect))
+	//	return;
 
 	register unsigned int i;
 
@@ -297,6 +301,9 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 			{
 				continue;
 			}
+			// or if this object isn't in the current screen space
+			//if (!RectIntersect(&pLevel->pLevelData_Layer1->BasicSprites.objects[i]->rect, &camrect))
+				//return;
 
 			if( pLevel->pLevelData_Layer1->BasicSprites.objects[i]->type == SPRITE_TYPE_SOLID )
 			{
@@ -330,10 +337,13 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 	{
 		for( i = 0;i < Enemies.objcount;i++ )
 		{
-			if( !Enemies.objects[i] )
+			if( !Enemies.objects[i] || !Enemies.objects[i]->visible )
 			{
 				continue;
 			}
+			// or if this object isn't in the current screen space
+			//if (!RectIntersect(&Enemies.objects[i]->rect, &camrect))
+				//return;
 
 			if( RectIntersect( &rect1, &Enemies.objects[i]->rect ) ) // if Position is not valid
 			{

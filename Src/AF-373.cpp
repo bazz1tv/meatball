@@ -34,6 +34,8 @@ cAF373 :: ~cAF373( void )
 
 void cAF373 :: init( void )
 {
+	cEnemy::init();
+	Health = 15;
 	direction = RIGHT;
 
 	Enemy_type = ENEMY_AF373;
@@ -63,13 +65,16 @@ void cAF373 :: init( void )
 
 void cAF373 :: Update( void )
 {
+	if (!visible)
+		return;
+
 	SetImage( Renderer,images[direction] );
 	
 	cEnemy :: Update();
 
 	pWeapon->Update();
 	
-	PositionCheck( (int)posx, (int)posy + 1, (int)width, (int)height, Collision, type );
+	PositionCheck( (int)posx, (int)(posy + vely + 1), (int)width, (int)height, Collision, type );
 
 	if( Collision->collision )
 	{
@@ -280,7 +285,8 @@ void cAF373 :: Draw( SDL_Renderer *renderer )
 
 void cAF373 :: Die( void )
 {
-	DEBUGLOG( "Died\n" );
+	DEBUGLOG( "cAF373::Die\n" );
+	cEnemy::Die();
 }
 
 void cAF373 :: Fire( int fdirection )
@@ -359,7 +365,7 @@ int cAF373 :: AI_PlayerSearch( int sdirection )
 
 void cAF373 :: AI_Idle( void )
 {
-	if( Random( 0.0, 100 * pFramerate->speedfactor ) < 1 * pFramerate->speedfactor ) 
+	if( Random( 0.0, 50 * pFramerate->speedfactor ) < 1 * pFramerate->speedfactor ) 
 	{
 		if( Random( 0, 1 ) == 1 ) 
 		{
@@ -369,7 +375,6 @@ void cAF373 :: AI_Idle( void )
 		{
 			AI_direction = RIGHT;
 		}
-		
-		AI_movingtime = Random( 1.0, 5.0 );
+		AI_movingtime = Random(1.0, 10.0);
 	}
 }

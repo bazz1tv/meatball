@@ -330,7 +330,7 @@ int cMainMenu::EventHandler()
 				}
 				case SDL_MOUSEBUTTONUP:
 				{
-					if( event.button.button == 1 )
+					if( event.button.button == SDL_BUTTON_LEFT )
 					{
 						/// [Mouse Collision Check]
 						if( MouseCollidesWith( &Button_Exit->rect ) ) 

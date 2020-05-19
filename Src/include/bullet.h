@@ -22,10 +22,13 @@ extern Window window;
 /// @defgroup BULLET_TYPES
 // @{
 // Bullet types
-#define BULLET_UNKNOWN			0
-#define BULLET_PISTOL			1
-#define BULLET_MACHINEGUN		2
-#define BULLET_LASER_X1			3	///< The laser X1 is pretty stupid imho and should be terminated
+enum {
+	BULLET_UNKNOWN = 0,
+	BULLET_PISTOL,
+	BULLET_MACHINEGUN,
+	BULLET_LASER_X1,	///< The laser X1 is pretty stupid imho and should be terminated
+	NUM_BULLET_TYPES
+};
 // @}
 
 class cBullet : public cMVelSprite
@@ -64,6 +67,7 @@ public:
 	/// The Bullet Explosion Sound
 	Mix_Chunk *sound_Explosion;
 
+	static int Damage[NUM_BULLET_TYPES];
 };
 
 void CollideMove_Bullets( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type );

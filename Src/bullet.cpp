@@ -2,6 +2,10 @@
 #include "Camera.h"
 #include "Collision.h"
 #include "effects.h"
+#include "player.h"
+#include "enemy.h"
+
+extern cPlayer *pPlayer;
 
 #define PISTOL_VELOCITY	10
 #define MACHINEGUN_VELOCITY	15
@@ -138,6 +142,7 @@ void cBullet :: Update( void )
 	{
 		if( ( Collision->iCollisionType == SPRITE_TYPE_PLAYER && this->Origin == SPRITE_TYPE_ENEMY ) ||
 			( Collision->iCollisionType == SPRITE_TYPE_ENEMY && this->Origin == SPRITE_TYPE_PLAYER ) ||
+			( Collision->iCollisionType == SPRITE_TYPE_ENEMY && this->Origin == SPRITE_TYPE_ENEMY) ||
 			( Collision->iCollisionType == SPRITE_TYPE_SOLID || Collision->iCollisionType == SPRITE_TYPE_TOPSOLID ) ) 
 		{
 			if( Bullet_type == BULLET_PISTOL )
@@ -225,9 +230,18 @@ void cBullet::Explode()
 	visible = SDL_FALSE;
 }
 
+int cBullet::Damage[NUM_BULLET_TYPES] = { 5, 5, 4, 15 };
+
 void cBullet::DoDamage()
 {
-	
+	if ((Collision->iCollisionType == SPRITE_TYPE_PLAYER && this->Origin == SPRITE_TYPE_ENEMY))
+	{
+		pPlayer->Get_Hit(Damage[Bullet_type]);
+	}
+	else if ((Collision->iCollisionType == SPRITE_TYPE_ENEMY && this->Origin == SPRITE_TYPE_PLAYER))
+	{
+		Enemies.objects[Collision->iCollisionNumber]->Get_Hit(Damage[Bullet_type]);
+	}
 }
 
 void cBullet :: Draw( SDL_Renderer *renderer )

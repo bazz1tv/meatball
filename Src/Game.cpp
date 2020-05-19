@@ -198,7 +198,7 @@ int cGame::Keydown_Events(SDL_Event *event)
 	
 	else if( event->key.keysym.sym == SDLK_F1 ) // Particle Test
 	{
-		AddParticleEmitter( pPlayer->posx + ( pPlayer->width/2 ), pPlayer->posy + ( pPlayer->height/2 ) - 10, 9, 255, 250, 200, 0.01, 500, 5 );
+		AddParticleEmitter( pPlayer->posx + ( pPlayer->width/2 ), pPlayer->posy + ( pPlayer->height/2 ) - 10, 9, 255, 250, 200, 2.00, 100, 5 );
 	}
 	else if( event->key.keysym.sym == SDLK_F2 ) // Enemy Test
 	{
@@ -220,15 +220,15 @@ int cGame::Keydown_Events(SDL_Event *event)
 
 int cGame::MouseButtonDown_Events(SDL_Event *event)
 {
-	if( event->button.button == 1 ) // Left Mouse Button
+	if (event->button.button == SDL_BUTTON_LEFT) // Left Mouse Button
 	{
 		pPlayer->Fire();
 	}
-	else if( event->button.button == 2 ) // Middle Mouse Button
+	else if (event->button.button == SDL_BUTTON_MIDDLE) // Middle Mouse Button
 	{
 		
 	}
-	else if( event->button.button == 3 ) // Right Mouse Button
+	else if (event->button.button == SDL_BUTTON_RIGHT) // Right Mouse Button
 	{
 		pPlayer->Jump();
 	}

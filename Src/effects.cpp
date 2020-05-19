@@ -394,7 +394,7 @@ void UpdateParticleEmitter( void )
 {
 	for( register unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
-		if( !ParticleEmitter.objects[i] ) 
+		if (!ParticleEmitter.objects[i] || !ParticleEmitter.objects[i]->visible)
 		{
 			continue;
 		}
@@ -409,7 +409,7 @@ void DrawParticleEmitter( SDL_Renderer *renderer )
 	
 	for( register unsigned int i = 0; i < ParticleEmitter.objcount; i++ )
 	{
-		if( !ParticleEmitter.objects[i] ) 
+		if (!ParticleEmitter.objects[i] || !ParticleEmitter.objects[i]->visible)
 		{
 			continue;
 		}

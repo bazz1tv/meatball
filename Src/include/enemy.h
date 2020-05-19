@@ -33,6 +33,7 @@ public:
 
 	virtual void Jump( int power = 5 );
 
+	virtual void Get_Hit(int damage);
 	virtual void Die( void );
 	
 	/**
@@ -50,7 +51,7 @@ public:
 	unsigned int Enemy_state;
 
 	/// The Health	
-	unsigned int health;
+	int Health;
 
 	/// Maximum Speed
 	double max_speed;

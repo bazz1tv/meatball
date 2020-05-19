@@ -56,7 +56,7 @@ public:
 	void Fire( void );
 
 	/// The Player gets hit by an Bullet or something else
-	void Get_Hit( unsigned int damage );
+	void Get_Hit( int damage );
 
 	/// The Player dies
 	void Die( void );
@@ -117,7 +117,7 @@ public:
 	/** The Health\n
 	 * if == 0 the player dies and the level restarts ;O
 	 */
-	unsigned int Health;
+	int Health;
 
 	unsigned int updown_pressed; ///< Up or Down -> Left or Right 
 };
