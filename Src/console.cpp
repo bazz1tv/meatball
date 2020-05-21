@@ -568,7 +568,8 @@ SDL_bool loadmap( string &str )
 {
 	// Shouldn't we be checking for valid filename??
 	pLevel->Load( str );
-
+    string musicpath = DIR_MUSIC + pLevel->Musicfile;
+    pAudio->PlayMusik( (char *)musicpath.c_str(),0,SDL_TRUE );
 	return SDL_TRUE;
 }
 

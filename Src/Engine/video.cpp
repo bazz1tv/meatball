@@ -100,7 +100,7 @@ SDL_bool IsFullScreen(SDL_Window *win)
 {
 	Uint32 flags = SDL_GetWindowFlags(win);
 	
-    if (flags & SDL_WINDOW_FULLSCREEN) return SDL_TRUE; // return SDL_TRUE if fullscreen
+    if (flags & SDL_WINDOW_FULLSCREEN_DESKTOP) return SDL_TRUE; // return SDL_TRUE if fullscreen
     
 	return SDL_FALSE; // Return SDL_FALSE if windowed
 }
@@ -113,28 +113,34 @@ int SDL_ToggleFS(SDL_Window *win)
 	//SDL_GetWindowDisplayMode(Window, &mode);
 	
 	//SDL_DestroyRenderer(Renderer);
+    
+    std::cout << "SDL_ToggleFS(); ";
 	
     if (IsFullScreen(win))
     {
+        std::cout << "switch to windowed; ";
         // Swith to WINDOWED mode
-        if (SDL_SetWindowFullscreen(win, SDL_FALSE) < 0)
+        if (SDL_SetWindowFullscreen(win, 0) < 0)
 		{
 			std::cout<<"Setting windowed failed : "<<SDL_GetError()<<std::endl;
 			return -1;
 		}
 		
-		//SDL_SetWindowSize(Window,window.w,window.h);
+		//SDL_SetWindowSize(win, 800, 600);
 		
         return 0;
     }
     
     // Swith to FULLSCREEN mode
-	
-    if (SDL_SetWindowFullscreen(win, SDL_TRUE) < 0)
+    std::cout << "switch to fs; ";
+    if (SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP) < 0)
 	{
 		std::cout<<"Setting fullscreen failed : "<<SDL_GetError()<<std::endl;
 		return -1;
 	}
+    
+    //SDL_WarpMouseInWindow(win, 800/2,600/2);
+    //SDL_WarpMouseGlobal(800/2,600/2);
 	
 	//SDL_SetWindowSize(Window,window.w,window.h);
 	

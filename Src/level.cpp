@@ -162,6 +162,8 @@ void cLevel :: Load( string filename )
 	delete contents;
 	
 	pFramerate->Reset();
+    //string musicpath = DIR_MUSIC + Musicfile;
+    //pAudio->PlayMusik( (char *)musicpath.c_str(),0,SDL_TRUE );
 }
 
 void cLevel :: Unload( void )
@@ -343,7 +345,6 @@ void cLevel :: Update( void )
 #ifndef DEMO
 		pAudio->PlayMusik( (char *)filename.c_str(),0,SDL_TRUE );
 #endif
-		
 	}
 }
 
@@ -378,22 +379,13 @@ void cLevel :: Draw( void )
 	/////// BRIGHTNESS FADER EFFECT TEST ///////
 	/*static Uint8 r=0,g=0,b=0;
 	static Uint8 p=0xff;
-	//static SDL_bool plus=SDL_TRUE;
-	//static SDL_bool first_time=SDL_TRUE;
 	
 	if (r == 254 || r == 0)
 	{
-		//plus = SDL_FALSE;
 		p = (p^0xFF)+1;
-	}*/
-	/* else if (r == 0 /*&& first_time == SDL_FALSE*///)
-	//{
-	//plus = SDL_TRUE;
-	//	p = -p;
-	//}
+	}
 	
-	
-	/*r += p;
+	r += p;
 	g += p;
 	b += p;
 	

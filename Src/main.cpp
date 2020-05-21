@@ -220,7 +220,9 @@ void MakeWindow()
 	// Access the SDL_DisplayMode structure to see what was received.
 	DEBUGLOG("  Received: \t%dx%dpx @ %dhz \n", closest.w, closest.h, closest.refresh_rate);
 	
-	window.sdlw = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_MOUSE_FOCUS | SDL_WINDOW_INPUT_GRABBED : SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+	window.sdlw = GetWindow(APP_TITLE, closest.w, closest.h, pPreferences->pSettings->Fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_RESIZABLE : SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    
+    SDL_SetWindowSize(window.sdlw, closest.w, closest.h);
 	
 	//SDL_SetWindowMaximumSize(Window, window.h, window.h);
 	//SDL_SetWindowMinimumSize(Window, window.h, window.h);
@@ -375,6 +377,7 @@ void InitAudio()
 
 	SMan->Add(pAudio->LoadSound(DIR_SOUNDS "dry-explosion-fx.ogg"), "dry-explosion-fx");
 	SMan->Add(pAudio->LoadSound(DIR_SOUNDS "yeah.ogg"), "yeah");
+    SMan->Add(pAudio->LoadSound(DIR_SOUNDS "wahwah.ogg"), "wahwah");
 }
 void InitFont()
 {

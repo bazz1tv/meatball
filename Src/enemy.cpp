@@ -73,13 +73,13 @@ void cEnemy :: Die( void )
 	explode_posx = posx + (width / 2);
 	explode_posy = posy + (height / 2);
 
-	AddParticleEmitter(explode_posx, explode_posy, 4, 255, 255, 255, 1, 30, 10);
+	AddParticleEmitter(explode_posx, explode_posy, Random( 1.4, 1.7 ), 255, 225, 255, 7, 70, 20);
 	pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
 
 	visible = SDL_FALSE;
 }
 
-void AddEnemy( double nposx, double nposy, unsigned int etype )
+cEnemy * AddEnemy( double nposx, double nposy, unsigned int etype )
 {
 	DEBUGLOG("AddEnemy\n");
 	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
@@ -94,7 +94,7 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 				
 				Enemies.objects[i]->init();
 				
-				return;
+				return Enemies.objects[i];
 			}
 		}
 	}
@@ -108,8 +108,8 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 	}
 	else
 	{
-		DEBUGLOG( "Warning : Unknow Enemy Type : %d\n", etype );
-		return;
+		DEBUGLOG( "Warning : Unknown Enemy Type : %d\n", etype );
+		return NULL;
 	}
 
 	new_Enemy->init();	
@@ -117,6 +117,7 @@ void AddEnemy( double nposx, double nposy, unsigned int etype )
 	Enemies.add(new_Enemy);
 	//Enemies = (cEnemy**) SDL_realloc( Enemies, ++EnemyCount * sizeof(cEnemy*) );
 	//Enemies[EnemyCount - 1] = new_Enemy;
+    return new_Enemy;
 }
 
 void UpdateEnemies( void )

@@ -66,7 +66,7 @@ public:
 extern ObjectManager<cEnemy> Enemies;
 
 /// Adds an Enemy with the given type
-void AddEnemy( double nposx, double nposy, unsigned int etype );
+cEnemy * AddEnemy( double nposx, double nposy, unsigned int etype );
 
 /// Updates all Enemies
 void UpdateEnemies( void );

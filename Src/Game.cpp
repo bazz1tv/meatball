@@ -162,6 +162,7 @@ int cGame::Keydown_Events(SDL_Event *event)
 {
 	if( event->key.keysym.sym == SDLK_ESCAPE )
 	{
+        Mix_ChannelFinished(NULL);
 		// universal!
 		return mode=MODE_MAINMENU;
 	}
@@ -202,7 +203,7 @@ int cGame::Keydown_Events(SDL_Event *event)
 	}
 	else if( event->key.keysym.sym == SDLK_F2 ) // Enemy Test
 	{
-		AddEnemy( 200, 0 + (double)( window.h/2 ), ENEMY_AF373 );
+		AddEnemy( pPlayer->posx, pPlayer->posy - 20, ENEMY_AF373 );
 	}
 	
 	// DEBUG MODE FEATURES

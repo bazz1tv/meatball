@@ -5,6 +5,7 @@
 #include "enemy.h"
 #include "player.h"
 #include "Camera.h"
+#include "Bullet.h"
 
 class cPlayer;
 extern cLevel *pLevel;
@@ -30,6 +31,9 @@ void incremental_Y_check(cBasicSprite *Sprite, double velx, double vely, Collisi
 
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type )
 {
+    Collisiondata lastCollision;
+    lastCollision = *Collision;
+    
 	Collision->Reset();
 
 	double posx_old = Sprite->posx;
@@ -45,12 +49,12 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 	SDL_bool movex = SDL_FALSE;
 	SDL_bool movey = SDL_FALSE;
 	
-	if( vely != 0 )
+	if( floor(vely) != 0 )
 	{
 		movey = SDL_TRUE;
 	}
 	
-	if( velx != 0 )
+	if( floor(velx) != 0 )
 	{
 		movex = SDL_TRUE;
 	}
@@ -60,6 +64,9 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 		if( movex == SDL_TRUE )
 		{
 			PositionCheck( (int)( Sprite->posx + ( (fvelx > 0) ? (tvelx+=1) : (tvelx+=-1) ) ), (int)Sprite->posy, (int)Sprite->width, (int)Sprite->height, Collision, type  );
+            
+            /*if (type == SPRITE_TYPE_BULLET && Collision->iCollisionType == SPRITE_TYPE_ENEMY && static_cast<cBullet *>(Sprite)->Origin == SPRITE_TYPE_ENEMY)
+                Collision->collision = SDL_FALSE;*/
 			
 			if ((fvelx > 0 && tvelx >= fvelx) || (fvelx < 0 && tvelx <= fvelx))
 				movex = SDL_FALSE;
@@ -100,16 +107,19 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 		
 		if( movey == SDL_TRUE )
 		{
-			if( !Collision->collision )
+            PositionCheck( (int)Sprite->posx, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), (int)Sprite->width, (int)Sprite->height, Collision, type );
+            
+            if( !Collision->collision )
 			{
 				Sprite->posy += ((fvely > 0) ? (tvely+=1) : (tvely+=-1));
 				
-				if ((fvely > 0 && tvely >= fvely) || (fvely < 0 && tvely <= fvely))
-					movey = SDL_FALSE;
+				//if ((fvely > 0 && tvely >= fvely) || (fvely < 0 && tvely <= fvely))
+					//movey = SDL_FALSE;
 				
 				if((Sprite->posy > posy_old + fvely && fvely > 0) || (Sprite->posy < posy_old + fvely && fvely < 0))
 				{
 					Sprite->posy = posy_old + fvely;
+                    movey = SDL_FALSE;
 				}
 			}
 			else
@@ -238,7 +248,9 @@ void CollideMove_Weak( cBasicSprite *Sprite, double velx, double vely, Collision
 						Collision->collide = UP;
 					}
 					else
+                    {
 						Collision->collide = DOWN;
+                    }
 					
 					if( Collision->direction == ALL_COLLISIONS_NONE )
 					{
@@ -277,7 +289,7 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 	
 	// Check for an Collision with the Player
 
-	if( type != SPRITE_TYPE_PLAYER && type != SPRITE_TYPE_PARTICLE ) 
+	if( type != SPRITE_TYPE_PLAYER && type != SPRITE_TYPE_PARTICLE && pPlayer->visible )
 	{
 		if( RectIntersect( &rect1, &pPlayer->rect ) )  // if Position is not valid
 		{
