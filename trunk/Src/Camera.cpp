@@ -26,32 +26,32 @@ cCamera :: ~cCamera( void )
 
 void cCamera :: Update( void )
 {
-	if( MB->mode == MODE_GAME )
-	{
-		
-		// The actual algorithm here is a mystery to me. It was made by FLuxy 
-		if( (pPlayer->posx - window.w) > (x - 300) ) // Right
-		{
-			x += ((pPlayer->posx - x + 300 - window.w)/10)*pFramerate->speedfactor; // nice and smooth ;)
-		}
-		else if( pPlayer->posx < (x + 300) ) // Left
-		{
-			x += ((pPlayer->posx - x - 300)/10)*pFramerate->speedfactor;	// nice and smooth ;)
-		}
-
-		// Added Vertical Scrolling. Jan 6 2012
-		// Note: Play with (y-200) and (y+200) to adjust when scrolling activates
-		if( (pPlayer->posy - window.h) > (y - 200) ) // DOWN
-		{
-			y += ((pPlayer->posy - y + 200 - window.h)/10)*pFramerate->speedfactor; // nice and smooth ;)
-		}
-		else if( pPlayer->posy < (y + 140) ) // UP
-		{
-			y += ((pPlayer->posy - y - 140)/10)*pFramerate->speedfactor;	// nice and smooth ;)
-		}
-
-		Limits_Check();
-	}
+    if( MB->mode == MODE_GAME )
+    {
+        
+        // The actual algorithm here is a mystery to me. It was made by FLuxy
+        if( (pPlayer->posx - window.w) > (x - 460) ) // Right
+        {
+            x += ((pPlayer->posx - x + 460 - window.w)/10)*pFramerate->speedfactor; // nice and smooth ;)
+        }
+        else if( pPlayer->posx < (x + 340) ) // Left
+        {
+            x += ((pPlayer->posx - x - 340)/10)*pFramerate->speedfactor;	// nice and smooth ;)
+        }
+        
+        // Added Vertical Scrolling. Jan 6 2012
+        // Note: Play with (y-200) and (y+200) to adjust when scrolling activates
+        if( (pPlayer->posy - window.h) > (y - 300) ) // DOWN
+        {
+            y += ((pPlayer->posy - y + 300 - window.h)/10)*pFramerate->speedfactor; // nice and smooth ;)
+        }
+        else if( pPlayer->posy < (y + 140) ) // UP
+        {
+            y += ((pPlayer->posy - y - 140)/10)*pFramerate->speedfactor;	// nice and smooth ;)
+        }
+        
+        Limits_Check();
+    }
 }
 
 void cCamera :: SetPos( double nx, double ny )

@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "console.h"
 #include "level.h"
+#include "player.h"
 
 MasterBlaster *MB;
 
@@ -47,6 +48,10 @@ MasterBlaster::~MasterBlaster()
 
 int MasterBlaster::Game()
 {
+    pAudio->SetMusicVolume(127);
+    pPlayer->beatlevel = SDL_FALSE;
+    pPlayer->visible = SDL_TRUE;
+    pPlayer->Health = 70;
 	// Only load the level on the first time we press START GAME
 	if (oldmode == MODE_MAINMENU)
 	{
@@ -54,12 +59,16 @@ int MasterBlaster::Game()
 		DEBUGLOG ("loading level: %s\n", levelname.c_str());
 		pLevel->Load( levelname );	// load the level
 		DEBUGLOG ("Finished loading level\n");
+        //string filename = DIR_MUSIC + pLevel->Musicfile;
+        //pAudio->PlayMusik((char*)filename.c_str(), 1);
 	}
+    
 	return pGame->Do();
 }
 
 int MasterBlaster::MainMenu()
 {
+    pAudio->SetMusicVolume(127);	
 	pAudio->PlayMusik( MAINMENU_MUSIC );
 	
 	int mode = pMainMenu->Do();

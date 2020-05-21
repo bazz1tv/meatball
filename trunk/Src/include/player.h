@@ -119,7 +119,13 @@ public:
 	 */
 	int Health;
 
-	unsigned int updown_pressed; ///< Up or Down -> Left or Right 
+	unsigned int updown_pressed; ///< Up or Down -> Left or Right
+    
+    SDL_bool beatlevel; // HACKED THIS IN FOR THE DEMO
+    
+    // call back thing
+    static int yeah_channel;
+    static void channelDone(int channel);
 };
 
 void UpdatePlayer( void );

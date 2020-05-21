@@ -145,7 +145,7 @@ void cMParticle :: HandleCollision( int direction )
 
 		if( speed < 0.1 ) // if too slow
 		{
-			active = SDL_FALSE; // deactivate
+			//active = SDL_FALSE; // deactivate
 		}
 	}
 	else if( direction == UP ) 

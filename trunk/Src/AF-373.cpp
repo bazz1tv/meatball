@@ -68,28 +68,29 @@ void cAF373 :: Update( void )
 	if (!visible)
 		return;
 
-	SetImage( Renderer,images[direction] );
+    // do not update the width/height values)
+	SetImage( Renderer,images[direction], SDL_FALSE );
 	
-	cEnemy :: Update();
+    cEnemy :: Update();
+    
+    pWeapon->Update();
+    
+	PositionCheck( (int)(posx), (int)(posy + 1), (int)width, (int)height, Collision, type );
 
-	pWeapon->Update();
-	
-	PositionCheck( (int)posx, (int)(posy + vely + 1), (int)width, (int)height, Collision, type );
-
-	if( Collision->collision )
+	if( Collision->collision && Collision->direction == ALL_COLLISIONS_UD )
 	{
-		if( Collision->iCollisionType == 1 ) 
-		{
-			onGround = 1; // an Massive ground
-			state = STATE_STAYING;
-			SetVelocity( velx, 0 );
-		}
-		else if( Collision->iCollisionType == 2 ) 
-		{
-			onGround = 2; // an Halfmassive ground
-			state = STATE_STAYING;
-			SetVelocity( velx, 0 );
-		}
+        if( Collision->iCollisionType == SPRITE_TYPE_SOLID || Collision->iCollisionType == SPRITE_TYPE_ENEMY || Collision->iCollisionType == SPRITE_TYPE_PLAYER )
+        {
+            onGround = 1; // an Massive ground
+            state = STATE_STAYING;
+            SetVelocity( velx, 0 );
+        }
+        else if( Collision->iCollisionType == SPRITE_TYPE_TOPSOLID )
+        {
+            onGround = 2; // an Halfmassive ground
+            state = STATE_STAYING;
+            SetVelocity( velx, 0 );
+        }
 		else
 		{
 			onGround = 0; // no ground
@@ -99,6 +100,12 @@ void cAF373 :: Update( void )
 	{
 			onGround = 0; // no ground
 	}
+    
+    if( Collision->direction == ALL_COLLISIONS_LR || Collision->direction == ALL_COLLISIONS_UDLR || Collision->collide == LEFT || Collision->collide == RIGHT )
+    {
+        SetVelocity( 0, vely );
+    }
+    
 	
 	// Movement
 	if( AI_direction == LEFT )
@@ -135,7 +142,7 @@ void cAF373 :: Update( void )
 	{
 		if( velx > 0 )
 		{
-			AddVelocity( -0.05, 0 );
+			AddVelocity( -0.03, 0 );
 
 			if ( velx < 0 )
 			{
@@ -144,7 +151,7 @@ void cAF373 :: Update( void )
 		}
 		else if( velx < 0 )
 		{
-			AddVelocity( 0.05, 0 );
+			AddVelocity( 0.03, 0 );
 
 			if ( velx > 0 )
 			{
@@ -153,10 +160,10 @@ void cAF373 :: Update( void )
 		}
 	}
 
-	if( onGround == SDL_FALSE )
-	{
+	//if( onGround == SDL_FALSE )
+	//{
 		AddVelocity( 0, ( 0.05 ) * pFramerate->speedfactor, 0, 6 );
-	}
+	//}
 
 	int srange = AI_PlayerSearch( RIGHT );
 
@@ -187,7 +194,8 @@ void cAF373 :: Update( void )
 		
 		AI_movingtime = 1;
 
-		Fire( RIGHT );
+		if (Random(0, 100) > 97)
+            Fire( RIGHT );
 		direction = RIGHT;
 	}
 
@@ -224,7 +232,8 @@ void cAF373 :: Update( void )
 
 		AI_movingtime = 1;
 
-		Fire( LEFT );
+        if (Random(0, 100) > 97)
+            Fire( LEFT );
 		direction = LEFT;
 	}
 
@@ -375,6 +384,6 @@ void cAF373 :: AI_Idle( void )
 		{
 			AI_direction = RIGHT;
 		}
-		AI_movingtime = Random(1.0, 10.0);
+		AI_movingtime = Random(4.0, 10.0);
 	}
 }

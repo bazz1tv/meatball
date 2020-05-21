@@ -25,8 +25,6 @@
 		E9207A8916F0BB2600F9A1AC /* GraphicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9207A8816F0BB2600F9A1AC /* GraphicsObject.cpp */; };
 		E931074416EBBA0600434FA6 /* MasterBlaster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E931074316EBBA0600434FA6 /* MasterBlaster.cpp */; };
 		E942ED5B16D064DF0048C7EB /* MultiSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */; };
-		E94E10491A40A62F006C0889 /* SDLEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E94E10471A40A5FB006C0889 /* SDLEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E94E104A1A40A7C3006C0889 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9F4310E1A409DF700AA93C6 /* Info.plist */; };
 		E9CFA3E816B1D54D00B3919F /* AF-373.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3CF16B1D54D00B3919F /* AF-373.cpp */; };
 		E9CFA3E916B1D54D00B3919F /* bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3D016B1D54D00B3919F /* bullet.cpp */; };
 		E9CFA3EA16B1D54D00B3919F /* ButtonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3D116B1D54D00B3919F /* ButtonObject.cpp */; };
@@ -50,6 +48,9 @@
 		E9CFA3FE16B1D54D00B3919F /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E516B1D54D00B3919F /* sprite.cpp */; };
 		E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E616B1D54D00B3919F /* TextObject.cpp */; };
 		E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E716B1D54D00B3919F /* weapon.cpp */; };
+		E9CFF30B2474DAC40008BEDC /* SDLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CFF30A2474DAC40008BEDC /* SDLEngine.framework */; settings = {ASSET_TAGS = (); }; };
+		E9CFF30C2474E2D50008BEDC /* SDLEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9F4310B1A409DF700AA93C6 /* SDLEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E9CFF3102474F2C50008BEDC /* MeatBall.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C93E39113942B5A0096FAB3 /* MeatBall.app */; };
 		E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */; };
 		E9F42FEC1A408EAA00AA93C6 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F42FE61A408EAA00AA93C6 /* SDL2_image.framework */; };
 		E9F42FED1A408EAA00AA93C6 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F42FE71A408EAA00AA93C6 /* SDL2_mixer.framework */; };
@@ -101,6 +102,7 @@
 			isEditable = 1;
 			outputFiles = (
 			);
+			script = "";
 		};
 /* End PBXBuildRule section */
 
@@ -122,16 +124,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E9CFF30F2474F2B70008BEDC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../../../../Bin;
+			dstSubfolderSpec = 16;
+			files = (
+				E9CFF3102474F2C50008BEDC /* MeatBall.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E9D5E52816B5FD9B00FAC31F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E9CFF30C2474E2D50008BEDC /* SDLEngine.framework in CopyFiles */,
 				E9F431451A409E9C00AA93C6 /* SDL2_image.framework in CopyFiles */,
 				E9F431461A409E9C00AA93C6 /* SDL2_mixer.framework in CopyFiles */,
 				E9F431471A409E9C00AA93C6 /* SDL2_net.framework in CopyFiles */,
-				E94E10491A40A62F006C0889 /* SDLEngine.framework in CopyFiles */,
 				E9F431481A409E9C00AA93C6 /* SDL2_ttf.framework in CopyFiles */,
 				E9F431491A409E9C00AA93C6 /* SDL2.framework in CopyFiles */,
 			);
@@ -156,12 +168,12 @@
 		9C93E39913942B5A0096FAB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9C93E39A13942B5A0096FAB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E901FD7F16B364E200DB896C /* OS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OS.h; sourceTree = "<group>"; };
+		E91299132474D664006D3E8F /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = info.plist; path = ../Engine/XCode/Engine/DerivedData/Engine/info.plist; sourceTree = "<group>"; };
 		E9207A8816F0BB2600F9A1AC /* GraphicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GraphicsObject.cpp; path = ../GraphicsObject.cpp; sourceTree = "<group>"; };
 		E931074316EBBA0600434FA6 /* MasterBlaster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MasterBlaster.cpp; path = ../MasterBlaster.cpp; sourceTree = "<group>"; };
 		E931074616EBBA1300434FA6 /* MasterBlaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterBlaster.h; path = ../include/MasterBlaster.h; sourceTree = "<group>"; };
 		E942ED5916D064CF0048C7EB /* MultiSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultiSelect.h; path = ../include/MultiSelect.h; sourceTree = "<group>"; };
 		E942ED5A16D064DF0048C7EB /* MultiSelect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MultiSelect.cpp; path = ../MultiSelect.cpp; sourceTree = "<group>"; };
-		E94E10471A40A5FB006C0889 /* SDLEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDLEngine.framework; path = Frameworks/SDLEngine.framework; sourceTree = "<group>"; };
 		E95FDEBF16FFCAE40024D903 /* TestComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestComponent.h; path = ../TestComponent.h; sourceTree = "<group>"; };
 		E95FDED416FFE1EB0024D903 /* CollisionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionTest.cpp; sourceTree = "<group>"; };
 		E95FDED516FFE1EB0024D903 /* CollisionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTest.h; sourceTree = "<group>"; };
@@ -229,6 +241,7 @@
 		E9CFA41A16B1D56300B3919F /* sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sprite.h; path = ../include/sprite.h; sourceTree = "<group>"; };
 		E9CFA41B16B1D56300B3919F /* TextObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextObject.h; path = ../include/TextObject.h; sourceTree = "<group>"; };
 		E9CFA41C16B1D56300B3919F /* weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = weapon.h; path = ../include/weapon.h; sourceTree = "<group>"; };
+		E9CFF30A2474DAC40008BEDC /* SDLEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDLEngine.framework; path = Frameworks/SDLEngine.framework; sourceTree = "<group>"; };
 		E9D3371816CB620400BB0F9D /* MiniEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiniEngine.h; path = ../include/MiniEngine.h; sourceTree = "<group>"; };
 		E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MiniEngine.cpp; path = ../MiniEngine.cpp; sourceTree = "<group>"; };
 		E9E2BD55170D3BD7000B3088 /* TestStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestStream.h; path = ../TestSuite/TestStream.h; sourceTree = "<group>"; };
@@ -281,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9CFF30B2474DAC40008BEDC /* SDLEngine.framework in Frameworks */,
 				E9F4314A1A409FCF00AA93C6 /* SDLEngine.framework in Frameworks */,
 				9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */,
 				E9F42FF01A408EAA00AA93C6 /* SDL2.framework in Frameworks */,
@@ -309,6 +323,7 @@
 		9C93E38613942B590096FAB3 = {
 			isa = PBXGroup;
 			children = (
+				E91299132474D664006D3E8F /* info.plist */,
 				E9F430F31A409C5200AA93C6 /* Engine */,
 				E9A3438116BB7E4A00072818 /* Code */,
 				9C93E39413942B5A0096FAB3 /* Frameworks */,
@@ -328,7 +343,7 @@
 		9C93E39413942B5A0096FAB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E94E10471A40A5FB006C0889 /* SDLEngine.framework */,
+				E9CFF30A2474DAC40008BEDC /* SDLEngine.framework */,
 				E9F4308F1A40954700AA93C6 /* Frameworks */,
 				E9F430911A40954700AA93C6 /* Headers */,
 				E9F430931A40954700AA93C6 /* Frameworks */,
@@ -617,12 +632,12 @@
 			children = (
 				E9CFA3DB16B1D54D00B3919F /* main.cpp */,
 				E92B688A16F57E320068EA31 /* TestSuite */,
+				E9A3437116BB7C8B00072818 /* Camera */,
 				E9A3437E16BB7DC100072818 /* Console */,
 				E9A3437916BB7D7B00072818 /* Level */,
 				E9A3437616BB7D0A00072818 /* Settings&Preferences */,
 				E931074716EBBA2200434FA6 /* MasterBlaster */,
 				E9A3437216BB7C9C00072818 /* Menus */,
-				E9A3437116BB7C8B00072818 /* Camera */,
 				E9A3437016BB7C6000072818 /* Graphics Objects */,
 				E9A3436F16BB7C4B00072818 /* Bullet */,
 				E9A3436C16BB7C2E00072818 /* Enemies */,
@@ -830,6 +845,7 @@
 				9C93E38D13942B5A0096FAB3 /* Sources */,
 				9C93E38E13942B5A0096FAB3 /* Frameworks */,
 				E9D5E52816B5FD9B00FAC31F /* CopyFiles */,
+				E9CFF30F2474F2B70008BEDC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -900,7 +916,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E94E104A1A40A7C3006C0889 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,12 +1029,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					"\"$(SRCROOT)/Build/Products/Debug/SDLEngine.framework/Headers\"",
 					../Meatball/include,
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -1049,12 +1063,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					"\"$(SRCROOT)/Build/Products/Debug/SDLEngine.framework/Headers\"",
 					../Meatball/include,
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -1069,7 +1082,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1082,22 +1095,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacSDLFiles/MeatBall-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					/usr/include,
-					/opt/local/include,
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MacSDLFiles/MeatBall-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
 					/usr/lib,
-					/opt/local/lib/,
+					/usr/local/lib/,
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
-					/usr/local/lib/libboost_filesystem.a,
 					/usr/local/lib/libboost_system.a,
+					/usr/local/lib/libboost_filesystem.a,
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1113,7 +1124,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1126,23 +1137,21 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MacSDLFiles/MeatBall-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					/usr/include,
-					/opt/local/include,
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MacSDLFiles/MeatBall-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
 					/usr/lib,
-					/opt/local/lib/,
+					/usr/local/lib/,
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					/usr/local/lib/libboost_filesystem.a,
 					/usr/local/lib/libboost_system.a,
+					/usr/local/lib/libboost_filesystem.a,
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1174,7 +1183,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -1200,9 +1209,16 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = Engine/Info.plist;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					"\"$(SRCROOT)/Build/Products/Debug/SDLEngine.framework/Headers\"",
+					../Meatball/include,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/../Engine/XCode/Engine/DerivedData/Engine/info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1216,7 +1232,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -1239,9 +1255,16 @@
 				FRAMEWORK_VERSION = A;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = Engine/Info.plist;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include,
+					"\"$(SRCROOT)/Build/Products/Debug/SDLEngine.framework/Headers\"",
+					../Meatball/include,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/../Engine/XCode/Engine/DerivedData/Engine/info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

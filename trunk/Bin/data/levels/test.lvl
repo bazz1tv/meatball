@@ -1,9 +1,8 @@
 ### Level Saved with MeatBall FX V.0 ###
 
-### Level Saved on 2020-5-19
-BGColor 10 0 0
+### Level Saved on 2020-5-21
 
-Player 37 178
+Player 41 -21
 Music rockin.xm
 
 ### Map Objects ###
@@ -51,10 +50,8 @@ Sprite game/ground/t2.png 733 -79 SOLID
 Sprite game/ground/t2.png 753 -79 SOLID
 Sprite game/ground/t2.png 773 -79 SOLID
 Sprite game/ground/t2.png 793 -79 SOLID
-Sprite game/ground/t2.png 639 11 SOLID
-Sprite game/ground/t2.png 659 11 SOLID
-Sprite game/ground/t1.png 639 -9 SOLID
-Sprite game/ground/t1.png 659 -9 SOLID
+Sprite game/ground/t2.png 670 -25 SOLID
+Sprite game/ground/t2.png 690 -25 SOLID
 Sprite game/ground/t1.png 166 53 SOLID
 Sprite game/ground/t1.png 186 53 SOLID
 Sprite game/ground/t2.png 166 72 SOLID
@@ -98,32 +95,14 @@ Sprite game/ground/t1.png 146 53 SOLID
 Sprite game/ground/t1.png 126 53 SOLID
 Sprite game/ground/t1.png 106 53 SOLID
 Sprite game/ground/t1.png 86 53 SOLID
-Sprite game/ground/t1.png 86 33 SOLID
-Sprite game/ground/t1.png 106 33 SOLID
-Sprite game/ground/t1.png 126 33 SOLID
-Sprite game/ground/t1.png 146 33 SOLID
-Sprite game/ground/t1.png 166 33 SOLID
-Sprite game/ground/t1.png 186 33 SOLID
-Sprite game/ground/t2.png 679 11 SOLID
-Sprite game/ground/t2.png 699 11 SOLID
-Sprite game/ground/t1.png 679 -9 SOLID
-Sprite game/ground/t1.png 699 -9 SOLID
-Sprite game/ground/t2.png 397 -30 SOLID
-Sprite game/ground/t2.png 417 -30 SOLID
-Sprite game/ground/t1.png 186 13 SOLID
-Sprite game/ground/t1.png 166 13 SOLID
-Sprite game/ground/t1.png 146 13 SOLID
-Sprite game/ground/t1.png 126 13 SOLID
-Sprite game/ground/t1.png 106 13 SOLID
-Sprite game/ground/t1.png 86 13 SOLID
-Sprite game/ground/t1.png 66 13 SOLID
-Sprite game/ground/t1.png 66 33 SOLID
+Sprite game/ground/t2.png 710 -25 SOLID
+Sprite game/ground/t2.png 730 -25 SOLID
+Sprite game/ground/t2.png 365 -25 SOLID
+Sprite game/ground/t2.png 385 -25 SOLID
 Sprite game/ground/t1.png 66 53 SOLID
 Sprite game/ground/t2.png 66 72 SOLID
 Sprite game/ground/t2.png 46 72 SOLID
 Sprite game/ground/t1.png 46 53 SOLID
-Sprite game/ground/t1.png 46 33 SOLID
-Sprite game/ground/t1.png 46 13 SOLID
 Sprite game/ground/t2.png 498 179 SOLID
 Sprite game/ground/t2.png 518 179 SOLID
 Sprite game/ground/t2.png 538 179 SOLID
@@ -146,18 +125,17 @@ Sprite game/ground/t2.png 933 -79 SOLID
 Sprite game/ground/t2.png 953 -79 SOLID
 Sprite game/ground/t2.png 973 -79 SOLID
 Sprite game/ground/t2.png 993 -79 SOLID
-Sprite game/ground/t2.png 619 -9 SOLID
-Sprite game/ground/t2.png 206 72 SOLID
-Sprite game/ground/t2.png 94 209 SOLID
-Sprite game/ground/t2.png 114 209 SOLID
-Sprite game/ground/t1.png 94 189 SOLID
-Sprite game/ground/t1.png 114 189 SOLID
-Sprite game/ground/t2.png 74 209 SOLID
-Sprite game/ground/t2.png 54 209 SOLID
-Sprite game/ground/t2.png 34 209 SOLID
-Sprite game/ground/t1.png 74 189 SOLID
-Sprite game/ground/t1.png 54 189 SOLID
-Sprite game/ground/t1.png 34 189 SOLID
+Sprite game/ground/t2.png 650 -25 SOLID
+Sprite game/ground/t2.png 94 205 SOLID
+Sprite game/ground/t2.png 114 205 SOLID
+Sprite game/ground/t1.png 94 185 SOLID
+Sprite game/ground/t1.png 114 185 SOLID
+Sprite game/ground/t2.png 74 205 SOLID
+Sprite game/ground/t2.png 54 205 SOLID
+Sprite game/ground/t2.png 34 205 SOLID
+Sprite game/ground/t1.png 74 185 SOLID
+Sprite game/ground/t1.png 54 185 SOLID
+Sprite game/ground/t1.png 34 185 SOLID
 Sprite game/ground/box.png 404 204 SOLID
 Sprite game/ground/box.png 45 98 SOLID
 Sprite game/ground/box.png 430 204 SOLID
@@ -198,7 +176,6 @@ Sprite game/ground/t1.png 698 119 SOLID
 Sprite game/ground/t1.png 718 119 SOLID
 Sprite game/ground/t1.png 738 119 SOLID
 Sprite game/ground/t1.png 758 119 SOLID
-Sprite game/ground/box.png 813 -53 SOLID
 Sprite game/ground/box.png 698 203 SOLID
 Sprite game/ground/box.png 726 203 SOLID
 Sprite game/ground/box.png 669 203 SOLID
@@ -210,8 +187,7 @@ Sprite game/ground/box.png 16 -53 SOLID
 Sprite game/ground/box.png -1 -28 SOLID
 Sprite game/ground/box.png 41 -52 SOLID
 Sprite game/ground/box.png 26 -28 SOLID
-Sprite game/ground/box.png 838 -54 SOLID
-Sprite game/ground/box.png 823 -27 SOLID
+Sprite game/ground/box.png 846 -55 SOLID
 Sprite game/ground/box.png 1418 -54 SOLID
 Sprite game/ground/box.png 1392 -55 SOLID
 Sprite game/ground/box.png 1404 -28 SOLID
@@ -246,29 +222,29 @@ Sprite game/ground/t3.png 930 192 PASSIVE
 Sprite game/ground/t3.png 950 192 PASSIVE
 Sprite game/ground/t3.png 970 192 PASSIVE
 Sprite game/ground/t3.png 990 192 PASSIVE
-Sprite game/ground/t3.png 619 -29 PASSIVE
-Sprite game/ground/t3.png 397 -49 PASSIVE
-Sprite game/ground/t3.png 48 -6 PASSIVE
+Sprite game/ground/t3.png 650 -45 PASSIVE
+Sprite game/ground/t3.png 365 -44 PASSIVE
+Sprite game/ground/t3.png 48 33 PASSIVE
 Sprite game/ground/t3.png 36 229 PASSIVE
 Sprite game/ground/t3.png 56 229 PASSIVE
 Sprite game/ground/t3.png 76 229 PASSIVE
-Sprite game/ground/t3.png 34 170 PASSIVE
-Sprite game/ground/t3.png 54 170 PASSIVE
-Sprite game/ground/t3.png 74 170 PASSIVE
-Sprite game/ground/t3.png 94 170 PASSIVE
-Sprite game/ground/t3.png 114 170 PASSIVE
-Sprite game/ground/t3.png 417 -49 PASSIVE
-Sprite game/ground/t3.png 68 -6 PASSIVE
-Sprite game/ground/t3.png 88 -6 PASSIVE
-Sprite game/ground/t3.png 108 -6 PASSIVE
-Sprite game/ground/t3.png 128 -6 PASSIVE
-Sprite game/ground/t3.png 148 -6 PASSIVE
-Sprite game/ground/t3.png 168 -6 PASSIVE
-Sprite game/ground/t3.png 185 -6 PASSIVE
-Sprite game/ground/t3.png 639 -29 PASSIVE
-Sprite game/ground/t3.png 659 -29 PASSIVE
-Sprite game/ground/t3.png 679 -29 PASSIVE
-Sprite game/ground/t3.png 699 -29 PASSIVE
+Sprite game/ground/t3.png 34 166 PASSIVE
+Sprite game/ground/t3.png 54 166 PASSIVE
+Sprite game/ground/t3.png 74 166 PASSIVE
+Sprite game/ground/t3.png 94 166 PASSIVE
+Sprite game/ground/t3.png 114 166 PASSIVE
+Sprite game/ground/t3.png 385 -44 PASSIVE
+Sprite game/ground/t3.png 68 33 PASSIVE
+Sprite game/ground/t3.png 88 33 PASSIVE
+Sprite game/ground/t3.png 108 33 PASSIVE
+Sprite game/ground/t3.png 128 33 PASSIVE
+Sprite game/ground/t3.png 148 33 PASSIVE
+Sprite game/ground/t3.png 168 33 PASSIVE
+Sprite game/ground/t3.png 185 33 PASSIVE
+Sprite game/ground/t3.png 670 -45 PASSIVE
+Sprite game/ground/t3.png 690 -45 PASSIVE
+Sprite game/ground/t3.png 710 -45 PASSIVE
+Sprite game/ground/t3.png 730 -45 PASSIVE
 Sprite game/ground/t2.png 1400 -79 SOLID
 Sprite game/ground/t2.png 1420 -79 SOLID
 Sprite game/ground/t2.png 1440 -79 SOLID
@@ -292,12 +268,11 @@ Sprite game/ground/t2.png 1780 -79 SOLID
 Sprite game/ground/t2.png 1800 -79 SOLID
 Sprite game/ground/t2.png 1820 -79 SOLID
 Sprite game/ground/t2.png 1840 -79 SOLID
-Sprite game/ground/t2.png 1860 -79 SOLID
-Sprite game/ground/t2.png 1880 -79 SOLID
-Sprite game/ground/t2.png 1900 -79 SOLID
-Sprite game/ground/t2.png 1920 -79 SOLID
-Sprite game/ground/t2.png 1940 -79 SOLID
-Sprite game/ground/t2.png 1960 -79 SOLID
+Sprite game/ground/t2.png 1861 -40 SOLID
+Sprite game/ground/t2.png 1901 -40 SOLID
+Sprite game/ground/t2.png 1921 -40 SOLID
+Sprite game/ground/t2.png 1941 -40 SOLID
+Sprite game/ground/t2.png 1961 -40 SOLID
 Sprite game/ground/t2.png 1980 -79 SOLID
 Sprite game/ground/t2.png 2000 -79 SOLID
 Sprite game/ground/t2.png 2020 -79 SOLID
@@ -460,12 +435,6 @@ Sprite game/ground/t1.png 1956 286 SOLID
 Sprite game/ground/t1.png 1956 266 SOLID
 Sprite game/ground/t1.png 1956 246 SOLID
 Sprite game/ground/t1.png 1956 226 SOLID
-Sprite game/ground/t1.png 1956 206 SOLID
-Sprite game/ground/t1.png 1956 186 SOLID
-Sprite game/ground/t1.png 1956 166 SOLID
-Sprite game/ground/t1.png 1956 146 SOLID
-Sprite game/ground/t1.png 1936 146 SOLID
-Sprite game/ground/t1.png 1916 146 SOLID
 Sprite game/ground/t1.png 1896 146 SOLID
 Sprite game/ground/t1.png 1876 146 SOLID
 Sprite game/ground/t1.png 1856 146 SOLID
@@ -474,16 +443,6 @@ Sprite game/ground/t1.png 1836 166 SOLID
 Sprite game/ground/t1.png 1856 166 SOLID
 Sprite game/ground/t1.png 1876 166 SOLID
 Sprite game/ground/t1.png 1896 166 SOLID
-Sprite game/ground/t1.png 1916 166 SOLID
-Sprite game/ground/t1.png 1936 166 SOLID
-Sprite game/ground/t1.png 1956 126 SOLID
-Sprite game/ground/t1.png 1956 106 SOLID
-Sprite game/ground/t1.png 1956 86 SOLID
-Sprite game/ground/t1.png 1956 66 SOLID
-Sprite game/ground/t1.png 1956 46 SOLID
-Sprite game/ground/t1.png 1956 26 SOLID
-Sprite game/ground/t1.png 1956 6 SOLID
-Sprite game/ground/t1.png 1956 -14 SOLID
 Sprite game/ground/t2.png 3192 -161 SOLID
 Sprite game/ground/t2.png 3212 -161 SOLID
 Sprite game/ground/t2.png 3232 -161 SOLID
@@ -550,33 +509,6 @@ Sprite game/ground/t2.png 3953 -641 SOLID
 Sprite game/ground/t2.png 3973 -641 SOLID
 Sprite game/ground/t2.png 3973 -661 SOLID
 Sprite game/ground/t2.png 3993 -661 SOLID
-Sprite game/ground/t2.png 4031 -644 SOLID
-Sprite game/ground/t2.png 4031 -624 SOLID
-Sprite game/ground/t2.png 4011 -604 SOLID
-Sprite game/ground/t2.png 3991 -584 SOLID
-Sprite game/ground/t2.png 3971 -564 SOLID
-Sprite game/ground/t2.png 3951 -544 SOLID
-Sprite game/ground/t2.png 3931 -524 SOLID
-Sprite game/ground/t2.png 3911 -504 SOLID
-Sprite game/ground/t2.png 3891 -484 SOLID
-Sprite game/ground/t2.png 3871 -464 SOLID
-Sprite game/ground/t2.png 3851 -444 SOLID
-Sprite game/ground/t2.png 3831 -424 SOLID
-Sprite game/ground/t2.png 3811 -404 SOLID
-Sprite game/ground/t2.png 3791 -384 SOLID
-Sprite game/ground/t2.png 3771 -364 SOLID
-Sprite game/ground/t2.png 3751 -344 SOLID
-Sprite game/ground/t2.png 3731 -324 SOLID
-Sprite game/ground/t2.png 3711 -304 SOLID
-Sprite game/ground/t2.png 3691 -284 SOLID
-Sprite game/ground/t2.png 3671 -264 SOLID
-Sprite game/ground/t2.png 3651 -244 SOLID
-Sprite game/ground/t2.png 3631 -224 SOLID
-Sprite game/ground/t2.png 3611 -204 SOLID
-Sprite game/ground/t2.png 3591 -184 SOLID
-Sprite game/ground/t2.png 3571 -164 SOLID
-Sprite game/ground/t2.png 3551 -144 SOLID
-Sprite game/ground/t2.png 3531 -124 SOLID
 Sprite game/ground/t2.png 3993 -681 SOLID
 Sprite game/ground/t2.png 3993 -701 SOLID
 Sprite game/ground/t2.png 3993 -721 SOLID
@@ -613,27 +545,25 @@ Sprite game/ground/box.png 555 204 SOLID
 Sprite game/ground/box.png 580 204 SOLID
 Sprite game/ground/box.png 605 204 SOLID
 Sprite game/ground/box.png 630 204 SOLID
-Sprite game/ground/box.png 749 -54 SOLID
-Sprite game/ground/t2.png 437 -30 SOLID
-Sprite game/ground/t2.png 457 -30 SOLID
-Sprite game/ground/t2.png 477 -30 SOLID
-Sprite game/ground/t3.png 437 -49 PASSIVE
-Sprite game/ground/t3.png 457 -49 PASSIVE
-Sprite game/ground/t3.png 477 -49 PASSIVE
-Sprite game/ground/t2.png 599 -9 SOLID
-Sprite game/ground/t2.png 579 -9 SOLID
-Sprite game/ground/t2.png 559 -9 SOLID
-Sprite game/ground/t2.png 539 -9 SOLID
-Sprite game/ground/t3.png 599 -29 PASSIVE
-Sprite game/ground/t3.png 579 -29 PASSIVE
-Sprite game/ground/t3.png 559 -29 PASSIVE
-Sprite game/ground/t3.png 539 -29 PASSIVE
-Sprite game/ground/t2.png 323 14 SOLID
-Sprite game/ground/t2.png 343 14 SOLID
-Sprite game/ground/t3.png 322 -5 PASSIVE
-Sprite game/ground/t3.png 342 -5 PASSIVE
-Sprite game/ground/t3.png -2 616 PASSIVE
-Sprite game/ground/box.png 774 -54 SOLID
+Sprite game/ground/t2.png 405 -25 SOLID
+Sprite game/ground/t2.png 425 -25 SOLID
+Sprite game/ground/t2.png 445 -25 SOLID
+Sprite game/ground/t3.png 405 -44 PASSIVE
+Sprite game/ground/t3.png 425 -44 PASSIVE
+Sprite game/ground/t3.png 445 -44 PASSIVE
+Sprite game/ground/t2.png 630 -25 SOLID
+Sprite game/ground/t2.png 610 -25 SOLID
+Sprite game/ground/t2.png 590 -25 SOLID
+Sprite game/ground/t2.png 570 -25 SOLID
+Sprite game/ground/t3.png 630 -45 PASSIVE
+Sprite game/ground/t3.png 610 -45 PASSIVE
+Sprite game/ground/t3.png 590 -45 PASSIVE
+Sprite game/ground/t3.png 570 -45 PASSIVE
+Sprite game/ground/t2.png 277 14 SOLID
+Sprite game/ground/t2.png 297 14 SOLID
+Sprite game/ground/t3.png 276 -5 PASSIVE
+Sprite game/ground/t3.png 296 -5 PASSIVE
+Sprite game/ground/box.png 813 -55 SOLID
 Sprite game/ground/t1.png -1 -99 SOLID
 Sprite game/ground/t1.png 19 -99 SOLID
 Sprite game/ground/t1.png 39 -99 SOLID
@@ -724,12 +654,12 @@ Sprite game/ground/t1.png 1779 -99 SOLID
 Sprite game/ground/t1.png 1799 -99 SOLID
 Sprite game/ground/t1.png 1819 -99 SOLID
 Sprite game/ground/t1.png 1839 -99 SOLID
-Sprite game/ground/t1.png 1859 -99 SOLID
-Sprite game/ground/t1.png 1879 -99 SOLID
-Sprite game/ground/t1.png 1899 -99 SOLID
-Sprite game/ground/t1.png 1919 -99 SOLID
-Sprite game/ground/t1.png 1939 -99 SOLID
-Sprite game/ground/t1.png 1959 -99 SOLID
+Sprite game/ground/t1.png 1861 -60 SOLID
+Sprite game/ground/t1.png 1881 -60 SOLID
+Sprite game/ground/t1.png 1901 -60 SOLID
+Sprite game/ground/t1.png 1921 -60 SOLID
+Sprite game/ground/t1.png 1941 -60 SOLID
+Sprite game/ground/t1.png 1961 -60 SOLID
 Sprite game/ground/t1.png 1979 -99 SOLID
 Sprite game/ground/t1.png 1999 -99 SOLID
 Sprite game/ground/t1.png 2019 -99 SOLID
@@ -888,8 +818,6 @@ Sprite game/ground/t1.png 458 119 SOLID
 Sprite game/ground/t1.png 438 119 SOLID
 Sprite game/ground/t1.png 618 119 SOLID
 Sprite game/ground/t1.png 638 119 SOLID
-Sprite game/ground/t1.png 2539 -159 SOLID
-Sprite game/ground/t1.png 2539 -179 SOLID
 Sprite game/ground/t1.png 439 -99 SOLID
 Sprite game/ground/t1.png 439 -119 SOLID
 Sprite game/ground/t1.png 479 -119 SOLID
@@ -897,41 +825,18 @@ Sprite game/ground/t1.png 479 -99 SOLID
 Sprite game/ground/t2.png 474 -79 SOLID
 Sprite game/ground/t1.png 519 -99 SOLID
 Sprite game/ground/t1.png 519 -119 SOLID
-Sprite game/ground/t1.png 2539 -139 SOLID
-Sprite game/ground/t1.png 2179 -60 SOLID
-Sprite game/ground/t1.png 2199 -60 SOLID
-Sprite game/ground/t1.png 2219 -60 SOLID
-Sprite game/ground/t1.png 2239 -60 SOLID
 Sprite game/ground/t1.png 2558 -41 SOLID
 Sprite game/ground/t1.png 2578 -41 SOLID
-Sprite game/ground/t1.png 2259 -60 SOLID
-Sprite game/ground/t1.png 2279 -60 SOLID
 Sprite game/ground/t1.png 2598 -41 SOLID
 Sprite game/ground/t1.png 2618 -41 SOLID
-Sprite game/ground/t1.png 2299 -60 SOLID
-Sprite game/ground/t1.png 2319 -60 SOLID
 Sprite game/ground/t1.png 2638 -41 SOLID
 Sprite game/ground/t1.png 2678 -41 SOLID
 Sprite game/ground/t1.png 2658 -41 SOLID
-Sprite game/ground/t1.png 2339 -60 SOLID
-Sprite game/ground/t1.png 2359 -60 SOLID
-Sprite game/ground/t1.png 2379 -60 SOLID
 Sprite game/ground/t1.png 2698 -41 SOLID
 Sprite game/ground/t1.png 2718 -41 SOLID
 Sprite game/ground/t1.png 2738 -41 SOLID
-Sprite game/ground/t1.png 2439 -60 SOLID
-Sprite game/ground/t1.png 2459 -60 SOLID
-Sprite game/ground/t1.png 2479 -60 SOLID
-Sprite game/ground/t1.png 2499 -60 SOLID
-Sprite game/ground/t1.png 2399 -60 SOLID
-Sprite game/ground/t1.png 2419 -60 SOLID
 Sprite game/ground/t1.png 2758 -41 SOLID
-Sprite game/ground/t1.png 2159 -60 SOLID
-Sprite game/ground/t1.png 2139 -60 SOLID
-Sprite game/ground/t1.png 2519 -60 SOLID
 Sprite game/ground/t1.png 2539 -60 SOLID
-Sprite game/ground/t1.png 2119 -60 SOLID
-Sprite game/ground/t1.png 2099 -60 SOLID
 Sprite game/ground/t1.png 2519 -119 SOLID
 Sprite game/ground/t1.png 2519 -99 SOLID
 Sprite game/ground/t1.png 2519 -79 SOLID
@@ -1176,22 +1081,110 @@ Sprite game/ground/t2.png 6313 -721 SOLID
 Sprite game/ground/t2.png 6313 -701 SOLID
 Sprite game/ground/t2.png 6313 -681 SOLID
 Sprite game/ground/box.png 4535 -698 SOLID
+Sprite game/ground/box.png 3317 -136 SOLID
+Sprite game/ground/box.png 3317 -110 SOLID
+Sprite game/ground/box.png 3317 -84 SOLID
+Sprite game/ground/box.png 3317 -58 SOLID
+Sprite game/ground/box.png 3317 -33 SOLID
+Sprite game/ground/box.png 3317 -7 SOLID
+Sprite game/ground/box.png 3317 19 SOLID
+Sprite game/ground/box.png 3317 45 SOLID
+Sprite game/ground/box.png 3317 71 SOLID
+Sprite game/ground/box.png 3317 97 SOLID
+Sprite game/ground/box.png 3107 4 SOLID
+Sprite game/ground/box.png 3132 4 SOLID
+Sprite game/ground/box.png 3220 4 SOLID
+Sprite game/ground/box.png 3245 4 SOLID
+Sprite game/ground/box.png 3220 29 SOLID
+Sprite game/ground/box.png 3220 55 SOLID
+Sprite game/ground/box.png 3245 55 SOLID
+Sprite game/ground/box.png 3245 29 SOLID
+Sprite game/ground/t2.png 1881 -40 SOLID
+Sprite game/ground/t1.png 1859 -99 SOLID
+Sprite game/ground/t1.png 1859 -79 SOLID
+Sprite game/ground/t1.png 1879 -79 SOLID
+Sprite game/ground/t1.png 1899 -79 SOLID
+Sprite game/ground/t1.png 1919 -79 SOLID
+Sprite game/ground/t1.png 1939 -79 SOLID
+Sprite game/ground/t1.png 1959 -79 SOLID
+Sprite game/ground/t1.png 1959 -99 SOLID
+Sprite game/ground/t1.png 1939 -99 SOLID
+Sprite game/ground/t1.png 1919 -99 SOLID
+Sprite game/ground/t1.png 1899 -99 SOLID
+Sprite game/ground/t1.png 1879 -99 SOLID
+Sprite game/ground/t1.png 1961 -80 SOLID
+Sprite game/ground/t2.png 2064 -2 SOLID
+Sprite game/ground/t2.png 2104 -2 SOLID
+Sprite game/ground/t2.png 2124 -2 SOLID
+Sprite game/ground/t2.png 2144 -2 SOLID
+Sprite game/ground/t2.png 2164 -2 SOLID
+Sprite game/ground/t2.png 2084 -2 SOLID
+Sprite game/ground/t2.png 2251 51 SOLID
+Sprite game/ground/t2.png 2291 51 SOLID
+Sprite game/ground/t2.png 2311 51 SOLID
+Sprite game/ground/t2.png 2331 51 SOLID
+Sprite game/ground/t2.png 2351 51 SOLID
+Sprite game/ground/t2.png 2271 51 SOLID
+Sprite game/ground/t2.png 2064 103 SOLID
+Sprite game/ground/t2.png 2104 103 SOLID
+Sprite game/ground/t2.png 2124 103 SOLID
+Sprite game/ground/t2.png 2144 103 SOLID
+Sprite game/ground/t2.png 2164 103 SOLID
+Sprite game/ground/t2.png 2084 103 SOLID
+Sprite game/ground/t2.png 1916 166 SOLID
+Sprite game/ground/t2.png 1956 166 SOLID
+Sprite game/ground/t2.png 1976 166 SOLID
+Sprite game/ground/t2.png 1996 166 SOLID
+Sprite game/ground/t2.png 2016 166 SOLID
+Sprite game/ground/t2.png 1936 166 SOLID
+Sprite game/ground/box.png 3270 4 SOLID
+Sprite game/ground/box.png 3293 4 SOLID
+Sprite game/ground/t2.png 1099 566 SOLID
+Sprite game/ground/t2.png 1119 566 SOLID
+Sprite game/ground/t2.png 1139 566 SOLID
+Sprite game/ground/t2.png 1159 566 SOLID
+Sprite game/ground/t2.png 1179 566 SOLID
+Sprite game/ground/t2.png 1199 566 SOLID
+Sprite game/ground/t2.png 1219 566 SOLID
+Sprite game/ground/t2.png 1239 566 SOLID
+Sprite game/ground/t2.png 1259 566 SOLID
+Sprite game/ground/t2.png 1279 566 SOLID
+Sprite game/ground/t2.png 1299 566 SOLID
+Sprite game/ground/t2.png 1319 566 SOLID
+Sprite game/ground/t2.png 1339 566 SOLID
+Sprite game/ground/t2.png 1359 566 SOLID
+Sprite game/ground/t2.png 1379 566 SOLID
+Sprite game/ground/t2.png 1399 566 SOLID
+Sprite game/ground/t2.png 1419 566 SOLID
+Sprite game/ground/t2.png 1439 566 SOLID
+Sprite game/ground/t2.png 1459 566 SOLID
 ### Enemies ###
-Enemy 638 657 1
-Enemy 1250 654 1
-Enemy 1112 648 1
-Enemy 1866 649 1
-Enemy 1690 409 1
-Enemy 580 586 1
-Enemy 95 658 1
-Enemy 507 307 1
-Enemy 4243 1268 1
-Enemy 3176 591 1
-Enemy 2488 639 1
-Enemy 3263 582 1
-Enemy 2894 624 1
-Enemy 6159 1292 1
-Enemy 6103 1326 1
-Enemy 6230 1354 1
-Enemy 6170 1320 1
-Enemy 4934 1300 1
+Enemy 631 547 1
+Enemy 1439 267 1
+Enemy 1150 261 1
+Enemy 1713 391 1
+Enemy 1893 581 1
+Enemy 479 273 1
+Enemy 92 491 1
+Enemy 396 537 1
+Enemy 4250 917 1
+Enemy 3042 583 1
+Enemy 2554 323 1
+Enemy 4388 1024 1
+Enemy 2895 264 1
+Enemy 6151 1230 1
+Enemy 5968 1228 1
+Enemy 6258 1238 1
+Enemy 5852 1245 1
+Enemy 4934 906 1
+Enemy 1601 213 1
+Enemy 1737 212 1
+Enemy 5369 1264 1
+Enemy 1875 201 1
+Enemy 1733 119 1
+Enemy 1618 383 1
+Enemy 5395 1264 1
+Enemy 1111 -6 1
+Enemy 1200 -5 1
+Enemy 1297 -5 1
+Enemy 1396 -7 1

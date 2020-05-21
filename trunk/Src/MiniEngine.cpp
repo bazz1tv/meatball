@@ -78,12 +78,12 @@ void MiniEngine::Draw( void )
 	ClearScreen();
 	pLevel->Draw();
     
+    DrawEnemies(Renderer);
+    
+    pPlayer->Draw( Renderer );
+    
 	DrawBullets(Renderer);
 	DrawParticleEmitter(Renderer);
-	
-	DrawEnemies(Renderer);
-	
-	pPlayer->Draw( Renderer );
 	
 	DrawFramerate();	///< only draws framerate if it's set to
 	DrawAllToScreen();	// Renders the Renderer' contents to screen

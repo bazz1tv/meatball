@@ -8,8 +8,8 @@
 extern cPlayer *pPlayer;
 
 #define PISTOL_VELOCITY	10
-#define MACHINEGUN_VELOCITY	15
-#define LASER_VELOCITY 15
+#define MACHINEGUN_VELOCITY	12
+#define LASER_VELOCITY 5
 
 ObjectManager<cBullet> Bullets(OM_OBLITERATE_OBJS_AT_DESTROY, OM_DELETE_OBJS);
 
@@ -63,6 +63,8 @@ void cBullet :: init( int ndirection, unsigned int nBullet_type, unsigned int nO
 	else if( Bullet_type == BULLET_LASER_X1 )  // The Laser X-1
 	{
 		nVelocity = LASER_VELOCITY;
+        if (nOrigin == SPRITE_TYPE_PLAYER)
+            nVelocity = 15;
 		
 		if( direction == LEFT ) 
 		{
@@ -225,12 +227,12 @@ void cBullet::Explode()
 	else if (Bullet_type == BULLET_MACHINEGUN)
 		AddParticleEmitter( explode_posx, explode_posy, Random( ( velx + vely)/16, ( velx + vely)/8 ), 255, 150, 0, 11, 10, 30 ); // Red-Yellow
 	else if (Bullet_type == BULLET_LASER_X1)
-		AddParticleEmitter( explode_posx, explode_posy, Random( ( velx + vely)/8, ( velx + vely)/4 ), 0, 250, 0, 5, 10, 5 ); // Green
+        AddParticleEmitter( explode_posx, explode_posy, Random( ( velx + vely)/6, ( velx + vely)/2 ), 0, 250, 0, 5, 10, 5 ); // Green
 	
 	visible = SDL_FALSE;
 }
 
-int cBullet::Damage[NUM_BULLET_TYPES] = { 5, 5, 4, 15 };
+int cBullet::Damage[NUM_BULLET_TYPES] = { 15,15,15,15 };
 
 void cBullet::DoDamage()
 {
@@ -238,7 +240,7 @@ void cBullet::DoDamage()
 	{
 		pPlayer->Get_Hit(Damage[Bullet_type]);
 	}
-	else if ((Collision->iCollisionType == SPRITE_TYPE_ENEMY && this->Origin == SPRITE_TYPE_PLAYER))
+	else if ((Collision->iCollisionType == SPRITE_TYPE_ENEMY && ( this->Origin == SPRITE_TYPE_PLAYER /*|| this->Origin == SPRITE_TYPE_ENEMY */) ))
 	{
 		Enemies.objects[Collision->iCollisionNumber]->Get_Hit(Damage[Bullet_type]);
 	}

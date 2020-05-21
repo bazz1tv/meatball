@@ -72,19 +72,36 @@ void cPlayer :: init( void )
 	pWeapon = new cWeapon_Pistol( SPRITE_TYPE_PLAYER, 5, -1 );
 }
 
+int cPlayer :: yeah_channel = -1;
+
+void cPlayer :: channelDone(int channel)
+{
+    if (channel == cPlayer::yeah_channel && cPlayer::yeah_channel != -1)
+    {
+        // signal end of game
+        MB->pGame->mode = MODE_MAINMENU;
+        cPlayer::yeah_channel = -1;
+    }
+}
+
 void cPlayer :: Update( void )
 {
-	static SDL_bool beatlevel = SDL_FALSE;
-	if (posx > 5900 && !beatlevel)
+    if (Health <= 0)
+        return;
+
+	if (posx > 6050 && !beatlevel)
 	{
 		//pAudio->StopMusic();
 		pAudio->SetMusicVolume(0);
-		pAudio->PlaySound(SMan->GetPointer("yeah"));
+        cPlayer::yeah_channel = -1;
+        while (cPlayer::yeah_channel == -1)
+            cPlayer::yeah_channel = pAudio->PlaySound(SMan->GetPointer("yeah"));
+        Mix_ChannelFinished(channelDone);
 		beatlevel = SDL_TRUE;
 		//explode all the enemies
-		for (register unsigned int i = 0; i < Enemies.objcount; i++)
+		/*for (register unsigned int i = 0; i < Enemies.objcount; i++)
 			if (Enemies.objects[i] && Enemies.objects[i]->visible)
-				Enemies.objects[i]->Die();
+				Enemies.objects[i]->Die();*/
 	}
 
 	CollideMove( (cBasicSprite*)this, velx * pFramerate->speedfactor, vely * pFramerate->speedfactor, Collision, type );
@@ -402,6 +419,7 @@ void cPlayer :: Fire( void )
 	double extravel = 0;
 	double Particle_posx = posx;
 	double Bullet_posx = posx;
+    double Spark_posx = posx;
 
 	if( direction == LEFT ) 
 	{
@@ -414,11 +432,13 @@ void cPlayer :: Fire( void )
 
 	if( direction == RIGHT )
 	{
+        Spark_posx += width - 3;
 		Bullet_posx += 1.0 + width;
 		Particle_posx += - 2.0 + width;
 	}
 	else if( direction == LEFT )
 	{
+        Spark_posx += 3;
 		Bullet_posx -= 1.0;
 		Particle_posx += 2.0;
 	}
@@ -428,11 +448,15 @@ void cPlayer :: Fire( void )
 	pWeapon->direction = direction;
 
 	pWeapon->Fire();
+    
+    //AddParticleEmitter( Particle_posx, posy + height/2, Random( 1.0, 2.5 ), 250, 90, 50, 3, 3, 3, Particle_direction ); // red
+    
+    AddParticleEmitter( Spark_posx + velx, posy + 13, Random( 1.0, 1.7 ), 200, 200, 0, 25, 20, 75, direction == RIGHT ? 0 : 180 ); // grey
 
 	// Todo : Ammo
 
 	// The used ammo ;)
-	//AddParticleEmitter( Particle_posx, posy + 8, 2, 150, 150, 150, 1, 1, 2, 270 ); // grey
+	AddParticleEmitter( Particle_posx + velx, posy + 8, 1, 150, 150, 150, 2, 1, 2, 270 ); // grey
 }
 
 void cPlayer :: Get_Hit( int damage )
@@ -453,6 +477,17 @@ void cPlayer :: Die( void )
 {
 	DEBUGLOG("cPlayer::Die\n");
 	// todo
+    visible = SDL_FALSE;
+    AddParticleEmitter(posx + (width / 2), posy + (height / 2), 1, 255, 0, 0, 0, 200, 20);
+    pAudio->SetMusicVolume(0);
+    
+    pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
+    cPlayer::yeah_channel = -1;
+    while (cPlayer::yeah_channel == -1)
+        cPlayer::yeah_channel = pAudio->PlaySound(SMan->GetPointer("wahwah"));
+    Mix_ChannelFinished(channelDone);
+    beatlevel = SDL_TRUE;
+    
 }
 
 void UpdatePlayer( void )
@@ -540,7 +575,7 @@ void cPlayer :: CollideMove( cBasicSprite *Sprite, double velx, double vely, Col
 			{
 				PositionCheck( (int)Sprite->posx+12, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), 10, (int)Sprite->height, Collision, type );
 				
-				if (lastCollision.collide == 3 && Collision->collision)
+				if (lastCollision.collide == DOWN && Collision->collision)
 				{
 					Sprite->posx += ((fvelx > 0) ? (1) : (-1));
 					

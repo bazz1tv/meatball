@@ -327,18 +327,20 @@ void cLevelEditor :: PasteObject( double x, double y )
 
 		pLevel->pLevelData_Layer1->AddSprite( new_Object );
 
-		if( command == COMMAND_FASTCOPY ) 
-		{
-			SetFastCopyObject( new_Object );
-		}
 		lastCopiedObject = new_Object;
 	}
 	else if( CopyObject->type == SPRITE_TYPE_ENEMY )
 	{
 		cEnemy *pEnemy = (cEnemy *)CopyObject;
-
-		AddEnemy(x + pCamera->x, y + pCamera->y, pEnemy->Enemy_type );
+        cEnemy *newenemy = AddEnemy(x + pCamera->x, y + pCamera->y, pEnemy->Enemy_type );
+        newenemy->Update(); // get the textures made so we cn see it!
+        lastCopiedObject = newenemy;
 	}
+    
+    if( command == COMMAND_FASTCOPY )
+    {
+        SetFastCopyObject( lastCopiedObject );
+    }
 }
 
 void cLevelEditor :: DeleteObject( void )
