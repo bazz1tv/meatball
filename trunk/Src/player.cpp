@@ -72,7 +72,7 @@ void cPlayer :: init( void )
 	pWeapon = new cWeapon_Pistol( SPRITE_TYPE_PLAYER, 5, -1 );
 }
 
-int cPlayer :: yeah_channel = -1;
+volatile int cPlayer :: yeah_channel = -1;
 
 void cPlayer :: channelDone(int channel)
 {
@@ -483,9 +483,10 @@ void cPlayer :: Die( void )
     
     pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
     cPlayer::yeah_channel = -1;
+	Mix_ChannelFinished(channelDone);
     while (cPlayer::yeah_channel == -1)
         cPlayer::yeah_channel = pAudio->PlaySound(SMan->GetPointer("wahwah"));
-    Mix_ChannelFinished(channelDone);
+    
     beatlevel = SDL_TRUE;
     
 }

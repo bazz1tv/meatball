@@ -73,10 +73,10 @@ void cEnemy :: Die( void )
 	explode_posx = posx + (width / 2);
 	explode_posy = posy + (height / 2);
 
-	AddParticleEmitter(explode_posx, explode_posy, Random( 1.4, 1.7 ), 255, 225, 255, 7, 70, 20);
-	pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
-
 	visible = SDL_FALSE;
+
+	AddParticleEmitter(explode_posx, explode_posy, 4, 255, 225, 255, 3, 30, 10);
+	pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
 }
 
 cEnemy * AddEnemy( double nposx, double nposy, unsigned int etype )

@@ -76,6 +76,7 @@
     <IntDir>.\Debug\</IntDir>
     <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
+    <TargetName>SDL_ep</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\../../../Bin/Dll/Release\</OutDir>
@@ -84,6 +85,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_MD|Win32'">
     <OutDir>.\../../../Bin/Dll/MD/Release\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
+    <TargetName>SDL_ep</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_MT|Win32'">
     <OutDir>.\../../../Bin/Dll/MT/Release\</OutDir>
