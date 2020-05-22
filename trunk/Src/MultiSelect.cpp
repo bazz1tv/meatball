@@ -197,9 +197,9 @@ void cMultiSelect::PasteObjects()
 		{
 			cEnemy *pEnemy = (cEnemy *)OM.objects[i];
 			
-			AddEnemy(floor((pMouse->posy - mouseYOffset) + (pCamera->y-camYOffset) + OM.objects[i]->posy), floor((pMouse->posy - mouseYOffset) + (pCamera->y-camYOffset) + OM.objects[i]->posy), pEnemy->Enemy_type );
-			
-			OM.objects[i] = pEnemy;
+			cEnemy *newenemy = AddEnemy(floor((pMouse->posx - selected->x) + (pCamera->x) + OM.objects[i]->posx), floor((pMouse->posy - selected->y) + (pCamera->y) + OM.objects[i]->posy), pEnemy->Enemy_type);
+			newenemy->Update();
+			OM.objects[i] = newenemy;
 		}
 	}
 }

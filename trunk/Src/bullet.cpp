@@ -248,19 +248,7 @@ void cBullet::DoDamage()
 
 void cBullet :: Draw( SDL_Renderer *renderer )
 {
-	if ( !visible || !renderer || !image )
-	{
-		return;
-	}
-
-	rect.x = (int)(posx - pCamera->x);
-	rect.y = (int)(posy - pCamera->y);
-
-	//SDL_BlitSurface( image, NULL, target, &rect );
-	SDL_RenderCopy(renderer, texture, NULL, &rect);
-	
-	rect.x = (int)posx;
-	rect.y = (int)posy;
+	cMVelSprite::Draw(renderer);
 }
 
 void PreloadBulletimages( void )

@@ -65,12 +65,6 @@ void cAF373 :: init( void )
 
 void cAF373 :: Update( void )
 {
-    if (!visible ||
-        /* coords are not in camera view */
-        ((posx + width) - pCamera->x) < -100 || (posx - pCamera->x) > window.w + 100 ||
-        ((posy + height) - pCamera->y) < -100 || (posy - pCamera->y) > window.h + 100)
-		return;
-
     // do not update the width/height values)
 	SetImage( Renderer,images[direction], SDL_FALSE );
 	
