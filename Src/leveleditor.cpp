@@ -61,6 +61,21 @@ int cLevelEditor :: Do()
 {
 	// Reset mode to 0
 	mode = 0;
+
+	/* Enemies won't display until they've been updated. If the console is open and the level editor active,
+	the enemies won't display because their update routine is only called from GAME mode. so call it once here
+	to get them displayed. HOWEVER, since the normal UpdateEnemies() function ensures not to update enemies off-screen,
+	we must manually loop through and call the base class update() in order to get the graphics created. This is
+	mostly useful for the LevelEditor, so that all enemies will be visible (we don't regularly call various sprites'
+	update() routine from the level editor, everything stays static. */
+	for (register unsigned int i = 0; i < Enemies.objcount; i++)
+	{
+		cEnemy *e = Enemies.objects[i];
+		if (!e)
+			continue;
+
+		Enemies.objects[i]->cBasicSprite::Update(Renderer);
+	}
 	
 	while (mode == 0)
 	{

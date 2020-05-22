@@ -3,6 +3,7 @@
 #include "AF-373.h"
 #include "Collision.h"
 #include "effects.h"
+#include "Camera.h"
 
 //unsigned int EnemyCount = 0;
 //cEnemy **Enemies = NULL;
@@ -124,16 +125,17 @@ void UpdateEnemies( void )
 {
 	for( register unsigned int i = 0; i < Enemies.objcount; i++ )
 	{
-		if( !Enemies.objects[i] ) 
+		cEnemy *e = Enemies.objects[i];
+		if (!e || !e->visible ||
+			/* coords are not in camera view */
+			((e->posx + e->width) - pCamera->x) < -100 || (e->posx - pCamera->x) > window.w + 100 ||
+			((e->posy + e->height) - pCamera->y) < -100 || (e->posy - pCamera->y) > window.h + 100)
 		{
 			continue;
 		}
 		
-		if( Enemies.objects[i]->visible ) 
-		{
-			CollideMove( (cBasicSprite*)Enemies.objects[i], Enemies.objects[i]->velx * pFramerate->speedfactor, Enemies.objects[i]->vely * pFramerate->speedfactor, Enemies.objects[i]->Collision, Enemies.objects[i]->type );
-			Enemies.objects[i]->Update();
-		}
+		CollideMove( (cBasicSprite*)Enemies.objects[i], Enemies.objects[i]->velx * pFramerate->speedfactor, Enemies.objects[i]->vely * pFramerate->speedfactor, Enemies.objects[i]->Collision, Enemies.objects[i]->type );
+		Enemies.objects[i]->Update();
 	}
 }
 
