@@ -31,6 +31,14 @@ void incremental_Y_check(cBasicSprite *Sprite, double velx, double vely, Collisi
 
 void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata *Collision, unsigned int type )
 {
+    if (!Sprite->visible ||
+        /* coords are not in camera view */
+        ((Sprite->posx + Sprite->width) - pCamera->x) < -100 || (Sprite->posx - pCamera->x) > window.w + 100 ||
+        ((Sprite->posy + Sprite->height) - pCamera->y) < -100 || (Sprite->posy - pCamera->y) > window.h + 100)
+    {
+        return;
+    }
+
     Collisiondata lastCollision;
     lastCollision = *Collision;
     
@@ -320,7 +328,10 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 		// Check for an Collision with an LevelObject
 		for( i = 0;i < pLevel->pLevelData_Layer1->BasicSprites.objcount;i++ )
 		{
-			if( !pLevel->pLevelData_Layer1->BasicSprites.objects[i] )
+            cMVelSprite *cmvs = pLevel->pLevelData_Layer1->BasicSprites.objects[i];
+            if( !cmvs || /* coords are not in camera view */
+                             ((cmvs->posx + cmvs->width) - pCamera->x) < -150 || (cmvs->posx - pCamera->x) > window.w + 150 ||
+                             ((cmvs->posy + cmvs->height) - pCamera->y) < -150 || (cmvs->posy - pCamera->y) > window.h + 150)
 			{
 				continue;
 			}
@@ -360,7 +371,17 @@ void PositionCheck( int x, int y, int width, int height, Collisiondata *Collisio
 	{
 		for( i = 0;i < Enemies.objcount;i++ )
 		{
-			if( !Enemies.objects[i] || !Enemies.objects[i]->visible )
+            /* NOTE / TODO : The 150 below relates to 100 which comes from 1/8 of 800 from 800x600 screen resolution. Come to think of it, the Y values should be matched from 600, not 800..
+             
+             Anyways, the 100 was specified in sprite update routines such that any sprite that is offscreen by more than 100 pixels will not be updated. However, if a sprite within this limit does a collision check, there was a bug such that we must expand on that limitation to make sure we are checking collisions against tiles adjacent to that sprite
+             
+            For example, if a sprite was at the very limit of the px checked in sprite update routine (eg. CmVelSprite::Update, he needs to be able to check against collision tiles that are at the extremity plus his velocity. So, 50px is a pretty kind value.
+             
+             TODO: Use actual fractions instead of hardcoded pixel values. That way the relationships stay the same if we ever journey outside of 800x600. */
+            cEnemy *e = Enemies.objects[i];
+            if( !e || !e->visible || /* coords are not in camera view */
+               ((e->posx + e->width) - pCamera->x) < -150 || (e->posx - pCamera->x) > window.w + 150 ||
+               ((e->posy + e->height) - pCamera->y) < -150 || (e->posy - pCamera->y) > window.h + 150)
 			{
 				continue;
 			}
