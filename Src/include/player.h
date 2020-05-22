@@ -124,7 +124,7 @@ public:
     SDL_bool beatlevel; // HACKED THIS IN FOR THE DEMO
     
     // call back thing
-    static int yeah_channel;
+    static volatile int yeah_channel;
     static void channelDone(int channel);
 };
 
