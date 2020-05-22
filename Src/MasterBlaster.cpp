@@ -62,6 +62,7 @@ int MasterBlaster::Game()
         //string filename = DIR_MUSIC + pLevel->Musicfile;
         //pAudio->PlayMusik((char*)filename.c_str(), 1);
 	}
+    pCamera->SetPos( pPlayer->posx - pCamera->x - window.w, 0 );
     
 	return pGame->Do();
 }

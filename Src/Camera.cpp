@@ -34,16 +34,16 @@ void cCamera :: Update( void )
         {
             x += ((pPlayer->posx - x + 460 - window.w)/10)*pFramerate->speedfactor; // nice and smooth ;)
         }
-        else if( pPlayer->posx < (x + 340) ) // Left
+        else if( pPlayer->posx < (x + 300) ) // Left
         {
-            x += ((pPlayer->posx - x - 340)/10)*pFramerate->speedfactor;	// nice and smooth ;)
+            x += ((pPlayer->posx - x - 300)/10)*pFramerate->speedfactor;	// nice and smooth ;)
         }
         
         // Added Vertical Scrolling. Jan 6 2012
         // Note: Play with (y-200) and (y+200) to adjust when scrolling activates
-        if( (pPlayer->posy - window.h) > (y - 300) ) // DOWN
+        if( (pPlayer->posy - window.h) > (y - 250) ) // DOWN
         {
-            y += ((pPlayer->posy - y + 300 - window.h)/10)*pFramerate->speedfactor; // nice and smooth ;)
+            y += ((pPlayer->posy - y + 250 - window.h)/10)*pFramerate->speedfactor; // nice and smooth ;)
         }
         else if( pPlayer->posy < (y + 140) ) // UP
         {

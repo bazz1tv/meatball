@@ -27,12 +27,22 @@ cMVelSprite :: ~cMVelSprite( void )
 
 void cMVelSprite :: Update( void )
 {
+    if (!visible ||
+        /* coords are not in camera view */
+        ((posx + width) - pCamera->x) < -100 || (posx - pCamera->x) > window.w + 100 ||
+        ((posy + height) - pCamera->y) < -100 || (posy - pCamera->y) > window.h + 100)
+    {
+        return;
+    }
 	cVelocitySprite::Update(Renderer, SDL_FALSE );
 }
 
 void cMVelSprite :: Draw( SDL_Renderer *renderer )
 {
-	if ( !visible || !image || width <= 0 || height <= 0 )
+    if ( !visible || !image || width <= 0 || height <= 0 ||
+        /* coords are not in camera view */
+        ((posx + width) - pCamera->x) < 0 || (posx - pCamera->x) > window.w ||
+        ((posy + height) - pCamera->y) < 0 || (posy - pCamera->y) > window.h)
 	{
 		return;
 	}
