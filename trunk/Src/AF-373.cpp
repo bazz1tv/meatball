@@ -77,7 +77,7 @@ void cAF373 :: Update( void )
     
 	PositionCheck( (int)(posx), (int)(posy + 1), (int)width, (int)height, Collision, type );
 
-	if( Collision->collision && Collision->direction == ALL_COLLISIONS_UD )
+	if( Collision->collision && (Collision->direction == ALL_COLLISIONS_UD || Collision->direction == ALL_COLLISIONS_UDLR) )
 	{
         if( Collision->iCollisionType == SPRITE_TYPE_SOLID || Collision->iCollisionType == SPRITE_TYPE_ENEMY || Collision->iCollisionType == SPRITE_TYPE_PLAYER )
         {
@@ -91,9 +91,10 @@ void cAF373 :: Update( void )
             state = STATE_STAYING;
             SetVelocity( velx, 0 );
         }
-		else
+		else // not sure, fallthrough
 		{
-			onGround = 0; // no ground
+			onGround = 1; // no ground
+            SetVelocity( velx, 0 );
 		}
 	}
 	else

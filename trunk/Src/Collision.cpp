@@ -45,16 +45,25 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 	// we don't know whether the collision will be found or not, so we track the increment/decrements with tvelx, and if we've done enough incrementing,
 	// to reach what the final sprite position would be, then we stop there and "call it a day"
 	double tvelx=0,tvely=0;
+    double incx=0, incy=0;
+    if (fvelx > 0.0)
+        incx = fvelx < 1 ? fvelx : 1;
+    else if (fvelx < 0.0)
+        incx = fvelx > -1.0 ? fvelx : -1;
+    if (fvely > 0.0)
+        incy = fvely < 1 ? fvely : 1;
+    else if (fvely < 0.0)
+        incy = fvely > -1.0 ? fvely : -1;
 	
 	SDL_bool movex = SDL_FALSE;
 	SDL_bool movey = SDL_FALSE;
 	
-	if( floor(vely) != 0 )
+	if( vely != 0.0 )
 	{
 		movey = SDL_TRUE;
 	}
 	
-	if( floor(velx) != 0 )
+	if( velx != 0.0 )
 	{
 		movex = SDL_TRUE;
 	}
@@ -63,27 +72,28 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 	{
 		if( movex == SDL_TRUE )
 		{
-			PositionCheck( (int)( Sprite->posx + ( (fvelx > 0) ? (tvelx+=1) : (tvelx+=-1) ) ), (int)Sprite->posy, (int)Sprite->width, (int)Sprite->height, Collision, type  );
+			PositionCheck( (int)( Sprite->posx + incx ), (int)Sprite->posy, (int)Sprite->width, (int)Sprite->height, Collision, type  );
             
             /*if (type == SPRITE_TYPE_BULLET && Collision->iCollisionType == SPRITE_TYPE_ENEMY && static_cast<cBullet *>(Sprite)->Origin == SPRITE_TYPE_ENEMY)
                 Collision->collision = SDL_FALSE;*/
-			
-			if ((fvelx > 0 && tvelx >= fvelx) || (fvelx < 0 && tvelx <= fvelx))
-				movex = SDL_FALSE;
+            tvelx += incx;
 			
 			if( !Collision->collision)	// if no collisions
 			{
-				Sprite->posx += ((fvelx > 0) ? (1) : (-1)); // Add the one
+				Sprite->posx += incx; // Add the one
+                
+                if ((fvelx > 0.0 && tvelx >= fvelx) || (fvelx < 0 && tvelx <= fvelx))
+                    movex = SDL_FALSE;
 				
 				// But if the actual velocity is < 1, add that lesser value instead of 1
-				if((Sprite->posx > posx_old + fvelx && fvelx > 0) || (Sprite->posx < posx_old + fvelx && fvelx < 0) )
+				if((Sprite->posx > posx_old + fvelx && fvelx > 0.0) || (Sprite->posx < posx_old + fvelx && fvelx < 0) )
 				{
 					Sprite->posx = posx_old + fvelx;
 				}
 			}
 			else	// there was a collision
 			{
-				if (velx > 0)
+				if (velx > 0.0)
 				{
 					Collision->collide = LEFT;
 				}
@@ -107,16 +117,17 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 		
 		if( movey == SDL_TRUE )
 		{
-            PositionCheck( (int)Sprite->posx, (int)( Sprite->posy + ( (fvely > 0) ? (1) : (-1) ) ), (int)Sprite->width, (int)Sprite->height, Collision, type );
+            PositionCheck( (int)Sprite->posx, (int)( Sprite->posy + incy ), (int)Sprite->width, (int)Sprite->height, Collision, type );
+            tvely += incy;
             
             if( !Collision->collision )
 			{
-				Sprite->posy += ((fvely > 0) ? (tvely+=1) : (tvely+=-1));
+				Sprite->posy += incy;
 				
-				//if ((fvely > 0 && tvely >= fvely) || (fvely < 0 && tvely <= fvely))
-					//movey = SDL_FALSE;
+				if ((fvely > 0.0 && tvely >= fvely) || (fvely < 0.0 && tvely <= fvely))
+					movey = SDL_FALSE;
 				
-				if((Sprite->posy > posy_old + fvely && fvely > 0) || (Sprite->posy < posy_old + fvely && fvely < 0))
+				if((Sprite->posy > posy_old + fvely && fvely > 0.0) || (Sprite->posy < posy_old + fvely && fvely < 0.0))
 				{
 					Sprite->posy = posy_old + fvely;
                     movey = SDL_FALSE;
@@ -124,7 +135,7 @@ void CollideMove( cBasicSprite *Sprite, double velx, double vely, Collisiondata 
 			}
 			else
 			{
-				if (vely > 0)
+				if (vely > 0.0)
 				{
 					Collision->collide = DOWN;
 				}
