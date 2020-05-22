@@ -378,6 +378,10 @@ void InitAudio()
 	SMan->Add(pAudio->LoadSound(DIR_SOUNDS "dry-explosion-fx.ogg"), "dry-explosion-fx");
 	SMan->Add(pAudio->LoadSound(DIR_SOUNDS "yeah.ogg"), "yeah");
     SMan->Add(pAudio->LoadSound(DIR_SOUNDS "wahwah.ogg"), "wahwah");
+    SMan->Add(pAudio->LoadSound(DIR_SOUNDS "meatball_damaged1.ogg"), "meatball_damaged1");
+    SMan->Add(pAudio->LoadSound(DIR_SOUNDS "meatball_damaged2.ogg"), "meatball_damaged2");
+    SMan->Add(pAudio->LoadSound(DIR_SOUNDS "meatball_damaged3.ogg"), "meatball_damaged3");
+    SMan->Add(pAudio->LoadSound(DIR_SOUNDS "meatball_die1.ogg"), "meatball_die1");
 }
 void InitFont()
 {

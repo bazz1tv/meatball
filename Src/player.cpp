@@ -469,6 +469,13 @@ void cPlayer :: Get_Hit( int damage )
 	}
 	else
 	{
+        int i = Random(1, 3);
+        if (i == 1)
+            pAudio->PlaySound(SMan->GetPointer("meatball_damaged1"));
+        else if (i == 2)
+            pAudio->PlaySound(SMan->GetPointer("meatball_damaged2"));
+        else if (i == 3)
+            pAudio->PlaySound(SMan->GetPointer("meatball_damaged3"));
 		Health -= damage;
 	}
 }
@@ -481,11 +488,12 @@ void cPlayer :: Die( void )
     AddParticleEmitter(posx + (width / 2), posy + (height / 2), 1, 255, 0, 0, 0, 200, 15);
     pAudio->SetMusicVolume(0);
     
-    pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
+    pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"), -1, 70);
+    pAudio->PlaySound(SMan->GetPointer("meatball_die1"));
     cPlayer::yeah_channel = -1;
 	Mix_ChannelFinished(channelDone);
     while (cPlayer::yeah_channel == -1)
-        cPlayer::yeah_channel = pAudio->PlaySound(SMan->GetPointer("wahwah"));
+        cPlayer::yeah_channel = pAudio->PlaySound(SMan->GetPointer("wahwah"), -1, 90);
     
     beatlevel = SDL_TRUE;
     
