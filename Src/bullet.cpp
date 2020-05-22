@@ -232,7 +232,7 @@ void cBullet::Explode()
 	visible = SDL_FALSE;
 }
 
-int cBullet::Damage[NUM_BULLET_TYPES] = { 15,15,15,15 };
+int cBullet::Damage[NUM_BULLET_TYPES] = { 15,15,15,30 };
 
 void cBullet::DoDamage()
 {

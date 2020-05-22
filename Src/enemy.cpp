@@ -75,7 +75,7 @@ void cEnemy :: Die( void )
 
 	visible = SDL_FALSE;
 
-	AddParticleEmitter(explode_posx, explode_posy, 4, 255, 225, 255, 3, 30, 10);
+	AddParticleEmitter(explode_posx, explode_posy, 4, 255, 225, 255, 4, 30, 10);
 	pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));
 }
 
