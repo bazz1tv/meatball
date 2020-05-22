@@ -478,7 +478,7 @@ void cPlayer :: Die( void )
 	DEBUGLOG("cPlayer::Die\n");
 	// todo
     visible = SDL_FALSE;
-    AddParticleEmitter(posx + (width / 2), posy + (height / 2), 1, 255, 0, 0, 0, 200, 20);
+    AddParticleEmitter(posx + (width / 2), posy + (height / 2), 1, 255, 0, 0, 0, 200, 15);
     pAudio->SetMusicVolume(0);
     
     pAudio->PlaySound(SMan->GetPointer("dry-explosion-fx"));

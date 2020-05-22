@@ -35,7 +35,7 @@ cAF373 :: ~cAF373( void )
 void cAF373 :: init( void )
 {
 	cEnemy::init();
-	Health = 15;
+	Health = 30;
 	direction = RIGHT;
 
 	Enemy_type = ENEMY_AF373;
