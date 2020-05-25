@@ -48,7 +48,6 @@
 		E9CFA3FE16B1D54D00B3919F /* sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E516B1D54D00B3919F /* sprite.cpp */; };
 		E9CFA3FF16B1D54D00B3919F /* TextObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E616B1D54D00B3919F /* TextObject.cpp */; };
 		E9CFA40016B1D54D00B3919F /* weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9CFA3E716B1D54D00B3919F /* weapon.cpp */; };
-		E9CFF30B2474DAC40008BEDC /* SDLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9CFF30A2474DAC40008BEDC /* SDLEngine.framework */; settings = {ASSET_TAGS = (); }; };
 		E9CFF30C2474E2D50008BEDC /* SDLEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9F4310B1A409DF700AA93C6 /* SDLEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9CFF3102474F2C50008BEDC /* MeatBall.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C93E39113942B5A0096FAB3 /* MeatBall.app */; };
 		E9D3371B16CB624000BB0F9D /* MiniEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9D3371A16CB624000BB0F9D /* MiniEngine.cpp */; };
@@ -91,7 +90,6 @@
 		E9F431481A409E9C00AA93C6 /* SDL2_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9F42FE91A408EAA00AA93C6 /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9F431491A409E9C00AA93C6 /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9F42FEA1A408EAA00AA93C6 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E9F4314A1A409FCF00AA93C6 /* SDLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F4310B1A409DF700AA93C6 /* SDLEngine.framework */; };
-		E9F431501A40A21900AA93C6 /* SDLEngine.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9F4310B1A409DF700AA93C6 /* SDLEngine.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -146,16 +144,6 @@
 				E9F431471A409E9C00AA93C6 /* SDL2_net.framework in CopyFiles */,
 				E9F431481A409E9C00AA93C6 /* SDL2_ttf.framework in CopyFiles */,
 				E9F431491A409E9C00AA93C6 /* SDL2.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E9F4314D1A40A12000AA93C6 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = ../../../Frameworks;
-			dstSubfolderSpec = 16;
-			files = (
-				E9F431501A40A21900AA93C6 /* SDLEngine.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +282,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9CFF30B2474DAC40008BEDC /* SDLEngine.framework in Frameworks */,
 				E9F4314A1A409FCF00AA93C6 /* SDLEngine.framework in Frameworks */,
 				9C93E39613942B5A0096FAB3 /* Cocoa.framework in Frameworks */,
 				E9F42FF01A408EAA00AA93C6 /* SDL2.framework in Frameworks */,
@@ -866,7 +853,6 @@
 				E9F431071A409DF700AA93C6 /* Frameworks */,
 				E9F431081A409DF700AA93C6 /* Headers */,
 				E9F431091A409DF700AA93C6 /* Resources */,
-				E9F4314D1A40A12000AA93C6 /* CopyFiles */,
 			);
 			buildRules = (
 				E9F4314F1A40A1D000AA93C6 /* PBXBuildRule */,
@@ -1214,7 +1200,7 @@
 					"\"$(SRCROOT)/Build/Products/Debug/SDLEngine.framework/Headers\"",
 					../Meatball/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../Engine/XCode/Engine/DerivedData/Engine/info.plist";
+				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
@@ -1260,7 +1246,7 @@
 					"\"$(SRCROOT)/Build/Products/Debug/SDLEngine.framework/Headers\"",
 					../Meatball/include,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../Engine/XCode/Engine/DerivedData/Engine/info.plist";
+				INFOPLIST_FILE = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
