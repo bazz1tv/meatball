@@ -3,7 +3,7 @@
 #ifdef _WIN32
 #include <SDL_ep.h>
 #elif __APPLE__
-#include <MeatBallEngine/SDL_ep.h>
+#include <SDLEngine/SDL_ep.h>
 #endif
 
 #include "Globals.h"
