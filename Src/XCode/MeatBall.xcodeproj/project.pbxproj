@@ -274,7 +274,6 @@
 		E9F430D91A409C4900AA93C6 /* sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sprite.cpp; path = ../Engine/sprite.cpp; sourceTree = "<group>"; };
 		E9F430DA1A409C4900AA93C6 /* video.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = video.cpp; path = ../Engine/video.cpp; sourceTree = "<group>"; };
 		E9F4310B1A409DF700AA93C6 /* SDLEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDLEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9F4310E1A409DF700AA93C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Engine/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -782,7 +781,6 @@
 		E9F430F31A409C5200AA93C6 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
-				E9F4310E1A409DF700AA93C6 /* Info.plist */,
 				E9F430C21A409C4900AA93C6 /* audio.cpp */,
 				E9F430C31A409C4900AA93C6 /* font.cpp */,
 				E9F430C41A409C4900AA93C6 /* framerate.cpp */,
